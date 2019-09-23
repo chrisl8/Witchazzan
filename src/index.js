@@ -31,11 +31,30 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+let cursors;
+let player;
+let showDebug = false;
 
 function preload() {
   // Runs once, loads up assets like images and audio
   this.load.image('tiles', 'src/assets/tileset_1bit.png');
   this.load.tilemapTiledJSON('map', 'src/assets/openingScene.json');
+
+  // An atlas is a way to pack multiple images together into one texture. I'm using it to load all
+  // the player animations (walking left, walking right, etc.) in one image. For more info see:
+  //  https://labs.phaser.io/view.html?src=src/animation/texture%20atlas%20animation.js
+  // I'm not using that though, instaed
+  //  you can do the same thing with a spritesheet, see:
+  //  https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
+  this.load.spritesheet(
+    'partyWizard',
+    'src/assets/party-wizard-sprite-sheet.png',
+    {
+      frameWidth: 128,
+      frameHeight: 128,
+      endFrame: 5,
+    },
+  );
 }
 
 function create() {
@@ -77,18 +96,151 @@ function create() {
 
   // If you want to verify that you’ve got the right tiles marked as colliding, use the layer’s debug rendering:
   // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-  const debugGraphics = this.add.graphics().setAlpha(0.75);
-  collissionLayer.renderDebug(debugGraphics, {
-    tileColor: null, // Color of non-colliding tiles
-    collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-    faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
-  });
+  // const debugGraphics = this.add.graphics().setAlpha(0.75);
+  // collissionLayer.renderDebug(debugGraphics, {
+  //   tileColor: null, // Color of non-colliding tiles
+  //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+  //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
+  // });
 
   // set background color, so the sky is not black
   // https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3/
   this.cameras.main.setBackgroundColor('#FFFFFF');
+
+  // By default, everything gets depth sorted on the screen in the order we created things. Here, we
+  // want the "Above Player" layer to sit on top of the player, so we explicitly give it a depth.
+  // Higher depths will sit on top of lower depth objects.
+  overheadLayer.setDepth(10);
+
+  // Object layers in Tiled let you embed extra info into a map - like a spawn point or custom
+  // collision shapes. In the tmx file, there's an object layer with a point named "Spawn Point"
+  const spawnPoint = map.findObject(
+    'Objects',
+    (obj) => obj.name === 'Spawn Point',
+  );
+
+  // Create a sprite with physics enabled via the physics system. The image used for the sprite has
+  // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
+  player = this.physics.add
+    .sprite(spawnPoint.x, spawnPoint.y, 'partyWizard')
+    .setSize(30, 40)
+    .setOffset(0, 24);
+
+  // My sprite is out of scale with my tiles, so adjusting here
+  player.displayHeight = 18;
+  player.displayWidth = 18;
+
+  // Watch the player and worldLayer for collisions, for the duration of the scene:
+  this.physics.add.collider(player, collissionLayer);
+
+  // Create the player's walking animations from the texture atlas. These are stored in the global
+  // animation manager so any sprite can access them.
+  // Actually this is NOT done from an atlas. I had to hack it a lot ot make it work.
+  const anims = this.anims;
+  anims.create({
+    key: 'wizard-left-walk',
+    frames: anims.generateFrameNumbers('partyWizard', {
+      start: 0,
+      end: 3,
+      zeroPad: 3,
+    }),
+    frameRate: 10,
+    repeat: -1,
+  });
+  anims.create({
+    key: 'wizard-right-walk',
+    frames: anims.generateFrameNumbers('partyWizard', {
+      start: 0,
+      end: 3,
+      zeroPad: 3,
+    }),
+    frameRate: 10,
+    repeat: -1,
+  });
+  anims.create({
+    key: 'wizard-front-walk',
+    frames: anims.generateFrameNumbers('partyWizard', {
+      start: 0,
+      end: 3,
+      zeroPad: 3,
+    }),
+    frameRate: 10,
+    repeat: -1,
+  });
+  anims.create({
+    key: 'wizard-back-walk',
+    frames: anims.generateFrameNumbers('partyWizard', {
+      start: 0,
+      end: 3,
+      zeroPad: 3,
+    }),
+    frameRate: 10,
+    repeat: -1,
+  });
+
+  const camera = this.cameras.main;
+  camera.startFollow(player);
+  camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+
+  cursors = this.input.keyboard.createCursorKeys();
+
+  // TODO: Add the text and the key to turn debug on and off.
 }
 
 function update(time, delta) {
   // Runs once per frame for the duration of the scene
+  const speed = 175;
+  const prevVelocity = player.body.velocity.clone();
+
+  // Stop any previous movement from the last frame
+  player.body.setVelocity(0);
+
+  // Horizontal movement
+  if (cursors.left.isDown) {
+    player.body.setVelocityX(-speed);
+  } else if (cursors.right.isDown) {
+    player.body.setVelocityX(speed);
+  }
+
+  // Vertical movement
+  if (cursors.up.isDown) {
+    player.body.setVelocityY(-speed);
+  } else if (cursors.down.isDown) {
+    player.body.setVelocityY(speed);
+  }
+
+  // Normalize and scale the velocity so that player can't move faster along a diagonal
+  player.body.velocity.normalize().scale(speed);
+
+  // Update the animation last and give left/right animations precedence over up/down animations
+  if (cursors.left.isDown) {
+    player.anims.play('wizard-left-walk', true);
+  } else if (cursors.right.isDown) {
+    player.anims.play('wizard-right-walk', true);
+  } else if (cursors.up.isDown) {
+    player.anims.play('wizard-back-walk', true);
+  } else if (cursors.down.isDown) {
+    player.anims.play('wizard-front-walk', true);
+  } else {
+    player.anims.stop();
+
+    // If we were moving, pick and idle frame to use
+    // This makes more sense with a sprite that has a front and a back.
+    if (prevVelocity.x < 0) player.anims.play('partyWizard', 'wizard-left');
+    else if (prevVelocity.x > 0)
+      player.anims.play('partyWizard', 'wizard-right');
+    else if (prevVelocity.y < 0)
+      player.anims.play('partyWizard', 'wizard-back');
+    else if (prevVelocity.y > 0)
+      player.anims.play('partyWizard', 'wizard-front');
+  }
 }
+
+// TODO: Once walking around works, make socket.io work next.
+// Get it talking to the server, send EVERYTHING to it,
+// Get the server to log stuff it gets,
+// Console log input from server.
+
+// This way we can start playing with client/server control ideas.
+
+// Once that works, set up a player "per client" so two of us can mess with it.
