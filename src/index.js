@@ -34,6 +34,7 @@ const game = new Phaser.Game(config);
 let cursors;
 let player;
 let showDebug = false;
+let socket;
 
 function preload() {
   // Runs once, loads up assets like images and audio
@@ -59,6 +60,18 @@ function preload() {
 
 function create() {
   // Runs once, after all assets in preload are loaded
+
+  socket = new WebSocket('ws://localhost:8080');
+
+  // Connection opened
+  socket.addEventListener('open', function(event) {
+    socket.send('Hello Server!');
+  });
+
+  // Listen for messages
+  socket.addEventListener('message', function(event) {
+    console.log('Message from server ', event.data);
+  });
 
   const map = this.make.tilemap({ key: 'map' });
 
@@ -236,7 +249,7 @@ function update(time, delta) {
   }
 }
 
-// TODO: Once walking around works, make socket.io work next.
+// TODO: Once walking around works, make Websockets work next.
 // Get it talking to the server, send EVERYTHING to it,
 // Get the server to log stuff it gets,
 // Console log input from server.
