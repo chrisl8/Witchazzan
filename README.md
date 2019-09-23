@@ -26,6 +26,29 @@ After starting the development server with `npm start`, you can edit any files i
 and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
 by default).
 
+## Editing Tile Maps
+
+### If you want to keep building the NES Hyrule map
+
+The map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
+
+### Tiles
+
+The tiles I'm experimenting with now came from [here](https://opengameart.org/content/tileset-1bit-color)
+
+### Install and use Tiled
+
+Install via [itch.io](https://thorbjorn.itch.io/tiled)  
+
+From [Building a Map in Tiled](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)  
+When working with Tiled to generate maps for Phaser, there are a few things you’ll want to make sure to do:  
+1. When you load a tileset into your map, make sure to check the “Embed in map” option. (If you forget to do this, then you can click the embed tileset button the bottom of the screen.)  
+2. Make sure you aren’t using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
+3. When you export your map, save it as a JSON file.
+
+### More info on using Tiled with Phaser at
+[How to create sprite sheets for Phaser 3 with TexturePacker](https://www.codeandweb.com/texturepacker/tutorials/how-to-create-sprite-sheets-for-phaser3)
+
 ## Customizing Template
 
 ### Babel
