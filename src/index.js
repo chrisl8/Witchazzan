@@ -28,6 +28,11 @@ const config = {
     create: create,
     update: update,
   },
+  render: {
+    antialias: false,
+    pixelArt: true,
+    roundPixels: false,
+  },
 };
 
 const game = new Phaser.Game(config);
@@ -38,7 +43,7 @@ let socket;
 
 function preload() {
   // Runs once, loads up assets like images and audio
-  this.load.image('tiles', 'src/assets/tileset_1bit.png');
+  this.load.image('tiles', 'src/assets/tileset_1bit-16x16.png');
   this.load.tilemapTiledJSON('map', 'src/assets/openingScene.json');
 
   // An atlas is a way to pack multiple images together into one texture. I'm using it to load all
@@ -134,10 +139,12 @@ function create() {
 
   // Create a sprite with physics enabled via the physics system. The image used for the sprite has
   // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
+  // You can use the setSize nad setOffset to allow the character to overlap the
+  // collision blocks slightly. This often makes the most sense for the head to overlap a bit so that "background" blocks (above player) seem more "background"
   player = this.physics.add
     .sprite(spawnPoint.x, spawnPoint.y, 'partyWizard')
-    .setSize(30, 40)
-    .setOffset(0, 24);
+    .setSize(128, 110)
+    .setOffset(0, 12);
 
   // My sprite is out of scale with my tiles, so adjusting here
   player.displayHeight = 18;
@@ -157,7 +164,7 @@ function create() {
       end: 3,
       zeroPad: 3,
     }),
-    frameRate: 10,
+    frameRate: 5,
     repeat: -1,
   });
   anims.create({
@@ -167,7 +174,7 @@ function create() {
       end: 3,
       zeroPad: 3,
     }),
-    frameRate: 10,
+    frameRate: 5,
     repeat: -1,
   });
   anims.create({
@@ -177,7 +184,7 @@ function create() {
       end: 3,
       zeroPad: 3,
     }),
-    frameRate: 10,
+    frameRate: 5,
     repeat: -1,
   });
   anims.create({
@@ -187,7 +194,7 @@ function create() {
       end: 3,
       zeroPad: 3,
     }),
-    frameRate: 10,
+    frameRate: 5,
     repeat: -1,
   });
 
@@ -236,16 +243,6 @@ function update(time, delta) {
     player.anims.play('wizard-front-walk', true);
   } else {
     player.anims.stop();
-
-    // If we were moving, pick and idle frame to use
-    // This makes more sense with a sprite that has a front and a back.
-    if (prevVelocity.x < 0) player.anims.play('partyWizard', 'wizard-left');
-    else if (prevVelocity.x > 0)
-      player.anims.play('partyWizard', 'wizard-right');
-    else if (prevVelocity.y < 0)
-      player.anims.play('partyWizard', 'wizard-back');
-    else if (prevVelocity.y > 0)
-      player.anims.play('partyWizard', 'wizard-front');
   }
 }
 
