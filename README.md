@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/chrisl8/world-client.png)](https://travis-ci.com/chrisl8/world-client)
+
 # World Client Project Template
 
 Currently essentially an updated clone of [Phaser 3 Webpack Project Template](https://github.com/photonstorm/phaser3-project-template).
