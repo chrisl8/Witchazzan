@@ -1,4 +1,7 @@
 import Phaser from 'phaser';
+import tileset1bit16x16 from './assets/tileset_1bit-16x16.png';
+import partyWizardSpriteSheet from './assets/party-wizard-sprite-sheet.png';
+import openingSceneJson from './assets/openingScene.json';
 
 const config = {
   type: Phaser.AUTO, // Which renderer to use
@@ -44,8 +47,8 @@ let socket;
 
 function preload() {
   // Runs once, loads up assets like images and audio
-  this.load.image('tiles', 'src/assets/tileset_1bit-16x16.png');
-  this.load.tilemapTiledJSON('map', 'src/assets/openingScene.json');
+  this.load.image('tiles', tileset1bit16x16);
+  this.load.tilemapTiledJSON('map', openingSceneJson);
 
   // An atlas is a way to pack multiple images together into one texture. I'm using it to load all
   // the player animations (walking left, walking right, etc.) in one image. For more info see:
@@ -53,15 +56,11 @@ function preload() {
   // I'm not using that though, instaed
   //  you can do the same thing with a spritesheet, see:
   //  https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
-  this.load.spritesheet(
-    'partyWizard',
-    'src/assets/party-wizard-sprite-sheet.png',
-    {
-      frameWidth: 101,
-      frameHeight: 128,
-      endFrame: 5,
-    },
-  );
+  this.load.spritesheet('partyWizard', partyWizardSpriteSheet, {
+    frameWidth: 101,
+    frameHeight: 128,
+    endFrame: 5,
+  });
 }
 
 function create() {
@@ -78,7 +77,12 @@ function create() {
   socket.addEventListener('message', function(event) {
     console.log('Message from server ', event.data);
   });
-
+  socket.onclose = function() {
+    // Try to reconnect in 5 seconds
+    setTimeout(function() {
+      start(websocketServerLocation);
+    }, 5000);
+  };
   const map = this.make.tilemap({ key: 'map' });
 
   // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
@@ -218,15 +222,19 @@ function update(time, delta) {
 
   // Horizontal movement
   if (cursors.left.isDown) {
+    socket.send('cursorsLeftIsDown');
     player.body.setVelocityX(-speed);
   } else if (cursors.right.isDown) {
+    socket.send('cursorsRightIsDown');
     player.body.setVelocityX(speed);
   }
 
   // Vertical movement
   if (cursors.up.isDown) {
+    socket.send('cursorsUpIsDown');
     player.body.setVelocityY(-speed);
   } else if (cursors.down.isDown) {
+    socket.send('cursorsDownIsDown');
     player.body.setVelocityY(speed);
   }
 
