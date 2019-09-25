@@ -1,0 +1,15 @@
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+matrix:
+  include:
+    - language: node_js
+      name: "Client Build"
+      node_js: "lts/*"
+      cache:
+        directories:
+          - ~/.npm
+          - ~/.cache
+      script:
+        - npm run build
