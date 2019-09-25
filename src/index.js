@@ -28,6 +28,7 @@ const config = {
     create: create,
     update: update,
   },
+  // Make the pixels "perfect", not fuzzy!
   render: {
     antialias: false,
     pixelArt: true,
@@ -56,7 +57,7 @@ function preload() {
     'partyWizard',
     'src/assets/party-wizard-sprite-sheet.png',
     {
-      frameWidth: 128,
+      frameWidth: 101,
       frameHeight: 128,
       endFrame: 5,
     },
@@ -143,7 +144,7 @@ function create() {
   // collision blocks slightly. This often makes the most sense for the head to overlap a bit so that "background" blocks (above player) seem more "background"
   player = this.physics.add
     .sprite(spawnPoint.x, spawnPoint.y, 'partyWizard')
-    .setSize(128, 110)
+    .setSize(101, 110)
     .setOffset(0, 12);
 
   // My sprite is out of scale with my tiles, so adjusting here
@@ -234,8 +235,10 @@ function update(time, delta) {
 
   // Update the animation last and give left/right animations precedence over up/down animations
   if (cursors.left.isDown) {
+    player.setFlipX(false);
     player.anims.play('wizard-left-walk', true);
   } else if (cursors.right.isDown) {
+    player.setFlipX(true);
     player.anims.play('wizard-right-walk', true);
   } else if (cursors.up.isDown) {
     player.anims.play('wizard-back-walk', true);
