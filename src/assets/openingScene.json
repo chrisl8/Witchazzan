@@ -71,14 +71,13 @@
  "tileheight":16,
  "tilesets":[
         {
-         "backgroundcolor":"#ffffff",
          "columns":8,
          "firstgid":1,
-         "image":"tileset_1bit.png",
+         "image":"tileset_1bit-16x16.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
-         "name":"1-bit-starter-set",
+         "name":"tileset_1bit-16x16",
          "spacing":0,
          "tilecount":64,
          "tileheight":16,
@@ -101,8 +100,7 @@
                          "value":true
                         }]
                 }],
-         "tilewidth":16,
-         "transparentcolor":"#ffffff"
+         "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
