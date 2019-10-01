@@ -1,3 +1,15 @@
+/*
+ * This is primarily where the Phaser config object goes,
+ * but you can put anything you want next to the config object.
+ *
+ * Note that if your scenes need to access the data, this might not be the best place,
+ * due to circular references.
+ *
+ * Currently we also have these objects to put stuff in:
+ * playerObject - Player and anything related to them
+ * communicationsObject - The websocket connection handle
+ */
+
 import Phaser from 'phaser';
 import scene from './scenes/sceneList';
 

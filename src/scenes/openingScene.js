@@ -7,13 +7,23 @@ import playerObject from '../playerObject';
 import communicationsObject from '../communicationsObject';
 
 const sceneName = 'openingScene';
+
+// TODO: Instead of a cont here, should it be like an "extends"?
+// TODO: I need to have a "constructor" or something so I can pass in variables.
+// TODO: Some bits, like the update might need to be just generic used by all scenes, right?
 const openingScene = new Phaser.Scene('openingScene');
 
+// Some multi-scene example code:
+// https://github.com/photonstorm/phaser3-examples/blob/master/public/src/scenes/changing%20scene.js
+// TODO: The example uses this, but I'm not sure why.
 // Phaser.Scene.call(this, { key: 'openingScene' });
 
 openingScene.preload = function() {
   // Runs once, loads up assets like images and audio
   this.load.image('tiles', tileset1bit16x16);
+  // NOTE: The key must be different for each tilemap,
+  // otherwise Phaser will get confused and reuse the same tilemap
+  // even though you think you loaded another one.
   this.load.tilemapTiledJSON(`${sceneName}-map`, tileMap);
 
   // An atlas is a way to pack multiple images together into one texture. I'm using it to load all
@@ -40,7 +50,7 @@ openingScene.create = function() {
 
   // Parameters: layer name (or index) from Tiled, tileset, x, y
   const groundLayer = map.createStaticLayer('Ground', tileset, 0, 0);
-  const collissionLayer = map.createStaticLayer(
+  const collisionLayer = map.createStaticLayer(
     'Stuff You Run Into',
     tileset,
     0,
@@ -64,12 +74,12 @@ openingScene.create = function() {
    * 4. Select only the tiles that you want to collide and set “collides” to true by checking the box
    * 5. Re-export your map.
    */
-  collissionLayer.setCollisionByProperty({ collides: true });
+  collisionLayer.setCollisionByProperty({ collides: true });
 
   // If you want to verify that you’ve got the right tiles marked as colliding, use the layer’s debug rendering:
   // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
   // const debugGraphics = this.add.graphics().setAlpha(0.75);
-  // collissionLayer.renderDebug(debugGraphics, {
+  // collisionLayer.renderDebug(debugGraphics, {
   //   tileColor: null, // Color of non-colliding tiles
   //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
   //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
@@ -106,7 +116,7 @@ openingScene.create = function() {
   playerObject.player.displayWidth = 18;
 
   // Watch the player and worldLayer for collisions, for the duration of the scene:
-  this.physics.add.collider(playerObject.player, collissionLayer);
+  this.physics.add.collider(playerObject.player, collisionLayer);
 
   // Create the player's walking animations from the texture atlas. These are stored in the global
   // animation manager so any sprite can access them.

@@ -38,7 +38,7 @@ openingSceneRight1.create = function() {
 
   // Parameters: layer name (or index) from Tiled, tileset, x, y
   const groundLayer = map.createStaticLayer('Ground', tileset, 0, 0);
-  const collissionLayer = map.createStaticLayer(
+  const collisionLayer = map.createStaticLayer(
     'Stuff You Run Into',
     tileset,
     0,
@@ -62,12 +62,12 @@ openingSceneRight1.create = function() {
    * 4. Select only the tiles that you want to collide and set “collides” to true by checking the box
    * 5. Re-export your map.
    */
-  collissionLayer.setCollisionByProperty({ collides: true });
+  collisionLayer.setCollisionByProperty({ collides: true });
 
   // If you want to verify that you’ve got the right tiles marked as colliding, use the layer’s debug rendering:
   // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
   // const debugGraphics = this.add.graphics().setAlpha(0.75);
-  // collissionLayer.renderDebug(debugGraphics, {
+  // collisionLayer.renderDebug(debugGraphics, {
   //   tileColor: null, // Color of non-colliding tiles
   //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
   //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
@@ -93,18 +93,20 @@ openingSceneRight1.create = function() {
   // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
   // You can use the setSize nad setOffset to allow the character to overlap the
   // collision blocks slightly. This often makes the most sense for the head to overlap a bit so that "background" blocks (above player) seem more "background"
+  // Also use the setSize to allow the character to fit in the spaces it should, even if the
+  // sprite is too big for them.
   // TODO: Learn to use aseprite: https://www.aseprite.org/docs/
   playerObject.player = this.physics.add
     .sprite(128, 128, 'partyWizard')
-    .setSize(101, 110)
-    .setOffset(0, 12);
+    .setSize(80, 110)
+    .setOffset(12, 12);
 
   // My sprite is out of scale with my tiles, so adjusting here
   playerObject.player.displayHeight = 18;
   playerObject.player.displayWidth = 18;
 
   // Watch the player and worldLayer for collisions, for the duration of the scene:
-  this.physics.add.collider(playerObject.player, collissionLayer);
+  this.physics.add.collider(playerObject.player, collisionLayer);
 
   // Create the player's walking animations from the texture atlas. These are stored in the global
   // animation manager so any sprite can access them.
