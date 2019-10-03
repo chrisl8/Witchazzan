@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/chrisl8/world-client.png)](https://travis-ci.com/chrisl8/world-client)
+[![Build Status](https://travis-ci.com/chrisl8/witchazzan-client.png)](https://travis-ci.com/chrisl8/witchazzan-client)
 
 # Witchazzan - A Game!
 
