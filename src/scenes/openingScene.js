@@ -6,6 +6,15 @@ import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
 import playerObject from '../playerObject';
 import communicationsObject from '../communicationsObject';
 
+// keep track of the keyboard state only when it changes
+var keyState = {};
+function sendKey(key, value) {
+  if (keyState[key] !== value) {
+    keyState[key] = value;
+    communicationsObject.socket.send(key + ',' + value);
+  }
+}
+
 const sceneName = 'openingScene';
 
 // TODO: Instead of a cont here, should it be like an "extends"?
@@ -193,12 +202,12 @@ openingScene.update = function(time, delta) {
   // Horizontal movement
   if (playerObject.cursors.left.isDown) {
     if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      communicationsObject.socket.send('cursorsLeftIsDown');
+      sendKey('left', 'down');
     }
     playerObject.player.body.setVelocityX(-speed);
   } else if (playerObject.cursors.right.isDown) {
     if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      communicationsObject.socket.send('cursorsRightIsDown');
+      sendKey('right', 'down');
     }
     playerObject.player.body.setVelocityX(speed);
   }
@@ -206,14 +215,29 @@ openingScene.update = function(time, delta) {
   // Vertical movement
   if (playerObject.cursors.up.isDown) {
     if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      communicationsObject.socket.send('cursorsUpIsDown');
+      sendKey('up', 'down');
     }
     playerObject.player.body.setVelocityY(-speed);
   } else if (playerObject.cursors.down.isDown) {
     if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      communicationsObject.socket.send('cursorsDownIsDown');
+      sendKey('down', 'down');
     }
     playerObject.player.body.setVelocityY(speed);
+  }
+  // Key up events
+  if (communicationsObject.socket.readyState === WebSocket.OPEN) {
+    if (playerObject.cursors.left.isUp) {
+      sendKey('left', 'up');
+    }
+    if (playerObject.cursors.right.isUp) {
+      sendKey('right', 'up');
+    }
+    if (playerObject.cursors.up.isUp) {
+      sendKey('up', 'up');
+    }
+    if (playerObject.cursors.down.isUp) {
+      sendKey('down', 'up');
+    }
   }
 
   // Normalize and scale the velocity so that player can't move faster along a diagonal
