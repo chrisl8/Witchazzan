@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import tileset1bit16x16 from '../assets/tileset_1bit-16x16.png';
 import tileMap from '../assets/openingSceneRight1';
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
+import redBox16x16image from '../assets/red_box-16x16.png';
 import playerObject from '../playerObject';
 import communicationsObject from '../communicationsObject';
 
@@ -25,9 +26,13 @@ openingSceneRight1.preload = function() {
     frameHeight: 128,
     endFrame: 5,
   });
+  this.load.image('redBox16x16image', redBox16x16image);
 };
 
+let sceneOpen;
+
 openingSceneRight1.create = function() {
+  sceneOpen = true;
   // Runs once, after all assets in preload are loaded
 
   const map = this.make.tilemap({ key: `${sceneName}-map` });
@@ -173,8 +178,11 @@ openingSceneRight1.update = function(time, delta) {
 
   // Hotkey scene switch for testing.
   this.input.keyboard.once('keydown_S', (event) => {
-    console.log(`Switching to scene: openingScene`);
-    this.scene.start('openingScene');
+    if (sceneOpen) {
+      sceneOpen = false;
+      console.log(`Switching to scene: openingScene`);
+      this.scene.start('openingScene');
+    }
   });
 
   // Stop any previous movement from the last frame

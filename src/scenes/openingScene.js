@@ -3,18 +3,19 @@ import Phaser from 'phaser';
 import tileset1bit16x16 from '../assets/tileset_1bit-16x16.png';
 import tileMap from '../assets/openingScene';
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
+import redBox16x16image from '../assets/red_box-16x16.png';
 import playerObject from '../playerObject';
 import communicationsObject from '../communicationsObject';
 
 // keep track of the keyboard state. Send only when it changes
-var keyState = {};
+const keyState = {};
 function sendKey(key, value) {
   if (keyState[key] !== value) {
     if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      //not changing the keystate if we can't send because
-      //the keystate is a reflection of what the server thinks
+      // not changing the keystate if we can't send because
+      // the keystate is a reflection of what the server thinks
       keyState[key] = value;
-      communicationsObject.socket.send(key + ',' + value);
+      communicationsObject.socket.send(`${key},${value}`);
     }
   }
 }
@@ -37,6 +38,7 @@ openingScene.preload = function() {
   // NOTE: The key must be different for each tilemap,
   // otherwise Phaser will get confused and reuse the same tilemap
   // even though you think you loaded another one.
+  // https://www.html5gamedevs.com/topic/40710-how-do-i-load-a-new-scene-with-phaser-3-and-webpack/
   this.load.tilemapTiledJSON(`${sceneName}-map`, tileMap);
 
   // An atlas is a way to pack multiple images together into one texture. I'm using it to load all
@@ -50,9 +52,23 @@ openingScene.preload = function() {
     frameHeight: 128,
     endFrame: 5,
   });
+  this.load.image('redBox16x16', redBox16x16image);
 };
 
+let sceneOpen;
+
+function useExit(player, exit) {
+  if (sceneOpen) {
+    sceneOpen = false;
+    const destinationScene = exit.getData('destinationScene');
+    console.log(destinationScene);
+    console.log(`Switching to scene: ${destinationScene}`);
+    this.scene.start(destinationScene);
+  }
+}
+
 openingScene.create = function() {
+  sceneOpen = true;
   // Runs once, after all assets in preload are loaded
 
   const map = this.make.tilemap({ key: `${sceneName}-map` });
@@ -113,6 +129,9 @@ openingScene.create = function() {
     'Objects',
     (obj) => obj.name === 'Spawn Point',
   );
+
+  // TODO: Create a fancier "transition" for moving to new scenes.
+  //  I'd like it to slide the screen "over" in the direction you moved and slide the new one in.
 
   // Create a sprite with physics enabled via the physics system. The image used for the sprite has
   // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
@@ -186,6 +205,37 @@ openingScene.create = function() {
 
   playerObject.cursors = this.input.keyboard.createCursorKeys();
 
+  // TODO:
+  //  Convert 'Objects' layer to tiles,
+  //  pull out the "Load Scene" objects,
+  //  Add colliders to them with calls to functions to load a new scene
+  //  With pertinent data (where we came from or going to, etc.)
+  //  The "Load Scene" object could actually dictate the "entrance" location on the new scene,
+  //  with each scene having a "default" if nothing was given to it as an "entrance" location.
+  //  NOTE: Not sure HOW to enter. Do we just appear at "entrance spawn point" or do we "walk in",
+  //  and if we "walk in" how do we avoid triggering the collider to leave? Or is it just "done for us"
+  //  before activating the colliders to leave?
+  // https://www.html5gamedevs.com/topic/37978-overlapping-on-a-tilemap-object-layer/?do=findComment&comment=216742
+  // https://github.com/B3L7/phaser3-tilemap-pack/blob/master/src/scenes/Level.js
+  const objects = map.getObjectLayer('Objects');
+  const exits = this.physics.add.group();
+  objects.objects.forEach((object) => {
+    if (object.type === 'SwitchToScene') {
+      console.log(object.name);
+      const door = this.physics.add
+        .image(object.x, object.y, 'redBox16x16')
+        .setOrigin(0, 0);
+      // Many Phaser objects have a "Datamanager" that lets you add key/value pairs to them.
+      // Either through .data or the .setData and .getData functions.
+      door.setData('destinationScene', object.name);
+      exits.add(door);
+      // this.physics.add.overlap(playerObject.player, door, (event) => {
+      //   console.log(event);
+      // });
+    }
+  });
+  this.physics.add.overlap(playerObject.player, exits, useExit, null, this);
+
   // TODO: Add the text and the key to turn debug on and off.
 };
 
@@ -196,8 +246,11 @@ openingScene.update = function(time, delta) {
 
   // Hotkey scene switch for testing.
   this.input.keyboard.once('keydown_S', (event) => {
-    console.log(`Switching to scene: openingSceneRight1`);
-    this.scene.start('openingSceneRight1');
+    if (sceneOpen) {
+      sceneOpen = false;
+      console.log(`Switching to scene: openingSceneRight1`);
+      this.scene.start('openingSceneRight1');
+    }
   });
 
   // Stop any previous movement from the last frame

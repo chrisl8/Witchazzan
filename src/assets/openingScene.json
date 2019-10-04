@@ -56,6 +56,108 @@
                  "width":0,
                  "x":87.5,
                  "y":54.5
+                }, 
+                {
+                 "height":16,
+                 "id":2,
+                 "name":"openingSceneRight1",
+                 "properties":[
+                        {
+                         "name":"sceneToLoad",
+                         "type":"string",
+                         "value":"openingSceneRight1"
+                        }],
+                 "rotation":0,
+                 "type":"SwitchToScene",
+                 "visible":true,
+                 "width":16,
+                 "x":256.125,
+                 "y":79.875
+                }, 
+                {
+                 "height":16,
+                 "id":8,
+                 "name":"openingSceneRight1",
+                 "properties":[
+                        {
+                         "name":"sceneToLoad",
+                         "type":"string",
+                         "value":"openingSceneRight1"
+                        }],
+                 "rotation":0,
+                 "type":"SwitchToScene",
+                 "visible":true,
+                 "width":16,
+                 "x":128.25,
+                 "y":-16
+                }, 
+                {
+                 "height":16,
+                 "id":9,
+                 "name":"openingSceneRight1",
+                 "properties":[
+                        {
+                         "name":"sceneToLoad",
+                         "type":"string",
+                         "value":"openingSceneRight1"
+                        }],
+                 "rotation":0,
+                 "type":"SwitchToScene",
+                 "visible":true,
+                 "width":16,
+                 "x":112.375,
+                 "y":-16
+                }, 
+                {
+                 "height":16,
+                 "id":10,
+                 "name":"openingSceneRight1",
+                 "properties":[
+                        {
+                         "name":"sceneToLoad",
+                         "type":"string",
+                         "value":"openingSceneRight1"
+                        }],
+                 "rotation":0,
+                 "type":"SwitchToScene",
+                 "visible":true,
+                 "width":16,
+                 "x":-15.75,
+                 "y":62.875
+                }, 
+                {
+                 "height":16,
+                 "id":11,
+                 "name":"openingSceneRight1",
+                 "properties":[
+                        {
+                         "name":"sceneToLoad",
+                         "type":"string",
+                         "value":"openingSceneRight1"
+                        }],
+                 "rotation":0,
+                 "type":"SwitchToScene",
+                 "visible":true,
+                 "width":16,
+                 "x":-16.125,
+                 "y":79.25
+                }, 
+                {
+                 "height":16,
+                 "id":12,
+                 "name":"openingSceneRight1",
+                 "properties":[
+                        {
+                         "name":"sceneToLoad",
+                         "type":"string",
+                         "value":"openingSceneRight1"
+                        }],
+                 "rotation":0,
+                 "type":"SwitchToScene",
+                 "visible":true,
+                 "width":16,
+                 "x":-16.25,
+                 "y":95.375
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -63,8 +165,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":2,
+ "nextlayerid":10,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
