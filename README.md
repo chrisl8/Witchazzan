@@ -77,3 +77,9 @@ After you run the `npm run build` command, your code will be built into a single
 
 If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), 
 you should be able to open `http://mycoolserver.com/index.html` and play your game.
+
+## Code Standards
+
+I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). The configurations for both are in the code.  
+Don't worry about it if you don't want to run them, I will not reject any pull requests based on formatting, but if you want to "fit in" run your code through Prettier and Eslint first.  
+They are easy to set up, and your IDE and VIM should both support them easily.
