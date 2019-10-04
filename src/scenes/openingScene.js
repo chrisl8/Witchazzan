@@ -6,12 +6,16 @@ import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
 import playerObject from '../playerObject';
 import communicationsObject from '../communicationsObject';
 
-// keep track of the keyboard state only when it changes
+// keep track of the keyboard state. Send only when it changes
 var keyState = {};
 function sendKey(key, value) {
   if (keyState[key] !== value) {
-    keyState[key] = value;
-    communicationsObject.socket.send(key + ',' + value);
+    if (communicationsObject.socket.readyState === WebSocket.OPEN) {
+      //not changing the keystate if we can't send because
+      //the keystate is a reflection of what the server thinks
+      keyState[key] = value;
+      communicationsObject.socket.send(key + ',' + value);
+    }
   }
 }
 
@@ -201,43 +205,33 @@ openingScene.update = function(time, delta) {
 
   // Horizontal movement
   if (playerObject.cursors.left.isDown) {
-    if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      sendKey('left', 'down');
-    }
+    sendKey('left', 'down');
     playerObject.player.body.setVelocityX(-speed);
   } else if (playerObject.cursors.right.isDown) {
-    if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      sendKey('right', 'down');
-    }
+    sendKey('right', 'down');
     playerObject.player.body.setVelocityX(speed);
   }
 
   // Vertical movement
   if (playerObject.cursors.up.isDown) {
-    if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      sendKey('up', 'down');
-    }
+    sendKey('up', 'down');
     playerObject.player.body.setVelocityY(-speed);
   } else if (playerObject.cursors.down.isDown) {
-    if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-      sendKey('down', 'down');
-    }
+    sendKey('down', 'down');
     playerObject.player.body.setVelocityY(speed);
   }
   // Key up events
-  if (communicationsObject.socket.readyState === WebSocket.OPEN) {
-    if (playerObject.cursors.left.isUp) {
-      sendKey('left', 'up');
-    }
-    if (playerObject.cursors.right.isUp) {
-      sendKey('right', 'up');
-    }
-    if (playerObject.cursors.up.isUp) {
-      sendKey('up', 'up');
-    }
-    if (playerObject.cursors.down.isUp) {
-      sendKey('down', 'up');
-    }
+  if (playerObject.cursors.left.isUp) {
+    sendKey('left', 'up');
+  }
+  if (playerObject.cursors.right.isUp) {
+    sendKey('right', 'up');
+  }
+  if (playerObject.cursors.up.isUp) {
+    sendKey('up', 'up');
+  }
+  if (playerObject.cursors.down.isUp) {
+    sendKey('down', 'up');
   }
 
   // Normalize and scale the velocity so that player can't move faster along a diagonal
