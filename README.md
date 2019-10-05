@@ -90,7 +90,8 @@ When working with Tiled to generate maps for Phaser, there are a few things youâ
 Make an object layer in your tilemap.  
 Draw boxes beside the "exits".
 Name them the name of the scene you want to go to when the character passes that exit.
-The "Type" must be "SwitchToScene".
+The "Type" must be "SwitchToScene".  
+REMEMBER that Phaser 3 Arcade Physics only thinks in squares and circles, so don't try to get fancy. The box you draw is NOT ACTUALLY what the player will collide with. The code will draw a new box at the same location with the same width and height. So if you make a polygon, the code will still draw a rectangle.
 
 Notes on making "Exit" boxes:
 1. Do not let them spill into the scene, they will be outlined in bright colors like red for debugging, so they shouldn't show up in the camera.  
