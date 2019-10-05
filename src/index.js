@@ -39,14 +39,4 @@ communicationsObject.socket.addEventListener('message', function(event) {
 // http://www.netexl.com/blog/exploring-resize-scale-mode-in-phaser-3/
 // http://www.netexl.com/blog/phaser-3-scale-manager-is-here-exploring-phaser-3-with-3-16-1-version-now/
 
-// TODO: Once we have a server, make Websockets work next.
-// Get it talking to the server, send EVERYTHING to it,
-// Get the server to log stuff it gets,
-// Console log input from server.
-
-// This way we can start playing with client/server control ideas.
-
-// Once that works, set up a player "per client" so two of us can mess with it.
-
-// TODO: Set up Git Auto Deploy on my DO droplet
-// http://olipo186.github.io/Git-Auto-Deploy/
+// TODO: set up a player "per client" so two of us can mess with it.

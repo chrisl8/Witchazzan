@@ -141,8 +141,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":136.875,
-                 "y":-15.53125
+                 "x":136.8125,
+                 "y":-15.96875
                 }, 
                 {
                  "height":16,
@@ -152,8 +152,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":169.625,
-                 "y":-15.40625
+                 "x":169.5625,
+                 "y":-15.84375
                 }, 
                 {
                  "height":16,
@@ -163,8 +163,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":153,
-                 "y":-15.40625
+                 "x":152.9375,
+                 "y":-15.84375
                 }, 
                 {
                  "height":16,
@@ -174,8 +174,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":185.875,
-                 "y":-15.34375
+                 "x":185.8125,
+                 "y":-15.78125
                 }, 
                 {
                  "height":16,
@@ -185,8 +185,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":218.625,
-                 "y":-15.21875
+                 "x":218.375,
+                 "y":-15.96875
                 }, 
                 {
                  "height":16,
@@ -196,8 +196,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":202,
-                 "y":-15.21875
+                 "x":202.125,
+                 "y":-15.96875
                 }, 
                 {
                  "height":16,
@@ -207,8 +207,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":234.75,
-                 "y":-15.5625
+                 "x":234.6875,
+                 "y":-16.1875
                 }, 
                 {
                  "height":16,
@@ -218,8 +218,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":267.5,
-                 "y":-15.4375
+                 "x":256.125,
+                 "y":0.125
                 }, 
                 {
                  "height":16,
@@ -229,8 +229,8 @@
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":16,
-                 "x":250.875,
-                 "y":-15.4375
+                 "x":251,
+                 "y":-16.1875
                 }, 
                 {
                  "height":16,
@@ -330,6 +330,18 @@
                  "width":16,
                  "x":256.6875,
                  "y":156.0625
+                }, 
+                {
+                 "height":0,
+                 "id":28,
+                 "name":"Spawn Point",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":120.25,
+                 "y":103.25
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -338,7 +350,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":28,
+ "nextobjectid":29,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
