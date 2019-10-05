@@ -1,6 +1,6 @@
 /* globals WebSocket:true */
 import Phaser from 'phaser';
-import tileset1bit16x16 from '../assets/tileset_1bit-16x16.png';
+import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16.png';
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
 import redBox16x16image from '../assets/red_box-16x16.png';
 import playerObject from '../playerObject';

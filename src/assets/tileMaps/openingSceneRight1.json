@@ -359,7 +359,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"tileset_1bit-16x16.png",
+         "image":"../tileSets/tileset_1bit-16x16.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,

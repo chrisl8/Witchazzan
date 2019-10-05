@@ -2,7 +2,13 @@
 
 # Witchazzan - A Game!
 
-This is the start of a game we are building.  
+This is the start of a game that [doby162](https://github.com/doby162) and [chrisl8](https://github.com/chrisl8) are building.  
+
+The game exists in two parts:  
+1. This is the Phaser 3 based web front end.  
+2. [A Clojure based server](https://github.com/doby162/witchazzan-server)
+
+Both parts are required for the game to function.
 
 We started with the [Phaser 3 Webpack Project Template](https://github.com/photonstorm/phaser3-project-template).
 
