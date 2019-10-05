@@ -83,3 +83,8 @@ you should be able to open `http://mycoolserver.com/index.html` and play your ga
 I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). The configurations for both are in the code.  
 Don't worry about it if you don't want to run them, I will not reject any pull requests based on formatting, but if you want to "fit in" run your code through Prettier and Eslint first.  
 They are [easy to set up](https://imgs.xkcd.com/comics/will_it_work.png), and your IDE and VIM should both support them easily.
+
+## Adding Scenes
+1. Create a new Tilemap with Tiled.
+2. Save it in .json format to `src/assets/tileMaps`
+3. Edit `src/scenes/sceneList.js` to add the scene to the game.

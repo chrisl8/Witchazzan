@@ -1,21 +1,27 @@
 /*
- * As the scene count increases, I expect the scene logic to become more
- * complex. This is where to start it.
+ * This loads up all of the scenes.
+ * It is literally just copy/paste of the import lines,
+ * and scenes array with the names of the tilemaps.
+ *
+ * TODO: Write a script to generate this file based on the names
+ *  of the files in the tilemap folder,
+ *  which would run before the webpack build.
+ *
+ * For now, to add a scene:
+ * 1. Add an import line for it.
+ * 2. Add an entry to the scenes array for it.
  */
 import sceneFactory from './sceneFactory';
-import openingSceneTileMap from '../assets/openingScene';
-import openingSceneRight1TileMap from '../assets/openingSceneRight1';
+import openingSceneTileMap from '../assets/tileMaps/openingScene';
+import openingSceneRight1TileMap from '../assets/tileMaps/openingSceneRight1';
 
-// To add a scene to the game:
-// 1. Create a new Tilemap.
-// 2. Save it to the assets folder.
-// 3. Add the Tilemap name to the 'scenes' array
 const scenes = [
   { name: 'openingScene', tileMap: openingSceneTileMap },
   { name: 'openingSceneRight1', tileMap: openingSceneRight1TileMap },
 ];
 
-// Code below here automatically generates all of the scenes from the list above.
+// Code below here automatically generates all of the scenes from the lists above,
+// which is used by the rootGameObjects.js for the Phaser scene array.
 
 const sceneList = [];
 scenes.forEach((scene) => {
