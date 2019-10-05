@@ -58,106 +58,37 @@
                  "y":54.5
                 }, 
                 {
-                 "height":16,
-                 "id":2,
+                 "height":19.8124991026948,
+                 "id":15,
                  "name":"openingSceneRight1",
-                 "properties":[
-                        {
-                         "name":"sceneToLoad",
-                         "type":"string",
-                         "value":"openingSceneRight1"
-                        }],
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
-                 "width":16,
-                 "x":256.125,
-                 "y":79.875
+                 "width":56.5661206265344,
+                 "x":100.928890356481,
+                 "y":-19.8124991026948
                 }, 
                 {
-                 "height":16,
-                 "id":8,
+                 "height":60.5860479807043,
+                 "id":17,
                  "name":"openingSceneRight1",
-                 "properties":[
-                        {
-                         "name":"sceneToLoad",
-                         "type":"string",
-                         "value":"openingSceneRight1"
-                        }],
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
-                 "width":16,
-                 "x":128.25,
-                 "y":-16
+                 "width":18.5203795959973,
+                 "x":-18.8075172641523,
+                 "y":57.5711024650769
                 }, 
                 {
-                 "height":16,
-                 "id":9,
+                 "height":49.3876789226595,
+                 "id":18,
                  "name":"openingSceneRight1",
-                 "properties":[
-                        {
-                         "name":"sceneToLoad",
-                         "type":"string",
-                         "value":"openingSceneRight1"
-                        }],
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
-                 "width":16,
-                 "x":112.375,
-                 "y":-16
-                }, 
-                {
-                 "height":16,
-                 "id":10,
-                 "name":"openingSceneRight1",
-                 "properties":[
-                        {
-                         "name":"sceneToLoad",
-                         "type":"string",
-                         "value":"openingSceneRight1"
-                        }],
-                 "rotation":0,
-                 "type":"SwitchToScene",
-                 "visible":true,
-                 "width":16,
-                 "x":-15.75,
-                 "y":62.875
-                }, 
-                {
-                 "height":16,
-                 "id":11,
-                 "name":"openingSceneRight1",
-                 "properties":[
-                        {
-                         "name":"sceneToLoad",
-                         "type":"string",
-                         "value":"openingSceneRight1"
-                        }],
-                 "rotation":0,
-                 "type":"SwitchToScene",
-                 "visible":true,
-                 "width":16,
-                 "x":-16.125,
-                 "y":79.25
-                }, 
-                {
-                 "height":16,
-                 "id":12,
-                 "name":"openingSceneRight1",
-                 "properties":[
-                        {
-                         "name":"sceneToLoad",
-                         "type":"string",
-                         "value":"openingSceneRight1"
-                        }],
-                 "rotation":0,
-                 "type":"SwitchToScene",
-                 "visible":true,
-                 "width":16,
-                 "x":-16.25,
-                 "y":95.375
+                 "width":20.6739121071598,
+                 "x":256.270368828335,
+                 "y":57.7146712991544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -166,7 +97,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":13,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
@@ -175,7 +106,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"../tileSets/tileset_1bit-16x16.png",
+         "image":"..\/tileSets\/tileset_1bit-16x16.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,

@@ -34,30 +34,7 @@ After starting the development server with `npm start`, you can edit any files i
 and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
 by default).
 
-## Editing Tile Maps
-
-### If you want to keep building the NES Hyrule map
-
-The map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
-
-### Tiles
-
-The tiles I'm experimenting with now came from [here](https://opengameart.org/content/tileset-1bit-color)
-
-### Install and use Tiled
-
-Install via [itch.io](https://thorbjorn.itch.io/tiled)  
-
-From [Building a Map in Tiled](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)  
-When working with Tiled to generate maps for Phaser, there are a few things you’ll want to make sure to do:  
-1. When you load a tileset into your map, make sure to check the “Embed in map” option. (If you forget to do this, then you can click the embed tileset button the bottom of the screen.)  
-2. Make sure you aren’t using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
-3. When you export your map, save it as a JSON file.
-
-### More info on using Tiled with Phaser at
-[How to create sprite sheets for Phaser 3 with TexturePacker](https://www.codeandweb.com/texturepacker/tutorials/how-to-create-sprite-sheets-for-phaser3)
-
-## Customizing Template
+## Customizing The Phaser Build Environment
 
 ### Babel
 You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you
@@ -90,7 +67,63 @@ I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). T
 Don't worry about it if you don't want to run them, I will not reject any pull requests based on formatting, but if you want to "fit in" run your code through Prettier and Eslint first.  
 They are [easy to set up](https://imgs.xkcd.com/comics/will_it_work.png), and your IDE and VIM should both support them easily.
 
+## Editing Tile Maps
+
+### Install and use Tiled
+
+Install via [itch.io](https://thorbjorn.itch.io/tiled)  
+
+From [Building a Map in Tiled](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)  
+When working with Tiled to generate maps for Phaser, there are a few things you’ll want to make sure to do:  
+1. When you load a tileset into your map, make sure to check the “Embed in map” option. (If you forget to do this, then you can click the embed tileset button the bottom of the screen.)  
+2. Make sure you aren’t using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
+3. When you export your map, save it as a JSON file.
+
 ## Adding Scenes
+0. use openingScene.json as an example.
 1. Create a new Tilemap with Tiled.
 2. Save it in .json format to `src/assets/tileMaps`
 3. Edit `src/scenes/sceneList.js` to add the scene to the game.
+
+## Exits
+
+Make an object layer in your tilemap.  
+Draw boxes beside the "exits".
+Name them the name of the scene you want to go to when the character passes that exit.
+The "Type" must be "SwitchToScene".
+
+Notes on making "Exit" boxes:
+1. Do not let them spill into the scene, they will be outlined in bright colors like red for debugging, so they shouldn't show up in the camera.  
+2. Don't be stingy with their size:  
+    a. Make them wide enough that nobody can "sneak past" them.  
+    b. Make them deep enough that we can require a significant overlap before triggering them. This way if we want to ensure a character is fully or mostly off of the screen before switching rather than barely at the edge, we can, without a larger character accidentally getting over the box.  
+    c. One tile width deep and wide past the edge of the door is plenty.
+
+## Notes on saving Tile Maps with Tiled
+Copied From [Modular Game Worlds in Phaser 3](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)  
+When working with Tiled to generate maps for Phaser, there are a few things you’ll want to make sure to do:  
+1. When you load a tileset into your map, make sure to check the “Embed in map” option. (If you forget to do this, then you can click the embed tileset button the bottom of the screen.)  
+2. Make sure you aren't using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
+3. When you export your map, save it as a JSON file.  
+(There are pictures to illustrate these 3 points on the linked site above.)
+
+### Tileset Sources
+
+I will keep track of the Tileset sources here for attribution.
+
+- [Tileset 1bit Color](https://opengameart.org/content/tileset-1bit-color)  
+Author: [Clint Bellanger](https://opengameart.org/users/clint-bellanger)  
+License: [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+FileName: tileset_1bit-16x16.png  
+- [Exterior 32x32 Town tileset](https://opengameart.org/content/exterior-32x32-town-tileset)  
+Author: [n2liquid](https://opengameart.org/users/n2liquid)  
+License [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+FileName: tileset_town-32x32.png  
+- [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
+Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  
+License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
+FileName: tileset_zoria-16x16.png  
+
+### If you want to keep building the NES Hyrule map
+
+The map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)

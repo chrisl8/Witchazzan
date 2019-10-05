@@ -201,27 +201,32 @@ const sceneFactory = ({ sceneName, tileMap }) => {
 
     playerObject.cursors = this.input.keyboard.createCursorKeys();
 
-    // TODO:
-    //  Convert 'Objects' layer to tiles,
-    //  pull out the "Load Scene" objects,
-    //  Add colliders to them with calls to functions to load a new scene
-    //  With pertinent data (where we came from or going to, etc.)
-    //  The "Load Scene" object could actually dictate the "entrance" location on the new scene,
-    //  with each scene having a "default" if nothing was given to it as an "entrance" location.
-    //  NOTE: Not sure HOW to enter. Do we just appear at "entrance spawn point" or do we "walk in",
-    //  and if we "walk in" how do we avoid triggering the collider to leave? Or is it just "done for us"
-    //  before activating the colliders to leave?
+    // This section finds the Objects in the Tilemap that trigger exiting to another scene,
+    // and sets up the colliders in Phaser for them along with where to send the player.
+    // TODO: Use drawn rectangles instead so we can make one big one.
+    // TODO: Set WHERE in the new scene the player should spawn.
+    // TODO: Set some system for how to determine that, along with a default for when we fail.
+    // TODO: Improve scene switch animation of scene and character.
+    // Useful info on how this works:
     // https://www.html5gamedevs.com/topic/37978-overlapping-on-a-tilemap-object-layer/?do=findComment&comment=216742
     // https://github.com/B3L7/phaser3-tilemap-pack/blob/master/src/scenes/Level.js
     const objects = map.getObjectLayer('Objects');
     const exits = this.physics.add.group();
     objects.objects.forEach((object) => {
       if (object.type === 'SwitchToScene') {
-        const door = this.physics.add
-          .image(object.x, object.y, 'redBox16x16')
+        const door = this.add
+          .rectangle(
+            object.x,
+            object.y,
+            object.width,
+            object.height,
+            0xff0000,
+            1,
+          )
           .setOrigin(0, 0);
         // Many Phaser objects have a "Datamanager" that lets you add key/value pairs to them.
         // Either through .data or the .setData and .getData functions.
+        // Here we use this to tell Phaser what scene to load when this object is "overlaped"
         door.setData('destinationScene', object.name);
         exits.add(door);
         // this.physics.add.overlap(playerObject.player, door, (event) => {
@@ -229,6 +234,7 @@ const sceneFactory = ({ sceneName, tileMap }) => {
         // });
       }
     });
+    // overlap lets you walk onto it, rather than stopping when you hit it.
     this.physics.add.overlap(playerObject.player, exits, useExit, null, this);
 
     // TODO: Add the text and the key to turn debug on and off.
