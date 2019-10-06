@@ -14,7 +14,7 @@ communicationsObject.socket = new WebSocket(
 // https://github.com/gamestdio/websocket
 
 // Connection opened
-communicationsObject.socket.addEventListener('open', function(event) {
+communicationsObject.socket.addEventListener('open', function() {
   communicationsObject.socket.send('Hello Server!');
 });
 

@@ -22,14 +22,15 @@ const rootGameObject = {
     // Currently my tile map is tiny too, so this helps anyway.
     scale: {
       mode: Phaser.Scale.FIT,
-      width: 256,
-      height: 176,
-      min: {
-        width: 256,
-        height: 176,
-      },
-      max: { width: 1600, height: 1200 },
-      autoRound: true,
+      // Actual scale is set per map in the sceneFactory.js
+      width: 32 * 20, // 16 * 16
+      height: 32 * 11, // 16 * 11
+      // min: {
+      //   width: 16 * 16,
+      //   height: 16 * 11,
+      // },
+      // max: { width: 1600, height: 1200 }, // No maximum. Fill the screen.
+      autoRound: true, // Should improve performance
     },
     physics: {
       default: 'arcade',

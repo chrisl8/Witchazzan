@@ -79,8 +79,45 @@ When working with Tiled to generate maps for Phaser, there are a few things you�
 2. Make sure you aren’t using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
 3. When you export your map, save it as a JSON file.
 
-## Adding Scenes
-0. use openingScene.json as an example.
+#### Please use an existing Tilemap as an example
+
+### New Tiled Map Settings
+- Orientation: Orthogonal
+- Tiled Layer Format: Base64 (uncompressed)
+- Tile Render Order: Right Down
+- Map Size: Fixed
+  - The map should not be infinite, but the actual size is variable.
+  - There are two "screen sizes" supported:
+    - The Normal Standard is a 16:9 "screen" that is 20 tiles wide by 11 tiles high.
+    - A 4:3 aspect ratio using 16 tiles wide by 11 tiles high is also supported. This is what you need to copy a NES map for instance.
+    - **However, if** you make the map bigger, in either direction, the camera will stick to 20x11 tiles, and scroll as the player moves to cover more territory. However, for the sake of memory, do not make infinite maps.
+- Tile Size
+  - 16x16  
+  or
+  - 32x32  
+  There is no actual reason not to use other sizes, but these are the sizes tested and supported. If nothing else, they must be symetrical.
+- Remember to **save your map in JSON format!**
+- When adding a Tileset to the map be sure to check **Embed in map**
+
+### Notes on saving Tile Maps with Tiled
+Copied From [Modular Game Worlds in Phaser 3](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)  
+When working with Tiled to generate maps for Phaser, there are a few things you’ll want to make sure to do:  
+1. When you load a tileset into your map, make sure to check the “Embed in map” option. (If you forget to do this, then you can click the embed tileset button the bottom of the screen.)  
+2. Make sure you aren't using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
+3. When you export your map, save it as a JSON file.  
+(There are pictures to illustrate these 3 points on the linked site above.)
+
+### Layers
+
+Create the following layers for tiles, which should be obvious as to how they work:
+- Stuff You Walk Under
+- Stuff You Run Into
+  - This is the layer we collied with.
+- Ground
+
+In addition, add an Objects layer.
+
+### Adding Scenes to the Program
 1. Create a new Tilemap with Tiled.
 2. Save it in .json format to `src/assets/tileMaps`
 3. Edit `src/scenes/sceneList.js` to add the scene to the game.
@@ -99,14 +136,6 @@ Notes on making "Exit" boxes:
     a. Make them wide enough that nobody can "sneak past" them.  
     b. Make them deep enough that we can require a significant overlap before triggering them. This way if we want to ensure a character is fully or mostly off of the screen before switching rather than barely at the edge, we can, without a larger character accidentally getting over the box.  
     c. One tile width deep and wide past the edge of the door is plenty.
-
-## Notes on saving Tile Maps with Tiled
-Copied From [Modular Game Worlds in Phaser 3](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)  
-When working with Tiled to generate maps for Phaser, there are a few things you’ll want to make sure to do:  
-1. When you load a tileset into your map, make sure to check the “Embed in map” option. (If you forget to do this, then you can click the embed tileset button the bottom of the screen.)  
-2. Make sure you aren't using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
-3. When you export your map, save it as a JSON file.  
-(There are pictures to illustrate these 3 points on the linked site above.)
 
 ### Tileset Sources
 

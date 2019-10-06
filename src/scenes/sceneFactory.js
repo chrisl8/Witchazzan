@@ -1,12 +1,16 @@
 /* globals WebSocket:true */
 import Phaser from 'phaser';
-import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16.png';
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
-import redBox16x16image from '../assets/red_box-16x16.png';
 import playerObject from '../playerObject';
 import communicationsObject from '../communicationsObject';
 
-const sceneFactory = ({ sceneName, tileMap }) => {
+const sceneFactory = ({
+  sceneName,
+  tileMap,
+  tileSet,
+  tileSetName,
+  gameSize,
+}) => {
   // keep track of the keyboard state. Send only when it changes
   playerObject.keyState = {};
 
@@ -28,7 +32,10 @@ const sceneFactory = ({ sceneName, tileMap }) => {
 
   scene.preload = function() {
     // Runs once, loads up assets like images and audio
-    this.load.image('tiles', tileset1bit16x16);
+    // All of these text based "keys" are basically global variables in Phaser.
+    // You can reuse the same name, but phaser will just reuse the first thing you
+    // assingd to it.
+    this.load.image(`${tileSetName}-tiles`, tileSet);
     // NOTE: The key must be different for each tilemap,
     // otherwise Phaser will get confused and reuse the same tilemap
     // even though you think you loaded another one.
@@ -47,7 +54,6 @@ const sceneFactory = ({ sceneName, tileMap }) => {
       frameHeight: 128,
       endFrame: 5,
     });
-    this.load.image('redBox16x16', redBox16x16image);
   };
 
   let sceneOpen;
@@ -69,35 +75,22 @@ const sceneFactory = ({ sceneName, tileMap }) => {
 
     // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
     // Phaser's cache (i.e. the name you used in preload)
-    const tileset = map.addTilesetImage('tileset_1bit-16x16', 'tiles');
+    const tileset = map.addTilesetImage(tileSetName, `${tileSetName}-tiles`);
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
-    const groundLayer = map.createStaticLayer('Ground', tileset, 0, 0);
-    const collisionLayer = map.createStaticLayer(
-      'Stuff You Run Into',
-      tileset,
-      0,
-      0,
-    );
+    map.createStaticLayer('Ground', tileset, 0, 0);
+
+    // We collide with EVERYTHING in this layer. Collision isn't based on tiles themselves,
+    // but the layer they are in.
+    const collisionLayer = map
+      .createStaticLayer('Stuff You Run Into', tileset, 0, 0)
+      .setCollisionByExclusion([-1]);
     const overheadLayer = map.createStaticLayer(
       'Stuff You Walk Under',
       tileset,
       0,
       0,
     );
-
-    /*
-     *
-     * https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-     * Tiled allows you to add properties to a tileset via the Tileset Editor,
-     * so we can just mark which tiles collide directly in Tiled.
-     * 1. Open up the Tileset Editor by clicking on the “Edit Tileset” button (at the bottom right of the screen).
-     * 2. Click and drag (or CTRL + A) to select all the tiles.
-     * 3. Under the properties window (left side of the screen), click the plus icon and add a boolean property named “collides.”
-     * 4. Select only the tiles that you want to collide and set “collides” to true by checking the box
-     * 5. Re-export your map.
-     */
-    collisionLayer.setCollisionByProperty({ collides: true });
 
     // If you want to verify that you’ve got the right tiles marked as colliding, use the layer’s debug rendering:
     // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
@@ -197,6 +190,7 @@ const sceneFactory = ({ sceneName, tileMap }) => {
 
     const camera = this.cameras.main;
     camera.startFollow(playerObject.player);
+    // This keeps the camera from moving off of the map, regardless of where the player goes
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     playerObject.cursors = this.input.keyboard.createCursorKeys();
@@ -237,16 +231,18 @@ const sceneFactory = ({ sceneName, tileMap }) => {
     // overlap lets you walk onto it, rather than stopping when you hit it.
     this.physics.add.overlap(playerObject.player, exits, useExit, null, this);
 
+    this.scale.setGameSize(gameSize.width, gameSize.height);
+
     // TODO: Add the text and the key to turn debug on and off.
   };
 
-  scene.update = function(time, delta) {
+  scene.update = function() {
     // Runs once per frame for the duration of the scene
     const speed = 175;
-    const prevVelocity = playerObject.player.body.velocity.clone();
+    playerObject.player.body.velocity.clone();
 
     // Hotkey scene switch for testing.
-    this.input.keyboard.once('keydown_O', (event) => {
+    this.input.keyboard.once('keydown_O', () => {
       if (sceneOpen && sceneName !== 'openingScene') {
         sceneOpen = false;
         console.log(`Switching to scene: openingScene`);
