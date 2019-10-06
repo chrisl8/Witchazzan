@@ -119,9 +119,6 @@ const sceneFactory = ({
       (obj) => obj.name === 'Spawn Point',
     );
 
-    // TODO: Create a fancier "transition" for moving to new scenes.
-    //  I'd like it to slide the screen "over" in the direction you moved and slide the new one in.
-
     // Create a sprite with physics enabled via the physics system. The image used for the sprite has
     // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
     // You can use the setSize nad setOffset to allow the character to overlap the
@@ -199,10 +196,11 @@ const sceneFactory = ({
 
     // This section finds the Objects in the Tilemap that trigger exiting to another scene,
     // and sets up the colliders in Phaser for them along with where to send the player.
-    // TODO: Use drawn rectangles instead so we can make one big one.
     // TODO: Set WHERE in the new scene the player should spawn.
     // TODO: Set some system for how to determine that, along with a default for when we fail.
     // TODO: Improve scene switch animation of scene and character.
+    //       I'd like to make a fancier "transition" for moving to new scenes.
+    //       Like possibly slide the screen "over" in the direction you moved and slide the new one in.
     // Useful info on how this works:
     // https://www.html5gamedevs.com/topic/37978-overlapping-on-a-tilemap-object-layer/?do=findComment&comment=216742
     // https://github.com/B3L7/phaser3-tilemap-pack/blob/master/src/scenes/Level.js

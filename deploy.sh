@@ -16,4 +16,6 @@ done
 SCRIPTDIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 # echo "${SCRIPTDIR}" # For debugging
 
+cd "${SCRIPTDIR}" || exit
+npm ci
 npm run build

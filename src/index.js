@@ -24,7 +24,7 @@ communicationsObject.socket.onmessage = (event) => {
   console.log('Message from server ', event.data);
 };
 
-// Notify on rconnect.
+// Notify on reconnect.
 communicationsObject.socket.onreconnect = () => {
   console.log('Reconnected');
 };
@@ -35,7 +35,7 @@ communicationsObject.socket.onreconnect = () => {
 // TODO: Read over this and implement new ides:
 // https://gamedevacademy.org/create-a-basic-multiplayer-game-in-phaser-3-with-socket-io-part-2/
 
-// TODO: Read over and experiment with RESIZE and FIT scale optoins:
+// TODO: Read over and experiment with RESIZE and FIT scale options:
 // http://www.netexl.com/blog/exploring-resize-scale-mode-in-phaser-3/
 // http://www.netexl.com/blog/phaser-3-scale-manager-is-here-exploring-phaser-3-with-3-16-1-version-now/
 
