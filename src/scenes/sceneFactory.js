@@ -1,5 +1,5 @@
-/* globals WebSocket:true */
 import Phaser from 'phaser';
+import WebSocketClient from '@gamestdio/websocket';
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
 import playerObject from '../playerObject';
 import communicationsObject from '../communicationsObject';
@@ -16,7 +16,7 @@ const sceneFactory = ({
 
   function sendKey(key, value) {
     if (playerObject.keyState[key] !== value) {
-      if (communicationsObject.socket.readyState === WebSocket.OPEN) {
+      if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
         // not changing the keystate if we can't send because
         // the keystate is a reflection of what the server thinks
         playerObject.keyState[key] = value;
@@ -30,6 +30,7 @@ const sceneFactory = ({
   // Some multi-scene example code:
   // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/scenes/changing%20scene.js
 
+  // eslint-disable-next-line func-names
   scene.preload = function() {
     // Runs once, loads up assets like images and audio
     // All of these text based "keys" are basically global variables in Phaser.
@@ -67,6 +68,7 @@ const sceneFactory = ({
     }
   }
 
+  // eslint-disable-next-line func-names
   scene.create = function() {
     sceneOpen = true;
     // Runs once, after all assets in preload are loaded
@@ -236,6 +238,7 @@ const sceneFactory = ({
     // TODO: Add the text and the key to turn debug on and off.
   };
 
+  // eslint-disable-next-line func-names
   scene.update = function() {
     // Runs once per frame for the duration of the scene
     const speed = 175;

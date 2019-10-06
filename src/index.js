@@ -1,33 +1,33 @@
-/* globals WebSocket:true */
 import Phaser from 'phaser';
+// This automatically reconnects after a disconnect.
+import WebSocketClient from '@gamestdio/websocket';
 import rootGameObject from './rootGameObject';
 import communicationsObject from './communicationsObject';
 
 rootGameObject.game = new Phaser.Game(rootGameObject.config);
 
 // See https://developer.mozilla.org/en-US/docs/Web/API/WebSocket for how to use Websockets
-communicationsObject.socket = new WebSocket(
+// and https://github.com/gamestdio/websocket for a version that reconnects if the connection drops.
+communicationsObject.socket = new WebSocketClient(
   communicationsObject.websocketServerLocation,
+  [],
+  { backoff: 'fibonacci' },
 );
 
-// TODO: Implement this code to get auto-reconnecting Websockets:
-// https://github.com/gamestdio/websocket
-
 // Connection opened
-communicationsObject.socket.addEventListener('open', function() {
+communicationsObject.socket.onopen = () => {
   communicationsObject.socket.send('Hello Server!');
-});
+};
 
 // Listen for messages
-communicationsObject.socket.addEventListener('message', function(event) {
+communicationsObject.socket.onmessage = (event) => {
   console.log('Message from server ', event.data);
-});
-// communicationsObject.socket.onclose = function() {
-//   // Try to reconnect in 5 seconds
-//   setTimeout(function() {
-//     communicationsObject.socket.start(rootGameObject.websocketServerLocation);
-//   }, 5000);
-// };
+};
+
+// Notify on rconnect.
+communicationsObject.socket.onreconnect = () => {
+  console.log('Reconnected');
+};
 
 // TODO: Read over this example and implement things I learn:
 // https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3/

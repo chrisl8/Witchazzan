@@ -11,6 +11,9 @@
  * 1. Add an import line for it.
  * 2. Add an entry to the scenes array for it.
  *
+ * Good advice on Pixel Art:
+ * https://weareludicrous.com/blog/2018/baby-steps-in-pixel-art/
+ *
  * The Zoom level is the size of the map on screen. Anything beyond that
  * will scroll about to follow the user.
  * Typically this wil be a 20 x 11 32 pixel map with a 16:9 aspect ratio.
