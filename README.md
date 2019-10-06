@@ -116,6 +116,8 @@ Create the following layers for tiles, which should be obvious as to how they wo
 - Ground
 
 In addition, add an Objects layer.
+- Every Scen must have an Objected named "Default Spawn Point" where new characters arrive by default.
+- Further, you can make points of Type "Entrance" with a name of our choosing for directing players to when entering this scene from other scenes.
 
 ### Adding Scenes to the Program
 1. Create a new Tilemap with Tiled.
@@ -129,6 +131,7 @@ Draw boxes beside the "exits".
 Name them the name of the scene you want to go to when the character passes that exit.
 The "Type" must be "SwitchToScene".  
 REMEMBER that Phaser 3 Arcade Physics only thinks in squares and circles, so don't try to get fancy. The box you draw is NOT ACTUALLY what the player will collide with. The code will draw a new box at the same location with the same width and height. So if you make a polygon, the code will still draw a rectangle.
+- Add a Custom string Property to each Exit Named "Entrance" with the Value of the "Entrance" you want this exit to take you to in the other scene.
 
 Notes on making "Exit" boxes:
 1. Do not let them spill into the scene, they will be outlined in bright colors like red for debugging, so they shouldn't show up in the camera.  

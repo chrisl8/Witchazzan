@@ -63,7 +63,16 @@ const sceneFactory = ({
     if (sceneOpen) {
       sceneOpen = false;
       const destinationScene = exit.getData('destinationScene');
-      console.log(`Switching to scene: ${destinationScene}`);
+      playerObject.destinationEntrance = exit.getData('destinationEntrance');
+      if (playerObject.destinationEntrance) {
+        console.log(
+          `Switching to scene: ${destinationScene} entrance ${playerObject.destinationEntrance}`,
+        );
+      } else {
+        console.log(`Switching to scene: ${destinationScene}`);
+      }
+      // TODO: Player usually stops moving when scene changes.
+      //       Continue keyboard input, and hence player movement, across scene changes.
       this.scene.start(destinationScene);
     }
   }
@@ -114,10 +123,24 @@ const sceneFactory = ({
 
     // Object layers in Tiled let you embed extra info into a map - like a spawn point or custom
     // collision shapes. In the tmx file, there's an object layer with a point named "Spawn Point"
-    const spawnPoint = map.findObject(
+    let spawnPoint = map.findObject(
       'Objects',
-      (obj) => obj.name === 'Spawn Point',
+      (obj) => obj.name === 'Default Spawn Point',
     );
+    if (playerObject.destinationEntrance) {
+      const entranceList = map.filterObjects(
+        'Objects',
+        (obj) => obj.type === 'Entrance',
+      );
+      if (entranceList && entranceList.length > 0) {
+        const requestedEntranceIndex = entranceList.findIndex(
+          (x) => x.name === playerObject.destinationEntrance,
+        );
+        if (requestedEntranceIndex > -1) {
+          spawnPoint = entranceList[requestedEntranceIndex];
+        }
+      }
+    }
 
     // Create a sprite with physics enabled via the physics system. The image used for the sprite has
     // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
@@ -196,8 +219,7 @@ const sceneFactory = ({
 
     // This section finds the Objects in the Tilemap that trigger exiting to another scene,
     // and sets up the colliders in Phaser for them along with where to send the player.
-    // TODO: Set WHERE in the new scene the player should spawn.
-    // TODO: Set some system for how to determine that, along with a default for when we fail.
+    // TODO: Set the "facing direction" in the new scene?
     // TODO: Improve scene switch animation of scene and character.
     //       I'd like to make a fancier "transition" for moving to new scenes.
     //       Like possibly slide the screen "over" in the direction you moved and slide the new one in.
@@ -220,8 +242,19 @@ const sceneFactory = ({
           .setOrigin(0, 0);
         // Many Phaser objects have a "Datamanager" that lets you add key/value pairs to them.
         // Either through .data or the .setData and .getData functions.
-        // Here we use this to tell Phaser what scene to load when this object is "overlaped"
+        // Here we use this to tell Phaser what scene to load when this object is "overlapped"
         door.setData('destinationScene', object.name);
+        if (object.properties) {
+          const entrancePropertyIndex = object.properties.findIndex(
+            (x) => x.name === 'Entrance',
+          );
+          if (entrancePropertyIndex > -1) {
+            door.setData(
+              'destinationEntrance',
+              object.properties[entrancePropertyIndex].value,
+            );
+          }
+        }
         exits.add(door);
         // this.physics.add.overlap(playerObject.player, door, (event) => {
         //   console.log(event);

@@ -48,7 +48,7 @@
                 {
                  "height":0,
                  "id":28,
-                 "name":"Spawn Point",
+                 "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
                  "type":"",
@@ -100,6 +100,30 @@
                  "width":63.6914106301861,
                  "x":96.3444718546759,
                  "y":176.093294460641
+                }, 
+                {
+                 "height":0,
+                 "id":35,
+                 "name":"Left",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Entrance",
+                 "visible":true,
+                 "width":0,
+                 "x":8.03575204770699,
+                 "y":87.8293601003764
+                }, 
+                {
+                 "height":0,
+                 "id":36,
+                 "name":"Lower",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Entrance",
+                 "visible":true,
+                 "width":0,
+                 "x":127.585186020611,
+                 "y":165.085362243244
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -108,7 +132,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":35,
+ "nextobjectid":37,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

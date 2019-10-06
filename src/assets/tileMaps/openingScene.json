@@ -48,7 +48,7 @@
                 {
                  "height":0,
                  "id":1,
-                 "name":"Spawn Point",
+                 "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
                  "type":"",
@@ -83,12 +83,18 @@
                  "height":49.3876789226595,
                  "id":18,
                  "name":"openingSceneRight1",
+                 "properties":[
+                        {
+                         "name":"Entrance",
+                         "type":"string",
+                         "value":"Left"
+                        }],
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":20.6739121071598,
-                 "x":256.090560144774,
-                 "y":57.9544162105686
+                 "x":255.987860798934,
+                 "y":63.980304699801
                 }],
          "opacity":1,
          "type":"objectgroup",
