@@ -3,11 +3,12 @@ import Phaser from 'phaser';
 import WebSocketClient from '@gamestdio/websocket';
 import rootGameObject from './rootGameObject';
 import communicationsObject from './communicationsObject';
+import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 
 rootGameObject.game = new Phaser.Game(rootGameObject.config);
 
 // See https://developer.mozilla.org/en-US/docs/Web/API/WebSocket for how to use Websockets
-// and https://github.com/gamestdio/websocket for a version that reconnects if the connection drops.
+// and https://github.com/gamestdio/websocket for this version that reconnects if the connection drops.
 communicationsObject.socket = new WebSocketClient(
   communicationsObject.websocketServerLocation,
   [],
@@ -22,6 +23,11 @@ communicationsObject.socket.onopen = () => {
 // Listen for messages
 communicationsObject.socket.onmessage = (event) => {
   console.log('Message from server ', event.data);
+};
+
+// Handle disconnect
+communicationsObject.socket.onclose = () => {
+  cleanUpAfterDisconnect();
 };
 
 // Notify on reconnect.

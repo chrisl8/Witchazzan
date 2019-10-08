@@ -5,6 +5,11 @@
  * Note that the null entries are NOT required,
  * but they make it a little easier to know what to expect to find in this object.
  */
-const playerObject = { player: null, cursors: null, destinationEntrance: null };
+const playerObject = {
+  player: null,
+  cursors: null,
+  destinationEntrance: null,
+  keyState: {}, // keep track of the keyboard state. Send only when it changes
+};
 
 export default playerObject;

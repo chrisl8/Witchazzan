@@ -1,8 +1,7 @@
 import Phaser from 'phaser';
-import WebSocketClient from '@gamestdio/websocket';
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
 import playerObject from '../playerObject';
-import communicationsObject from '../communicationsObject';
+import handleKeyboardInput from '../handleKeyboardInput';
 
 const sceneFactory = ({
   sceneName,
@@ -11,20 +10,6 @@ const sceneFactory = ({
   tileSetName,
   gameSize,
 }) => {
-  // keep track of the keyboard state. Send only when it changes
-  playerObject.keyState = {};
-
-  function sendKey(key, value) {
-    if (playerObject.keyState[key] !== value) {
-      if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-        // not changing the keystate if we can't send because
-        // the keystate is a reflection of what the server thinks
-        playerObject.keyState[key] = value;
-        communicationsObject.socket.send(`${key},${value}`);
-      }
-    }
-  }
-
   const scene = new Phaser.Scene(sceneName);
 
   // Some multi-scene example code:
@@ -71,8 +56,6 @@ const sceneFactory = ({
       } else {
         console.log(`Switching to scene: ${destinationScene}`);
       }
-      // TODO: Player usually stops moving when scene changes.
-      //       Continue keyboard input, and hence player movement, across scene changes.
       this.scene.start(destinationScene);
     }
   }
@@ -215,8 +198,6 @@ const sceneFactory = ({
     // This keeps the camera from moving off of the map, regardless of where the player goes
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-    playerObject.cursors = this.input.keyboard.createCursorKeys();
-
     // This section finds the Objects in the Tilemap that trigger exiting to another scene,
     // and sets up the colliders in Phaser for them along with where to send the player.
     // TODO: Set the "facing direction" in the new scene?
@@ -266,6 +247,10 @@ const sceneFactory = ({
 
     this.scale.setGameSize(gameSize.width, gameSize.height);
 
+    // Globally send all keyboard input to the keyboard input handler
+    this.input.keyboard.on('keydown', handleKeyboardInput);
+    this.input.keyboard.on('keyup', handleKeyboardInput);
+
     // TODO: Add the text and the key to turn debug on and off.
   };
 
@@ -275,7 +260,7 @@ const sceneFactory = ({
     const speed = 175;
     playerObject.player.body.velocity.clone();
 
-    // Hotkey scene switch for testing.
+    // Hot key scene switch for testing.
     this.input.keyboard.once('keydown_O', () => {
       if (sceneOpen && sceneName !== 'openingScene') {
         sceneOpen = false;
@@ -288,49 +273,56 @@ const sceneFactory = ({
     playerObject.player.body.setVelocity(0);
 
     // Horizontal movement
-    if (playerObject.cursors.left.isDown) {
-      sendKey('left', 'down');
+    if (
+      playerObject.keyState.ArrowLeft === 'keydown' ||
+      playerObject.keyState.a === 'keydown'
+    ) {
       playerObject.player.body.setVelocityX(-speed);
-    } else if (playerObject.cursors.right.isDown) {
-      sendKey('right', 'down');
+    } else if (
+      playerObject.keyState.ArrowRight === 'keydown' ||
+      playerObject.keyState.d === 'keydown'
+    ) {
       playerObject.player.body.setVelocityX(speed);
     }
 
     // Vertical movement
-    if (playerObject.cursors.up.isDown) {
-      sendKey('up', 'down');
+    if (
+      playerObject.keyState.ArrowUp === 'keydown' ||
+      playerObject.keyState.w === 'keydown'
+    ) {
       playerObject.player.body.setVelocityY(-speed);
-    } else if (playerObject.cursors.down.isDown) {
-      sendKey('down', 'down');
+    } else if (
+      playerObject.keyState.ArrowDown === 'keydown' ||
+      playerObject.keyState.s === 'keydown'
+    ) {
       playerObject.player.body.setVelocityY(speed);
-    }
-    // Key up events
-    if (playerObject.cursors.left.isUp) {
-      sendKey('left', 'up');
-    }
-    if (playerObject.cursors.right.isUp) {
-      sendKey('right', 'up');
-    }
-    if (playerObject.cursors.up.isUp) {
-      sendKey('up', 'up');
-    }
-    if (playerObject.cursors.down.isUp) {
-      sendKey('down', 'up');
     }
 
     // Normalize and scale the velocity so that player can't move faster along a diagonal
     playerObject.player.body.velocity.normalize().scale(speed);
 
     // Update the animation last and give left/right animations precedence over up/down animations
-    if (playerObject.cursors.left.isDown) {
+    if (
+      playerObject.keyState.ArrowLeft === 'keydown' ||
+      playerObject.keyState.a === 'keydown'
+    ) {
       playerObject.player.setFlipX(false);
       playerObject.player.anims.play('wizard-left-walk', true);
-    } else if (playerObject.cursors.right.isDown) {
+    } else if (
+      playerObject.keyState.ArrowRight === 'keydown' ||
+      playerObject.keyState.d === 'keydown'
+    ) {
       playerObject.player.setFlipX(true);
       playerObject.player.anims.play('wizard-right-walk', true);
-    } else if (playerObject.cursors.up.isDown) {
+    } else if (
+      playerObject.keyState.ArrowUp === 'keydown' ||
+      playerObject.keyState.w === 'keydown'
+    ) {
       playerObject.player.anims.play('wizard-back-walk', true);
-    } else if (playerObject.cursors.down.isDown) {
+    } else if (
+      playerObject.keyState.ArrowDown === 'keydown' ||
+      playerObject.keyState.s === 'keydown'
+    ) {
       playerObject.player.anims.play('wizard-front-walk', true);
     } else {
       playerObject.player.anims.stop();
@@ -343,4 +335,5 @@ const sceneFactory = ({
 
   return scene;
 };
+
 export default sceneFactory;

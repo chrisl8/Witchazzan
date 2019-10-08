@@ -51,6 +51,7 @@ const scenes = [
       height: 16 * 11,
     },
   },
+  // TODO: This scene is rubbish. Consider not using 32x32 tiles or change player size?
   {
     name: 'colorSceneOne',
     tileMap: colorSceneOne,
