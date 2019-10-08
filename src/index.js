@@ -9,7 +9,7 @@ rootGameObject.game = new Phaser.Game(rootGameObject.config);
 // See https://developer.mozilla.org/en-US/docs/Web/API/WebSocket for how to use Websockets
 // and https://github.com/gamestdio/websocket for this version that reconnects if the connection drops.
 communicationsObject.socket = new WebSocketClient(
-  `ws://${communicationsObject.websocketServerHost}:${communicationsObject.websocketServerPort}`,
+  communicationsObject.websocketServerString,
   [],
   { backoff: 'fibonacci' },
 );

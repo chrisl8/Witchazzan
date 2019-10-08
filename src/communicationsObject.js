@@ -9,8 +9,7 @@
 const communicationsObject = {
   // TODO: Set up the witchazzen server on the DO Droplet
   // TODO: Possibly move this to a proper config file.
-  websocketServerHost: window.location.hostname,
-  websocketServerPort: 8080,
+  websocketServerString: `ws://${window.location.hostname}:8080`,
   // You can use this as a test websocket server that will echo back everything you tell it:
   // FROM: http://www.websocket.org/echo.html
   // websocketServerLocation: 'ws://demos.kaazing.com/echo',
@@ -18,9 +17,7 @@ const communicationsObject = {
 };
 
 if (window.location.hostname === 'witchazzan.ekpyroticfrood.net') {
-  communicationsObject.websocketServerHost =
-    'witchazzan-server.ekpyroticfrood.net';
-  communicationsObject.websocketServerPort = 443;
+  communicationsObject.websocketServerString = `wss://witchazzan-server.ekpyroticfrood.net`;
 }
 
 export default communicationsObject;
