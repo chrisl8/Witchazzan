@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
-// This automatically reconnects after a disconnect.
-import WebSocketClient from '@gamestdio/websocket';
+import WebSocketClient from '@gamestdio/websocket'; // This automatically reconnects after a disconnect.
 import rootGameObject from './rootGameObject';
 import communicationsObject from './communicationsObject';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
@@ -10,7 +9,7 @@ rootGameObject.game = new Phaser.Game(rootGameObject.config);
 // See https://developer.mozilla.org/en-US/docs/Web/API/WebSocket for how to use Websockets
 // and https://github.com/gamestdio/websocket for this version that reconnects if the connection drops.
 communicationsObject.socket = new WebSocketClient(
-  communicationsObject.websocketServerLocation,
+  `ws://${communicationsObject.websocketServerHost}:${communicationsObject.websocketServerPort}`,
   [],
   { backoff: 'fibonacci' },
 );
