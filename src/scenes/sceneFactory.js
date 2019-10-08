@@ -44,7 +44,7 @@ const sceneFactory = ({
 
   let sceneOpen;
 
-  function useExit(player, exit) {
+  function cleanUpSceneAndUseExit(player, exit) {
     if (sceneOpen) {
       sceneOpen = false;
       const destinationScene = exit.getData('destinationScene');
@@ -56,6 +56,11 @@ const sceneFactory = ({
       } else {
         console.log(`Switching to scene: ${destinationScene}`);
       }
+      // Mark all scene objects as not currently displayed so the new scene can display them again
+      for (const [key, value] of Object.entries(playerObject.sceneText)) {
+        value.hasBeenDisplayedInThisScene = false;
+      }
+
       this.scene.start(destinationScene);
     }
   }
@@ -204,6 +209,7 @@ const sceneFactory = ({
     // TODO: Improve scene switch animation of scene and character.
     //       I'd like to make a fancier "transition" for moving to new scenes.
     //       Like possibly slide the screen "over" in the direction you moved and slide the new one in.
+    //       But don't screw with continuous movement across scenes, which may be more important than fancy scene switching animations or character transitions.
     // Useful info on how this works:
     // https://www.html5gamedevs.com/topic/37978-overlapping-on-a-tilemap-object-layer/?do=findComment&comment=216742
     // https://github.com/B3L7/phaser3-tilemap-pack/blob/master/src/scenes/Level.js
@@ -243,7 +249,13 @@ const sceneFactory = ({
       }
     });
     // overlap lets you walk onto it, rather than stopping when you hit it.
-    this.physics.add.overlap(playerObject.player, exits, useExit, null, this);
+    this.physics.add.overlap(
+      playerObject.player,
+      exits,
+      cleanUpSceneAndUseExit,
+      null,
+      this,
+    );
 
     this.scale.setGameSize(gameSize.width, gameSize.height);
 
@@ -257,75 +269,107 @@ const sceneFactory = ({
   // eslint-disable-next-line func-names
   scene.update = function() {
     // Runs once per frame for the duration of the scene
-    const speed = 175;
-    playerObject.player.body.velocity.clone();
+    if (sceneOpen) {
+      // Don't do anything if the scene is no longer open.
+      const speed = 175;
+      playerObject.player.body.velocity.clone();
 
-    // Hot key scene switch for testing.
-    this.input.keyboard.once('keydown_O', () => {
-      if (sceneOpen && sceneName !== 'openingScene') {
-        sceneOpen = false;
-        console.log(`Switching to scene: openingScene`);
-        this.scene.start('openingScene');
+      // Hot key scene switch for testing.
+      this.input.keyboard.once('keydown_O', () => {
+        if (sceneOpen && sceneName !== 'openingScene') {
+          sceneOpen = false;
+          console.log(`Switching to scene: openingScene`);
+          this.scene.start('openingScene');
+        }
+      });
+
+      // Stop any previous movement from the last frame
+      playerObject.player.body.setVelocity(0);
+
+      // Horizontal movement
+      if (
+        playerObject.keyState.ArrowLeft === 'keydown' ||
+        playerObject.keyState.a === 'keydown'
+      ) {
+        playerObject.player.body.setVelocityX(-speed);
+      } else if (
+        playerObject.keyState.ArrowRight === 'keydown' ||
+        playerObject.keyState.d === 'keydown'
+      ) {
+        playerObject.player.body.setVelocityX(speed);
       }
-    });
 
-    // Stop any previous movement from the last frame
-    playerObject.player.body.setVelocity(0);
+      // Vertical movement
+      if (
+        playerObject.keyState.ArrowUp === 'keydown' ||
+        playerObject.keyState.w === 'keydown'
+      ) {
+        playerObject.player.body.setVelocityY(-speed);
+      } else if (
+        playerObject.keyState.ArrowDown === 'keydown' ||
+        playerObject.keyState.s === 'keydown'
+      ) {
+        playerObject.player.body.setVelocityY(speed);
+      }
 
-    // Horizontal movement
-    if (
-      playerObject.keyState.ArrowLeft === 'keydown' ||
-      playerObject.keyState.a === 'keydown'
-    ) {
-      playerObject.player.body.setVelocityX(-speed);
-    } else if (
-      playerObject.keyState.ArrowRight === 'keydown' ||
-      playerObject.keyState.d === 'keydown'
-    ) {
-      playerObject.player.body.setVelocityX(speed);
-    }
+      // Normalize and scale the velocity so that player can't move faster along a diagonal
+      playerObject.player.body.velocity.normalize().scale(speed);
 
-    // Vertical movement
-    if (
-      playerObject.keyState.ArrowUp === 'keydown' ||
-      playerObject.keyState.w === 'keydown'
-    ) {
-      playerObject.player.body.setVelocityY(-speed);
-    } else if (
-      playerObject.keyState.ArrowDown === 'keydown' ||
-      playerObject.keyState.s === 'keydown'
-    ) {
-      playerObject.player.body.setVelocityY(speed);
-    }
+      // Update the animation last and give left/right animations precedence over up/down animations
+      if (
+        playerObject.keyState.ArrowLeft === 'keydown' ||
+        playerObject.keyState.a === 'keydown'
+      ) {
+        playerObject.player.setFlipX(false);
+        playerObject.player.anims.play('wizard-left-walk', true);
+      } else if (
+        playerObject.keyState.ArrowRight === 'keydown' ||
+        playerObject.keyState.d === 'keydown'
+      ) {
+        playerObject.player.setFlipX(true);
+        playerObject.player.anims.play('wizard-right-walk', true);
+      } else if (
+        playerObject.keyState.ArrowUp === 'keydown' ||
+        playerObject.keyState.w === 'keydown'
+      ) {
+        playerObject.player.anims.play('wizard-back-walk', true);
+      } else if (
+        playerObject.keyState.ArrowDown === 'keydown' ||
+        playerObject.keyState.s === 'keydown'
+      ) {
+        playerObject.player.anims.play('wizard-front-walk', true);
+      } else {
+        playerObject.player.anims.stop();
+      }
 
-    // Normalize and scale the velocity so that player can't move faster along a diagonal
-    playerObject.player.body.velocity.normalize().scale(speed);
-
-    // Update the animation last and give left/right animations precedence over up/down animations
-    if (
-      playerObject.keyState.ArrowLeft === 'keydown' ||
-      playerObject.keyState.a === 'keydown'
-    ) {
-      playerObject.player.setFlipX(false);
-      playerObject.player.anims.play('wizard-left-walk', true);
-    } else if (
-      playerObject.keyState.ArrowRight === 'keydown' ||
-      playerObject.keyState.d === 'keydown'
-    ) {
-      playerObject.player.setFlipX(true);
-      playerObject.player.anims.play('wizard-right-walk', true);
-    } else if (
-      playerObject.keyState.ArrowUp === 'keydown' ||
-      playerObject.keyState.w === 'keydown'
-    ) {
-      playerObject.player.anims.play('wizard-back-walk', true);
-    } else if (
-      playerObject.keyState.ArrowDown === 'keydown' ||
-      playerObject.keyState.s === 'keydown'
-    ) {
-      playerObject.player.anims.play('wizard-front-walk', true);
-    } else {
-      playerObject.player.anims.stop();
+      // Display required text on the scene as the last thing to do.
+      for (const [key, value] of Object.entries(playerObject.sceneText)) {
+        if (value.shouldBeActiveNow && !value.hasBeenDisplayedInThisScene) {
+          value.hasBeenDisplayedInThisScene = true;
+          console.log('Displaying: ', key);
+          const position = value.position || {
+            x: this.cameras.main.centerX,
+            y: this.cameras.main.centerY,
+          };
+          const origin = value.origin || {
+            x: 0.5,
+            y: 0.5,
+          };
+          const config = value.config || {};
+          value.phaserSceneObject = scene.add
+            .text(position.x, position.y, value.text, config)
+            .setOrigin(origin.x, origin.y)
+            .setDepth(11); // One higher than the overhead layer
+          // TODO: The depth should probably be variables, and possibly adjustable.
+        } else if (
+          value.hasBeenDisplayedInThisScene &&
+          !value.shouldBeActiveNow
+        ) {
+          console.log('Destroying: ', key);
+          value.hasBeenDisplayedInThisScene = false;
+          value.phaserSceneObject.destroy();
+        }
+      }
     }
 
     // TODO: Fully implement the example at:

@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import WebSocketClient from '@gamestdio/websocket'; // This automatically reconnects after a disconnect.
 import rootGameObject from './rootGameObject';
 import communicationsObject from './communicationsObject';
+import playerObject from './playerObject';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 
 rootGameObject.game = new Phaser.Game(rootGameObject.config);
@@ -16,6 +17,8 @@ communicationsObject.socket = new WebSocketClient(
 
 // Connection opened
 communicationsObject.socket.onopen = () => {
+  playerObject.sceneText.connectingText.shouldBeActiveNow = false;
+  playerObject.sceneText.reconnectingText.shouldBeActiveNow = false;
   communicationsObject.socket.send('Hello Server!');
 };
 

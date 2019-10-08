@@ -1,10 +1,10 @@
 import playerObject from './playerObject';
 
 function cleanUpAfterDisconnect() {
+  playerObject.sceneText.reconnectingText.shouldBeActiveNow = true;
   // Since most keyboard input is ignored when not connected,
   // we don't want people to be stuck running or firing while
   // they are offline.
-  // TODO: Notify user when not connected.
   const keysToSetUp = [
     'w',
     'a',

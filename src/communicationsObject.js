@@ -7,12 +7,11 @@
  * but they make it a little easier to know what to expect to find in this object.
  */
 const communicationsObject = {
-  // TODO: Set up the witchazzen server on the DO Droplet
   // TODO: Possibly move this to a proper config file.
   websocketServerString: `ws://${window.location.hostname}:8080`,
   // You can use this as a test websocket server that will echo back everything you tell it:
+  // websocketServerString: 'ws://demos.kaazing.com/echo',
   // FROM: http://www.websocket.org/echo.html
-  // websocketServerLocation: 'ws://demos.kaazing.com/echo',
   socket: null,
 };
 
