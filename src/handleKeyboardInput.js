@@ -13,5 +13,10 @@ function handleKeyboardInput(event) {
     }
   }
 }
+function reportLocation () {
+  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+    communicationsObject.socket.send(`loc,${playerObject.player.body.x},${playerObject.player.body.y}`);
+  }
+}
 
 export default handleKeyboardInput;
