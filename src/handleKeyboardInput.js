@@ -12,6 +12,12 @@ function handleKeyboardInput(event) {
       communicationsObject.socket.send(`${event.key},${event.type}`);
     }
   }
+  var text = 'garbage';
+//function chat(text){
+  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+    communicationsObject.socket.send('msg,' + text);
+  }
+//}
 }
 
 export default handleKeyboardInput;
