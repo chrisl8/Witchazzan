@@ -14,7 +14,7 @@ const playerObject = {
   // Text we want to be displayed on various (or all) scenes
   sceneText: {
     helloText: {
-      text: 'Hello',
+      text: `Hello. Press 'c' to enter commands.`, // TODO: Change to F1 or ? for Help once that exists.
       position: {
         x: 25,
         y: 25,
@@ -24,6 +24,20 @@ const playerObject = {
         y: 0,
       },
       shouldBeActiveNow: true,
+      hasBeenDisplayedInThisScene: false,
+      phaserSceneObject: null, // Save .text object here so that we can access it later.
+    },
+    escapeToLeaveChat: {
+      text: `Press Escape to return to game.`,
+      position: {
+        x: 25,
+        y: 25,
+      },
+      origin: {
+        x: 0,
+        y: 0,
+      },
+      shouldBeActiveNow: false,
       hasBeenDisplayedInThisScene: false,
       phaserSceneObject: null, // Save .text object here so that we can access it later.
     },

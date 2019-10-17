@@ -17,6 +17,8 @@ function handleKeyboardInput(event) {
         // (If the server needs to know that we are in "chat/command input mode" we can find
         // a way to send that.
         playerObject.chatInputDivDomElement.hidden = false;
+        playerObject.sceneText.helloText.shouldBeActiveNow = false;
+        playerObject.sceneText.escapeToLeaveChat.shouldBeActiveNow = true;
       }
     } else if (
       communicationsObject.socket.readyState === WebSocketClient.OPEN
@@ -41,6 +43,7 @@ function handleKeyboardInput(event) {
     if (event.type === 'keydown') {
       if (event.key === 'Escape') {
         // Escape is used to exit the chat/command input box.
+        playerObject.sceneText.escapeToLeaveChat.shouldBeActiveNow = false;
         // https://stackoverflow.com/a/1232046/4982408
         playerObject.chatInputTextArray.length = 0;
         // Otherwise it still has text on it when you open it again:
