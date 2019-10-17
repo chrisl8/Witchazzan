@@ -88,6 +88,7 @@ When working with Tiled to generate maps for Phaser, there are a few things youâ
 - Map Size: Fixed
   - The map should not be infinite, but the actual size is variable.
   - There are two "screen sizes" supported:
+    - TODO: This is not true anymore:
     - The Normal Standard is a 16:9 "screen" that is 20 tiles wide by 11 tiles high.
     - A 4:3 aspect ratio using 16 tiles wide by 11 tiles high is also supported. This is what you need to copy a NES map for instance.
     - **However, if** you make the map bigger, in either direction, the camera will stick to 20x11 tiles, and scroll as the player moves to cover more territory. However, for the sake of memory, do not make infinite maps.
@@ -95,7 +96,7 @@ When working with Tiled to generate maps for Phaser, there are a few things youâ
   - 16x16  
   or
   - 32x32  
-  There is no actual reason not to use other sizes, but these are the sizes tested and supported. If nothing else, they must be symetrical.
+  There is no actual reason not to use other sizes, but these are the sizes tested and supported. If nothing else, they must be symmetrical.
 - Remember to **save your map in JSON format!**
 - When adding a Tileset to the map be sure to check **Embed in map**
 
@@ -155,7 +156,7 @@ FileName: tileset_town-32x32.png
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
 Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
-FileName: tileset_zoria-16x16.png  
+FileNames: zoria_overworld.png, zoria_underworld.png  
 
 ### If you want to keep building the NES Hyrule map
 
