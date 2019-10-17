@@ -20,7 +20,7 @@ const sceneFactory = ({
     // Runs once, loads up assets like images and audio
     // All of these text based "keys" are basically global variables in Phaser.
     // You can reuse the same name, but phaser will just reuse the first thing you
-    // assingd to it.
+    // assigned to it.
     this.load.image(`${tileSetName}-tiles`, tileSet);
     // NOTE: The key must be different for each tilemap,
     // otherwise Phaser will get confused and reuse the same tilemap
@@ -275,13 +275,14 @@ const sceneFactory = ({
       playerObject.player.body.velocity.clone();
 
       // Hot key scene switch for testing.
-      this.input.keyboard.once('keydown_O', () => {
+      if (playerObject.keyState.o === 'keydown') {
+        playerObject.keyState.o = null;
         if (sceneOpen && sceneName !== 'openingScene') {
           sceneOpen = false;
           console.log(`Switching to scene: openingScene`);
           this.scene.start('openingScene');
         }
-      });
+      }
 
       // Stop any previous movement from the last frame
       playerObject.player.body.setVelocity(0);

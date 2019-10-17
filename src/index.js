@@ -1,3 +1,4 @@
+/* globals document:true */
 import Phaser from 'phaser';
 import WebSocketClient from '@gamestdio/websocket'; // This automatically reconnects after a disconnect.
 import rootGameObject from './rootGameObject';
@@ -6,6 +7,15 @@ import playerObject from './playerObject';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 
 rootGameObject.game = new Phaser.Game(rootGameObject.config);
+playerObject.chatInputDivDomElement = document.getElementById(
+  'command_input_div',
+);
+playerObject.chatInputElement = document.getElementById('command_input');
+playerObject.scrollingTextOverlayDivDomElement = document.getElementById('scrolling_text_overlay_div');
+playerObject.scrollingTextOverlayInput = document.getElementById('scrolling_text_overlay_input');
+
+playerObject.chatInputDivDomElement.hidden = true;
+playerObject.scrollingTextOverlayDivDomElement.hidden = true;
 
 // See https://developer.mozilla.org/en-US/docs/Web/API/WebSocket for how to use Websockets
 // and https://github.com/gamestdio/websocket for this version that reconnects if the connection drops.

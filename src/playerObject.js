@@ -42,6 +42,12 @@ const playerObject = {
       phaserSceneObject: null, // Save .text object here so that we can access it later.
     },
   },
+  chatInputDivDomElement: null,
+  chatInputElement: null,
+  chatInputTextArray: [],
+  scrollingTextOverlayDivDomElement: null,
+  scrollingTextOverlayInput: null,
+  scrollingTextOverlayInputText: '',
 };
 
 export default playerObject;

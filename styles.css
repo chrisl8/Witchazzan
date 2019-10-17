@@ -1,0 +1,24 @@
+body {
+  background: black;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#command_input_div {
+  color: white;
+  z-index: 1;
+  position: absolute;
+  width: 100%
+}
+
+#command_input {
+  width: 100%;
+  font-family: 'Roboto Mono', monospace;
+}
+
+#scrolling_text_overlay_div {
+  margin-top: 25px; /*Leave room for the command box above it when open.*/
+  margin-left: 10px;
+  position: absolute;
+}
