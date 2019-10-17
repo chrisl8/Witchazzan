@@ -1,5 +1,9 @@
 import Phaser from 'phaser';
+
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
+import defaultFontPng from '../assets/fonts/bitmap/gem.png';
+import defaultFontXml from '../assets/fonts/bitmap/gem.xml';
+
 import playerObject from '../playerObject';
 import handleKeyboardInput from '../handleKeyboardInput';
 
@@ -40,6 +44,10 @@ const sceneFactory = ({
       frameHeight: 128,
       endFrame: 5,
     });
+
+    // Bitmap fonts
+    // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/game%20objects/bitmaptext/static/bitmaptext.js
+    this.load.bitmapFont('defaultFont', defaultFontPng, defaultFontXml);
   };
 
   let sceneOpen;
@@ -356,9 +364,9 @@ const sceneFactory = ({
             x: 0.5,
             y: 0.5,
           };
-          const config = value.config || {};
+          const size = value.size || 16;
           value.phaserSceneObject = scene.add
-            .text(position.x, position.y, value.text, config)
+            .bitmapText(position.x, position.y, 'defaultFont', value.text, size)
             .setOrigin(origin.x, origin.y)
             .setDepth(11); // One higher than the overhead layer
           // TODO: The depth should probably be variables, and possibly adjustable.

@@ -19,24 +19,24 @@ const playerObject = {
         x: 25,
         y: 25,
       },
-      // Pass config on to the Phaser text routine
-      config: { color: '#00f' },
+      origin: {
+        x: 0,
+        y: 0,
+      },
       shouldBeActiveNow: true,
       hasBeenDisplayedInThisScene: false,
       phaserSceneObject: null, // Save .text object here so that we can access it later.
     },
     connectingText: {
       text: 'Connecting to server\nPlease wait...',
-      // Pass config on to the Phaser text routine
-      config: { color: '#f00' },
+      size: 24,
       shouldBeActiveNow: true,
       hasBeenDisplayedInThisScene: false,
       phaserSceneObject: null, // Save .text object here so that we can access it later.
     },
     reconnectingText: {
       text: 'Server connection lost\nreconnecting...',
-      // Pass config on to the Phaser text routine
-      config: { color: '#f00' },
+      size: 24,
       shouldBeActiveNow: false,
       hasBeenDisplayedInThisScene: false,
       phaserSceneObject: null, // Save .text object here so that we can access it later.
