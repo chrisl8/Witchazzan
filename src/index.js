@@ -1,6 +1,7 @@
 /* globals document:true */
 import Phaser from 'phaser';
 import WebSocketClient from '@gamestdio/websocket'; // This automatically reconnects after a disconnect.
+import './css/styles.css';
 import rootGameObject from './rootGameObject';
 import communicationsObject from './communicationsObject';
 import playerObject from './playerObject';
@@ -11,8 +12,12 @@ playerObject.chatInputDivDomElement = document.getElementById(
   'command_input_div',
 );
 playerObject.chatInputElement = document.getElementById('command_input');
-playerObject.scrollingTextOverlayDivDomElement = document.getElementById('scrolling_text_overlay_div');
-playerObject.scrollingTextOverlayInput = document.getElementById('scrolling_text_overlay_input');
+playerObject.scrollingTextOverlayDivDomElement = document.getElementById(
+  'scrolling_text_overlay_div',
+);
+playerObject.scrollingTextOverlayInput = document.getElementById(
+  'scrolling_text_overlay_input',
+);
 
 playerObject.chatInputDivDomElement.hidden = true;
 playerObject.scrollingTextOverlayDivDomElement.hidden = true;
