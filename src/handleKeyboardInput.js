@@ -53,9 +53,7 @@ function handleKeyboardInput(event) {
         // Enter is used to 'send' the chat/command.
         // TODO: Check if this is a command, and only behave differently if it is.
         if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-          communicationsObject.socket.send(
-            `msg,${playerObject.chatInputTextArray.join('')}`,
-          );
+          reportCommand(playerObject.chatInputTextArray.join(''));
           playerObject.chatInputTextArray.length = 0;
           // Otherwise it still has text on it when you open it again:
           playerObject.chatInputElement.value = '';
@@ -131,6 +129,15 @@ function reportLogin(username, password) {
     obj.message_type = "login";
     obj.username = username;
     obj.password = password;
+    var jsonString= JSON.stringify(obj);
+    communicationsObject.socket.send(jsonString);
+  }
+}
+function reportCommand(command) {
+  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+    var obj = new Object();
+    obj.message_type = "command";
+    obj.command = command;
     var jsonString= JSON.stringify(obj);
     communicationsObject.socket.send(jsonString);
   }
