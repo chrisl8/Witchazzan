@@ -34,7 +34,6 @@ communicationsObject.socket = new WebSocketClient(
 communicationsObject.socket.onopen = () => {
   playerObject.sceneText.connectingText.shouldBeActiveNow = false;
   playerObject.sceneText.reconnectingText.shouldBeActiveNow = false;
-  communicationsObject.socket.send('Hello Server!');
 };
 
 // Listen for messages
