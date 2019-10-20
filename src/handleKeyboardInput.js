@@ -31,7 +31,7 @@ function handleKeyboardInput(event) {
       // and the game is meant to only work when connected.
       if (playerObject.keyState[event.key] !== event.type) {
         playerObject.keyState[event.key] = event.type;
-        communicationsObject.socket.send(`${event.key},${event.type}`);
+        reportKeyboardState(event.key, event.type);
       }
     }
   } else {
@@ -96,11 +96,43 @@ function handleKeyboardInput(event) {
   }
 }
 
+function reportKeyboardState(key, state) {
+  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+    var obj = new Object();
+    obj.message_type = "keyboard-update";
+    obj.key = key;
+    obj.state = state;
+    var jsonString= JSON.stringify(obj);
+    communicationsObject.socket.send(jsonString);
+  }
+}
+function reportChat(text) {
+  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+    var obj = new Object();
+    obj.message_type = "chat";
+    obj.text = text;
+    var jsonString= JSON.stringify(obj);
+    communicationsObject.socket.send(jsonString);
+  }
+}
 function reportLocation() {
   if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-    communicationsObject.socket.send(
-      `loc,${playerObject.player.body.x},${playerObject.player.body.y}`,
-    );
+    var obj = new Object();
+    obj.message_type = "location-update";
+    obj.x = playerObject.player.body.x;
+    obj.y = playerObject.player.body.y;
+    var jsonString= JSON.stringify(obj);
+    communicationsObject.socket.send(jsonString);
+  }
+}
+function reportLogin(username, password) {
+  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+    var obj = new Object();
+    obj.message_type = "login";
+    obj.username = username;
+    obj.password = password;
+    var jsonString= JSON.stringify(obj);
+    communicationsObject.socket.send(jsonString);
   }
 }
 
