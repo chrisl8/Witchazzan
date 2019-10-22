@@ -34,17 +34,7 @@ import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld.png';
 
 const scenes = [
   {
-    name: 'testSceneOne',
-    tileMap: testSceneOne,
-    tileSet: tilesetZoriaOverworld,
-    tileSetName: 'Zoria Overworld',
-    gameSize: {
-      width: 16 * 40,
-      height: 16 * 22,
-    },
-  },
-  {
-    name: 'openingScene',
+    sceneName: 'openingScene',
     tileMap: openingSceneTileMap,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
@@ -52,9 +42,25 @@ const scenes = [
       width: 16 * 16,
       height: 16 * 11,
     },
+    htmlElementParameters: {
+      Center: {
+        fontSize: '.1', // percent of scene height.
+        color: 'red',
+      },
+      UpperLeft: {
+        fontSize: '.05', // percent of scene height.
+        color: 'blue',
+        background: '255,255,255,0.8', // rgba
+      },
+      Scrolling: {
+        fontSize: '.03', // percent of scene height.
+        color: 'blue',
+        background: '255,255,255,0.8', // rgba
+      },
+    },
   },
   {
-    name: 'openingSceneRight1',
+    sceneName: 'openingSceneRight1',
     tileMap: openingSceneRight1TileMap,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
@@ -62,10 +68,50 @@ const scenes = [
       width: 16 * 16,
       height: 16 * 11,
     },
+    htmlElementParameters: {
+      Center: {
+        fontSize: '.1', // percent of scene height.
+        color: 'red',
+      },
+      UpperLeft: {
+        fontSize: '.05', // percent of scene height.
+        color: 'blue',
+        background: '255,255,255,0.8', // rgba
+      },
+      Scrolling: {
+        fontSize: '.03', // percent of scene height.
+        color: 'blue',
+        background: '255,255,255,0.8', // rgba
+      },
+    },
+  },
+  {
+    sceneName: 'testSceneOne',
+    tileMap: testSceneOne,
+    tileSet: tilesetZoriaOverworld,
+    tileSetName: 'Zoria Overworld',
+    gameSize: {
+      width: 16 * 40,
+      height: 16 * 22,
+    },
+    htmlElementParameters: {
+      Center: {
+        fontSize: '.1', // percent of scene height.
+        color: 'red',
+      },
+      UpperLeft: {
+        fontSize: '.05', // percent of scene height.
+        color: 'white',
+      },
+      Scrolling: {
+        fontSize: '.03', // percent of scene height.
+        color: 'blue',
+      },
+    },
   },
   // TODO: This scene is rubbish. Consider not using 32x32 tiles or change player size?
   {
-    name: 'colorSceneOne',
+    sceneName: 'colorSceneOne',
     tileMap: colorSceneOne,
     tileSet: tilesetTown32x32,
     tileSetName: 'tileset_town-32x32',
@@ -81,15 +127,7 @@ const scenes = [
 
 const sceneList = [];
 scenes.forEach((scene) => {
-  sceneList.push(
-    sceneFactory({
-      sceneName: scene.name,
-      tileMap: scene.tileMap,
-      tileSet: scene.tileSet,
-      tileSetName: scene.tileSetName,
-      gameSize: scene.gameSize,
-    }),
-  );
+  sceneList.push(sceneFactory(scene));
 });
 
 export default sceneList;

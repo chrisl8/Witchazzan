@@ -27,6 +27,8 @@ module.exports = {
         test: /\.(gif|png|jpe?g|svg|xml)$/i,
         use: 'file-loader',
       },
+      // https://what-problem-does-it-solve.com/webpack/css.html
+      // https://github.com/webpack-contrib/style-loader
       {
         test: /.css$/,
         use: ['style-loader', 'css-loader'],

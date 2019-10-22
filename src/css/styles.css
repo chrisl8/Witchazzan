@@ -5,11 +5,18 @@ body {
   padding: 0;
 }
 
-#command_input_div {
-  color: white;
-  z-index: 1;
+#command_input_div, #upper_left_text_overlay_div, #scrolling_text_overlay_div, #center_text_overlay_div {
   position: absolute;
-  width: 100%
+}
+
+#command_input_div {
+  background: white;
+  color: black;
+  z-index: 1;
+}
+
+#command_input_caret {
+  margin-right: 5px;
 }
 
 #command_input {
@@ -17,8 +24,21 @@ body {
   font-family: 'Roboto Mono', monospace;
 }
 
-#scrolling_text_overlay_div {
-  margin-top: 25px; /*Leave room for the command box above it when open.*/
+#upper_left_text_overlay_div {
+  top: 5%; /*Leave room for the command box above it when open.*/
   margin-left: 10px;
-  position: absolute;
+  font-family: 'PT Serif', serif;
+}
+
+#scrolling_text_overlay_div {
+  top: 15%; /*Leave room for the command box and upper_left_text above it when open.*/
+  margin-left: 10px;
+  font-family: 'PT Serif', serif;
+  border: solid black;
+  padding: 5px;
+}
+
+
+#center_text_overlay_div {
+  font-family: 'PT Serif', serif;
 }

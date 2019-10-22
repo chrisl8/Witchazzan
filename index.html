@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <!-- Matomo -->
     <script type="text/javascript">
       if (window.location.hostname === 'witchazzan.ekpyroticfrood.net') {
-        var _paq = window._paq || [];
+        const _paq = window._paq || [];
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function () {
-          var u = "//matomo.ekpyroticfrood.net/";
+          const u = "//matomo.ekpyroticfrood.net/";
           _paq.push(['setTrackerUrl', u + 'matomo.php']);
           _paq.push(['setSiteId', '1']);
-          var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+          const d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
           g.type = 'text/javascript';
           g.async = true;
           g.defer = true;
@@ -24,13 +24,16 @@
     </script>
     <!-- End Matomo Code -->
     <!-- https://fonts.google.com/?category=Monospace&selection.family=Roboto+Mono -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Witchazzan</title>
   </head>
 <!--  Body Background is black, so that it is clear that it is "off the map" regardless of whether we have borders on the side or bottom. We may change how the scaling works later.-->
 <!--  overflow: hidden == never show a scroll bar-->
 <!--  TODO: Add a favicon.ico-->
   <body>
-  <div id="command_input_div"><input id="command_input" type="text"></div>
-  <div id="scrolling_text_overlay_div"><p id="scrolling_text_overlay_input"></p></div>
+  <div id="command_input_div"><span id="command_input_caret"></span><span id="command_input"></span></div>
+    <div id="upper_left_text_overlay_div"><p id="upper_left_text_overlay_input">Loading Witchazzan, please stand by . . .</p></div>
+    <div id="scrolling_text_overlay_div"><p id="scrolling_text_overlay_input"></p></div>
+    <div id="center_text_overlay_div"><p id="center_text_overlay_input"></p></div>
   </body>
 </html>

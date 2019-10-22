@@ -1,11 +1,10 @@
 import Phaser from 'phaser';
 
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
-import defaultFontPng from '../assets/fonts/bitmap/gem.png';
-import defaultFontXml from '../assets/fonts/bitmap/gem.xml';
 
 import playerObject from '../playerObject';
 import handleKeyboardInput from '../handleKeyboardInput';
+import updateDomElements from '../updateDomElements';
 
 const sceneFactory = ({
   sceneName,
@@ -13,6 +12,7 @@ const sceneFactory = ({
   tileSet,
   tileSetName,
   gameSize,
+  htmlElementParameters = {},
 }) => {
   const scene = new Phaser.Scene(sceneName);
 
@@ -44,10 +44,6 @@ const sceneFactory = ({
       frameHeight: 128,
       endFrame: 5,
     });
-
-    // Bitmap fonts
-    // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/game%20objects/bitmaptext/static/bitmaptext.js
-    this.load.bitmapFont('defaultFont', defaultFontPng, defaultFontXml);
   };
 
   let sceneOpen;
@@ -65,6 +61,7 @@ const sceneFactory = ({
         console.log(`Switching to scene: ${destinationScene}`);
       }
       // Mark all scene objects as not currently displayed so the new scene can display them again
+      // eslint-disable-next-line no-unused-vars
       for (const [key, value] of Object.entries(playerObject.sceneText)) {
         value.hasBeenDisplayedInThisScene = false;
       }
@@ -272,6 +269,8 @@ const sceneFactory = ({
     this.input.keyboard.on('keyup', handleKeyboardInput);
 
     // TODO: Add the text and the key to turn debug on and off.
+
+    updateDomElements(htmlElementParameters);
   };
 
   // eslint-disable-next-line func-names
@@ -350,40 +349,13 @@ const sceneFactory = ({
       } else {
         playerObject.player.anims.stop();
       }
-
-      // Display required text on the scene as the last thing to do.
-      for (const [key, value] of Object.entries(playerObject.sceneText)) {
-        if (value.shouldBeActiveNow && !value.hasBeenDisplayedInThisScene) {
-          value.hasBeenDisplayedInThisScene = true;
-          console.log('Displaying: ', key);
-          const position = value.position || {
-            x: this.cameras.main.centerX,
-            y: this.cameras.main.centerY,
-          };
-          const origin = value.origin || {
-            x: 0.5,
-            y: 0.5,
-          };
-          const size = value.size || 16;
-          value.phaserSceneObject = scene.add
-            .bitmapText(position.x, position.y, 'defaultFont', value.text, size)
-            .setOrigin(origin.x, origin.y)
-            .setDepth(11); // One higher than the overhead layer
-          // TODO: The depth should probably be variables, and possibly adjustable.
-        } else if (
-          value.hasBeenDisplayedInThisScene &&
-          !value.shouldBeActiveNow
-        ) {
-          console.log('Destroying: ', key);
-          value.hasBeenDisplayedInThisScene = false;
-          value.phaserSceneObject.destroy();
-        }
-      }
     }
 
     // TODO: Fully implement the example at:
     // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
     // by having all directions for my walking sprite, etc.
+
+    updateDomElements(htmlElementParameters);
   };
 
   return scene;

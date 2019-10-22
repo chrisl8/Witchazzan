@@ -16,7 +16,7 @@ import scene from './scenes/sceneList';
 const rootGameObject = {
   config: {
     type: Phaser.AUTO, // Which renderer to use
-    // parent: 'game-container', // ID of the DOM element to add the canvas to. If no parent is given, it will default to using the document body.
+    // parent: 'game_container', // ID of the DOM element to add the canvas to. If no parent is given, it will default to using the document body.
     // https://photonstorm.github.io/phaser3-docs/Phaser.Scale.ScaleManager.html
     // For now this gets the screen to fill the window, we may change how we scale and how we handle "off camera" movement later.
     // Currently my tile map is tiny too, so this helps anyway.
