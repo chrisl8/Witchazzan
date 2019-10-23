@@ -24,12 +24,10 @@ import sceneFactory from './sceneFactory';
 // Scenes
 import openingSceneTileMap from '../assets/tileMaps/openingScene';
 import openingSceneRight1TileMap from '../assets/tileMaps/openingSceneRight1';
-import colorSceneOne from '../assets/tileMaps/colorSceneOne';
 import testSceneOne from '../assets/tileMaps/testScene1';
 
 // TileSets
 import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16.png';
-import tilesetTown32x32 from '../assets/tileSets/tileset_town-32x32.png';
 import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld.png';
 
 const scenes = [
@@ -107,17 +105,6 @@ const scenes = [
         fontSize: '.03', // percent of scene height.
         color: 'blue',
       },
-    },
-  },
-  // TODO: This scene is rubbish. Consider not using 32x32 tiles or change player size?
-  {
-    sceneName: 'colorSceneOne',
-    tileMap: colorSceneOne,
-    tileSet: tilesetTown32x32,
-    tileSetName: 'tileset_town-32x32',
-    gameSize: {
-      width: 32 * 20,
-      height: 32 * 11,
     },
   },
 ];

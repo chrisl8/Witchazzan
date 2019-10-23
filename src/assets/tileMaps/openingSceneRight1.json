@@ -93,7 +93,7 @@
                 {
                  "height":15.0706436420722,
                  "id":34,
-                 "name":"colorSceneOne",
+                 "name":"testSceneOne",
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
@@ -135,7 +135,7 @@
  "nextobjectid":37,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.4",
+ "tiledversion":"1.2.5",
  "tileheight":16,
  "tilesets":[
         {
