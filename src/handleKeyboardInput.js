@@ -116,18 +116,16 @@ function handleKeyboardInput(event) {
         console.log(event.key);
       }
       // TODO: The input is a little buggy. Need to test it and sort that out.
+      //       Mainly I get duplicate input sometimes.
+      //       I may just use an input box to let the browser deal with text,
+      //       and use JS to set focus to it,
+      //       and see if I can still watch the keyboard via Phaser and do nifty things
+      //       like command history and listening for special keys like Escape.
       // "Display" the current chat/command queue content:
       playerObject.chatInputElement.innerHTML = playerObject.chatInputTextArray.join(
         '',
       );
     }
-    /* TODO:
-     *  2. Implement a "Command" character like / to say, "this is a command. not text."
-     *  4. Start a list of commands
-     *     a. Start with one to call various functions from inside of the code.
-     *  5. Implement a way to display output to player
-     *     a. Can we overlay a div on the screen or do we have to use Canvas text?
-     */
   }
 }
 
