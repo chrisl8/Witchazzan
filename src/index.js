@@ -27,11 +27,24 @@ communicationsObject.socket = new WebSocketClient(
 communicationsObject.socket.onopen = () => {
   playerObject.sceneText.connectingText.shouldBeActiveNow = false;
   playerObject.sceneText.reconnectingText.shouldBeActiveNow = false;
+  playerObject.sceneText.notConnectedCommandResponse.shouldBeActiveNow = false;
 };
 
 // Listen for messages
 communicationsObject.socket.onmessage = (event) => {
-  console.log('Message from server ', event.data);
+  // {"messageType":"chat","name":null,"content":"test"}
+  const inputData = JSON.parse(event.data);
+  if (inputData.messageType === 'chat') {
+    // TODO: The scrolling text interface should be its own function and be much more fancy.
+    if (playerObject.sceneText.incomingChatText.text !== '') {
+      // Add a line break if there is existing text.
+      playerObject.sceneText.incomingChatText.text = `${playerObject.sceneText.incomingChatText.text}<br/>`;
+    }
+    playerObject.sceneText.incomingChatText.text = `${playerObject.sceneText.incomingChatText.text}${inputData.name}: ${inputData.content}`;
+    playerObject.sceneText.incomingChatText.shouldBeActiveNow = true;
+  } else {
+    console.log(inputData);
+  }
 };
 
 // Handle disconnect

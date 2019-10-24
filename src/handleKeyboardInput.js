@@ -1,60 +1,12 @@
 import WebSocketClient from '@gamestdio/websocket';
 import communicationsObject from './communicationsObject';
 import playerObject from './playerObject';
+import reportFunctions from './reportFunctions';
 
 // Local keys will work even if the server is disconnected.
 // I suggest making these RARE, and also not recording their state,
 // as we assume you can act on them without doing that.
 const localKeys = ['c'];
-
-function reportKeyboardState(key, state) {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-    const obj = {};
-    obj.message_type = 'keyboard-update';
-    obj.key = key;
-    obj.state = state;
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
-  }
-}
-function reportChat(text) {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-    const obj = {};
-    obj.message_type = 'chat';
-    obj.text = text;
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
-  }
-}
-function reportLocation() {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-    const obj = {};
-    obj.message_type = 'location-update';
-    obj.x = playerObject.player.body.x;
-    obj.y = playerObject.player.body.y;
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
-  }
-}
-function reportLogin(username, password) {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-    const obj = {};
-    obj.message_type = 'login';
-    obj.username = username;
-    obj.password = password;
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
-  }
-}
-function reportCommand(command) {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-    const obj = {};
-    obj.message_type = 'command';
-    obj.command = command;
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
-  }
-}
 
 function handleKeyboardInput(event) {
   if (playerObject.chatInputDivDomElement.hidden) {
@@ -83,7 +35,7 @@ function handleKeyboardInput(event) {
       // and the game is meant to only work when connected.
       if (playerObject.keyState[event.key] !== event.type) {
         playerObject.keyState[event.key] = event.type;
-        reportKeyboardState(event.key, event.type);
+        reportFunctions.reportKeyboardState(event.key, event.type);
       }
     }
   } else if (event.type === 'keydown') {
@@ -101,13 +53,50 @@ function handleKeyboardInput(event) {
       // Otherwise it still has text on it when you open it again:
       playerObject.chatInputElement.innerHTML = '';
       playerObject.chatInputDivDomElement.hidden = true;
+      // Hide scrolling text box chat now too
+      playerObject.sceneText.incomingChatText.shouldBeActiveNow = false;
+      playerObject.sceneText.notConnectedCommandResponse.shouldBeActiveNow = false;
     } else if (event.key === 'Enter') {
       // Enter is used to 'send' the chat/command.
-      // TODO: Check if this is a command, and only behave differently if it is.
-      if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-        reportCommand(playerObject.chatInputTextArray.join(''));
+
+      if (playerObject.chatInputTextArray[0] === '/') {
+        // A / is used to begin commands instead of sending chat text.
+        const inputText = playerObject.chatInputTextArray.slice(0);
+        inputText.shift(); // Remove the /
+        const inputTextSpaceDelimitedArray = inputText.join('').split(' ');
+        if (inputTextSpaceDelimitedArray[0] === 'run') {
+          if (
+            inputTextSpaceDelimitedArray.length > 1 &&
+            reportFunctions[inputTextSpaceDelimitedArray[1]]
+          ) {
+            inputTextSpaceDelimitedArray.shift();
+            const functionToRun = inputTextSpaceDelimitedArray.shift();
+            reportFunctions[functionToRun](...inputTextSpaceDelimitedArray);
+            // https://stackoverflow.com/a/1232046/4982408
+            playerObject.chatInputTextArray.length = 0;
+            // Otherwise it still has text on it when you open it again:
+            playerObject.chatInputElement.innerHTML = '';
+          }
+        } else if (
+          communicationsObject.socket.readyState === WebSocketClient.OPEN
+        ) {
+          reportFunctions.reportCommand(inputText.join(''));
+          // https://stackoverflow.com/a/1232046/4982408
+          playerObject.chatInputTextArray.length = 0;
+          // Otherwise it still has text on it when you open it again:
+          playerObject.chatInputElement.innerHTML = '';
+        } else {
+          // Warn user that text cannot be sent due to lack of server connection.
+          // TODO: the scrollingTextOverlayInputText should have a function to update it,
+          //  so it can do things like scroll, dump stuff off the end, etc.
+          playerObject.sceneText.notConnectedCommandResponse.shouldBeActiveNow = true;
+        }
+      } else if (
+        communicationsObject.socket.readyState === WebSocketClient.OPEN
+      ) {
+        reportFunctions.reportChat(playerObject.chatInputTextArray.join(''));
+        // Clear text after sending.
         playerObject.chatInputTextArray.length = 0;
-        // Otherwise it still has text on it when you open it again:
         playerObject.chatInputElement.innerHTML = '';
       } else {
         // Warn user that text cannot be sent due to lack of server connection.

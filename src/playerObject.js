@@ -19,7 +19,7 @@ const playerObject = {
       location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
     },
     escapeToLeaveChat: {
-      text: `Press Escape to return to game.`,
+      text: `Press Escape to return to game, use / to send commands, /run to run a function`,
       shouldBeActiveNow: false,
       location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
     },
@@ -35,6 +35,11 @@ const playerObject = {
     },
     notConnectedCommandResponse: {
       text: 'Not connected, cannot send chat text.',
+      shouldBeActiveNow: false,
+      location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
+    },
+    incomingChatText: {
+      text: '',
       shouldBeActiveNow: false,
       location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
     },
