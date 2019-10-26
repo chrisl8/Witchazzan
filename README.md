@@ -83,7 +83,7 @@ When working with Tiled to generate maps for Phaser, there are a few things youâ
 
 ### New Tiled Map Settings
 - Orientation: Orthogonal
-- Tiled Layer Format: Base64 (uncompressed)
+- Tiled Layer Format: CSV
 - Tile Render Order: Right Down
 - Map Size: Fixed
   - The map should not be infinite, but the actual size is variable.
@@ -98,6 +98,7 @@ When working with Tiled to generate maps for Phaser, there are a few things youâ
   - 32x32  
   There is no actual reason not to use other sizes, but these are the sizes tested and supported. If nothing else, they must be symmetrical.
 - Remember to **save your map in JSON format!**
+- The "Tiled Layer Format" must be CSV (or XML) for the Server to understand them (Note that these both essentially do "nothing" and just put the Data in an array that works in JSON)
 - When adding a Tileset to the map be sure to check **Embed in map**
 
 ### Notes on saving Tile Maps with Tiled
@@ -149,14 +150,21 @@ I will keep track of the Tileset sources here for attribution.
 Author: [Clint Bellanger](https://opengameart.org/users/clint-bellanger)  
 License: [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 FileName: tileset_1bit-16x16.png  
-- [Exterior 32x32 Town tileset](https://opengameart.org/content/exterior-32x32-town-tileset)  
-Author: [n2liquid](https://opengameart.org/users/n2liquid)  
-License [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-FileName: tileset_town-32x32.png  
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
 Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
 FileNames: zoria_overworld.png, zoria_underworld.png  
+See also: [Mockups](https://opengameart.org/sites/default/files/mockups_1.png)  
+- [Exterior 32x32 Town tileset](https://opengameart.org/content/exterior-32x32-town-tileset)  
+Author: [n2liquid](https://opengameart.org/users/n2liquid)  
+License [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+FileName: tileset_town-32x32.png  
+- [Solarus Full Hyrule](http://absolute-hyrule-tutorials.solarus-games.org/)  
+See Also: [Forum Post](http://forum.solarus-games.org/index.php/topic,881.0.html)  
+Author: [ffomega](http://forum.solarus-games.org/index.php?action=profile;u=423)  
+License: Unknown, see [Solaris Game License](https://www.solarus-games.org/en/about/faq)  
+FileNames: solarus_full_hyrule.png  
+- [Tiny 16: Basic](https://opengameart.org/content/tiny-16-basic)  
 
 ### If you want to keep building the NES Hyrule map
 
