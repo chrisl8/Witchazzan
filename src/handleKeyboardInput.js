@@ -2,6 +2,7 @@
 import WebSocketClient from '@gamestdio/websocket';
 import communicationsObject from './communicationsObject';
 import playerObject from './playerObject';
+import textObject from './textObject';
 import reportFunctions from './reportFunctions';
 
 // Local keys will work even if the server is disconnected.
@@ -24,8 +25,8 @@ function handleKeyboardInput(event) {
         // (If the server needs to know that we are in "chat/command input mode" we can find
         // a way to send that.
         playerObject.chatInputDivDomElement.hidden = false;
-        playerObject.sceneText.helloText.shouldBeActiveNow = false;
-        playerObject.sceneText.escapeToLeaveChat.shouldBeActiveNow = true;
+        textObject.helloText.shouldBeActiveNow = false;
+        textObject.escapeToLeaveChat.shouldBeActiveNow = true;
         playerObject.chatInputDivDomElement.style.width = `${
           playerObject.canvasDomElement.item(0).offsetWidth
         }px`;
@@ -53,15 +54,15 @@ function handleKeyboardInput(event) {
 
     if (event.key === 'Escape') {
       // Escape is used to exit the chat/command input box.
-      playerObject.sceneText.escapeToLeaveChat.shouldBeActiveNow = false;
+      textObject.escapeToLeaveChat.shouldBeActiveNow = false;
       // https://stackoverflow.com/a/1232046/4982408
       playerObject.chatInputTextArray.length = 0;
       // Otherwise it still has text on it when you open it again:
       playerObject.chatInputElement.innerHTML = '';
       playerObject.chatInputDivDomElement.hidden = true;
       // Hide scrolling text box chat now too
-      playerObject.sceneText.incomingChatText.shouldBeActiveNow = false;
-      playerObject.sceneText.notConnectedCommandResponse.shouldBeActiveNow = false;
+      textObject.incomingChatText.shouldBeActiveNow = false;
+      textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
     } else if (event.key === 'Enter') {
       // Enter is used to 'send' the chat/command.
 
@@ -114,7 +115,7 @@ function handleKeyboardInput(event) {
           // Warn user that text cannot be sent due to lack of server connection.
           // TODO: the scrollingTextOverlayInputText should have a function to update it,
           //  so it can do things like scroll, dump stuff off the end, etc.
-          playerObject.sceneText.notConnectedCommandResponse.shouldBeActiveNow = true;
+          textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
         }
       } else if (
         communicationsObject.socket.readyState === WebSocketClient.OPEN
@@ -127,7 +128,7 @@ function handleKeyboardInput(event) {
         // Warn user that text cannot be sent due to lack of server connection.
         // TODO: the scrollingTextOverlayInputText should have a function to update it,
         //  so it can do things like scroll, dump stuff off the end, etc.
-        playerObject.sceneText.notConnectedCommandResponse.shouldBeActiveNow = true;
+        textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
       }
     } else if (event.key === 'ArrowUp') {
       if (commandHistoryIndex > 0) {

@@ -11,39 +11,6 @@ const playerObject = {
   player: null,
   destinationEntrance: null,
   keyState: {}, // keep track of the keyboard state. Send only when it changes
-  // Text we want to be displayed on various (or all) scenes
-  sceneText: {
-    helloText: {
-      text: `Hello. Press 'c' to enter commands.`, // TODO: Change to F1 or ? for Help once that exists.
-      shouldBeActiveNow: true,
-      location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
-    },
-    escapeToLeaveChat: {
-      text: `Press Escape to return to game, use / to send commands, /run to run a function`,
-      shouldBeActiveNow: false,
-      location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
-    },
-    connectingText: {
-      text: 'Connecting to server<br/>Please wait...',
-      shouldBeActiveNow: true,
-      location: 'Center', // UpperLeft, 'Scrolling', or 'Center'
-    },
-    reconnectingText: {
-      text: 'Server connection lost\nreconnecting...',
-      shouldBeActiveNow: false,
-      location: 'Center', // UpperLeft, 'Scrolling', or 'Center'
-    },
-    notConnectedCommandResponse: {
-      text: 'Not connected, cannot send chat text.',
-      shouldBeActiveNow: false,
-      location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
-    },
-    incomingChatText: {
-      text: '',
-      shouldBeActiveNow: false,
-      location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
-    },
-  },
   chatInputDivDomElement: document.getElementById('command_input_div'),
   chatInputCaretElement: document.getElementById('command_input_caret'),
   chatInputElement: document.getElementById('command_input'),

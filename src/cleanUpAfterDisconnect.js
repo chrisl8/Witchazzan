@@ -1,8 +1,9 @@
 import playerObject from './playerObject';
+import textObject from './textObject';
 
 function cleanUpAfterDisconnect() {
-  if (!playerObject.sceneText.connectingText.shouldBeActiveNow) {
-    playerObject.sceneText.reconnectingText.shouldBeActiveNow = true;
+  if (!textObject.connectingText.shouldBeActiveNow) {
+    textObject.reconnectingText.shouldBeActiveNow = true;
   }
   // Since most keyboard input is ignored when not connected,
   // we don't want people to be stuck running or firing while

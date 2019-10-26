@@ -1,6 +1,7 @@
 import WebSocketClient from '@gamestdio/websocket';
 import communicationsObject from './communicationsObject';
 import playerObject from './playerObject';
+import textObject from './textObject';
 
 const reportFunctions = {};
 reportFunctions.reportKeyboardState = (key, state) => {
@@ -10,7 +11,7 @@ reportFunctions.reportKeyboardState = (key, state) => {
     obj.key = key;
     obj.state = state;
     const jsonString = JSON.stringify(obj);
-    playerObject.sceneText.incomingChatText.shouldBeActiveNow = true;
+    textObject.incomingChatText.shouldBeActiveNow = true;
     communicationsObject.socket.send(jsonString);
   }
 };

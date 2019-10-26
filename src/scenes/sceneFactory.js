@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
 
 import playerObject from '../playerObject';
+import textObject from '../textObject';
 import handleKeyboardInput from '../handleKeyboardInput';
 import updateDomElements from '../updateDomElements';
 
@@ -65,7 +66,7 @@ const sceneFactory = ({
       }
       // Mark all scene objects as not currently displayed so the new scene can display them again
       // eslint-disable-next-line no-unused-vars
-      for (const [key, value] of Object.entries(playerObject.sceneText)) {
+      for (const [key, value] of Object.entries(textObject)) {
         value.hasBeenDisplayedInThisScene = false;
       }
 

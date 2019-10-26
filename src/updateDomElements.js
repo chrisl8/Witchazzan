@@ -1,4 +1,6 @@
 import playerObject from './playerObject';
+import textObject from './textObject';
+
 
 const updateDomElements = (htmlElementParameters) => {
   // TODO:
@@ -21,7 +23,7 @@ const updateDomElements = (htmlElementParameters) => {
 
   // Set up text for various text fields
   // eslint-disable-next-line no-unused-vars
-  for (const [key, value] of Object.entries(playerObject.sceneText)) {
+  for (const [key, value] of Object.entries(textObject)) {
     if (value.shouldBeActiveNow) {
       consolidatedTextObject[value.location].hidden = false;
       consolidatedTextObject[

@@ -5,6 +5,7 @@ import './css/styles.css';
 import rootGameObject from './rootGameObject';
 import communicationsObject from './communicationsObject';
 import playerObject from './playerObject';
+import textObject from './textObject';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 
 rootGameObject.game = new Phaser.Game(rootGameObject.config);
@@ -27,9 +28,9 @@ communicationsObject.socket = new WebSocketClient(
 
 // Connection opened
 communicationsObject.socket.onopen = () => {
-  playerObject.sceneText.connectingText.shouldBeActiveNow = false;
-  playerObject.sceneText.reconnectingText.shouldBeActiveNow = false;
-  playerObject.sceneText.notConnectedCommandResponse.shouldBeActiveNow = false;
+  textObject.connectingText.shouldBeActiveNow = false;
+  textObject.reconnectingText.shouldBeActiveNow = false;
+  textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
 };
 
 // Listen for messages
@@ -38,12 +39,12 @@ communicationsObject.socket.onmessage = (event) => {
   const inputData = JSON.parse(event.data);
   if (inputData.messageType === 'chat') {
     // TODO: The scrolling text interface should be its own function and be much more fancy.
-    if (playerObject.sceneText.incomingChatText.text !== '') {
+    if (textObject.incomingChatText.text !== '') {
       // Add a line break if there is existing text.
-      playerObject.sceneText.incomingChatText.text = `${playerObject.sceneText.incomingChatText.text}<br/>`;
+      textObject.incomingChatText.text = `${textObject.incomingChatText.text}<br/>`;
     }
-    playerObject.sceneText.incomingChatText.text = `${playerObject.sceneText.incomingChatText.text}${inputData.name}: ${inputData.content}`;
-    playerObject.sceneText.incomingChatText.shouldBeActiveNow = true;
+    textObject.incomingChatText.text = `${textObject.incomingChatText.text}${inputData.name}: ${inputData.content}`;
+    textObject.incomingChatText.shouldBeActiveNow = true;
   } else {
     console.log(inputData);
   }
