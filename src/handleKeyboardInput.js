@@ -7,8 +7,11 @@ import reportFunctions from './reportFunctions';
 // I suggest making these RARE, and also not recording their state,
 // as we assume you can act on them without doing that.
 const localKeys = ['c'];
-const commandHistory = [];
-let commandHistoryIndex = 0;
+if (!Array.isArray(JSON.parse(localStorage.getItem('commandHistory')))) {
+  localStorage.setItem('commandHistory', JSON.stringify([]));
+}
+const commandHistory = JSON.parse(localStorage.getItem('commandHistory'));
+let commandHistoryIndex = commandHistory.length;
 
 function handleKeyboardInput(event) {
   if (playerObject.chatInputDivDomElement.hidden) {
@@ -83,6 +86,10 @@ function handleKeyboardInput(event) {
               commandHistory[commandHistory.length - 1] !== `/run ${command}`
             ) {
               commandHistory.push(`/${command}`);
+              localStorage.setItem(
+                'commandHistory',
+                JSON.stringify(commandHistory),
+              );
             }
             commandHistoryIndex = commandHistory.length;
           }
@@ -96,6 +103,10 @@ function handleKeyboardInput(event) {
           playerObject.chatInputElement.innerHTML = '';
           if (commandHistory[commandHistory.length - 1] !== `/${command}`) {
             commandHistory.push(`/${command}`);
+            localStorage.setItem(
+              'commandHistory',
+              JSON.stringify(commandHistory),
+            );
           }
           commandHistoryIndex = commandHistory.length;
         } else {
