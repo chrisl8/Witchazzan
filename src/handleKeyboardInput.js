@@ -1,3 +1,4 @@
+/* globals localStorage:true */
 import WebSocketClient from '@gamestdio/websocket';
 import communicationsObject from './communicationsObject';
 import playerObject from './playerObject';

@@ -24,7 +24,8 @@ import sceneFactory from './sceneFactory';
 // Scenes
 import openingSceneTileMap from '../assets/tileMaps/openingScene';
 import openingSceneRight1TileMap from '../assets/tileMaps/openingSceneRight1';
-import testSceneOne from '../assets/tileMaps/testScene1';
+import testScene1 from '../assets/tileMaps/testScene1';
+import arena1 from '../assets/tileMaps/arena1';
 
 // TileSets
 import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16.png';
@@ -84,8 +85,32 @@ const scenes = [
     },
   },
   {
-    sceneName: 'testSceneOne',
-    tileMap: testSceneOne,
+    sceneName: 'testScene1',
+    tileMap: testScene1,
+    tileSet: tilesetZoriaOverworld,
+    tileSetName: 'Zoria Overworld',
+    gameSize: {
+      width: 16 * 40,
+      height: 16 * 22,
+    },
+    htmlElementParameters: {
+      Center: {
+        fontSize: '.1', // percent of scene height.
+        color: 'red',
+      },
+      UpperLeft: {
+        fontSize: '.05', // percent of scene height.
+        color: 'white',
+      },
+      Scrolling: {
+        fontSize: '.03', // percent of scene height.
+        color: 'blue',
+      },
+    },
+  },
+  {
+    sceneName: 'arena1',
+    tileMap: arena1,
     tileSet: tilesetZoriaOverworld,
     tileSetName: 'Zoria Overworld',
     gameSize: {

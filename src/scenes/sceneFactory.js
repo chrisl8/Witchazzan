@@ -86,6 +86,7 @@ const sceneFactory = ({
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
     map.createStaticLayer('Ground', tileset, 0, 0);
+    map.createStaticLayer('Stuff on the Ground You Can Walk On', tileset, 0, 0);
 
     // We collide with EVERYTHING in this layer. Collision isn't based on tiles themselves,
     // but the layer they are in.

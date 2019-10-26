@@ -90,7 +90,13 @@
                 {
                  "height":15.0706436420722,
                  "id":34,
-                 "name":"testSceneOne",
+                 "name":"testScene1",
+                 "properties":[
+                        {
+                         "name":"Entrance",
+                         "type":"string",
+                         "value":"Top"
+                        }],
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
