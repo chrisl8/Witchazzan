@@ -7,6 +7,8 @@ import reportFunctions from './reportFunctions';
 // I suggest making these RARE, and also not recording their state,
 // as we assume you can act on them without doing that.
 const localKeys = ['c'];
+const commandHistory = [];
+let commandHistoryIndex = 0;
 
 function handleKeyboardInput(event) {
   if (playerObject.chatInputDivDomElement.hidden) {
@@ -63,7 +65,8 @@ function handleKeyboardInput(event) {
         // A / is used to begin commands instead of sending chat text.
         const inputText = playerObject.chatInputTextArray.slice(0);
         inputText.shift(); // Remove the /
-        const inputTextSpaceDelimitedArray = inputText.join('').split(' ');
+        const command = inputText.join('');
+        const inputTextSpaceDelimitedArray = command.split(' ');
         if (inputTextSpaceDelimitedArray[0] === 'run') {
           if (
             inputTextSpaceDelimitedArray.length > 1 &&
@@ -76,15 +79,25 @@ function handleKeyboardInput(event) {
             playerObject.chatInputTextArray.length = 0;
             // Otherwise it still has text on it when you open it again:
             playerObject.chatInputElement.innerHTML = '';
+            if (
+              commandHistory[commandHistory.length - 1] !== `/run ${command}`
+            ) {
+              commandHistory.push(`/${command}`);
+            }
+            commandHistoryIndex = commandHistory.length;
           }
         } else if (
           communicationsObject.socket.readyState === WebSocketClient.OPEN
         ) {
-          reportFunctions.reportCommand(inputText.join(''));
+          reportFunctions.reportCommand(command);
           // https://stackoverflow.com/a/1232046/4982408
           playerObject.chatInputTextArray.length = 0;
           // Otherwise it still has text on it when you open it again:
           playerObject.chatInputElement.innerHTML = '';
+          if (commandHistory[commandHistory.length - 1] !== `/${command}`) {
+            commandHistory.push(`/${command}`);
+          }
+          commandHistoryIndex = commandHistory.length;
         } else {
           // Warn user that text cannot be sent due to lack of server connection.
           // TODO: the scrollingTextOverlayInputText should have a function to update it,
@@ -103,6 +116,34 @@ function handleKeyboardInput(event) {
         // TODO: the scrollingTextOverlayInputText should have a function to update it,
         //  so it can do things like scroll, dump stuff off the end, etc.
         playerObject.sceneText.notConnectedCommandResponse.shouldBeActiveNow = true;
+      }
+    } else if (event.key === 'ArrowUp') {
+      if (commandHistoryIndex > 0) {
+        commandHistoryIndex--;
+      }
+      if (commandHistory[commandHistoryIndex]) {
+        playerObject.chatInputTextArray = commandHistory[
+          commandHistoryIndex
+        ].split('');
+        playerObject.chatInputElement.innerHTML = playerObject.chatInputTextArray.join(
+          '',
+        );
+      }
+    } else if (event.key === 'ArrowDown') {
+      if (commandHistoryIndex < commandHistory.length - 1) {
+        commandHistoryIndex++;
+        playerObject.chatInputTextArray = commandHistory[
+          commandHistoryIndex
+        ].split('');
+        playerObject.chatInputElement.innerHTML = playerObject.chatInputTextArray.join(
+          '',
+        );
+      } else {
+        commandHistoryIndex = commandHistory.length;
+        // https://stackoverflow.com/a/1232046/4982408
+        playerObject.chatInputTextArray.length = 0;
+        // Otherwise it still has text on it when you open it again:
+        playerObject.chatInputElement.innerHTML = '';
       }
     } else {
       // Only input individual ASCII characters
