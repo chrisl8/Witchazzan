@@ -13,6 +13,8 @@ rootGameObject.game = new Phaser.Game(rootGameObject.config);
 playerObject.chatInputDivDomElement.hidden = true;
 playerObject.domElements.Scrolling.hidden = true;
 playerObject.chatInputDivDomElement.hidden = true;
+// That is *not* an empty string!
+// TODO: https://youtrack.jetbrains.com/issue/IDEA-192107?_ga=2.141602101.646836220.1571768510-293137691.1563993858
 playerObject.chatInputCaretElement.innerHTML = `💬`;
 
 // See https://developer.mozilla.org/en-US/docs/Web/API/WebSocket for how to use Websockets

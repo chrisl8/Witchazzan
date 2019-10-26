@@ -6,6 +6,9 @@ import playerObject from '../playerObject';
 import handleKeyboardInput from '../handleKeyboardInput';
 import updateDomElements from '../updateDomElements';
 
+// TODO: Is this actually a proper factory?
+//  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
+
 const sceneFactory = ({
   sceneName,
   tileMap,
