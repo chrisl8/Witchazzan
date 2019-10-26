@@ -16,7 +16,7 @@ const commandHistory = JSON.parse(localStorage.getItem('commandHistory'));
 let commandHistoryIndex = commandHistory.length;
 
 function handleKeyboardInput(event) {
-  if (playerObject.chatInputDivDomElement.hidden) {
+  if (playerObject.domElements.chatInputDiv.hidden) {
     if (localKeys.indexOf(event.key) > -1) {
       if (event.key === 'c' && event.type === 'keydown') {
         // Go into chat/command mode if 'c' is pressed.
@@ -24,10 +24,10 @@ function handleKeyboardInput(event) {
         // and this is NOT sent to the server at this time.
         // (If the server needs to know that we are in "chat/command input mode" we can find
         // a way to send that.
-        playerObject.chatInputDivDomElement.hidden = false;
+        playerObject.domElements.chatInputDiv.hidden = false;
         textObject.helloText.shouldBeActiveNow = false;
         textObject.escapeToLeaveChat.shouldBeActiveNow = true;
-        playerObject.chatInputDivDomElement.style.width = `${
+        playerObject.domElements.chatInputDiv.style.width = `${
           playerObject.canvasDomElement.item(0).offsetWidth
         }px`;
       }
@@ -58,8 +58,8 @@ function handleKeyboardInput(event) {
       // https://stackoverflow.com/a/1232046/4982408
       playerObject.chatInputTextArray.length = 0;
       // Otherwise it still has text on it when you open it again:
-      playerObject.chatInputElement.innerHTML = '';
-      playerObject.chatInputDivDomElement.hidden = true;
+      playerObject.domElements.chatInput.innerHTML = '';
+      playerObject.domElements.chatInputDiv.hidden = true;
       // Hide scrolling text box chat now too
       textObject.incomingChatText.shouldBeActiveNow = false;
       textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
@@ -83,7 +83,7 @@ function handleKeyboardInput(event) {
             // https://stackoverflow.com/a/1232046/4982408
             playerObject.chatInputTextArray.length = 0;
             // Otherwise it still has text on it when you open it again:
-            playerObject.chatInputElement.innerHTML = '';
+            playerObject.domElements.chatInput.innerHTML = '';
             if (
               commandHistory[commandHistory.length - 1] !== `/run ${command}`
             ) {
@@ -102,7 +102,7 @@ function handleKeyboardInput(event) {
           // https://stackoverflow.com/a/1232046/4982408
           playerObject.chatInputTextArray.length = 0;
           // Otherwise it still has text on it when you open it again:
-          playerObject.chatInputElement.innerHTML = '';
+          playerObject.domElements.chatInput.innerHTML = '';
           if (commandHistory[commandHistory.length - 1] !== `/${command}`) {
             commandHistory.push(`/${command}`);
             localStorage.setItem(
@@ -123,7 +123,7 @@ function handleKeyboardInput(event) {
         reportFunctions.reportChat(playerObject.chatInputTextArray.join(''));
         // Clear text after sending.
         playerObject.chatInputTextArray.length = 0;
-        playerObject.chatInputElement.innerHTML = '';
+        playerObject.domElements.chatInput.innerHTML = '';
       } else {
         // Warn user that text cannot be sent due to lack of server connection.
         // TODO: the scrollingTextOverlayInputText should have a function to update it,
@@ -138,7 +138,7 @@ function handleKeyboardInput(event) {
         playerObject.chatInputTextArray = commandHistory[
           commandHistoryIndex
         ].split('');
-        playerObject.chatInputElement.innerHTML = playerObject.chatInputTextArray.join(
+        playerObject.domElements.chatInput.innerHTML = playerObject.chatInputTextArray.join(
           '',
         );
       }
@@ -148,7 +148,7 @@ function handleKeyboardInput(event) {
         playerObject.chatInputTextArray = commandHistory[
           commandHistoryIndex
         ].split('');
-        playerObject.chatInputElement.innerHTML = playerObject.chatInputTextArray.join(
+        playerObject.domElements.chatInput.innerHTML = playerObject.chatInputTextArray.join(
           '',
         );
       } else {
@@ -156,7 +156,7 @@ function handleKeyboardInput(event) {
         // https://stackoverflow.com/a/1232046/4982408
         playerObject.chatInputTextArray.length = 0;
         // Otherwise it still has text on it when you open it again:
-        playerObject.chatInputElement.innerHTML = '';
+        playerObject.domElements.chatInput.innerHTML = '';
       }
     } else {
       // Only input individual ASCII characters
@@ -176,7 +176,7 @@ function handleKeyboardInput(event) {
       //       and see if I can still watch the keyboard via Phaser and do nifty things
       //       like command history and listening for special keys like Escape.
       // "Display" the current chat/command queue content:
-      playerObject.chatInputElement.innerHTML = playerObject.chatInputTextArray.join(
+      playerObject.domElements.chatInput.innerHTML = playerObject.chatInputTextArray.join(
         '',
       );
     }

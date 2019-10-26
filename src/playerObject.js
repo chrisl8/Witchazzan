@@ -11,9 +11,6 @@ const playerObject = {
   player: null,
   destinationEntrance: null,
   keyState: {}, // keep track of the keyboard state. Send only when it changes
-  chatInputDivDomElement: document.getElementById('command_input_div'),
-  chatInputCaretElement: document.getElementById('command_input_caret'),
-  chatInputElement: document.getElementById('command_input'),
 
   // NOTE: This assumes that there is only the one Phaser canvas.
   canvasDomElement: document.getElementsByTagName('canvas'),
@@ -26,6 +23,9 @@ const playerObject = {
     Center: document.getElementById('center_text_overlay_div'),
     UpperLeft: document.getElementById('upper_left_text_overlay_div'),
     Scrolling: document.getElementById('scrolling_text_overlay_div'),
+    chatInputDiv: document.getElementById('command_input_div'),
+    chatInputCaret: document.getElementById('command_input_caret'),
+    chatInput: document.getElementById('command_input'),
   },
   domElementHistory: {
     Center: { style: {} },
