@@ -4,6 +4,15 @@ import playerObject from './playerObject';
 import textObject from './textObject';
 
 const reportFunctions = {};
+reportFunctions.reportFireball = (direction) => {
+  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+    const obj = {};
+    obj.message_type = 'fireball';
+    obj.direction = direction;
+    const jsonString = JSON.stringify(obj);
+    communicationsObject.socket.send(jsonString);
+  }
+};
 reportFunctions.reportKeyboardState = (key, state) => {
   if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
     const obj = {};
