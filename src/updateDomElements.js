@@ -1,7 +1,6 @@
 import playerObject from './playerObject';
 import textObject from './textObject';
 
-
 const updateDomElements = (htmlElementParameters) => {
   // TODO:
   //  Scrolling Text needs to . . . scroll? Roll over somehow?
@@ -35,7 +34,7 @@ const updateDomElements = (htmlElementParameters) => {
   // Update element styles and insert text if needed.
 
   // Set HTML element options based on the new canvas properties
-  const canvasWith = playerObject.canvasDomElement.item(0).offsetWidth;
+  const canvasWidth = playerObject.canvasDomElement.item(0).offsetWidth;
   const canvasHeight = playerObject.canvasDomElement.item(0).offsetHeight;
 
   ['Center', 'UpperLeft', 'Scrolling'].forEach((textLocation) => {
@@ -66,7 +65,7 @@ const updateDomElements = (htmlElementParameters) => {
 
     // Location for Center Text
     if (textLocation === 'Center') {
-      newValueObject.style.left = `${canvasWith / 2 -
+      newValueObject.style.left = `${canvasWidth / 2 -
         playerObject.domElements[textLocation].offsetWidth / 2}px`;
       newValueObject.style.top = `${canvasHeight / 2 -
         playerObject.domElements[textLocation].offsetHeight / 2}px`;
