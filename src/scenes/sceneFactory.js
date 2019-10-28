@@ -156,8 +156,8 @@ const sceneFactory = ({
       .setOffset(12, 12);
 
     // My sprite is out of scale with my tiles, so adjusting here
-    playerObject.player.displayHeight = 18;
-    playerObject.player.displayWidth = 18;
+    playerObject.player.displayHeight = 16;
+    playerObject.player.displayWidth = 12;
 
     // Watch the player and worldLayer for collisions, for the duration of the scene:
     this.physics.add.collider(playerObject.player, collisionLayer);
