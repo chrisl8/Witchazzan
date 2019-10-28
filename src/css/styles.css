@@ -24,6 +24,7 @@ body {
   width: 100%;
   font-family: 'Roboto Mono', monospace;
   flex: 2;
+  border: none;
 }
 
 #upper_left_text_overlay_div {
