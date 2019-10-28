@@ -16,15 +16,20 @@ const commandHistory = JSON.parse(localStorage.getItem('commandHistory'));
 let commandHistoryIndex = commandHistory.length;
 
 function handleKeyboardInput(event) {
-  if (playerObject.domElements.chatInputDiv.hidden) {
+  if (playerObject.domElements.chatInputDiv.style.display === 'none') {
     if (localKeys.indexOf(event.key) > -1) {
-      if (event.key === 'c' && event.type === 'keydown') {
+      if (event.key === 'c' && event.type === 'keyup') {
+        // If we do this on 'keydown', we end up with a 'c'
+        // stuck in the input box.
+
         // Go into chat/command mode if 'c' is pressed.
         // This works even if we are not connected,
         // and this is NOT sent to the server at this time.
         // (If the server needs to know that we are in "chat/command input mode" we can find
         // a way to send that.
-        playerObject.domElements.chatInputDiv.hidden = false;
+
+        playerObject.domElements.chatInputDiv.style.display = 'flex';
+        playerObject.domElements.chatInput.focus();
         textObject.helloText.shouldBeActiveNow = false;
         textObject.escapeToLeaveChat.shouldBeActiveNow = true;
         playerObject.domElements.chatInputDiv.style.width = `${
@@ -58,12 +63,15 @@ function handleKeyboardInput(event) {
       // https://stackoverflow.com/a/1232046/4982408
       playerObject.chatInputTextArray.length = 0;
       // Otherwise it still has text on it when you open it again:
-      playerObject.domElements.chatInput.innerHTML = '';
-      playerObject.domElements.chatInputDiv.hidden = true;
+      playerObject.domElements.chatInput.value = '';
+      playerObject.domElements.chatInputDiv.style.display = 'none';
       // Hide scrolling text box chat now too
       textObject.incomingChatText.shouldBeActiveNow = false;
       textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
     } else if (event.key === 'Enter') {
+      playerObject.chatInputTextArray = playerObject.domElements.chatInput.value.split(
+        '',
+      );
       // Enter is used to 'send' the chat/command.
 
       if (playerObject.chatInputTextArray[0] === '/') {
@@ -83,10 +91,8 @@ function handleKeyboardInput(event) {
             // https://stackoverflow.com/a/1232046/4982408
             playerObject.chatInputTextArray.length = 0;
             // Otherwise it still has text on it when you open it again:
-            playerObject.domElements.chatInput.innerHTML = '';
-            if (
-              commandHistory[commandHistory.length - 1] !== `/run ${command}`
-            ) {
+            playerObject.domElements.chatInput.value = '';
+            if (commandHistory[commandHistory.length - 1] !== `/${command}`) {
               commandHistory.push(`/${command}`);
               localStorage.setItem(
                 'commandHistory',
@@ -102,7 +108,7 @@ function handleKeyboardInput(event) {
           // https://stackoverflow.com/a/1232046/4982408
           playerObject.chatInputTextArray.length = 0;
           // Otherwise it still has text on it when you open it again:
-          playerObject.domElements.chatInput.innerHTML = '';
+          playerObject.domElements.chatInput.value = '';
           if (commandHistory[commandHistory.length - 1] !== `/${command}`) {
             commandHistory.push(`/${command}`);
             localStorage.setItem(
@@ -123,7 +129,7 @@ function handleKeyboardInput(event) {
         reportFunctions.reportChat(playerObject.chatInputTextArray.join(''));
         // Clear text after sending.
         playerObject.chatInputTextArray.length = 0;
-        playerObject.domElements.chatInput.innerHTML = '';
+        playerObject.domElements.chatInput.value = '';
       } else {
         // Warn user that text cannot be sent due to lack of server connection.
         // TODO: the scrollingTextOverlayInputText should have a function to update it,
@@ -138,7 +144,7 @@ function handleKeyboardInput(event) {
         playerObject.chatInputTextArray = commandHistory[
           commandHistoryIndex
         ].split('');
-        playerObject.domElements.chatInput.innerHTML = playerObject.chatInputTextArray.join(
+        playerObject.domElements.chatInput.value = playerObject.chatInputTextArray.join(
           '',
         );
       }
@@ -148,7 +154,7 @@ function handleKeyboardInput(event) {
         playerObject.chatInputTextArray = commandHistory[
           commandHistoryIndex
         ].split('');
-        playerObject.domElements.chatInput.innerHTML = playerObject.chatInputTextArray.join(
+        playerObject.domElements.chatInput.value = playerObject.chatInputTextArray.join(
           '',
         );
       } else {
@@ -156,16 +162,11 @@ function handleKeyboardInput(event) {
         // https://stackoverflow.com/a/1232046/4982408
         playerObject.chatInputTextArray.length = 0;
         // Otherwise it still has text on it when you open it again:
-        playerObject.domElements.chatInput.innerHTML = '';
+        playerObject.domElements.chatInput.value = '';
       }
     } else {
-      // Only input individual ASCII characters
-      if (event.key.length === 1 && !/[^ -~]+/.test(event.key)) {
-        playerObject.chatInputTextArray.push(event.key);
-      } else if (event.key === 'Backspace') {
-        // I TOLD you we have to emulate text input features! :)
-        playerObject.chatInputTextArray.pop();
-      } else {
+      // Only log non-ASCII characters
+      if (!(event.key.length === 1 && !/[^ -~]+/.test(event.key))) {
         // TODO: Just logging everything else now to help debug. Remove this for production.
         console.log(event.key);
       }
@@ -176,9 +177,6 @@ function handleKeyboardInput(event) {
       //       and see if I can still watch the keyboard via Phaser and do nifty things
       //       like command history and listening for special keys like Escape.
       // "Display" the current chat/command queue content:
-      playerObject.domElements.chatInput.innerHTML = playerObject.chatInputTextArray.join(
-        '',
-      );
     }
   }
 }

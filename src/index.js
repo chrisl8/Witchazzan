@@ -11,9 +11,8 @@ import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 rootGameObject.game = new Phaser.Game(rootGameObject.config);
 
 // Set up some initial values.
-playerObject.domElements.chatInputDiv.hidden = true;
+playerObject.domElements.chatInputDiv.style.display = 'none';
 playerObject.domElements.Scrolling.hidden = true;
-playerObject.domElements.chatInputDiv.hidden = true;
 // That is *not* an empty string!
 // https://youtrack.jetbrains.com/issue/IDEA-192107?_ga=2.141602101.646836220.1571768510-293137691.1563993858
 playerObject.domElements.chatInputCaret.innerHTML = `💬`;

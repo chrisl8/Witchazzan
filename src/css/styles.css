@@ -13,6 +13,7 @@ body {
   background: white;
   color: black;
   z-index: 1;
+  display: none;
 }
 
 #command_input_caret {
@@ -22,6 +23,7 @@ body {
 #command_input {
   width: 100%;
   font-family: 'Roboto Mono', monospace;
+  flex: 2;
 }
 
 #upper_left_text_overlay_div {
