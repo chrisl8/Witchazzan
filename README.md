@@ -151,7 +151,8 @@ Author: [Clint Bellanger](https://opengameart.org/users/clint-bellanger)
 License: [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 FileName: tileset_1bit-16x16.png  
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
-Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  
+Author: [DragonDePlatino](https://openga    // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
+meart.org/users/dragondeplatino)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
 FileNames: zoria_overworld.png, zoria_underworld.png  
 See also: [Mockups](https://opengameart.org/sites/default/files/mockups_1.png)  
@@ -169,3 +170,9 @@ FileNames: solarus_full_hyrule.png
 ### If you want to keep building the NES Hyrule map
 
 The map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
+
+### Good Tutorials for learning Phaser
+- [Modular Game Worlds in Phaser 3](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)
+- [How to Make a Mario-style Platformer with Phaser 3](https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3/)
+- [Create A Basic Multiplayer Game In Phaser 3 With Socket.io](https://gamedevacademy.org/create-a-basic-multiplayer-game-in-phaser-3-with-socket-io-part-2/)
+

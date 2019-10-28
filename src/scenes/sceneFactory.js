@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 
+// TODO: Sprite loading needs to be dynamic:
+//       1. Every player should be able to pick their own sprite to represent themselves.
+//       2. We should be able to load arbitrary sprites from objects in the map or server objects.
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
 
 import playerObject from '../playerObject';
@@ -36,7 +39,7 @@ const sceneFactory = ({
     // https://www.html5gamedevs.com/topic/40710-how-do-i-load-a-new-scene-with-phaser-3-and-webpack/
     this.load.tilemapTiledJSON(`${sceneName}-map`, tileMap);
 
-    // An atlas is a way to pack multiple images together into one texture. I'm using it to load all
+    // An atlas is a way to pack multiple images together into one texture. The tutorial used it to load all
     // the player animations (walking left, walking right, etc.) in one image. For more info see:
     //  https://labs.phaser.io/view.html?src=src/animation/texture%20atlas%20animation.js
     //  https://www.codeandweb.com/texturepacker/tutorials/how-to-create-sprite-sheets-for-phaser3
@@ -163,9 +166,6 @@ const sceneFactory = ({
     // animation manager so any sprite can access them.
     // Actually this is NOT done from an atlas. I had to hack it a lot ot make it work.
 
-    // TODO: Set up and use Atlas files:
-    // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-    // https://www.codeandweb.com/texturepacker/tutorials/how-to-create-sprite-sheets-for-phaser3
     const anims = this.anims;
     anims.create({
       key: 'wizard-left-walk',
@@ -355,10 +355,6 @@ const sceneFactory = ({
         playerObject.player.anims.stop();
       }
     }
-
-    // TODO: Fully implement the example at:
-    // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-    // by having all directions for my walking sprite, etc.
 
     updateDomElements(htmlElementParameters);
   };

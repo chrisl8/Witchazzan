@@ -15,7 +15,7 @@ playerObject.domElements.chatInputDiv.hidden = true;
 playerObject.domElements.Scrolling.hidden = true;
 playerObject.domElements.chatInputDiv.hidden = true;
 // That is *not* an empty string!
-// TODO: https://youtrack.jetbrains.com/issue/IDEA-192107?_ga=2.141602101.646836220.1571768510-293137691.1563993858
+// https://youtrack.jetbrains.com/issue/IDEA-192107?_ga=2.141602101.646836220.1571768510-293137691.1563993858
 playerObject.domElements.chatInputCaret.innerHTML = `💬`;
 
 // See https://developer.mozilla.org/en-US/docs/Web/API/WebSocket for how to use Websockets
@@ -59,15 +59,5 @@ communicationsObject.socket.onclose = () => {
 communicationsObject.socket.onreconnect = () => {
   console.log('Reconnected');
 };
-
-// TODO: Read over this example and implement things I learn:
-// https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3/
-
-// TODO: Read over this and implement new ides:
-// https://gamedevacademy.org/create-a-basic-multiplayer-game-in-phaser-3-with-socket-io-part-2/
-
-// TODO: Read over and experiment with RESIZE and FIT scale options:
-// http://www.netexl.com/blog/exploring-resize-scale-mode-in-phaser-3/
-// http://www.netexl.com/blog/phaser-3-scale-manager-is-here-exploring-phaser-3-with-3-16-1-version-now/
 
 // TODO: set up a player "per client" so two of us can mess with it.

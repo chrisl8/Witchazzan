@@ -21,6 +21,9 @@ const rootGameObject = {
     // For now this gets the screen to fill the window, we may change how we scale and how we handle "off camera" movement later.
     // Currently my tile map is tiny too, so this helps anyway.
     scale: {
+      // NOTES on .RESIZE and .FIT
+      // http://www.netexl.com/blog/exploring-resize-scale-mode-in-phaser-3/
+      // http://www.netexl.com/blog/phaser-3-scale-manager-is-here-exploring-phaser-3-with-3-16-1-version-now/
       mode: Phaser.Scale.FIT,
       // Actual scale is set per map in the sceneFactory.js
       width: 32 * 20, // 16 * 16
