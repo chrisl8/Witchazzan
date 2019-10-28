@@ -1,6 +1,6 @@
 {
   "extends": [
     "config:base",
-    "schedule:earlyFridays"
+    "schedule:weekends"
   ]
 }
