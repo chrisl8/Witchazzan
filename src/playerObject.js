@@ -32,6 +32,7 @@ const playerObject = {
     UpperLeft: { style: {} },
     Scrolling: { style: {} },
   },
+  serverData: {},
 };
 
 export default playerObject;

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import communicationsObject from '../communicationsObject';
 
 // TODO: Sprite loading needs to be dynamic:
 //       1. Every player should be able to pick their own sprite to represent themselves.
@@ -9,6 +10,8 @@ import playerObject from '../playerObject';
 import textObject from '../textObject';
 import handleKeyboardInput from '../handleKeyboardInput';
 import updateDomElements from '../updateDomElements';
+import WebSocketClient from '@gamestdio/websocket';
+import reportFunctions from '../reportFunctions';
 
 // TODO: Is this actually a proper factory?
 //  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
@@ -278,8 +281,11 @@ const sceneFactory = ({
     updateDomElements(htmlElementParameters);
   };
 
+  let lastServerUpdate = 0;
+  const serverUpateInterval = 100;
+
   // eslint-disable-next-line func-names
-  scene.update = function() {
+  scene.update = function(time) {
     // Runs once per frame for the duration of the scene
     if (sceneOpen) {
       // Don't do anything if the scene is no longer open.
@@ -353,6 +359,14 @@ const sceneFactory = ({
         playerObject.player.anims.play('wizard-front-walk', true);
       } else {
         playerObject.player.anims.stop();
+      }
+    }
+
+    // Update server
+    if (time - lastServerUpdate > serverUpateInterval) {
+      lastServerUpdate = time;
+      if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+        reportFunctions.reportLocation(sceneName);
       }
     }
 

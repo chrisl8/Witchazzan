@@ -44,6 +44,11 @@ communicationsObject.socket.onmessage = (event) => {
     }
     textObject.incomingChatText.text = `${textObject.incomingChatText.text}${inputData.name}: ${inputData.content}`;
     textObject.incomingChatText.shouldBeActiveNow = true;
+  } else if (inputData.messageType === 'player-state') {
+    // TODO: Display other players on the screen.
+    // console.log('Player state update received.');
+    // console.log(inputData.players);
+    playerObject.serverData.playerState = inputData.players;
   } else {
     console.log(inputData);
   }
