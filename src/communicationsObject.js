@@ -12,7 +12,7 @@ const communicationsObject = {
   // You can use this as a test websocket server that will echo back everything you tell it:
   // websocketServerString: 'ws://demos.kaazing.com/echo',
   // FROM: http://www.websocket.org/echo.html
-  socket: null,
+  socket: {},
 };
 
 if (window.location.hostname === 'witchazzan.ekpyroticfrood.net') {

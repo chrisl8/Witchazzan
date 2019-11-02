@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import communicationsObject from '../communicationsObject';
 
 // TODO: Sprite loading needs to be dynamic:
 //       1. Every player should be able to pick their own sprite to represent themselves.
@@ -10,7 +9,6 @@ import playerObject from '../playerObject';
 import textObject from '../textObject';
 import handleKeyboardInput from '../handleKeyboardInput';
 import updateDomElements from '../updateDomElements';
-import WebSocketClient from '@gamestdio/websocket';
 import reportFunctions from '../reportFunctions';
 
 // TODO: Is this actually a proper factory?
@@ -365,9 +363,31 @@ const sceneFactory = ({
     // Update server
     if (time - lastServerUpdate > serverUpateInterval) {
       lastServerUpdate = time;
-      if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-        reportFunctions.reportLocation(sceneName);
-      }
+      reportFunctions.reportLocation(sceneName);
+    }
+
+    if (playerObject.serverData.playerState) {
+      playerObject.serverData.playerState.forEach((player) => {
+        if (player.scene === sceneName) {
+          // console.log(player.name, player.x, player.y, player.scene);
+          if (!playerObject.otherPlayerList[player.name]) {
+            playerObject.otherPlayerList[player.name] = this.physics.add
+              .sprite(player.x, player.y, 'partyWizard')
+              .setSize(80, 110)
+              .setOffset(12, 12);
+            playerObject.otherPlayerList[player.name].displayHeight = 16;
+            playerObject.otherPlayerList[player.name].displayWidth = 12;
+          } else {
+            // Sometimes they go inactive.
+            playerObject.otherPlayerList[player.name].active = true;
+            playerObject.otherPlayerList[player.name].x = player.x;
+            playerObject.otherPlayerList[player.name].y = player.y;
+          }
+        } else if (playerObject.otherPlayerList[player.name]) {
+          // Off screen players should be inactive.
+          playerObject.otherPlayerList[player.name].active = false;
+        }
+      });
     }
 
     updateDomElements(htmlElementParameters);
