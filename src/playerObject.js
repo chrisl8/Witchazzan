@@ -37,6 +37,7 @@ const playerObject = {
     Scrolling: { style: {} },
   },
   playerName: null,
+  playerId: null,
   serverData: {},
   otherPlayerList: [],
 };
