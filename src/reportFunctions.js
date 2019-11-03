@@ -20,7 +20,6 @@ reportFunctions.reportKeyboardState = (key, state) => {
     obj.key = key;
     obj.state = state;
     const jsonString = JSON.stringify(obj);
-    textObject.incomingChatText.shouldBeActiveNow = true;
     communicationsObject.socket.send(jsonString);
   }
 };
@@ -52,7 +51,6 @@ reportFunctions.reportLogin = (username, password) => {
     obj.password = password;
     const jsonString = JSON.stringify(obj);
     communicationsObject.socket.send(jsonString);
-    console.log(`Sent ${jsonString} to server.`);
   }
 };
 reportFunctions.reportCommand = (command) => {
@@ -64,6 +62,9 @@ reportFunctions.reportCommand = (command) => {
     communicationsObject.socket.send(jsonString);
     console.log(`Sent ${jsonString} to server.`);
   }
+};
+reportFunctions.dumpPlayerObject = () => {
+  console.log(playerObject);
 };
 
 export default reportFunctions;
