@@ -34,13 +34,14 @@ reportFunctions.reportChat = (text) => {
 };
 reportFunctions.reportLocation = (sceneName) => {
   if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
-    const obj = {};
-    obj.message_type = 'location-update';
-    obj.x = playerObject.player.x;
-    obj.y = playerObject.player.y;
-    obj.scene = sceneName;
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
+    const obj = {
+      message_type: 'location-update',
+      x: playerObject.player.x,
+      y: playerObject.player.y,
+      scene: sceneName,
+      direction: playerObject.playerDirection,
+    };
+    communicationsObject.socket.send(JSON.stringify(obj));
   }
 };
 reportFunctions.reportLogin = (username, password) => {

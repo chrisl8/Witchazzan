@@ -38,6 +38,7 @@ const playerObject = {
   },
   playerName: null,
   playerId: null,
+  playerDirection: 'left',
   serverData: {},
   otherPlayerList: [],
 };

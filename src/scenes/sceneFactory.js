@@ -342,24 +342,29 @@ const sceneFactory = ({
       ) {
         playerObject.player.setFlipX(false);
         playerObject.player.anims.play('wizard-left-walk', true);
+        playerObject.playerDirection = 'left';
       } else if (
         playerObject.keyState.ArrowRight === 'keydown' ||
         playerObject.keyState.d === 'keydown'
       ) {
         playerObject.player.setFlipX(true);
         playerObject.player.anims.play('wizard-right-walk', true);
+        playerObject.playerDirection = 'right';
       } else if (
         playerObject.keyState.ArrowUp === 'keydown' ||
         playerObject.keyState.w === 'keydown'
       ) {
         playerObject.player.anims.play('wizard-back-walk', true);
+        playerObject.playerDirection = 'up';
       } else if (
         playerObject.keyState.ArrowDown === 'keydown' ||
         playerObject.keyState.s === 'keydown'
       ) {
         playerObject.player.anims.play('wizard-front-walk', true);
+        playerObject.playerDirection = 'down';
       } else {
         playerObject.player.anims.stop();
+        playerObject.playerDirection = 'left';
       }
     }
 
@@ -371,8 +376,15 @@ const sceneFactory = ({
 
     if (playerObject.serverData.playerState) {
       playerObject.serverData.playerState.forEach((player) => {
+        // console.log(player.name, player.x, player.y, player.scene, player.id);
+        if (player.id === playerObject.playerId) {
+          // It me!
+          // TODO: Set up a "debugging" option with way to enable/disable it,
+          //       that will show a box or something where the server sees me,
+          //       for comparison to where I see me.
+          // console.log(player.direction);
+        } // TODO: Don't display ME normally though.
         if (player.scene === sceneName) {
-          // console.log(player.name, player.x, player.y, player.scene, player.id);
           if (!playerObject.otherPlayerList[player.id]) {
             playerObject.otherPlayerList[player.id] = this.physics.add
               .sprite(player.x, player.y, 'partyWizard')
@@ -383,9 +395,11 @@ const sceneFactory = ({
           } else {
             // Sometimes they go inactive.
             playerObject.otherPlayerList[player.id].active = true;
+            // TODO: Other players need to animate, not just slide around.
             playerObject.otherPlayerList[player.id].x = player.x;
             playerObject.otherPlayerList[player.id].y = player.y;
           }
+          // Use Player direction to set player stance
         } else if (playerObject.otherPlayerList[player.id]) {
           // Off screen players should be inactive.
           playerObject.otherPlayerList[player.id].destroy();
