@@ -56,14 +56,11 @@ async function startGame() {
       textObject.incomingChatText.text = `${textObject.incomingChatText.text}${inputData.name}: ${inputData.content}`;
       textObject.incomingChatText.shouldBeActiveNow = true;
     } else if (inputData.messageType === 'player-state') {
-      // TODO: Display other players on the screen.
-      // console.log('Player state update received.');
-      // console.log(inputData.players);
       playerObject.serverData.playerState = inputData.players;
       // For debugging:
-      playerObject.serverData.playerState.forEach((player) => {
-        console.log(player.id, player.name, player.x, player.y, player.scene);
-      });
+      // playerObject.serverData.playerState.forEach((player) => {
+      //   console.log(player.id, player.name, player.x, player.y, player.scene);
+      // });
     } else {
       console.log(inputData);
     }
