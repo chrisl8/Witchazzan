@@ -12,7 +12,6 @@ body {
   background: white;
   color: black;
   z-index: 1;
-  display: none;
 }
 
 #command_input_caret {

@@ -28,6 +28,7 @@ function handleKeyboardInput(event) {
         // (If the server needs to know that we are in "chat/command input mode" we can find
         // a way to send that.
 
+        // .hidden = true/false is not compatible with display: flex
         playerObject.domElements.chatInputDiv.style.display = 'flex';
         playerObject.domElements.chatInput.focus();
         textObject.helloText.shouldBeActiveNow = false;

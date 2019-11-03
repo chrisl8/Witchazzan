@@ -16,6 +16,7 @@ import reportFunctions from './reportFunctions';
 async function startGame() {
   // Set up some initial values.
   document.getElementById('pre_load_info').hidden = true;
+  document.getElementById('canvas_overlay_elements').style.display = 'flex';
   document.getElementsByTagName('body')[0].style.background = 'black';
   playerObject.domElements.chatInputDiv.style.display = 'none';
   playerObject.domElements.chatInputDiv.style.display = 'none';
