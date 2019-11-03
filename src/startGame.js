@@ -53,7 +53,14 @@ async function startGame() {
         // Add a line break if there is existing text.
         textObject.incomingChatText.text = `${textObject.incomingChatText.text}<br/>`;
       }
-      textObject.incomingChatText.text = `${textObject.incomingChatText.text}${inputData.name}: ${inputData.content}`;
+      let otherPlayerDisplayName = inputData.name;
+      if (
+        otherPlayerDisplayName === playerObject.playerName &&
+        inputData.id !== playerObject.playerId
+      ) {
+        otherPlayerDisplayName = `Other ${inputData.name}`;
+      }
+      textObject.incomingChatText.text = `${textObject.incomingChatText.text}${otherPlayerDisplayName}: ${inputData.content}`;
       textObject.incomingChatText.shouldBeActiveNow = true;
     } else if (inputData.messageType === 'player-state') {
       playerObject.serverData.playerState = inputData.players;
@@ -61,6 +68,8 @@ async function startGame() {
       // playerObject.serverData.playerState.forEach((player) => {
       //   console.log(player.id, player.name, player.x, player.y, player.scene);
       // });
+    } else if (inputData.messageType === 'identity') {
+      playerObject.playerId = inputData.id;
     } else {
       console.log(inputData);
     }
