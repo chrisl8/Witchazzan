@@ -36,8 +36,8 @@ reportFunctions.reportLocation = (sceneName) => {
   if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
     const obj = {};
     obj.message_type = 'location-update';
-    obj.x = playerObject.player.body.x;
-    obj.y = playerObject.player.body.y;
+    obj.x = playerObject.player.x;
+    obj.y = playerObject.player.y;
     obj.scene = sceneName;
     const jsonString = JSON.stringify(obj);
     communicationsObject.socket.send(jsonString);
