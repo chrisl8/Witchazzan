@@ -74,6 +74,9 @@ const sceneFactory = ({
         value.hasBeenDisplayedInThisScene = false;
       }
 
+      // Remove other players
+      playerObject.otherPlayerList.length = 0;
+
       this.scene.start(destinationScene);
     }
   }
@@ -369,23 +372,24 @@ const sceneFactory = ({
     if (playerObject.serverData.playerState) {
       playerObject.serverData.playerState.forEach((player) => {
         if (player.scene === sceneName) {
-          // console.log(player.name, player.x, player.y, player.scene);
-          if (!playerObject.otherPlayerList[player.name]) {
-            playerObject.otherPlayerList[player.name] = this.physics.add
+          // console.log(player.name, player.x, player.y, player.scene, player.id);
+          if (!playerObject.otherPlayerList[player.id]) {
+            playerObject.otherPlayerList[player.id] = this.physics.add
               .sprite(player.x, player.y, 'partyWizard')
               .setSize(80, 110)
               .setOffset(12, 12);
-            playerObject.otherPlayerList[player.name].displayHeight = 16;
-            playerObject.otherPlayerList[player.name].displayWidth = 12;
+            playerObject.otherPlayerList[player.id].displayHeight = 16;
+            playerObject.otherPlayerList[player.id].displayWidth = 12;
           } else {
             // Sometimes they go inactive.
-            playerObject.otherPlayerList[player.name].active = true;
-            playerObject.otherPlayerList[player.name].x = player.x;
-            playerObject.otherPlayerList[player.name].y = player.y;
+            playerObject.otherPlayerList[player.id].active = true;
+            playerObject.otherPlayerList[player.id].x = player.x;
+            playerObject.otherPlayerList[player.id].y = player.y;
           }
-        } else if (playerObject.otherPlayerList[player.name]) {
+        } else if (playerObject.otherPlayerList[player.id]) {
           // Off screen players should be inactive.
-          playerObject.otherPlayerList[player.name].active = false;
+          playerObject.otherPlayerList[player.id].destroy();
+          playerObject.otherPlayerList[player.id] = null;
         }
       });
     }
