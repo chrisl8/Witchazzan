@@ -201,6 +201,7 @@ const sceneFactory = ({
     // Actually this is NOT done from an atlas. I had to hack it a lot ot make it work.
 
     const anims = this.anims;
+    const frameRate = 5;
     anims.create({
       key: 'wizard-left-walk',
       frames: anims.generateFrameNumbers('partyWizard', {
@@ -208,7 +209,7 @@ const sceneFactory = ({
         end: 3,
         zeroPad: 3,
       }),
-      frameRate: 5,
+      frameRate,
       repeat: -1,
     });
     anims.create({
@@ -218,7 +219,7 @@ const sceneFactory = ({
         end: 3,
         zeroPad: 3,
       }),
-      frameRate: 5,
+      frameRate,
       repeat: -1,
     });
     anims.create({
@@ -228,7 +229,7 @@ const sceneFactory = ({
         end: 3,
         zeroPad: 3,
       }),
-      frameRate: 5,
+      frameRate,
       repeat: -1,
     });
     anims.create({
@@ -238,7 +239,7 @@ const sceneFactory = ({
         end: 3,
         zeroPad: 3,
       }),
-      frameRate: 5,
+      frameRate,
       repeat: -1,
     });
 
@@ -396,7 +397,7 @@ const sceneFactory = ({
         playerObject.playerDirection = 'down';
       } else {
         playerObject.player.anims.stop();
-        playerObject.playerDirection = 'left';
+        playerObject.playerDirection = 'stopped';
       }
     }
 
@@ -415,23 +416,42 @@ const sceneFactory = ({
           //       that will show a box or something where the server sees me,
           //       for comparison to where I see me.
           // console.log(player.direction);
-        } // TODO: Don't display ME normally though.
-        if (player.scene === sceneName) {
+        } else if (player.scene === sceneName) {
           if (!playerObject.otherPlayerList[player.id]) {
+            // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
             playerObject.otherPlayerList[player.id] = this.physics.add
               .sprite(player.x, player.y, 'partyWizard')
               .setSize(80, 110)
               .setOffset(12, 12);
             playerObject.otherPlayerList[player.id].displayHeight = 16;
             playerObject.otherPlayerList[player.id].displayWidth = 12;
-          } else {
-            // Sometimes they go inactive.
-            playerObject.otherPlayerList[player.id].active = true;
-            // TODO: Other players need to animate, not just slide around.
-            playerObject.otherPlayerList[player.id].x = player.x;
-            playerObject.otherPlayerList[player.id].y = player.y;
           }
+          // Sometimes they go inactive.
+          playerObject.otherPlayerList[player.id].active = true;
+
           // Use Player direction to set player stance
+          if (player.direction === 'left') {
+            playerObject.otherPlayerList[player.id].setFlipX(false);
+          } else if (player.direction === 'right') {
+            playerObject.otherPlayerList[player.id].setFlipX(true);
+          }
+          if (player.direction === 'stopped') {
+            playerObject.otherPlayerList[player.id].anims.stop();
+          } else {
+            // TODO: Use all 4 directions.
+            playerObject.otherPlayerList[player.id].anims.play(
+              'wizard-left-walk',
+              true,
+            );
+          }
+
+          this.tweens.add({
+            targets: playerObject.otherPlayerList[player.id],
+            x: player.x,
+            y: player.y,
+            duration: 90, // Adjust this to be smooth without being too slow.
+            ease: 'Linear', // Anything else is wonky when tracking server updates.
+          });
         } else if (playerObject.otherPlayerList[player.id]) {
           // Off screen players should be inactive.
           playerObject.otherPlayerList[player.id].destroy();
