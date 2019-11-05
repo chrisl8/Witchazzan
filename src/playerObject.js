@@ -14,6 +14,7 @@ const playerObject = {
 
   // NOTE: This assumes that there is only the one Phaser canvas.
   canvasDomElement: document.getElementsByTagName('canvas'),
+  cameraScaleFactor: 0,
   // This returns on "HTMLCollection" that is "live" i.e. it updates as the DOM updates,
   // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection
   // MEANING that you can't use it NOW, but it will be live (not empty) in places like the sceneFactory

@@ -17,23 +17,9 @@ const rootGameObject = {
   config: {
     type: Phaser.AUTO, // Which renderer to use
     // parent: 'game_container', // ID of the DOM element to add the canvas to. If no parent is given, it will default to using the document body.
-    // https://photonstorm.github.io/phaser3-docs/Phaser.Scale.ScaleManager.html
-    // For now this gets the screen to fill the window, we may change how we scale and how we handle "off camera" movement later.
-    // Currently my tile map is tiny too, so this helps anyway.
     scale: {
-      // NOTES on .RESIZE and .FIT
-      // http://www.netexl.com/blog/exploring-resize-scale-mode-in-phaser-3/
-      // http://www.netexl.com/blog/phaser-3-scale-manager-is-here-exploring-phaser-3-with-3-16-1-version-now/
-      mode: Phaser.Scale.FIT,
-      // Actual scale is set per map in the sceneFactory.js
-      width: 32 * 20, // 16 * 16
-      height: 32 * 11, // 16 * 11
-      // min: {
-      //   width: 16 * 16,
-      //   height: 16 * 11,
-      // },
-      // max: { width: 1600, height: 1200 }, // No maximum. Fill the screen.
-      autoRound: true, // Should improve performance
+      mode: Phaser.Scale.NONE,
+      autoRound: true, // Might improve performance?
     },
     physics: {
       default: 'arcade',
@@ -45,9 +31,7 @@ const rootGameObject = {
     // Make the pixels "perfect", not fuzzy!
     // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/game/
     render: {
-      antialias: false,
-      pixelArt: true,
-      roundPixels: false,
+      pixelArt: true, // Turn this off if you want to test for "extrusion" errors.
     },
   },
   showDebug: false,

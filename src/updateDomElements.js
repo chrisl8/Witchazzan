@@ -1,3 +1,4 @@
+/* globals window:true */
 import playerObject from './playerObject';
 import textObject from './textObject';
 
@@ -34,8 +35,8 @@ const updateDomElements = (htmlElementParameters) => {
   // Update element styles and insert text if needed.
 
   // Set HTML element options based on the new canvas properties
-  const canvasWidth = playerObject.canvasDomElement.item(0).offsetWidth;
-  const canvasHeight = playerObject.canvasDomElement.item(0).offsetHeight;
+  const canvasWidth = window.innerWidth;
+  const canvasHeight = window.innerHeight;
 
   ['Center', 'UpperLeft', 'Scrolling'].forEach((textLocation) => {
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style

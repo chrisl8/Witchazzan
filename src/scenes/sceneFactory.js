@@ -1,3 +1,4 @@
+/* globals window:true */
 import Phaser from 'phaser';
 
 // TODO: Sprite loading needs to be dynamic:
@@ -77,8 +78,37 @@ const sceneFactory = ({
       // Remove other players
       playerObject.otherPlayerList.length = 0;
 
+      // Reset cameraScaleFactor for next scene.
+      playerObject.cameraScaleFactor = 0;
+
       this.scene.start(destinationScene);
     }
+  }
+
+  function setCameraZoom() {
+    const canvasWidth = window.innerWidth;
+    const canvasHeight = window.innerHeight;
+    const widthScaleFactor = canvasWidth / gameSize.width;
+    const heightScaleFactor = canvasHeight / gameSize.height;
+    const cameraScaleFactor =
+      widthScaleFactor < heightScaleFactor
+        ? widthScaleFactor
+        : heightScaleFactor;
+    if (cameraScaleFactor !== playerObject.cameraScaleFactor) {
+      playerObject.cameraScaleFactor = cameraScaleFactor;
+      // Use camera zoom to fill screen.
+      this.cameras.main.setZoom(cameraScaleFactor);
+      const gameWidth = Math.trunc(gameSize.width * cameraScaleFactor);
+      const gameHeight = Math.trunc(gameSize.height * cameraScaleFactor);
+      // Camera size should be just the game size, no bigger or smaller.
+      this.cameras.main.setSize(gameWidth, gameHeight);
+      // Make sure the canvas is big enough to show the camera.
+      this.scale.setGameSize(gameWidth, gameHeight);
+      // console.log(cameraScaleFactor, gameWidth, gameHeight);
+    }
+    // TODO: Find the resolutions that have funky lines in them and see if this helps:
+    //       https://github.com/sporadic-labs/tile-extruder
+    //       Also notice how things shift as you walk around.
   }
 
   // eslint-disable-next-line func-names
@@ -217,6 +247,8 @@ const sceneFactory = ({
     // This keeps the camera from moving off of the map, regardless of where the player goes
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
+    setCameraZoom.call(this);
+
     // This section finds the Objects in the Tilemap that trigger exiting to another scene,
     // and sets up the colliders in Phaser for them along with where to send the player.
     // TODO: Set the "facing direction" in the new scene?
@@ -271,8 +303,6 @@ const sceneFactory = ({
       this,
     );
 
-    this.scale.setGameSize(gameSize.width, gameSize.height);
-
     // Globally send all keyboard input to the keyboard input handler
     this.input.keyboard.on('keydown', handleKeyboardInput);
     this.input.keyboard.on('keyup', handleKeyboardInput);
@@ -289,6 +319,8 @@ const sceneFactory = ({
   scene.update = function(time) {
     // Runs once per frame for the duration of the scene
     if (sceneOpen) {
+      setCameraZoom.call(this);
+
       // Don't do anything if the scene is no longer open.
       const speed = 175;
       playerObject.player.body.velocity.clone();
