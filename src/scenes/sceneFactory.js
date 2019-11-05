@@ -41,13 +41,7 @@ const sceneFactory = ({
     // https://www.html5gamedevs.com/topic/40710-how-do-i-load-a-new-scene-with-phaser-3-and-webpack/
     this.load.tilemapTiledJSON(`${sceneName}-map`, tileMap);
 
-    // An atlas is a way to pack multiple images together into one texture. The tutorial used it to load all
-    // the player animations (walking left, walking right, etc.) in one image. For more info see:
-    //  https://labs.phaser.io/view.html?src=src/animation/texture%20atlas%20animation.js
-    //  https://www.codeandweb.com/texturepacker/tutorials/how-to-create-sprite-sheets-for-phaser3
-    // I'm not using that though, instead
-    //  you can do the same thing with a spritesheet, see:
-    //  https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
+    // Spritesheet example: https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
     this.load.spritesheet('partyWizard', partyWizardSpriteSheet, {
       frameWidth: 101,
       frameHeight: 128,
@@ -157,7 +151,7 @@ const sceneFactory = ({
     overheadLayer.setDepth(10);
 
     // Object layers in Tiled let you embed extra info into a map - like a spawn point or custom
-    // collision shapes. In the tmx file, there's an object layer with a point named "Spawn Point"
+    // collision shapes. In the .json file, there's an object layer with a point named "Spawn Point"
     let spawnPoint = map.findObject(
       'Objects',
       (obj) => obj.name === 'Default Spawn Point',
@@ -198,7 +192,6 @@ const sceneFactory = ({
 
     // Create the player's walking animations from the texture atlas. These are stored in the global
     // animation manager so any sprite can access them.
-    // Actually this is NOT done from an atlas. I had to hack it a lot ot make it work.
 
     const anims = this.anims;
     const frameRate = 5;
@@ -307,8 +300,6 @@ const sceneFactory = ({
     // Globally send all keyboard input to the keyboard input handler
     this.input.keyboard.on('keydown', handleKeyboardInput);
     this.input.keyboard.on('keyup', handleKeyboardInput);
-
-    // TODO: Add the text and the key to turn debug on and off.
 
     updateDomElements(htmlElementParameters);
   };

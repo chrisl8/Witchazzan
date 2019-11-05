@@ -92,6 +92,12 @@
                  "height":59.9304806424548,
                  "id":31,
                  "name":"openingScene",
+                 "properties":[
+                        {
+                         "name":"Entrance",
+                         "type":"string",
+                         "value":"Right"
+                        }],
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
