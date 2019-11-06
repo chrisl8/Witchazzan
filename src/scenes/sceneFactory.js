@@ -5,6 +5,7 @@ import Phaser from 'phaser';
 //       1. Every player should be able to pick their own sprite to represent themselves.
 //       2. We should be able to load arbitrary sprites from objects in the map or server objects.
 import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
+import gloobScarymanSpriteSheet from '../assets/gloob-scaryman.png';
 
 import playerObject from '../playerObject';
 import textObject from '../textObject';
@@ -46,6 +47,11 @@ const sceneFactory = ({
       frameWidth: 101,
       frameHeight: 128,
       endFrame: 5,
+    });
+    this.load.spritesheet('gloobScaryman', gloobScarymanSpriteSheet, {
+      frameWidth: 64,
+      frameHeight: 64,
+      endFrame: 2,
     });
   };
 
@@ -286,6 +292,24 @@ const sceneFactory = ({
         // this.physics.add.overlap(playerObject.player, door, (event) => {
         //   console.log(event);
         // });
+      } else if (object.type === 'SpawnNPC') {
+        const newThing = this.physics.add
+          .sprite(object.x, object.y, 'gloobScaryman')
+          .setSize(64, 64);
+        newThing.displayHeight = 16;
+        newThing.displayWidth = 16;
+        newThing.flipX = true;
+        this.anims.create({
+          key: 'gloobScarymanAnimate',
+          frames: anims.generateFrameNumbers('gloobScaryman', {
+            start: 0,
+            end: 1,
+            zeroPad: 1,
+          }),
+          frameRate: 2,
+          repeat: -1,
+        });
+        newThing.anims.play('gloobScarymanAnimate', true);
       }
     });
     // overlap lets you walk onto it, rather than stopping when you hit it.
