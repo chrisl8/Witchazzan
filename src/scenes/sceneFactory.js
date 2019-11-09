@@ -4,14 +4,13 @@ import Phaser from 'phaser';
 // TODO: Sprite loading needs to be dynamic:
 //       1. Every player should be able to pick their own sprite to represent themselves.
 //       2. We should be able to load arbitrary sprites from objects in the map or server objects.
-import partyWizardSpriteSheet from '../assets/spriteSheets/party-wizard-sprite-sheet.png';
-import gloobScarymanSpriteSheet from '../assets/spriteSheets/gloob-scaryman.png';
 
 import playerObject from '../objects/playerObject';
 import textObject from '../objects/textObject';
 import handleKeyboardInput from '../handleKeyboardInput';
 import updateDomElements from '../updateDomElements';
 import reportFunctions from '../reportFunctions';
+import spriteSheetList from '../objects/spriteSheetList';
 
 // TODO: Is this actually a proper factory?
 //  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
@@ -43,15 +42,12 @@ const sceneFactory = ({
     this.load.tilemapTiledJSON(`${sceneName}-map`, tileMap);
 
     // Spritesheet example: https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
-    this.load.spritesheet('partyWizard', partyWizardSpriteSheet, {
-      frameWidth: 101,
-      frameHeight: 128,
-      endFrame: 5,
-    });
-    this.load.spritesheet('gloobScaryman', gloobScarymanSpriteSheet, {
-      frameWidth: 64,
-      frameHeight: 64,
-      endFrame: 2,
+    spriteSheetList.forEach((spriteSheet) => {
+      this.load.spritesheet(spriteSheet.name, spriteSheet.file, {
+        frameWidth: spriteSheet.frameWidth,
+        frameHeight: spriteSheet.frameHeight,
+        endFrame: spriteSheet.endFrame,
+      });
     });
   };
 
