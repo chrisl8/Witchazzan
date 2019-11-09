@@ -1,6 +1,6 @@
 /* globals window:true */
-import playerObject from './playerObject';
-import textObject from './textObject';
+import playerObject from './objects/playerObject';
+import textObject from './objects/textObject';
 
 const updateDomElements = (htmlElementParameters) => {
   // TODO:

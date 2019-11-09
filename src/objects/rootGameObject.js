@@ -11,7 +11,7 @@
  */
 
 import Phaser from 'phaser';
-import scene from './scenes/sceneList';
+import scene from '../scenes/sceneList';
 
 const rootGameObject = {
   config: {

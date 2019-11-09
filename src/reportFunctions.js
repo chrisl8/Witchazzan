@@ -1,6 +1,6 @@
 import WebSocketClient from '@gamestdio/websocket';
-import communicationsObject from './communicationsObject';
-import playerObject from './playerObject';
+import communicationsObject from './objects/communicationsObject';
+import playerObject from './objects/playerObject';
 
 const reportFunctions = {};
 reportFunctions.reportFireball = (direction) => {

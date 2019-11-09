@@ -1,5 +1,5 @@
-import playerObject from './playerObject';
-import textObject from './textObject';
+import playerObject from './objects/playerObject';
+import textObject from './objects/textObject';
 
 function cleanUpAfterDisconnect() {
   if (!textObject.connectingText.shouldBeActiveNow) {

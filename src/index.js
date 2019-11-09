@@ -3,7 +3,7 @@
 import './css/styles.css';
 
 /* globals document:true */
-import playerObject from './playerObject';
+import playerObject from './objects/playerObject';
 import startGame from './startGame';
 import wait from './utilities/wait';
 

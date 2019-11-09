@@ -4,11 +4,11 @@ import Phaser from 'phaser';
 // TODO: Sprite loading needs to be dynamic:
 //       1. Every player should be able to pick their own sprite to represent themselves.
 //       2. We should be able to load arbitrary sprites from objects in the map or server objects.
-import partyWizardSpriteSheet from '../assets/party-wizard-sprite-sheet.png';
-import gloobScarymanSpriteSheet from '../assets/gloob-scaryman.png';
+import partyWizardSpriteSheet from '../assets/spriteSheets/party-wizard-sprite-sheet.png';
+import gloobScarymanSpriteSheet from '../assets/spriteSheets/gloob-scaryman.png';
 
-import playerObject from '../playerObject';
-import textObject from '../textObject';
+import playerObject from '../objects/playerObject';
+import textObject from '../objects/textObject';
 import handleKeyboardInput from '../handleKeyboardInput';
 import updateDomElements from '../updateDomElements';
 import reportFunctions from '../reportFunctions';

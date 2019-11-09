@@ -6,10 +6,10 @@
 /* globals document:true */
 import Phaser from 'phaser';
 import WebSocketClient from '@gamestdio/websocket'; // This automatically reconnects after a disconnect.
-import rootGameObject from './rootGameObject';
-import communicationsObject from './communicationsObject';
-import playerObject from './playerObject';
-import textObject from './textObject';
+import rootGameObject from './objects/rootGameObject';
+import communicationsObject from './objects/communicationsObject';
+import playerObject from './objects/playerObject';
+import textObject from './objects/textObject';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 import reportFunctions from './reportFunctions';
 

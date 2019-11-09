@@ -40,8 +40,10 @@ const playerObject = {
   playerName: null,
   playerId: null,
   playerDirection: 'left',
+  playerStopped: true,
   serverData: {},
   otherPlayerList: [],
+  sceneObjectList: [],
 };
 
 export default playerObject;

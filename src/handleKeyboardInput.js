@@ -1,8 +1,8 @@
 /* globals localStorage:true */
 import WebSocketClient from '@gamestdio/websocket';
-import communicationsObject from './communicationsObject';
-import playerObject from './playerObject';
-import textObject from './textObject';
+import communicationsObject from './objects/communicationsObject';
+import playerObject from './objects/playerObject';
+import textObject from './objects/textObject';
 import reportFunctions from './reportFunctions';
 
 // Local keys will work even if the server is disconnected.
