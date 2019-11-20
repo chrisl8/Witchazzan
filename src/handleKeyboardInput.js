@@ -18,6 +18,7 @@ let commandHistoryIndex = commandHistory.length;
 function handleKeyboardInput(event) {
   if (playerObject.domElements.chatInputDiv.style.display === 'none') {
     if (localKeys.indexOf(event.key) > -1) {
+      // Some events can happen when the server isn't connected.
       if (event.key === 'c' && event.type === 'keyup') {
         // If we do this on 'keydown', we end up with a 'c'
         // stuck in the input box.
@@ -40,23 +41,33 @@ function handleKeyboardInput(event) {
     } else if (
       communicationsObject.socket.readyState === WebSocketClient.OPEN
     ) {
+      // Other events only happen while connected
+
+      // Shoot
+      if (event.key === ' ') {
+        // On key down (ignore key up)
+        if (event.type === 'keydown') {
+          reportFunctions.reportFireball(playerObject.playerDirection);
+        }
+      }
+
       // Anything that isn't a special game command is tracked and sent to the server,
       // IF it is connected.
       // NOTE:
       // NOT changing the keyState if we can't send because
       // the keyState is a reflection of what the server thinks,
       // and the game is meant to only work when connected.
-      if (playerObject.keyState[event.key] !== event.type) {
+      else if (playerObject.keyState[event.key] !== event.type) {
         playerObject.keyState[event.key] = event.type;
-        reportFunctions.reportKeyboardState(event.key, event.type);
+        // Not sending key strokes to server at this point.
+        // We can change our minds later if we want to.
+        // reportFunctions.reportKeyboardState(event.key, event.type);
+        // This entire block is a little pointless without the part where we send keys to the server.
       }
     }
   } else if (event.type === 'keydown') {
     // If the command input box is open, then it hijacks all keyboard input.
-
-    // Operate on key down, not up for text input.
-    // Note that since we hijacked the keyboard, we will have to emulate text input features
-    // that we want to support. TL;DR: It might act weird.
+    // Operate on key down, not up for special operations while the chat box is open.
 
     if (event.key === 'Escape') {
       // Escape is used to exit the chat/command input box.

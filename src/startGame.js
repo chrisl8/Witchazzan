@@ -62,14 +62,30 @@ async function startGame() {
       }
       textObject.incomingChatText.text = `${textObject.incomingChatText.text}${otherPlayerDisplayName}: ${inputData.content}`;
       textObject.incomingChatText.shouldBeActiveNow = true;
+    } else if (inputData.messageType === 'identity') {
+      playerObject.playerId = inputData.id;
     } else if (inputData.messageType === 'player-state') {
       playerObject.serverData.playerState = inputData.players;
       // For debugging:
       // playerObject.serverData.playerState.forEach((player) => {
-      //   console.log(player.id, player.name, player.x, player.y, player.scene);
+      //   if (player.name === null) {
+      //     console.log(player);
+      //   }
       // });
-    } else if (inputData.messageType === 'identity') {
-      playerObject.playerId = inputData.id;
+    } else if (inputData.messageType === 'object-state') {
+      playerObject.serverData.objectState = inputData.objects;
+    } else if (inputData.messageType === 'game-piece-list') {
+      // TODO: EVERYTHING!
+      /*
+       * TODO:
+       *  Where to store this data?
+       *     Maybe a new object?
+       *  Act on it all in the sceneFactory.
+       */
+      // For debugging:
+      // inputData.pieces.forEach((piece) => {
+      //   console.log(piece);
+      // });
     } else {
       console.log(inputData);
     }

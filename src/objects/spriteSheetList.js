@@ -1,5 +1,6 @@
 import partyWizardSpriteSheet from '../assets/spriteSheets/party-wizard-sprite-sheet.png';
 import gloobScarymanSpriteSheet from '../assets/spriteSheets/gloob-scaryman.png';
+import flamingGoose from '../assets/spriteSheets/flamingGoose.png';
 
 const spriteSheetList = [
   {
@@ -17,6 +18,14 @@ const spriteSheetList = [
     frameWidth: 64,
     frameHeight: 64,
     endFrame: 2,
+  },
+  {
+    type: 'other',
+    name: 'flamingGoose',
+    file: flamingGoose,
+    frameWidth: 90,
+    frameHeight: 90,
+    endFrame: 4,
   },
 ];
 

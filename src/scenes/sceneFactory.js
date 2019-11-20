@@ -387,6 +387,7 @@ const sceneFactory = ({
         playerObject.player.setFlipX(false);
         playerObject.player.anims.play('wizard-left-walk', true);
         playerObject.playerDirection = 'left';
+        playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowRight === 'keydown' ||
         playerObject.keyState.d === 'keydown'
@@ -394,21 +395,24 @@ const sceneFactory = ({
         playerObject.player.setFlipX(true);
         playerObject.player.anims.play('wizard-right-walk', true);
         playerObject.playerDirection = 'right';
+        playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowUp === 'keydown' ||
         playerObject.keyState.w === 'keydown'
       ) {
         playerObject.player.anims.play('wizard-back-walk', true);
         playerObject.playerDirection = 'up';
+        playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowDown === 'keydown' ||
         playerObject.keyState.s === 'keydown'
       ) {
         playerObject.player.anims.play('wizard-front-walk', true);
         playerObject.playerDirection = 'down';
+        playerObject.playerStopped = false;
       } else {
         playerObject.player.anims.stop();
-        playerObject.playerDirection = 'stopped';
+        playerObject.playerStopped = true;
       }
     }
 
@@ -418,12 +422,14 @@ const sceneFactory = ({
       reportFunctions.reportLocation(sceneName);
     }
 
+    // Deal with other players
     if (playerObject.serverData.playerState) {
+      // TODO: Remove players that have dropped from the list.
       playerObject.serverData.playerState.forEach((player) => {
         // console.log(player.name, player.x, player.y, player.scene, player.id);
         if (player.id === playerObject.playerId) {
           // It me!
-          // TODO: Set up a "debugging" option with way to enable/disable it,
+          // TODO: Set up a "debugging" option with a way to enable/disable it,
           //       that will show a box or something where the server sees me,
           //       for comparison to where I see me.
           // console.log(player.direction);
@@ -450,10 +456,10 @@ const sceneFactory = ({
             playerObject.otherPlayerList[player.id].anims.stop();
           } else {
             // TODO: Use all 4 directions.
-            playerObject.otherPlayerList[player.id].anims.play(
-              'wizard-left-walk',
-              true,
-            );
+            // playerObject.otherPlayerList[player.id].anims.play(
+            //   'wizard-left-walk',
+            //   true,
+            // );
           }
 
           this.tweens.add({
@@ -467,6 +473,74 @@ const sceneFactory = ({
           // Off screen players should be inactive.
           playerObject.otherPlayerList[player.id].destroy();
           playerObject.otherPlayerList[player.id] = null;
+        }
+      });
+    }
+
+    // Deal with all other objects
+    if (
+      playerObject.serverData.objectState &&
+      playerObject.serverData.objectState.length > 0
+    ) {
+      playerObject.serverData.objectState.forEach((object) => {
+        // console.log(object);
+        // TODO: Remove this once we have the scene name
+        // eslint-disable-next-line no-param-reassign
+        object.scene = sceneName;
+
+        if (object.scene === sceneName && object.id) {
+          if (!playerObject.spawnedObjectList[object.id]) {
+            // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
+            playerObject.spawnedObjectList[object.id] = this.physics.add
+              .sprite(object.x, object.y, 'flamingGoose')
+              .setSize(80, 110)
+              .setOffset(12, 12);
+            playerObject.spawnedObjectList[object.id].displayHeight = 16;
+            playerObject.spawnedObjectList[object.id].displayWidth = 12;
+          }
+          // Sometimes they go inactive.
+          playerObject.spawnedObjectList[object.id].active = true;
+
+          // Use Player direction to set player stance
+          if (object.direction === 'left') {
+            playerObject.spawnedObjectList[object.id].setFlipX(false);
+          } else if (object.direction === 'right') {
+            playerObject.spawnedObjectList[object.id].setFlipX(true);
+          }
+          if (object.direction === 'stopped') {
+            playerObject.spawnedObjectList[object.id].anims.stop();
+          } else {
+            // TODO: Use all 4 directions.
+            // playerObject.spawnedObjectList[object.id].anims.play(
+            //   'wizard-left-walk',
+            //   true,
+            // );
+          }
+
+          this.tweens.add({
+            targets: playerObject.spawnedObjectList[object.id],
+            x: object.x,
+            y: object.y,
+            duration: 90, // Adjust this to be smooth without being too slow.
+            ease: 'Linear', // Anything else is wonky when tracking server updates.
+          });
+        } else if (playerObject.spawnedObjectList[object.id]) {
+          // Off screen players should be inactive.
+          playerObject.spawnedObjectList[object.id].destroy();
+          playerObject.spawnedObjectList[object.id] = null;
+        }
+      });
+      // Remove despawned objects
+      playerObject.spawnedObjectList.forEach((object) => {
+        if (
+          playerObject.spawnedObjectList[object.id] &&
+          playerObject.serverData.objectState.findIndex(
+            (x) => x.id === object.id,
+          ) === -1
+        ) {
+          console.log(playerObject.spawnedObjectList[object.id]);
+          playerObject.spawnedObjectList[object.id].destroy();
+          playerObject.spawnedObjectList[object.id] = null;
         }
       });
     }

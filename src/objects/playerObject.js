@@ -21,10 +21,10 @@ const playerObject = {
   chatInputTextArray: [],
   scrollingTextOverlayInputText: '',
   domElements: {
-    playerNameSubmitButton: document
-      .getElementById('player_name_submit_button'),
-    playerNameInputBox: document
-      .getElementById('player_name_input_box'),
+    playerNameSubmitButton: document.getElementById(
+      'player_name_submit_button',
+    ),
+    playerNameInputBox: document.getElementById('player_name_input_box'),
     Center: document.getElementById('center_text_overlay_div'),
     UpperLeft: document.getElementById('upper_left_text_overlay_div'),
     Scrolling: document.getElementById('scrolling_text_overlay_div'),
@@ -43,6 +43,7 @@ const playerObject = {
   playerStopped: true,
   serverData: {},
   otherPlayerList: [],
+  spawnedObjectList: [],
   sceneObjectList: [],
 };
 
