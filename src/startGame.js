@@ -12,6 +12,7 @@ import playerObject from './objects/playerObject';
 import textObject from './objects/textObject';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 import reportFunctions from './reportFunctions';
+import gamePieceList from './objects/gamePieceList';
 
 async function startGame() {
   // Set up some initial values.
@@ -75,13 +76,7 @@ async function startGame() {
     } else if (inputData.messageType === 'object-state') {
       playerObject.serverData.objectState = inputData.objects;
     } else if (inputData.messageType === 'game-piece-list') {
-      // TODO: EVERYTHING!
-      /*
-       * TODO:
-       *  Where to store this data?
-       *     Maybe a new object?
-       *  Act on it all in the sceneFactory.
-       */
+      gamePieceList.pieces = inputData.pieces;
       // For debugging:
       // inputData.pieces.forEach((piece) => {
       //   console.log(piece);

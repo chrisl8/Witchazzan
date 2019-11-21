@@ -11,6 +11,7 @@ import handleKeyboardInput from '../handleKeyboardInput';
 import updateDomElements from '../updateDomElements';
 import reportFunctions from '../reportFunctions';
 import spriteSheetList from '../objects/spriteSheetList';
+import gamePieceList from '../objects/gamePieceList';
 
 // TODO: Is this actually a proper factory?
 //  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
@@ -478,37 +479,37 @@ const sceneFactory = ({
     }
 
     // Deal with all other objects
-    if (
-      playerObject.serverData.objectState &&
-      playerObject.serverData.objectState.length > 0
-    ) {
-      playerObject.serverData.objectState.forEach((object) => {
-        // console.log(object);
-        // TODO: Remove this once we have the scene name
-        // eslint-disable-next-line no-param-reassign
-        object.scene = sceneName;
-
-        if (object.scene === sceneName && object.id) {
-          if (!playerObject.spawnedObjectList[object.id]) {
+    const activeObjectList = [];
+    if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
+      gamePieceList.pieces.forEach((gamePiece) => {
+        activeObjectList.push(gamePiece.id);
+        if (gamePiece.id === playerObject.playerId) {
+          // It me!
+          // TODO: Set up a "debugging" option with a way to enable/disable it,
+          //       that will show a box or something where the server sees me,
+          //       for comparison to where I see me.
+          // console.log(player.direction);
+        } else if (gamePiece.scene === sceneName && gamePiece.id) {
+          if (!playerObject.spawnedObjectList[gamePiece.id]) {
             // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
-            playerObject.spawnedObjectList[object.id] = this.physics.add
-              .sprite(object.x, object.y, 'flamingGoose')
+            playerObject.spawnedObjectList[gamePiece.id] = this.physics.add
+              .sprite(gamePiece.x, gamePiece.y, 'flamingGoose')
               .setSize(80, 110)
               .setOffset(12, 12);
-            playerObject.spawnedObjectList[object.id].displayHeight = 16;
-            playerObject.spawnedObjectList[object.id].displayWidth = 12;
+            playerObject.spawnedObjectList[gamePiece.id].displayHeight = 16;
+            playerObject.spawnedObjectList[gamePiece.id].displayWidth = 12;
           }
           // Sometimes they go inactive.
-          playerObject.spawnedObjectList[object.id].active = true;
+          playerObject.spawnedObjectList[gamePiece.id].active = true;
 
           // Use Player direction to set player stance
-          if (object.direction === 'left') {
-            playerObject.spawnedObjectList[object.id].setFlipX(false);
-          } else if (object.direction === 'right') {
-            playerObject.spawnedObjectList[object.id].setFlipX(true);
+          if (gamePiece.direction === 'left') {
+            playerObject.spawnedObjectList[gamePiece.id].setFlipX(false);
+          } else if (gamePiece.direction === 'right') {
+            playerObject.spawnedObjectList[gamePiece.id].setFlipX(true);
           }
-          if (object.direction === 'stopped') {
-            playerObject.spawnedObjectList[object.id].anims.stop();
+          if (gamePiece.direction === 'stopped') {
+            playerObject.spawnedObjectList[gamePiece.id].anims.stop();
           } else {
             // TODO: Use all 4 directions.
             // playerObject.spawnedObjectList[object.id].anims.play(
@@ -518,31 +519,31 @@ const sceneFactory = ({
           }
 
           this.tweens.add({
-            targets: playerObject.spawnedObjectList[object.id],
-            x: object.x,
-            y: object.y,
+            targets: playerObject.spawnedObjectList[gamePiece.id],
+            x: gamePiece.x,
+            y: gamePiece.y,
             duration: 90, // Adjust this to be smooth without being too slow.
             ease: 'Linear', // Anything else is wonky when tracking server updates.
           });
-        } else if (playerObject.spawnedObjectList[object.id]) {
+        } else if (playerObject.spawnedObjectList[gamePiece.id]) {
           // Off screen players should be inactive.
-          playerObject.spawnedObjectList[object.id].destroy();
-          playerObject.spawnedObjectList[object.id] = null;
+          playerObject.spawnedObjectList[gamePiece.id].destroy();
+          playerObject.spawnedObjectList[gamePiece.id] = null;
         }
       });
-      // Remove despawned objects
-      playerObject.spawnedObjectList.forEach((object) => {
+    }
+
+    // Remove de-spawned objects
+    for (const property in playerObject.spawnedObjectList) {
+      if (playerObject.spawnedObjectList.hasOwnProperty(property)) {
         if (
-          playerObject.spawnedObjectList[object.id] &&
-          playerObject.serverData.objectState.findIndex(
-            (x) => x.id === object.id,
-          ) === -1
+          playerObject.spawnedObjectList[property] &&
+          activeObjectList.indexOf(Number(property)) === -1
         ) {
-          console.log(playerObject.spawnedObjectList[object.id]);
-          playerObject.spawnedObjectList[object.id].destroy();
-          playerObject.spawnedObjectList[object.id] = null;
+          playerObject.spawnedObjectList[property].destroy();
+          playerObject.spawnedObjectList[property] = null;
         }
-      });
+      }
     }
 
     updateDomElements(htmlElementParameters);

@@ -43,7 +43,7 @@ const playerObject = {
   playerStopped: true,
   serverData: {},
   otherPlayerList: [],
-  spawnedObjectList: [],
+  spawnedObjectList: {},
   sceneObjectList: [],
 };
 
