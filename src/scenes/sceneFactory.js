@@ -423,10 +423,11 @@ const sceneFactory = ({
       reportFunctions.reportLocation(sceneName);
     }
 
+    // TODO: Harvest useful data from this and remove it.
     // Deal with other players
-    if (playerObject.serverData.playerState) {
+    if (playerObject.serverPlayerList) {
       // TODO: Remove players that have dropped from the list.
-      playerObject.serverData.playerState.forEach((player) => {
+      playerObject.serverPlayerList.forEach((player) => {
         // console.log(player.name, player.x, player.y, player.scene, player.id);
         if (player.id === playerObject.playerId) {
           // It me!
@@ -478,7 +479,7 @@ const sceneFactory = ({
       });
     }
 
-    // Deal with all other objects
+    // Deal game pieces from server.
     const activeObjectList = [];
     if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
       gamePieceList.pieces.forEach((gamePiece) => {
@@ -489,27 +490,55 @@ const sceneFactory = ({
           //       that will show a box or something where the server sees me,
           //       for comparison to where I see me.
           // console.log(player.direction);
-        } else if (gamePiece.scene === sceneName && gamePiece.id) {
+        } else if (gamePiece.scene === sceneName) {
           if (!playerObject.spawnedObjectList[gamePiece.id]) {
+            // Add new sprites to the scene
+            console.log('New game piece:');
+            console.log(gamePiece);
+            playerObject.spawnedObjectList[gamePiece.id] = {};
             // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
-            playerObject.spawnedObjectList[gamePiece.id] = this.physics.add
-              .sprite(gamePiece.x, gamePiece.y, 'flamingGoose')
+            switch (gamePiece.type) {
+              case 'player':
+                // TODO: Use bloomby for other player
+                playerObject.spawnedObjectList[gamePiece.id].spriteName =
+                  'partyWizard';
+                break;
+              case 'fireball':
+                playerObject.spawnedObjectList[gamePiece.id].spriteName =
+                  'fireball';
+                break;
+              default:
+                playerObject.spawnedObjectList[gamePiece.id].spriteName =
+                  'flamingGoose';
+            }
+            playerObject.spawnedObjectList[
+              gamePiece.id
+            ].sprite = this.physics.add
+              .sprite(
+                gamePiece.x,
+                gamePiece.y,
+                playerObject.spawnedObjectList[gamePiece.id].spriteName,
+              )
               .setSize(80, 110)
               .setOffset(12, 12);
-            playerObject.spawnedObjectList[gamePiece.id].displayHeight = 16;
-            playerObject.spawnedObjectList[gamePiece.id].displayWidth = 12;
+            playerObject.spawnedObjectList[
+              gamePiece.id
+            ].sprite.displayHeight = 16;
+            playerObject.spawnedObjectList[
+              gamePiece.id
+            ].sprite.displayWidth = 12;
           }
           // Sometimes they go inactive.
-          playerObject.spawnedObjectList[gamePiece.id].active = true;
+          playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
 
           // Use Player direction to set player stance
           if (gamePiece.direction === 'left') {
-            playerObject.spawnedObjectList[gamePiece.id].setFlipX(false);
+            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(false);
           } else if (gamePiece.direction === 'right') {
-            playerObject.spawnedObjectList[gamePiece.id].setFlipX(true);
+            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(true);
           }
           if (gamePiece.direction === 'stopped') {
-            playerObject.spawnedObjectList[gamePiece.id].anims.stop();
+            playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
           } else {
             // TODO: Use all 4 directions.
             // playerObject.spawnedObjectList[object.id].anims.play(
@@ -519,16 +548,18 @@ const sceneFactory = ({
           }
 
           this.tweens.add({
-            targets: playerObject.spawnedObjectList[gamePiece.id],
+            targets: playerObject.spawnedObjectList[gamePiece.id].sprite,
             x: gamePiece.x,
             y: gamePiece.y,
             duration: 90, // Adjust this to be smooth without being too slow.
             ease: 'Linear', // Anything else is wonky when tracking server updates.
           });
-        } else if (playerObject.spawnedObjectList[gamePiece.id]) {
+        } else if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
           // Off screen players should be inactive.
-          playerObject.spawnedObjectList[gamePiece.id].destroy();
-          playerObject.spawnedObjectList[gamePiece.id] = null;
+          if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
+            playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
+          }
+          playerObject.spawnedObjectList[gamePiece.id].sprite = null;
         }
       });
     }
@@ -540,7 +571,10 @@ const sceneFactory = ({
           playerObject.spawnedObjectList[property] &&
           activeObjectList.indexOf(Number(property)) === -1
         ) {
-          playerObject.spawnedObjectList[property].destroy();
+          console.log(`Destroying Object ID ${property}`);
+          if (playerObject.spawnedObjectList[property].sprite) {
+            playerObject.spawnedObjectList[property].sprite.destroy();
+          }
           playerObject.spawnedObjectList[property] = null;
         }
       }

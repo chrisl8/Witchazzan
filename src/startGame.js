@@ -65,22 +65,8 @@ async function startGame() {
       textObject.incomingChatText.shouldBeActiveNow = true;
     } else if (inputData.messageType === 'identity') {
       playerObject.playerId = inputData.id;
-    } else if (inputData.messageType === 'player-state') {
-      playerObject.serverData.playerState = inputData.players;
-      // For debugging:
-      // playerObject.serverData.playerState.forEach((player) => {
-      //   if (player.name === null) {
-      //     console.log(player);
-      //   }
-      // });
-    } else if (inputData.messageType === 'object-state') {
-      playerObject.serverData.objectState = inputData.objects;
     } else if (inputData.messageType === 'game-piece-list') {
       gamePieceList.pieces = inputData.pieces;
-      // For debugging:
-      // inputData.pieces.forEach((piece) => {
-      //   console.log(piece);
-      // });
     } else {
       console.log(inputData);
     }

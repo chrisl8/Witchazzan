@@ -41,7 +41,6 @@ const playerObject = {
   playerId: null,
   playerDirection: 'left',
   playerStopped: true,
-  serverData: {},
   otherPlayerList: [],
   spawnedObjectList: {},
   sceneObjectList: [],
