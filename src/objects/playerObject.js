@@ -44,6 +44,7 @@ const playerObject = {
   otherPlayerList: [],
   spawnedObjectList: {},
   sceneObjectList: [],
+  mySprite: {},
 };
 
 export default playerObject;

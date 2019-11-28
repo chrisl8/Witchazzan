@@ -43,6 +43,8 @@ const sceneFactory = ({
     this.load.tilemapTiledJSON(`${sceneName}-map`, tileMap);
 
     // Spritesheet example: https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
+    // The sprites can be added in this preload phase,
+    // but the animations have to be added in the creat ephase.
     spriteSheetList.forEach((spriteSheet) => {
       this.load.spritesheet(spriteSheet.name, spriteSheet.file, {
         frameWidth: spriteSheet.frameWidth,
@@ -113,6 +115,25 @@ const sceneFactory = ({
     sceneOpen = true;
     // Runs once, after all assets in preload are loaded
 
+    // The sprites can be added in this preload phase,
+    // but the animations have to be added in the create phase.
+    spriteSheetList.forEach((spriteSheet) => {
+      if (spriteSheet.animations) {
+        spriteSheet.animations.forEach((animation) => {
+          this.anims.create({
+            key: `${spriteSheet.name}-${animation.keyName}`,
+            frames: this.anims.generateFrameNumbers(spriteSheet.name, {
+              start: animation.start,
+              end: animation.end,
+              zeroPad: animation.zeroPad,
+            }),
+            frameRate: spriteSheet.animationFrameRate,
+            repeat: animation.repeat,
+          });
+        });
+      }
+    });
+
     const map = this.make.tilemap({ key: `${sceneName}-map` });
 
     // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
@@ -181,8 +202,12 @@ const sceneFactory = ({
     // Also use the setSize to allow the character to fit in the spaces it should, even if the
     // sprite is too big for them.
     // TODO: Learn to use aseprite: https://www.aseprite.org/docs/
+    const mySpriteIndex = spriteSheetList.findIndex(
+      (x) => (x.name = 'partyWizard'),
+    );
+    playerObject.mySprite = spriteSheetList[mySpriteIndex];
     playerObject.player = this.physics.add
-      .sprite(spawnPoint.x, spawnPoint.y, 'partyWizard')
+      .sprite(spawnPoint.x, spawnPoint.y, playerObject.mySprite.name)
       .setSize(80, 110)
       .setOffset(12, 12);
 
@@ -195,49 +220,6 @@ const sceneFactory = ({
 
     // Create the player's walking animations from the texture atlas. These are stored in the global
     // animation manager so any sprite can access them.
-
-    const anims = this.anims;
-    const frameRate = 5;
-    anims.create({
-      key: 'wizard-left-walk',
-      frames: anims.generateFrameNumbers('partyWizard', {
-        start: 0,
-        end: 3,
-        zeroPad: 3,
-      }),
-      frameRate,
-      repeat: -1,
-    });
-    anims.create({
-      key: 'wizard-right-walk',
-      frames: anims.generateFrameNumbers('partyWizard', {
-        start: 0,
-        end: 3,
-        zeroPad: 3,
-      }),
-      frameRate,
-      repeat: -1,
-    });
-    anims.create({
-      key: 'wizard-front-walk',
-      frames: anims.generateFrameNumbers('partyWizard', {
-        start: 0,
-        end: 3,
-        zeroPad: 3,
-      }),
-      frameRate,
-      repeat: -1,
-    });
-    anims.create({
-      key: 'wizard-back-walk',
-      frames: anims.generateFrameNumbers('partyWizard', {
-        start: 0,
-        end: 3,
-        zeroPad: 3,
-      }),
-      frameRate,
-      repeat: -1,
-    });
 
     const camera = this.cameras.main;
     camera.startFollow(playerObject.player);
@@ -298,7 +280,7 @@ const sceneFactory = ({
         newThing.flipX = true;
         this.anims.create({
           key: 'gloobScarymanAnimate',
-          frames: anims.generateFrameNumbers('gloobScaryman', {
+          frames: this.anims.generateFrameNumbers('gloobScaryman', {
             start: 0,
             end: 1,
             zeroPad: 1,
@@ -309,6 +291,7 @@ const sceneFactory = ({
         newThing.anims.play('gloobScarymanAnimate', true);
       }
     });
+
     // overlap lets you walk onto it, rather than stopping when you hit it.
     this.physics.add.overlap(
       playerObject.player,
@@ -385,30 +368,42 @@ const sceneFactory = ({
         playerObject.keyState.ArrowLeft === 'keydown' ||
         playerObject.keyState.a === 'keydown'
       ) {
-        playerObject.player.setFlipX(false);
-        playerObject.player.anims.play('wizard-left-walk', true);
+        playerObject.player.setFlipX(playerObject.mySprite.faces === 'right');
+        playerObject.player.anims.play(
+          `${playerObject.mySprite.name}-walk-left`,
+          true,
+        );
         playerObject.playerDirection = 'left';
         playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowRight === 'keydown' ||
         playerObject.keyState.d === 'keydown'
       ) {
-        playerObject.player.setFlipX(true);
-        playerObject.player.anims.play('wizard-right-walk', true);
+        playerObject.player.setFlipX(playerObject.mySprite.faces === 'left');
+        playerObject.player.anims.play(
+          `${playerObject.mySprite.name}-walk-right`,
+          true,
+        );
         playerObject.playerDirection = 'right';
         playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowUp === 'keydown' ||
         playerObject.keyState.w === 'keydown'
       ) {
-        playerObject.player.anims.play('wizard-back-walk', true);
+        playerObject.player.anims.play(
+          `${playerObject.mySprite.name}-walk-back`,
+          true,
+        );
         playerObject.playerDirection = 'up';
         playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowDown === 'keydown' ||
         playerObject.keyState.s === 'keydown'
       ) {
-        playerObject.player.anims.play('wizard-front-walk', true);
+        playerObject.player.anims.play(
+          `${playerObject.mySprite.name}-walk-front`,
+          true,
+        );
         playerObject.playerDirection = 'down';
         playerObject.playerStopped = false;
       } else {
@@ -439,7 +434,7 @@ const sceneFactory = ({
           if (!playerObject.otherPlayerList[player.id]) {
             // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
             playerObject.otherPlayerList[player.id] = this.physics.add
-              .sprite(player.x, player.y, 'partyWizard')
+              .sprite(player.x, player.y, playerObject.mySprite.name)
               .setSize(80, 110)
               .setOffset(12, 12);
             playerObject.otherPlayerList[player.id].displayHeight = 16;
@@ -479,7 +474,7 @@ const sceneFactory = ({
       });
     }
 
-    // Deal game pieces from server.
+    // Deal with game pieces from server.
     const activeObjectList = [];
     if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
       gamePieceList.pieces.forEach((gamePiece) => {
@@ -489,7 +484,6 @@ const sceneFactory = ({
           // TODO: Set up a "debugging" option with a way to enable/disable it,
           //       that will show a box or something where the server sees me,
           //       for comparison to where I see me.
-          // console.log(player.direction);
         } else if (gamePiece.scene === sceneName) {
           if (!playerObject.spawnedObjectList[gamePiece.id]) {
             // Add new sprites to the scene
@@ -501,7 +495,7 @@ const sceneFactory = ({
               case 'player':
                 // TODO: Use bloomby for other player
                 playerObject.spawnedObjectList[gamePiece.id].spriteName =
-                  'partyWizard';
+                  playerObject.mySprite.name;
                 break;
               case 'fireball':
                 playerObject.spawnedObjectList[gamePiece.id].spriteName =
@@ -531,7 +525,7 @@ const sceneFactory = ({
           // Sometimes they go inactive.
           playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
 
-          // Use Player direction to set player stance
+          // Use Game Piece direction to set sprite rotation
           if (gamePiece.direction === 'left') {
             playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(false);
           } else if (gamePiece.direction === 'right') {
