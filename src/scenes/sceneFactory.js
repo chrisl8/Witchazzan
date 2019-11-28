@@ -203,7 +203,7 @@ const sceneFactory = ({
     // sprite is too big for them.
     // TODO: Learn to use aseprite: https://www.aseprite.org/docs/
     const mySpriteIndex = spriteSheetList.findIndex(
-      (x) => (x.name = 'partyWizard'),
+      (x) => x.name === 'partyWizard',
     );
     playerObject.mySprite = spriteSheetList[mySpriteIndex];
     playerObject.player = this.physics.add
