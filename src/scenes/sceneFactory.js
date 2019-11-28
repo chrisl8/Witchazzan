@@ -491,27 +491,31 @@ const sceneFactory = ({
             console.log(gamePiece);
             playerObject.spawnedObjectList[gamePiece.id] = {};
             // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
+            let spriteName = 'partyWizard';
             switch (gamePiece.type) {
               case 'player':
+                spriteName = 'partyWizard';
                 // TODO: Use bloomby for other player
-                playerObject.spawnedObjectList[gamePiece.id].spriteName =
-                  playerObject.mySprite.name;
                 break;
               case 'fireball':
-                playerObject.spawnedObjectList[gamePiece.id].spriteName =
-                  'fireball';
+                spriteName = 'fireball';
                 break;
               default:
-                playerObject.spawnedObjectList[gamePiece.id].spriteName =
-                  'flamingGoose';
+                spriteName = 'flamingGoose';
             }
+            const spriteIndex = spriteSheetList.findIndex(
+              (x) => x.name === spriteName,
+            );
+            playerObject.spawnedObjectList[gamePiece.id].spriteData =
+              spriteSheetList[spriteIndex];
+
             playerObject.spawnedObjectList[
               gamePiece.id
             ].sprite = this.physics.add
               .sprite(
                 gamePiece.x,
                 gamePiece.y,
-                playerObject.spawnedObjectList[gamePiece.id].spriteName,
+                playerObject.spawnedObjectList[gamePiece.id].spriteData.name,
               )
               .setSize(80, 110)
               .setOffset(12, 12);
@@ -527,9 +531,9 @@ const sceneFactory = ({
 
           // Use Game Piece direction to set sprite rotation
           if (gamePiece.direction === 'left') {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(false);
+            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(playerObject.spawnedObjectList[gamePiece.id].spriteData.faces === 'right');
           } else if (gamePiece.direction === 'right') {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(true);
+            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(playerObject.spawnedObjectList[gamePiece.id].spriteData.faces === 'left');
           }
           if (gamePiece.direction === 'stopped') {
             playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();

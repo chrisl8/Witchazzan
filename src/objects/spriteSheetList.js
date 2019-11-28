@@ -40,6 +40,7 @@ const spriteSheetList = [
     type: 'other',
     name: 'fireball',
     file: fireball,
+    faces: 'right',
     frameWidth: 64,
     frameHeight: 64,
     endFrame: 3,
