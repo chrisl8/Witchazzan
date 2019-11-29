@@ -13,6 +13,7 @@ import textObject from './objects/textObject';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 import reportFunctions from './reportFunctions';
 import gamePieceList from './objects/gamePieceList';
+import wait from './utilities/wait';
 
 async function startGame() {
   // Set up some initial values.
@@ -66,6 +67,21 @@ async function startGame() {
     } else if (inputData.messageType === 'identity') {
       playerObject.playerId = inputData.id;
     } else if (inputData.messageType === 'game-piece-list') {
+      // Grab initial position for player from server.
+      if (!playerObject.initialPositionReceived) {
+        if (inputData.pieces && inputData.pieces.length > 0) {
+          inputData.pieces.forEach((piece) => {
+            if (piece.id === playerObject.playerId) {
+              playerObject.initialPositionReceived = true;
+              playerObject.initialPosition = {
+                x: piece.x,
+                y: piece.y,
+              };
+            }
+          });
+        }
+      }
+
       gamePieceList.pieces = inputData.pieces;
     } else {
       console.log(inputData);
@@ -81,6 +97,13 @@ async function startGame() {
   communicationsObject.socket.onreconnect = () => {
     console.log('Reconnected');
   };
+
+  // Don't start until we have the initial connection
+  // with the player's initial position.
+  while (!playerObject.initialPositionReceived) {
+    // eslint-disable-next-line no-await-in-loop
+    await wait(1);
+  }
 
   rootGameObject.game = new Phaser.Game(rootGameObject.config);
 }

@@ -206,6 +206,27 @@ const sceneFactory = ({
       (x) => x.name === 'partyWizard',
     );
     playerObject.mySprite = spriteSheetList[mySpriteIndex];
+
+    // If we are reloading, use the player's last position from the server.
+    if (!playerObject.initialPositionFromServerAlreadyUsed) {
+      playerObject.initialPositionFromServerAlreadyUsed = true;
+      // 0,0 is assumed to be an empty position from a new player.
+      // NOTE: This could be a bug if 0,0 is ever a legitimate last positoin.
+      if (
+        !(
+          playerObject.initialPosition.x === 0 &&
+          playerObject.initialPosition.x === 0
+        )
+      ) {
+        spawnPoint = playerObject.initialPosition;
+      } else {
+        // Presumably this is a new user.
+        console.log(
+          'Using scene spawn point, as initial positon from server was 0,0.',
+        );
+      }
+    }
+
     playerObject.player = this.physics.add
       .sprite(spawnPoint.x, spawnPoint.y, playerObject.mySprite.name)
       .setSize(80, 110)
@@ -531,9 +552,15 @@ const sceneFactory = ({
 
           // Use Game Piece direction to set sprite rotation
           if (gamePiece.direction === 'left') {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(playerObject.spawnedObjectList[gamePiece.id].spriteData.faces === 'right');
+            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+              playerObject.spawnedObjectList[gamePiece.id].spriteData.faces ===
+                'right',
+            );
           } else if (gamePiece.direction === 'right') {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(playerObject.spawnedObjectList[gamePiece.id].spriteData.faces === 'left');
+            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+              playerObject.spawnedObjectList[gamePiece.id].spriteData.faces ===
+                'left',
+            );
           }
           if (gamePiece.direction === 'stopped') {
             playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
