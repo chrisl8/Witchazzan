@@ -456,62 +456,6 @@ const sceneFactory = ({
         reportFunctions.reportLocation(sceneName);
       }
 
-      // TODO: Harvest useful data from this and remove it.
-      // Deal with other players
-      if (playerObject.serverPlayerList) {
-        // TODO: Remove players that have dropped from the list.
-        playerObject.serverPlayerList.forEach((player) => {
-          // console.log(player.name, player.x, player.y, player.scene, player.id);
-          if (player.id === playerObject.playerId) {
-            // It me!
-            // TODO: Set up a "debugging" option with a way to enable/disable it,
-            //       that will show a box or something where the server sees me,
-            //       for comparison to where I see me.
-            // console.log(player.direction);
-          } else if (player.scene === sceneName) {
-            if (!playerObject.otherPlayerList[player.id]) {
-              // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
-              playerObject.otherPlayerList[player.id] = this.physics.add
-                .sprite(player.x, player.y, playerObject.mySprite.name)
-                .setSize(80, 110)
-                .setOffset(12, 12);
-              playerObject.otherPlayerList[player.id].displayHeight = 16;
-              playerObject.otherPlayerList[player.id].displayWidth = 12;
-            }
-            // Sometimes they go inactive.
-            playerObject.otherPlayerList[player.id].active = true;
-
-            // Use Player direction to set player stance
-            if (player.direction === 'left') {
-              playerObject.otherPlayerList[player.id].setFlipX(false);
-            } else if (player.direction === 'right') {
-              playerObject.otherPlayerList[player.id].setFlipX(true);
-            }
-            if (player.direction === 'stopped') {
-              playerObject.otherPlayerList[player.id].anims.stop();
-            } else {
-              // TODO: Use all 4 directions.
-              // playerObject.otherPlayerList[player.id].anims.play(
-              //   'wizard-left-walk',
-              //   true,
-              // );
-            }
-
-            this.tweens.add({
-              targets: playerObject.otherPlayerList[player.id],
-              x: player.x,
-              y: player.y,
-              duration: 90, // Adjust this to be smooth without being too slow.
-              ease: 'Linear', // Anything else is wonky when tracking server updates.
-            });
-          } else if (playerObject.otherPlayerList[player.id]) {
-            // Off screen players should be inactive.
-            playerObject.otherPlayerList[player.id].destroy();
-            playerObject.otherPlayerList[player.id] = null;
-          }
-        });
-      }
-
       // Deal with game pieces from server.
       const activeObjectList = [];
       if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
