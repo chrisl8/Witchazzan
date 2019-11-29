@@ -4,5 +4,13 @@
   ],
   "schedule": [
     "before 8am on Friday"
+  ],
+  "packageRules": [
+    {
+      "depTypeList": [
+        "devDependencies"
+      ],
+      "enabled": false
+    }
   ]
 }
