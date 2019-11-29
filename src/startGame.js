@@ -77,6 +77,7 @@ async function startGame() {
                 x: piece.x,
                 y: piece.y,
               };
+              playerObject.initialScene = piece.scene;
             }
           });
         }

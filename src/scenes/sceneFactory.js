@@ -56,29 +56,32 @@ const sceneFactory = ({
 
   let sceneOpen;
 
+  function cleanUpScene() {
+    sceneOpen = false;
+    // Mark all scene text objects as not currently displayed so the new scene can display them again
+    // eslint-disable-next-line no-unused-vars
+    for (const [key, value] of Object.entries(textObject)) {
+      value.hasBeenDisplayedInThisScene = false;
+    }
+
+    // Reset cameraScaleFactor for next scene.
+    playerObject.cameraScaleFactor = 0;
+  }
+
   function cleanUpSceneAndUseExit(player, exit) {
     if (sceneOpen) {
-      sceneOpen = false;
+      cleanUpScene();
       const destinationScene = exit.getData('destinationScene');
       playerObject.destinationEntrance = exit.getData('destinationEntrance');
       if (playerObject.destinationEntrance) {
         console.log(
-          `Switching to scene: ${destinationScene} entrance ${playerObject.destinationEntrance}`,
+          `Switching to scene: ${destinationScene} entrance ${playerObject.destinationEntrance}.`,
         );
       } else {
-        console.log(`Switching to scene: ${destinationScene}`);
+        console.log(
+          `Switching to scene: ${destinationScene} at default spawn point.`,
+        );
       }
-      // Mark all scene objects as not currently displayed so the new scene can display them again
-      // eslint-disable-next-line no-unused-vars
-      for (const [key, value] of Object.entries(textObject)) {
-        value.hasBeenDisplayedInThisScene = false;
-      }
-
-      // Remove other players
-      playerObject.otherPlayerList.length = 0;
-
-      // Reset cameraScaleFactor for next scene.
-      playerObject.cameraScaleFactor = 0;
 
       this.scene.start(destinationScene);
     }
@@ -103,7 +106,6 @@ const sceneFactory = ({
       this.cameras.main.setSize(gameWidth, gameHeight);
       // Make sure the canvas is big enough to show the camera.
       this.scale.setGameSize(gameWidth, gameHeight);
-      // console.log(cameraScaleFactor, gameWidth, gameHeight);
     }
     // TODO: Find the resolutions that have funky lines in them and see if this helps:
     //       https://github.com/sporadic-labs/tile-extruder
@@ -112,8 +114,8 @@ const sceneFactory = ({
 
   // eslint-disable-next-line func-names
   scene.create = function() {
-    sceneOpen = true;
     // Runs once, after all assets in preload are loaded
+    sceneOpen = true;
 
     // The sprites can be added in this preload phase,
     // but the animations have to be added in the create phase.
@@ -195,6 +197,20 @@ const sceneFactory = ({
       }
     }
 
+    setCameraZoom.call(this);
+
+    // Use scene from server. Switch to different scene if this is not it
+    // NOTE: Remember to do this BEFORE setting the position from the server.
+    // HOWEVER: This MUST be done after setCameraZoom, or the scene
+    // will load unzoomed. I'm not sure why.
+    if (!playerObject.initialSceneFromServerAlreadyUsed) {
+      playerObject.initialSceneFromServerAlreadyUsed = true;
+      if (playerObject.initialScene !== sceneName) {
+        cleanUpScene(playerObject.initialScene);
+        this.scene.start(playerObject.initialScene);
+      }
+    }
+
     // Create a sprite with physics enabled via the physics system. The image used for the sprite has
     // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
     // You can use the setSize nad setOffset to allow the character to overlap the
@@ -207,8 +223,11 @@ const sceneFactory = ({
     );
     playerObject.mySprite = spriteSheetList[mySpriteIndex];
 
-    // If we are reloading, use the player's last position from the server.
-    if (!playerObject.initialPositionFromServerAlreadyUsed) {
+    // Use the player's last position from the server if it exists
+    if (sceneOpen && !playerObject.initialPositionFromServerAlreadyUsed) {
+      // "sceneOpen" is a bit of a hack to ensure we don't waste this on
+      // the default opening scene before the player is moved away.to
+      // the server provided scene.
       playerObject.initialPositionFromServerAlreadyUsed = true;
       // 0,0 is assumed to be an empty position from a new player.
       // NOTE: This could be a bug if 0,0 is ever a legitimate last positoin.
@@ -246,8 +265,6 @@ const sceneFactory = ({
     camera.startFollow(playerObject.player);
     // This keeps the camera from moving off of the map, regardless of where the player goes
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
-    setCameraZoom.call(this);
 
     // This section finds the Objects in the Tilemap that trigger exiting to another scene,
     // and sets up the colliders in Phaser for them along with where to send the player.
@@ -335,10 +352,11 @@ const sceneFactory = ({
   // eslint-disable-next-line func-names
   scene.update = function(time) {
     // Runs once per frame for the duration of the scene
+    // Don't do anything if the scene is no longer open.
+    // TODO: Why isn't this wrapping the entire function contents?
     if (sceneOpen) {
       setCameraZoom.call(this);
 
-      // Don't do anything if the scene is no longer open.
       const speed = 175;
       playerObject.player.body.velocity.clone();
 
