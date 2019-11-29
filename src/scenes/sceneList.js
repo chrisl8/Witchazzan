@@ -27,9 +27,23 @@ import openingSceneRight1TileMap from '../assets/tileMaps/openingSceneRight1';
 import testScene1 from '../assets/tileMaps/testScene1';
 import arena1 from '../assets/tileMaps/arena1';
 
+// To "FIX" tilesets so they don't have weird lines around them caused by GPU rendering
+/*
+https://github.com/sporadic-labs/tile-extruder
+
+ 1. cd to the tileset folder and run this:
+    npx tile-extruder --tileWidth 16 --tileHeight 16 --input tileset_1bit-16x16.png --output tileset_1bit-16x16-extruded.png
+ 2. Now you have a 1 pixel Margin and 2 pixel Spacing, so you have to reload the tileset in tiled,
+    Per the instructions from the github site:
+    "Extrude the tileset and then update your existing tileset in Tiled. In the "Tilesets" panel, click on the edit tileset icon (the wrench) and then click on "Tileset Properties" under the Tileset menu bar item. Edit the "Image" field, replacing the tileset image with the new extruded image and updating to the margin to 1px and spacing to 2px."
+
+ NOTE: Do NOT delete the old non-extruded tileset, because you can't reliably edit the extruded set. Edit the non-extruded one and reexport it.
+
+ */
+
 // TileSets
-import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16.png';
-import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld.png';
+import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16-extruded.png';
+import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld-extruded.png';
 
 const scenes = [
   {

@@ -37,6 +37,7 @@
     "prettier": "1.19.1",
     "raw-loader": "4.0.0",
     "terser-webpack-plugin": "2.2.1",
+    "tile-extruder": "^2.0.2",
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.9.0",
     "webpack-merge": "4.2.2"
