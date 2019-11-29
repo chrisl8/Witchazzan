@@ -353,7 +353,7 @@ const sceneFactory = ({
   scene.update = function(time) {
     // Runs once per frame for the duration of the scene
     // Don't do anything if the scene is no longer open.
-    // TODO: Why isn't this wrapping the entire function contents?
+    // This may not be necessary, but it may prevent race conditions
     if (sceneOpen) {
       setCameraZoom.call(this);
 
@@ -449,181 +449,181 @@ const sceneFactory = ({
         playerObject.player.anims.stop();
         playerObject.playerStopped = true;
       }
-    }
 
-    // Update server
-    if (time - lastServerUpdate > serverUpateInterval) {
-      lastServerUpdate = time;
-      reportFunctions.reportLocation(sceneName);
-    }
+      // Update server
+      if (time - lastServerUpdate > serverUpateInterval) {
+        lastServerUpdate = time;
+        reportFunctions.reportLocation(sceneName);
+      }
 
-    // TODO: Harvest useful data from this and remove it.
-    // Deal with other players
-    if (playerObject.serverPlayerList) {
-      // TODO: Remove players that have dropped from the list.
-      playerObject.serverPlayerList.forEach((player) => {
-        // console.log(player.name, player.x, player.y, player.scene, player.id);
-        if (player.id === playerObject.playerId) {
-          // It me!
-          // TODO: Set up a "debugging" option with a way to enable/disable it,
-          //       that will show a box or something where the server sees me,
-          //       for comparison to where I see me.
-          // console.log(player.direction);
-        } else if (player.scene === sceneName) {
-          if (!playerObject.otherPlayerList[player.id]) {
-            // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
-            playerObject.otherPlayerList[player.id] = this.physics.add
-              .sprite(player.x, player.y, playerObject.mySprite.name)
-              .setSize(80, 110)
-              .setOffset(12, 12);
-            playerObject.otherPlayerList[player.id].displayHeight = 16;
-            playerObject.otherPlayerList[player.id].displayWidth = 12;
-          }
-          // Sometimes they go inactive.
-          playerObject.otherPlayerList[player.id].active = true;
-
-          // Use Player direction to set player stance
-          if (player.direction === 'left') {
-            playerObject.otherPlayerList[player.id].setFlipX(false);
-          } else if (player.direction === 'right') {
-            playerObject.otherPlayerList[player.id].setFlipX(true);
-          }
-          if (player.direction === 'stopped') {
-            playerObject.otherPlayerList[player.id].anims.stop();
-          } else {
-            // TODO: Use all 4 directions.
-            // playerObject.otherPlayerList[player.id].anims.play(
-            //   'wizard-left-walk',
-            //   true,
-            // );
-          }
-
-          this.tweens.add({
-            targets: playerObject.otherPlayerList[player.id],
-            x: player.x,
-            y: player.y,
-            duration: 90, // Adjust this to be smooth without being too slow.
-            ease: 'Linear', // Anything else is wonky when tracking server updates.
-          });
-        } else if (playerObject.otherPlayerList[player.id]) {
-          // Off screen players should be inactive.
-          playerObject.otherPlayerList[player.id].destroy();
-          playerObject.otherPlayerList[player.id] = null;
-        }
-      });
-    }
-
-    // Deal with game pieces from server.
-    const activeObjectList = [];
-    if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
-      gamePieceList.pieces.forEach((gamePiece) => {
-        activeObjectList.push(gamePiece.id);
-        if (gamePiece.id === playerObject.playerId) {
-          // It me!
-          // TODO: Set up a "debugging" option with a way to enable/disable it,
-          //       that will show a box or something where the server sees me,
-          //       for comparison to where I see me.
-        } else if (gamePiece.scene === sceneName) {
-          if (!playerObject.spawnedObjectList[gamePiece.id]) {
-            // Add new sprites to the scene
-            console.log('New game piece:');
-            console.log(gamePiece);
-            playerObject.spawnedObjectList[gamePiece.id] = {};
-            // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
-            let spriteName = 'partyWizard';
-            switch (gamePiece.type) {
-              case 'player':
-                spriteName = 'partyWizard';
-                // TODO: Use bloomby for other player
-                break;
-              case 'fireball':
-                spriteName = 'fireball';
-                break;
-              default:
-                spriteName = 'flamingGoose';
+      // TODO: Harvest useful data from this and remove it.
+      // Deal with other players
+      if (playerObject.serverPlayerList) {
+        // TODO: Remove players that have dropped from the list.
+        playerObject.serverPlayerList.forEach((player) => {
+          // console.log(player.name, player.x, player.y, player.scene, player.id);
+          if (player.id === playerObject.playerId) {
+            // It me!
+            // TODO: Set up a "debugging" option with a way to enable/disable it,
+            //       that will show a box or something where the server sees me,
+            //       for comparison to where I see me.
+            // console.log(player.direction);
+          } else if (player.scene === sceneName) {
+            if (!playerObject.otherPlayerList[player.id]) {
+              // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
+              playerObject.otherPlayerList[player.id] = this.physics.add
+                .sprite(player.x, player.y, playerObject.mySprite.name)
+                .setSize(80, 110)
+                .setOffset(12, 12);
+              playerObject.otherPlayerList[player.id].displayHeight = 16;
+              playerObject.otherPlayerList[player.id].displayWidth = 12;
             }
-            const spriteIndex = spriteSheetList.findIndex(
-              (x) => x.name === spriteName,
-            );
-            playerObject.spawnedObjectList[gamePiece.id].spriteData =
-              spriteSheetList[spriteIndex];
+            // Sometimes they go inactive.
+            playerObject.otherPlayerList[player.id].active = true;
 
-            playerObject.spawnedObjectList[
-              gamePiece.id
-            ].sprite = this.physics.add
-              .sprite(
-                gamePiece.x,
-                gamePiece.y,
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name,
-              )
-              .setSize(80, 110)
-              .setOffset(12, 12);
-            playerObject.spawnedObjectList[
-              gamePiece.id
-            ].sprite.displayHeight = 16;
-            playerObject.spawnedObjectList[
-              gamePiece.id
-            ].sprite.displayWidth = 12;
-          }
-          // Sometimes they go inactive.
-          playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
+            // Use Player direction to set player stance
+            if (player.direction === 'left') {
+              playerObject.otherPlayerList[player.id].setFlipX(false);
+            } else if (player.direction === 'right') {
+              playerObject.otherPlayerList[player.id].setFlipX(true);
+            }
+            if (player.direction === 'stopped') {
+              playerObject.otherPlayerList[player.id].anims.stop();
+            } else {
+              // TODO: Use all 4 directions.
+              // playerObject.otherPlayerList[player.id].anims.play(
+              //   'wizard-left-walk',
+              //   true,
+              // );
+            }
 
-          // Use Game Piece direction to set sprite rotation
-          if (gamePiece.direction === 'left') {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-              playerObject.spawnedObjectList[gamePiece.id].spriteData.faces ===
-                'right',
-            );
-          } else if (gamePiece.direction === 'right') {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-              playerObject.spawnedObjectList[gamePiece.id].spriteData.faces ===
-                'left',
-            );
+            this.tweens.add({
+              targets: playerObject.otherPlayerList[player.id],
+              x: player.x,
+              y: player.y,
+              duration: 90, // Adjust this to be smooth without being too slow.
+              ease: 'Linear', // Anything else is wonky when tracking server updates.
+            });
+          } else if (playerObject.otherPlayerList[player.id]) {
+            // Off screen players should be inactive.
+            playerObject.otherPlayerList[player.id].destroy();
+            playerObject.otherPlayerList[player.id] = null;
           }
-          if (gamePiece.direction === 'stopped') {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
-          } else {
-            // TODO: Use all 4 directions.
-            // playerObject.spawnedObjectList[object.id].anims.play(
-            //   'wizard-left-walk',
-            //   true,
-            // );
-          }
+        });
+      }
 
-          this.tweens.add({
-            targets: playerObject.spawnedObjectList[gamePiece.id].sprite,
-            x: gamePiece.x,
-            y: gamePiece.y,
-            duration: 90, // Adjust this to be smooth without being too slow.
-            ease: 'Linear', // Anything else is wonky when tracking server updates.
-          });
-        } else if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
-          // Off screen players should be inactive.
-          if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
-          }
-          playerObject.spawnedObjectList[gamePiece.id].sprite = null;
-        }
-      });
-    }
+      // Deal with game pieces from server.
+      const activeObjectList = [];
+      if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
+        gamePieceList.pieces.forEach((gamePiece) => {
+          activeObjectList.push(gamePiece.id);
+          if (gamePiece.id === playerObject.playerId) {
+            // It me!
+            // TODO: Set up a "debugging" option with a way to enable/disable it,
+            //       that will show a box or something where the server sees me,
+            //       for comparison to where I see me.
+          } else if (gamePiece.scene === sceneName) {
+            if (!playerObject.spawnedObjectList[gamePiece.id]) {
+              // Add new sprites to the scene
+              console.log('New game piece:');
+              console.log(gamePiece);
+              playerObject.spawnedObjectList[gamePiece.id] = {};
+              // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
+              let spriteName = 'partyWizard';
+              switch (gamePiece.type) {
+                case 'player':
+                  spriteName = 'partyWizard';
+                  // TODO: Use bloomby for other player
+                  break;
+                case 'fireball':
+                  spriteName = 'fireball';
+                  break;
+                default:
+                  spriteName = 'flamingGoose';
+              }
+              const spriteIndex = spriteSheetList.findIndex(
+                (x) => x.name === spriteName,
+              );
+              playerObject.spawnedObjectList[gamePiece.id].spriteData =
+                spriteSheetList[spriteIndex];
 
-    // Remove de-spawned objects
-    for (const property in playerObject.spawnedObjectList) {
-      if (playerObject.spawnedObjectList.hasOwnProperty(property)) {
-        if (
-          playerObject.spawnedObjectList[property] &&
-          activeObjectList.indexOf(Number(property)) === -1
-        ) {
-          console.log(`Destroying Object ID ${property}`);
-          if (playerObject.spawnedObjectList[property].sprite) {
-            playerObject.spawnedObjectList[property].sprite.destroy();
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite = this.physics.add
+                .sprite(
+                  gamePiece.x,
+                  gamePiece.y,
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name,
+                )
+                .setSize(80, 110)
+                .setOffset(12, 12);
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite.displayHeight = 16;
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite.displayWidth = 12;
+            }
+            // Sometimes they go inactive.
+            playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
+
+            // Use Game Piece direction to set sprite rotation
+            if (gamePiece.direction === 'left') {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+                playerObject.spawnedObjectList[gamePiece.id].spriteData
+                  .faces === 'right',
+              );
+            } else if (gamePiece.direction === 'right') {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+                playerObject.spawnedObjectList[gamePiece.id].spriteData
+                  .faces === 'left',
+              );
+            }
+            if (gamePiece.direction === 'stopped') {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
+            } else {
+              // TODO: Use all 4 directions.
+              // playerObject.spawnedObjectList[object.id].anims.play(
+              //   'wizard-left-walk',
+              //   true,
+              // );
+            }
+
+            this.tweens.add({
+              targets: playerObject.spawnedObjectList[gamePiece.id].sprite,
+              x: gamePiece.x,
+              y: gamePiece.y,
+              duration: 90, // Adjust this to be smooth without being too slow.
+              ease: 'Linear', // Anything else is wonky when tracking server updates.
+            });
+          } else if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
+            // Off screen players should be inactive.
+            if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
+            }
+            playerObject.spawnedObjectList[gamePiece.id].sprite = null;
           }
-          playerObject.spawnedObjectList[property] = null;
+        });
+      }
+
+      // Remove de-spawned objects
+      for (const property in playerObject.spawnedObjectList) {
+        if (playerObject.spawnedObjectList.hasOwnProperty(property)) {
+          if (
+            playerObject.spawnedObjectList[property] &&
+            activeObjectList.indexOf(Number(property)) === -1
+          ) {
+            console.log(`Destroying Object ID ${property}`);
+            if (playerObject.spawnedObjectList[property].sprite) {
+              playerObject.spawnedObjectList[property].sprite.destroy();
+            }
+            playerObject.spawnedObjectList[property] = null;
+          }
         }
       }
-    }
 
-    updateDomElements(htmlElementParameters);
+      updateDomElements(htmlElementParameters);
+    }
   };
 
   return scene;
