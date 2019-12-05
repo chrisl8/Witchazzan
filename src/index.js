@@ -17,6 +17,7 @@ import wait from './utilities/wait';
     }
   };
   const addPlayerNameToPlayerObject = () => {
+    document.getElementById('loading_text').hidden = false;
     const playerNameInputValue =
       playerObject.domElements.playerNameInputBox.value;
     if (playerNameInputValue) {

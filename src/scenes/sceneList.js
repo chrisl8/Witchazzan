@@ -27,8 +27,12 @@ import openingSceneRight1TileMap from '../assets/tileMaps/openingSceneRight1';
 import testScene1 from '../assets/tileMaps/testScene1';
 import arena1 from '../assets/tileMaps/arena1';
 
-// To "FIX" tilesets so they don't have weird lines around them caused by GPU rendering
 /*
+  To "FIX" tilesets so they don't have weird lines around them caused by GPU rendering
+As noted:
+https://www.html5gamedevs.com/topic/38119-tilemap-displays-grid-lines-render-artifacts/
+
+Use:
 https://github.com/sporadic-labs/tile-extruder
 
  1. cd to the tileset folder and run this:

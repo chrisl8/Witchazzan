@@ -107,9 +107,6 @@ const sceneFactory = ({
       // Make sure the canvas is big enough to show the camera.
       this.scale.setGameSize(gameWidth, gameHeight);
     }
-    // TODO: Find the resolutions that have funky lines in them and see if this helps:
-    //       https://github.com/sporadic-labs/tile-extruder
-    //       Also notice how things shift as you walk around.
   }
 
   // eslint-disable-next-line func-names
