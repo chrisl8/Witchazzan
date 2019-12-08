@@ -406,7 +406,7 @@ const sceneFactory = ({
       ) {
         playerObject.player.setFlipX(playerObject.mySprite.faces === 'right');
         playerObject.player.anims.play(
-          `${playerObject.mySprite.name}-walk-left`,
+          `${playerObject.mySprite.name}-move-left`,
           true,
         );
         playerObject.playerDirection = 'left';
@@ -417,7 +417,7 @@ const sceneFactory = ({
       ) {
         playerObject.player.setFlipX(playerObject.mySprite.faces === 'left');
         playerObject.player.anims.play(
-          `${playerObject.mySprite.name}-walk-right`,
+          `${playerObject.mySprite.name}-move-right`,
           true,
         );
         playerObject.playerDirection = 'right';
@@ -427,7 +427,7 @@ const sceneFactory = ({
         playerObject.keyState.w === 'keydown'
       ) {
         playerObject.player.anims.play(
-          `${playerObject.mySprite.name}-walk-back`,
+          `${playerObject.mySprite.name}-move-back`,
           true,
         );
         playerObject.playerDirection = 'up';
@@ -437,7 +437,7 @@ const sceneFactory = ({
         playerObject.keyState.s === 'keydown'
       ) {
         playerObject.player.anims.play(
-          `${playerObject.mySprite.name}-walk-front`,
+          `${playerObject.mySprite.name}-move-front`,
           true,
         );
         playerObject.playerDirection = 'down';
@@ -509,25 +509,47 @@ const sceneFactory = ({
             playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
 
             // Use Game Piece direction to set sprite rotation
-            if (gamePiece.direction === 'left') {
+            if (
+              gamePiece.direction === 'left' ||
+              gamePiece.direction === 'west'
+            ) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
                 playerObject.spawnedObjectList[gamePiece.id].spriteData
                   .faces === 'right',
               );
-            } else if (gamePiece.direction === 'right') {
+            } else if (
+              gamePiece.direction === 'right' ||
+              gamePiece.direction === 'east'
+            ) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
                 playerObject.spawnedObjectList[gamePiece.id].spriteData
                   .faces === 'left',
               );
             }
-            if (gamePiece.direction === 'stopped') {
+
+            const objectInMotion = false;
+            if (!objectInMotion) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
-            } else {
-              // TODO: Use all 4 directions.
-              // playerObject.spawnedObjectList[object.id].anims.play(
-              //   'wizard-left-walk',
-              //   true,
-              // );
+            } else if (gamePiece.direction === 'left') {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.mySprite.name}-move-left`,
+                true,
+              );
+            } else if (gamePiece.direction === 'right') {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.mySprite.name}-move-right`,
+                true,
+              );
+            } else if (gamePiece.direction === 'up') {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.mySprite.name}-move-up`,
+                true,
+              );
+            } else if (gamePiece.direction === 'down') {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.mySprite.name}-move-down`,
+                true,
+              );
             }
 
             this.tweens.add({

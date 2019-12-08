@@ -14,10 +14,10 @@ const spriteSheetList = [
     endFrame: 5,
     animationFrameRate: 5,
     animations: [
-      { keyName: 'walk-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'walk-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'walk-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'walk-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
     ],
   },
   {

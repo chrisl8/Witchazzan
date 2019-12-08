@@ -5,9 +5,17 @@ import playerObject from './objects/playerObject';
 const reportFunctions = {};
 reportFunctions.reportFireball = (direction) => {
   if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+    let cardinalDirection = 'east';
+    if (direction === 'up') {
+      cardinalDirection = 'north';
+    } else if (direction === 'down') {
+      cardinalDirection = 'south';
+    } else if (direction === 'left') {
+      cardinalDirection = 'west';
+    }
     const obj = {};
     obj.message_type = 'fireball';
-    obj.direction = direction;
+    obj.direction = cardinalDirection;
     const jsonString = JSON.stringify(obj);
     communicationsObject.socket.send(jsonString);
   }
