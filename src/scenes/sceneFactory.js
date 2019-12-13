@@ -216,7 +216,7 @@ const sceneFactory = ({
     // sprite is too big for them.
     // TODO: Learn to use aseprite: https://www.aseprite.org/docs/
     const mySpriteIndex = spriteSheetList.findIndex(
-      (x) => x.name === 'partyWizard',
+      (x) => x.name === 'bloomby',
     );
     playerObject.mySprite = spriteSheetList[mySpriteIndex];
 
@@ -243,10 +243,11 @@ const sceneFactory = ({
       }
     }
 
-    playerObject.player = this.physics.add
-      .sprite(spawnPoint.x, spawnPoint.y, playerObject.mySprite.name)
-      .setSize(80, 110)
-      .setOffset(12, 12);
+    playerObject.player = this.physics.add.sprite(
+      spawnPoint.x,
+      spawnPoint.y,
+      playerObject.mySprite.name,
+    );
 
     // My sprite is out of scale with my tiles, so adjusting here
     playerObject.player.displayHeight = 16;
