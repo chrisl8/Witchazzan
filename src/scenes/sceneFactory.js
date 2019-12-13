@@ -208,15 +208,15 @@ const sceneFactory = ({
       }
     }
 
-    // Create a sprite with physics enabled via the physics system. The image used for the sprite has
-    // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
-    // You can use the setSize nad setOffset to allow the character to overlap the
+    // Create a sprite with physics enabled via the physics system.
+    // You can use the setSize and setOffset to allow the character to overlap the
     // collision blocks slightly. This often makes the most sense for the head to overlap a bit so that "background" blocks (above player) seem more "background"
     // Also use the setSize to allow the character to fit in the spaces it should, even if the
     // sprite is too big for them.
-    // TODO: Learn to use aseprite: https://www.aseprite.org/docs/
+    // TODO: Get this from player and put into player object
+    const playerChosenSpriteName = 'bloomby';
     const mySpriteIndex = spriteSheetList.findIndex(
-      (x) => x.name === 'bloomby',
+      (x) => x.name === playerChosenSpriteName,
     );
     playerObject.mySprite = spriteSheetList[mySpriteIndex];
 
@@ -243,15 +243,23 @@ const sceneFactory = ({
       }
     }
 
-    playerObject.player = this.physics.add.sprite(
-      spawnPoint.x,
-      spawnPoint.y,
-      playerObject.mySprite.name,
-    );
+    playerObject.player = this.physics.add
+      .sprite(spawnPoint.x, spawnPoint.y, playerObject.mySprite.name)
+      .setSize(
+        playerObject.mySprite.physicsSize.x,
+        playerObject.mySprite.physicsSize.y,
+      );
 
-    // My sprite is out of scale with my tiles, so adjusting here
-    playerObject.player.displayHeight = 16;
-    playerObject.player.displayWidth = 12;
+    if (playerObject.mySprite.physicsOffset) {
+      playerObject.player.body.setOffset(
+        playerObject.mySprite.physicsOffset.x,
+        playerObject.mySprite.physicsOffset.y,
+      );
+    }
+
+    // If sprite is out of scale with tiles, adjusting here
+    playerObject.player.displayHeight = playerObject.mySprite.displayHeight;
+    playerObject.player.displayWidth = playerObject.mySprite.displayWidth;
 
     // Watch the player and worldLayer for collisions, for the duration of the scene:
     this.physics.add.collider(playerObject.player, collisionLayer);
