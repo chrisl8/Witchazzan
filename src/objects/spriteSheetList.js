@@ -116,6 +116,7 @@ const spriteSheetList = [
     },
     displayWidth: 16,
     displayHeight: 16,
+    rotatable: true, // For sprites that should rotate to any direction, instead of just the 4
   },
   {
     type: 'other',

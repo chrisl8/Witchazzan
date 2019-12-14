@@ -527,29 +527,61 @@ const sceneFactory = ({
               ].sprite.displayHeight = spriteData.displayHeight;
               playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
                 spriteData.displayWidth;
-              playerObject.spawnedObjectList[gamePiece.id].sprite.flipX =
-                spriteData.faces === 'right';
             }
             // Sometimes they go inactive.
             playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
 
-            // Use Game Piece direction to set sprite rotation
+            // Use Game Piece direction to set sprite rotation or flip it
             if (
-              gamePiece.direction === 'left' ||
-              gamePiece.direction === 'west'
+              playerObject.spawnedObjectList[gamePiece.id].spriteData.rotatable
             ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-                playerObject.spawnedObjectList[gamePiece.id].spriteData
-                  .faces === 'right',
-              );
-            } else if (
-              gamePiece.direction === 'right' ||
-              gamePiece.direction === 'east'
-            ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-                playerObject.spawnedObjectList[gamePiece.id].spriteData
-                  .faces === 'left',
-              );
+              // Rotate sprite to face requested direction.
+              if (
+                gamePiece.direction === 'left' ||
+                gamePiece.direction === 'west'
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
+                  180,
+                );
+              } else if (
+                gamePiece.direction === 'right' ||
+                gamePiece.direction === 'east'
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(0);
+              } else if (
+                gamePiece.direction === 'up' ||
+                gamePiece.direction === 'north'
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
+                  -90,
+                );
+              } else if (
+                gamePiece.direction === 'down' ||
+                gamePiece.direction === 'south'
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
+                  90,
+                );
+              }
+            } else {
+              // For non rotatable sprites, only flip them for left/right
+              if (
+                gamePiece.direction === 'left' ||
+                gamePiece.direction === 'west'
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData
+                    .faces === 'right',
+                );
+              } else if (
+                gamePiece.direction === 'right' ||
+                gamePiece.direction === 'east'
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData
+                    .faces === 'left',
+                );
+              }
             }
 
             // The only way to know if the remote item is in motion is for the server to tell us
