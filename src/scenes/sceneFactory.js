@@ -327,8 +327,13 @@ const sceneFactory = ({
         newThing.displayWidth = spriteData.displayWidth;
         newThing.flipX = spriteData.faces === 'right';
 
-        // If 'move-stationary' does not exist, nothing breaks, it is fine.
-        newThing.anims.play(`${spriteData.name}-move-stationary`, true);
+        if (
+          this.anims.anims.entries.hasOwnProperty(
+            `${spriteData.name}-move-stationary`,
+          )
+        ) {
+          newThing.anims.play(`${spriteData.name}-move-stationary`, true);
+        }
       }
     });
 
