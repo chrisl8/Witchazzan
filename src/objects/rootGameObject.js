@@ -25,6 +25,14 @@ const rootGameObject = {
       default: 'arcade',
       arcade: {
         gravity: { y: 0 }, // Top down game, so no gravity
+        // All the debug options you could want
+        debug: false, // This is the only one you have to switch
+        debugShowBody: true,
+        debugShowStaticBody: true,
+        debugShowVelocity: true,
+        debugVelocityColor: 0xffff00,
+        debugBodyColor: 0x0000ff,
+        debugStaticBodyColor: 0xffffff,
       },
     },
     scene,
@@ -34,7 +42,6 @@ const rootGameObject = {
       pixelArt: true, // Turn this off if you want to test for "extrusion" errors.
     },
   },
-  showDebug: false,
 };
 
 export default rootGameObject;

@@ -16,6 +16,7 @@ reportFunctions.reportFireball = (direction) => {
     const obj = {};
     obj.message_type = 'fireball';
     obj.direction = cardinalDirection;
+    obj.sprite = 'fireball';
     const jsonString = JSON.stringify(obj);
     communicationsObject.socket.send(jsonString);
   }
@@ -47,6 +48,7 @@ reportFunctions.reportLocation = (sceneName) => {
       y: playerObject.player.y,
       scene: sceneName,
       direction: playerObject.playerDirection,
+      sprite: playerObject.spriteName,
     };
     communicationsObject.socket.send(JSON.stringify(obj));
   }

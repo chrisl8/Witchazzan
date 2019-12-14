@@ -152,7 +152,7 @@
                 {
                  "height":0,
                  "id":22,
-                 "name":"gloob-scaryman",
+                 "name":"gloobScaryman",
                  "point":true,
                  "rotation":0,
                  "type":"SpawnNPC",
@@ -168,7 +168,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":23,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.1",

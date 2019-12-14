@@ -3,34 +3,15 @@ import gloobScarymanSpriteSheet from '../assets/spriteSheets/gloob-scaryman.png'
 import flamingGoose from '../assets/spriteSheets/flamingGoose.png';
 import fireball from '../assets/spriteSheets/fireball.png';
 import bloomby from '../assets/spriteSheets/bloomby.png';
+import carrot from '../assets/spriteSheets/carrot.png';
+
+// Player bloomby has the comments in it, see it for help and examples.
+// Note that you if you have a -move-stationary animation on a sprite,
+// you do NOT need the other four. The goose has all five because it is a
+// fallback default.
+// You'd only want all 5 if your sprite really has 4 directions AND a separate stationary animation.
 
 const spriteSheetList = [
-  {
-    type: 'player',
-    name: 'partyWizard',
-    file: partyWizardSpriteSheet,
-    faces: 'left',
-    frameWidth: 101,
-    frameHeight: 128,
-    endFrame: -1, // How many frames to extract from the sheet. -1 means all
-    animationFrameRate: 5,
-    animations: [
-      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-    ],
-    physicsSize: {
-      x: 80,
-      y: 110,
-    },
-    physicsOffset: {
-      x: 12,
-      y: 12,
-    },
-    displayWidth: 12,
-    displayHeight: 16,
-  },
   {
     type: 'player',
     name: 'bloomby',
@@ -57,8 +38,12 @@ const spriteSheetList = [
     physicsSize: {
       // Remember where this starts if you muck with the offset below.
       // If you are having trouble, turn on the debugging on the rootGameObject.js file
-      x: 47, // "Width" direction
-      y: 57, // "Height" direction
+      // This is RELATIVE TO SPRITE SIZE and then gets scaled, so the same numbers on two different
+      // sized sprites will not produce the same results!
+      // Using a multiplier can help keep it consistent between different sprites,
+      // but remember different size sprites will still end up with different end results after multiplication.
+      x: 53 * 0.8, // "Width" direction
+      y: 63 * 0.8, // "Height" direction
     },
     // DELETE or COMMENT OUT the entire physicsOffset to ignore it and default to object center.
     // physicsOffset: {
@@ -69,20 +54,49 @@ const spriteSheetList = [
     displayHeight: 63 / 4,
   },
   {
+    type: 'player',
+    name: 'partyWizard',
+    file: partyWizardSpriteSheet,
+    faces: 'left',
+    frameWidth: 101,
+    frameHeight: 128,
+    endFrame: -1, // How many frames to extract from the sheet. -1 means all
+    animationFrameRate: 5,
+    animations: [
+      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 101 * 0.8,
+      y: 128 * 0.8,
+    },
+    physicsOffset: {
+      x: 12,
+      y: 12,
+    },
+    displayWidth: 12,
+    displayHeight: 16,
+  },
+  {
     type: 'other',
     name: 'gloobScaryman',
     file: gloobScarymanSpriteSheet,
     frameWidth: 64,
     frameHeight: 64,
     endFrame: 2,
-  },
-  {
-    type: 'other',
-    name: 'flamingGoose',
-    file: flamingGoose,
-    frameWidth: 90,
-    frameHeight: 90,
-    endFrame: 4,
+    faces: 'right',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 1, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 64 * 0.8,
+      y: 64 * 0.8,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
   },
   {
     type: 'other',
@@ -91,7 +105,69 @@ const spriteSheetList = [
     faces: 'right',
     frameWidth: 64,
     frameHeight: 64,
-    endFrame: 3,
+    endFrame: -1, // How many frames to extract from the sheet. -1 means all
+    animationFrameRate: 5,
+    animations: [
+      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-stationary', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'carrot',
+    file: carrot,
+    frameWidth: 10,
+    frameHeight: 21,
+    endFrame: 6,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 1, end: 5, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 10 * 0.8,
+      y: 21 * 0.8,
+    },
+    displayWidth: 10 * 0.8,
+    displayHeight: 21 * 0.8,
+  },
+  {
+    // Flaming Goose is the default sprite used whenever a requested sprite cannot be found,
+    // so it is set up to fill a lot of roles, but also expected to never look great.
+    type: 'other',
+    name: 'flamingGoose',
+    file: flamingGoose,
+    frameWidth: 90,
+    frameHeight: 90,
+    endFrame: 4,
+    faces: 'left',
+    animationFrameRate: 5,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 50,
+      y: 50,
+    },
+    physicsOffset: {
+      x: 22,
+      y: 35,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
   },
 ];
 

@@ -38,13 +38,15 @@ const playerObject = {
     Scrolling: { style: {} },
   },
   playerName: null,
+  spriteName: 'bloomby', // TODO: Get this from player and let them update it.
   playerId: null,
   playerDirection: 'left',
   playerStopped: true,
   otherPlayerList: [],
   spawnedObjectList: {},
   sceneObjectList: [],
-  mySprite: {},
+  spriteData: {},
+  debugServerLocation: false, // TODO: Make this switchable in the game.
 };
 
 export default playerObject;

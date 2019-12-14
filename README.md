@@ -166,6 +166,10 @@ Author: [ffomega](http://forum.solarus-games.org/index.php?action=profile;u=423)
 License: Unknown, see [Solaris Game License](https://www.solarus-games.org/en/about/faq)  
 FileNames: solarus_full_hyrule.png  
 - [Tiny 16: Basic](https://opengameart.org/content/tiny-16-basic)  
+- [8-Bit PixelArt Carrot](https://opengameart.org/content/8-bit-pixelart-carrot)  
+Author: sufan02  
+License [CC0](https://creativecommons.org/publicdomain/zero/1.0/)  
+Filename: carrot.png
 
 ### If you want to keep building the NES Hyrule map
 

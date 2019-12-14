@@ -12,6 +12,7 @@ import updateDomElements from '../updateDomElements';
 import reportFunctions from '../reportFunctions';
 import spriteSheetList from '../objects/spriteSheetList';
 import gamePieceList from '../objects/gamePieceList';
+import getSpriteData from '../utilities/getSpriteData';
 
 // TODO: Is this actually a proper factory?
 //  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
@@ -44,8 +45,9 @@ const sceneFactory = ({
 
     // Spritesheet example: https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
     // The sprites can be added in this preload phase,
-    // but the animations have to be added in the creat ephase.
+    // but the animations have to be added in the create phase.
     spriteSheetList.forEach((spriteSheet) => {
+      console.log(spriteSheet.margin);
       this.load.spritesheet(spriteSheet.name, spriteSheet.file, {
         frameWidth: spriteSheet.frameWidth,
         frameHeight: spriteSheet.frameHeight,
@@ -213,12 +215,7 @@ const sceneFactory = ({
     // collision blocks slightly. This often makes the most sense for the head to overlap a bit so that "background" blocks (above player) seem more "background"
     // Also use the setSize to allow the character to fit in the spaces it should, even if the
     // sprite is too big for them.
-    // TODO: Get this from player and put into player object
-    const playerChosenSpriteName = 'bloomby';
-    const mySpriteIndex = spriteSheetList.findIndex(
-      (x) => x.name === playerChosenSpriteName,
-    );
-    playerObject.mySprite = spriteSheetList[mySpriteIndex];
+    playerObject.spriteData = getSpriteData(playerObject.spriteName);
 
     // Use the player's last position from the server if it exists
     if (sceneOpen && !playerObject.initialPositionFromServerAlreadyUsed) {
@@ -244,22 +241,23 @@ const sceneFactory = ({
     }
 
     playerObject.player = this.physics.add
-      .sprite(spawnPoint.x, spawnPoint.y, playerObject.mySprite.name)
+      .sprite(spawnPoint.x, spawnPoint.y, playerObject.spriteData.name)
       .setSize(
-        playerObject.mySprite.physicsSize.x,
-        playerObject.mySprite.physicsSize.y,
+        playerObject.spriteData.physicsSize.x,
+        playerObject.spriteData.physicsSize.y,
       );
 
-    if (playerObject.mySprite.physicsOffset) {
+    if (playerObject.spriteData.physicsOffset) {
+      // TODO: This behaves oddly when you flip the sprite. Can we fix that?
       playerObject.player.body.setOffset(
-        playerObject.mySprite.physicsOffset.x,
-        playerObject.mySprite.physicsOffset.y,
+        playerObject.spriteData.physicsOffset.x,
+        playerObject.spriteData.physicsOffset.y,
       );
     }
 
     // If sprite is out of scale with tiles, adjusting here
-    playerObject.player.displayHeight = playerObject.mySprite.displayHeight;
-    playerObject.player.displayWidth = playerObject.mySprite.displayWidth;
+    playerObject.player.displayHeight = playerObject.spriteData.displayHeight;
+    playerObject.player.displayWidth = playerObject.spriteData.displayWidth;
 
     // Watch the player and worldLayer for collisions, for the duration of the scene:
     this.physics.add.collider(playerObject.player, collisionLayer);
@@ -316,23 +314,22 @@ const sceneFactory = ({
         //   console.log(event);
         // });
       } else if (object.type === 'SpawnNPC') {
+        const spriteData = getSpriteData(object.name);
         const newThing = this.physics.add
-          .sprite(object.x, object.y, 'gloobScaryman')
-          .setSize(64, 64);
-        newThing.displayHeight = 16;
-        newThing.displayWidth = 16;
-        newThing.flipX = true;
-        this.anims.create({
-          key: 'gloobScarymanAnimate',
-          frames: this.anims.generateFrameNumbers('gloobScaryman', {
-            start: 0,
-            end: 1,
-            zeroPad: 1,
-          }),
-          frameRate: 2,
-          repeat: -1,
-        });
-        newThing.anims.play('gloobScarymanAnimate', true);
+          .sprite(object.x, object.y, spriteData.name)
+          .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
+        if (spriteData.physicsOffset) {
+          newThing.body.setOffset(
+            spriteData.physicsOffset.x,
+            spriteData.physicsOffset.y,
+          );
+        }
+        newThing.displayHeight = spriteData.displayHeight;
+        newThing.displayWidth = spriteData.displayWidth;
+        newThing.flipX = spriteData.faces === 'right';
+
+        // If 'move-stationary' does not exist, nothing breaks, it is fine.
+        newThing.anims.play(`${spriteData.name}-move-stationary`, true);
       }
     });
 
@@ -413,9 +410,9 @@ const sceneFactory = ({
         playerObject.keyState.ArrowLeft === 'keydown' ||
         playerObject.keyState.a === 'keydown'
       ) {
-        playerObject.player.setFlipX(playerObject.mySprite.faces === 'right');
+        playerObject.player.setFlipX(playerObject.spriteData.faces === 'right');
         playerObject.player.anims.play(
-          `${playerObject.mySprite.name}-move-left`,
+          `${playerObject.spriteData.name}-move-left`,
           true,
         );
         playerObject.playerDirection = 'left';
@@ -424,9 +421,9 @@ const sceneFactory = ({
         playerObject.keyState.ArrowRight === 'keydown' ||
         playerObject.keyState.d === 'keydown'
       ) {
-        playerObject.player.setFlipX(playerObject.mySprite.faces === 'left');
+        playerObject.player.setFlipX(playerObject.spriteData.faces === 'left');
         playerObject.player.anims.play(
-          `${playerObject.mySprite.name}-move-right`,
+          `${playerObject.spriteData.name}-move-right`,
           true,
         );
         playerObject.playerDirection = 'right';
@@ -436,7 +433,7 @@ const sceneFactory = ({
         playerObject.keyState.w === 'keydown'
       ) {
         playerObject.player.anims.play(
-          `${playerObject.mySprite.name}-move-back`,
+          `${playerObject.spriteData.name}-move-back`,
           true,
         );
         playerObject.playerDirection = 'up';
@@ -446,7 +443,7 @@ const sceneFactory = ({
         playerObject.keyState.s === 'keydown'
       ) {
         playerObject.player.anims.play(
-          `${playerObject.mySprite.name}-move-front`,
+          `${playerObject.spriteData.name}-move-front`,
           true,
         );
         playerObject.playerDirection = 'down';
@@ -469,50 +466,61 @@ const sceneFactory = ({
           activeObjectList.push(gamePiece.id);
           if (gamePiece.id === playerObject.playerId) {
             // It me!
-            // TODO: Set up a "debugging" option with a way to enable/disable it,
-            //       that will show a box or something where the server sees me,
-            //       for comparison to where I see me.
-          } else if (gamePiece.scene === sceneName) {
+            if (playerObject.debugServerLocation) {
+              if (!playerObject.serverLocationDisplayBox) {
+                playerObject.serverLocationDisplayBox = this.add.rectangle(
+                  gamePiece.x,
+                  gamePiece.y,
+                  16,
+                  16,
+                );
+                playerObject.serverLocationDisplayBox.setStrokeStyle(
+                  1,
+                  0xff0000,
+                  1,
+                );
+              } else {
+                playerObject.serverLocationDisplayBox.setX(gamePiece.x);
+                playerObject.serverLocationDisplayBox.setY(gamePiece.y);
+              }
+            } // TODO: Allow shutting off and removal of this box
+          } else if (gamePiece.scene === sceneName && gamePiece.sprite) {
             if (!playerObject.spawnedObjectList[gamePiece.id]) {
               // Add new sprites to the scene
               console.log('New game piece:');
               console.log(gamePiece);
               playerObject.spawnedObjectList[gamePiece.id] = {};
-              // TODO: Use sprite of remote player's choice, including size and offset attached to sprite's description object.
-              let spriteName = 'partyWizard';
-              switch (gamePiece.type) {
-                case 'player':
-                  spriteName = 'partyWizard';
-                  // TODO: Use bloomby for other player
-                  break;
-                case 'fireball':
-                  spriteName = 'fireball';
-                  break;
-                default:
-                  spriteName = 'flamingGoose';
-              }
-              const spriteIndex = spriteSheetList.findIndex(
-                (x) => x.name === spriteName,
-              );
-              playerObject.spawnedObjectList[gamePiece.id].spriteData =
-                spriteSheetList[spriteIndex];
+
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].spriteData = getSpriteData(gamePiece.sprite);
+
+              // To shorten variable names and make code more consistent
+              const spriteData =
+                playerObject.spawnedObjectList[gamePiece.id].spriteData;
 
               playerObject.spawnedObjectList[
                 gamePiece.id
               ].sprite = this.physics.add
-                .sprite(
-                  gamePiece.x,
-                  gamePiece.y,
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name,
-                )
-                .setSize(80, 110)
-                .setOffset(12, 12);
+                .sprite(gamePiece.x, gamePiece.y, spriteData.name)
+                .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
+
+              if (spriteData.physicsOffset) {
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.body.setOffset(
+                  spriteData.physicsOffset.x,
+                  spriteData.physicsOffset.y,
+                );
+              }
+
               playerObject.spawnedObjectList[
                 gamePiece.id
-              ].sprite.displayHeight = 16;
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite.displayWidth = 12;
+              ].sprite.displayHeight = spriteData.displayHeight;
+              playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
+                spriteData.displayWidth;
+              playerObject.spawnedObjectList[gamePiece.id].sprite.flipX =
+                spriteData.faces === 'right';
             }
             // Sometimes they go inactive.
             playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
@@ -536,27 +544,43 @@ const sceneFactory = ({
               );
             }
 
-            const objectInMotion = false;
+            // TODO: The only way to know if the remote item is in motion is for the server to tell us
+            //       We cannot divine it, because the local tick is always faster than the server update.
+
+            // TODO: This logic is a bit broken.
+            if (
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-stationary`,
+              )
+            ) {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-stationary`,
+                true,
+              );
+            }
+            const objectInMotion = true;
             if (!objectInMotion) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
             } else if (gamePiece.direction === 'left') {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.mySprite.name}-move-left`,
+                `${playerObject.spriteData.name}-move-left`,
                 true,
               );
             } else if (gamePiece.direction === 'right') {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.mySprite.name}-move-right`,
+                `${playerObject.spriteData.name}-move-right`,
                 true,
               );
             } else if (gamePiece.direction === 'up') {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.mySprite.name}-move-up`,
+                `${playerObject.spriteData.name}-move-back`,
                 true,
               );
             } else if (gamePiece.direction === 'down') {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.mySprite.name}-move-down`,
+                `${playerObject.spriteData.name}-move-front`,
                 true,
               );
             }
@@ -568,7 +592,10 @@ const sceneFactory = ({
               duration: 90, // Adjust this to be smooth without being too slow.
               ease: 'Linear', // Anything else is wonky when tracking server updates.
             });
-          } else if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
+          } else if (
+            playerObject.spawnedObjectList[gamePiece.id] &&
+            playerObject.spawnedObjectList[gamePiece.id].sprite
+          ) {
             // Off screen players should be inactive.
             if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
