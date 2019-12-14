@@ -378,19 +378,38 @@ const sceneFactory = ({
       }
 
       // Stop any previous movement from the last frame
+      const previousVelocityX = playerObject.player.body.velocity.x;
+      const previousVelocityY = playerObject.player.body.velocity.y;
       playerObject.player.body.setVelocity(0);
+      let fullSpeed = true;
 
       // Horizontal movement
       if (
         playerObject.keyState.ArrowLeft === 'keydown' ||
         playerObject.keyState.a === 'keydown'
       ) {
-        playerObject.player.body.setVelocityX(-speed);
+        let newSpeed = -speed;
+        if (previousVelocityX === 0) {
+          newSpeed = -1;
+          fullSpeed = false;
+        } else if (previousVelocityX > -speed) {
+          newSpeed = previousVelocityX - 3;
+          fullSpeed = false;
+        }
+        playerObject.player.body.setVelocityX(newSpeed);
       } else if (
         playerObject.keyState.ArrowRight === 'keydown' ||
         playerObject.keyState.d === 'keydown'
       ) {
-        playerObject.player.body.setVelocityX(speed);
+        let newSpeed = speed;
+        if (previousVelocityX === 0) {
+          newSpeed = 1;
+          fullSpeed = false;
+        } else if (previousVelocityX < speed) {
+          newSpeed = previousVelocityX + 3;
+          fullSpeed = false;
+        }
+        playerObject.player.body.setVelocityX(newSpeed);
       }
 
       // Vertical movement
@@ -398,16 +417,34 @@ const sceneFactory = ({
         playerObject.keyState.ArrowUp === 'keydown' ||
         playerObject.keyState.w === 'keydown'
       ) {
-        playerObject.player.body.setVelocityY(-speed);
+        let newSpeed = -speed;
+        if (previousVelocityY === 0) {
+          newSpeed = -1;
+          fullSpeed = false;
+        } else if (previousVelocityY > -speed) {
+          newSpeed = previousVelocityY - 3;
+          fullSpeed = false;
+        }
+        playerObject.player.body.setVelocityY(newSpeed);
       } else if (
         playerObject.keyState.ArrowDown === 'keydown' ||
         playerObject.keyState.s === 'keydown'
       ) {
-        playerObject.player.body.setVelocityY(speed);
+        let newSpeed = speed;
+        if (previousVelocityY === 0) {
+          newSpeed = 1;
+          fullSpeed = false;
+        } else if (previousVelocityY < speed) {
+          newSpeed = previousVelocityY + 3;
+          fullSpeed = false;
+        }
+        playerObject.player.body.setVelocityY(newSpeed);
       }
 
       // Normalize and scale the velocity so that player can't move faster along a diagonal
-      playerObject.player.body.velocity.normalize().scale(speed);
+      if (fullSpeed) {
+        playerObject.player.body.velocity.normalize().scale(speed);
+      }
 
       // Update the animation last and give left/right animations precedence over up/down animations
       if (
