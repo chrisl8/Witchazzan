@@ -4,6 +4,7 @@ import flamingGoose from '../assets/spriteSheets/flamingGoose.png';
 import fireball from '../assets/spriteSheets/fireball.png';
 import bloomby from '../assets/spriteSheets/bloomby.png';
 import carrot from '../assets/spriteSheets/carrot.png';
+import christmasTree from '../assets/spriteSheets/ChristmasTree.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -136,6 +137,20 @@ const spriteSheetList = [
     },
     displayWidth: 10 * 0.8,
     displayHeight: 21 * 0.8,
+  },
+  {
+    type: 'other',
+    name: 'christmasTree',
+    file: christmasTree,
+    frameWidth: 64,
+    frameHeight: 64,
+    endFrame: 1,
+    physicsSize: {
+      x: 64,
+      y: 64,
+    },
+    displayWidth: 32,
+    displayHeight: 32,
   },
   {
     // Flaming Goose is the default sprite used whenever a requested sprite cannot be found,
