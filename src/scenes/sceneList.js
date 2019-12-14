@@ -67,12 +67,12 @@ const scenes = [
       UpperLeft: {
         fontSize: '.05', // percent of scene height.
         color: 'blue',
-        background: '255,255,255,0.8', // rgba
+        background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
         fontSize: '.03', // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.8', // rgba
+        color: '#d84b65',
+        background: '255,255,255,0.9', // rgba
       },
     },
   },
@@ -93,12 +93,12 @@ const scenes = [
       UpperLeft: {
         fontSize: '.05', // percent of scene height.
         color: 'blue',
-        background: '255,255,255,0.8', // rgba
+        background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.8', // rgba
+        fontSize: '.04', // percent of scene height.
+        color: '#d84b65',
+        background: '255,255,255,0.9', // rgba
       },
     },
   },
@@ -118,11 +118,13 @@ const scenes = [
       },
       UpperLeft: {
         fontSize: '.05', // percent of scene height.
-        color: 'white',
+        color: 'black',
+        background: '255,255,255,0.8', // rgba
       },
       Scrolling: {
         fontSize: '.03', // percent of scene height.
-        color: 'blue',
+        color: 'black',
+        background: '255,255,255,0.8', // rgba
       },
     },
   },
@@ -142,11 +144,13 @@ const scenes = [
       },
       UpperLeft: {
         fontSize: '.05', // percent of scene height.
-        color: 'white',
+        color: 'black',
+        background: '255,255,255,0.8', // rgba
       },
       Scrolling: {
         fontSize: '.03', // percent of scene height.
-        color: 'blue',
+        color: 'black',
+        background: '255,255,255,0.8', // rgba
       },
     },
   },

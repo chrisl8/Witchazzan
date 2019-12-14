@@ -485,6 +485,9 @@ const sceneFactory = ({
               }
             } // TODO: Allow shutting off and removal of this box
           } else if (gamePiece.scene === sceneName && gamePiece.sprite) {
+            // If no `sprite` key is given, no sprite is displayed.
+            // This also prevents race conditions with remote players during reload
+            // TODO: If a remote player changes their sprite, we won't know about it.
             if (!playerObject.spawnedObjectList[gamePiece.id]) {
               // Add new sprites to the scene
               console.log('New game piece:');
