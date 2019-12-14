@@ -551,7 +551,60 @@ const sceneFactory = ({
             //       We cannot divine it, because the local tick is always faster than the server update.
 
             // TODO: This logic is a bit broken.
-            if (
+            const objectInMotion = true;
+            if (!objectInMotion) {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
+            } else if (
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-left`,
+              ) &&
+              (gamePiece.direction === 'left' || gamePiece.direction === 'west')
+            ) {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-left`,
+                true,
+              );
+            } else if (
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-right`,
+              ) &&
+              (gamePiece.direction === 'right' ||
+                gamePiece.direction === 'east')
+            ) {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-right`,
+                true,
+              );
+            } else if (
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-back`,
+              ) &&
+              (gamePiece.direction === 'up' || gamePiece.direction === 'north')
+            ) {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-back`,
+                true,
+              );
+            } else if (
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-front`,
+              ) &&
+              (gamePiece.direction === 'down' ||
+                gamePiece.direction === 'south')
+            ) {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-front`,
+                true,
+              );
+            } else if (
               playerObject.spawnedObjectList[
                 gamePiece.id
               ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
@@ -560,30 +613,6 @@ const sceneFactory = ({
             ) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
                 `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-stationary`,
-                true,
-              );
-            }
-            const objectInMotion = true;
-            if (!objectInMotion) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
-            } else if (gamePiece.direction === 'left') {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spriteData.name}-move-left`,
-                true,
-              );
-            } else if (gamePiece.direction === 'right') {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spriteData.name}-move-right`,
-                true,
-              );
-            } else if (gamePiece.direction === 'up') {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spriteData.name}-move-back`,
-                true,
-              );
-            } else if (gamePiece.direction === 'down') {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spriteData.name}-move-front`,
                 true,
               );
             }

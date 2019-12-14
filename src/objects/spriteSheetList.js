@@ -108,10 +108,6 @@ const spriteSheetList = [
     endFrame: -1, // How many frames to extract from the sheet. -1 means all
     animationFrameRate: 5,
     animations: [
-      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
       { keyName: 'move-stationary', start: 0, end: 3, zeroPad: 3, repeat: -1 },
     ],
     physicsSize: {
