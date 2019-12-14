@@ -49,6 +49,7 @@ reportFunctions.reportLocation = (sceneName) => {
       scene: sceneName,
       direction: playerObject.playerDirection,
       sprite: playerObject.spriteName,
+      moving: playerObject.isMoving,
     };
     communicationsObject.socket.send(JSON.stringify(obj));
   }

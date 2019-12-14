@@ -47,7 +47,6 @@ const sceneFactory = ({
     // The sprites can be added in this preload phase,
     // but the animations have to be added in the create phase.
     spriteSheetList.forEach((spriteSheet) => {
-      console.log(spriteSheet.margin);
       this.load.spritesheet(spriteSheet.name, spriteSheet.file, {
         frameWidth: spriteSheet.frameWidth,
         frameHeight: spriteSheet.frameHeight,
@@ -375,6 +374,7 @@ const sceneFactory = ({
 
       // Stop any previous movement from the last frame
       playerObject.player.body.setVelocity(0);
+      let isMoving = false;
 
       // Horizontal movement
       if (
@@ -382,11 +382,13 @@ const sceneFactory = ({
         playerObject.keyState.a === 'keydown'
       ) {
         playerObject.player.body.setVelocityX(-speed);
+        isMoving = true;
       } else if (
         playerObject.keyState.ArrowRight === 'keydown' ||
         playerObject.keyState.d === 'keydown'
       ) {
         playerObject.player.body.setVelocityX(speed);
+        isMoving = true;
       }
 
       // Vertical movement
@@ -395,15 +397,18 @@ const sceneFactory = ({
         playerObject.keyState.w === 'keydown'
       ) {
         playerObject.player.body.setVelocityY(-speed);
+        isMoving = true;
       } else if (
         playerObject.keyState.ArrowDown === 'keydown' ||
         playerObject.keyState.s === 'keydown'
       ) {
         playerObject.player.body.setVelocityY(speed);
+        isMoving = true;
       }
 
       // Normalize and scale the velocity so that player can't move faster along a diagonal
       playerObject.player.body.velocity.normalize().scale(speed);
+      playerObject.isMoving = isMoving;
 
       // Update the animation last and give left/right animations precedence over up/down animations
       if (
@@ -547,11 +552,12 @@ const sceneFactory = ({
               );
             }
 
-            // TODO: The only way to know if the remote item is in motion is for the server to tell us
+            // The only way to know if the remote item is in motion is for the server to tell us
             //       We cannot divine it, because the local tick is always faster than the server update.
-
-            // TODO: This logic is a bit broken.
-            const objectInMotion = true;
+            let objectInMotion = true; // Default to animate if server does not tell us otherwise.
+            if (gamePiece.moving === false) {
+              objectInMotion = false;
+            }
             if (!objectInMotion) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
             } else if (
