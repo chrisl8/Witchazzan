@@ -379,7 +379,6 @@ const sceneFactory = ({
 
       // Stop any previous movement from the last frame
       playerObject.player.body.setVelocity(0);
-      let isMoving = false;
 
       // Horizontal movement
       if (
@@ -387,13 +386,11 @@ const sceneFactory = ({
         playerObject.keyState.a === 'keydown'
       ) {
         playerObject.player.body.setVelocityX(-speed);
-        isMoving = true;
       } else if (
         playerObject.keyState.ArrowRight === 'keydown' ||
         playerObject.keyState.d === 'keydown'
       ) {
         playerObject.player.body.setVelocityX(speed);
-        isMoving = true;
       }
 
       // Vertical movement
@@ -402,18 +399,15 @@ const sceneFactory = ({
         playerObject.keyState.w === 'keydown'
       ) {
         playerObject.player.body.setVelocityY(-speed);
-        isMoving = true;
       } else if (
         playerObject.keyState.ArrowDown === 'keydown' ||
         playerObject.keyState.s === 'keydown'
       ) {
         playerObject.player.body.setVelocityY(speed);
-        isMoving = true;
       }
 
       // Normalize and scale the velocity so that player can't move faster along a diagonal
       playerObject.player.body.velocity.normalize().scale(speed);
-      playerObject.isMoving = isMoving;
 
       // Update the animation last and give left/right animations precedence over up/down animations
       if (
