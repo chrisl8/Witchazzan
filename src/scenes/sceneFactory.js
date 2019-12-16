@@ -508,6 +508,9 @@ const sceneFactory = ({
         gamePieceList.pieces.forEach((gamePiece) => {
           activeObjectList.push(gamePiece.id);
           if (gamePiece.scene === sceneName && gamePiece.sprite) {
+            this.add
+              .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
+              .setOrigin(0, 0);
             // If no `sprite` key is given, no sprite is displayed.
             // This also prevents race conditions with remote players during reload
             // TODO: If a remote player changes their sprite, we won't know about it.
