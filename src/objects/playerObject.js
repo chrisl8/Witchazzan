@@ -46,7 +46,6 @@ const playerObject = {
   spawnedObjectList: {},
   sceneObjectList: [],
   spriteData: {},
-  debugServerLocation: false, // TODO: Make this switchable in the game.
 };
 
 export default playerObject;

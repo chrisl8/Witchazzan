@@ -246,6 +246,8 @@ const sceneFactory = ({
         playerObject.spriteData.physicsSize.y,
       );
 
+    playerObject.player.setDepth(1);
+
     if (playerObject.spriteData.physicsOffset) {
       // TODO: This behaves oddly when you flip the sprite. Can we fix that?
       playerObject.player.body.setOffset(
@@ -505,27 +507,7 @@ const sceneFactory = ({
       if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
         gamePieceList.pieces.forEach((gamePiece) => {
           activeObjectList.push(gamePiece.id);
-          if (gamePiece.id === playerObject.playerId) {
-            // It me!
-            if (playerObject.debugServerLocation) {
-              if (!playerObject.serverLocationDisplayBox) {
-                playerObject.serverLocationDisplayBox = this.add.rectangle(
-                  gamePiece.x,
-                  gamePiece.y,
-                  16,
-                  16,
-                );
-                playerObject.serverLocationDisplayBox.setStrokeStyle(
-                  1,
-                  0xff0000,
-                  1,
-                );
-              } else {
-                playerObject.serverLocationDisplayBox.setX(gamePiece.x);
-                playerObject.serverLocationDisplayBox.setY(gamePiece.y);
-              }
-            } // TODO: Allow shutting off and removal of this box
-          } else if (gamePiece.scene === sceneName && gamePiece.sprite) {
+          if (gamePiece.scene === sceneName && gamePiece.sprite) {
             // If no `sprite` key is given, no sprite is displayed.
             // This also prevents race conditions with remote players during reload
             // TODO: If a remote player changes their sprite, we won't know about it.
@@ -548,6 +530,12 @@ const sceneFactory = ({
               ].sprite = this.physics.add
                 .sprite(gamePiece.x, gamePiece.y, spriteData.name)
                 .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
+
+              if (gamePiece.id === playerObject.playerId) {
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.tint = 0x000000;
+              }
 
               if (spriteData.physicsOffset) {
                 playerObject.spawnedObjectList[
@@ -706,7 +694,7 @@ const sceneFactory = ({
             if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
             }
-            playerObject.spawnedObjectList[gamePiece.id].sprite = null;
+            playerObject.spawnedObjectList[gamePiece.id] = null;
           }
         });
       }
