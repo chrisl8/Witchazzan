@@ -508,9 +508,13 @@ const sceneFactory = ({
         gamePieceList.pieces.forEach((gamePiece) => {
           activeObjectList.push(gamePiece.id);
           if (gamePiece.scene === sceneName && gamePiece.sprite) {
-            this.add
-              .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
-              .setOrigin(0, 0);
+            // This code is great for seeing where the server things things are,
+            // but as it is written it is SLOW. So either only use it during debugging
+            // Or improve it.
+            // this.add
+            //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
+            //   .setOrigin(0, 0);
+
             // If no `sprite` key is given, no sprite is displayed.
             // This also prevents race conditions with remote players during reload
             // TODO: If a remote player changes their sprite, we won't know about it.
