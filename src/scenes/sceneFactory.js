@@ -1,10 +1,5 @@
 /* globals window:true */
 import Phaser from 'phaser';
-
-// TODO: Sprite loading needs to be dynamic:
-//       1. Every player should be able to pick their own sprite to represent themselves.
-//       2. We should be able to load arbitrary sprites from objects in the map or server objects.
-
 import playerObject from '../objects/playerObject';
 import textObject from '../objects/textObject';
 import handleKeyboardInput from '../handleKeyboardInput';
@@ -356,7 +351,7 @@ const sceneFactory = ({
   };
 
   let lastServerUpdate = 0;
-  const serverUpateInterval = 100;
+  const serverUpateInterval = 40;
 
   // eslint-disable-next-line func-names
   scene.update = function(time) {
