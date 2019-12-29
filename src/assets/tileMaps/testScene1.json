@@ -75,7 +75,7 @@
                  "y":178.666666666667
                 }, 
                 {
-                 "height":384,
+                 "height":440,
                  "id":3,
                  "name":"arena1",
                  "properties":[
@@ -89,23 +89,35 @@
                  "visible":true,
                  "width":44,
                  "x":-44,
-                 "y":-16
+                 "y":-44
                 }, 
                 {
-                 "height":384,
+                 "height":440,
                  "id":4,
-                 "name":"openingScene",
+                 "name":"LoruleH8",
+                 "properties":[
+                        {
+                         "name":"Entrance",
+                         "type":"string",
+                         "value":"Left"
+                        }],
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
                  "width":44,
                  "x":640,
-                 "y":-12
+                 "y":-44
                 }, 
                 {
                  "height":44,
                  "id":6,
-                 "name":"openingScene",
+                 "name":"LoruleH8",
+                 "properties":[
+                        {
+                         "name":"Entrance",
+                         "type":"string",
+                         "value":"Upper"
+                        }],
                  "rotation":0,
                  "type":"SwitchToScene",
                  "visible":true,
@@ -116,7 +128,7 @@
                 {
                  "height":44,
                  "id":7,
-                 "name":"openingSceneRight1",
+                 "name":"LoruleI8",
                  "properties":[
                         {
                          "name":"Entrance",
@@ -133,7 +145,7 @@
                 {
                  "height":0,
                  "id":8,
-                 "name":"Top",
+                 "name":"Upper",
                  "point":true,
                  "rotation":0,
                  "type":"Entrance",

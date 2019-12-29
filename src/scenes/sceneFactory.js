@@ -367,10 +367,10 @@ const sceneFactory = ({
       // Hot key scene switch for testing.
       if (playerObject.keyState.o === 'keydown') {
         playerObject.keyState.o = null;
-        if (sceneOpen && sceneName !== 'openingScene') {
+        if (sceneOpen && sceneName !== 'LoruleH8') {
           sceneOpen = false;
-          console.log(`Switching to scene: openingScene`);
-          this.scene.start('openingScene');
+          console.log(`Switching to scene: LoruleH8`);
+          this.scene.start('LoruleH8');
         }
       }
 

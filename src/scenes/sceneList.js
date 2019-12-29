@@ -22,8 +22,11 @@
 import sceneFactory from './sceneFactory';
 
 // Scenes
-import openingSceneTileMap from '../assets/tileMaps/openingScene';
-import openingSceneRight1TileMap from '../assets/tileMaps/openingSceneRight1';
+import LoruleH8 from '../assets/tileMaps/LoruleH8';
+import LoruleI8 from '../assets/tileMaps/LoruleI8';
+import LoruleH7 from '../assets/tileMaps/LoruleH7';
+import LoruleG7 from '../assets/tileMaps/LoruleG7';
+import LoruleG8 from '../assets/tileMaps/LoruleG8';
 import testScene1 from '../assets/tileMaps/testScene1';
 import arena1 from '../assets/tileMaps/arena1';
 
@@ -51,8 +54,8 @@ import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld-extruded.p
 
 const scenes = [
   {
-    sceneName: 'openingScene',
-    tileMap: openingSceneTileMap,
+    sceneName: 'LoruleH8',
+    tileMap: LoruleH8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
     gameSize: {
@@ -77,8 +80,8 @@ const scenes = [
     },
   },
   {
-    sceneName: 'openingSceneRight1',
-    tileMap: openingSceneRight1TileMap,
+    sceneName: 'LoruleI8',
+    tileMap: LoruleI8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
     gameSize: {
@@ -97,6 +100,84 @@ const scenes = [
       },
       Scrolling: {
         fontSize: '.04', // percent of scene height.
+        color: '#d84b65',
+        background: '255,255,255,0.9', // rgba
+      },
+    },
+  },
+  {
+    sceneName: 'LoruleH7',
+    tileMap: LoruleH7,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: {
+      width: 16 * 16,
+      height: 16 * 11,
+    },
+    htmlElementParameters: {
+      Center: {
+        fontSize: '.1', // percent of scene height.
+        color: 'red',
+      },
+      UpperLeft: {
+        fontSize: '.05', // percent of scene height.
+        color: 'blue',
+        background: '255,255,255,0.9', // rgba
+      },
+      Scrolling: {
+        fontSize: '.03', // percent of scene height.
+        color: '#d84b65',
+        background: '255,255,255,0.9', // rgba
+      },
+    },
+  },
+  {
+    sceneName: 'LoruleG7',
+    tileMap: LoruleG7,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: {
+      width: 16 * 16,
+      height: 16 * 11,
+    },
+    htmlElementParameters: {
+      Center: {
+        fontSize: '.1', // percent of scene height.
+        color: 'red',
+      },
+      UpperLeft: {
+        fontSize: '.05', // percent of scene height.
+        color: 'blue',
+        background: '255,255,255,0.9', // rgba
+      },
+      Scrolling: {
+        fontSize: '.03', // percent of scene height.
+        color: '#d84b65',
+        background: '255,255,255,0.9', // rgba
+      },
+    },
+  },
+  {
+    sceneName: 'LoruleG8',
+    tileMap: LoruleG8,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: {
+      width: 16 * 16,
+      height: 16 * 11,
+    },
+    htmlElementParameters: {
+      Center: {
+        fontSize: '.1', // percent of scene height.
+        color: 'red',
+      },
+      UpperLeft: {
+        fontSize: '.05', // percent of scene height.
+        color: 'blue',
+        background: '255,255,255,0.9', // rgba
+      },
+      Scrolling: {
+        fontSize: '.03', // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
