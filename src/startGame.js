@@ -6,6 +6,7 @@
 /* globals document:true */
 import Phaser from 'phaser';
 import WebSocketClient from '@gamestdio/websocket'; // This automatically reconnects after a disconnect.
+import nipplejs from 'nipplejs';
 import rootGameObject from './objects/rootGameObject';
 import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
@@ -106,6 +107,78 @@ async function startGame() {
 
   document.getElementById('pre_load_info').hidden = true;
   document.getElementsByTagName('body')[0].style.background = 'black';
+
+  const joystick = nipplejs.create({ multitouch: true, maxNumberOfNipples: 2 });
+  let joystickCount = 0;
+  joystick
+    .on('start', () => {
+      if (joystickCount === 0) {
+        playerObject.joystickDirection = {
+          left: false,
+          right: false,
+          up: false,
+          down: false,
+        };
+        playerObject.joystickDistance = 0;
+      } else {
+        reportFunctions.reportFireball(playerObject.playerDirection);
+      }
+      joystickCount++;
+    })
+    .on('end', () => {
+      joystickCount--;
+      if (joystickCount === 0) {
+        playerObject.joystickDirection = {
+          left: false,
+          right: false,
+          up: false,
+          down: false,
+        };
+        playerObject.joystickDistance = 0;
+      }
+    })
+    .on('move', (evt, data) => {
+      const angle = data.angle.degree;
+      /*
+       0 = right
+       90 = up
+       180 = left
+       270 = down
+       */
+      let left = false;
+      let right = false;
+      let up = false;
+      let down = false;
+      if ((angle >= 0 && angle < 22) || angle >= 335) {
+        right = true;
+      } else if (angle >= 22 && angle < 66) {
+        right = true;
+        up = true;
+      } else if (angle >= 66 && angle < 110) {
+        up = true;
+      } else if (angle >= 110 && angle < 155) {
+        left = true;
+        up = true;
+      } else if (angle >= 155 && angle < 200) {
+        left = true;
+      } else if (angle >= 200 && angle < 245) {
+        left = true;
+        down = true;
+      } else if (angle >= 245 && angle < 290) {
+        down = true;
+      } else if (angle >= 290 && angle < 335) {
+        right = true;
+        down = true;
+      }
+      playerObject.joystickDirection = {
+        left,
+        right,
+        up,
+        down,
+      };
+      playerObject.joystickDistance = data.distance;
+    });
+
   rootGameObject.game = new Phaser.Game(rootGameObject.config);
 }
 

@@ -46,6 +46,13 @@ const playerObject = {
   spawnedObjectList: {},
   sceneObjectList: [],
   spriteData: {},
+  joystickDirection: {
+    left: false,
+    right: false,
+    up: false,
+    down: false,
+  },
+  joystickDistance: 0,
 };
 
 export default playerObject;

@@ -363,7 +363,30 @@ const sceneFactory = ({
     if (sceneOpen) {
       setCameraZoom.call(this);
 
-      const speed = 175;
+      let maxSpeed = 175;
+      const acceleration = 3;
+      let useAcceleration = true;
+      if (
+        playerObject.joystickDirection.left ||
+        playerObject.joystickDirection.right ||
+        playerObject.joystickDirection.up ||
+        playerObject.joystickDirection.down
+      ) {
+        // In case of joystick usage, disable acceleration,
+        // and use joystick force instead.
+        useAcceleration = false;
+
+        let distance = playerObject.joystickDistance;
+        const maxDistance = 50;
+        if (distance > maxDistance) {
+          distance = maxDistance;
+        }
+        const newMaxSpeed = (maxSpeed * distance) / maxDistance;
+        if (newMaxSpeed < maxSpeed) {
+          maxSpeed = newMaxSpeed;
+        }
+      }
+
       playerObject.player.body.velocity.clone();
 
       // Return to intro text
@@ -403,28 +426,34 @@ const sceneFactory = ({
       // Horizontal movement
       if (
         playerObject.keyState.ArrowLeft === 'keydown' ||
-        playerObject.keyState.a === 'keydown'
+        playerObject.keyState.a === 'keydown' ||
+        playerObject.joystickDirection.left
       ) {
-        let newSpeed = -speed;
-        if (previousVelocityX === 0) {
-          newSpeed = -1;
-          fullSpeed = false;
-        } else if (previousVelocityX > -speed) {
-          newSpeed = previousVelocityX - 3;
-          fullSpeed = false;
+        let newSpeed = -maxSpeed;
+        if (useAcceleration) {
+          if (previousVelocityX === 0) {
+            newSpeed = -1;
+            fullSpeed = false;
+          } else if (previousVelocityX > -maxSpeed) {
+            newSpeed = previousVelocityX - acceleration;
+            fullSpeed = false;
+          }
         }
         playerObject.player.body.setVelocityX(newSpeed);
       } else if (
         playerObject.keyState.ArrowRight === 'keydown' ||
-        playerObject.keyState.d === 'keydown'
+        playerObject.keyState.d === 'keydown' ||
+        playerObject.joystickDirection.right
       ) {
-        let newSpeed = speed;
-        if (previousVelocityX === 0) {
-          newSpeed = 1;
-          fullSpeed = false;
-        } else if (previousVelocityX < speed) {
-          newSpeed = previousVelocityX + 3;
-          fullSpeed = false;
+        let newSpeed = maxSpeed;
+        if (useAcceleration) {
+          if (previousVelocityX === 0) {
+            newSpeed = 1;
+            fullSpeed = false;
+          } else if (previousVelocityX < maxSpeed) {
+            newSpeed = previousVelocityX + acceleration;
+            fullSpeed = false;
+          }
         }
         playerObject.player.body.setVelocityX(newSpeed);
       }
@@ -432,41 +461,48 @@ const sceneFactory = ({
       // Vertical movement
       if (
         playerObject.keyState.ArrowUp === 'keydown' ||
-        playerObject.keyState.w === 'keydown'
+        playerObject.keyState.w === 'keydown' ||
+        playerObject.joystickDirection.up
       ) {
-        let newSpeed = -speed;
-        if (previousVelocityY === 0) {
-          newSpeed = -1;
-          fullSpeed = false;
-        } else if (previousVelocityY > -speed) {
-          newSpeed = previousVelocityY - 3;
-          fullSpeed = false;
+        let newSpeed = -maxSpeed;
+        if (useAcceleration) {
+          if (previousVelocityY === 0) {
+            newSpeed = -1;
+            fullSpeed = false;
+          } else if (previousVelocityY > -maxSpeed) {
+            newSpeed = previousVelocityY - acceleration;
+            fullSpeed = false;
+          }
         }
         playerObject.player.body.setVelocityY(newSpeed);
       } else if (
         playerObject.keyState.ArrowDown === 'keydown' ||
-        playerObject.keyState.s === 'keydown'
+        playerObject.keyState.s === 'keydown' ||
+        playerObject.joystickDirection.down
       ) {
-        let newSpeed = speed;
-        if (previousVelocityY === 0) {
-          newSpeed = 1;
-          fullSpeed = false;
-        } else if (previousVelocityY < speed) {
-          newSpeed = previousVelocityY + 3;
-          fullSpeed = false;
+        let newSpeed = maxSpeed;
+        if (useAcceleration) {
+          if (previousVelocityY === 0) {
+            newSpeed = 1;
+            fullSpeed = false;
+          } else if (previousVelocityY < maxSpeed) {
+            newSpeed = previousVelocityY + acceleration;
+            fullSpeed = false;
+          }
         }
         playerObject.player.body.setVelocityY(newSpeed);
       }
 
       // Normalize and scale the velocity so that player can't move faster along a diagonal
       if (fullSpeed) {
-        playerObject.player.body.velocity.normalize().scale(speed);
+        playerObject.player.body.velocity.normalize().scale(maxSpeed);
       }
 
       // Update the animation last and give left/right animations precedence over up/down animations
       if (
         playerObject.keyState.ArrowLeft === 'keydown' ||
-        playerObject.keyState.a === 'keydown'
+        playerObject.keyState.a === 'keydown' ||
+        playerObject.joystickDirection.left
       ) {
         playerObject.player.setFlipX(playerObject.spriteData.faces === 'right');
         playerObject.player.anims.play(
@@ -477,7 +513,8 @@ const sceneFactory = ({
         playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowRight === 'keydown' ||
-        playerObject.keyState.d === 'keydown'
+        playerObject.keyState.d === 'keydown' ||
+        playerObject.joystickDirection.right
       ) {
         playerObject.player.setFlipX(playerObject.spriteData.faces === 'left');
         playerObject.player.anims.play(
@@ -488,7 +525,8 @@ const sceneFactory = ({
         playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowUp === 'keydown' ||
-        playerObject.keyState.w === 'keydown'
+        playerObject.keyState.w === 'keydown' ||
+        playerObject.joystickDirection.up
       ) {
         playerObject.player.anims.play(
           `${playerObject.spriteData.name}-move-back`,
@@ -498,7 +536,8 @@ const sceneFactory = ({
         playerObject.playerStopped = false;
       } else if (
         playerObject.keyState.ArrowDown === 'keydown' ||
-        playerObject.keyState.s === 'keydown'
+        playerObject.keyState.s === 'keydown' ||
+        playerObject.joystickDirection.down
       ) {
         playerObject.player.anims.play(
           `${playerObject.spriteData.name}-move-front`,
@@ -609,25 +648,23 @@ const sceneFactory = ({
                   90,
                 );
               }
-            } else {
+            } else if (
+              gamePiece.direction === 'left' ||
+              gamePiece.direction === 'west'
+            ) {
               // For non rotatable sprites, only flip them for left/right
-              if (
-                gamePiece.direction === 'left' ||
-                gamePiece.direction === 'west'
-              ) {
-                playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData
-                    .faces === 'right',
-                );
-              } else if (
-                gamePiece.direction === 'right' ||
-                gamePiece.direction === 'east'
-              ) {
-                playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData
-                    .faces === 'left',
-                );
-              }
+              playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+                playerObject.spawnedObjectList[gamePiece.id].spriteData
+                  .faces === 'right',
+              );
+            } else if (
+              gamePiece.direction === 'right' ||
+              gamePiece.direction === 'east'
+            ) {
+              playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+                playerObject.spawnedObjectList[gamePiece.id].spriteData
+                  .faces === 'left',
+              );
             }
 
             // The only way to know if the remote item is in motion is for the server to tell us
@@ -642,61 +679,81 @@ const sceneFactory = ({
               playerObject.spawnedObjectList[
                 gamePiece.id
               ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-left`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-left`,
               ) &&
               (gamePiece.direction === 'left' || gamePiece.direction === 'west')
             ) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-left`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-left`,
                 true,
               );
             } else if (
               playerObject.spawnedObjectList[
                 gamePiece.id
               ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-right`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-right`,
               ) &&
               (gamePiece.direction === 'right' ||
                 gamePiece.direction === 'east')
             ) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-right`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-right`,
                 true,
               );
             } else if (
               playerObject.spawnedObjectList[
                 gamePiece.id
               ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-back`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-back`,
               ) &&
               (gamePiece.direction === 'up' || gamePiece.direction === 'north')
             ) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-back`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-back`,
                 true,
               );
             } else if (
               playerObject.spawnedObjectList[
                 gamePiece.id
               ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-front`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-front`,
               ) &&
               (gamePiece.direction === 'down' ||
                 gamePiece.direction === 'south')
             ) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-front`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-front`,
                 true,
               );
             } else if (
               playerObject.spawnedObjectList[
                 gamePiece.id
               ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-stationary`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-stationary`,
               )
             ) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${playerObject.spawnedObjectList[gamePiece.id].spriteData.name}-move-stationary`,
+                `${
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                }-move-stationary`,
                 true,
               );
             }

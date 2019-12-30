@@ -4,6 +4,16 @@ body {
   padding: 0;
 }
 
+/*Allow body to fill browser window, so that joystick can be used BELOW game canvas.*/
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+#pre_game_div {
+  margin-left: 10px;
+}
+
 #command_input_div, #upper_left_text_overlay_div, #scrolling_text_overlay_div, #center_text_overlay_div {
   position: absolute;
 }
