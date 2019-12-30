@@ -7,7 +7,7 @@ module.exports = {
   mode: 'development',
   devtool: 'eval-source-map',
   devServer: {
-    // host: '0.0.0.0',
+    // host: '0.0.0.0', // If you want to connect from outside of your own laptop
     port: 3000,
   },
   module: {
