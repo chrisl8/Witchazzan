@@ -52,6 +52,8 @@ https://github.com/sporadic-labs/tile-extruder
 import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16-extruded.png';
 import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld-extruded.png';
 
+const loruleUpperLeftFontSize = '.03';
+
 const scenes = [
   {
     sceneName: 'LoruleH8',
@@ -68,7 +70,7 @@ const scenes = [
         color: 'red',
       },
       UpperLeft: {
-        fontSize: '.05', // percent of scene height.
+        fontSize: loruleUpperLeftFontSize, // percent of scene height.
         color: 'blue',
         background: '255,255,255,0.9', // rgba
       },
@@ -94,7 +96,7 @@ const scenes = [
         color: 'red',
       },
       UpperLeft: {
-        fontSize: '.05', // percent of scene height.
+        fontSize: loruleUpperLeftFontSize, // percent of scene height.
         color: 'blue',
         background: '255,255,255,0.9', // rgba
       },
@@ -120,7 +122,7 @@ const scenes = [
         color: 'red',
       },
       UpperLeft: {
-        fontSize: '.05', // percent of scene height.
+        fontSize: loruleUpperLeftFontSize, // percent of scene height.
         color: 'blue',
         background: '255,255,255,0.9', // rgba
       },
@@ -146,7 +148,7 @@ const scenes = [
         color: 'red',
       },
       UpperLeft: {
-        fontSize: '.05', // percent of scene height.
+        fontSize: loruleUpperLeftFontSize, // percent of scene height.
         color: 'blue',
         background: '255,255,255,0.9', // rgba
       },
@@ -172,7 +174,7 @@ const scenes = [
         color: 'red',
       },
       UpperLeft: {
-        fontSize: '.05', // percent of scene height.
+        fontSize: loruleUpperLeftFontSize, // percent of scene height.
         color: 'blue',
         background: '255,255,255,0.9', // rgba
       },
@@ -198,7 +200,7 @@ const scenes = [
         color: 'red',
       },
       UpperLeft: {
-        fontSize: '.05', // percent of scene height.
+        fontSize: loruleUpperLeftFontSize, // percent of scene height.
         color: 'black',
         background: '255,255,255,0.8', // rgba
       },
@@ -224,7 +226,7 @@ const scenes = [
         color: 'red',
       },
       UpperLeft: {
-        fontSize: '.05', // percent of scene height.
+        fontSize: loruleUpperLeftFontSize, // percent of scene height.
         color: 'black',
         background: '255,255,255,0.8', // rgba
       },
