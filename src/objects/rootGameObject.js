@@ -16,7 +16,7 @@ import scene from '../scenes/sceneList';
 const rootGameObject = {
   config: {
     type: Phaser.AUTO, // Which renderer to use
-    // parent: 'game_container', // ID of the DOM element to add the canvas to. If no parent is given, it will default to using the document body.
+    parent: 'game_container', // ID of the DOM element to add the canvas to. If no parent is given, it will default to using the document body.
     scale: {
       mode: Phaser.Scale.NONE,
       autoRound: true, // Might improve performance?

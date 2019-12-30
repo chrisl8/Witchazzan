@@ -39,27 +39,58 @@
   <body>
     <div id="pre_load_info">
       <p id="loading_text">Loading Witchazzan, please stand by . . .</p>
-      <div id="player_name_entry_div" hidden>
+      <div id="pre_game_div" hidden>
         <br />
         <label
           >Enter a name for your character:&nbsp;<input
             id="player_name_input_box"
         /></label>
-        <button id="player_name_submit_button">Submit</button>
+        <button id="player_name_submit_button">Start Game</button>
+        <h1>Instructions</h1>
+        <h3>Directional Controls</h3>
+        <ul>
+          <li>wasd</li>
+          <li>Arrow Keys</li>
+          <li>Use Finger or Mouse pointer like a finger.</li>
+          <ul>
+            <li>While holding one finger on the screen, tap the screen with a second finger to fire.</li>
+          </ul>
+        </ul>
+        <h3>Keys</h3>
+        <ul>
+          <li>Space Bar - Fire</li>
+          <li>c - Open the Chat/Command input box</li>
+          <li>o - return to Opening scene</li>
+          <li>h - Return to this Help screen</li>
+            <ul>
+              <li>This will also reload and pause your game.</li>
+            </ul>
+        </ul>
+        <h3>Chat/Command Input</h3>
+        <ul>
+          <li>Any text entered is broadcast as chat text to other players.</li>
+          <li>Esc - Close Chat/Command input box</li>
+          <li>/ - send commands instead of chat</li>
+          <li>/run - run built in functions</li>
+        </ul>
+        <h3>Notes</h3>
+        <li>To clear chat text on screen open and close the chat window with 'c'.</li>
       </div>
     </div>
-    <div id="canvas_overlay_elements" style="display: none;">
-      <div id="command_input_div" style="display: none;">
-        <span id="command_input_caret"></span><input id="command_input" />
-      </div>
-      <div id="upper_left_text_overlay_div">
-        <p id="upper_left_text_overlay_input"></p>
-      </div>
-      <div id="scrolling_text_overlay_div">
-        <p id="scrolling_text_overlay_input"></p>
-      </div>
-      <div id="center_text_overlay_div">
-        <p id="center_text_overlay_input"></p>
+    <div id="game_container">
+      <div id="canvas_overlay_elements" style="display: none;">
+        <div id="command_input_div" style="display: none;">
+          <span id="command_input_caret"></span><input id="command_input" />
+        </div>
+        <div id="upper_left_text_overlay_div">
+          <p id="upper_left_text_overlay_input"></p>
+        </div>
+        <div id="scrolling_text_overlay_div">
+          <p id="scrolling_text_overlay_input"></p>
+        </div>
+        <div id="center_text_overlay_div">
+          <p id="center_text_overlay_input"></p>
+        </div>
       </div>
     </div>
   </body>

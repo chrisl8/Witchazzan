@@ -18,8 +18,8 @@
 
 const textObject = {
   helloText: {
-    text: `Hello. Press 'c' to enter commands.`, // TODO: Change to F1 or ? for Help once that exists.
-    shouldBeActiveNow: true,
+    text: `Hello. Press 'c' to enter commands.`,
+    shouldBeActiveNow: false,
     location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
   },
   escapeToLeaveChat: {

@@ -1,4 +1,5 @@
 /* globals window:true */
+/* globals localStorage:true */
 import Phaser from 'phaser';
 import playerObject from '../objects/playerObject';
 import textObject from '../objects/textObject';
@@ -363,6 +364,22 @@ const sceneFactory = ({
 
       const speed = 175;
       playerObject.player.body.velocity.clone();
+
+      // Return to intro text
+      if (playerObject.keyState.h === 'keydown') {
+        playerObject.keyState.h = null;
+        console.log('Display help text');
+        let existingHelpTextVersion = Number(
+          localStorage.getItem('helpTextVersion'),
+        );
+        existingHelpTextVersion--;
+        localStorage.setItem(
+          'helpTextVersion',
+          existingHelpTextVersion.toString(),
+        );
+
+        window.location.reload(true);
+      }
 
       // Hot key scene switch for testing.
       if (playerObject.keyState.o === 'keydown') {

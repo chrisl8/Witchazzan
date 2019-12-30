@@ -7,6 +7,10 @@ import playerObject from './objects/playerObject';
 import startGame from './startGame';
 import wait from './utilities/wait';
 
+// Increment this to force players to see the Instructions again.
+const helpTextVersion = 4;
+let existingHelpTextVersion;
+
 // eslint-disable-next-line func-names
 (async function() {
   const checkForEnterKey = (event) => {
@@ -21,7 +25,7 @@ import wait from './utilities/wait';
     const playerNameInputValue =
       playerObject.domElements.playerNameInputBox.value;
     if (playerNameInputValue) {
-      document.getElementById('player_name_entry_div').hidden = true;
+      document.getElementById('pre_game_div').hidden = true;
       playerObject.domElements.playerNameSubmitButton.removeEventListener(
         'click',
         addPlayerNameToPlayerObject,
@@ -32,12 +36,19 @@ import wait from './utilities/wait';
       );
       localStorage.setItem('playerName', playerNameInputValue);
       playerObject.playerName = playerNameInputValue;
+      localStorage.setItem('helpTextVersion', helpTextVersion.toString());
+      existingHelpTextVersion = helpTextVersion;
     }
   };
   if (!playerObject.playerName) {
     // Check local storage to see if we already have a name.
     const existingPlayerName = localStorage.getItem('playerName');
-    if (!existingPlayerName) {
+    existingHelpTextVersion = Number(localStorage.getItem('helpTextVersion'));
+    if (
+      !existingPlayerName ||
+      !existingHelpTextVersion ||
+      existingHelpTextVersion < helpTextVersion
+    ) {
       playerObject.domElements.playerNameSubmitButton.addEventListener(
         'click',
         addPlayerNameToPlayerObject,
@@ -47,13 +58,20 @@ import wait from './utilities/wait';
         checkForEnterKey,
       );
       document.getElementById('loading_text').hidden = true;
-      document.getElementById('player_name_entry_div').hidden = false;
+      document.getElementById('pre_game_div').hidden = false;
+      if (existingPlayerName) {
+        playerObject.domElements.playerNameInputBox.value = existingPlayerName;
+      }
       playerObject.domElements.playerNameInputBox.focus();
     } else {
       playerObject.playerName = existingPlayerName;
     }
 
-    while (!playerObject.playerName) {
+    while (
+      !playerObject.playerName ||
+      !existingHelpTextVersion ||
+      existingHelpTextVersion < helpTextVersion
+    ) {
       // eslint-disable-next-line no-await-in-loop
       await wait(1);
     }
