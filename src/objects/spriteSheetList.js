@@ -125,11 +125,11 @@ const spriteSheetList = [
     file: carrot,
     frameWidth: 10,
     frameHeight: 21,
-    endFrame: 6,
+    endFrame: 2,
     faces: 'left',
-    animationFrameRate: 2,
+    animationFrameRate: 1,
     animations: [
-      { keyName: 'move-stationary', start: 1, end: 5, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-stationary', start: 0, end: 1, zeroPad: 3, repeat: -1 },
     ],
     physicsSize: {
       x: 10 * 0.8,
