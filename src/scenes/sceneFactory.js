@@ -13,6 +13,11 @@ import getSpriteData from '../utilities/getSpriteData';
 // TODO: Is this actually a proper factory?
 //  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
 
+// This is the scene you start the game in,
+// and go to if a non-existent scene is requested,
+// and if you press the 'o' key.
+const defaultOpeningScene = 'LoruleH8';
+
 const sceneFactory = ({
   sceneName,
   tileMap,
@@ -68,7 +73,11 @@ const sceneFactory = ({
   function cleanUpSceneAndUseExit(player, exit) {
     if (sceneOpen) {
       cleanUpScene();
-      const destinationScene = exit.getData('destinationScene');
+      let destinationScene = exit.getData('destinationScene');
+      if (this.scene.getIndex(destinationScene) === -1) {
+        console.log(`Switching to scene: ${destinationScene} does not exist.`);
+        destinationScene = defaultOpeningScene;
+      }
       playerObject.destinationEntrance = exit.getData('destinationEntrance');
       if (playerObject.destinationEntrance) {
         console.log(
@@ -408,10 +417,10 @@ const sceneFactory = ({
       // Hot key scene switch for testing.
       if (playerObject.keyState.o === 'keydown') {
         playerObject.keyState.o = null;
-        if (sceneOpen && sceneName !== 'LoruleH8') {
+        if (sceneOpen && sceneName !== defaultOpeningScene) {
           cleanUpSceneAndUseExit.call(this, null, {
             getData() {
-              return 'LoruleH8';
+              return defaultOpeningScene;
             },
           });
         }
