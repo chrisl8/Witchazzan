@@ -8,6 +8,7 @@ import christmasTree from '../assets/spriteSheets/ChristmasTree.png';
 import pinkTree from '../assets/spriteSheets/pinkTree.png';
 import greenTree from '../assets/spriteSheets/greenTree.png';
 import deadTree from '../assets/spriteSheets/deadTree.png';
+import chest from '../assets/spriteSheets/chest.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -140,6 +141,25 @@ const spriteSheetList = [
     },
     displayWidth: 10 * 0.8,
     displayHeight: 21 * 0.8,
+  },
+  {
+    type: 'other',
+    name: 'chestFront',
+    file: chest,
+    frameWidth: 46,
+    frameHeight: 43,
+    endFrame: 3,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 2, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 46 * 0.8,
+      y: 43 * 0.8,
+    },
+    displayWidth: 46 * 0.8,
+    displayHeight: 43 * 0.8,
   },
   {
     type: 'other',
