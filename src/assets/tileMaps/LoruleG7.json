@@ -194,6 +194,23 @@
                  "width":16,
                  "x":112,
                  "y":16
+                }, 
+                {
+                 "height":16,
+                 "id":37,
+                 "name":"spawn-slime",
+                 "properties":[
+                        {
+                         "name":"spawn",
+                         "type":"string",
+                         "value":"slime"
+                        }],
+                 "rotation":0,
+                 "type":"spawn-point",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -202,7 +219,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":37,
+ "nextobjectid":38,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.1",
