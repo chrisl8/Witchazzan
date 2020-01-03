@@ -5,6 +5,9 @@ import fireball from '../assets/spriteSheets/fireball.png';
 import bloomby from '../assets/spriteSheets/bloomby.png';
 import carrot from '../assets/spriteSheets/carrot.png';
 import christmasTree from '../assets/spriteSheets/ChristmasTree.png';
+import pinkTree from '../assets/spriteSheets/pinkTree.png';
+import greenTree from '../assets/spriteSheets/greenTree.png';
+import deadTree from '../assets/spriteSheets/deadTree.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -151,6 +154,48 @@ const spriteSheetList = [
     },
     displayWidth: 32,
     displayHeight: 32,
+  },
+  {
+    type: 'other',
+    name: 'pinkTree',
+    file: pinkTree,
+    frameWidth: 39,
+    frameHeight: 49,
+    endFrame: 1,
+    physicsSize: {
+      x: 39,
+      y: 49,
+    },
+    displayWidth: 20,
+    displayHeight: 25,
+  },
+  {
+    type: 'other',
+    name: 'greenTree',
+    file: greenTree,
+    frameWidth: 43,
+    frameHeight: 38,
+    endFrame: 1,
+    physicsSize: {
+      x: 43,
+      y: 38,
+    },
+    displayWidth: 21,
+    displayHeight: 17,
+  },
+  {
+    type: 'other',
+    name: 'deadTree',
+    file: deadTree,
+    frameWidth: 27,
+    frameHeight: 30,
+    endFrame: 1,
+    physicsSize: {
+      x: 27,
+      y: 30,
+    },
+    displayWidth: 13,
+    displayHeight: 15,
   },
   {
     // Flaming Goose is the default sprite used whenever a requested sprite cannot be found,

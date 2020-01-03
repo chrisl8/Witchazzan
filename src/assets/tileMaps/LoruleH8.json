@@ -164,19 +164,19 @@
                 {
                  "height":0,
                  "id":22,
-                 "name":"gloobScaryman",
+                 "name":"greenTree",
                  "point":true,
                  "rotation":0,
                  "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
-                 "x":184,
-                 "y":120
+                 "x":208,
+                 "y":124
                 }, 
                 {
                  "height":0,
                  "id":24,
-                 "name":"christmasTree",
+                 "name":"pinkTree",
                  "point":true,
                  "rotation":0,
                  "type":"SpawnNPC",
@@ -218,6 +218,18 @@
                  "width":16,
                  "x":64,
                  "y":16
+                }, 
+                {
+                 "height":0,
+                 "id":27,
+                 "name":"deadTree",
+                 "point":true,
+                 "rotation":0,
+                 "type":"SpawnNPC",
+                 "visible":true,
+                 "width":0,
+                 "x":176,
+                 "y":120
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -226,7 +238,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":27,
+ "nextobjectid":28,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.1",
