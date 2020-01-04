@@ -18,6 +18,19 @@ import getSpriteData from '../utilities/getSpriteData';
 // and if you press the 'o' key.
 const defaultOpeningScene = 'LoruleH8';
 
+const checkForShitDataFromThatClojureNut = (gamePiece) => {
+  const result =
+    typeof gamePiece.id === 'number' &&
+    typeof gamePiece.x === 'number' &&
+    typeof gamePiece.y === 'number' &&
+    gamePiece.sprite;
+  if (!result) {
+    console.error('Garbage data received from server:');
+    console.error(gamePiece);
+  }
+  return result;
+};
+
 const sceneFactory = ({
   sceneName,
   tileMap,
@@ -569,220 +582,230 @@ const sceneFactory = ({
       const activeObjectList = [];
       if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
         gamePieceList.pieces.forEach((gamePiece) => {
-          activeObjectList.push(gamePiece.id);
-          if (gamePiece.scene === sceneName && gamePiece.sprite) {
-            // This code is great for seeing where the server things things are,
-            // but as it is written it is SLOW. So either only use it during debugging
-            // Or improve it.
-            // this.add
-            //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
-            //   .setOrigin(0, 0);
+          if (checkForShitDataFromThatClojureNut(gamePiece)) {
+            activeObjectList.push(gamePiece.id);
+            if (gamePiece.scene === sceneName && gamePiece.sprite) {
+              // This code is great for seeing where the server things things are,
+              // but as it is written it is SLOW. So either only use it during debugging
+              // Or improve it.
+              // this.add
+              //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
+              //   .setOrigin(0, 0);
 
-            // If no `sprite` key is given, no sprite is displayed.
-            // This also prevents race conditions with remote players during reload
-            // TODO: If a remote player changes their sprite, we won't know about it.
-            if (!playerObject.spawnedObjectList[gamePiece.id]) {
-              // Add new sprites to the scene
-              console.log('New game piece:');
-              console.log(gamePiece);
-              playerObject.spawnedObjectList[gamePiece.id] = {};
+              // If no `sprite` key is given, no sprite is displayed.
+              // This also prevents race conditions with remote players during reload
+              // TODO: If a remote player changes their sprite, we won't know about it.
+              if (!playerObject.spawnedObjectList[gamePiece.id]) {
+                // Add new sprites to the scene
+                console.log('New game piece:');
+                console.log(gamePiece);
+                playerObject.spawnedObjectList[gamePiece.id] = {};
 
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].spriteData = getSpriteData(gamePiece.sprite);
-
-              // To shorten variable names and make code more consistent
-              const spriteData =
-                playerObject.spawnedObjectList[gamePiece.id].spriteData;
-
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite = this.physics.add
-                .sprite(gamePiece.x, gamePiece.y, spriteData.name)
-                .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
-
-              if (gamePiece.id === playerObject.playerId) {
                 playerObject.spawnedObjectList[
                   gamePiece.id
-                ].sprite.tint = 0x000000;
-              }
+                ].spriteData = getSpriteData(gamePiece.sprite);
 
-              if (spriteData.physicsOffset) {
+                // To shorten variable names and make code more consistent
+                const spriteData =
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData;
+
                 playerObject.spawnedObjectList[
                   gamePiece.id
-                ].sprite.body.setOffset(
-                  spriteData.physicsOffset.x,
-                  spriteData.physicsOffset.y,
-                );
+                ].sprite = this.physics.add
+                  .sprite(gamePiece.x, gamePiece.y, spriteData.name)
+                  .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
+
+                if (gamePiece.id === playerObject.playerId) {
+                  playerObject.spawnedObjectList[
+                    gamePiece.id
+                  ].sprite.tint = 0x000000;
+                }
+
+                if (spriteData.physicsOffset) {
+                  playerObject.spawnedObjectList[
+                    gamePiece.id
+                  ].sprite.body.setOffset(
+                    spriteData.physicsOffset.x,
+                    spriteData.physicsOffset.y,
+                  );
+                }
+
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.displayHeight = spriteData.displayHeight;
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.displayWidth = spriteData.displayWidth;
               }
+              // Sometimes they go inactive.
+              playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
 
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite.displayHeight = spriteData.displayHeight;
-              playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
-                spriteData.displayWidth;
-            }
-            // Sometimes they go inactive.
-            playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
-
-            // Use Game Piece direction to set sprite rotation or flip it
-            if (
-              playerObject.spawnedObjectList[gamePiece.id].spriteData.rotatable
-            ) {
-              // Rotate sprite to face requested direction.
+              // Use Game Piece direction to set sprite rotation or flip it
               if (
+                playerObject.spawnedObjectList[gamePiece.id].spriteData
+                  .rotatable
+              ) {
+                // Rotate sprite to face requested direction.
+                if (
+                  gamePiece.direction === 'left' ||
+                  gamePiece.direction === 'west'
+                ) {
+                  playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
+                    180,
+                  );
+                } else if (
+                  gamePiece.direction === 'right' ||
+                  gamePiece.direction === 'east'
+                ) {
+                  playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
+                    0,
+                  );
+                } else if (
+                  gamePiece.direction === 'up' ||
+                  gamePiece.direction === 'north'
+                ) {
+                  playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
+                    -90,
+                  );
+                } else if (
+                  gamePiece.direction === 'down' ||
+                  gamePiece.direction === 'south'
+                ) {
+                  playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
+                    90,
+                  );
+                }
+              } else if (
                 gamePiece.direction === 'left' ||
                 gamePiece.direction === 'west'
               ) {
-                playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
-                  180,
+                // For non rotatable sprites, only flip them for left/right
+                playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData
+                    .faces === 'right',
                 );
               } else if (
                 gamePiece.direction === 'right' ||
                 gamePiece.direction === 'east'
               ) {
-                playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(0);
-              } else if (
-                gamePiece.direction === 'up' ||
-                gamePiece.direction === 'north'
-              ) {
-                playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
-                  -90,
-                );
-              } else if (
-                gamePiece.direction === 'down' ||
-                gamePiece.direction === 'south'
-              ) {
-                playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(
-                  90,
+                playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
+                  playerObject.spawnedObjectList[gamePiece.id].spriteData
+                    .faces === 'left',
                 );
               }
-            } else if (
-              gamePiece.direction === 'left' ||
-              gamePiece.direction === 'west'
-            ) {
-              // For non rotatable sprites, only flip them for left/right
-              playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-                playerObject.spawnedObjectList[gamePiece.id].spriteData
-                  .faces === 'right',
-              );
-            } else if (
-              gamePiece.direction === 'right' ||
-              gamePiece.direction === 'east'
-            ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-                playerObject.spawnedObjectList[gamePiece.id].spriteData
-                  .faces === 'left',
-              );
-            }
 
-            // The only way to know if the remote item is in motion is for the server to tell us
-            //       We cannot divine it, because the local tick is always faster than the server update.
-            let objectInMotion = true; // Default to animate if server does not tell us otherwise.
-            if (gamePiece.moving === false) {
-              objectInMotion = false;
-            }
-            if (!objectInMotion) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
-            } else if (
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-left`,
-              ) &&
-              (gamePiece.direction === 'left' || gamePiece.direction === 'west')
-            ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-left`,
-                true,
-              );
-            } else if (
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-right`,
-              ) &&
-              (gamePiece.direction === 'right' ||
-                gamePiece.direction === 'east')
-            ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-right`,
-                true,
-              );
-            } else if (
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-back`,
-              ) &&
-              (gamePiece.direction === 'up' || gamePiece.direction === 'north')
-            ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-back`,
-                true,
-              );
-            } else if (
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-front`,
-              ) &&
-              (gamePiece.direction === 'down' ||
-                gamePiece.direction === 'south')
-            ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-front`,
-                true,
-              );
-            } else if (
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-stationary`,
-              )
-            ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-                `${
-                  playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-                }-move-stationary`,
-                true,
-              );
-            }
+              // The only way to know if the remote item is in motion is for the server to tell us
+              //       We cannot divine it, because the local tick is always faster than the server update.
+              let objectInMotion = true; // Default to animate if server does not tell us otherwise.
+              if (gamePiece.moving === false) {
+                objectInMotion = false;
+              }
+              if (!objectInMotion) {
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.anims.stop();
+              } else if (
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-left`,
+                ) &&
+                (gamePiece.direction === 'left' ||
+                  gamePiece.direction === 'west')
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-left`,
+                  true,
+                );
+              } else if (
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-right`,
+                ) &&
+                (gamePiece.direction === 'right' ||
+                  gamePiece.direction === 'east')
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-right`,
+                  true,
+                );
+              } else if (
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-back`,
+                ) &&
+                (gamePiece.direction === 'up' ||
+                  gamePiece.direction === 'north')
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-back`,
+                  true,
+                );
+              } else if (
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-front`,
+                ) &&
+                (gamePiece.direction === 'down' ||
+                  gamePiece.direction === 'south')
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-front`,
+                  true,
+                );
+              } else if (
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-stationary`,
+                )
+              ) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
+                  `${
+                    playerObject.spawnedObjectList[gamePiece.id].spriteData.name
+                  }-move-stationary`,
+                  true,
+                );
+              }
 
-            this.tweens.add({
-              targets: playerObject.spawnedObjectList[gamePiece.id].sprite,
-              x: gamePiece.x,
-              y: gamePiece.y,
-              duration: 90, // Adjust this to be smooth without being too slow.
-              ease: 'Linear', // Anything else is wonky when tracking server updates.
-            });
-          } else if (
-            playerObject.spawnedObjectList[gamePiece.id] &&
-            playerObject.spawnedObjectList[gamePiece.id].sprite
-          ) {
-            // Off screen players should be inactive.
-            if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
+              this.tweens.add({
+                targets: playerObject.spawnedObjectList[gamePiece.id].sprite,
+                x: gamePiece.x,
+                y: gamePiece.y,
+                duration: 90, // Adjust this to be smooth without being too slow.
+                ease: 'Linear', // Anything else is wonky when tracking server updates.
+              });
+            } else if (
+              playerObject.spawnedObjectList[gamePiece.id] &&
+              playerObject.spawnedObjectList[gamePiece.id].sprite
+            ) {
+              // Off screen players should be inactive.
+              if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
+                playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
+              }
+              playerObject.spawnedObjectList[gamePiece.id] = null;
             }
-            playerObject.spawnedObjectList[gamePiece.id] = null;
           }
         });
       }
