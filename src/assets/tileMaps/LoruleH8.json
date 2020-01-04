@@ -230,6 +230,17 @@
                  "width":0,
                  "x":176,
                  "y":120
+                }, 
+                {
+                 "height":16,
+                 "id":28,
+                 "name":"spawn-carrot",
+                 "rotation":0,
+                 "type":"spawn-point",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -238,7 +249,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":28,
+ "nextobjectid":29,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.1",
