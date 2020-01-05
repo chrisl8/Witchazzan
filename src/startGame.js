@@ -109,19 +109,28 @@ async function startGame() {
 
   // Get touches and use them to activate things asside from movement.
   // https://developer.mozilla.org/en-US/docs/Web/API/Touch_events
+  let fingerCount = 0;
   document.body.addEventListener(
     'touchstart',
     (evt) => {
       evt.preventDefault(); // TODO: Might this fix the issue on iPhone's without buttons?
-      if (evt.touches.length === 3) {
+      fingerCount = evt.touches.length;
+    },
+    false,
+  );
+  document.body.addEventListener(
+    'touchend',
+    () => {
+      if (fingerCount === 3) {
         if (playerObject.domElements.chatInputDiv.style.display === 'none') {
           handleKeyboardInput({ key: 'c', type: 'keyup' });
         } else {
           handleKeyboardInput({ key: 'Escape', type: 'keydown' });
         }
-      } else if (evt.touches.length === 2) {
+      } else if (fingerCount === 2) {
         reportFunctions.reportFireball(playerObject.playerDirection);
       }
+      fingerCount = 0;
     },
     false,
   );
@@ -148,6 +157,7 @@ async function startGame() {
     })
     .on('move', (evt, data) => {
       const angle = data.angle.degree;
+      let distance = 0;
       /*
        0 = right
        90 = up
@@ -158,26 +168,29 @@ async function startGame() {
       let right = false;
       let up = false;
       let down = false;
-      if ((angle >= 0 && angle < 22) || angle >= 335) {
-        right = true;
-      } else if (angle >= 22 && angle < 66) {
-        right = true;
-        up = true;
-      } else if (angle >= 66 && angle < 110) {
-        up = true;
-      } else if (angle >= 110 && angle < 155) {
-        left = true;
-        up = true;
-      } else if (angle >= 155 && angle < 200) {
-        left = true;
-      } else if (angle >= 200 && angle < 245) {
-        left = true;
-        down = true;
-      } else if (angle >= 245 && angle < 290) {
-        down = true;
-      } else if (angle >= 290 && angle < 335) {
-        right = true;
-        down = true;
+      if (data.distance > 1) {
+        distance = data.distance;
+        if ((angle >= 0 && angle < 22) || angle >= 335) {
+          right = true;
+        } else if (angle >= 22 && angle < 66) {
+          right = true;
+          up = true;
+        } else if (angle >= 66 && angle < 110) {
+          up = true;
+        } else if (angle >= 110 && angle < 155) {
+          left = true;
+          up = true;
+        } else if (angle >= 155 && angle < 200) {
+          left = true;
+        } else if (angle >= 200 && angle < 245) {
+          left = true;
+          down = true;
+        } else if (angle >= 245 && angle < 290) {
+          down = true;
+        } else if (angle >= 290 && angle < 335) {
+          right = true;
+          down = true;
+        }
       }
       playerObject.joystickDirection = {
         left,
@@ -185,7 +198,7 @@ async function startGame() {
         up,
         down,
       };
-      playerObject.joystickDistance = data.distance;
+      playerObject.joystickDistance = distance;
     });
 
   rootGameObject.game = new Phaser.Game(rootGameObject.config);
