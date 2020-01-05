@@ -141,7 +141,9 @@ function handleKeyboardInput(event) {
       } else if (
         communicationsObject.socket.readyState === WebSocketClient.OPEN
       ) {
-        reportFunctions.reportChat(playerObject.chatInputTextArray.join(''));
+        if (playerObject.chatInputTextArray.length > 0) {
+          reportFunctions.reportChat(playerObject.chatInputTextArray.join(''));
+        }
         // Clear text after sending.
         playerObject.chatInputTextArray.length = 0;
         playerObject.domElements.chatInput.value = '';
