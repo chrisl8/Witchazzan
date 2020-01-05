@@ -15,6 +15,7 @@ import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 import reportFunctions from './reportFunctions';
 import gamePieceList from './objects/gamePieceList';
 import wait from './utilities/wait';
+import handleKeyboardInput from './handleKeyboardInput';
 
 async function startGame() {
   // Set up some initial values.
@@ -106,34 +107,44 @@ async function startGame() {
   document.getElementById('pre_load_info').hidden = true;
   document.getElementsByTagName('body')[0].style.background = 'black';
 
-  const joystick = nipplejs.create({ multitouch: true, maxNumberOfNipples: 2 });
-  let joystickCount = 0;
-  joystick
-    .on('start', () => {
-      if (joystickCount === 0) {
-        playerObject.joystickDirection = {
-          left: false,
-          right: false,
-          up: false,
-          down: false,
-        };
-        playerObject.joystickDistance = 0;
-      } else {
+  // Get touches and use them to activate things asside from movement.
+  // https://developer.mozilla.org/en-US/docs/Web/API/Touch_events
+  document.body.addEventListener(
+    'touchstart',
+    (evt) => {
+      evt.preventDefault(); // TODO: Might this fix the issue on iPhone's without buttons?
+      if (evt.touches.length === 3) {
+        if (playerObject.domElements.chatInputDiv.style.display === 'none') {
+          handleKeyboardInput({ key: 'c', type: 'keyup' });
+        } else {
+          handleKeyboardInput({ key: 'Escape', type: 'keydown' });
+        }
+      } else if (evt.touches.length === 2) {
         reportFunctions.reportFireball(playerObject.playerDirection);
       }
-      joystickCount++;
+    },
+    false,
+  );
+
+  const joystick = nipplejs.create();
+  joystick
+    .on('start', () => {
+      playerObject.joystickDirection = {
+        left: false,
+        right: false,
+        up: false,
+        down: false,
+      };
+      playerObject.joystickDistance = 0;
     })
     .on('end', () => {
-      joystickCount--;
-      if (joystickCount === 0) {
-        playerObject.joystickDirection = {
-          left: false,
-          right: false,
-          up: false,
-          down: false,
-        };
-        playerObject.joystickDistance = 0;
-      }
+      playerObject.joystickDirection = {
+        left: false,
+        right: false,
+        up: false,
+        down: false,
+      };
+      playerObject.joystickDistance = 0;
     })
     .on('move', (evt, data) => {
       const angle = data.angle.degree;
