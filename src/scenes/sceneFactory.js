@@ -409,6 +409,11 @@ const sceneFactory = ({
         }
       }
 
+      // Shift to sprint
+      if (playerObject.keyState.Shift === 'keydown') {
+        useAcceleration = false;
+      }
+
       playerObject.player.body.velocity.clone();
 
       // Return to intro text
