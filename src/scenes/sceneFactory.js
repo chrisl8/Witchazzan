@@ -823,7 +823,7 @@ const sceneFactory = ({
                 targets: playerObject.spawnedObjectList[gamePiece.id].sprite,
                 x: gamePiece.x,
                 y: gamePiece.y,
-                duration: 90, // Adjust this to be smooth without being too slow.
+                duration: 1, // Adjust this to be smooth without being too slow.
                 ease: 'Linear', // Anything else is wonky when tracking server updates.
               });
             } else if (
