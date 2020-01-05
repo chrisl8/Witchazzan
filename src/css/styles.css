@@ -53,3 +53,12 @@ html, body {
 #center_text_overlay_div {
   font-family: 'PT Serif', serif;
 }
+
+/*For Twitter emoji*/
+/*https://github.com/twitter/twemoji*/
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+}

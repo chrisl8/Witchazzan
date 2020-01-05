@@ -29,6 +29,8 @@
       href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto+Mono&display=swap"
       rel="stylesheet"
     />
+    <!--    Emoji from Twitter https://github.com/twitter/twemoji-->
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
     <title>Witchazzan</title>
   </head>
   <!--  Body Background is black, so that it is clear that it is "off the map" regardless of whether we have borders on the side or bottom. We may change how the scaling works later.-->
@@ -93,3 +95,6 @@
     </div>
   </body>
 </html>
+<script>
+  twemoji.parse(document.body);
+</script>
