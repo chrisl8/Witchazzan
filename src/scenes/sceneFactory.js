@@ -378,7 +378,7 @@ const sceneFactory = ({
   const serverUpateInterval = 40;
 
   // eslint-disable-next-line func-names
-  scene.update = function(time) {
+  scene.update = function(time, delta) {
     // Runs once per frame for the duration of the scene
     // Don't do anything if the scene is no longer open.
     // This may not be necessary, but it may prevent race conditions
@@ -436,6 +436,31 @@ const sceneFactory = ({
               return defaultOpeningScene;
             },
           });
+        }
+      }
+
+      // Hot key to display/hide chat log
+      if (playerObject.keyState.l === 'keydown') {
+        playerObject.keyState.l = null;
+        if (textObject.incomingChatText.text !== '') {
+          textObject.incomingChatText.shouldBeActiveNow = !textObject
+            .incomingChatText.shouldBeActiveNow;
+          textObject.incomingChatText.activeTime = 0;
+        }
+      }
+
+      // Timeout chat log window if chat input is not open.
+      if (
+        textObject.incomingChatText.shouldBeActiveNow &&
+        playerObject.domElements.chatInputDiv.style.display === 'none'
+      ) {
+        textObject.incomingChatText.activeTime += delta;
+        if (
+          textObject.incomingChatText.activeTime >
+          textObject.incomingChatText.timeout
+        ) {
+          textObject.incomingChatText.activeTime = 0;
+          textObject.incomingChatText.shouldBeActiveNow = false;
         }
       }
 

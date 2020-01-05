@@ -46,6 +46,8 @@ const textObject = {
     text: '',
     shouldBeActiveNow: false,
     location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
+    activeTime: 0,
+    timeout: 20000,
   },
 };
 

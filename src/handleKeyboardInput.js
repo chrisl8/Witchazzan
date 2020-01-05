@@ -37,6 +37,9 @@ function handleKeyboardInput(event) {
         playerObject.domElements.chatInputDiv.style.width = `${
           playerObject.canvasDomElement.item(0).offsetWidth
         }px`;
+        if (textObject.incomingChatText.text !== '') {
+          textObject.incomingChatText.shouldBeActiveNow = true;
+        }
       }
     } else if (
       communicationsObject.socket.readyState === WebSocketClient.OPEN

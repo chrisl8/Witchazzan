@@ -8,7 +8,7 @@ import startGame from './startGame';
 import wait from './utilities/wait';
 
 // Increment this to force players to see the Instructions again.
-const helpTextVersion = 4;
+const helpTextVersion = 5;
 let existingHelpTextVersion;
 
 // eslint-disable-next-line func-names
