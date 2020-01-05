@@ -22,9 +22,7 @@ async function startGame() {
   playerObject.domElements.chatInputDiv.style.display = 'none';
   playerObject.domElements.chatInputDiv.style.display = 'none';
   playerObject.domElements.Scrolling.hidden = true;
-  // That is *not* an empty string!
-  // https://youtrack.jetbrains.com/issue/IDEA-192107?_ga=2.141602101.646836220.1571768510-293137691.1563993858
-  playerObject.domElements.chatInputCaret.innerHTML = `💬`;
+  playerObject.domElements.chatInputCaret.innerHTML = '&#x1F4AC;';
 
   // See https://developer.mozilla.org/en-US/docs/Web/API/WebSocket for how to use Websockets
   // and https://github.com/gamestdio/websocket for this version that reconnects if the connection drops.
