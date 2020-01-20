@@ -18,5 +18,8 @@ const communicationsObject = {
 if (window.location.hostname === 'witchazzan.ekpyroticfrood.net') {
   communicationsObject.websocketServerString = `wss://witchazzan-server.ekpyroticfrood.net`;
 }
+if (window.location.hostname === 'www.witchazzan.space') {
+  communicationsObject.websocketServerString = `wss://server.witchazzan.space`;
+}
 
 export default communicationsObject;
