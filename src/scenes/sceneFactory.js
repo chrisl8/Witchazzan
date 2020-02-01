@@ -18,14 +18,14 @@ import getSpriteData from '../utilities/getSpriteData';
 // and if you press the 'o' key.
 const defaultOpeningScene = 'LoruleH8';
 
-const checkForShitDataFromThatClojureNut = (gamePiece) => {
+const validateGamePieceData = (gamePiece) => {
   const result =
     typeof gamePiece.id === 'number' &&
     typeof gamePiece.x === 'number' &&
     typeof gamePiece.y === 'number' &&
     gamePiece.sprite;
   if (!result) {
-    console.error('Garbage data received from server:');
+    console.error('Unusable data received from server:');
     console.error(gamePiece);
   }
   return result;
@@ -100,6 +100,11 @@ const sceneFactory = ({
         console.log(
           `Switching to scene: ${destinationScene} at default spawn point.`,
         );
+      }
+
+      if (playerObject.renderTexture) {
+        playerObject.renderTexture.destroy();
+        playerObject.renderTexture = null;
       }
 
       this.scene.start(destinationScene);
@@ -454,6 +459,12 @@ const sceneFactory = ({
         }
       }
 
+      // Hot key to turn dot trails on/off
+      if (playerObject.keyState.t === 'keydown') {
+        playerObject.keyState.t = null;
+        playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
+      }
+
       // Timeout chat log window if chat input is not open.
       if (
         textObject.incomingChatText.shouldBeActiveNow &&
@@ -612,16 +623,68 @@ const sceneFactory = ({
       const activeObjectList = [];
       if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
         gamePieceList.pieces.forEach((gamePiece) => {
-          if (checkForShitDataFromThatClojureNut(gamePiece)) {
+          if (validateGamePieceData(gamePiece)) {
             activeObjectList.push(gamePiece.id);
             if (gamePiece.scene === sceneName && gamePiece.sprite) {
-              // This code is great for seeing where the server things things are,
-              // but as it is written it is SLOW. So either only use it during debugging
-              // Or improve it.
-              // this.add
-              //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
-              //   .setOrigin(0, 0);
+              if (playerObject.dotTrailsOn) {
+                // This code is great for seeing where the server things things are,
+                // but as it is written it is SLOW. So either only use it during debugging
+                // Or improve it.
+                // Render Texture
+                // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.RenderTexture.html
+                // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/rendertexture/
+                // Rectangles:
+                // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Rectangle.html
+                // TODO: Turn debug on/of from menu where you set your name.
+                // TODO: Render the input from the server of debug info
+                if (!playerObject.renderTexture) {
+                  playerObject.renderTexture = scene.add.renderTexture(
+                    0,
+                    0,
+                    640,
+                    480,
+                  );
+                }
+                let fillColor = 0x00ff00;
+                let width = 1;
+                let height = 1;
+                if (['carrot'].indexOf(gamePiece.type) > -1) {
+                  fillColor = 0x0000ff;
+                  width = 5;
+                  height = 5;
+                } else if (['slime'].indexOf(gamePiece.type) > -1) {
+                  fillColor = 0xff0000;
+                } else if (['fireball'].indexOf(gamePiece.type) > -1) {
+                  fillColor = 0xffa500;
+                } else if (gamePiece.id === playerObject.playerId) {
+                  // it me
+                  fillColor = 0x00a500;
+                } else if (['player'].indexOf(gamePiece.type) > -1) {
+                  // it !me
+                  fillColor = 0x6a0dad;
+                }
+                // TODO: Other players "player"
+                playerObject.renderTexture.draw(
+                  new Phaser.GameObjects.Rectangle(
+                    scene,
+                    gamePiece.x,
+                    gamePiece.y,
+                    width,
+                    height,
+                    fillColor,
+                    1,
+                  ).setOrigin(0.5, 0.5),
+                );
+                // this.add
+                //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
+                //   .setOrigin(0, 0);
 
+                // TODO: How do I prove the render texture is "working"
+                //       i.e. Not just as slow as the old method?
+              } else if (playerObject.renderTexture) {
+                playerObject.renderTexture.destroy();
+                playerObject.renderTexture = null;
+              }
               // If no `sprite` key is given, no sprite is displayed.
               // This also prevents race conditions with remote players during reload
               // TODO: If a remote player changes their sprite, we won't know about it.
@@ -818,6 +881,9 @@ const sceneFactory = ({
                   true,
                 );
               }
+
+              // Easing demonstrations:
+              // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
 
               this.tweens.add({
                 targets: playerObject.spawnedObjectList[gamePiece.id].sprite,

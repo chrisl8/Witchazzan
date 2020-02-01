@@ -53,6 +53,7 @@ const playerObject = {
     down: false,
   },
   joystickDistance: 0,
+  dotTrailsOn: false,
 };
 
 export default playerObject;
