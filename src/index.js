@@ -76,5 +76,14 @@ let existingHelpTextVersion;
       await wait(1);
     }
   }
+
+  // Set viewport requirements for game, such as no scrolling
+  const metaTag = document.createElement('meta');
+  metaTag.name = 'viewport';
+  metaTag.content =
+    'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+  document.getElementsByTagName('head')[0].appendChild(metaTag);
+  document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+
   await startGame();
 })();
