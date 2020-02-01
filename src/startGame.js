@@ -17,7 +17,8 @@ import gamePieceList from './objects/gamePieceList';
 import wait from './utilities/wait';
 import handleKeyboardInput from './handleKeyboardInput';
 
-async function startGame() {
+async function startGame({ phaserDebug }) {
+  rootGameObject.config.physics.arcade.debug = phaserDebug;
   // Set up some initial values.
   document.getElementById('canvas_overlay_elements').style.display = 'flex';
   playerObject.domElements.chatInputDiv.style.display = 'none';

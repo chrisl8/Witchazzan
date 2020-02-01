@@ -26,7 +26,7 @@ const rootGameObject = {
       arcade: {
         gravity: { y: 0 }, // Top down game, so no gravity
         // All the debug options you could want
-        debug: false, // This is the only one you have to switch
+        debug: false, // This is the only one you have to switch. Do it on the Help screen now.
         debugShowBody: true,
         debugShowStaticBody: true,
         debugShowVelocity: true,

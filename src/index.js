@@ -85,5 +85,5 @@ let existingHelpTextVersion;
   document.getElementsByTagName('head')[0].appendChild(metaTag);
   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 
-  await startGame();
+  await startGame({phaserDebug: document.getElementById('phaser_debug').checked});
 })();
