@@ -201,7 +201,7 @@ const sceneFactory = ({
     // By default, everything gets depth sorted on the screen in the order we created things. Here, we
     // want the "Above Player" layer to sit on top of the player, so we explicitly give it a depth.
     // Higher depths will sit on top of lower depth objects.
-    overheadLayer.setDepth(10);
+    overheadLayer.setDepth(2);
 
     // Object layers in Tiled let you embed extra info into a map - like a spawn point or custom
     // collision shapes. In the .json file, there's an object layer with a point named "Spawn Point"
@@ -725,6 +725,7 @@ const sceneFactory = ({
                   );
                 });
 
+                playerObject.pixelHighlightTexture.setDepth(3);
                 // Wipe the data so we don't draw it again.
                 pixelHighlightInput.content = null;
               }
