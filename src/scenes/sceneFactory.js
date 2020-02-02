@@ -8,6 +8,7 @@ import updateDomElements from '../updateDomElements';
 import reportFunctions from '../reportFunctions';
 import spriteSheetList from '../objects/spriteSheetList';
 import gamePieceList from '../objects/gamePieceList';
+import pixelHighlightInput from '../objects/pixelHighlightInput';
 import getSpriteData from '../utilities/getSpriteData';
 
 // TODO: Is this actually a proper factory?
@@ -102,9 +103,14 @@ const sceneFactory = ({
         );
       }
 
-      if (playerObject.renderTexture) {
-        playerObject.renderTexture.destroy();
-        playerObject.renderTexture = null;
+      if (playerObject.dotTrailRenderTexture) {
+        playerObject.dotTrailRenderTexture.destroy();
+        playerObject.dotTrailRenderTexture = null;
+      }
+
+      if (playerObject.pixelHighlightTexture) {
+        playerObject.pixelHighlightTexture.destroy();
+        playerObject.pixelHighlightTexture = null;
       }
 
       this.scene.start(destinationScene);
@@ -218,7 +224,9 @@ const sceneFactory = ({
       }
     }
 
-    setCameraZoom.call(this);
+    if (!playerObject.disableCameraZoom) {
+      setCameraZoom.call(this);
+    }
 
     // Use scene from server. Switch to different scene if this is not it
     // NOTE: Remember to do this BEFORE setting the position from the server.
@@ -288,7 +296,16 @@ const sceneFactory = ({
     const camera = this.cameras.main;
     camera.startFollow(playerObject.player);
     // This keeps the camera from moving off of the map, regardless of where the player goes
-    camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    let cameraStart = 0;
+    if (playerObject.disableCameraZoom) {
+      cameraStart = -100;
+    }
+    camera.setBounds(
+      cameraStart,
+      cameraStart,
+      map.widthInPixels,
+      map.heightInPixels,
+    );
 
     // This section finds the Objects in the Tilemap that trigger exiting to another scene,
     // and sets up the colliders in Phaser for them along with where to send the player.
@@ -388,8 +405,9 @@ const sceneFactory = ({
     // Don't do anything if the scene is no longer open.
     // This may not be necessary, but it may prevent race conditions
     if (sceneOpen) {
-      setCameraZoom.call(this);
-
+      if (!playerObject.disableCameraZoom) {
+        setCameraZoom.call(this);
+      }
       let maxSpeed = 175;
       const acceleration = 3;
       let useAcceleration = true;
@@ -627,18 +645,15 @@ const sceneFactory = ({
             activeObjectList.push(gamePiece.id);
             if (gamePiece.scene === sceneName && gamePiece.sprite) {
               if (playerObject.dotTrailsOn) {
-                // This code is great for seeing where the server things things are,
-                // but as it is written it is SLOW. So either only use it during debugging
-                // Or improve it.
+                // Use this to track the server location of objects on the screen across time.
+                // It is activated with 't'
                 // Render Texture
                 // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.RenderTexture.html
                 // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/rendertexture/
                 // Rectangles:
                 // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Rectangle.html
-                // TODO: Turn debug on/of from menu where you set your name.
-                // TODO: Render the input from the server of debug info
-                if (!playerObject.renderTexture) {
-                  playerObject.renderTexture = scene.add.renderTexture(
+                if (!playerObject.dotTrailRenderTexture) {
+                  playerObject.dotTrailRenderTexture = scene.add.renderTexture(
                     0,
                     0,
                     640,
@@ -663,8 +678,7 @@ const sceneFactory = ({
                   // it !me
                   fillColor = 0x6a0dad;
                 }
-                // TODO: Other players "player"
-                playerObject.renderTexture.draw(
+                playerObject.dotTrailRenderTexture.draw(
                   new Phaser.GameObjects.Rectangle(
                     scene,
                     gamePiece.x,
@@ -678,13 +692,45 @@ const sceneFactory = ({
                 // this.add
                 //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
                 //   .setOrigin(0, 0);
-
-                // TODO: How do I prove the render texture is "working"
-                //       i.e. Not just as slow as the old method?
-              } else if (playerObject.renderTexture) {
-                playerObject.renderTexture.destroy();
-                playerObject.renderTexture = null;
+              } else if (playerObject.dotTrailRenderTexture) {
+                playerObject.dotTrailRenderTexture.destroy();
+                playerObject.dotTrailRenderTexture = null;
               }
+
+              // Render Pixel Highlight debug data from server
+              if (pixelHighlightInput.content) {
+                // Always wipe this and start fresh, because they only come in rarely on demand
+                if (playerObject.pixelHighlightTexture) {
+                  playerObject.pixelHighlightTexture.destroy();
+                  playerObject.pixelHighlightTexture = null;
+                }
+
+                playerObject.pixelHighlightTexture = scene.add.renderTexture(
+                  0,
+                  0,
+                  640,
+                  480,
+                );
+                pixelHighlightInput.content.forEach((entry) => {
+                  if (entry.scene === sceneName) {
+                    playerObject.pixelHighlightTexture.draw(
+                      new Phaser.GameObjects.Rectangle(
+                        scene,
+                        entry.x,
+                        entry.y,
+                        1,
+                        1,
+                        0xffff00,
+                        1,
+                      ).setOrigin(0.5, 0.5),
+                    );
+                  }
+                });
+
+                // Wipe the data so we don't draw it again.
+                pixelHighlightInput.content = null;
+              }
+
               // If no `sprite` key is given, no sprite is displayed.
               // This also prevents race conditions with remote players during reload
               // TODO: If a remote player changes their sprite, we won't know about it.

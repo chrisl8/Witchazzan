@@ -8,7 +8,7 @@ import startGame from './startGame';
 import wait from './utilities/wait';
 
 // Increment this to force players to see the Instructions again.
-const helpTextVersion = 6;
+const helpTextVersion = 7;
 let existingHelpTextVersion;
 
 // eslint-disable-next-line func-names
@@ -85,5 +85,11 @@ let existingHelpTextVersion;
   document.getElementsByTagName('head')[0].appendChild(metaTag);
   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 
-  await startGame({phaserDebug: document.getElementById('phaser_debug').checked});
+  playerObject.disableCameraZoom = document.getElementById(
+    'camera_zoom_off',
+  ).checked;
+
+  await startGame({
+    phaserDebug: document.getElementById('phaser_debug').checked,
+  });
 })();

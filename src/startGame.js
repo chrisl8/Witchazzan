@@ -14,6 +14,7 @@ import textObject from './objects/textObject';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 import reportFunctions from './reportFunctions';
 import gamePieceList from './objects/gamePieceList';
+import pixelHighlightInput from './objects/pixelHighlightInput';
 import wait from './utilities/wait';
 import handleKeyboardInput from './handleKeyboardInput';
 
@@ -83,6 +84,8 @@ async function startGame({ phaserDebug }) {
       }
 
       gamePieceList.pieces = inputData.pieces;
+    } else if (inputData.messageType === 'highlight_pixels') {
+      pixelHighlightInput.content = inputData.content;
     } else {
       console.log(inputData);
     }
