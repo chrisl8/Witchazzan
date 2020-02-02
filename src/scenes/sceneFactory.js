@@ -712,19 +712,17 @@ const sceneFactory = ({
                   480,
                 );
                 pixelHighlightInput.content.forEach((entry) => {
-                  if (entry.scene === sceneName) {
-                    playerObject.pixelHighlightTexture.draw(
-                      new Phaser.GameObjects.Rectangle(
-                        scene,
-                        entry.x,
-                        entry.y,
-                        1,
-                        1,
-                        0xffff00,
-                        1,
-                      ).setOrigin(0.5, 0.5),
-                    );
-                  }
+                  playerObject.pixelHighlightTexture.draw(
+                    new Phaser.GameObjects.Rectangle(
+                      scene,
+                      entry.x,
+                      entry.y,
+                      1,
+                      1,
+                      0xffff00,
+                      1,
+                    ).setOrigin(0.5, 0.5),
+                  );
                 });
 
                 // Wipe the data so we don't draw it again.
