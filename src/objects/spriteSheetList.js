@@ -93,7 +93,7 @@ const spriteSheetList = [
     frameWidth: 500,
     frameHeight: 397,
     endFrame: -1, // How many frames to extract from the sheet. -1 means all
-    animationFrameRate: 4,
+    animationFrameRate: 8,
     animations: [
       { keyName: 'move-stationary', start: 0, end: 1, zeroPad: 3, repeat: -1 },
       { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
