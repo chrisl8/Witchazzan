@@ -40,6 +40,13 @@ let existingHelpTextVersion;
       existingHelpTextVersion = helpTextVersion;
     }
   };
+
+  // Check local storage for Player Sprite
+  const existingPlayerSprite = localStorage.getItem('playerSprite');
+  if (existingPlayerSprite) {
+    document.getElementById(existingPlayerSprite).checked = true;
+  }
+
   if (!playerObject.playerName) {
     // Check local storage to see if we already have a name.
     const existingPlayerName = localStorage.getItem('playerName');
@@ -88,6 +95,13 @@ let existingHelpTextVersion;
   playerObject.disableCameraZoom = document.getElementById(
     'camera_zoom_off',
   ).checked;
+
+  const spriteName = document.querySelector('input[name="sprite"]:checked')
+    .value;
+  if (spriteName) {
+    localStorage.setItem('playerSprite', spriteName);
+    playerObject.spriteName = spriteName;
+  }
 
   await startGame({
     phaserDebug: document.getElementById('phaser_debug').checked,

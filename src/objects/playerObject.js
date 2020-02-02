@@ -38,7 +38,7 @@ const playerObject = {
     Scrolling: { style: {} },
   },
   playerName: null,
-  spriteName: 'bloomby', // TODO: Get this from player and let them update it.
+  spriteName: 'bloomby', // Default set here
   playerId: null,
   playerDirection: 'left',
   playerStopped: true,

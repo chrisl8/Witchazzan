@@ -11,6 +11,7 @@ html, body {
 
 #pre_game_div {
   margin-left: 10px;
+  margin-bottom: 25px;
 }
 
 #command_input_div, #upper_left_text_overlay_div, #scrolling_text_overlay_div, #center_text_overlay_div {
