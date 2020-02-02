@@ -142,9 +142,9 @@ Notes on making "Exit" boxes:
     b. Make them deep enough that we can require a significant overlap before triggering them. This way if we want to ensure a character is fully or mostly off of the screen before switching rather than barely at the edge, we can, without a larger character accidentally getting over the box.  
     c. One tile width deep and wide past the edge of the door is plenty.
 
-### Tileset Sources
+### Image Sources
 
-I will keep track of the Tileset sources here for attribution.
+I will keep track of the Image sources here for attribution.
 
 - [Tileset 1bit Color](https://opengameart.org/content/tileset-1bit-color)  
 Author: [Clint Bellanger](https://opengameart.org/users/clint-bellanger)  
@@ -170,6 +170,9 @@ FileNames: solarus_full_hyrule.png
 Author: sufan02  
 License [CC0](https://creativecommons.org/publicdomain/zero/1.0/)  
 Filename: carrot.png
+- [Panting Dog](https://www.pinterest.com/pin/329888741428973815/)  
+Source: Pinterest  
+Filename: panting-dog.png  
 
 ### If you want to keep building the NES Hyrule map
 
