@@ -32,7 +32,7 @@ async function startGame({ phaserDebug }) {
   communicationsObject.socket = new WebSocketClient(
     communicationsObject.websocketServerString,
     [],
-    { backoff: 'fibonacci' },
+    { backoff: 'exponential', maxDelay: 5 },
   );
 
   // Connection opened
