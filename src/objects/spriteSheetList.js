@@ -3,6 +3,7 @@ import gloobScarymanSpriteSheet from '../assets/spriteSheets/gloob-scaryman.png'
 import flamingGoose from '../assets/spriteSheets/flamingGoose.png';
 import fireball from '../assets/spriteSheets/fireball.png';
 import bloomby from '../assets/spriteSheets/bloomby.png';
+import joosh from '../assets/spriteSheets/joosh.png';
 import pantingDog from '../assets/spriteSheets/panting-dog.png';
 import carrot from '../assets/spriteSheets/carrot.png';
 import christmasTree from '../assets/spriteSheets/ChristmasTree.png';
@@ -58,6 +59,28 @@ const spriteSheetList = [
     // },
     displayWidth: 53 / 4,
     displayHeight: 63 / 4,
+  },
+    {
+    type: 'player',
+    name: 'joosh',
+    file: joosh,
+    faces: 'right',
+    frameWidth: 64,
+    frameHeight: 64,
+    endFrame: -1,
+    animationFrameRate: 5,
+    animations: [
+      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 7, end: 9, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 4, end: 6, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 64 * 0.8,
+      y: 64 * 0.8,
+    },
+    displayWidth: 64 / 4,
+    displayHeight: 64 / 4,
   },
   {
     type: 'player',
