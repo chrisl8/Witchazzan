@@ -36,11 +36,9 @@
     "file-loader": "^5.0.2",
     "prettier": "^1.19.1",
     "raw-loader": "^4.0.0",
-    "terser-webpack-plugin": "^2.3.1",
     "tile-extruder": "^2.0.3",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1",
-    "webpack-merge": "^4.2.2"
+    "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
     "@gamestdio/websocket": "^0.3.2",
@@ -51,6 +49,8 @@
     "nipplejs": "^0.8.4",
     "phaser": "^3.21.0",
     "style-loader": "^1.1.2",
-    "webpack": "4.41.5"
+    "webpack": "4.41.5",
+    "webpack-merge": "^4.2.2",
+    "terser-webpack-plugin": "^2.3.1"
   }
 }
