@@ -55,6 +55,7 @@ const playerObject = {
   },
   joystickDistance: 0,
   dotTrailsOn: false,
+  socketCurrentlyConnected: false,
 };
 
 export default playerObject;
