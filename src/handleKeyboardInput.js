@@ -1,5 +1,4 @@
 /* globals localStorage:true */
-import WebSocketClient from '@gamestdio/websocket';
 import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
 import textObject from './objects/textObject';
@@ -42,7 +41,8 @@ function handleKeyboardInput(event) {
         }
       }
     } else if (
-      communicationsObject.socket.readyState === WebSocketClient.OPEN
+      communicationsObject.socket.readyState ===
+      communicationsObject.status.OPEN
     ) {
       // Other events only happen while connected
 
@@ -117,7 +117,8 @@ function handleKeyboardInput(event) {
             commandHistoryIndex = commandHistory.length;
           }
         } else if (
-          communicationsObject.socket.readyState === WebSocketClient.OPEN
+          communicationsObject.socket.readyState ===
+          communicationsObject.status.OPEN
         ) {
           reportFunctions.reportCommand(command);
           // https://stackoverflow.com/a/1232046/4982408
@@ -139,7 +140,8 @@ function handleKeyboardInput(event) {
           textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
         }
       } else if (
-        communicationsObject.socket.readyState === WebSocketClient.OPEN
+        communicationsObject.socket.readyState ===
+        communicationsObject.status.OPEN
       ) {
         if (playerObject.chatInputTextArray.length > 0) {
           reportFunctions.reportChat(playerObject.chatInputTextArray.join(''));

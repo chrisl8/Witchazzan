@@ -13,6 +13,12 @@ const communicationsObject = {
   // websocketServerString: 'ws://demos.kaazing.com/echo',
   // FROM: http://www.websocket.org/echo.html
   socket: {},
+  status: {
+    CONNECTING: 0,
+    OPEN: 1,
+    CLOSING: 2,
+    CLOSED: 3,
+  },
 };
 
 if (window.location.hostname === 'witchazzan.ekpyroticfrood.net') {

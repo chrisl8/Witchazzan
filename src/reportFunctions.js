@@ -1,10 +1,11 @@
-import WebSocketClient from '@gamestdio/websocket';
 import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
 
 const reportFunctions = {};
 reportFunctions.reportFireball = (direction) => {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+  if (
+    communicationsObject.socket.readyState === communicationsObject.status.OPEN
+  ) {
     let cardinalDirection = 'east';
     if (direction === 'up') {
       cardinalDirection = 'north';
@@ -22,7 +23,9 @@ reportFunctions.reportFireball = (direction) => {
   }
 };
 reportFunctions.reportKeyboardState = (key, state) => {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+  if (
+    communicationsObject.socket.readyState === communicationsObject.status.OPEN
+  ) {
     const obj = {};
     obj.message_type = 'keyboard-update';
     obj.key = key;
@@ -32,7 +35,9 @@ reportFunctions.reportKeyboardState = (key, state) => {
   }
 };
 reportFunctions.reportChat = (text) => {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+  if (
+    communicationsObject.socket.readyState === communicationsObject.status.OPEN
+  ) {
     const obj = {};
     obj.message_type = 'chat';
     obj.text = text;
@@ -41,7 +46,9 @@ reportFunctions.reportChat = (text) => {
   }
 };
 reportFunctions.reportLocation = (sceneName) => {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+  if (
+    communicationsObject.socket.readyState === communicationsObject.status.OPEN
+  ) {
     const obj = {
       message_type: 'location-update',
       x: playerObject.player.x,
@@ -55,7 +62,9 @@ reportFunctions.reportLocation = (sceneName) => {
   }
 };
 reportFunctions.reportLogin = (username, password) => {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+  if (
+    communicationsObject.socket.readyState === communicationsObject.status.OPEN
+  ) {
     const obj = {};
     obj.message_type = 'login';
     obj.username = username;
@@ -65,7 +74,9 @@ reportFunctions.reportLogin = (username, password) => {
   }
 };
 reportFunctions.reportCommand = (command) => {
-  if (communicationsObject.socket.readyState === WebSocketClient.OPEN) {
+  if (
+    communicationsObject.socket.readyState === communicationsObject.status.OPEN
+  ) {
     const obj = {};
     obj.message_type = 'command';
     obj.command = command;
