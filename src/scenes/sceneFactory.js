@@ -4,7 +4,7 @@ import Phaser from 'phaser';
 import playerObject from '../objects/playerObject';
 import textObject from '../objects/textObject';
 import handleKeyboardInput from '../handleKeyboardInput';
-import updateDomElements from '../updateDomElements';
+import updateInGameDomElements from '../updateInGameDomElements';
 import reportFunctions from '../reportFunctions';
 import spriteSheetList from '../objects/spriteSheetList';
 import gamePieceList from '../objects/gamePieceList';
@@ -393,7 +393,7 @@ const sceneFactory = ({
     this.input.keyboard.on('keydown', handleKeyboardInput);
     this.input.keyboard.on('keyup', handleKeyboardInput);
 
-    updateDomElements(htmlElementParameters);
+    updateInGameDomElements(htmlElementParameters);
   };
 
   let lastServerUpdate = 0;
@@ -967,7 +967,7 @@ const sceneFactory = ({
         }
       }
 
-      updateDomElements(htmlElementParameters);
+      updateInGameDomElements(htmlElementParameters);
     }
   };
 

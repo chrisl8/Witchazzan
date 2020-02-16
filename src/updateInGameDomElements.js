@@ -2,7 +2,7 @@
 import playerObject from './objects/playerObject';
 import textObject from './objects/textObject';
 
-const updateDomElements = (htmlElementParameters) => {
+const updateInGameDomElements = (htmlElementParameters) => {
   // TODO:
   //  Scrolling Text needs to . . . scroll? Roll over somehow?
 
@@ -26,9 +26,9 @@ const updateDomElements = (htmlElementParameters) => {
   for (const [key, value] of Object.entries(textObject)) {
     if (value.shouldBeActiveNow) {
       consolidatedTextObject[value.location].hidden = false;
-      consolidatedTextObject[
-        value.location
-      ].text = `${consolidatedTextObject[value.location].text}${value.text}`;
+      consolidatedTextObject[value.location].text = `${
+        consolidatedTextObject[value.location].text
+      }${value.text}`;
     }
   }
 
@@ -92,4 +92,4 @@ const updateDomElements = (htmlElementParameters) => {
   });
 };
 
-export default updateDomElements;
+export default updateInGameDomElements;

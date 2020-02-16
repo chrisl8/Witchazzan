@@ -1,127 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--NOTE: You cannot nest html-loads inside other partials.-->
   <head>
     <meta charset="utf-8" />
-    <!-- Matomo -->
-    <script type="text/javascript">
-      if (window.location.hostname === 'www.witchazzan.space') {
-        var _paq = window._paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(["setCookieDomain", "*.www.witchazzan.space"]);
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-          var u="//matomo.ekpyroticfrood.net/";
-          _paq.push(['setTrackerUrl', u+'matomo.php']);
-          _paq.push(['setSiteId', '1']);
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-        })();
-      }
-    </script>
-    <!-- End Matomo Code -->
-    <!-- https://fonts.google.com/?category=Monospace&selection.family=Roboto+Mono -->
-    <link
-      href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto+Mono&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Emoji from Twitter https://github.com/twitter/twemoji -->
-    <!-- See all Emoji codes and examples here: http://www.unicode.org/emoji/charts/full-emoji-list.html -->
-    <!-- Note that we are using the Twitter version, although since we are embedding codes, a switch would not be difficult -->
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+    <%= require('html-loader!./src/html/matomoLoadCode.html') %>
+    <%= require('html-loader!./src/html/fonts.html') %>
+    <%= require('html-loader!./src/html/twemojiLoad.html') %>
     <title>Witchazzan</title>
   </head>
   <!--  Body Background is black, so that it is clear that it is "off the map" regardless of whether we have borders on the side or bottom due to screen/scene ratio mismatch.-->
   <!--  TODO: Add a favicon.ico-->
   <body>
     <div id="pre_load_info">
-      <p id="loading_text">Loading Witchazzan, please stand by . . .</p>
-      <div id="pre_game_div" hidden>
-        <br />
-        <label
-          >Enter a name for your character:&nbsp;<input
-            id="player_name_input_box"
-        /></label>
-        <button id="player_name_submit_button">Start Game</button>
-        <div>
-          <br/>
-          <input type="checkbox" id="phaser_debug" name="phaser_debug">
-          <label for="phaser_debug">Enable Phaser Debugging</label>
-          <br/>
-          <input type="checkbox" id="camera_zoom_off" name="camera_zoom_off">
-          <label for="camera_zoom_off">Disable Camera Zoom for Debugging</label>
-        </div>
-        <h1>Instructions</h1>
-        <h3>Directional Controls</h3>
-        <ul>
-          <li>wasd or Arrow Keys</li>
-          <ul>
-            <li>Hold down Shift to "Sprint" which bypasses acceleration. Max speed is still the same.</li>
-          </ul>
-        </ul>
-        <h3>Keys</h3>
-        <ul>
-          <li>Space Bar - Fire</li>
-          <li>c - open the Chat/Command input box</li>
-          <li>l - open/close the chat Log when chat input is not open</li>
-          <li>o - return to Opening scene</li>
-          <li>t - turn dot Trails on/off for debugging</li>
-          <li>h - return to this Help screen</li>
-            <ul>
-              <li>This will also reload and pause your game.</li>
-            </ul>
-        </ul>
-        <h3>Chat/Command Input</h3>
-        <ul>
-          <li>Any text entered is broadcast as chat text to other players.</li>
-          <li>Esc - Close Chat/Command input box</li>
-          <li>/ - send commands instead of chat</li>
-          <li>/who - list who is online</li>
-          <li>/run &lt;command&gt; - run built in functions</li>
-        </ul>
-        <h3>Touch Controls</h3>
-        <ul>
-          <li>Use Finger or Mouse pointer like a finger to move</li>
-          <ul>
-            <li>Distance from center of starting point determines speed</li>
-          </ul>
-          <li>Tap with TWO fingers to fire</li>
-          <li>Tap with THREE fingers to open/close the chat/command input</li>
-        </ul>
-        <h3>Pick a Character</h3>
-        <div>
-          <input type="radio" id="bloomby" name="sprite" value="bloomby"
-                 checked>
-          <label for="bloomby">Bloomby</label>
-        </div>
-        <div>
-          <input type="radio" id="partyWizard" name="sprite" value="partyWizard">
-          <label for="partyWizard">Party Wizard</label>
-        </div>
-        <div>
-          <input type="radio" id="joosh" name="sprite" value="joosh">
-          <label for="joosh">Joosh</label>
-        </div>
-      </div>
+      <%= require('html-loader!./src/html/initialLoadingText.html') %>
+      <%= require('html-loader!./src/html/introScreen.html') %>
     </div>
-    <div id="game_container">
-      <div id="canvas_overlay_elements" style="display: none;">
-        <div id="command_input_div" style="display: none;">
-          <span id="command_input_caret"></span><input id="command_input" />
-        </div>
-        <div id="upper_left_text_overlay_div">
-          <p id="upper_left_text_overlay_input"></p>
-        </div>
-        <div id="scrolling_text_overlay_div">
-          <p id="scrolling_text_overlay_input"></p>
-        </div>
-        <div id="center_text_overlay_div">
-          <p id="center_text_overlay_input"></p>
-        </div>
-      </div>
-    </div>
+    <%= require('html-loader!./src/html/gameContainer.html') %>
   </body>
 </html>
-<script>
-  twemoji.parse(document.body);
-</script>
+<%= require('html-loader!./src/html/twemojiRun.html') %>

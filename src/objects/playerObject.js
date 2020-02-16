@@ -8,6 +8,7 @@
  *
  */
 const playerObject = {
+  helpTextVersion: 8, // Increment this to force players to see the Instructions again.
   player: null,
   destinationEntrance: null,
   keyState: {}, // keep track of the keyboard state. Send only when it changes

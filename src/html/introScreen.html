@@ -1,0 +1,69 @@
+<div id="pre_game_div" hidden>
+  <br />
+  <label
+  >Enter a name for your character:&nbsp;<input
+      id="player_name_input_box"
+  /></label>
+  <button id="player_name_submit_button">Start Game</button>
+  <div>
+    <br />
+    <input type="checkbox" id="phaser_debug" name="phaser_debug">
+    <label for="phaser_debug">Enable Phaser Debugging</label>
+    <br />
+    <input type="checkbox" id="camera_zoom_off" name="camera_zoom_off">
+    <label for="camera_zoom_off">Disable Camera Zoom for Debugging</label>
+  </div>
+  <h1>Instructions</h1>
+  <h3>Directional Controls</h3>
+  <ul>
+    <li>wasd or Arrow Keys</li>
+    <ul>
+      <li>Hold down Shift to "Sprint" which bypasses acceleration. Max speed is still the same.</li>
+    </ul>
+  </ul>
+  <h3>Keys</h3>
+  <ul>
+    <li>Space Bar - Fire</li>
+    <li>c - open the Chat/Command input box</li>
+    <li>l - open/close the chat Log when chat input is not open</li>
+    <li>o - return to Opening scene</li>
+    <li>t - turn dot Trails on/off for debugging</li>
+    <li>h - return to this Help screen</li>
+    <ul>
+      <li>This will also reload and pause your game.</li>
+    </ul>
+  </ul>
+  <h3>Chat/Command Input</h3>
+  <ul>
+    <li>Any text entered is broadcast as chat text to other players.</li>
+    <li>Esc - Close Chat/Command input box</li>
+    <li>/ - send commands instead of chat</li>
+    <li>/who - list who is online</li>
+    <li>/run &lt;command&gt; - run built in functions</li>
+  </ul>
+  <h3>Touch Controls</h3>
+  <ul>
+    <li>Use Finger or Mouse pointer like a finger to move</li>
+    <ul>
+      <li>Distance from center of starting point determines speed</li>
+    </ul>
+    <li>Tap with TWO fingers to fire</li>
+    <li>Tap with THREE fingers to open/close the chat/command input</li>
+  </ul>
+  <h3>Pick a Character</h3>
+  <div>
+    <input
+        type="radio" id="bloomby" name="sprite" value="bloomby"
+        checked
+    >
+    <label for="bloomby">Bloomby</label>
+  </div>
+  <div>
+    <input type="radio" id="partyWizard" name="sprite" value="partyWizard">
+    <label for="partyWizard">Party Wizard</label>
+  </div>
+  <div>
+    <input type="radio" id="joosh" name="sprite" value="joosh">
+    <label for="joosh">Joosh</label>
+  </div>
+</div>
