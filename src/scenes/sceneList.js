@@ -348,7 +348,7 @@ const scenes = [
 ];
 
 // Code below here automatically generates all of the scenes from the lists above,
-// which is used by the rootGameObjects.js for the Phaser scene array.
+// which is used by the phaserConfigObject.js for the Phaser scene array.
 
 const sceneList = [];
 scenes.forEach((scene) => {

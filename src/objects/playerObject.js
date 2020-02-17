@@ -8,11 +8,12 @@
  *
  */
 const playerObject = {
-  helpTextVersion: 8, // Increment this to force players to see the Instructions again.
+  helpTextVersion: 9, // Increment this to force players to see the Instructions again.
   // This is the scene you start the game in,
   // and go to if a non-existent scene is requested,
   // and if you press the 'o' key.
   defaultOpeningScene: 'LoruleH8',
+  defaultSpriteName: 'flamingGoose', // Used when a sprite by the given name does not exist
   maxSpeed: 175,
   acceleration: 3,
   maxJoystickDistance: 50,

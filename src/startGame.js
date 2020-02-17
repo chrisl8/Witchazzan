@@ -1,6 +1,6 @@
 /* globals document:true */
 import Phaser from 'phaser';
-import rootGameObject from './objects/rootGameObject';
+import phaserConfigObject from './objects/phaserConfigObject';
 import socketCommunications from './socketCommunication';
 import waitForConnectionAndInitialPlayerPosition from './waitForConnectionAndInitialPlayerPosition';
 import touchInput from './touchInput';
@@ -12,7 +12,7 @@ import touchInput from './touchInput';
  */
 
 async function startGame({ phaserDebug }) {
-  rootGameObject.config.physics.arcade.debug = phaserDebug;
+  phaserConfigObject.physics.arcade.debug = phaserDebug;
 
   socketCommunications();
 
@@ -25,7 +25,7 @@ async function startGame({ phaserDebug }) {
   touchInput();
 
   // Start Phaser
-  rootGameObject.game = new Phaser.Game(rootGameObject.config);
+  phaserConfigObject.game = new Phaser.Game(phaserConfigObject);
 }
 
 export default startGame;

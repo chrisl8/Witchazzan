@@ -44,7 +44,7 @@ const spriteSheetList = [
     // Set physicsSize to 0 to have size === the sprite size.
     physicsSize: {
       // Remember where this starts if you muck with the offset below.
-      // If you are having trouble, turn on the debugging on the rootGameObject.js file
+      // If you are having trouble, turn on the debugging on the intro/help screen.
       // This is RELATIVE TO SPRITE SIZE and then gets scaled, so the same numbers on two different
       // sized sprites will not produce the same results!
       // Using a multiplier can help keep it consistent between different sprites,
