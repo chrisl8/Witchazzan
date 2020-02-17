@@ -62,3 +62,12 @@ img.emoji {
   margin: 0 .05em 0 .1em;
   vertical-align: -0.1em;
 }
+
+.logo-text {
+  color: #1a885b;
+  text-align: center;
+  font-size: 12em;
+  margin-top: 2px;
+  margin-bottom: -74px;
+  font-family: 'Stalemate', cursive;
+}
