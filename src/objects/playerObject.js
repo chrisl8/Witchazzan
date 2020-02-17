@@ -63,6 +63,9 @@ const playerObject = {
   joystickDistance: 0,
   dotTrailsOn: false,
   socketCurrentlyConnected: false,
+  gameTime: null,
+  lastSentPlayerLocationObject: {},
+  lastReceivedPlayerLocationObject: {},
 };
 
 export default playerObject;

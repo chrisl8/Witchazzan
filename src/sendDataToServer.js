@@ -58,7 +58,31 @@ sendDataToServer.reportPlayerLocation = (sceneName) => {
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
     };
-    communicationsObject.socket.send(JSON.stringify(obj));
+    let sendData = false;
+    // This comparison is naive, but our objects are well defined
+    const previousObjectKeys = Object.keys(
+      playerObject.lastSentPlayerLocationObject,
+    );
+    if (Object.keys(obj).length === previousObjectKeys.length) {
+      previousObjectKeys.forEach((key) => {
+        if (
+          obj[key] === undefined ||
+          playerObject.lastSentPlayerLocationObject[key] !== obj[key]
+        ) {
+          // console.log(`${key}: ${obj[key]}`);
+          sendData = true;
+        }
+      });
+    } else {
+      sendData = true;
+    }
+    if (sendData) {
+      // Only send data if it has changed,
+      // rather than wasting bandwidth and
+      // the server's CPU cycles.
+      playerObject.lastSentPlayerLocationObject = obj;
+      communicationsObject.socket.send(JSON.stringify(obj));
+    }
   }
 };
 sendDataToServer.reportLogin = (username, password) => {

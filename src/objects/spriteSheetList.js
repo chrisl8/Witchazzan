@@ -60,7 +60,7 @@ const spriteSheetList = [
     displayWidth: 53 / 4,
     displayHeight: 63 / 4,
   },
-    {
+  {
     type: 'player',
     name: 'joosh',
     file: joosh,

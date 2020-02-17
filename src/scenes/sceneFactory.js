@@ -431,7 +431,9 @@ const sceneFactory = ({
 
             // If no `sprite` key is given, no sprite is displayed.
             // This also prevents race conditions with remote players during reload
-            // TODO: If a remote player changes their sprite, we won't know about it.
+            // TODO: If a remote player changes their sprite, we won't know about it,
+            //       although currently they have to disconnect to do this, so we
+            //       the game piece is removed and resent.
             if (!playerObject.spawnedObjectList[gamePiece.id]) {
               // Add new sprites to the scene
               console.log('New game piece:');

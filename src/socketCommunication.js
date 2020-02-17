@@ -6,6 +6,7 @@ import playerObject from './objects/playerObject';
 import gamePieceList from './objects/gamePieceList';
 import pixelHighlightInput from './objects/pixelHighlightInput';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
+import parseGamePieceListFromServer from './parseGamePieceListFromServer';
 
 // TODO: Refactor actions out of this file.
 
@@ -55,25 +56,11 @@ function socketCommunications() {
       } else if (inputData.messageType === 'identity') {
         playerObject.playerId = inputData.id;
       } else if (inputData.messageType === 'game-piece-list') {
-        // Grab initial position for player from server.
-        if (!playerObject.initialPositionReceived) {
-          if (inputData.pieces && inputData.pieces.length > 0) {
-            inputData.pieces.forEach((piece) => {
-              if (piece.id === playerObject.playerId) {
-                playerObject.initialPositionReceived = true;
-                playerObject.initialPosition = {
-                  x: piece.x,
-                  y: piece.y,
-                };
-                playerObject.initialScene = piece.scene;
-              }
-            });
-          }
-        }
-
-        gamePieceList.pieces = inputData.pieces;
+        parseGamePieceListFromServer(inputData);
       } else if (inputData.messageType === 'highlight_pixels') {
         pixelHighlightInput.content = inputData.content;
+      } else if (inputData.messageType === 'time') {
+        playerObject.gameTime = inputData.content;
       } else {
         console.log(inputData);
       }
@@ -89,6 +76,9 @@ function socketCommunications() {
   // Watch connection state and attempt reconnect periodically if it dies.
   function watchAndRestartConnection() {
     if (!playerObject.socketCurrentlyConnected) {
+      // Clear last sent data to make sure we send it all again
+      playerObject.lastSentPlayerLocationObject = {};
+      // Reconnect
       connect();
     }
     setTimeout(watchAndRestartConnection, connectionCheckInterval);
