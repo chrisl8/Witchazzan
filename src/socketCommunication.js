@@ -1,7 +1,7 @@
 /* globals WebSocket:true */
 import communicationsObject from './objects/communicationsObject';
 import textObject from './objects/textObject';
-import reportFunctions from './reportFunctions';
+import sendDataToServer from './sendDataToServer';
 import playerObject from './objects/playerObject';
 import gamePieceList from './objects/gamePieceList';
 import pixelHighlightInput from './objects/pixelHighlightInput';
@@ -30,7 +30,7 @@ function socketCommunications() {
       textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
 
       // Send our username here, in case the server doesn't know who we are yet.
-      reportFunctions.reportLogin(playerObject.playerName);
+      sendDataToServer.reportLogin(playerObject.playerName);
     };
 
     // Listen for messages

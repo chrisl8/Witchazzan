@@ -2,7 +2,7 @@
 import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
 import textObject from './objects/textObject';
-import reportFunctions from './reportFunctions';
+import sendDataToServer from './sendDataToServer';
 
 // Local keys will work even if the server is disconnected.
 // I suggest making these RARE, and also not recording their state,
@@ -50,7 +50,7 @@ function handleKeyboardInput(event) {
       if (event.key === ' ') {
         // On key down (ignore key up)
         if (event.type === 'keydown') {
-          reportFunctions.reportFireball(playerObject.playerDirection);
+          sendDataToServer.reportFireball(playerObject.playerDirection);
         }
       }
 
@@ -98,11 +98,11 @@ function handleKeyboardInput(event) {
         if (inputTextSpaceDelimitedArray[0] === 'run') {
           if (
             inputTextSpaceDelimitedArray.length > 1 &&
-            reportFunctions[inputTextSpaceDelimitedArray[1]]
+            sendDataToServer[inputTextSpaceDelimitedArray[1]]
           ) {
             inputTextSpaceDelimitedArray.shift();
             const functionToRun = inputTextSpaceDelimitedArray.shift();
-            reportFunctions[functionToRun](...inputTextSpaceDelimitedArray);
+            sendDataToServer[functionToRun](...inputTextSpaceDelimitedArray);
             // https://stackoverflow.com/a/1232046/4982408
             playerObject.chatInputTextArray.length = 0;
             // Otherwise it still has text on it when you open it again:
@@ -120,7 +120,7 @@ function handleKeyboardInput(event) {
           communicationsObject.socket.readyState ===
           communicationsObject.status.OPEN
         ) {
-          reportFunctions.reportCommand(command);
+          sendDataToServer.reportCommand(command);
           // https://stackoverflow.com/a/1232046/4982408
           playerObject.chatInputTextArray.length = 0;
           // Otherwise it still has text on it when you open it again:
@@ -144,7 +144,7 @@ function handleKeyboardInput(event) {
         communicationsObject.status.OPEN
       ) {
         if (playerObject.chatInputTextArray.length > 0) {
-          reportFunctions.reportChat(playerObject.chatInputTextArray.join(''));
+          sendDataToServer.reportChat(playerObject.chatInputTextArray.join(''));
         }
         // Clear text after sending.
         playerObject.chatInputTextArray.length = 0;

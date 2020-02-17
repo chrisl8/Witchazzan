@@ -1,8 +1,8 @@
 import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
 
-const reportFunctions = {};
-reportFunctions.reportFireball = (direction) => {
+const sendDataToServer = {};
+sendDataToServer.reportFireball = (direction) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -22,7 +22,7 @@ reportFunctions.reportFireball = (direction) => {
     communicationsObject.socket.send(jsonString);
   }
 };
-reportFunctions.reportKeyboardState = (key, state) => {
+sendDataToServer.reportKeyboardState = (key, state) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -34,7 +34,7 @@ reportFunctions.reportKeyboardState = (key, state) => {
     communicationsObject.socket.send(jsonString);
   }
 };
-reportFunctions.reportChat = (text) => {
+sendDataToServer.reportChat = (text) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -45,7 +45,7 @@ reportFunctions.reportChat = (text) => {
     communicationsObject.socket.send(jsonString);
   }
 };
-reportFunctions.reportLocation = (sceneName) => {
+sendDataToServer.reportPlayerLocation = (sceneName) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -61,7 +61,7 @@ reportFunctions.reportLocation = (sceneName) => {
     communicationsObject.socket.send(JSON.stringify(obj));
   }
 };
-reportFunctions.reportLogin = (username, password) => {
+sendDataToServer.reportLogin = (username, password) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -73,7 +73,7 @@ reportFunctions.reportLogin = (username, password) => {
     communicationsObject.socket.send(jsonString);
   }
 };
-reportFunctions.reportCommand = (command) => {
+sendDataToServer.reportCommand = (command) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -85,8 +85,8 @@ reportFunctions.reportCommand = (command) => {
     console.log(`Sent ${jsonString} to server.`);
   }
 };
-reportFunctions.dumpPlayerObject = () => {
+sendDataToServer.dumpPlayerObject = () => {
   console.log(playerObject);
 };
 
-export default reportFunctions;
+export default sendDataToServer;

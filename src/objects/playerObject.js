@@ -9,6 +9,13 @@
  */
 const playerObject = {
   helpTextVersion: 8, // Increment this to force players to see the Instructions again.
+  // This is the scene you start the game in,
+  // and go to if a non-existent scene is requested,
+  // and if you press the 'o' key.
+  defaultOpeningScene: 'LoruleH8',
+  maxSpeed: 175,
+  acceleration: 3,
+  maxJoystickDistance: 50,
   player: null,
   destinationEntrance: null,
   keyState: {}, // keep track of the keyboard state. Send only when it changes

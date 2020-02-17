@@ -8,7 +8,7 @@ import touchInput from './touchInput';
 /*
  * This actually starts up the game,
  * after the local variables are loaded,
- * and the help screen, if shown, is past.
+ * and the help screen, if shown, is dismissed.
  */
 
 async function startGame({ phaserDebug }) {
