@@ -3,7 +3,6 @@ import communicationsObject from './objects/communicationsObject';
 import textObject from './objects/textObject';
 import sendDataToServer from './sendDataToServer';
 import playerObject from './objects/playerObject';
-import gamePieceList from './objects/gamePieceList';
 import pixelHighlightInput from './objects/pixelHighlightInput';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 import parseGamePieceListFromServer from './parseGamePieceListFromServer';
