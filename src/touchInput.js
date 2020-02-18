@@ -1,8 +1,8 @@
 /* globals document:true */
-import NippleJs from "nipplejs";
-import playerObject from "./objects/playerObject";
-import handleKeyboardInput from "./handleKeyboardInput";
-import sendDataToServer from "./sendDataToServer";
+import NippleJs from 'nipplejs';
+import playerObject from './objects/playerObject';
+import handleKeyboardInput from './handleKeyboardInput';
+import sendDataToServer from './sendDataToServer';
 
 function touchInput() {
   // Get touches and use them to activate things aside from movement.

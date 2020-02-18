@@ -183,20 +183,12 @@ function handleKeyboardInput(event) {
         // Otherwise it still has text on it when you open it again:
         playerObject.domElements.chatInput.value = '';
       }
-    } else {
+    } else if (!(event.key.length === 1 && !/[^ -~]+/.test(event.key))) {
       // Only log non-ASCII characters
-      if (!(event.key.length === 1 && !/[^ -~]+/.test(event.key))) {
-        // TODO: Just logging everything else now to help debug. Remove this for production.
-        console.log(event.key);
-      }
-      // TODO: The input is a little buggy. Need to test it and sort that out.
-      //       Mainly I get duplicate input sometimes.
-      //       I may just use an input box to let the browser deal with text,
-      //       and use JS to set focus to it,
-      //       and see if I can still watch the keyboard via Phaser and do nifty things
-      //       like command history and listening for special keys like Escape.
-      // "Display" the current chat/command queue content:
+      // TODO: Just logging everything else now to help debug. Remove this for production.
+      console.log(event.key);
     }
+    // "Display" the current chat/command queue content:
   }
 }
 
