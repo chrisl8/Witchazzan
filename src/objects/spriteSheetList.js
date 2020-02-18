@@ -11,6 +11,7 @@ import pinkTree from '../assets/spriteSheets/pinkTree.png';
 import greenTree from '../assets/spriteSheets/greenTree.png';
 import deadTree from '../assets/spriteSheets/deadTree.png';
 import chest from '../assets/spriteSheets/chest.png';
+import bones from '../assets/spriteSheets/bones.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -267,6 +268,20 @@ const spriteSheetList = [
     },
     displayWidth: 13,
     displayHeight: 15,
+  },
+  {
+    type: 'other',
+    name: 'corpse',
+    file: bones,
+    frameWidth: 53,
+    frameHeight: 33,
+    endFrame: 1,
+    physicsSize: {
+      x: 53,
+      y: 33,
+    },
+    displayWidth: 53 * 0.3,
+    displayHeight: 33 * 0.3,
   },
   {
     // Flaming Goose is the default sprite used whenever a requested sprite cannot be found,
