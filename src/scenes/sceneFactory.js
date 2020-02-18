@@ -134,21 +134,22 @@ const sceneFactory = ({
     }
   }
 
+  function returnToIntroScren() {
+    console.log('Display intro screen.');
+    let existingHelpTextVersion = Number(
+      localStorage.getItem('helpTextVersion'),
+    );
+    existingHelpTextVersion--;
+    localStorage.setItem('helpTextVersion', existingHelpTextVersion.toString());
+
+    window.location.reload();
+  }
+
   function hotKeyHandler() {
     // Return to intro text
     if (playerObject.keyState.h === 'keydown') {
       playerObject.keyState.h = null;
-      console.log('Display help text');
-      let existingHelpTextVersion = Number(
-        localStorage.getItem('helpTextVersion'),
-      );
-      existingHelpTextVersion--;
-      localStorage.setItem(
-        'helpTextVersion',
-        existingHelpTextVersion.toString(),
-      );
-
-      window.location.reload();
+      returnToIntroScren();
     }
 
     // Hot key scene switch for testing.
@@ -654,6 +655,11 @@ const sceneFactory = ({
           playerObject.spawnedObjectList[property] &&
           activeObjectList.indexOf(Number(property)) === -1
         ) {
+          if (Number(property) === Number(playerObject.playerId)) {
+            // It me, player has been destroyed
+            localStorage.setItem('playerDied', 'true');
+            returnToIntroScren();
+          }
           console.log(`Destroying Object ID ${property}`);
           if (playerObject.spawnedObjectList[property].sprite) {
             playerObject.spawnedObjectList[property].sprite.destroy();

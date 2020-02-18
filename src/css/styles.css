@@ -71,3 +71,8 @@ img.emoji {
   margin-bottom: -74px;
   font-family: 'Stalemate', cursive;
 }
+
+#you_died {
+  color: red;
+  font-size: 3em;
+}

@@ -56,6 +56,13 @@ async function introScreenAndPreGameSetup() {
     document.getElementById(existingPlayerSprite).checked = true;
   }
 
+  // Check if player died on last exit
+  const playerDied = localStorage.getItem('playerDied');
+  if (playerDied === 'true') {
+    document.getElementById('you_died').hidden = false;
+    localStorage.removeItem('playerDied');
+  }
+
   if (!playerObject.playerName) {
     // Check local storage to see if we already have a name.
     const existingPlayerName = localStorage.getItem('playerName');
