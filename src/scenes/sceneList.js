@@ -14,7 +14,8 @@
  * Good advice on Pixel Art:
  * https://weareludicrous.com/blog/2018/baby-steps-in-pixel-art/
  *
- * The Zoom level is the size of the map on screen. Anything beyond that
+ * The Zoom level is the size of the map on screen.
+ * Anything beyond that
  * will scroll about to follow the user.
  * Typically this wil be a 20 x 11 32 pixel map with a 16:9 aspect ratio.
  * Although for the old school maps it can be 16 x 11 16 pixel maps for 4:3.
@@ -22,17 +23,17 @@
 import sceneFactory from './sceneFactory';
 
 // Scenes
-import LoruleH8 from '../assets/tileMaps/LoruleH8';
-import LoruleI8 from '../assets/tileMaps/LoruleI8';
-import LoruleH7 from '../assets/tileMaps/LoruleH7';
-import LoruleG7 from '../assets/tileMaps/LoruleG7';
-import LoruleG8 from '../assets/tileMaps/LoruleG8';
-import LoruleF8 from '../assets/tileMaps/LoruleF8';
-import LoruleH6 from '../assets/tileMaps/LoruleH6';
-import LoruleI7 from '../assets/tileMaps/LoruleI7';
-import LoruleJ8 from '../assets/tileMaps/LoruleJ8';
-import testScene1 from '../assets/tileMaps/testScene1';
-import arena1 from '../assets/tileMaps/arena1';
+import LoruleH8 from '../assets/tileMaps/LoruleH8.json';
+import LoruleI8 from '../assets/tileMaps/LoruleI8.json';
+import LoruleH7 from '../assets/tileMaps/LoruleH7.json';
+import LoruleG7 from '../assets/tileMaps/LoruleG7.json';
+import LoruleG8 from '../assets/tileMaps/LoruleG8.json';
+import LoruleF8 from '../assets/tileMaps/LoruleF8.json';
+import LoruleH6 from '../assets/tileMaps/LoruleH6.json';
+import LoruleI7 from '../assets/tileMaps/LoruleI7.json';
+import LoruleJ8 from '../assets/tileMaps/LoruleJ8.json';
+import testScene1 from '../assets/tileMaps/testScene1.json';
+import arena1 from '../assets/tileMaps/arena1.json';
 
 /*
   To "FIX" tilesets so they don't have weird lines around them caused by GPU rendering
