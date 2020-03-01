@@ -64,10 +64,12 @@ async function introScreenAndPreGameSetup() {
   }
 
   // Check if player died on last exit
-  const playerDied = localStorage.getItem('playerDied');
-  if (playerDied === 'true') {
+  const playerDroppedFromGamePieceList = localStorage.getItem(
+    'playerDroppedFromGamePieceList',
+  );
+  if (playerDroppedFromGamePieceList === 'true') {
     document.getElementById('you_died').hidden = false;
-    localStorage.removeItem('playerDied');
+    localStorage.removeItem('playerDroppedFromGamePieceList');
   }
 
   if (!playerObject.playerName) {

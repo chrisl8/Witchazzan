@@ -320,6 +320,16 @@ const sceneFactory = ({
     }
   }
 
+  function checkThatPlayerStillExists() {
+    if (
+      gamePieceList.pieces.findIndex((x) => x.id === playerObject.playerId) < 0
+    ) {
+      // It me, player has been removed from the Game Piece list
+      localStorage.setItem('playerDroppedFromGamePieceList', 'true');
+      returnToIntroScren();
+    }
+  }
+
   function updateAnimation() {
     // Update the animation last and give left/right animations precedence over up/down animations
     if (
@@ -688,22 +698,16 @@ const sceneFactory = ({
   function removeDespawnedObjects(activeObjectList) {
     // Remove de-spawned objects
     for (const property in playerObject.spawnedObjectList) {
-      if (playerObject.spawnedObjectList.hasOwnProperty(property)) {
-        if (
-          playerObject.spawnedObjectList[property] &&
-          activeObjectList.indexOf(Number(property)) === -1
-        ) {
-          if (Number(property) === Number(playerObject.playerId)) {
-            // It me, player has been destroyed
-            localStorage.setItem('playerDied', 'true');
-            returnToIntroScren();
-          }
-          console.log(`Destroying Object ID ${property}`);
-          if (playerObject.spawnedObjectList[property].sprite) {
-            playerObject.spawnedObjectList[property].sprite.destroy();
-          }
-          playerObject.spawnedObjectList[property] = null;
+      if (
+        playerObject.spawnedObjectList.hasOwnProperty(property) &&
+        playerObject.spawnedObjectList[property] &&
+        activeObjectList.indexOf(Number(property)) === -1
+      ) {
+        console.log(`Destroying Object ID ${property}`);
+        if (playerObject.spawnedObjectList[property].sprite) {
+          playerObject.spawnedObjectList[property].sprite.destroy();
         }
+        playerObject.spawnedObjectList[property] = null;
       }
     }
   }
@@ -1001,6 +1005,8 @@ const sceneFactory = ({
     // Don't do anything if the scene is no longer open.
     // This may not be necessary, but it may prevent race conditions
     if (sceneOpen) {
+      checkThatPlayerStillExists();
+
       if (!playerObject.disableCameraZoom) {
         setCameraZoom.call(this);
       }
