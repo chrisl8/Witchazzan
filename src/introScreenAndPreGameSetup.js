@@ -56,6 +56,13 @@ async function introScreenAndPreGameSetup() {
     document.getElementById(existingPlayerSprite).checked = true;
   }
 
+  // Check local storage for disableCameraZoom
+  // TODO: This should be reusable functions.
+  let disableCameraZoom = localStorage.getItem('disableCameraZoom');
+  if (disableCameraZoom === 'true') {
+    document.getElementById('camera_zoom_off').checked = true;
+  }
+
   // Check if player died on last exit
   const playerDied = localStorage.getItem('playerDied');
   if (playerDied === 'true') {
@@ -99,9 +106,16 @@ async function introScreenAndPreGameSetup() {
       await wait(1);
     }
 
-    playerObject.disableCameraZoom = document.getElementById(
-      'camera_zoom_off',
-    ).checked;
+    // Settle up disableCameraZoom and set local storage if need be
+    // TODO: This should be reusable functions.
+    disableCameraZoom = document.getElementById('camera_zoom_off').checked;
+    if (disableCameraZoom) {
+      localStorage.setItem('disableCameraZoom', 'true');
+    } else {
+      localStorage.removeItem('disableCameraZoom');
+    }
+
+    playerObject.disableCameraZoom = disableCameraZoom;
 
     const spriteName = document.querySelector('input[name="sprite"]:checked')
       .value;
