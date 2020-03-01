@@ -112,6 +112,44 @@ const sceneFactory = ({
     }
   }
 
+  function cleanUpSceneAndTeleport(
+    destinationSceneName,
+    destinationSceneEntrance,
+  ) {
+    if (sceneOpen) {
+      cleanUpScene();
+      if (this.scene.getIndex(destinationSceneName) === -1) {
+        console.log(
+          `Switching to scene: ${destinationSceneName} does not exist.`,
+        );
+        // eslint-disable-next-line no-param-reassign
+        destinationSceneName = playerObject.defaultOpeningScene;
+      }
+      playerObject.destinationEntrance = destinationSceneEntrance;
+      if (playerObject.destinationEntrance) {
+        console.log(
+          `Switching to scene: ${destinationSceneName} entrance ${playerObject.destinationEntrance}.`,
+        );
+      } else {
+        console.log(
+          `Switching to scene: ${destinationSceneName} at default spawn point.`,
+        );
+      }
+
+      if (playerObject.dotTrailRenderTexture) {
+        playerObject.dotTrailRenderTexture.destroy();
+        playerObject.dotTrailRenderTexture = null;
+      }
+
+      if (playerObject.pixelHighlightTexture) {
+        playerObject.pixelHighlightTexture.destroy();
+        playerObject.pixelHighlightTexture = null;
+      }
+
+      this.scene.start(destinationSceneName);
+    }
+  }
+
   function setCameraZoom() {
     const canvasWidth = window.innerWidth;
     const canvasHeight = window.innerHeight;
@@ -157,11 +195,11 @@ const sceneFactory = ({
       playerObject.keyState.o = null;
       if (sceneOpen && sceneName !== playerObject.defaultOpeningScene) {
         playerObject.dotTrailsOn = false; // Game crashes if this is on during this operation.
-        cleanUpSceneAndUseExit.call(this, null, {
-          getData() {
-            return playerObject.defaultOpeningScene;
-          },
-        });
+        cleanUpSceneAndTeleport.call(
+          this,
+          playerObject.defaultOpeningScene,
+          null,
+        );
       }
     }
 
@@ -725,7 +763,7 @@ const sceneFactory = ({
     //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     // });
 
-    // set background color, so the sky is not black
+    // set background color, so the "sky" is not black
     // https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3/
     this.cameras.main.setBackgroundColor('#FFFFFF');
 
@@ -827,15 +865,15 @@ const sceneFactory = ({
     const camera = this.cameras.main;
     camera.startFollow(playerObject.player);
     // This keeps the camera from moving off of the map, regardless of where the player goes
-    let cameraStart = 0;
+    let cameraStart = tileset.tileWidth; // Offset by one tile for the teleport area
     if (playerObject.disableCameraZoom) {
       cameraStart = -100;
     }
     camera.setBounds(
       cameraStart,
       cameraStart,
-      map.widthInPixels,
-      map.heightInPixels,
+      map.widthInPixels - tileset.tileWidth * 2, // Reduced by 2 tiles for the teleport area
+      map.heightInPixels - tileset.tileHeight * 2, // Reduced by 2 tiles for the teleport area
     );
 
     // This section finds the Objects in the Tilemap that trigger exiting to another scene,
@@ -919,6 +957,33 @@ const sceneFactory = ({
       null,
       this,
     );
+
+    map.layers.forEach((layer) => {
+      const splitLayerName = layer.name.split('/');
+      if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
+        const destinationScenName = splitLayerName[1];
+        const teleportLayer = map
+          .createStaticLayer(layer.name, tileset, 0, 0)
+          // Any tile in this layer is considered a teleport tile.
+          .setCollisionByExclusion([-1]);
+        this.physics.add.collider(
+          playerObject.player,
+          teleportLayer,
+          (player, exitLayer) => {
+            const destinationEntrance = exitLayer.layer.properties.find(
+              (x) => x.name === 'Entrance',
+            ).value;
+            cleanUpSceneAndTeleport.call(
+              this,
+              destinationScenName,
+              destinationEntrance,
+            );
+          },
+          null,
+          this,
+        );
+      }
+    });
 
     // Globally send all keyboard input to the keyboard input handler
     this.input.keyboard.on('keydown', handleKeyboardInput);
