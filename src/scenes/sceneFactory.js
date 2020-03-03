@@ -22,8 +22,9 @@ const validateGamePieceData = (gamePiece) => {
     typeof gamePiece.y === 'number' &&
     gamePiece.sprite;
   if (!result) {
-    console.error('Unusable data received from server:');
-    console.error(gamePiece);
+    console.error(
+      `Bad Game Piece received - ID: ${gamePiece.id} Type: ${gamePiece.type} Name: ${gamePiece.name} Sprite: ${gamePiece.sprite} X: ${gamePiece.x} Y: ${gamePiece.y}`,
+    );
   }
   return result;
 };

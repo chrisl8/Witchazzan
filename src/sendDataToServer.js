@@ -89,10 +89,12 @@ sendDataToServer.reportLogin = (username, password) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
-    const obj = {};
-    obj.message_type = 'login';
-    obj.username = username;
-    obj.password = password;
+    const obj = {
+      message_type: 'login',
+      username,
+      password,
+      sprite: playerObject.spriteName,
+    };
     const jsonString = JSON.stringify(obj);
     communicationsObject.socket.send(jsonString);
   }
