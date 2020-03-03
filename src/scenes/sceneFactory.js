@@ -10,6 +10,7 @@ import spriteSheetList from '../objects/spriteSheetList';
 import gamePieceList from '../objects/gamePieceList';
 import pixelHighlightInput from '../objects/pixelHighlightInput';
 import getSpriteData from '../utilities/getSpriteData';
+import wait from '../utilities/wait';
 
 // TODO: Is this actually a proper factory?
 //  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
@@ -172,13 +173,15 @@ const sceneFactory = ({
     }
   }
 
-  function returnToIntroScren() {
+  async function returnToIntroScren() {
     console.log('Display intro screen.');
     let existingHelpTextVersion = Number(
       localStorage.getItem('helpTextVersion'),
     );
     existingHelpTextVersion--;
     localStorage.setItem('helpTextVersion', existingHelpTextVersion.toString());
+
+    await wait(1);
 
     window.location.reload();
   }
