@@ -1,7 +1,7 @@
 /* globals localStorage:true */
 /* globals document:true */
-import playerObject from './objects/playerObject';
-import wait from './utilities/wait';
+import playerObject from '../objects/playerObject';
+import wait from '../utilities/wait';
 
 /*
  * This grabs data from local storage,

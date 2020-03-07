@@ -1,9 +1,9 @@
 /* globals document:true */
 import Phaser from 'phaser';
-import phaserConfigObject from './objects/phaserConfigObject';
-import socketCommunications from './socketCommunication';
+import phaserConfigObject from '../objects/phaserConfigObject';
+import socketCommunications from '../socketCommunication';
 import waitForConnectionAndInitialPlayerPosition from './waitForConnectionAndInitialPlayerPosition';
-import touchInput from './touchInput';
+import touchInput from '../touchInput';
 
 /*
  * This actually starts up the game,

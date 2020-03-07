@@ -8,7 +8,7 @@ function cleanUpAfterDisconnect() {
   // Since most keyboard input is ignored when not connected,
   // we don't want people to be stuck running or firing while
   // they are offline.
-  const keysToSetUp = [
+  const keysToClearInputFor = [
     'w',
     'a',
     's',
@@ -18,7 +18,7 @@ function cleanUpAfterDisconnect() {
     'ArrowLeft',
     'ArrowRight',
   ];
-  keysToSetUp.forEach((key) => {
+  keysToClearInputFor.forEach((key) => {
     playerObject.keyState[key] = 'keyup';
   });
 }

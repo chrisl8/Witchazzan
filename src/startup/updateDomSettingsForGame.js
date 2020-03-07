@@ -1,6 +1,6 @@
 /* globals document:true */
 
-import playerObject from './objects/playerObject';
+import playerObject from '../objects/playerObject';
 
 /*
  * These are DOM settings that we need in game,
