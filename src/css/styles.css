@@ -47,6 +47,8 @@ html, body {
   font-family: 'PT Serif', serif;
   border: solid black;
   padding: 5px;
+  max-height: 75%;
+  overflow-x: auto;
 }
 
 

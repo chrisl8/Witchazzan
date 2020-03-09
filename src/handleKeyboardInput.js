@@ -31,14 +31,11 @@ function handleKeyboardInput(event) {
         // .hidden = true/false is not compatible with display: flex
         playerObject.domElements.chatInputDiv.style.display = 'flex';
         playerObject.domElements.chatInput.focus();
-        textObject.helloText.shouldBeActiveNow = false;
         textObject.escapeToLeaveChat.shouldBeActiveNow = true;
         playerObject.domElements.chatInputDiv.style.width = `${
           playerObject.canvasDomElement.item(0).offsetWidth
         }px`;
-        if (textObject.incomingChatText.text !== '') {
-          textObject.incomingChatText.shouldBeActiveNow = true;
-        }
+        playerObject.scrollingTextBox.display(false);
       }
     } else if (
       communicationsObject.socket.readyState ===
@@ -80,8 +77,7 @@ function handleKeyboardInput(event) {
       // Otherwise it still has text on it when you open it again:
       playerObject.domElements.chatInput.value = '';
       playerObject.domElements.chatInputDiv.style.display = 'none';
-      // Hide scrolling text box chat now too
-      textObject.incomingChatText.shouldBeActiveNow = false;
+      playerObject.scrollingTextBox.hide();
       textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
     } else if (event.key === 'Enter') {
       playerObject.chatInputTextArray = playerObject.domElements.chatInput.value.split(

@@ -3,9 +3,6 @@ import playerObject from './objects/playerObject';
 import textObject from './objects/textObject';
 
 const updateInGameDomElements = (htmlElementParameters) => {
-  // TODO:
-  //  Scrolling Text needs to . . . scroll? Roll over somehow?
-
   const consolidatedTextObject = {
     Center: {
       text: '',
@@ -83,7 +80,21 @@ const updateInGameDomElements = (htmlElementParameters) => {
         key !== 'style' &&
         playerObject.domElementHistory[textLocation][key] !== value
       ) {
+        // Track scroll location for Scrolling text
+        const isScrolledToBottom =
+          textLocation === 'Scrolling' &&
+          key === 'innerHTML' &&
+          playerObject.domElements[textLocation].scrollHeight -
+            playerObject.domElements[textLocation].clientHeight <=
+            playerObject.domElements[textLocation].scrollTop + 1;
+
         playerObject.domElements[textLocation][key] = value;
+
+        // scroll to bottom if isScrolledToBottom is true
+        if (isScrolledToBottom) {
+          playerObject.domElements[textLocation].scrollTop =
+            playerObject.domElements[textLocation].scrollHeight;
+        }
       }
     }
 

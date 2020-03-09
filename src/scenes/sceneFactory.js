@@ -209,34 +209,13 @@ const sceneFactory = ({
     // Hot key to display/hide chat log
     if (playerObject.keyState.l === 'keydown') {
       playerObject.keyState.l = null;
-      if (textObject.incomingChatText.text !== '') {
-        textObject.incomingChatText.shouldBeActiveNow = !textObject
-          .incomingChatText.shouldBeActiveNow;
-        textObject.incomingChatText.activeTime = 0;
-      }
+      playerObject.scrollingTextBox.display(false);
     }
 
     // Hot key to turn dot trails on/off
     if (playerObject.keyState.t === 'keydown') {
       playerObject.keyState.t = null;
       playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
-    }
-  }
-
-  function chatWindowTimeout(delta) {
-    // Timeout chat log window if chat input is not open.
-    if (
-      textObject.incomingChatText.shouldBeActiveNow &&
-      playerObject.domElements.chatInputDiv.style.display === 'none'
-    ) {
-      textObject.incomingChatText.activeTime += delta;
-      if (
-        textObject.incomingChatText.activeTime >
-        textObject.incomingChatText.timeout
-      ) {
-        textObject.incomingChatText.activeTime = 0;
-        textObject.incomingChatText.shouldBeActiveNow = false;
-      }
     }
   }
 
@@ -1045,7 +1024,7 @@ const sceneFactory = ({
 
       hotKeyHandler.call(this);
 
-      chatWindowTimeout(delta);
+      playerObject.scrollingTextBox.sceneUpdate(delta);
 
       handlePlayerMovement(maxSpeed, useAcceleration);
 

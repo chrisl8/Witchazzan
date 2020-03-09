@@ -38,20 +38,7 @@ function socketCommunications() {
       // {"messageType":"chat","name":null,"content":"test"}
       const inputData = JSON.parse(event.data);
       if (inputData.messageType === 'chat') {
-        // TODO: The scrolling text interface should be its own function and be much more fancy.
-        if (textObject.incomingChatText.text !== '') {
-          // Add a line break if there is existing text.
-          textObject.incomingChatText.text = `${textObject.incomingChatText.text}<br/>`;
-        }
-        let otherPlayerDisplayName = inputData.name;
-        if (
-          otherPlayerDisplayName === playerObject.playerName &&
-          inputData.id !== playerObject.playerId
-        ) {
-          otherPlayerDisplayName = `Other ${inputData.name}`;
-        }
-        textObject.incomingChatText.text = `${textObject.incomingChatText.text}${otherPlayerDisplayName}: ${inputData.content}`;
-        textObject.incomingChatText.shouldBeActiveNow = true;
+        playerObject.scrollingTextBox.chat(inputData);
       } else if (inputData.messageType === 'identity') {
         playerObject.playerId = inputData.id;
       } else if (inputData.messageType === 'game-piece-list') {

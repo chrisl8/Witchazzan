@@ -2,8 +2,20 @@
 import Phaser from 'phaser';
 import phaserConfigObject from '../objects/phaserConfigObject';
 import socketCommunications from '../socketCommunication';
-import waitForConnectionAndInitialPlayerPosition from './waitForConnectionAndInitialPlayerPosition';
 import touchInput from '../touchInput';
+import playerObject from '../objects/playerObject';
+import wait from '../utilities/wait';
+import ScrollingTextBox from '../ScrollingTextBox';
+
+async function waitForConnectionAndInitialPlayerPosition() {
+  // Don't start until we have the initial connection
+  // with the player's initial position.
+
+  while (!playerObject.initialPositionReceived) {
+    // eslint-disable-next-line no-await-in-loop
+    await wait(1);
+  }
+}
 
 /*
  * This actually starts up the game,
@@ -23,6 +35,8 @@ async function startGame({ phaserDebug }) {
   document.getElementsByTagName('body')[0].style.background = 'black';
 
   touchInput();
+
+  playerObject.scrollingTextBox = new ScrollingTextBox();
 
   // Start Phaser
   phaserConfigObject.game = new Phaser.Game(phaserConfigObject);
