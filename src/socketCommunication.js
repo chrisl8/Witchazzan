@@ -38,7 +38,10 @@ function socketCommunications() {
       // {"messageType":"chat","name":null,"content":"test"}
       const inputData = JSON.parse(event.data);
       if (inputData.messageType === 'chat') {
-        playerObject.scrollingTextBox.chat(inputData);
+        if (playerObject.scrollingTextBox) {
+          // Sometimes we get a chat message before scrollingTextBox is initialized
+          playerObject.scrollingTextBox.chat(inputData);
+        }
       } else if (inputData.messageType === 'identity') {
         playerObject.playerId = inputData.id;
       } else if (inputData.messageType === 'game-piece-list') {
