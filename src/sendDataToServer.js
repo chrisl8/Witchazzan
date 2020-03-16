@@ -45,14 +45,17 @@ sendDataToServer.reportChat = (text) => {
     communicationsObject.socket.send(jsonString);
   }
 };
-sendDataToServer.reportPlayerLocation = (sceneName) => {
+sendDataToServer.reportPlayerLocation = ({
+  sceneName,
+  tileBasedCoordinates,
+}) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
     const obj = {
       message_type: 'location-update',
-      x: playerObject.player.x,
-      y: playerObject.player.y,
+      x: tileBasedCoordinates.x,
+      y: tileBasedCoordinates.y,
       scene: sceneName,
       direction: playerObject.playerDirection,
       sprite: playerObject.spriteName,

@@ -10,6 +10,7 @@ import spriteSheetList from '../objects/spriteSheetList';
 import gamePieceList from '../objects/gamePieceList';
 import pixelHighlightInput from '../objects/pixelHighlightInput';
 import getSpriteData from '../utilities/getSpriteData';
+import convertCoordinates from '../utilities/convertCordinates';
 
 // TODO: Is this actually a proper factory?
 //  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
@@ -411,8 +412,14 @@ const sceneFactory = ({
               playerObject.dotTrailRenderTexture.draw(
                 new Phaser.GameObjects.Rectangle(
                   scene,
-                  gamePiece.x,
-                  gamePiece.y,
+                  convertCoordinates.gamePieceToPhaser(
+                    gamePiece.x,
+                    tileMap.tilewidth,
+                  ),
+                  convertCoordinates.gamePieceToPhaser(
+                    gamePiece.y,
+                    tileMap.tilewidth,
+                  ),
                   width,
                   height,
                   fillColor,
@@ -482,7 +489,17 @@ const sceneFactory = ({
               playerObject.spawnedObjectList[
                 gamePiece.id
               ].sprite = this.physics.add
-                .sprite(gamePiece.x, gamePiece.y, spriteData.name)
+                .sprite(
+                  convertCoordinates.gamePieceToPhaser(
+                    gamePiece.x,
+                    tileMap.tilewidth,
+                  ),
+                  convertCoordinates.gamePieceToPhaser(
+                    gamePiece.y,
+                    tileMap.tilewidth,
+                  ),
+                  spriteData.name,
+                )
                 .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
 
               if (gamePiece.id === playerObject.playerId) {
@@ -656,8 +673,14 @@ const sceneFactory = ({
 
             this.tweens.add({
               targets: playerObject.spawnedObjectList[gamePiece.id].sprite,
-              x: gamePiece.x,
-              y: gamePiece.y,
+              x: convertCoordinates.gamePieceToPhaser(
+                gamePiece.x,
+                tileMap.tilewidth,
+              ),
+              y: convertCoordinates.gamePieceToPhaser(
+                gamePiece.y,
+                tileMap.tilewidth,
+              ),
               duration: 1, // Adjust this to be smooth without being too slow.
               ease: 'Linear', // Anything else is wonky when tracking server updates.
             });
@@ -805,18 +828,27 @@ const sceneFactory = ({
     // Use the player's last position from the server if it exists
     if (sceneOpen && !playerObject.initialPositionFromServerAlreadyUsed) {
       // "sceneOpen" is a bit of a hack to ensure we don't waste this on
-      // the default opening scene before the player is moved away.to
+      // the default opening scene before the player is moved away to
       // the server provided scene.
       playerObject.initialPositionFromServerAlreadyUsed = true;
       // 0,0 is assumed to be an empty position from a new player.
-      // NOTE: This could be a bug if 0,0 is ever a legitimate last positoin.
+      // NOTE: This could be a bug if 0,0 is ever a legitimate last position.
       if (
         !(
           playerObject.initialPosition.x === 0 &&
           playerObject.initialPosition.x === 0
         )
       ) {
-        spawnPoint = playerObject.initialPosition;
+        spawnPoint = {
+          x: convertCoordinates.gamePieceToPhaser(
+            playerObject.initialPosition.x,
+            tileMap.tilewidth,
+          ),
+          y: convertCoordinates.gamePieceToPhaser(
+            playerObject.initialPosition.y,
+            tileMap.tilewidth,
+          ),
+        };
       } else {
         // Presumably this is a new user.
         console.log(
@@ -1033,7 +1065,20 @@ const sceneFactory = ({
       // Update server
       if (time - lastServerUpdate > serverUpateInterval) {
         lastServerUpdate = time;
-        sendDataToServer.reportPlayerLocation(sceneName);
+        const tileBasedCoordinates = {
+          x: convertCoordinates.phaserToGamePiece(
+            playerObject.player.x,
+            tileMap.tilewidth,
+          ),
+          y: convertCoordinates.phaserToGamePiece(
+            playerObject.player.y,
+            tileMap.tilewidth,
+          ),
+        };
+        sendDataToServer.reportPlayerLocation({
+          sceneName,
+          tileBasedCoordinates,
+        });
       }
 
       const activeObjectList = updateGamePieces.call(this);
