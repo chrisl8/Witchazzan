@@ -58,6 +58,7 @@ import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16-extruded.png
 import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld-extruded.png';
 
 const loruleUpperLeftFontSize = '.03';
+const loruleScrollingFontSize = loruleUpperLeftFontSize;
 
 const scenes = [
   {
@@ -80,7 +81,7 @@ const scenes = [
         background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
@@ -132,7 +133,7 @@ const scenes = [
         background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
@@ -158,7 +159,7 @@ const scenes = [
         background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
@@ -184,7 +185,7 @@ const scenes = [
         background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
@@ -210,7 +211,7 @@ const scenes = [
         background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
@@ -236,7 +237,7 @@ const scenes = [
         background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
@@ -262,7 +263,7 @@ const scenes = [
         background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
@@ -288,7 +289,7 @@ const scenes = [
         background: '255,255,255,0.9', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: '#d84b65',
         background: '255,255,255,0.9', // rgba
       },
@@ -314,7 +315,7 @@ const scenes = [
         background: '255,255,255,0.8', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: 'black',
         background: '255,255,255,0.8', // rgba
       },
@@ -340,7 +341,7 @@ const scenes = [
         background: '255,255,255,0.8', // rgba
       },
       Scrolling: {
-        fontSize: '.03', // percent of scene height.
+        fontSize: loruleScrollingFontSize, // percent of scene height.
         color: 'black',
         background: '255,255,255,0.8', // rgba
       },
