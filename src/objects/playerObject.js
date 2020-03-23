@@ -68,6 +68,7 @@ const playerObject = {
   lastSentPlayerLocationObject: {},
   lastReceivedPlayerLocationObject: {},
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
+  serverForce: false,
 };
 
 export default playerObject;

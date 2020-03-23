@@ -43,7 +43,7 @@ const sceneFactory = ({
   // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/scenes/changing%20scene.js
 
   // eslint-disable-next-line func-names
-  scene.preload = function() {
+  scene.preload = function () {
     // Runs once, loads up assets like images and audio
     // All of these text based "keys" are basically global variables in Phaser.
     // You can reuse the same name, but phaser will just reuse the first thing you
@@ -310,7 +310,51 @@ const sceneFactory = ({
       // It me, player has been removed from the Game Piece list
       localStorage.setItem('playerDroppedFromGamePieceList', 'true');
       returnToIntroScren();
+      return false;
     }
+    return true;
+  }
+
+  function checkThatPlayerIsOnTeleportTile(map, camera) {
+    // Check if we are on a Teleport tile, and Teleport!
+    const tilemapList = map.getTileLayerNames();
+    const teleportTileMapLayers = tilemapList.filter((entry) => {
+      const splitLayerName = entry.split('/');
+      return splitLayerName.length > 1 && splitLayerName[0] === 'Teleport';
+    });
+    let destinationSceneName;
+    let destinationSceneEntrance;
+    teleportTileMapLayers.forEach((entry) => {
+      const tile = map.getTileAtWorldXY(
+        playerObject.player.x,
+        playerObject.player.y,
+        false,
+        camera,
+        entry,
+      );
+      if (tile && tile.hasOwnProperty('index') && tile.index > -1) {
+        const splitLayerName = tile.layer.name.split('/');
+        if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
+          destinationSceneName = splitLayerName[1];
+          const entrancePropertyIndex = tile.layer.properties.findIndex(
+            (x) => x.name === 'Entrance',
+          );
+          if (entrancePropertyIndex > -1) {
+            destinationSceneEntrance =
+              tile.layer.properties[entrancePropertyIndex].value;
+          }
+        }
+      }
+    });
+    if (destinationSceneName) {
+      cleanUpSceneAndTeleport.call(
+        this,
+        destinationSceneName,
+        destinationSceneEntrance,
+      );
+      return true;
+    }
+    return false;
   }
 
   function updateAnimation() {
@@ -364,6 +408,29 @@ const sceneFactory = ({
     } else {
       playerObject.player.anims.stop();
       playerObject.playerStopped = true;
+    }
+  }
+
+  let lastServerUpdate = 0;
+  const serverUpdateInterval = 40;
+
+  function sendUpdateToServer(time) {
+    if (time - lastServerUpdate > serverUpdateInterval) {
+      lastServerUpdate = time;
+      const tileBasedCoordinates = {
+        x: convertCoordinates.phaserToGamePiece(
+          playerObject.player.x,
+          tileMap.tilewidth,
+        ),
+        y: convertCoordinates.phaserToGamePiece(
+          playerObject.player.y,
+          tileMap.tilewidth,
+        ),
+      };
+      sendDataToServer.reportPlayerLocation({
+        sceneName,
+        tileBasedCoordinates,
+      });
     }
   }
 
@@ -434,6 +501,29 @@ const sceneFactory = ({
               playerObject.dotTrailRenderTexture = null;
             }
 
+            // Check for special attributes on our player object,
+            // and act on them.
+            if (gamePiece.id === playerObject.playerId) {
+              if (gamePiece.force) {
+                // The player has now been forced to a new location by the server,
+                // this location needs to be set and player input ignored
+                playerObject.serverForce = true;
+                // Stop player if they are moving
+                playerObject.player.body.setVelocity(0);
+                playerObject.player.body.reset(
+                  convertCoordinates.gamePieceToPhaser(
+                    gamePiece.x,
+                    tileMap.tilewidth,
+                  ),
+                  convertCoordinates.gamePieceToPhaser(
+                    gamePiece.y,
+                    tileMap.tilewidth,
+                  ),
+                );
+                playerObject.serverForce = false;
+              }
+            }
+
             // Render Pixel Highlight debug data from server
             if (pixelHighlightInput.content) {
               // Always wipe this and start fresh, because they only come in rarely on demand
@@ -469,13 +559,12 @@ const sceneFactory = ({
 
             // If no `sprite` key is given, no sprite is displayed.
             // This also prevents race conditions with remote players during reload
-            // TODO: If a remote player changes their sprite, we won't know about it,
-            //       although currently they have to disconnect to do this, so we
-            //       the game piece is removed and resent.
+            // If a remote player changes their sprite, we won't know about it,
+            //       although currently they have to disconnect to do this, so
+            //       the game piece is removed and resent anyway.
             if (!playerObject.spawnedObjectList[gamePiece.id]) {
               // Add new sprites to the scene
-              console.log('New game piece:');
-              console.log(gamePiece);
+              console.log('New game piece', gamePiece);
               playerObject.spawnedObjectList[gamePiece.id] = {};
 
               playerObject.spawnedObjectList[
@@ -717,8 +806,11 @@ const sceneFactory = ({
     }
   }
 
+  let map;
+  let camera;
+
   // eslint-disable-next-line func-names
-  scene.create = function() {
+  scene.create = function () {
     // Runs once, after all assets in preload are loaded
     sceneOpen = true;
 
@@ -741,7 +833,7 @@ const sceneFactory = ({
       }
     });
 
-    const map = this.make.tilemap({ key: `${sceneName}-map` });
+    map = this.make.tilemap({ key: `${sceneName}-map` });
 
     // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
     // Phaser's cache (i.e. the name you used in preload)
@@ -880,7 +972,7 @@ const sceneFactory = ({
     // Watch the player and worldLayer for collisions, for the duration of the scene:
     this.physics.add.collider(playerObject.player, collisionLayer);
 
-    const camera = this.cameras.main;
+    camera = this.cameras.main;
     camera.startFollow(playerObject.player);
     // This keeps the camera from moving off of the map, regardless of where the player goes
     let cameraStart = tileset.tileWidth; // Offset by one tile for the teleport area
@@ -976,32 +1068,16 @@ const sceneFactory = ({
       this,
     );
 
-    map.layers.forEach((layer) => {
-      const splitLayerName = layer.name.split('/');
-      if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
-        const destinationScenName = splitLayerName[1];
-        const teleportLayer = map
-          .createStaticLayer(layer.name, tileset, 0, 0)
-          // Any tile in this layer is considered a teleport tile.
-          .setCollisionByExclusion([-1]);
-        this.physics.add.collider(
-          playerObject.player,
-          teleportLayer,
-          (player, exitLayer) => {
-            const destinationEntrance = exitLayer.layer.properties.find(
-              (x) => x.name === 'Entrance',
-            ).value;
-            cleanUpSceneAndTeleport.call(
-              this,
-              destinationScenName,
-              destinationEntrance,
-            );
-          },
-          null,
-          this,
-        );
-      }
-    });
+    // This only displays the Teleport tiles on the screen,
+    // which is only visible when map zoom is off anyway.
+    if (playerObject.disableCameraZoom) {
+      map.layers.forEach((layer) => {
+        const splitLayerName = layer.name.split('/');
+        if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
+          map.createStaticLayer(layer.name, tileset, 0, 0);
+        }
+      });
+    }
 
     // Globally send all keyboard input to the keyboard input handler
     this.input.keyboard.on('keydown', handleKeyboardInput);
@@ -1010,83 +1086,72 @@ const sceneFactory = ({
     updateInGameDomElements(htmlElementParameters);
   };
 
-  let lastServerUpdate = 0;
-  const serverUpateInterval = 40;
-
   // eslint-disable-next-line func-names
-  scene.update = function(time, delta) {
+  scene.update = function (time, delta) {
     // Runs once per frame for the duration of the scene
+
     // Don't do anything if the scene is no longer open.
     // This may not be necessary, but it may prevent race conditions
-    if (sceneOpen) {
-      checkThatPlayerStillExists();
-
-      if (!playerObject.disableCameraZoom) {
-        setCameraZoom.call(this);
-      }
-      let maxSpeed = playerObject.maxSpeed;
-      let useAcceleration = true;
-      if (
-        playerObject.joystickDirection.left ||
-        playerObject.joystickDirection.right ||
-        playerObject.joystickDirection.up ||
-        playerObject.joystickDirection.down
-      ) {
-        // In case of joystick usage, disable acceleration,
-        // and use joystick force instead.
-        useAcceleration = false;
-
-        let distance = playerObject.joystickDistance;
-        if (distance > playerObject.maxJoystickDistance) {
-          distance = playerObject.maxJoystickDistance;
-        }
-        const newMaxSpeed =
-          (maxSpeed * distance) / playerObject.maxJoystickDistance;
-        if (newMaxSpeed < maxSpeed) {
-          maxSpeed = newMaxSpeed;
-        }
-      }
-
-      // Shift to sprint
-      if (playerObject.keyState.Shift === 'keydown') {
-        useAcceleration = false;
-      }
-
-      playerObject.player.body.velocity.clone();
-
-      hotKeyHandler.call(this);
-
-      playerObject.scrollingTextBox.sceneUpdate(delta);
-
-      handlePlayerMovement(maxSpeed, useAcceleration);
-
-      updateAnimation();
-
-      // Update server
-      if (time - lastServerUpdate > serverUpateInterval) {
-        lastServerUpdate = time;
-        const tileBasedCoordinates = {
-          x: convertCoordinates.phaserToGamePiece(
-            playerObject.player.x,
-            tileMap.tilewidth,
-          ),
-          y: convertCoordinates.phaserToGamePiece(
-            playerObject.player.y,
-            tileMap.tilewidth,
-          ),
-        };
-        sendDataToServer.reportPlayerLocation({
-          sceneName,
-          tileBasedCoordinates,
-        });
-      }
-
-      const activeObjectList = updateGamePieces.call(this);
-
-      removeDespawnedObjects(activeObjectList);
-
-      updateInGameDomElements(htmlElementParameters);
+    if (!sceneOpen) {
+      return;
     }
+
+    if (!checkThatPlayerStillExists()) {
+      return;
+    }
+
+    if (checkThatPlayerIsOnTeleportTile.call(this, map, camera)) {
+      return;
+    }
+
+    if (!playerObject.disableCameraZoom) {
+      setCameraZoom.call(this);
+    }
+    let maxSpeed = playerObject.maxSpeed;
+    let useAcceleration = true;
+    if (
+      playerObject.joystickDirection.left ||
+      playerObject.joystickDirection.right ||
+      playerObject.joystickDirection.up ||
+      playerObject.joystickDirection.down
+    ) {
+      // In case of joystick usage, disable acceleration,
+      // and use joystick force instead.
+      useAcceleration = false;
+
+      let distance = playerObject.joystickDistance;
+      if (distance > playerObject.maxJoystickDistance) {
+        distance = playerObject.maxJoystickDistance;
+      }
+      const newMaxSpeed =
+        (maxSpeed * distance) / playerObject.maxJoystickDistance;
+      if (newMaxSpeed < maxSpeed) {
+        maxSpeed = newMaxSpeed;
+      }
+    }
+
+    // Shift to sprint
+    if (playerObject.keyState.Shift === 'keydown') {
+      useAcceleration = false;
+    }
+
+    playerObject.player.body.velocity.clone();
+
+    hotKeyHandler.call(this);
+
+    playerObject.scrollingTextBox.sceneUpdate(delta);
+
+    handlePlayerMovement(maxSpeed, useAcceleration);
+
+    updateAnimation();
+
+    sendUpdateToServer(time);
+
+    const activeObjectList = updateGamePieces.call(this);
+
+    removeDespawnedObjects(activeObjectList);
+
+    updateInGameDomElements(htmlElementParameters);
   };
 
   return scene;

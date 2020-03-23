@@ -60,6 +60,7 @@ sendDataToServer.reportPlayerLocation = ({
       direction: playerObject.playerDirection,
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
+      force: playerObject.serverForce,
     };
     let sendData = false;
     // This comparison is naive, but our objects are well defined
