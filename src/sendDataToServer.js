@@ -60,7 +60,7 @@ sendDataToServer.reportPlayerLocation = ({
       direction: playerObject.playerDirection,
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
-      force: playerObject.serverForce,
+      force: false, // Always reset server to false after we saw the packet.
     };
     let sendData = false;
     // This comparison is naive, but our objects are well defined

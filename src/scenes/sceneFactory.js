@@ -507,7 +507,6 @@ const sceneFactory = ({
               if (gamePiece.force) {
                 // The player has now been forced to a new location by the server,
                 // this location needs to be set and player input ignored
-                playerObject.serverForce = true;
                 // Stop player if they are moving
                 playerObject.player.body.setVelocity(0);
                 playerObject.player.body.reset(
@@ -520,7 +519,6 @@ const sceneFactory = ({
                     tileMap.tilewidth,
                   ),
                 );
-                playerObject.serverForce = false;
               }
             }
 
