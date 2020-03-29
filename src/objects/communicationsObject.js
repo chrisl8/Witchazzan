@@ -24,6 +24,10 @@ if (window.location.hostname === 'www.witchazzan.space') {
   // The production instance uses a different domain name for the server,
   // and uses SSL which requires the 'wss' prefix.
   communicationsObject.websocketServerString = `wss://server.witchazzan.space`;
+} else if (window.location.hostname === 'witchazzan.ekpyroticfrood.net') {
+  // The production instance uses a different domain name for the server,
+  // and uses SSL which requires the 'wss' prefix.
+  communicationsObject.websocketServerString = `wss://witchazzan-server.ekpyroticfrood.net`;
 }
 
 export default communicationsObject;

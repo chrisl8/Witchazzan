@@ -32,7 +32,7 @@ import LoruleF8 from '../assets/tileMaps/LoruleF8.json';
 import LoruleH6 from '../assets/tileMaps/LoruleH6.json';
 import LoruleI7 from '../assets/tileMaps/LoruleI7.json';
 import LoruleJ8 from '../assets/tileMaps/LoruleJ8.json';
-import testScene1 from '../assets/tileMaps/testScene1.json';
+import backYard1 from '../assets/tileMaps/backYard1.json';
 import arena1 from '../assets/tileMaps/arena1.json';
 
 /*
@@ -296,8 +296,8 @@ const scenes = [
     },
   },
   {
-    sceneName: 'testScene1',
-    tileMap: testScene1,
+    sceneName: 'backYard1',
+    tileMap: backYard1,
     tileSet: tilesetZoriaOverworld,
     tileSetName: 'Zoria Overworld',
     gameSize: {

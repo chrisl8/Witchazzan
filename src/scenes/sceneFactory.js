@@ -81,39 +81,6 @@ const sceneFactory = ({
     playerObject.cameraScaleFactor = 0;
   }
 
-  function cleanUpSceneAndUseExit(player, exit) {
-    if (sceneOpen) {
-      cleanUpScene();
-      let destinationScene = exit.getData('destinationScene');
-      if (this.scene.getIndex(destinationScene) === -1) {
-        console.log(`Switching to scene: ${destinationScene} does not exist.`);
-        destinationScene = playerObject.defaultOpeningScene;
-      }
-      playerObject.destinationEntrance = exit.getData('destinationEntrance');
-      if (playerObject.destinationEntrance) {
-        console.log(
-          `Switching to scene: ${destinationScene} entrance ${playerObject.destinationEntrance}.`,
-        );
-      } else {
-        console.log(
-          `Switching to scene: ${destinationScene} at default spawn point.`,
-        );
-      }
-
-      if (playerObject.dotTrailRenderTexture) {
-        playerObject.dotTrailRenderTexture.destroy();
-        playerObject.dotTrailRenderTexture = null;
-      }
-
-      if (playerObject.pixelHighlightTexture) {
-        playerObject.pixelHighlightTexture.destroy();
-        playerObject.pixelHighlightTexture = null;
-      }
-
-      this.scene.start(destinationScene);
-    }
-  }
-
   function cleanUpSceneAndTeleport(
     destinationSceneName,
     destinationSceneEntrance,
@@ -174,7 +141,7 @@ const sceneFactory = ({
     }
   }
 
-  async function returnToIntroScren() {
+  async function returnToIntroScreen() {
     console.log('Display intro screen.');
     let existingHelpTextVersion = Number(
       localStorage.getItem('helpTextVersion'),
@@ -191,7 +158,7 @@ const sceneFactory = ({
     // Return to intro text
     if (playerObject.keyState.h === 'keydown') {
       playerObject.keyState.h = null;
-      returnToIntroScren();
+      returnToIntroScreen();
     }
 
     // Hot key scene switch for testing.
@@ -309,7 +276,7 @@ const sceneFactory = ({
     ) {
       // It me, player has been removed from the Game Piece list
       localStorage.setItem('playerDroppedFromGamePieceList', 'true');
-      returnToIntroScren();
+      returnToIntroScreen();
       return false;
     }
     return true;
@@ -323,7 +290,7 @@ const sceneFactory = ({
       return splitLayerName.length > 1 && splitLayerName[0] === 'Teleport';
     });
     let destinationSceneName;
-    let destinationSceneEntrance;
+    let destinationSceneEntrance = null;
     teleportTileMapLayers.forEach((entry) => {
       const tile = map.getTileAtWorldXY(
         playerObject.player.x,
@@ -336,12 +303,14 @@ const sceneFactory = ({
         const splitLayerName = tile.layer.name.split('/');
         if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
           destinationSceneName = splitLayerName[1];
-          const entrancePropertyIndex = tile.layer.properties.findIndex(
-            (x) => x.name === 'Entrance',
-          );
-          if (entrancePropertyIndex > -1) {
-            destinationSceneEntrance =
-              tile.layer.properties[entrancePropertyIndex].value;
+          if (Array.isArray(tile.layer.properties)) {
+            const entrancePropertyIndex = tile.layer.properties.findIndex(
+              (x) => x.name === 'Entrance',
+            );
+            if (entrancePropertyIndex > -1) {
+              destinationSceneEntrance =
+                tile.layer.properties[entrancePropertyIndex].value;
+            }
           }
         }
       }
@@ -984,49 +953,13 @@ const sceneFactory = ({
       map.heightInPixels - tileset.tileHeight * 2, // Reduced by 2 tiles for the teleport area
     );
 
-    // This section finds the Objects in the Tilemap that trigger exiting to another scene,
-    // and sets up the colliders in Phaser for them along with where to send the player.
-    // TODO: Improve scene switch animation of scene and character.
-    //       I'd like to make a fancier "transition" for moving to new scenes.
-    //       Like possibly slide the screen "over" in the direction you moved and slide the new one in.
-    //       But don't screw with continuous movement across scenes, which may be more important than fancy scene switching animations or character transitions.
+    // This section finds the Objects in the Tilemap that trigger features
     // Useful info on how this works:
     // https://www.html5gamedevs.com/topic/37978-overlapping-on-a-tilemap-object-layer/?do=findComment&comment=216742
     // https://github.com/B3L7/phaser3-tilemap-pack/blob/master/src/scenes/Level.js
     const objects = map.getObjectLayer('Objects');
-    const exits = this.physics.add.group();
     objects.objects.forEach((object) => {
-      if (object.type === 'SwitchToScene') {
-        const door = this.add
-          .rectangle(
-            object.x,
-            object.y,
-            object.width,
-            object.height,
-            0xff0000,
-            1,
-          )
-          .setOrigin(0, 0);
-        // Many Phaser objects have a "Datamanager" that lets you add key/value pairs to them.
-        // Either through .data or the .setData and .getData functions.
-        // Here we use this to tell Phaser what scene to load when this object is "overlapped"
-        door.setData('destinationScene', object.name);
-        if (object.properties) {
-          const entrancePropertyIndex = object.properties.findIndex(
-            (x) => x.name === 'Entrance',
-          );
-          if (entrancePropertyIndex > -1) {
-            door.setData(
-              'destinationEntrance',
-              object.properties[entrancePropertyIndex].value,
-            );
-          }
-        }
-        exits.add(door);
-        // this.physics.add.overlap(playerObject.player, door, (event) => {
-        //   console.log(event);
-        // });
-      } else if (object.type === 'SpawnNPC') {
+      if (object.type === 'SpawnNPC') {
         // This spawns "NPCs" embedded in the tileMap.
         // The tile map is *NOT* where NPCs should really live,
         // the server should create them, *BUT* this is a good place to just put random
@@ -1056,15 +989,6 @@ const sceneFactory = ({
         }
       }
     });
-
-    // overlap lets you walk onto it, rather than stopping when you hit it.
-    this.physics.add.overlap(
-      playerObject.player,
-      exits,
-      cleanUpSceneAndUseExit,
-      null,
-      this,
-    );
 
     // This only displays the Teleport tiles on the screen,
     // which is only visible when map zoom is off anyway.

@@ -128,6 +128,7 @@ In addition, add an Objects layer.
 
 ## Exits
 
+# NOTE: These instructions are out of date.
 Make an object layer in your tilemap.  
 Draw boxes beside the "exits".
 Name them the name of the scene you want to go to when the character passes that exit.
