@@ -282,6 +282,11 @@ const sceneFactory = ({
     return true;
   }
 
+  function checkIfLayerExists(map, layer) {
+    const tilemapList = map.getTileLayerNames();
+    return tilemapList.findIndex((entry) => entry === layer) > -1;
+  }
+
   function checkThatPlayerIsOnTeleportTile(map, camera) {
     // Check if we are on a Teleport tile, and Teleport!
     const tilemapList = map.getTileLayerNames();
@@ -815,6 +820,12 @@ const sceneFactory = ({
     const collisionLayer = map
       .createStaticLayer('Stuff You Run Into', tileset, 0, 0)
       .setCollisionByExclusion([-1]);
+    let waterLayer;
+    if (checkIfLayerExists(map, 'Water')) {
+      waterLayer = map
+        .createStaticLayer('Water', tileset, 0, 0)
+        .setCollisionByExclusion([-1]);
+    }
     const overheadLayer = map.createStaticLayer(
       'Stuff You Walk Under',
       tileset,
@@ -938,7 +949,9 @@ const sceneFactory = ({
 
     // Watch the player and worldLayer for collisions, for the duration of the scene:
     this.physics.add.collider(playerObject.player, collisionLayer);
-
+    if (waterLayer) {
+      this.physics.add.collider(playerObject.player, waterLayer);
+    }
     camera = this.cameras.main;
     camera.startFollow(playerObject.player);
     // This keeps the camera from moving off of the map, regardless of where the player goes
