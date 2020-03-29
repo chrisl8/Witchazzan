@@ -32,8 +32,18 @@ import LoruleF8 from '../assets/tileMaps/LoruleF8.json';
 import LoruleH6 from '../assets/tileMaps/LoruleH6.json';
 import LoruleI7 from '../assets/tileMaps/LoruleI7.json';
 import LoruleJ8 from '../assets/tileMaps/LoruleJ8.json';
+import LoruleE8 from '../assets/tileMaps/LoruleE8.json';
+import LoruleF7 from '../assets/tileMaps/LoruleF7.json';
+import LoruleG6 from '../assets/tileMaps/LoruleG6.json';
+import LoruleH5 from '../assets/tileMaps/LoruleH5.json';
+import LoruleI6 from '../assets/tileMaps/LoruleI6.json';
+import LoruleJ7 from '../assets/tileMaps/LoruleJ7.json';
+import LoruleK8 from '../assets/tileMaps/LoruleK8.json';
+
 import backYard1 from '../assets/tileMaps/backYard1.json';
 import arena1 from '../assets/tileMaps/arena1.json';
+
+// NOTE: You must also add any new scenes to witchazzan-server/config/default-config.edn
 
 /*
   To "FIX" tilesets so they don't have weird lines around them caused by GPU rendering
@@ -59,6 +69,26 @@ import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld-extruded.p
 
 const loruleUpperLeftFontSize = '.03';
 const loruleScrollingFontSize = loruleUpperLeftFontSize;
+const loruleGameSize = {
+  width: 16 * 16,
+  height: 16 * 11,
+};
+const loruleHtmlElementParameters = {
+  Center: {
+    fontSize: '.1', // percent of scene height.
+    color: 'red',
+  },
+  UpperLeft: {
+    fontSize: loruleUpperLeftFontSize, // percent of scene height.
+    color: 'blue',
+    background: '255,255,255,0.9', // rgba
+  },
+  Scrolling: {
+    fontSize: loruleScrollingFontSize, // percent of scene height.
+    color: '#d84b65',
+    background: '255,255,255,0.9', // rgba
+  },
+};
 
 const scenes = [
   {
@@ -66,234 +96,128 @@ const scenes = [
     tileMap: LoruleH8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleI8',
     tileMap: LoruleI8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: '.04', // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleH7',
     tileMap: LoruleH7,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleG7',
     tileMap: LoruleG7,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleG8',
     tileMap: LoruleG8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleF8',
     tileMap: LoruleF8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleH6',
     tileMap: LoruleH6,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleI7',
     tileMap: LoruleI7,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleJ8',
     tileMap: LoruleJ8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: {
-      width: 16 * 16,
-      height: 16 * 11,
-    },
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
-        color: 'blue',
-        background: '255,255,255,0.9', // rgba
-      },
-      Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
-        color: '#d84b65',
-        background: '255,255,255,0.9', // rgba
-      },
-    },
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleE8',
+    tileMap: LoruleE8,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleF7',
+    tileMap: LoruleF7,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleG6',
+    tileMap: LoruleG6,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleH5',
+    tileMap: LoruleH5,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleI6',
+    tileMap: LoruleI6,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleJ7',
+    tileMap: LoruleJ7,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleK8',
+    tileMap: LoruleK8,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'backYard1',
