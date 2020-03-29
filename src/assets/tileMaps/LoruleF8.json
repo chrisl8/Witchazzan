@@ -36,6 +36,12 @@
                  "id":11,
                  "name":"backYard1",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"Entrance",
+                         "type":"string",
+                         "value":"Corner"
+                        }],
                  "type":"tilelayer",
                  "visible":true,
                  "width":18,
