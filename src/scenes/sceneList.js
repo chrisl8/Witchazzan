@@ -43,6 +43,10 @@ import LoruleK8 from '../assets/tileMaps/LoruleK8.json';
 import backYard1 from '../assets/tileMaps/backYard1.json';
 import arena1 from '../assets/tileMaps/arena1.json';
 
+import EmptyCave from '../assets/tileMaps/EmptyCave.json';
+import SlimeCave from '../assets/tileMaps/SlimeCave.json';
+import CaveF8 from '../assets/tileMaps/CaveF8.json';
+
 // NOTE: You must also add any new scenes to witchazzan-server/config/default-config.edn
 
 /*
@@ -66,6 +70,7 @@ https://github.com/sporadic-labs/tile-extruder
 // TileSets
 import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16-extruded.png';
 import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld-extruded.png';
+import Dungeon_Tileset from '../assets/tileSets/Dungeon_Tileset.png';
 
 const loruleUpperLeftFontSize = '.03';
 const loruleScrollingFontSize = loruleUpperLeftFontSize;
@@ -87,6 +92,27 @@ const loruleHtmlElementParameters = {
     fontSize: loruleScrollingFontSize, // percent of scene height.
     color: '#d84b65',
     background: '255,255,255,0.9', // rgba
+  },
+};
+
+const caveGameSize = {
+  width: 16 * 18,
+  height: 16 * 13,
+};
+const caveHtmlElementParameters = {
+  Center: {
+    fontSize: '.1', // percent of scene height.
+    color: 'red',
+  },
+  UpperLeft: {
+    fontSize: loruleUpperLeftFontSize, // percent of scene height.
+    color: 'black',
+    background: '255,255,255,0.8', // rgba
+  },
+  Scrolling: {
+    fontSize: loruleScrollingFontSize, // percent of scene height.
+    color: 'black',
+    background: '255,255,255,0.8', // rgba
   },
 };
 
@@ -270,6 +296,30 @@ const scenes = [
         background: '255,255,255,0.8', // rgba
       },
     },
+  },
+  {
+    sceneName: 'EmptyCave',
+    tileMap: EmptyCave,
+    tileSet: Dungeon_Tileset,
+    tileSetName: 'Dungeon_Tileset',
+    gameSize: caveGameSize,
+    htmlElementParameters: caveHtmlElementParameters,
+  },
+  {
+    sceneName: 'SlimeCave',
+    tileMap: SlimeCave,
+    tileSet: Dungeon_Tileset,
+    tileSetName: 'Dungeon_Tileset',
+    gameSize: caveGameSize,
+    htmlElementParameters: caveHtmlElementParameters,
+  },
+  {
+    sceneName: 'CaveF8',
+    tileMap: CaveF8,
+    tileSet: Dungeon_Tileset,
+    tileSetName: 'Dungeon_Tileset',
+    gameSize: caveGameSize,
+    htmlElementParameters: caveHtmlElementParameters,
   },
 ];
 
