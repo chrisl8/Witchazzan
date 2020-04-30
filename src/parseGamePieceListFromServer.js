@@ -14,7 +14,11 @@ function parseGamePieceListFromServer(inputData) {
           };
           playerObject.initialScene = piece.scene;
         }
-        playerObject.lastReceivedPlayerLocationObject = piece;
+        if (piece.hasOwnProperty('spell')) {
+          console.log(piece.spell);
+          playerObject.spell = null;
+        }
+        playerObject.lastReceivedPlayerLocationObject = piece; // TODO: This isn't used anywhere, so why grab it?
       }
     });
   }

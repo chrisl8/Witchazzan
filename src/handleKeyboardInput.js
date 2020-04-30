@@ -15,9 +15,12 @@ const commandHistory = JSON.parse(localStorage.getItem('commandHistory'));
 let commandHistoryIndex = commandHistory.length;
 
 function handleKeyboardInput(event) {
+  // Everything is different if in the "chat" window.
+  // We literally use the visibility of the chatInputDiv to determine this,
+  // because that is empirically the most literal reality for the user.
   if (playerObject.domElements.chatInputDiv.style.display === 'none') {
     if (localKeys.indexOf(event.key) > -1) {
-      // Some events can happen when the server isn't connected.
+      // Some (ok, one right now) events can happen when the server isn't connected.
       if (event.key === 'c' && event.type === 'keyup') {
         // If we do this on 'keydown', we end up with a 'c'
         // stuck in the input box.
@@ -43,26 +46,11 @@ function handleKeyboardInput(event) {
     ) {
       // Other events only happen while connected
 
-      // Shoot
-      if (event.key === ' ') {
-        // On key down (ignore key up)
-        if (event.type === 'keydown') {
-          sendDataToServer.reportFireball(playerObject.playerDirection);
-        }
-      }
-
-      // Anything that isn't a special game command is tracked and sent to the server,
-      // IF it is connected.
-      // NOTE:
-      // NOT changing the keyState if we can't send because
-      // the keyState is a reflection of what the server thinks,
-      // and the game is meant to only work when connected.
-      else if (playerObject.keyState[event.key] !== event.type) {
+      // Anything that isn't a special game command is tracked in
+      // the player object, and acted upon during the next Phaser
+      // game loop.
+      if (playerObject.keyState[event.key] !== event.type) {
         playerObject.keyState[event.key] = event.type;
-        // Not sending key strokes to server at this point.
-        // We can change our minds later if we want to.
-        // reportFunctions.reportKeyboardState(event.key, event.type);
-        // This entire block is a little pointless without the part where we send keys to the server.
       }
     }
   } else if (event.type === 'keydown') {

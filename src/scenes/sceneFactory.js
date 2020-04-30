@@ -185,6 +185,12 @@ const sceneFactory = ({
       playerObject.keyState.t = null;
       playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
     }
+
+    // Send default Spell with spacebar
+    if (playerObject.keyState[' '] === 'keydown') {
+      playerObject.keyState[' '] = null;
+      playerObject.spell = 'fireball';
+    }
   }
 
   function handlePlayerMovement(maxSpeed, useAcceleration) {

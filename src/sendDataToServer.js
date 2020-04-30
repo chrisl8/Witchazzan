@@ -2,26 +2,6 @@ import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
 
 const sendDataToServer = {};
-sendDataToServer.reportFireball = (direction) => {
-  if (
-    communicationsObject.socket.readyState === communicationsObject.status.OPEN
-  ) {
-    let cardinalDirection = 'east';
-    if (direction === 'up') {
-      cardinalDirection = 'north';
-    } else if (direction === 'down') {
-      cardinalDirection = 'south';
-    } else if (direction === 'left') {
-      cardinalDirection = 'west';
-    }
-    const obj = {};
-    obj.message_type = 'fireball';
-    obj.direction = cardinalDirection;
-    obj.sprite = 'fireball';
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
-  }
-};
 sendDataToServer.reportKeyboardState = (key, state) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
@@ -61,6 +41,7 @@ sendDataToServer.reportPlayerLocation = ({
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
       force: false, // Always reset server to false after we saw the packet.
+      spell: playerObject.spell,
     };
     let sendData = false;
     // This comparison is naive, but our objects are well defined
