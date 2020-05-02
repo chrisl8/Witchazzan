@@ -14,11 +14,15 @@ function parseGamePieceListFromServer(inputData) {
           };
           playerObject.initialScene = piece.scene;
         }
-        if (piece.hasOwnProperty('spell')) {
-          console.log(piece.spell);
-          playerObject.spell = null;
+        // TODO: This is temporary code to help with debugging,
+        //       Remove it when spells work.
+        if (piece.hasOwnProperty('spell') && piece.spell !== null) {
+          if (piece.spell === 'fireball') {
+            console.log('fireball received');
+          } else {
+            console.log(piece.spell);
+          }
         }
-        playerObject.lastReceivedPlayerLocationObject = piece; // TODO: This isn't used anywhere, so why grab it?
       }
     });
   }

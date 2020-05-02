@@ -2,18 +2,6 @@ import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
 
 const sendDataToServer = {};
-sendDataToServer.reportKeyboardState = (key, state) => {
-  if (
-    communicationsObject.socket.readyState === communicationsObject.status.OPEN
-  ) {
-    const obj = {};
-    obj.message_type = 'keyboard-update';
-    obj.key = key;
-    obj.state = state;
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
-  }
-};
 sendDataToServer.reportChat = (text) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
@@ -43,6 +31,10 @@ sendDataToServer.reportPlayerLocation = ({
       force: false, // Always reset server to false after we saw the packet.
       spell: playerObject.spell,
     };
+    if (playerObject.spell) {
+      console.log('fireball sent');
+      playerObject.spell = null;
+    }
     let sendData = false;
     // This comparison is naive, but our objects are well defined
     const previousObjectKeys = Object.keys(

@@ -66,7 +66,6 @@ const playerObject = {
   socketCurrentlyConnected: false,
   gameTime: null,
   lastSentPlayerLocationObject: {},
-  lastReceivedPlayerLocationObject: {},
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
   spell: null,
 };
