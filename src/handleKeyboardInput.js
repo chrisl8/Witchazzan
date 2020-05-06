@@ -32,6 +32,7 @@ function handleKeyboardInput(event) {
         // a way to send that.
 
         // .hidden = true/false is not compatible with display: flex
+        playerObject.chatOpen = true; // Broadcast to other players that chat is open
         playerObject.domElements.chatInputDiv.style.display = 'flex';
         playerObject.domElements.chatInput.focus();
         textObject.escapeToLeaveChat.shouldBeActiveNow = true;
@@ -64,6 +65,7 @@ function handleKeyboardInput(event) {
       playerObject.chatInputTextArray.length = 0;
       // Otherwise it still has text on it when you open it again:
       playerObject.domElements.chatInput.value = '';
+      playerObject.chatOpen = false; // Broadcast to other players that chat is closed
       playerObject.domElements.chatInputDiv.style.display = 'none';
       playerObject.scrollingTextBox.hide();
       textObject.notConnectedCommandResponse.shouldBeActiveNow = false;

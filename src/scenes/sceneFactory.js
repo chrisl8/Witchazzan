@@ -761,6 +761,15 @@ const sceneFactory = ({
             }
             playerObject.spawnedObjectList[gamePiece.id] = null;
           }
+
+          // TODO: Why is this gone and yet I'm still here? Where should I do this?
+          // Add game piece data to object for use elsewhere later
+          if (
+            playerObject.spawnedObjectList.hasOwnProperty(gamePiece.id) &&
+            playerObject.spawnedObjectList[gamePiece.id]
+          ) {
+            playerObject.spawnedObjectList[gamePiece.id].gamePiece = gamePiece;
+          }
         }
       });
     }

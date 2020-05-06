@@ -30,6 +30,7 @@ sendDataToServer.reportPlayerLocation = ({
       moving: !playerObject.playerStopped,
       force: false, // Always reset server to false after we saw the packet.
       spell: playerObject.spell,
+      chatOpen: playerObject.chatOpen,
     };
     if (playerObject.spell) {
       console.log('fireball sent');

@@ -14,7 +14,7 @@ html, body {
   margin-bottom: 25px;
 }
 
-#command_input_div, #upper_left_text_overlay_div, #scrolling_text_overlay_div, #center_text_overlay_div {
+#command_input_div, #upper_left_text_overlay_div, #scrolling_text_overlay_div, #center_text_overlay_div, #player_tag, .other_player_tag {
   position: absolute;
 }
 
@@ -77,4 +77,11 @@ img.emoji {
 #you_died {
   color: red;
   font-size: 3em;
+}
+
+#player_tag {
+  flex: 2;
+  color: red;
+  font-weight: bold;
+  z-index: 1;
 }

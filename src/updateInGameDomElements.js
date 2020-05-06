@@ -1,4 +1,5 @@
 /* globals window:true */
+/* globals document:true */
 import playerObject from './objects/playerObject';
 import textObject from './objects/textObject';
 
@@ -63,10 +64,13 @@ const updateInGameDomElements = (htmlElementParameters) => {
 
     // Location for Center Text
     if (textLocation === 'Center') {
-      newValueObject.style.left = `${canvasWidth / 2 -
-        playerObject.domElements[textLocation].offsetWidth / 2}px`;
-      newValueObject.style.top = `${canvasHeight / 2 -
-        playerObject.domElements[textLocation].offsetHeight / 2}px`;
+      newValueObject.style.left = `${
+        canvasWidth / 2 - playerObject.domElements[textLocation].offsetWidth / 2
+      }px`;
+      newValueObject.style.top = `${
+        canvasHeight / 2 -
+        playerObject.domElements[textLocation].offsetHeight / 2
+      }px`;
     }
 
     // Check settings and update if they are different
@@ -95,6 +99,77 @@ const updateInGameDomElements = (htmlElementParameters) => {
           playerObject.domElements[textLocation].scrollTop =
             playerObject.domElements[textLocation].scrollHeight;
         }
+      }
+    }
+
+    // Player Tag
+    if (
+      playerObject.spawnedObjectList.hasOwnProperty(playerObject.playerId) &&
+      playerObject.spawnedObjectList[playerObject.playerId]
+    ) {
+      const health =
+        playerObject.spawnedObjectList[playerObject.playerId].gamePiece.health;
+      if (health > 99) {
+        playerObject.domElements.playerTag.innerHTML =
+          '&#x2764;&#x2764;&#x2764;&#x2764;';
+      } else if (health > 74) {
+        playerObject.domElements.playerTag.innerHTML =
+          '&#x2764;&#x2764;&#x2764;';
+      } else if (health > 49) {
+        playerObject.domElements.playerTag.innerHTML = '&#x2764;&#x2764;';
+      } else if (health > 24) {
+        playerObject.domElements.playerTag.innerHTML = '&#x2764;';
+      } else {
+        playerObject.domElements.playerTag.innerHTML = '';
+      }
+      playerObject.domElements.playerTag.style.left = `${
+        (playerObject.player.x - playerObject.player.displayWidth - 8) *
+        playerObject.cameraScaleFactor
+      }px`;
+      playerObject.domElements.playerTag.style.top = `${
+        (playerObject.player.y - playerObject.player.displayHeight - 10) *
+        playerObject.cameraScaleFactor
+      }px`;
+    }
+
+    // Other player tags
+    for (const [key, value] of Object.entries(playerObject.spawnedObjectList)) {
+      if (value) {
+        if (
+          Number(key) !== playerObject.playerId &&
+          value.spriteData.type === 'player'
+        ) {
+          if (!playerObject.domElements.otherPlayerTags[Number(key)]) {
+            playerObject.domElements.otherPlayerTags[
+              Number(key)
+            ] = document.createElement('span');
+            playerObject.domElements.otherPlayerTags[Number(key)].classList.add(
+              'other_player_tag',
+            );
+            playerObject.domElements.otherPlayerTagsDiv.appendChild(
+              playerObject.domElements.otherPlayerTags[Number(key)],
+            );
+          }
+          if (value.gamePiece.chatOpen) {
+            playerObject.domElements.otherPlayerTags[Number(key)].innerHTML =
+              '&#x1F4AD;';
+          } else {
+            playerObject.domElements.otherPlayerTags[Number(key)].innerHTML =
+              '';
+          }
+          playerObject.domElements.otherPlayerTags[Number(key)].style.left = `${
+            (value.sprite.x - value.sprite.displayWidth) *
+            playerObject.cameraScaleFactor
+          }px`;
+          playerObject.domElements.otherPlayerTags[Number(key)].style.top = `${
+            (value.sprite.y - value.sprite.displayHeight - 10) *
+            playerObject.cameraScaleFactor
+          }px`;
+        }
+        // console.log(`${key}: ${value}`);
+      } else if (playerObject.domElements.otherPlayerTags[Number(key)]) {
+        playerObject.domElements.otherPlayerTags[Number(key)].remove();
+        playerObject.domElements.otherPlayerTags[Number(key)] = null;
       }
     }
 

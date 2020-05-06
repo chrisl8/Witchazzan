@@ -40,6 +40,9 @@ const playerObject = {
     chatInputDiv: document.getElementById('command_input_div'),
     chatInputCaret: document.getElementById('command_input_caret'),
     chatInput: document.getElementById('command_input'),
+    playerTag: document.getElementById('player_tag'),
+    otherPlayerTagsDiv: document.getElementById('other_player_tags'),
+    otherPlayerTags: {},
   },
   domElementHistory: {
     Center: { style: {} },
@@ -51,7 +54,6 @@ const playerObject = {
   playerId: null,
   playerDirection: 'left',
   playerStopped: true,
-  otherPlayerList: [],
   spawnedObjectList: {},
   sceneObjectList: [],
   spriteData: {},
@@ -68,6 +70,7 @@ const playerObject = {
   lastSentPlayerLocationObject: {},
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
   spell: null,
+  chatOpen: false,
 };
 
 export default playerObject;

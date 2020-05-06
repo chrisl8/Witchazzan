@@ -20,7 +20,6 @@ class ScrollingTextBox {
     this.timeoutEnabled = true;
     this.activeTime = 0;
     this.timeout = 10 * 1000;
-    this.c = 0;
   }
 
   sceneUpdate = (delta) => {
