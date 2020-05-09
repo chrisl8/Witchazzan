@@ -30,7 +30,7 @@ function socketCommunications() {
       textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
 
       // Send our username here, in case the server doesn't know who we are yet.
-      sendDataToServer.reportLogin(playerObject.playerName);
+      sendDataToServer.login(playerObject.playerName);
     };
 
     // Listen for messages
@@ -38,6 +38,7 @@ function socketCommunications() {
       // {"messageType":"chat","name":null,"content":"test"}
       const inputData = JSON.parse(event.data);
       if (inputData.messageType === 'chat') {
+        console.log(inputData);
         if (playerObject.scrollingTextBox) {
           // Sometimes we get a chat message before scrollingTextBox is initialized
           playerObject.scrollingTextBox.chat(inputData);

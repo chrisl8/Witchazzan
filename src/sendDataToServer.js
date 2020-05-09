@@ -2,21 +2,23 @@ import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
 
 const sendDataToServer = {};
-sendDataToServer.reportChat = (text) => {
+
+sendDataToServer.chat = (text, targetPlayerId) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
     const obj = {};
     obj.message_type = 'chat';
     obj.text = text;
+    if (targetPlayerId) {
+      obj.targetPlayerId = targetPlayerId;
+    }
     const jsonString = JSON.stringify(obj);
     communicationsObject.socket.send(jsonString);
   }
 };
-sendDataToServer.reportPlayerLocation = ({
-  sceneName,
-  tileBasedCoordinates,
-}) => {
+
+sendDataToServer.playerLocation = ({ sceneName, tileBasedCoordinates }) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -63,7 +65,8 @@ sendDataToServer.reportPlayerLocation = ({
     }
   }
 };
-sendDataToServer.reportLogin = (username, password) => {
+
+sendDataToServer.login = (username, password) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -77,7 +80,8 @@ sendDataToServer.reportLogin = (username, password) => {
     communicationsObject.socket.send(jsonString);
   }
 };
-sendDataToServer.reportCommand = (command) => {
+
+sendDataToServer.command = (command) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
@@ -88,9 +92,6 @@ sendDataToServer.reportCommand = (command) => {
     communicationsObject.socket.send(jsonString);
     console.log(`Sent ${jsonString} to server.`);
   }
-};
-sendDataToServer.dumpPlayerObject = () => {
-  console.log(playerObject);
 };
 
 export default sendDataToServer;
