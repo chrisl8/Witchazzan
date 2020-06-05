@@ -579,7 +579,9 @@ const sceneFactory = ({
               if (gamePiece.sprite === "carrot") {
                 playerObject.spawnedObjectList[
                   gamePiece.id
-                ].sprite.tint = gamePiece.genes['color'] * 1000000;
+                ].sprite.tint = "0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1);
+                  // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+                  // console.log("0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1));
               }
 
               if (spriteData.physicsOffset) {
