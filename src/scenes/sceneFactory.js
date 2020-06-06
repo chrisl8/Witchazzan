@@ -575,6 +575,15 @@ const sceneFactory = ({
                 ].sprite.tint = 0x000000;
               }
 
+              // Make the carrots visually distinct based on their genetic code
+              if (gamePiece.sprite === "carrot") {
+                playerObject.spawnedObjectList[
+                  gamePiece.id
+                ].sprite.tint = "0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1);
+                  // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+                  // console.log("0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1));
+              }
+
               if (spriteData.physicsOffset) {
                 playerObject.spawnedObjectList[
                   gamePiece.id
