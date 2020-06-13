@@ -44,7 +44,12 @@ function handleKeyboardInput(event) {
       // Anything that isn't a special game command is tracked in
       // the player object, and acted upon during the next Phaser
       // game loop.
-      if (playerObject.keyState[event.key] !== event.type) {
+      // Translate WASD to wasd to avoid several gotchas:
+      // 1. Catching both w & W is easy to forget.
+      // 2. If you hold s, then shift, then release S, then s never gets a 'keyup' signal
+      if (['W', 'A', 'S', 'D'].indexOf(event.key) > -1) {
+        playerObject.keyState[event.key.toLowerCase()] = event.type;
+      } else {
         playerObject.keyState[event.key] = event.type;
       }
     }

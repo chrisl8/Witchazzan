@@ -530,7 +530,6 @@ const sceneFactory = ({
             //       the game piece is removed and resent anyway.
             if (!playerObject.spawnedObjectList[gamePiece.id]) {
               // Add new sprites to the scene
-              console.log('New game piece', gamePiece);
               playerObject.spawnedObjectList[gamePiece.id] = {};
 
               playerObject.spawnedObjectList[
