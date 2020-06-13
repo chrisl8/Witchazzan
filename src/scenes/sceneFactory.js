@@ -73,7 +73,7 @@ const sceneFactory = ({
     sceneOpen = false;
     // Mark all scene text objects as not currently displayed so the new scene can display them again
     // eslint-disable-next-line no-unused-vars
-    for (const [key, value] of Object.entries(textObject)) {
+    for (const [, value] of Object.entries(textObject)) {
       value.hasBeenDisplayedInThisScene = false;
     }
 
@@ -274,18 +274,6 @@ const sceneFactory = ({
     if (fullSpeed) {
       playerObject.player.body.velocity.normalize().scale(maxSpeed);
     }
-  }
-
-  function checkThatPlayerStillExists() {
-    if (
-      gamePieceList.pieces.findIndex((x) => x.id === playerObject.playerId) < 0
-    ) {
-      // It me, player has been removed from the Game Piece list
-      localStorage.setItem('playerDroppedFromGamePieceList', 'true');
-      returnToIntroScreen();
-      return false;
-    }
-    return true;
   }
 
   function checkIfLayerExists(map, layer) {
@@ -576,12 +564,19 @@ const sceneFactory = ({
               }
 
               // Make the carrots visually distinct based on their genetic code
-              if (gamePiece.sprite === "carrot") {
+              if (gamePiece.sprite === 'carrot') {
                 playerObject.spawnedObjectList[
                   gamePiece.id
-                ].sprite.tint = "0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1);
-                  // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-                  // console.log("0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1));
+                ].sprite.tint = `0x${(
+                  (1 << 24) + // eslint-disable-line no-bitwise
+                  (gamePiece.genes['color-r'] << 16) + // eslint-disable-line no-bitwise
+                  (gamePiece.genes['color-g'] << 8) + // eslint-disable-line no-bitwise
+                  gamePiece.genes['color-b']
+                )
+                  .toString(16)
+                  .slice(1)}`;
+                // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+                // console.log("0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1));
               }
 
               if (spriteData.physicsOffset) {
@@ -1052,10 +1047,6 @@ const sceneFactory = ({
     // Don't do anything if the scene is no longer open.
     // This may not be necessary, but it may prevent race conditions
     if (!sceneOpen) {
-      return;
-    }
-
-    if (!checkThatPlayerStillExists()) {
       return;
     }
 
