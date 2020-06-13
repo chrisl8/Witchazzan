@@ -14,15 +14,6 @@ function parseGamePieceListFromServer(inputData) {
           };
           playerObject.initialScene = piece.scene;
         }
-        // TODO: This is temporary code to help with debugging,
-        //       Remove it when spells work.
-        if (piece.hasOwnProperty('spell') && piece.spell !== null) {
-          if (piece.spell === 'fireball') {
-            console.log('fireball received');
-          } else {
-            console.log(piece.spell);
-          }
-        }
       }
     });
   }

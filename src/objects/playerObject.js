@@ -67,7 +67,7 @@ const playerObject = {
   dotTrailsOn: false,
   socketCurrentlyConnected: false,
   gameTime: null,
-  lastSentPlayerLocationObject: {},
+  lastSentPlayerDataObject: {},
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
   spell: null,
   chatOpen: false,

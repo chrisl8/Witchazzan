@@ -67,7 +67,7 @@ function socketCommunications() {
   function watchAndRestartConnection() {
     if (!playerObject.socketCurrentlyConnected) {
       // Clear last sent data to make sure we send it all again
-      playerObject.lastSentPlayerLocationObject = {};
+      playerObject.lastSentPlayerDataObject = {};
       // Reconnect
       connect();
     }

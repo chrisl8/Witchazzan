@@ -18,12 +18,11 @@ sendDataToServer.chat = (text, targetPlayerId) => {
   }
 };
 
-sendDataToServer.playerLocation = ({ sceneName, tileBasedCoordinates }) => {
+sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
     const obj = {
-      message_type: 'location-update',
       x: tileBasedCoordinates.x,
       y: tileBasedCoordinates.y,
       scene: sceneName,
@@ -31,37 +30,34 @@ sendDataToServer.playerLocation = ({ sceneName, tileBasedCoordinates }) => {
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
       force: false, // Always reset server to false after we saw the packet.
-      spell: playerObject.spell,
       chatOpen: playerObject.chatOpen,
     };
     if (playerObject.spell) {
-      console.log('fireball sent');
+      // Only send positive spell, and only send it once.
+      // Otherwise we may overwrite the server's version before it is acted upon.
+      obj.spell = playerObject.spell;
       playerObject.spell = null;
     }
-    let sendData = false;
-    // This comparison is naive, but our objects are well defined
-    const previousObjectKeys = Object.keys(
-      playerObject.lastSentPlayerLocationObject,
-    );
-    if (Object.keys(obj).length === previousObjectKeys.length) {
-      previousObjectKeys.forEach((key) => {
-        if (
-          obj[key] === undefined ||
-          playerObject.lastSentPlayerLocationObject[key] !== obj[key]
-        ) {
-          // console.log(`${key}: ${obj[key]}`);
-          sendData = true;
-        }
-      });
-    } else {
-      sendData = true;
-    }
-    if (sendData) {
+    // Only send data if it has changed,
+    // and only send the actual keys that have changed.
+    // This saves bandwidth and server CPU cycles,
+    // as well as avoids some race conditions on ths server.
+    const objectToSend = {};
+    Object.entries(obj).forEach(([key, value]) => {
+      if (
+        playerObject.lastSentPlayerDataObject[key] === undefined ||
+        playerObject.lastSentPlayerDataObject[key] !== obj[key]
+      ) {
+        objectToSend[key] = value;
+      }
+    });
+    if (Object.keys(objectToSend).length > 0) {
       // Only send data if it has changed,
       // rather than wasting bandwidth and
       // the server's CPU cycles.
-      playerObject.lastSentPlayerLocationObject = obj;
-      communicationsObject.socket.send(JSON.stringify(obj));
+      playerObject.lastSentPlayerDataObject = obj;
+      objectToSend.message_type = 'location-update';
+      communicationsObject.socket.send(JSON.stringify(objectToSend));
     }
   }
 };

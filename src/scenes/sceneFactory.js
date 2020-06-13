@@ -407,7 +407,7 @@ const sceneFactory = ({
           tileMap.tilewidth,
         ),
       };
-      sendDataToServer.playerLocation({
+      sendDataToServer.playerData({
         sceneName,
         tileBasedCoordinates,
       });
