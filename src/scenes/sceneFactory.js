@@ -156,14 +156,14 @@ const sceneFactory = ({
 
   function hotKeyHandler() {
     // Return to intro text
-    if (playerObject.keyState.h === 'keydown') {
-      playerObject.keyState.h = null;
+    if (playerObject.keyState.p === 'keydown') {
+      playerObject.keyState.p = null;
       returnToIntroScreen();
     }
 
     // Hot key scene switch for testing.
-    if (playerObject.keyState.o === 'keydown') {
-      playerObject.keyState.o = null;
+    if (playerObject.keyState.h === 'keydown') {
+      playerObject.keyState.h = null;
       if (sceneOpen && sceneName !== playerObject.defaultOpeningScene) {
         playerObject.dotTrailsOn = false; // Game crashes if this is on during this operation.
         cleanUpSceneAndTeleport.call(
@@ -189,7 +189,7 @@ const sceneFactory = ({
     // Send default Spell with spacebar
     if (playerObject.keyState[' '] === 'keydown') {
       playerObject.keyState[' '] = null;
-      playerObject.spell = 'fireball';
+      playerObject.sendSpell = true;
     }
   }
 
@@ -437,6 +437,8 @@ const sceneFactory = ({
                 fillColor = 0xff0000;
               } else if (['fireball'].indexOf(gamePiece.type) > -1) {
                 fillColor = 0xffa500;
+              } else if (['teleball'].indexOf(gamePiece.type) > -1) {
+                fillColor = 0xffa500;
               } else if (gamePiece.id === playerObject.playerId) {
                 // it me
                 fillColor = 0x00a500;
@@ -473,6 +475,7 @@ const sceneFactory = ({
             // and act on them.
             if (gamePiece.id === playerObject.playerId) {
               if (gamePiece.force) {
+                playerObject.force = true; // This tells the data sender to update this to false;
                 // The player has now been forced to a new location by the server,
                 // this location needs to be set and player input ignored
                 // Stop player if they are moving

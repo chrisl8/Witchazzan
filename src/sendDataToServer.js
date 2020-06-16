@@ -29,14 +29,18 @@ sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
       direction: playerObject.playerDirection,
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
-      force: false, // Always reset server to false after we saw the packet.
       chatOpen: playerObject.chatOpen,
     };
-    if (playerObject.spell) {
+    if (playerObject.sendSpell) {
       // Only send positive spell, and only send it once.
       // Otherwise we may overwrite the server's version before it is acted upon.
-      obj.spell = playerObject.spell;
-      playerObject.spell = null;
+      obj.spell = playerObject.spellOptions[playerObject.activeSpellKey];
+      playerObject.sendSpell = false;
+    }
+    if (playerObject.force) {
+      // Always reset this to false
+      obj.force = false;
+      playerObject.force = false;
     }
     // Only send data if it has changed,
     // and only send the actual keys that have changed.
@@ -55,10 +59,10 @@ sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
       // Only send data if it has changed,
       // rather than wasting bandwidth and
       // the server's CPU cycles.
-      playerObject.lastSentPlayerDataObject = obj;
       objectToSend.message_type = 'location-update';
       communicationsObject.socket.send(JSON.stringify(objectToSend));
     }
+    playerObject.lastSentPlayerDataObject = obj;
   }
 };
 

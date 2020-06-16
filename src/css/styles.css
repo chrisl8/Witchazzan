@@ -9,6 +9,19 @@ html, body {
   height: 100%;
 }
 
+h1, h2, h3{
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+div .intro-screen-subsection {
+  margin-left: 10px;
+}
+
+.spell-selector {
+  text-transform: capitalize;
+}
+
 #pre_game_div {
   margin-left: 10px;
   margin-bottom: 25px;
@@ -84,4 +97,97 @@ img.emoji {
   color: red;
   font-weight: bold;
   z-index: 1;
+}
+
+/*Key map keyboard*/
+
+:root {
+  --green: #A2CCB6;
+  --yellow: #FCEEB5;
+  --peach: #EE786E;
+  --off-white: #FFFFF4;
+}
+
+.keyboard {
+  margin-top: 15px;
+  font-family: Arial, serif;
+  width: 780px;
+  height: 262px;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  background: #000000;
+}
+
+.keyboard span {
+  display: block;
+  margin-top: -5px;
+}
+
+.keyboard .row {
+  margin-top: 2px;
+  overflow: hidden;
+}
+
+.key {
+  width: 50px;
+  height: 50px;
+  float: left;
+  cursor: pointer;
+  background-color: var(--off-white);
+  color: #000000;
+  line-height: 24px;
+  text-align: center;
+  margin-left: 2px;
+  border-radius: 4px;
+}
+
+.keyboard .description {
+  color: blue;
+  font-size: 12px;
+}
+
+.key__symbols {
+  line-height: 28px;
+}
+
+.key__backspace {
+  width: 100px;
+}
+
+.key__oneandhalf {
+  width: 75px;
+}
+
+.key__esc {
+  background: var(--peach);
+}
+
+.key__enter {
+  width: 112px;
+}
+
+.key__caps {
+  width: 90px;
+}
+
+.key__shift-left {
+  width: 100px;
+}
+
+.key__spacebar {
+  width: 300px;
+  line-height: 52px;
+}
+
+.key__bottom-funct {
+  width: 70px;
+}
+
+.key__arrow {
+  background: var(--green);
+  line-height: 17px;
+}
+
+.feather {
+  margin-top: 10px;
 }

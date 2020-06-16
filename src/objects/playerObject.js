@@ -8,7 +8,7 @@
  *
  */
 const playerObject = {
-  helpTextVersion: 9, // Increment this to force players to see the Instructions again.
+  helpTextVersion: 10, // Increment this to force players to see the Instructions again.
   // This is the scene you start the game in,
   // and go to if a non-existent scene is requested,
   // and if you press the 'o' key.
@@ -30,9 +30,7 @@ const playerObject = {
   chatInputTextArray: [],
   scrollingTextOverlayInputText: '',
   domElements: {
-    playerNameSubmitButton: document.getElementById(
-      'player_name_submit_button',
-    ),
+    playerNameSubmitButton: document.getElementById('start_game_button'),
     playerNameInputBox: document.getElementById('player_name_input_box'),
     Center: document.getElementById('center_text_overlay_div'),
     UpperLeft: document.getElementById('upper_left_text_overlay_div'),
@@ -69,8 +67,14 @@ const playerObject = {
   gameTime: null,
   lastSentPlayerDataObject: {},
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
-  spell: null,
+  sendSpell: false,
   chatOpen: false,
+  spellOptions: ['fireball', 'teleball'],
+  spellAssignments: {
+    '1': 1,
+    '2': 0,
+  }, // Keyboard keys 1 to 9
+  activeSpellKey: 1,
 };
 
 export default playerObject;
