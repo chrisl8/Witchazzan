@@ -57,11 +57,39 @@ async function introScreenAndPreGameSetup() {
   }
 
   // Check local storage for disableCameraZoom
-  // TODO: This should be reusable functions.
   let disableCameraZoom = localStorage.getItem('disableCameraZoom');
   if (disableCameraZoom === 'true') {
     document.getElementById('camera_zoom_off').checked = true;
   }
+
+  // Handle spell settings:
+  // Populate Intro Page with Spell selection HTML and fill with defaults
+  let spellAssignmentInnerHTML = '';
+  for (const [key] of Object.entries(playerObject.spellAssignments)) {
+    // Check local storage to see if there is a stored value
+    const spellSettingFromLocalStorage = localStorage.getItem(
+      `key${key}SpellAssignment`,
+    );
+    if (spellSettingFromLocalStorage !== null) {
+      playerObject.spellAssignments[key] = Number(spellSettingFromLocalStorage);
+    }
+
+    // Create Inner HTML for Spell selection
+    spellAssignmentInnerHTML += `<label for="spell_${key}_selector">${key}</label> - <select id="spell_${key}_selector" class="spell-selector">`;
+    // eslint-disable-next-line no-loop-func
+    for (let i = 0; i < playerObject.spellOptions.length; i++) {
+      if (playerObject.spellAssignments[key] === i) {
+        spellAssignmentInnerHTML += `<option value="${i}" selected>${playerObject.spellOptions[i]}</option>`;
+      } else {
+        spellAssignmentInnerHTML += `<option value="${i}">${playerObject.spellOptions[i]}</option>`;
+      }
+    }
+    spellAssignmentInnerHTML += `</select><br />`;
+  }
+  // Push new HTML code into DOM
+  document.getElementById(
+    'spell-assignment',
+  ).innerHTML = spellAssignmentInnerHTML;
 
   // Check if player died on last exit
   const playerDroppedFromGamePieceList = localStorage.getItem(
@@ -109,7 +137,6 @@ async function introScreenAndPreGameSetup() {
     }
 
     // Settle up disableCameraZoom and set local storage if need be
-    // TODO: This should be reusable functions.
     disableCameraZoom = document.getElementById('camera_zoom_off').checked;
     if (disableCameraZoom) {
       localStorage.setItem('disableCameraZoom', 'true');
@@ -124,6 +151,16 @@ async function introScreenAndPreGameSetup() {
     if (spriteName) {
       localStorage.setItem('playerSprite', spriteName);
       playerObject.spriteName = spriteName;
+    }
+
+    // Add all spell selections to local storage,
+    // and inject them into the playerObject
+    for (const [key] of Object.entries(playerObject.spellAssignments)) {
+      const spellSettingFromDOM = document.getElementById(
+        `spell_${key}_selector`,
+      ).value;
+      localStorage.setItem(`key${key}SpellAssignment`, spellSettingFromDOM);
+      playerObject.spellAssignments[key] = Number(spellSettingFromDOM);
     }
   }
 }

@@ -44,10 +44,33 @@ function handleKeyboardInput(event) {
       // Anything that isn't a special game command is tracked in
       // the player object, and acted upon during the next Phaser
       // game loop.
-      // Translate WASD to wasd to avoid several gotchas:
-      // 1. Catching both w & W is easy to forget.
-      // 2. If you hold s, then shift, then release S, then s never gets a 'keyup' signal
-      if (['W', 'A', 'S', 'D'].indexOf(event.key) > -1) {
+
+      // Keys 1-0 set the active spell
+      const spellKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      const shiftedSpellKeys = ['!', '@', '#', '$', '%', '^', '&', '*', '('];
+      if (
+        spellKeys.indexOf(event.key) > -1 ||
+        shiftedSpellKeys.indexOf(event.key) > -1
+      ) {
+        let spellKey = event.key;
+        const shiftedSpellKeyIndex = shiftedSpellKeys.indexOf(spellKey);
+        if (shiftedSpellKeyIndex > -1) {
+          // Convert shifted keys to number keys,
+          // in case somebody tried to hit a spell key while sprinting
+          spellKey = spellKeys[shiftedSpellKeyIndex];
+        }
+        if (playerObject.spellAssignments[spellKey] !== undefined) {
+          playerObject.activeSpellKey = playerObject.spellAssignments[spellKey];
+        } else {
+          // Catch keys that are outside of currently assigned list,
+          // so that we don't have to update code when we expand them.
+          playerObject.activeSpellKey = playerObject.spellAssignments[1];
+        }
+      } else if (event.key.length === 1) {
+        // Translate all single letter keys to lower case. We do not have "cased" keyboard inputs.
+        // This solves a few weird issues:
+        // 1. Catching both w & W is easy to forget.
+        // 2. If you hold s, then shift, then release S, then s never gets a 'keyup' signal
         playerObject.keyState[event.key.toLowerCase()] = event.type;
       } else {
         playerObject.keyState[event.key] = event.type;

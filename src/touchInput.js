@@ -25,7 +25,7 @@ function touchInput() {
           handleKeyboardInput({ key: 'Escape', type: 'keydown' });
         }
       } else if (fingerCount === 2) {
-        playerObject.spell = 'fireball';
+        playerObject.sendSpell = true;
       }
       fingerCount = 0;
     },

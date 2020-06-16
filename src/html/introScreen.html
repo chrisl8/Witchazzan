@@ -4,70 +4,319 @@
     <p>You died. =(</p>
   </div>
   <br />
-  <label
-  >Enter a name for your character:&nbsp;<input
-      id="player_name_input_box"
-  /></label>
-  <button id="player_name_submit_button">Start Game</button>
-  <div>
-    <br />
+  <h1>Setup</h1>
+  <div class="intro-screen-subsection">
+    <h3>Name</h3>
+    <div class="intro-screen-subsection">
+      <input
+          id="player_name_input_box"
+      />
+      <br />
+      <button id="start_game_button" style="margin-left: 5px;margin-top:5px;">Start Game</button>
+    </div>
+    <h3>Character</h3>
+    <div class="intro-screen-subsection">
+      <div>
+        <input
+            type="radio" id="bloomby" name="sprite" value="bloomby"
+            checked
+        >
+        <label for="bloomby">Bloomby</label>
+      </div>
+      <div>
+        <input type="radio" id="partyWizard" name="sprite" value="partyWizard">
+        <label for="partyWizard">Party Wizard</label>
+      </div>
+      <div>
+        <input type="radio" id="joosh" name="sprite" value="joosh">
+        <label for="joosh">Joosh</label>
+      </div>
+    </div>
+    <h3>Spells</h3>
+    <div class="intro-screen-subsection" id="spell-assignment">
+    </div>
+  </div>
+  <h2>Debugging</h2>
+  <div class="intro-screen-subsection">
     <input type="checkbox" id="phaser_debug" name="phaser_debug">
     <label for="phaser_debug">Enable Phaser Debugging</label>
     <br />
     <input type="checkbox" id="camera_zoom_off" name="camera_zoom_off">
     <label for="camera_zoom_off">Disable Camera Zoom for Debugging</label>
   </div>
+  <h1>Key Map</h1>
+  <!--  https://codepen.io/Mickel07/pen/YdONYK-->
+  <div class="intro-screen-subsection keyboard">
+    <div class="row">
+      <div class="key key__symbols">
+        ~ <span /> `
+      </div>
+      <div class="key">
+        1
+        <span class="description">Spell 1</span>
+      </div>
+      <div class="key">
+        2
+        <span class="description">Spell 2</span>
+      </div>
+      <div class="key">
+        3
+      </div>
+      <div class="key">
+        4
+      </div>
+      <div class="key">
+        5
+      </div>
+      <div class="key">
+        6
+      </div>
+      <div class="key">
+        7
+      </div>
+      <div class="key">
+        8
+      </div>
+      <div class="key">
+        9
+      </div>
+      <div class="key">
+        0
+      </div>
+      <div class="key key__symbols">
+        _ <span /> -
+      </div>
+      <div class="key key__symbols">
+        + <span /> =
+      </div>
+      <div class="key key__backspace">
+        Backspace
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="key key__oneandhalf">
+        Tab
+      </div>
+      <div class="key">
+        Q
+      </div>
+      <div class="key">
+        W<br />
+        <span class="description">Up</span>
+      </div>
+      <div class="key">
+        E
+      </div>
+      <div class="key">
+        R
+      </div>
+      <div class="key">
+        T
+        <span class="description">dot Trails</span>
+      </div>
+      <div class="key">
+        Y
+      </div>
+      <div class="key">
+        U
+      </div>
+      <div class="key">
+        I
+      </div>
+      <div class="key">
+        O
+      </div>
+      <div class="key">
+        P
+        <span class="description">"Pause"</span>
+      </div>
+      <div class="key key__symbols">
+        { <span /> [
+      </div>
+      <div class="key key__symbols">
+        } <span /> ]
+      </div>
+      <div class="key key__symbols key__oneandhalf">
+        | <span /> \
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="key key__caps">
+        Caps Lock
+      </div>
+      <div class="key">
+        A
+        <span class="description">Left</span>
+      </div>
+      <div class="key">
+        S
+        <span class="description">Down</span>
+      </div>
+      <div class="key">
+        D
+        <span class="description">Right</span>
+      </div>
+      <div class="key">
+        F
+      </div>
+      <div class="key">
+        G
+      </div>
+      <div class="key">
+        H
+        <span class="description">Home</span>
+      </div>
+      <div class="key">
+        J
+      </div>
+      <div class="key">
+        K
+      </div>
+      <div class="key">
+        L
+        <span class="description">chat Log</span>
+      </div>
+      <div class="key key__symbols">
+        : <span /> ;
+      </div>
+      <div class="key key__symbols">
+        " <span /> '
+      </div>
+      <div class="key key__enter">
+        Enter
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="key key__shift-left">
+        Shift
+        <span class="description">Run</span>
+      </div>
+      <div class="key">
+        Z
+      </div>
+      <div class="key">
+        X
+      </div>
+      <div class="key">
+        C
+        <span class="description">Chat</span>
+      </div>
+      <div class="key">
+        V
+      </div>
+      <div class="key">
+        B
+      </div>
+      <div class="key">
+        N
+      </div>
+      <div class="key">
+        M
+      </div>
+      <div class="key key__symbols">
+        > <span /> .
+      </div>
+      <div class="key key__symbols">
+        < <span /> .
+      </div>
+      <div class="key key__symbols">
+        ? <span /> /
+      </div>
+      <div class="key">
+        Shift
+        <span class="description">Run</span>
+      </div>
+      <div class="key key__arrow">
+        <img alt="up" src="../assets/arrow-up.svg">
+        <span class="description">Up</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="key key__bottom-funct">
+        Ctrl
+      </div>
+      <div class="key key__bottom-funct">
+        Super
+      </div>
+      <div class="key key__bottom-funct">
+        Alt
+      </div>
+      <div class="key key__spacebar">
+        <span class="description">Fire Spell</span>
+      </div>
+      <div class="key">
+        Alt
+      </div>
+      <div class="key">
+        Super
+      </div>
+      <div class="key key__arrow">
+        <img alt="left" src="../assets/arrow-left.svg">
+        <span class="description">Left</span>
+      </div>
+      <div class="key key__arrow">
+        <img alt="down" src="../assets/arrow-down.svg">
+        <span class="description">Down</span>
+      </div>
+      <div class="key key__arrow">
+        <img alt="right" src="../assets/arrow-right.svg">
+        <span class="description">Right</span>
+      </div>
+    </div>
+  </div>
   <h1>Instructions</h1>
-  <h3>Directional Controls</h3>
-  <ul>
-    <li>wasd or Arrow Keys</li>
+  <div class="intro-screen-subsection">
+    <h3>Directional Controls</h3>
     <ul>
-      <li>Hold down Shift to "Sprint" which bypasses acceleration. Max speed is still the same.</li>
+      <li>wasd or Arrow Keys
+        <ul>
+          <li>Hold down Shift to "Sprint" which bypasses acceleration. Max speed is still the same.</li>
+        </ul>
+      </li>
     </ul>
-  </ul>
-  <h3>Keys</h3>
-  <ul>
-    <li>Space Bar - Fire</li>
-    <li>c - open the Chat/Command input box</li>
-    <li>l - open/close the chat Log when chat input is not open</li>
-    <li>o - return to Opening scene</li>
-    <li>t - turn dot Trails on/off for debugging</li>
-    <li>h - return to this Help screen</li>
+    <h3>Spells</h3>
     <ul>
-      <li>This will also reload and pause your game.</li>
+      <li>The number keys, 1-2 at the moment, pick which spell is active.</li>
+      <li>You pick which spell to assign to which key in the "Setup" section above.</li>
+      <li>The space bar fires the currently active spell.</li>
     </ul>
-  </ul>
-  <h3>Chat/Command Input</h3>
-  <ul>
-    <li>Any text entered is broadcast as chat text to other players.</li>
-    <li>Esc - Close Chat/Command input box</li>
-    <li>/ - send commands instead of chat</li>
-    <li>/who - list who is online</li>
-    <li>/run &lt;command&gt; - run built in functions</li>
-  </ul>
-  <h3>Touch Controls</h3>
-  <ul>
-    <li>Use Finger or Mouse pointer like a finger to move</li>
+    <h3>Keys</h3>
     <ul>
-      <li>Distance from center of starting point determines speed</li>
+      <li>Space Bar - Fire</li>
+      <li>c - open the Chat/Command input box</li>
+      <li>l - open/close the chat Log when chat input is not open</li>
+      <li>h - return to Home scene</li>
+      <li>t - turn dot Trails on/off for debugging</li>
+      <li>p - "Pause" returns you to this screen
+        <ul>
+          <li>This will also reload and pause your game.</li>
+        </ul>
+      </li>
     </ul>
-    <li>Tap with TWO fingers to fire</li>
-    <li>Tap with THREE fingers to open/close the chat/command input</li>
-  </ul>
-  <h3>Pick a Character</h3>
-  <div>
-    <input
-        type="radio" id="bloomby" name="sprite" value="bloomby"
-        checked
-    >
-    <label for="bloomby">Bloomby</label>
-  </div>
-  <div>
-    <input type="radio" id="partyWizard" name="sprite" value="partyWizard">
-    <label for="partyWizard">Party Wizard</label>
-  </div>
-  <div>
-    <input type="radio" id="joosh" name="sprite" value="joosh">
-    <label for="joosh">Joosh</label>
+    <h3>Chat/Command Input</h3>
+    <ul>
+      <li>Any text entered is broadcast as chat text to other players.</li>
+      <li>Esc - Close Chat/Command input box</li>
+      <li>/ - send commands instead of chat
+        <ul>
+          <li>/who - list who is online</li>
+          <li>/run &lt;command&gt; - run built in functions</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Touch Controls</h3>
+    <ul>
+      <li>Use Finger or Mouse pointer like a finger to move
+        <ul>
+          <li>Distance from center of starting point determines speed</li>
+        </ul>
+      </li>
+      <li>Tap with TWO fingers to fire</li>
+      <li>Tap with THREE fingers to open/close the chat/command input</li>
+    </ul>
   </div>
 </div>
