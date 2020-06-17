@@ -162,6 +162,9 @@ async function introScreenAndPreGameSetup() {
       localStorage.setItem(`key${key}SpellAssignment`, spellSettingFromDOM);
       playerObject.spellAssignments[key] = Number(spellSettingFromDOM);
     }
+    // Set the currently active spell to whatever was listed for key 1
+    // This also sets the spell for mobile
+    playerObject.activeSpellKey = playerObject.spellAssignments['1'];
   }
 }
 
