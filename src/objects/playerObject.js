@@ -71,8 +71,8 @@ const playerObject = {
   chatOpen: false,
   spellOptions: ['fireball', 'teleball'],
   spellAssignments: {
-    '1': 1,
-    '2': 0,
+    '1': 0,
+    '2': 1,
   }, // Keyboard keys 1 to 9
   activeSpellKey: 1,
 };
