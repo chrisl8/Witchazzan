@@ -99,6 +99,12 @@ img.emoji {
   z-index: 1;
 }
 
+@media only screen and (max-device-width: 768px) {
+  #player_tag {
+    font-size: 10px;
+  }
+}
+
 /*Key map keyboard*/
 
 :root {
