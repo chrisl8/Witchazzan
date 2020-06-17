@@ -64,7 +64,7 @@ function handleKeyboardInput(event) {
         } else {
           // Catch keys that are outside of currently assigned list,
           // so that we don't have to update code when we expand them.
-          playerObject.activeSpellKey = playerObject.spellAssignments[1];
+          playerObject.activeSpellKey = playerObject.spellAssignments['1'];
         }
       } else if (event.key.length === 1) {
         // Translate all single letter keys to lower case. We do not have "cased" keyboard inputs.

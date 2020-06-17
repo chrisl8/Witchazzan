@@ -74,7 +74,7 @@ const playerObject = {
     '1': 0,
     '2': 1,
   }, // Keyboard keys 1 to 9
-  activeSpellKey: 1,
+  activeSpellKey: 0,
 };
 
 export default playerObject;
