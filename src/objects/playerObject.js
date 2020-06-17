@@ -8,7 +8,7 @@
  *
  */
 const playerObject = {
-  helpTextVersion: 10, // Increment this to force players to see the Instructions again.
+  helpTextVersion: 11, // Increment this to force players to see the Instructions again.
   // This is the scene you start the game in,
   // and go to if a non-existent scene is requested,
   // and if you press the 'o' key.
