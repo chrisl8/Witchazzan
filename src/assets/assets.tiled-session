@@ -1,0 +1,359 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tileMaps/LoruleF6.json",
+    "expandedProjectPaths": [
+        "tileMaps"
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/home/chrisl8/Dropbox/Witchazzen/tileMaps/G7.json": {
+            "scale": 7.399609375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.1148709285752,
+                "y": 63.1790107163596
+            }
+        },
+        "/home/chrisl8/Dropbox/Witchazzen/tileMaps/H7.json": {
+            "scale": 7.399609375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.1148709285752,
+                "y": 88.04518819616744
+            }
+        },
+        "tileMaps/CaveF8.json": {
+            "scale": 7.22,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 152.0775623268698,
+                "y": 120.01385041551248
+            }
+        },
+        "tileMaps/EmptyCave.json": {
+            "scale": 5.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 100.1818181818182,
+                "y": 105.36363636363637
+            }
+        },
+        "tileMaps/G8.json": {
+            "scale": 7.399609375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.1148709285752,
+                "y": 88.04518819616744
+            }
+        },
+        "tileMaps/H7.json": {
+            "scale": 4.5421875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.13209494324045,
+                "y": 87.7330581355349
+            }
+        },
+        "tileMaps/H8.json": {
+            "scale": 6.964338235294117,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 120.04012036108324,
+                "y": 66.2661669218181
+            }
+        },
+        "tileMaps/I8.json": {
+            "scale": 6.964338235294117,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 120.04012036108324,
+                "y": 88.09164335110596
+            }
+        },
+        "tileMaps/Lorule-H7.json": {
+            "scale": 7.399609375,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 128.11487092857521,
+                "y": 93.2481655492794
+            }
+        },
+        "tileMaps/LoruleE8.json": {
+            "scale": 7.055147058823529,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 144.00833767587287,
+                "y": 98.65138092756645
+            }
+        },
+        "tileMaps/LoruleF6.json": {
+            "scale": 6.5375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 136.13766730401528,
+                "y": 104.01529636711281
+            }
+        },
+        "tileMaps/LoruleF6.json#tileset_1bit-16x16": {
+            "scaleInDock": 1
+        },
+        "tileMaps/LoruleF7.json": {
+            "scale": 7.49609375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 143.94163626889002,
+                "y": 92.3147472642001
+            }
+        },
+        "tileMaps/LoruleF7.json#tileset_1bit-16x16": {
+            "scaleInDock": 1
+        },
+        "tileMaps/LoruleF8.json": {
+            "scale": 8,
+            "selectedLayer": 11,
+            "viewCenter": {
+                "x": 133.125,
+                "y": 144.25
+            }
+        },
+        "tileMaps/LoruleF8.json#tileset_1bit-16x16": {
+            "scaleInDock": 1
+        },
+        "tileMaps/LoruleG6.json": {
+            "scale": 7.055147058823529,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 144.00833767587287,
+                "y": 101.06096925482024
+            }
+        },
+        "tileMaps/LoruleG7.json": {
+            "scale": 8,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 136,
+                "y": 56.0625
+            }
+        },
+        "tileMaps/LoruleG8.json": {
+            "scale": 8,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 147.375,
+                "y": 102.5
+            }
+        },
+        "tileMaps/LoruleH4.json": {
+            "scale": 6.5375,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 136.13766730401528,
+                "y": 104.01529636711281
+            }
+        },
+        "tileMaps/LoruleH4.json#tileset_1bit-16x16": {
+            "scaleInDock": 1
+        },
+        "tileMaps/LoruleH5.json": {
+            "scale": 7.055147058823529,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 144.00833767587287,
+                "y": 106.30536737884316
+            }
+        },
+        "tileMaps/LoruleH6.json": {
+            "scale": 8,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 144.125,
+                "y": 100.875
+            }
+        },
+        "tileMaps/LoruleH7.json": {
+            "scale": 7.495,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 144.09606404269513,
+                "y": 104.736490993996
+            }
+        },
+        "tileMaps/LoruleH8.json": {
+            "scale": 8,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 115.625,
+                "y": 99.0625
+            }
+        },
+        "tileMaps/LoruleI5.json": {
+            "scale": 6.5375,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 136.13766730401528,
+                "y": 104.01529636711281
+            }
+        },
+        "tileMaps/LoruleI5.json#tileset_1bit-16x16": {
+            "scaleInDock": 1
+        },
+        "tileMaps/LoruleI6.json": {
+            "scale": 7.055147058823529,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 144.00833767587287,
+                "y": 99.92704533611258
+            }
+        },
+        "tileMaps/LoruleI7.json": {
+            "scale": 8,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 144.125,
+                "y": 99.125
+            }
+        },
+        "tileMaps/LoruleI8.json": {
+            "scale": 5.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 140.00000000000003,
+                "y": 105.54545454545453
+            }
+        },
+        "tileMaps/LoruleJ6.json": {
+            "scale": 6.5375,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 136.13766730401528,
+                "y": 104.01529636711281
+            }
+        },
+        "tileMaps/LoruleJ6.json#tileset_1bit-16x16": {
+            "scaleInDock": 1
+        },
+        "tileMaps/LoruleJ7.json": {
+            "scale": 7.055147058823529,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 144.00833767587287,
+                "y": 97.65919749869725
+            }
+        },
+        "tileMaps/LoruleJ8.json": {
+            "scale": 8,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 144.25,
+                "y": 97.125
+            }
+        },
+        "tileMaps/LoruleK7.json": {
+            "scale": 6.5375,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 136.13766730401528,
+                "y": 104.01529636711281
+            }
+        },
+        "tileMaps/LoruleK7.json#tileset_1bit-16x16": {
+            "scaleInDock": 1
+        },
+        "tileMaps/LoruleK8.json": {
+            "scale": 7.055147058823529,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 144.1500781657113,
+                "y": 95.67483064095886
+            }
+        },
+        "tileMaps/LoruleL8.json": {
+            "scale": 6.5375,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 136.13766730401528,
+                "y": 104.01529636711281
+            }
+        },
+        "tileMaps/LoruleL8.json#tileset_1bit-16x16": {
+            "scaleInDock": 4
+        },
+        "tileMaps/SlimeCave.json": {
+            "scale": 7.22,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 126.17728531855956,
+                "y": 113.3656509695291
+            }
+        },
+        "tileMaps/arena1.json": {
+            "scale": 2.95984375,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 364.5462703901177,
+                "y": 222.30903236023858
+            }
+        },
+        "tileMaps/backYard1.json": {
+            "scale": 3.68125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 325.16129032258067,
+                "y": 191.78268251273346
+            }
+        },
+        "tileMaps/openingScene.json": {
+            "scale": 6.964338235294117,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 127.9374967006282,
+                "y": 82.41989125270548
+            }
+        },
+        "tileMaps/openingSceneRight1.json": {
+            "scale": 8,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 126.5,
+                "y": 88.25
+            }
+        },
+        "tileMaps/testScene1.json": {
+            "scale": 2.8985,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 343.62601345523547,
+                "y": 171.4680006900121
+            }
+        }
+    },
+    "openFiles": [
+        "tileMaps/LoruleF7.json",
+        "tileMaps/LoruleF6.json"
+    ],
+    "project": "assets.tiled-project",
+    "recentFiles": [
+        "tileMaps/LoruleF7.json",
+        "tileMaps/LoruleF6.json",
+        "tileMaps/LoruleH4.json",
+        "tileMaps/LoruleK7.json",
+        "tileMaps/LoruleL8.json",
+        "tileMaps/LoruleJ6.json",
+        "tileMaps/LoruleI5.json",
+        "tileMaps/LoruleF8.json"
+    ],
+    "resizeMap.removeObjects": false,
+    "tileset.embedInMap": false,
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.transparentColor": "#ff00ff",
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
+}
