@@ -1045,6 +1045,9 @@ const sceneFactory = ({
     this.input.keyboard.on('keydown', handleKeyboardInput);
     this.input.keyboard.on('keyup', handleKeyboardInput);
 
+    // Phaser controlled mouse input
+    this.input.mouse.disableContextMenu();
+
     updateInGameDomElements(htmlElementParameters);
   };
 

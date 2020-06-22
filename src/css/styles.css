@@ -9,7 +9,7 @@ html, body {
   height: 100%;
 }
 
-h1, h2, h3{
+h1, h2, h3 {
   margin-top: 5px;
   margin-bottom: 0;
 }
@@ -83,8 +83,12 @@ img.emoji {
   text-align: center;
   font-size: 12em;
   margin-top: 2px;
-  margin-bottom: -74px;
+  margin-bottom: -119px;
   font-family: 'Stalemate', cursive;
+}
+
+.logo-rainbow-bar {
+  text-align: center;
 }
 
 #you_died {
