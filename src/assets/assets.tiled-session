@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "tileMaps/LoruleI8.json",
+    "activeFile": "tileMaps/LoruleH8.json",
     "expandedProjectPaths": [
         "tileMaps"
     ],
@@ -29,8 +29,8 @@
             "scale": 5.914880952380952,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 83.94082721143204,
-                "y": 120.03622823789878
+                "x": 83.94082721143205,
+                "y": 120.20529334809298
             }
         },
         "tileMaps/CaveE7.json#Dungeon_Tileset": {
@@ -40,7 +40,7 @@
             "scale": 7.22,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 96.05263157894737,
+                "x": 96.05263157894738,
                 "y": 119.94459833795014
             }
         },
@@ -133,7 +133,7 @@
             "selectedLayer": 8,
             "viewCenter": {
                 "x": 148.89838457529964,
-                "y": 98.50964043772801
+                "y": 98.65138092756645
             }
         },
         "tileMaps/LoruleE8.json#tileset_1bit-16x16": {
@@ -165,7 +165,7 @@
             "scale": 8,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 133,
+                "x": 133.0625,
                 "y": 97
             }
         },
@@ -176,7 +176,7 @@
             "scale": 6.5375,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 136.13766730401528,
+                "x": 136.21414913957938,
                 "y": 104.01529636711281
             }
         },
@@ -214,7 +214,7 @@
             "scale": 6.5375,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 136.21414913957938,
+                "x": 136.36711281070745,
                 "y": 104.01529636711281
             }
         },
@@ -225,7 +225,7 @@
             "scale": 7.055147058823529,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 144.00833767587287,
+                "x": 144.0792079207921,
                 "y": 106.30536737884316
             }
         },
@@ -252,8 +252,8 @@
             "scale": 8,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 136,
-                "y": 103.9375
+                "x": 135.9375,
+                "y": 104
             }
         },
         "tileMaps/LoruleH8.json#tileset_1bit-16x16": {
@@ -377,7 +377,7 @@
             "scale": 2.95984375,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 364.5462703901177,
+                "x": 364.3773425539777,
                 "y": 222.30903236023858
             }
         },
@@ -426,25 +426,16 @@
         "tileMaps/LoruleH5.json",
         "tileMaps/LoruleG5.json",
         "tileMaps/LoruleF8.json",
-        "tileMaps/LoruleE7.json",
-        "tileMaps/CaveF8.json",
-        "tileMaps/CaveE7.json",
-        "tileMaps/LoruleE8.json",
-        "tileMaps/LoruleD8.json",
-        "tileMaps/LoruleD7.json",
-        "tileMaps/backYard1.json",
-        "tileMaps/LoruleI4.json",
-        "tileMaps/LoruleH4.json",
-        "tileMaps/LoruleI8.json"
+        "tileMaps/LoruleE7.json"
     ],
     "project": "assets.tiled-project",
     "recentFiles": [
-        "tileMaps/LoruleH8.json",
-        "tileMaps/arena1.json",
-        "tileMaps/LoruleH5.json",
-        "tileMaps/LoruleG5.json",
-        "tileMaps/LoruleF8.json",
         "tileMaps/LoruleE7.json",
+        "tileMaps/LoruleF8.json",
+        "tileMaps/LoruleG5.json",
+        "tileMaps/LoruleH5.json",
+        "tileMaps/arena1.json",
+        "tileMaps/LoruleH8.json",
         "tileMaps/CaveF8.json",
         "tileMaps/CaveE7.json",
         "tileMaps/LoruleE8.json",
