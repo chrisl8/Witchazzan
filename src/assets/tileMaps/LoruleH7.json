@@ -20,6 +20,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleG7"
+                        },
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Right"
@@ -37,6 +42,11 @@
                  "name":"LoruleI7",
                  "opacity":1,
                  "properties":[
+                        {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleI7"
+                        },
                         {
                          "name":"Entrance",
                          "type":"string",
@@ -56,6 +66,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleH6"
+                        },
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Lower"
@@ -73,6 +88,11 @@
                  "name":"LoruleH8",
                  "opacity":1,
                  "properties":[
+                        {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleH8"
+                        },
                         {
                          "name":"Entrance",
                          "type":"string",

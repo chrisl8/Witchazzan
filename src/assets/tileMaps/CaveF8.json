@@ -19,7 +19,12 @@
                  "name":"LoruleF8",
                  "opacity":1,
                  "properties":[
-                        {
+                  {
+                   "name":"DestinationScene",
+                   "type":"string",
+                   "value":"LoruleF8"
+                  },
+                  {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Cave"

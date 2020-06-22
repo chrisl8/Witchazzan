@@ -31,7 +31,12 @@
                  "name":"backYard1",
                  "opacity":1,
                  "properties":[
-                        {
+                  {
+                   "name":"DestinationScene",
+                   "type":"string",
+                   "value":"backYard1"
+                  },
+                  {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Left"

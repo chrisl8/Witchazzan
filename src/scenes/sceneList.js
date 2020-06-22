@@ -42,13 +42,14 @@ import LoruleK8 from '../assets/tileMaps/LoruleK8.json';
 import LoruleK7 from '../assets/tileMaps/LoruleK7.json';
 import LoruleL8 from '../assets/tileMaps/LoruleL8.json';
 import LoruleJ6 from '../assets/tileMaps/LoruleJ6.json';
+import LoruleI4 from '../assets/tileMaps/LoruleI4.json';
 import LoruleI5 from '../assets/tileMaps/LoruleI5.json';
 import LoruleH4 from '../assets/tileMaps/LoruleH4.json';
 import LoruleF6 from '../assets/tileMaps/LoruleF6.json';
-
 import LoruleG5 from '../assets/tileMaps/LoruleG5.json';
 import LoruleE7 from '../assets/tileMaps/LoruleE7.json';
 import LoruleD8 from '../assets/tileMaps/LoruleD8.json';
+import LoruleD7 from '../assets/tileMaps/LoruleD7.json';
 
 import backYard1 from '../assets/tileMaps/backYard1.json';
 import arena1 from '../assets/tileMaps/arena1.json';
@@ -56,6 +57,7 @@ import arena1 from '../assets/tileMaps/arena1.json';
 import EmptyCave from '../assets/tileMaps/EmptyCave.json';
 import SlimeCave from '../assets/tileMaps/SlimeCave.json';
 import CaveF8 from '../assets/tileMaps/CaveF8.json';
+import CaveE7 from '../assets/tileMaps/CaveE7.json';
 
 // NOTE: You must also add any new scenes to witchazzan-server/config/default-config.edn
 
@@ -280,6 +282,14 @@ const scenes = [
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
+    sceneName: 'LoruleI4',
+    tileMap: LoruleI4,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
     sceneName: 'LoruleI5',
     tileMap: LoruleI5,
     tileSet: tileset1bit16x16,
@@ -322,6 +332,14 @@ const scenes = [
   {
     sceneName: 'LoruleD8',
     tileMap: LoruleD8,
+    tileSet: tileset1bit16x16,
+    tileSetName: 'tileset_1bit-16x16',
+    gameSize: loruleGameSize,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleD7',
+    tileMap: LoruleD7,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
     gameSize: loruleGameSize,
@@ -398,6 +416,14 @@ const scenes = [
   {
     sceneName: 'CaveF8',
     tileMap: CaveF8,
+    tileSet: Dungeon_Tileset,
+    tileSetName: 'Dungeon_Tileset',
+    gameSize: caveGameSize,
+    htmlElementParameters: caveHtmlElementParameters,
+  },
+  {
+    sceneName: 'CaveE7',
+    tileMap: CaveE7,
     tileSet: Dungeon_Tileset,
     tileSetName: 'Dungeon_Tileset',
     gameSize: caveGameSize,

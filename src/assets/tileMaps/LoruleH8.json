@@ -20,6 +20,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"EmptyCave"
+                        }, 
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Corner"
@@ -37,6 +42,11 @@
                  "name":"LoruleG8",
                  "opacity":1,
                  "properties":[
+                        {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleG8"
+                        }, 
                         {
                          "name":"Entrance",
                          "type":"string",
@@ -56,6 +66,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleI8"
+                        }, 
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Left"
@@ -74,6 +89,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleH7"
+                        }, 
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Lower"
@@ -91,6 +111,11 @@
                  "name":"arena1",
                  "opacity":1,
                  "properties":[
+                        {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"arena1"
+                        }, 
                         {
                          "name":"Entrance",
                          "type":"string",
@@ -268,7 +293,7 @@
  "nextobjectid":58,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.3",
+ "tiledversion":"1.4.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -286,6 +311,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":18
 }

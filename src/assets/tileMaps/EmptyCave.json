@@ -19,7 +19,12 @@
                  "name":"LoruleH8",
                  "opacity":1,
                  "properties":[
-                        {
+                  {
+                   "name":"DestinationScene",
+                   "type":"string",
+                   "value":"LoruleH8"
+                  },
+                  {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Cave"

@@ -20,6 +20,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"SlimeCave"
+                        },
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Corner"
@@ -37,6 +42,11 @@
                  "name":"LoruleF7",
                  "opacity":1,
                  "properties":[
+                        {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleF7"
+                        },
                         {
                          "name":"Entrance",
                          "type":"string",
@@ -56,6 +66,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleH7"
+                        },
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Left"
@@ -74,6 +89,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleG6"
+                        },
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Lower"
@@ -91,6 +111,11 @@
                  "name":"LoruleG8",
                  "opacity":1,
                  "properties":[
+                        {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleG8"
+                        },
                         {
                          "name":"Entrance",
                          "type":"string",

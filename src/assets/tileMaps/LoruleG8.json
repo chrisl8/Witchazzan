@@ -20,6 +20,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleF8"
+                        }, 
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Right"
@@ -37,6 +42,11 @@
                  "name":"LoruleH8",
                  "opacity":1,
                  "properties":[
+                        {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleH8"
+                        }, 
                         {
                          "name":"Entrance",
                          "type":"string",
@@ -56,6 +66,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"LoruleG7"
+                        }, 
+                        {
                          "name":"Entrance",
                          "type":"string",
                          "value":"Lower"
@@ -73,6 +88,11 @@
                  "name":"arena1",
                  "opacity":1,
                  "properties":[
+                        {
+                         "name":"DestinationScene",
+                         "type":"string",
+                         "value":"arena1"
+                        }, 
                         {
                          "name":"Entrance",
                          "type":"string",
@@ -202,7 +222,7 @@
  "nextobjectid":33,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.3",
+ "tiledversion":"1.4.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -220,6 +240,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":18
 }

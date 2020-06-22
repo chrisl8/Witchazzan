@@ -299,17 +299,23 @@ const sceneFactory = ({
         entry,
       );
       if (tile && tile.hasOwnProperty('index') && tile.index > -1) {
-        const splitLayerName = tile.layer.name.split('/');
-        if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
-          destinationSceneName = splitLayerName[1];
-          if (Array.isArray(tile.layer.properties)) {
-            const entrancePropertyIndex = tile.layer.properties.findIndex(
-              (x) => x.name === 'Entrance',
-            );
-            if (entrancePropertyIndex > -1) {
-              destinationSceneEntrance =
-                tile.layer.properties[entrancePropertyIndex].value;
-            }
+        // Use the Teleport layer's "Custom Properties" array to get the destination Scene and Entrance
+        if (Array.isArray(tile.layer.properties)) {
+          // Get Destination Scene
+          const destinationSceneNameIndex = tile.layer.properties.findIndex(
+            (x) => x.name === 'DestinationScene',
+          );
+          if (destinationSceneNameIndex > -1) {
+            destinationSceneName =
+              tile.layer.properties[destinationSceneNameIndex].value;
+          }
+          // Get Destination Entrance
+          const entrancePropertyIndex = tile.layer.properties.findIndex(
+            (x) => x.name === 'Entrance',
+          );
+          if (entrancePropertyIndex > -1) {
+            destinationSceneEntrance =
+              tile.layer.properties[entrancePropertyIndex].value;
           }
         }
       }
