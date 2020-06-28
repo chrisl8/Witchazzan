@@ -1,4 +1,6 @@
 /* globals WebSocket:true */
+/* globals localStorage:true */
+/* globals window:true */
 import communicationsObject from './objects/communicationsObject';
 import textObject from './objects/textObject';
 import sendDataToServer from './sendDataToServer';
@@ -30,7 +32,7 @@ function socketCommunications() {
       textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
 
       // Send our username here, in case the server doesn't know who we are yet.
-      sendDataToServer.login(playerObject.playerName);
+      sendDataToServer.login();
     };
 
     // Listen for messages
@@ -60,6 +62,24 @@ function socketCommunications() {
     communicationsObject.socket.onclose = () => {
       playerObject.socketCurrentlyConnected = false;
       cleanUpAfterDisconnect();
+    };
+
+    // Restart on errors
+    communicationsObject.socket.onerror = () => {
+      console.error('Websocket Error');
+
+      // Force intro screen to load
+      let existingHelpTextVersion = Number(
+        localStorage.getItem('helpTextVersion'),
+      );
+      existingHelpTextVersion--;
+      localStorage.setItem(
+        'helpTextVersion',
+        existingHelpTextVersion.toString(),
+      );
+
+      // Reload
+      window.location.reload();
     };
   }
 

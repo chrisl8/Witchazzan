@@ -1,7 +1,210 @@
 /* globals localStorage:true */
+/* globals fetch:true */
 /* globals document:true */
 import playerObject from '../objects/playerObject';
 import wait from '../utilities/wait';
+import communicationsObject from '../objects/communicationsObject';
+
+let playerName = '';
+let loginFailure = false;
+let loginErrorText = null;
+let loggedIn = false;
+let loginInProgress = false;
+let pleaseStartGameNow = false;
+let existingHelpTextVersion = null;
+let creatingNewAccount = false;
+let sendingAccountCreation = false;
+
+const domElements = {
+  startGameButton: document.getElementById('start_game_button'),
+  loginSubmitButton: document.getElementById('login_button'),
+  logOutButton: document.getElementById('logout_button'),
+  playerNameInputBox: document.getElementById('player_name_input_box'),
+  passwordInputBox: document.getElementById('password_input_box'),
+  createNewAccountButton: document.getElementById('create_new_account_button'),
+  createAccountButton: document.getElementById('create_account_button'),
+};
+
+function updateDOMElements() {
+  document.getElementById('start-game-section').hidden = !loggedIn;
+  document.getElementById('login-section').hidden = loggedIn;
+  document.getElementById('login_failure').hidden = !loginFailure;
+  document.getElementById('login_in_progress').hidden = !loginInProgress;
+  document.getElementById('player_name_text').innerText = playerName;
+
+  document.getElementById('login_buttons').hidden = creatingNewAccount;
+  document.getElementById('repeat_password_input').hidden = !creatingNewAccount;
+  document.getElementById('create_account_button').hidden = !creatingNewAccount;
+  document.getElementById(
+    'account_creation_in_progress',
+  ).hidden = !sendingAccountCreation;
+
+  document.getElementById('login_error_text_box').hidden = !loginErrorText;
+  document.getElementById('login_error_text').innerText = loginErrorText;
+}
+
+async function checkLoggedInStatus(userRequest) {
+  try {
+    const res = await fetch(`${communicationsObject.apiURL}/me`, {
+      credentials: 'include', // Otherwise, no cookies!
+    });
+    if (res.status === 200) {
+      loggedIn = true;
+      const resultObject = await res.json();
+      playerName = resultObject.username;
+    } else if (res.status === 401) {
+      if (userRequest) {
+        loginFailure = true;
+      }
+      loggedIn = false;
+    } else {
+      loggedIn = false;
+      console.error('Unexpected response from server.');
+      console.log(res);
+      console.log(res.status);
+      console.log(await res.text());
+      console.log(await res.json());
+    }
+  } catch (error) {
+    loggedIn = false;
+    console.error('Error contacting server:');
+    console.error(error);
+  }
+  updateDOMElements();
+}
+
+async function login() {
+  loginFailure = false;
+  loginInProgress = true;
+  updateDOMElements();
+  try {
+    // Build formData object.
+    // The API expects a form input, not JSON.
+    const formData = new URLSearchParams();
+    formData.append('name', domElements.playerNameInputBox.value);
+    formData.append('password', domElements.passwordInputBox.value);
+
+    const res = await fetch(`${communicationsObject.apiURL}/auth`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      credentials: 'include', // Otherwise, no cookies!
+      body: formData,
+    });
+    if (res.status === 200) {
+      // NOTE: Currently a 200 is returned whether it succeeds or not.
+      await checkLoggedInStatus(true);
+    } else if (res.status === 401) {
+      loggedIn = false;
+      loginFailure = true;
+    } else {
+      loggedIn = false;
+      loginFailure = true;
+      console.error('Unexpected response from server.');
+      console.log(res);
+      console.log(res.status);
+      console.log(await res.text());
+      console.log(await res.json());
+    }
+  } catch (error) {
+    loggedIn = false;
+    loginFailure = true;
+    console.error('Error contacting server:');
+    console.error(error);
+  }
+  loginInProgress = false;
+  updateDOMElements();
+}
+
+async function logOut() {
+  try {
+    const res = await fetch(`${communicationsObject.apiURL}/log-out`, {
+      credentials: 'include', // Otherwise, no cookies!
+    });
+    if (res.status === 200 || res.status === 401) {
+      loggedIn = false;
+    } else {
+      console.error('Unexpected response from server.');
+      console.log(res);
+      console.log(res.status);
+      console.log(await res.text());
+      console.log(await res.json());
+    }
+  } catch (error) {
+    console.error('Error contacting server:');
+    console.error(error);
+  }
+  updateDOMElements();
+}
+
+function createNewAccount() {
+  loginFailure = false;
+  loginErrorText = null;
+  creatingNewAccount = true;
+  updateDOMElements();
+}
+
+async function createAccount() {
+  loginErrorText = null;
+  sendingAccountCreation = false;
+  const userName = document.getElementById('player_name_input_box').value;
+  const password = document.getElementById('password_input_box').value;
+  const repeatPasword = document.getElementById('repeat_password_input_box')
+    .value;
+  if (password !== repeatPasword) {
+    loginErrorText = 'Passwords do not match.';
+  } else if (password === userName) {
+    loginErrorText = 'Passwords and username must be different.';
+  } else if (password.length < 8) {
+    loginErrorText = 'Passwords must be at least 8 characters long.';
+  } else if (password.length > 4096) {
+    loginErrorText = 'Password is too long';
+  } else {
+    sendingAccountCreation = true;
+    updateDOMElements();
+    // Build formData object.
+    // The API expects a form input, not JSON.
+    const formData = new URLSearchParams();
+    formData.append('name', domElements.playerNameInputBox.value);
+    formData.append('password', domElements.passwordInputBox.value);
+
+    try {
+      const res = await fetch(`${communicationsObject.apiURL}/sign-up`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        credentials: 'include', // Otherwise, no cookies!
+        body: formData,
+      });
+      if (res.status === 200) {
+        // NOTE: Currently a 200 is returned whether it succeeds or not.
+        const resultText = await res.text();
+        if (resultText !== 'Success') {
+          loginErrorText = resultText;
+        } else {
+          creatingNewAccount = false;
+        }
+      } else {
+        loginErrorText = 'Unknown error creating account.';
+      }
+    } catch (error) {
+      loginErrorText = 'Error contacting server.';
+    }
+    sendingAccountCreation = false;
+  }
+  updateDOMElements();
+}
+
+const startGameNow = () => {
+  // Show the loading text right away, so user knows it is happening,
+  // even though there is up to a 1 second delay due to the loop.
+  document.getElementById('loading_text').hidden = false;
+  document.getElementById('pre_game_div').hidden = true;
+
+  pleaseStartGameNow = true;
+};
 
 /*
  * This grabs data from local storage,
@@ -18,37 +221,8 @@ import wait from '../utilities/wait';
 
 // eslint-disable-next-line func-names
 async function introScreenAndPreGameSetup() {
-  let existingHelpTextVersion;
-  const checkForEnterKeyOnNameInputBox = (event) => {
-    event.preventDefault();
-    if (event.key === 'Enter') {
-      // eslint-disable-next-line no-use-before-define
-      addPlayerNameToPlayerObject();
-    }
-  };
-  const addPlayerNameToPlayerObject = () => {
-    document.getElementById('loading_text').hidden = false;
-    const playerNameInputValue =
-      playerObject.domElements.playerNameInputBox.value;
-    if (playerNameInputValue) {
-      document.getElementById('pre_game_div').hidden = true;
-      playerObject.domElements.playerNameSubmitButton.removeEventListener(
-        'click',
-        addPlayerNameToPlayerObject,
-      );
-      playerObject.domElements.playerNameInputBox.removeEventListener(
-        'keyup',
-        checkForEnterKeyOnNameInputBox,
-      );
-      localStorage.setItem('playerName', playerNameInputValue);
-      playerObject.playerName = playerNameInputValue;
-      localStorage.setItem(
-        'helpTextVersion',
-        playerObject.helpTextVersion.toString(),
-      );
-      existingHelpTextVersion = playerObject.helpTextVersion;
-    }
-  };
+  // Find out if we are logged in already
+  await checkLoggedInStatus();
 
   // Check local storage for Player Sprite
   const existingPlayerSprite = localStorage.getItem('playerSprite');
@@ -91,50 +265,63 @@ async function introScreenAndPreGameSetup() {
     'spell-assignment',
   ).innerHTML = spellAssignmentInnerHTML;
 
-  // Check if player died on last exit
-  const playerDroppedFromGamePieceList = localStorage.getItem(
-    'playerDroppedFromGamePieceList',
-  );
-  if (playerDroppedFromGamePieceList === 'true') {
-    document.getElementById('you_died').hidden = false;
-    localStorage.removeItem('playerDroppedFromGamePieceList');
-  }
+  // The helpTextVersion is a way to force all users
+  // back to the intro screen on next connection.
+  // It is also the method that the 'p' key uses to get users here.
+  existingHelpTextVersion = Number(localStorage.getItem('helpTextVersion'));
 
-  if (!playerObject.playerName) {
+  if (
+    !loggedIn ||
+    !existingHelpTextVersion ||
+    existingHelpTextVersion < playerObject.helpTextVersion
+  ) {
+    document.getElementById('loading_text').hidden = true;
+    document.getElementById('pre_game_div').hidden = false;
+
     // Check local storage to see if we already have a name.
-    const existingPlayerName = localStorage.getItem('playerName');
-    existingHelpTextVersion = Number(localStorage.getItem('helpTextVersion'));
-    if (
-      !existingPlayerName ||
-      !existingHelpTextVersion ||
-      existingHelpTextVersion < playerObject.helpTextVersion
-    ) {
-      playerObject.domElements.playerNameSubmitButton.addEventListener(
-        'click',
-        addPlayerNameToPlayerObject,
-      );
-      playerObject.domElements.playerNameInputBox.addEventListener(
-        'keyup',
-        checkForEnterKeyOnNameInputBox,
-      );
-      document.getElementById('loading_text').hidden = true;
-      document.getElementById('pre_game_div').hidden = false;
-      if (existingPlayerName) {
-        playerObject.domElements.playerNameInputBox.value = existingPlayerName;
-      }
-      playerObject.domElements.playerNameInputBox.focus();
-    } else {
-      playerObject.playerName = existingPlayerName;
+    playerName = localStorage.getItem('playerName');
+
+    // Button event listeners
+    domElements.startGameButton.addEventListener('click', startGameNow);
+    domElements.loginSubmitButton.addEventListener('click', login);
+    domElements.logOutButton.addEventListener('click', logOut);
+    domElements.createNewAccountButton.addEventListener(
+      'click',
+      createNewAccount,
+    );
+    domElements.createAccountButton.addEventListener('click', createAccount);
+
+    if (playerName) {
+      domElements.playerNameInputBox.value = playerName;
     }
 
-    while (
-      !playerObject.playerName ||
-      !existingHelpTextVersion ||
-      existingHelpTextVersion < playerObject.helpTextVersion
-    ) {
+    domElements.playerNameInputBox.focus();
+
+    while (!pleaseStartGameNow) {
       // eslint-disable-next-line no-await-in-loop
       await wait(1);
     }
+
+    // Clean up event listeners
+    domElements.startGameButton.removeEventListener('click', startGameNow);
+    domElements.loginSubmitButton.removeEventListener('click', login);
+    domElements.logOutButton.removeEventListener('click', logOut);
+    domElements.createNewAccountButton.removeEventListener(
+      'click',
+      createNewAccount,
+    );
+    domElements.createAccountButton.removeEventListener('click', createAccount);
+
+    // Save the player name to local storage for use next time
+    // in the login box.
+    // In theory the browser could do this for me?
+    localStorage.setItem('playerName', playerName);
+
+    // Update the help text version so it does not force us here next time.
+    localStorage.setItem(
+      'helpTextVersion',
+      playerObject.helpTextVersion.toString(),
+    );
 
     // Settle up disableCameraZoom and set local storage if need be
     disableCameraZoom = document.getElementById('camera_zoom_off').checked;

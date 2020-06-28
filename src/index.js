@@ -15,7 +15,7 @@ import startGame from './startup/startGame';
  */
 
 // eslint-disable-next-line func-names
-(async function() {
+(async function () {
   await introScreenAndPreGameSetup();
 
   updateDomSettingsForGame();

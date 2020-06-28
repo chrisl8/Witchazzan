@@ -3,20 +3,66 @@
   <div class="logo-rainbow-bar">
     <img alt="horizontal bar" src="../assets/rainbowbar.gif">
   </div>
-  <div id="you_died" hidden>
-    <p>You died. =(</p>
-  </div>
   <br />
-  <h1>Setup</h1>
-  <div class="intro-screen-subsection">
-    <h3><label for="player_name_input_box">Name</label></h3>
+  <div id="login-section" hidden>
+    <h1>Login</h1>
     <div class="intro-screen-subsection">
+      <label for="player_name_input_box">Name</label>
       <input
           id="player_name_input_box"
       />
       <br />
-      <button id="start_game_button" style="margin-left: 5px;margin-top:5px;">Start Game</button>
+      <label for="password_input_box">Password</label>
+      <input
+          id="password_input_box"
+          autocomplete="current-password"
+          type="password"
+          required
+      />
+      <br />
+      <div id="repeat_password_input" hidden>
+        <label for="repeat_password_input_box">Repeat Password</label>
+        <input
+            id="repeat_password_input_box"
+            autocomplete="new-password"
+            type="password"
+            required
+        />
+        <p style="color:blue">Password must 8 or more characters, but not more than 4096.</p>
+      </div>
+      <div id="login_failure" hidden>
+        <span style="color:red;">Login Failed. :'(</span>
+      </div>
+      <div id="login_in_progress">
+        <span style="color:blue;">Logging in...</span>
+      </div>
+      <div id="account_creation_in_progress">
+        <span style="color:blue;">Creating account...</span>
+      </div>
+      <div id="login_error_text_box" hidden>
+        <span style="color:red;">Error: </span>
+        <span style="color:red" id="login_error_text"></span>
+      </div>
+      <div id="login_buttons">
+        <br />
+        <button id="login_button" style="margin-left: 5px;margin-top:5px;">Login</button>
+        or
+        <button id="create_new_account_button" style="margin-left: 5px;margin-top:5px;">Create New Account</button>
+      </div>
+      <button id="create_account_button" style="margin-left: 5px;margin-top:5px;" hidden>Create Account</button>
     </div>
+  </div>
+  <div id="start-game-section" hidden>
+    <h1>Start Game</h1>
+    <div class="intro-screen-subsection">
+      Player Name: <span id="player_name_text"></span>
+      <br />
+      <button id="start_game_button" style="margin-left: 5px;margin-top:5px;">Start Game</button>
+      <button id="logout_button" style="margin-left: 5px;margin-top:5px;">Logout</button>
+    </div>
+  </div>
+  <h1>Setup</h1>
+  <div class="intro-screen-subsection">
     <h3>Character</h3>
     <div class="intro-screen-subsection">
       <div>
