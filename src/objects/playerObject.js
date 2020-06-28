@@ -30,8 +30,6 @@ const playerObject = {
   chatInputTextArray: [],
   scrollingTextOverlayInputText: '',
   domElements: {
-    playerNameSubmitButton: document.getElementById('start_game_button'),
-    playerNameInputBox: document.getElementById('player_name_input_box'),
     Center: document.getElementById('center_text_overlay_div'),
     UpperLeft: document.getElementById('upper_left_text_overlay_div'),
     Scrolling: document.getElementById('scrolling_text_overlay_div'),
@@ -47,7 +45,6 @@ const playerObject = {
     UpperLeft: { style: {} },
     Scrolling: { style: {} },
   },
-  playerName: null,
   spriteName: 'bloomby', // Default set here
   playerId: null,
   playerDirection: 'left',

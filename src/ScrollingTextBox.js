@@ -42,14 +42,7 @@ class ScrollingTextBox {
       // Add a line break if there is existing text.
       textObject.incomingChatText.text = `${textObject.incomingChatText.text}<br/>`;
     }
-    let otherPlayerDisplayName = inputData.name;
-    if (
-      otherPlayerDisplayName === playerObject.playerName &&
-      inputData.id !== playerObject.playerId
-    ) {
-      otherPlayerDisplayName = `Other ${inputData.name}`;
-    }
-    textObject.incomingChatText.text = `${textObject.incomingChatText.text}${otherPlayerDisplayName}: ${inputData.content}`;
+    textObject.incomingChatText.text = `${textObject.incomingChatText.text}${inputData.name}: ${inputData.content}`;
     textObject.incomingChatText.shouldBeActiveNow = true;
   }
 

@@ -66,15 +66,17 @@ sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
   }
 };
 
-sendDataToServer.login = (username, password) => {
+sendDataToServer.login = () => {
+  // The server only uses two fields from the login packet:
+  // sprite
+  // moving - which is always false at login of course.
   if (
     communicationsObject.socket.readyState === communicationsObject.status.OPEN
   ) {
     const obj = {
       message_type: 'login',
-      username,
-      password,
       sprite: playerObject.spriteName,
+      moving: false,
     };
     const jsonString = JSON.stringify(obj);
     communicationsObject.socket.send(jsonString);

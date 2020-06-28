@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Short Stack', serif;
 }
 
 /*Allow body to fill browser window, so that joystick can be used BELOW game canvas.*/
@@ -89,11 +90,6 @@ img.emoji {
 
 .logo-rainbow-bar {
   text-align: center;
-}
-
-#you_died {
-  color: red;
-  font-size: 3em;
 }
 
 #player_tag {
