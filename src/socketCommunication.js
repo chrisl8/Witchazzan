@@ -9,8 +9,6 @@ import pixelHighlightInput from './objects/pixelHighlightInput';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
 import parseGamePieceListFromServer from './parseGamePieceListFromServer';
 
-// TODO: Refactor actions out of this file.
-
 function socketCommunications() {
   const connectionCheckInterval = 1000;
 

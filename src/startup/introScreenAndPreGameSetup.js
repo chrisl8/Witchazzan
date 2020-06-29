@@ -311,48 +311,47 @@ async function introScreenAndPreGameSetup() {
       createNewAccount,
     );
     domElements.createAccountButton.removeEventListener('click', createAccount);
-
-    // Save the player name to local storage for use next time
-    // in the login box.
-    // In theory the browser could do this for me?
-    localStorage.setItem('playerName', playerName);
-
-    // Update the help text version so it does not force us here next time.
-    localStorage.setItem(
-      'helpTextVersion',
-      playerObject.helpTextVersion.toString(),
-    );
-
-    // Settle up disableCameraZoom and set local storage if need be
-    disableCameraZoom = document.getElementById('camera_zoom_off').checked;
-    if (disableCameraZoom) {
-      localStorage.setItem('disableCameraZoom', 'true');
-    } else {
-      localStorage.removeItem('disableCameraZoom');
-    }
-
-    playerObject.disableCameraZoom = disableCameraZoom;
-
-    const spriteName = document.querySelector('input[name="sprite"]:checked')
-      .value;
-    if (spriteName) {
-      localStorage.setItem('playerSprite', spriteName);
-      playerObject.spriteName = spriteName;
-    }
-
-    // Add all spell selections to local storage,
-    // and inject them into the playerObject
-    for (const [key] of Object.entries(playerObject.spellAssignments)) {
-      const spellSettingFromDOM = document.getElementById(
-        `spell_${key}_selector`,
-      ).value;
-      localStorage.setItem(`key${key}SpellAssignment`, spellSettingFromDOM);
-      playerObject.spellAssignments[key] = Number(spellSettingFromDOM);
-    }
-    // Set the currently active spell to whatever was listed for key 1
-    // This also sets the spell for mobile
-    playerObject.activeSpellKey = playerObject.spellAssignments['1'];
   }
+
+  // Save the player name to local storage for use next time
+  // in the login box.
+  // In theory the browser could do this for me?
+  localStorage.setItem('playerName', playerName);
+
+  // Update the help text version so it does not force us here next time.
+  localStorage.setItem(
+    'helpTextVersion',
+    playerObject.helpTextVersion.toString(),
+  );
+
+  // Settle up disableCameraZoom and set local storage if need be
+  disableCameraZoom = document.getElementById('camera_zoom_off').checked;
+  if (disableCameraZoom) {
+    localStorage.setItem('disableCameraZoom', 'true');
+  } else {
+    localStorage.removeItem('disableCameraZoom');
+  }
+
+  playerObject.disableCameraZoom = disableCameraZoom;
+
+  const spriteName = document.querySelector('input[name="sprite"]:checked')
+    .value;
+  if (spriteName) {
+    localStorage.setItem('playerSprite', spriteName);
+    playerObject.spriteName = spriteName;
+  }
+
+  // Add all spell selections to local storage,
+  // and inject them into the playerObject
+  for (const [key] of Object.entries(playerObject.spellAssignments)) {
+    const spellSettingFromDOM = document.getElementById(`spell_${key}_selector`)
+      .value;
+    localStorage.setItem(`key${key}SpellAssignment`, spellSettingFromDOM);
+    playerObject.spellAssignments[key] = Number(spellSettingFromDOM);
+  }
+  // Set the currently active spell to whatever was listed for key 1
+  // This also sets the spell for mobile
+  playerObject.activeSpellKey = playerObject.spellAssignments['1'];
 }
 
 export default introScreenAndPreGameSetup;
