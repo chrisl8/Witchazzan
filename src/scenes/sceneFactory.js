@@ -580,7 +580,7 @@ const sceneFactory = ({
               }
 
               // Make the carrots visually distinct based on their genetic code
-              if (gamePiece.sprite === 'carrot') {
+              if (gamePiece.type === 'carrot') {
                 playerObject.spawnedObjectList[
                   gamePiece.id
                 ].sprite.tint = `0x${(
