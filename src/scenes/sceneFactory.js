@@ -154,6 +154,14 @@ const sceneFactory = ({
     window.location.reload();
   }
 
+  function sceneFactoryRelatedCommandHandler() {
+    if (playerObject.teleportToSceneNow) {
+      const destinationScene = playerObject.teleportToSceneNow;
+      playerObject.teleportToSceneNow = null;
+      cleanUpSceneAndTeleport.call(this, destinationScene, null);
+    }
+  }
+
   function hotKeyHandler() {
     // Return to intro text
     if (playerObject.keyState.p === 'keydown') {
@@ -1097,6 +1105,8 @@ const sceneFactory = ({
     }
 
     playerObject.player.body.velocity.clone();
+
+    sceneFactoryRelatedCommandHandler.call(this);
 
     hotKeyHandler.call(this);
 

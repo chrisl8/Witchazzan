@@ -63,6 +63,9 @@ function processCommandInput(event) {
           // Warn user that command cannot be sent due to lack of server connection.
           textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
         }
+      } else if (inputTextSpaceDelimitedArray[0] === 'teleportToScene') {
+        playerObject.teleportToSceneNow = inputTextSpaceDelimitedArray[1];
+        addEntryToCommandHistory(command);
       } else if (inputTextSpaceDelimitedArray[0] === 'exit') {
         // Used on mobile to get back to setup screen
         playerObject.keyState.p = 'keydown';

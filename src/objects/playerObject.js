@@ -8,7 +8,7 @@
  *
  */
 const playerObject = {
-  helpTextVersion: 11, // Increment this to force players to see the Instructions again.
+  helpTextVersion: 12, // Increment this to force players to see the Instructions again.
   // This is the scene you start the game in,
   // and go to if a non-existent scene is requested,
   // and if you press the 'o' key.
@@ -72,6 +72,7 @@ const playerObject = {
     '2': 1,
   }, // Keyboard keys 1 to 9
   activeSpellKey: 0,
+  teleportToSceneNow: null,
 };
 
 export default playerObject;
