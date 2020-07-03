@@ -66,10 +66,11 @@ const playerObject = {
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
   sendSpell: false,
   chatOpen: false,
-  spellOptions: ['fireball', 'teleball'],
+  spellOptions: ['fireball', 'teleball', 'push',],
   spellAssignments: {
     '1': 0,
     '2': 1,
+    '3': 2,
   }, // Keyboard keys 1 to 9
   activeSpellKey: 0,
   teleportToSceneNow: null,

@@ -50,6 +50,7 @@ sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
     Object.entries(obj).forEach(([key, value]) => {
       if (
         playerObject.lastSentPlayerDataObject[key] === undefined ||
+        key === "force" ||
         playerObject.lastSentPlayerDataObject[key] !== obj[key]
       ) {
         objectToSend[key] = value;
