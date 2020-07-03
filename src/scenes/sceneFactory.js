@@ -453,6 +453,8 @@ const sceneFactory = ({
                 fillColor = 0xffa500;
               } else if (['teleball'].indexOf(gamePiece.type) > -1) {
                 fillColor = 0xffa500;
+              } else if (['push'].indexOf(gamePiece.type) > -1) {
+                fillColor = 0xffa500;
               } else if (gamePiece.id === playerObject.playerId) {
                 // it me
                 fillColor = 0x00a500;
