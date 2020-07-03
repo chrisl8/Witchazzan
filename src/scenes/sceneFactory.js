@@ -85,7 +85,7 @@ const sceneFactory = ({
     destinationSceneName,
     destinationSceneEntrance,
   ) {
-    if (sceneOpen) {
+    if (sceneOpen && destinationSceneName !== sceneName) {
       cleanUpScene();
       if (this.scene.getIndex(destinationSceneName) === -1) {
         console.log(
