@@ -197,3 +197,15 @@ img.emoji {
 .feather {
   margin-top: 10px;
 }
+
+#joystick_container {
+  position: absolute;
+  bottom: 0;
+  border-radius: 0 119px 0 0;
+  /*border: 5px solid #635d5d42;*/
+  /*border-bottom-style: none;*/
+  /*border-left-style: none;*/
+  height: 33%;
+  width: 25%;
+  touch-action: none;
+}

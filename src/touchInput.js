@@ -32,7 +32,13 @@ function touchInput() {
     false,
   );
 
-  const joystick = NippleJs.create();
+  const joystick = NippleJs.create({
+    zone: document.getElementById('joystick_container'),
+    mode: 'static',
+    position: { left: '40%', top: '50%' },
+    color: 'red',
+    restOpacity: 0.1,
+  });
   joystick
     .on('start', () => {
       playerObject.joystickDirection = {
@@ -65,7 +71,8 @@ function touchInput() {
       let right = false;
       let up = false;
       let down = false;
-      if (data.distance > 1) {
+      if (data.distance > 10) {
+        // "deadzone"
         distance = data.distance;
         if ((angle >= 0 && angle < 22) || angle >= 335) {
           right = true;
