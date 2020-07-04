@@ -416,80 +416,121 @@ const sceneFactory = ({
     }
   }
 
+  function renderDebugDotTrails(gamePiece) {
+    if (playerObject.dotTrailsOn) {
+      // Use this to track the server location of objects on the screen across time.
+      // It is activated with 't'
+      // Render Texture
+      // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.RenderTexture.html
+      // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/rendertexture/
+      // Rectangles:
+      // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Rectangle.html
+      if (!playerObject.dotTrailRenderTexture) {
+        playerObject.dotTrailRenderTexture = scene.add.renderTexture(
+          0,
+          0,
+          640,
+          480,
+        );
+      }
+      let fillColor = 0x00ff00;
+      let width = 1;
+      let height = 1;
+      if (['carrot'].indexOf(gamePiece.type) > -1) {
+        fillColor = 0x0000ff;
+        width = 5;
+        height = 5;
+      } else if (['slime'].indexOf(gamePiece.type) > -1) {
+        fillColor = 0xff0000;
+      } else if (['fireball'].indexOf(gamePiece.type) > -1) {
+        fillColor = 0xffa500;
+      } else if (['teleball'].indexOf(gamePiece.type) > -1) {
+        fillColor = 0xffa500;
+      } else if (['push'].indexOf(gamePiece.type) > -1) {
+        fillColor = 0xffa500;
+      } else if (gamePiece.id === playerObject.playerId) {
+        // it me
+        fillColor = 0x00a500;
+      } else if (['player'].indexOf(gamePiece.type) > -1) {
+        // it !me
+        fillColor = 0x6a0dad;
+      }
+      playerObject.dotTrailRenderTexture.draw(
+        new Phaser.GameObjects.Rectangle(
+          scene,
+          convertCoordinates.gamePieceToPhaser(gamePiece.x, tileMap.tilewidth),
+          convertCoordinates.gamePieceToPhaser(gamePiece.y, tileMap.tilewidth),
+          width,
+          height,
+          fillColor,
+          1,
+        ).setOrigin(0.5, 0.5),
+      );
+      // this.add
+      //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
+      //   .setOrigin(0, 0);
+    } else if (playerObject.dotTrailRenderTexture) {
+      playerObject.dotTrailRenderTexture.destroy();
+      playerObject.dotTrailRenderTexture = null;
+    }
+  }
+
+  function renderPixelHighlightDataFromServer() {
+    // Render Pixel Highlight debug data from server
+    if (pixelHighlightInput.content) {
+      // Always wipe this and start fresh, because they only come in rarely on demand
+      if (playerObject.pixelHighlightTexture) {
+        playerObject.pixelHighlightTexture.destroy();
+        playerObject.pixelHighlightTexture = null;
+      }
+
+      playerObject.pixelHighlightTexture = scene.add.renderTexture(
+        0,
+        0,
+        640,
+        480,
+      );
+      pixelHighlightInput.content.forEach((entry) => {
+        playerObject.pixelHighlightTexture.draw(
+          new Phaser.GameObjects.Rectangle(
+            scene,
+            entry.x,
+            entry.y,
+            1,
+            1,
+            0xffff00,
+            1,
+          ).setOrigin(0.5, 0.5),
+        );
+      });
+
+      playerObject.pixelHighlightTexture.setDepth(3);
+      // Wipe the data so we don't draw it again.
+      pixelHighlightInput.content = null;
+    }
+  }
+
   function updateGamePieces() {
     // Deal with game pieces from server.
     const activeObjectList = [];
+
+    // Ignore empty lists.
     if (gamePieceList.pieces && gamePieceList.pieces.length > 0) {
       gamePieceList.pieces.forEach((gamePiece) => {
+        // Sometimes a game piece is not something we can use
         if (validateGamePieceData(gamePiece)) {
           activeObjectList.push(gamePiece.id);
-          if (gamePiece.scene === sceneName && gamePiece.sprite) {
-            if (playerObject.dotTrailsOn) {
-              // Use this to track the server location of objects on the screen across time.
-              // It is activated with 't'
-              // Render Texture
-              // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.RenderTexture.html
-              // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/rendertexture/
-              // Rectangles:
-              // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Rectangle.html
-              if (!playerObject.dotTrailRenderTexture) {
-                playerObject.dotTrailRenderTexture = scene.add.renderTexture(
-                  0,
-                  0,
-                  640,
-                  480,
-                );
-              }
-              let fillColor = 0x00ff00;
-              let width = 1;
-              let height = 1;
-              if (['carrot'].indexOf(gamePiece.type) > -1) {
-                fillColor = 0x0000ff;
-                width = 5;
-                height = 5;
-              } else if (['slime'].indexOf(gamePiece.type) > -1) {
-                fillColor = 0xff0000;
-              } else if (['fireball'].indexOf(gamePiece.type) > -1) {
-                fillColor = 0xffa500;
-              } else if (['teleball'].indexOf(gamePiece.type) > -1) {
-                fillColor = 0xffa500;
-              } else if (['push'].indexOf(gamePiece.type) > -1) {
-                fillColor = 0xffa500;
-              } else if (gamePiece.id === playerObject.playerId) {
-                // it me
-                fillColor = 0x00a500;
-              } else if (['player'].indexOf(gamePiece.type) > -1) {
-                // it !me
-                fillColor = 0x6a0dad;
-              }
-              playerObject.dotTrailRenderTexture.draw(
-                new Phaser.GameObjects.Rectangle(
-                  scene,
-                  convertCoordinates.gamePieceToPhaser(
-                    gamePiece.x,
-                    tileMap.tilewidth,
-                  ),
-                  convertCoordinates.gamePieceToPhaser(
-                    gamePiece.y,
-                    tileMap.tilewidth,
-                  ),
-                  width,
-                  height,
-                  fillColor,
-                  1,
-                ).setOrigin(0.5, 0.5),
-              );
-              // this.add
-              //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
-              //   .setOrigin(0, 0);
-            } else if (playerObject.dotTrailRenderTexture) {
-              playerObject.dotTrailRenderTexture.destroy();
-              playerObject.dotTrailRenderTexture = null;
-            }
 
-            // Check for special attributes on our player object,
-            // and act on them.
+          // Only render game pieces for THIS scene, and only if they have a sprite key
+          if (gamePiece.scene === sceneName && gamePiece.sprite) {
+            // This is used for debugging
+            renderDebugDotTrails(gamePiece);
+
+            // Is this ME?
             if (gamePiece.id === playerObject.playerId) {
+              // If so, act on special keys.
+
+              // The force key lets the server change the player's position.
               if (gamePiece.force) {
                 playerObject.force = true; // This tells the data sender to update this to false;
                 // The player has now been forced to a new location by the server,
@@ -509,38 +550,10 @@ const sceneFactory = ({
               }
             }
 
-            // Render Pixel Highlight debug data from server
-            if (pixelHighlightInput.content) {
-              // Always wipe this and start fresh, because they only come in rarely on demand
-              if (playerObject.pixelHighlightTexture) {
-                playerObject.pixelHighlightTexture.destroy();
-                playerObject.pixelHighlightTexture = null;
-              }
+            // This is used for debugging server code
+            renderPixelHighlightDataFromServer();
 
-              playerObject.pixelHighlightTexture = scene.add.renderTexture(
-                0,
-                0,
-                640,
-                480,
-              );
-              pixelHighlightInput.content.forEach((entry) => {
-                playerObject.pixelHighlightTexture.draw(
-                  new Phaser.GameObjects.Rectangle(
-                    scene,
-                    entry.x,
-                    entry.y,
-                    1,
-                    1,
-                    0xffff00,
-                    1,
-                  ).setOrigin(0.5, 0.5),
-                );
-              });
-
-              playerObject.pixelHighlightTexture.setDepth(3);
-              // Wipe the data so we don't draw it again.
-              pixelHighlightInput.content = null;
-            }
+            let spriteData;
 
             // If no `sprite` key is given, no sprite is displayed.
             // This also prevents race conditions with remote players during reload
@@ -556,7 +569,7 @@ const sceneFactory = ({
               ].spriteData = getSpriteData(gamePiece.sprite);
 
               // To shorten variable names and make code more consistent
-              const spriteData =
+              spriteData =
                 playerObject.spawnedObjectList[gamePiece.id].spriteData;
 
               playerObject.spawnedObjectList[
@@ -582,6 +595,7 @@ const sceneFactory = ({
               }
 
               // Make the carrots visually distinct based on their genetic code
+              /*
               if (gamePiece.type === 'carrot') {
                 playerObject.spawnedObjectList[
                   gamePiece.id
@@ -596,6 +610,7 @@ const sceneFactory = ({
                 // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
                 // console.log("0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1));
               }
+               */
 
               if (spriteData.physicsOffset) {
                 playerObject.spawnedObjectList[
@@ -612,8 +627,24 @@ const sceneFactory = ({
               playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
                 spriteData.displayWidth;
             }
+
+            if (!spriteData) {
+              // To shorten variable names and make code more consistent
+              spriteData =
+                playerObject.spawnedObjectList[gamePiece.id].spriteData;
+            }
             // Sometimes they go inactive.
             playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
+
+            // Use health to adjust size for veggies
+            if (gamePiece.type === 'carrot' && spriteData) {
+              playerObject.spawnedObjectList[
+                gamePiece.id
+              ].sprite.displayHeight =
+                spriteData.displayHeight * (gamePiece.energy / 100);
+              playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
+                spriteData.displayWidth * (gamePiece.energy / 100);
+            }
 
             // Use Game Piece direction to set sprite rotation or flip it
             if (
@@ -777,15 +808,16 @@ const sceneFactory = ({
             playerObject.spawnedObjectList[gamePiece.id] &&
             playerObject.spawnedObjectList[gamePiece.id].sprite
           ) {
-            // Off screen players should be inactive.
+            // Destroy any sprites left over from incorrect scenes
             if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
               playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
             }
+            // and wipe their data so we do not see it anymore.
             playerObject.spawnedObjectList[gamePiece.id] = null;
           }
 
-          // TODO: Why is this gone and yet I'm still here? Where should I do this?
           // Add game piece data to object for use elsewhere later
+          // (I'm not 100% sure what this is for anymore.
           if (
             playerObject.spawnedObjectList.hasOwnProperty(gamePiece.id) &&
             playerObject.spawnedObjectList[gamePiece.id]
@@ -806,7 +838,6 @@ const sceneFactory = ({
         playerObject.spawnedObjectList[property] &&
         activeObjectList.indexOf(Number(property)) === -1
       ) {
-        console.log(`Destroying Object ID ${property}`);
         if (playerObject.spawnedObjectList[property].sprite) {
           playerObject.spawnedObjectList[property].sprite.destroy();
         }
