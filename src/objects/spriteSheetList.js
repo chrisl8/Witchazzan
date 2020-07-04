@@ -13,6 +13,7 @@ import greenTree from '../assets/spriteSheets/greenTree.png';
 import deadTree from '../assets/spriteSheets/deadTree.png';
 import chest from '../assets/spriteSheets/chest.png';
 import bones from '../assets/spriteSheets/bones.png';
+import lilolyon from '../assets/spriteSheets/Lilolyon.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -136,6 +137,29 @@ const spriteSheetList = [
     },
     displayWidth: 12,
     displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'herbivore',
+    file: lilolyon,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1, // How many frames to extract from the sheet. -1 means all
+    animationFrameRate: 5,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 1, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-left', start: 13, end: 16, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 17, end: 20, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 9, end: 10, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 11, end: 12, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 53 * 0.8, // "Width" direction
+      y: 63 * 0.8, // "Height" direction
+    },
+    displayWidth: 53 / 4,
+    displayHeight: 63 / 4,
   },
   {
     type: 'other',
