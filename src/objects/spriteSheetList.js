@@ -2,6 +2,7 @@ import partyWizardSpriteSheet from '../assets/spriteSheets/party-wizard-sprite-s
 import gloobScarymanSpriteSheet from '../assets/spriteSheets/gloob-scaryman.png';
 import flamingGoose from '../assets/spriteSheets/flamingGoose.png';
 import fireball from '../assets/spriteSheets/fireball.png';
+import teleball from '../assets/spriteSheets/Teleport.png';
 import bloomby from '../assets/spriteSheets/bloomby.png';
 import joosh from '../assets/spriteSheets/joosh.png';
 import pantingDog from '../assets/spriteSheets/panting-dog.png';
@@ -159,6 +160,26 @@ const spriteSheetList = [
     type: 'other',
     name: 'fireball',
     file: fireball,
+    faces: 'right',
+    frameWidth: 64,
+    frameHeight: 64,
+    endFrame: -1, // How many frames to extract from the sheet. -1 means all
+    animationFrameRate: 5,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true, // For sprites that should rotate to any direction, instead of just the 4
+  },
+  {
+    type: 'other',
+    name: 'teleball',
+    file: teleball,
     faces: 'right',
     frameWidth: 64,
     frameHeight: 64,
