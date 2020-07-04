@@ -66,7 +66,7 @@ const playerObject = {
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
   sendSpell: false,
   chatOpen: false,
-  spellOptions: ['fireball', 'teleball', 'push',],
+  spellOptions: ['fireball', 'teleball', 'push'],
   spellAssignments: {
     '1': 0,
     '2': 1,

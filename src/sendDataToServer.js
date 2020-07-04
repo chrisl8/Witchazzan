@@ -50,8 +50,10 @@ sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
     Object.entries(obj).forEach(([key, value]) => {
       if (
         playerObject.lastSentPlayerDataObject[key] === undefined ||
-        key === "force" ||
-        playerObject.lastSentPlayerDataObject[key] !== obj[key]
+        playerObject.lastSentPlayerDataObject[key] !== obj[key] ||
+        // The client needs to send force: false EVERY time it gets a force: true
+        // from the server, even if it sent force: false already in the last packet.
+        key === 'force'
       ) {
         objectToSend[key] = value;
       }
