@@ -1,5 +1,6 @@
 /* globals window:true */
 /* globals localStorage:true */
+/* globals document:true */
 import Phaser from 'phaser';
 import playerObject from '../objects/playerObject';
 import textObject from '../objects/textObject';
@@ -11,6 +12,8 @@ import gamePieceList from '../objects/gamePieceList';
 import pixelHighlightInput from '../objects/pixelHighlightInput';
 import getSpriteData from '../utilities/getSpriteData';
 import convertCoordinates from '../utilities/convertCordinates';
+
+import fullscreen from '../assets/spriteSheets/fullscreen.png';
 
 // TODO: Is this actually a proper factory?
 //  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
@@ -65,6 +68,13 @@ const sceneFactory = ({
         frameHeight: spriteSheet.frameHeight,
         endFrame: spriteSheet.endFrame,
       });
+    });
+
+    // Fullscreen button
+    // TODO: Color and size should be configured per scene.
+    this.load.spritesheet('fullscreen', fullscreen, {
+      frameWidth: 64,
+      frameHeight: 64,
     });
   };
 
@@ -1112,6 +1122,36 @@ const sceneFactory = ({
 
     // Phaser controlled mouse input
     this.input.mouse.disableContextMenu();
+
+    // Fullscreen button
+    // http://labs.phaser.io/100.html?src=src%5Cscalemanager%5Cfull%20screen%20game.js
+    // NOTE: You can scale SPRITES, but not IMAGES, hence loading this as a sprite.
+    // this.load.image('logo', 'images/logo.png');
+    // var logo = this.game.add.sprite(x, y, 'logo');
+    // logo.scale.setTo(1, 1); // here is where you can scale your image. 1 , 1 is original size so you can make it twice as big with 2 , 2 or half the size with 0.5, 0.5
+    this.game.scale.fullscreenTarget = document.getElementsByTagName('body')[0];
+    const fullScreenButton = this.physics.add
+      .sprite(gameSize.width, 32, 'fullscreen', 0)
+      .setSize(16, 16)
+      .setInteractive();
+    fullScreenButton.displayHeight = 16;
+    fullScreenButton.displayWidth = 16;
+    fullScreenButton.on(
+      'pointerup',
+      () => {
+        console.log('Fullscreen pointerup');
+        if (this.scale.isFullscreen) {
+          fullScreenButton.setFrame(0);
+
+          this.scale.stopFullscreen();
+        } else {
+          fullScreenButton.setFrame(1);
+
+          this.scale.startFullscreen();
+        }
+      },
+      this,
+    );
 
     updateInGameDomElements(htmlElementParameters);
   };
