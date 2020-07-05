@@ -40,6 +40,9 @@ async function startGame({ phaserDebug }) {
 
   // Start Phaser
   phaserConfigObject.game = new Phaser.Game(phaserConfigObject);
+
+  // grab handle to canvas element
+  playerObject.domElements.canvas = document.getElementsByTagName('canvas')[0];
 }
 
 export default startGame;

@@ -21,7 +21,7 @@ const updateInGameDomElements = (htmlElementParameters) => {
 
   // Set up text for various text fields
   // eslint-disable-next-line no-unused-vars
-  for (const [key, value] of Object.entries(textObject)) {
+  for (const [, value] of Object.entries(textObject)) {
     if (value.shouldBeActiveNow) {
       consolidatedTextObject[value.location].hidden = false;
       consolidatedTextObject[value.location].text = `${
@@ -102,34 +102,73 @@ const updateInGameDomElements = (htmlElementParameters) => {
       }
     }
 
+    // Get canvas offset for use when setting items relative to in game objects
+    const canvasStyle = window.getComputedStyle(
+      playerObject.domElements.canvas,
+    );
+    const canvasLeftMargin = Number(
+      canvasStyle['margin-left'].replace('px', ''),
+    );
+
     // Player Tag
     if (
       playerObject.spawnedObjectList.hasOwnProperty(playerObject.playerId) &&
       playerObject.spawnedObjectList[playerObject.playerId]
     ) {
+      // Hearts
       const health =
         playerObject.spawnedObjectList[playerObject.playerId].gamePiece.health;
+      let newPlayerTagInnerHTML = '';
       if (health > 99) {
-        playerObject.domElements.playerTag.innerHTML =
-          '&#x2764;&#x2764;&#x2764;&#x2764;';
+        newPlayerTagInnerHTML = '&#x2764;&#x2764;&#x2764;&#x2764;';
       } else if (health > 74) {
-        playerObject.domElements.playerTag.innerHTML =
-          '&#x2764;&#x2764;&#x2764;';
+        newPlayerTagInnerHTML = '&#x2764;&#x2764;&#x2764;';
       } else if (health > 49) {
-        playerObject.domElements.playerTag.innerHTML = '&#x2764;&#x2764;';
+        newPlayerTagInnerHTML = '&#x2764;&#x2764;';
       } else if (health > 24) {
-        playerObject.domElements.playerTag.innerHTML = '&#x2764;';
-      } else {
-        playerObject.domElements.playerTag.innerHTML = '';
+        newPlayerTagInnerHTML = '&#x2764;';
       }
-      playerObject.domElements.playerTag.style.left = `${
-        (playerObject.player.x - playerObject.player.displayWidth - 8) *
-        playerObject.cameraScaleFactor
+      if (
+        playerObject.domElementHistory.playerTag.innerHTML !==
+        newPlayerTagInnerHTML
+      ) {
+        playerObject.domElements.playerTag.innerHTML = newPlayerTagInnerHTML;
+        playerObject.domElementHistory.playerTag.innerHTML = newPlayerTagInnerHTML;
+      }
+
+      // Font size
+      const newFontSize =
+        (playerObject.player.displayWidth * playerObject.cameraScaleFactor) / 2;
+      if (playerObject.domElementHistory.playerTag.fontSize !== newFontSize) {
+        playerObject.domElements.playerTag.style.fontSize = `${newFontSize}px`;
+        playerObject.domElementHistory.playerTag.fontSize = newFontSize;
+      }
+
+      // Location
+      const constantOffsetForPretty = 4;
+      const newLeft = `${
+        canvasLeftMargin +
+        (playerObject.player.x -
+          playerObject.player.displayWidth -
+          playerObject.cameraOffset.x) *
+          playerObject.cameraScaleFactor +
+        constantOffsetForPretty
       }px`;
-      playerObject.domElements.playerTag.style.top = `${
-        (playerObject.player.y - playerObject.player.displayHeight - 10) *
-        playerObject.cameraScaleFactor
+      const newTop = `${
+        (playerObject.player.y -
+          playerObject.player.displayHeight -
+          playerObject.cameraOffset.y) *
+          playerObject.cameraScaleFactor +
+        constantOffsetForPretty
       }px`;
+      if (playerObject.domElementHistory.playerTag.left !== newLeft) {
+        playerObject.domElements.playerTag.style.left = newLeft;
+        playerObject.domElementHistory.playerTag.left = newLeft;
+      }
+      if (playerObject.domElementHistory.playerTag.top !== newTop) {
+        playerObject.domElements.playerTag.style.top = newTop;
+        playerObject.domElementHistory.playerTag.top = newTop;
+      }
     }
 
     // Other player tags
@@ -150,23 +189,49 @@ const updateInGameDomElements = (htmlElementParameters) => {
               playerObject.domElements.otherPlayerTags[Number(key)],
             );
           }
+
+          // Text
+          let newInnerHTML = '';
           if (value.gamePiece.chatOpen) {
-            playerObject.domElements.otherPlayerTags[Number(key)].innerHTML =
-              '&#x1F4AD;';
-          } else {
-            playerObject.domElements.otherPlayerTags[Number(key)].innerHTML =
-              '';
+            newInnerHTML = '&#x1F4AD;';
           }
-          playerObject.domElements.otherPlayerTags[Number(key)].style.left = `${
-            (value.sprite.x - value.sprite.displayWidth) *
-            playerObject.cameraScaleFactor
-          }px`;
-          playerObject.domElements.otherPlayerTags[Number(key)].style.top = `${
-            (value.sprite.y - value.sprite.displayHeight - 10) *
-            playerObject.cameraScaleFactor
-          }px`;
+          playerObject.domElements.otherPlayerTags[
+            Number(key)
+          ].innerHTML = newInnerHTML;
+
+          if (newInnerHTML !== '') {
+            // Font size
+            const newFontSize =
+              (playerObject.player.displayWidth *
+                playerObject.cameraScaleFactor) /
+              2;
+            playerObject.domElements.otherPlayerTags[
+              Number(key)
+            ].style.fontSize = `${newFontSize}px`;
+
+            // Location
+            // NOTE: This is tweaked for the "thougth bubble",
+            // which clearly goes to the RIGHT of the player,
+            // unlike the hearts on your own player that start at the top left.
+            playerObject.domElements.otherPlayerTags[
+              Number(key)
+            ].style.left = `${
+              canvasLeftMargin +
+              (value.sprite.x - playerObject.cameraOffset.x) *
+                playerObject.cameraScaleFactor +
+              4
+            }px`;
+            playerObject.domElements.otherPlayerTags[
+              Number(key)
+            ].style.top = `${
+              (value.sprite.y -
+                value.sprite.displayHeight -
+                playerObject.cameraOffset.y) *
+                playerObject.cameraScaleFactor +
+              4
+            }px`;
+          }
         }
-        // console.log(`${key}: ${value}`);
       } else if (playerObject.domElements.otherPlayerTags[Number(key)]) {
         playerObject.domElements.otherPlayerTags[Number(key)].remove();
         playerObject.domElements.otherPlayerTags[Number(key)] = null;

@@ -38,12 +38,14 @@ const playerObject = {
     chatInput: document.getElementById('command_input'),
     playerTag: document.getElementById('player_tag'),
     otherPlayerTagsDiv: document.getElementById('other_player_tags'),
+    canvas: null, // This must be set after Phaser starts, in startGame.js
     otherPlayerTags: {},
   },
   domElementHistory: {
     Center: { style: {} },
     UpperLeft: { style: {} },
     Scrolling: { style: {} },
+    playerTag: { innerHTML: null, left: null, top: null, fontSize: null },
   },
   spriteName: 'bloomby', // Default set here
   playerId: null,
@@ -74,6 +76,10 @@ const playerObject = {
   }, // Keyboard keys 1 to 9
   activeSpellKey: 0,
   teleportToSceneNow: null,
+  cameraOffset: {
+    x: 0,
+    y: 0,
+  },
 };
 
 export default playerObject;
