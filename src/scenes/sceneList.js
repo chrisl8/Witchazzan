@@ -90,6 +90,10 @@ const loruleGameSize = {
   width: 16 * 16,
   height: 16 * 11,
 };
+const loruleGameSizeWide = {
+  width: 16 * 19,
+  height: 16 * 11,
+};
 const loruleHtmlElementParameters = {
   Center: {
     fontSize: '.1', // percent of scene height.
@@ -134,7 +138,7 @@ const scenes = [
     tileMap: LoruleH8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    gameSize: loruleGameSizeWide,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
