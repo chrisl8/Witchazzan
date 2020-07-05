@@ -179,6 +179,19 @@ Filename: carrot.png
 Source: Pinterest  
 Filename: panting-dog.png  
 
+#### These images were created by our own team!
+- bloomby
+- chest
+- ChristmasTree
+- deadTree
+- fireball
+- gloob-scaryman
+- greenTree
+- joosh
+- Lilolyon
+- pinkTree
+- Teleport
+
 ### If you want to keep building the NES Hyrule map
 
 The map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)

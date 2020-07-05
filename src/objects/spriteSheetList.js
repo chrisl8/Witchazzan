@@ -27,8 +27,8 @@ const spriteSheetList = [
     name: 'bloomby',
     file: bloomby,
     faces: 'right',
-    frameWidth: 53,
-    frameHeight: 63,
+    frameWidth: 55,
+    frameHeight: 65,
     endFrame: -1, // How many frames to extract from the sheet. -1 means all
     animationFrameRate: 5,
     animations: [
@@ -52,16 +52,16 @@ const spriteSheetList = [
       // sized sprites will not produce the same results!
       // Using a multiplier can help keep it consistent between different sprites,
       // but remember different size sprites will still end up with different end results after multiplication.
-      x: 53 * 0.8, // "Width" direction
-      y: 63 * 0.8, // "Height" direction
+      x: 53, // "Width" direction
+      y: 63, // "Height" direction
     },
     // DELETE or COMMENT OUT the entire physicsOffset to ignore it and default to object center.
     // physicsOffset: {
     //   x: 25, // left/right aka in relation to width
     //   y: 25,
     // },
-    displayWidth: 53 / 4,
-    displayHeight: 63 / 4,
+    displayWidth: (53 / 4) * 0.8,
+    displayHeight: (63 / 4) * 0.8,
   },
   {
     type: 'player',
