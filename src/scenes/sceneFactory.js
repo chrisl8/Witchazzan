@@ -38,6 +38,7 @@ const sceneFactory = ({
   htmlElementParameters = {},
 }) => {
   const scene = new Phaser.Scene(sceneName);
+  let tileset;
 
   // Some multi-scene example code:
   // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/scenes/changing%20scene.js
@@ -120,25 +121,38 @@ const sceneFactory = ({
   }
 
   function setCameraZoom() {
-    const canvasWidth = window.innerWidth;
-    const canvasHeight = window.innerHeight;
-    const widthScaleFactor = canvasWidth / gameSize.width;
-    const heightScaleFactor = canvasHeight / gameSize.height;
-    const cameraScaleFactor =
-      widthScaleFactor < heightScaleFactor
-        ? widthScaleFactor
-        : heightScaleFactor;
-    if (cameraScaleFactor !== playerObject.cameraScaleFactor) {
-      playerObject.cameraScaleFactor = cameraScaleFactor;
-      // Use camera zoom to fill screen.
-      this.cameras.main.setZoom(cameraScaleFactor);
-      const gameWidth = Math.trunc(gameSize.width * cameraScaleFactor);
-      const gameHeight = Math.trunc(gameSize.height * cameraScaleFactor);
-      // Camera size should be just the game size, no bigger or smaller.
-      this.cameras.main.setSize(gameWidth, gameHeight);
-      // Make sure the canvas is big enough to show the camera.
-      this.scale.setGameSize(gameWidth, gameHeight);
+    if (!playerObject.disableCameraZoom) {
+      const widthScaleFactor = window.innerWidth / gameSize.width;
+      const heightScaleFactor = window.innerHeight / gameSize.height;
+      const cameraScaleFactor =
+        widthScaleFactor < heightScaleFactor // > - Zoomed < - fit screen
+          ? widthScaleFactor
+          : heightScaleFactor;
+      if (cameraScaleFactor !== playerObject.cameraScaleFactor) {
+        playerObject.cameraScaleFactor = cameraScaleFactor;
+        // Use camera zoom to fill screen.
+        this.cameras.main.setZoom(cameraScaleFactor);
+        const gameWidth = Math.trunc(gameSize.width * cameraScaleFactor);
+        const gameHeight = Math.trunc(gameSize.height * cameraScaleFactor);
+
+        // Make sure the canvas is big enough to show the camera.
+        this.scale.setGameSize(gameWidth, gameHeight);
+
+        // TODO: I do not understand why these have to be doubled.
+        this.cameras.main.setBounds(
+          tileset.tileWidth,
+          tileset.tileWidth,
+          gameSize.width * 2 - tileset.tileWidth * 2,
+          gameSize.height * 2 - tileset.tileWidth * 2,
+        );
+
+        this.cameras.main.centerOn(gameSize.width / 2, gameSize.height / 2);
+      }
     }
+    playerObject.cameraOffset = {
+      x: this.cameras.main.worldView.x,
+      y: this.cameras.main.worldView.y,
+    };
   }
 
   async function returnToIntroScreen() {
@@ -877,7 +891,31 @@ const sceneFactory = ({
 
     // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
     // Phaser's cache (i.e. the name you used in preload)
-    const tileset = map.addTilesetImage(tileSetName, `${tileSetName}-tiles`);
+    tileset = map.addTilesetImage(tileSetName, `${tileSetName}-tiles`);
+
+    // Set tilemap area background is white for areas whre no tiles were placed
+    // NOTE: If all tilemaps had 100% coverage, this woudl not be needed.
+    // Done after we create the tileset variable, because we need the tile width.
+    // TODO: I do not actually know why I have to multiple the gameSize values by 2
+    // One tile on each side has to be dropped for the teleport zone.
+    const tilemapBackgroundRenderTexture = scene.add.renderTexture(
+      tileset.tileWidth,
+      tileset.tileWidth,
+      gameSize.width * 2 - tileset.tileWidth * 2,
+      gameSize.height * 2 - tileset.tileWidth * 2,
+    );
+    const fillColor = 0xffffff;
+    tilemapBackgroundRenderTexture.draw(
+      new Phaser.GameObjects.Rectangle(
+        scene,
+        tileset.tileWidth,
+        tileset.tileWidth,
+        gameSize.width * 2 - tileset.tileWidth * 2,
+        gameSize.height * 2 - tileset.tileWidth * 2,
+        fillColor,
+        1,
+      ),
+    );
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
     map.createStaticLayer('Ground', tileset, 0, 0);
@@ -910,9 +948,9 @@ const sceneFactory = ({
     //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     // });
 
-    // set background color, so the "sky" is not black
+    // make "off screen" area black
     // https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3/
-    this.cameras.main.setBackgroundColor('#FFFFFF');
+    this.cameras.main.setBackgroundColor('#000000');
 
     // By default, everything gets depth sorted on the screen in the order we created things. Here, we
     // want the "Above Player" layer to sit on top of the player, so we explicitly give it a depth.
@@ -940,9 +978,7 @@ const sceneFactory = ({
       }
     }
 
-    if (!playerObject.disableCameraZoom) {
-      setCameraZoom.call(this);
-    }
+    setCameraZoom.call(this);
 
     // Use scene from server. Switch to different scene if this is not it
     // NOTE: Remember to do this BEFORE setting the position from the server.
@@ -1021,18 +1057,6 @@ const sceneFactory = ({
       this.physics.add.collider(playerObject.player, waterLayer);
     }
     camera = this.cameras.main;
-    camera.startFollow(playerObject.player);
-    // This keeps the camera from moving off of the map, regardless of where the player goes
-    let cameraStart = tileset.tileWidth; // Offset by one tile for the teleport area
-    if (playerObject.disableCameraZoom) {
-      cameraStart = -100;
-    }
-    camera.setBounds(
-      cameraStart,
-      cameraStart,
-      map.widthInPixels - tileset.tileWidth * 2, // Reduced by 2 tiles for the teleport area
-      map.heightInPixels - tileset.tileHeight * 2, // Reduced by 2 tiles for the teleport area
-    );
 
     // This section finds the Objects in the Tilemap that trigger features
     // Useful info on how this works:
@@ -1106,9 +1130,8 @@ const sceneFactory = ({
       return;
     }
 
-    if (!playerObject.disableCameraZoom) {
-      setCameraZoom.call(this);
-    }
+    setCameraZoom.call(this);
+
     let maxSpeed = playerObject.maxSpeed;
     let useAcceleration = true;
     if (

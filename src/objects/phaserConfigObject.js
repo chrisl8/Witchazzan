@@ -11,6 +11,7 @@ const phaserConfigObject = {
   scale: {
     mode: Phaser.Scale.NONE,
     autoRound: true, // Might improve performance?
+    autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
   },
   physics: {
     default: 'arcade',
