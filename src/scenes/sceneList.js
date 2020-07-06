@@ -90,6 +90,8 @@ const loruleGameSize = {
   width: 16 * 16,
   height: 16 * 11,
 };
+
+// 19/11 is the closest to 16:9 that I can get with tiles.
 const loruleGameSizeWide = {
   width: 16 * 19,
   height: 16 * 11,
@@ -146,7 +148,7 @@ const scenes = [
     tileMap: LoruleI8,
     tileSet: tileset1bit16x16,
     tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    gameSize: loruleGameSizeWide,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
