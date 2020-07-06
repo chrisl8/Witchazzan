@@ -356,10 +356,7 @@ const scenes = [
     tileMap: backYard1,
     tileSet: tilesetZoriaOverworld,
     tileSetName: 'Zoria Overworld',
-    gameSize: {
-      width: 16 * 40,
-      height: 16 * 22,
-    },
+    gameSize: loruleGameSizeWide,
     htmlElementParameters: {
       Center: {
         fontSize: '.1', // percent of scene height.
