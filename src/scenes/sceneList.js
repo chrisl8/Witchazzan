@@ -1,10 +1,10 @@
 /*
  * This loads up all of the scenes.
  * It is literally just copy/paste of the import lines,
- * and scenes array with the names of the tilemaps.
+ * and scenes array with the names of the tile maps.
  *
  * TODO: Write a script to generate this file based on the names
- *  of the files in the tilemap folder,
+ *  of the files in the tile map folder,
  *  which would run before the webpack build.
  *
  * For now, to add a scene:
@@ -50,6 +50,78 @@ import LoruleG5 from '../assets/tileMaps/LoruleG5.json';
 import LoruleE7 from '../assets/tileMaps/LoruleE7.json';
 import LoruleD8 from '../assets/tileMaps/LoruleD8.json';
 import LoruleD7 from '../assets/tileMaps/LoruleD7.json';
+import LoruleL2 from '../assets/tileMaps/LoruleL2.json';
+import LoruleM3 from '../assets/tileMaps/LoruleM3.json';
+import LoruleN4 from '../assets/tileMaps/LoruleN4.json';
+import LoruleO5 from '../assets/tileMaps/LoruleO5.json';
+import LoruleP6 from '../assets/tileMaps/LoruleP6.json';
+import LoruleP7 from '../assets/tileMaps/LoruleP7.json';
+import LoruleO6 from '../assets/tileMaps/LoruleO6.json';
+import LoruleN5 from '../assets/tileMaps/LoruleN5.json';
+import LoruleM4 from '../assets/tileMaps/LoruleM4.json';
+import LoruleL3 from '../assets/tileMaps/LoruleL3.json';
+import LoruleJ1 from '../assets/tileMaps/LoruleJ1.json';
+import LoruleK2 from '../assets/tileMaps/LoruleK2.json';
+import LoruleE2 from '../assets/tileMaps/LoruleE2.json';
+
+// New Scenes
+import LoruleF1 from '../assets/tileMaps/LoruleF1.json';
+import LoruleD3 from '../assets/tileMaps/LoruleD3.json';
+import LoruleC4 from '../assets/tileMaps/LoruleC4.json';
+import LoruleB5 from '../assets/tileMaps/LoruleB5.json';
+import LoruleA6 from '../assets/tileMaps/LoruleA6.json';
+import LoruleL4 from '../assets/tileMaps/LoruleL4.json';
+import LoruleK3 from '../assets/tileMaps/LoruleK3.json';
+import LoruleJ2 from '../assets/tileMaps/LoruleJ2.json';
+import LoruleG1 from '../assets/tileMaps/LoruleG1.json';
+import LoruleI1 from '../assets/tileMaps/LoruleI1.json';
+import LoruleF2 from '../assets/tileMaps/LoruleF2.json';
+import LoruleD4 from '../assets/tileMaps/LoruleD4.json';
+import LoruleC5 from '../assets/tileMaps/LoruleC5.json';
+import LoruleB6 from '../assets/tileMaps/LoruleB6.json';
+import LoruleA7 from '../assets/tileMaps/LoruleA7.json';
+import LoruleM5 from '../assets/tileMaps/LoruleM5.json';
+import LoruleN6 from '../assets/tileMaps/LoruleN6.json';
+import LoruleO7 from '../assets/tileMaps/LoruleO7.json';
+import LoruleP8 from '../assets/tileMaps/LoruleP8.json';
+import LoruleO8 from '../assets/tileMaps/LoruleO8.json';
+import LoruleN7 from '../assets/tileMaps/LoruleN7.json';
+import LoruleM6 from '../assets/tileMaps/LoruleM6.json';
+import LoruleL5 from '../assets/tileMaps/LoruleL5.json';
+import LoruleK4 from '../assets/tileMaps/LoruleK4.json';
+import LoruleJ3 from '../assets/tileMaps/LoruleJ3.json';
+import LoruleI2 from '../assets/tileMaps/LoruleI2.json';
+import LoruleH1 from '../assets/tileMaps/LoruleH1.json';
+import LoruleG2 from '../assets/tileMaps/LoruleG2.json';
+import LoruleF3 from '../assets/tileMaps/LoruleF3.json';
+import LoruleE4 from '../assets/tileMaps/LoruleE4.json';
+import LoruleD5 from '../assets/tileMaps/LoruleD5.json';
+import LoruleC6 from '../assets/tileMaps/LoruleC6.json';
+import LoruleB7 from '../assets/tileMaps/LoruleB7.json';
+import LoruleA8 from '../assets/tileMaps/LoruleA8.json';
+import LoruleA9 from '../assets/tileMaps/LoruleA9.json';
+import LoruleN8 from '../assets/tileMaps/LoruleN8.json';
+import LoruleM7 from '../assets/tileMaps/LoruleM7.json';
+import LoruleL6 from '../assets/tileMaps/LoruleL6.json';
+import LoruleK5 from '../assets/tileMaps/LoruleK5.json';
+import LoruleJ4 from '../assets/tileMaps/LoruleJ4.json';
+import LoruleH2 from '../assets/tileMaps/LoruleH2.json';
+import LoruleI3 from '../assets/tileMaps/LoruleI3.json';
+import LoruleG3 from '../assets/tileMaps/LoruleG3.json';
+import LoruleF4 from '../assets/tileMaps/LoruleF4.json';
+import LoruleE5 from '../assets/tileMaps/LoruleE5.json';
+import LoruleD6 from '../assets/tileMaps/LoruleD6.json';
+import LoruleC7 from '../assets/tileMaps/LoruleC7.json';
+import LoruleB8 from '../assets/tileMaps/LoruleB8.json';
+import LoruleM8 from '../assets/tileMaps/LoruleM8.json';
+import LoruleL7 from '../assets/tileMaps/LoruleL7.json';
+import LoruleK6 from '../assets/tileMaps/LoruleK6.json';
+import LoruleH3 from '../assets/tileMaps/LoruleH3.json';
+import LoruleJ5 from '../assets/tileMaps/LoruleJ5.json';
+import LoruleG4 from '../assets/tileMaps/LoruleG4.json';
+import LoruleF5 from '../assets/tileMaps/LoruleF5.json';
+import LoruleE6 from '../assets/tileMaps/LoruleE6.json';
+import LoruleC8 from '../assets/tileMaps/LoruleC8.json';
 
 import backYard1 from '../assets/tileMaps/backYard1.json';
 import arena1 from '../assets/tileMaps/arena1.json';
@@ -58,11 +130,14 @@ import EmptyCave from '../assets/tileMaps/EmptyCave.json';
 import SlimeCave from '../assets/tileMaps/SlimeCave.json';
 import CaveF8 from '../assets/tileMaps/CaveF8.json';
 import CaveE7 from '../assets/tileMaps/CaveE7.json';
+import CaveP7 from '../assets/tileMaps/CaveP7.json';
+import CaveO6 from '../assets/tileMaps/CaveO6.json';
+import CaveM4 from '../assets/tileMaps/CaveM4.json';
 
 // NOTE: You must also add any new scenes to witchazzan-server/config/default-config.edn
 
 /*
-  To "FIX" tilesets so they don't have weird lines around them caused by GPU rendering
+  To "FIX" tile sets so they don't have weird lines around them caused by GPU rendering
 As noted:
 https://www.html5gamedevs.com/topic/38119-tilemap-displays-grid-lines-render-artifacts/
 
@@ -79,23 +154,57 @@ https://github.com/sporadic-labs/tile-extruder
 
  */
 
-// TileSets
+// Tile Sets
 import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16-extruded.png';
 import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld-extruded.png';
-import Dungeon_Tileset from '../assets/tileSets/Dungeon_Tileset.png';
+import dungeonTileset from '../assets/tileSets/Dungeon_Tileset.png';
+
+// Each entry consists of an image and a name.
+// The name is used for tagging the imported tile set image,
+// but it is also used by Phaser
+// WARNING: Phaser requires that this name match the tilesets.name in the Tiled tile map!
+const tileSets = {
+  OneBit16x16: {
+    image: tileset1bit16x16, // Image file from above.
+    name: 'tileset_1bit-16x16', // Must match the name used in the tile map itself!
+  },
+  dungeonTileset: { image: dungeonTileset, name: 'Dungeon_Tileset' },
+  ZoriaOverworld: { image: tilesetZoriaOverworld, name: 'Zoria Overworld' },
+};
+
+// Game Sizes
+// In theory the "game" can be a different size than the scene,
+// which is why this exists,
+// but in practice this is not implemented and so far there is no plan to do so.
+// Typically the size is just 2 less than the height and width,
+// accounting for the "hidden" teleport tiles on the outside of every scene.
+// TODO: If we are happy with always viewing the full scene, should this data just come from the tile map itself?
+const gameSizes = {
+  lorule: {
+    width: 16 * 16, // In Pixels
+    height: 16 * 11, // Tile pixel count * tile count
+  },
+  // 19/11 is the closest to 16:9 that I can get with tiles.
+  loruleWide: {
+    width: 16 * 19,
+    height: 16 * 11,
+  },
+  cave: {
+    width: 16 * 18,
+    height: 16 * 13,
+  },
+  arena: {
+    width: 16 * 40,
+    height: 16 * 22,
+  },
+};
+
+// HTML Parameters
+// TODO: Wrap up the htmlElementParameters options into an object too like gameSizes and tileSets.
 
 const loruleUpperLeftFontSize = '.03';
 const loruleScrollingFontSize = loruleUpperLeftFontSize;
-const loruleGameSize = {
-  width: 16 * 16,
-  height: 16 * 11,
-};
 
-// 19/11 is the closest to 16:9 that I can get with tiles.
-const loruleGameSizeWide = {
-  width: 16 * 19,
-  height: 16 * 11,
-};
 const loruleHtmlElementParameters = {
   Center: {
     fontSize: '.1', // percent of scene height.
@@ -113,10 +222,6 @@ const loruleHtmlElementParameters = {
   },
 };
 
-const caveGameSize = {
-  width: 16 * 18,
-  height: 16 * 13,
-};
 const caveHtmlElementParameters = {
   Center: {
     fontSize: '.1', // percent of scene height.
@@ -134,229 +239,692 @@ const caveHtmlElementParameters = {
   },
 };
 
+// Scenes
 const scenes = [
   {
     sceneName: 'LoruleH8',
     tileMap: LoruleH8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSizeWide,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleI8',
     tileMap: LoruleI8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSizeWide,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleH7',
     tileMap: LoruleH7,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleG7',
     tileMap: LoruleG7,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleG8',
     tileMap: LoruleG8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleF8',
     tileMap: LoruleF8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleH6',
     tileMap: LoruleH6,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleI7',
     tileMap: LoruleI7,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleJ8',
     tileMap: LoruleJ8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleE8',
     tileMap: LoruleE8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleF7',
     tileMap: LoruleF7,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleG6',
     tileMap: LoruleG6,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleH5',
     tileMap: LoruleH5,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleI6',
     tileMap: LoruleI6,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleJ7',
     tileMap: LoruleJ7,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleK8',
     tileMap: LoruleK8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleK7',
     tileMap: LoruleK7,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleL8',
     tileMap: LoruleL8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleJ6',
     tileMap: LoruleJ6,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleI4',
     tileMap: LoruleI4,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleI5',
     tileMap: LoruleI5,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleH4',
     tileMap: LoruleH4,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleG5',
     tileMap: LoruleG5,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleF6',
     tileMap: LoruleF6,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleE7',
     tileMap: LoruleE7,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleD8',
     tileMap: LoruleD8,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleD7',
     tileMap: LoruleD7,
-    tileSet: tileset1bit16x16,
-    tileSetName: 'tileset_1bit-16x16',
-    gameSize: loruleGameSize,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleL2',
+    tileMap: LoruleL2,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleM3',
+    tileMap: LoruleM3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleN4',
+    tileMap: LoruleN4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleO5',
+    tileMap: LoruleO5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleP6',
+    tileMap: LoruleP6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleP7',
+    tileMap: LoruleP7,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleO6',
+    tileMap: LoruleO6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleN5',
+    tileMap: LoruleN5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleM4',
+    tileMap: LoruleM4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleL3',
+    tileMap: LoruleL3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleJ1',
+    tileMap: LoruleJ1,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleK2',
+    tileMap: LoruleK2,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleE2',
+    tileMap: LoruleE2,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleF1',
+    tileMap: LoruleF1,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleD3',
+    tileMap: LoruleD3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleC4',
+    tileMap: LoruleC4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleB5',
+    tileMap: LoruleB5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleA6',
+    tileMap: LoruleA6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleL4',
+    tileMap: LoruleL4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleK3',
+    tileMap: LoruleK3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleJ2',
+    tileMap: LoruleJ2,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleG1',
+    tileMap: LoruleG1,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleI1',
+    tileMap: LoruleI1,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleF2',
+    tileMap: LoruleF2,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleD4',
+    tileMap: LoruleD4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleC5',
+    tileMap: LoruleC5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleB6',
+    tileMap: LoruleB6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleA7',
+    tileMap: LoruleA7,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleM5',
+    tileMap: LoruleM5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleN6',
+    tileMap: LoruleN6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleO7',
+    tileMap: LoruleO7,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleP8',
+    tileMap: LoruleP8,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleO8',
+    tileMap: LoruleO8,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleN7',
+    tileMap: LoruleN7,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleM6',
+    tileMap: LoruleM6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleL5',
+    tileMap: LoruleL5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleK4',
+    tileMap: LoruleK4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleJ3',
+    tileMap: LoruleJ3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleI2',
+    tileMap: LoruleI2,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleH1',
+    tileMap: LoruleH1,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleG2',
+    tileMap: LoruleG2,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleF3',
+    tileMap: LoruleF3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleE4',
+    tileMap: LoruleE4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleD5',
+    tileMap: LoruleD5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleC6',
+    tileMap: LoruleC6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleB7',
+    tileMap: LoruleB7,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleA8',
+    tileMap: LoruleA8,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleA9',
+    tileMap: LoruleA9,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleN8',
+    tileMap: LoruleN8,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleM7',
+    tileMap: LoruleM7,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleL6',
+    tileMap: LoruleL6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleK5',
+    tileMap: LoruleK5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleJ4',
+    tileMap: LoruleJ4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleH2',
+    tileMap: LoruleH2,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleI3',
+    tileMap: LoruleI3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleG3',
+    tileMap: LoruleG3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleF4',
+    tileMap: LoruleF4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleE5',
+    tileMap: LoruleE5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleD6',
+    tileMap: LoruleD6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleC7',
+    tileMap: LoruleC7,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleB8',
+    tileMap: LoruleB8,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleM8',
+    tileMap: LoruleM8,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleL7',
+    tileMap: LoruleL7,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleK6',
+    tileMap: LoruleK6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleH3',
+    tileMap: LoruleH3,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleJ5',
+    tileMap: LoruleJ5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleG4',
+    tileMap: LoruleG4,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleF5',
+    tileMap: LoruleF5,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleE6',
+    tileMap: LoruleE6,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
+    htmlElementParameters: loruleHtmlElementParameters,
+  },
+  {
+    sceneName: 'LoruleC8',
+    tileMap: LoruleC8,
+    tileSet: tileSets.OneBit16x16,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'backYard1',
     tileMap: backYard1,
-    tileSet: tilesetZoriaOverworld,
-    tileSetName: 'Zoria Overworld',
-    gameSize: loruleGameSizeWide,
+    tileSet: tileSets.ZoriaOverworld,
+    gameSize: gameSizes.lorule,
     htmlElementParameters: {
       Center: {
         fontSize: '.1', // percent of scene height.
@@ -377,12 +945,8 @@ const scenes = [
   {
     sceneName: 'arena1',
     tileMap: arena1,
-    tileSet: tilesetZoriaOverworld,
-    tileSetName: 'Zoria Overworld',
-    gameSize: {
-      width: 16 * 40,
-      height: 16 * 22,
-    },
+    tileSet: tileSets.ZoriaOverworld,
+    gameSize: gameSizes.arena,
     htmlElementParameters: {
       Center: {
         fontSize: '.1', // percent of scene height.
@@ -403,40 +967,56 @@ const scenes = [
   {
     sceneName: 'EmptyCave',
     tileMap: EmptyCave,
-    tileSet: Dungeon_Tileset,
-    tileSetName: 'Dungeon_Tileset',
-    gameSize: caveGameSize,
+    tileSet: tileSets.dungeonTileset,
+    gameSize: gameSizes.cave,
     htmlElementParameters: caveHtmlElementParameters,
   },
   {
     sceneName: 'SlimeCave',
     tileMap: SlimeCave,
-    tileSet: Dungeon_Tileset,
-    tileSetName: 'Dungeon_Tileset',
-    gameSize: caveGameSize,
+    tileSet: tileSets.dungeonTileset,
+    gameSize: gameSizes.cave,
     htmlElementParameters: caveHtmlElementParameters,
   },
   {
     sceneName: 'CaveF8',
     tileMap: CaveF8,
-    tileSet: Dungeon_Tileset,
-    tileSetName: 'Dungeon_Tileset',
-    gameSize: caveGameSize,
+    tileSet: tileSets.dungeonTileset,
+    gameSize: gameSizes.cave,
     htmlElementParameters: caveHtmlElementParameters,
   },
   {
     sceneName: 'CaveE7',
     tileMap: CaveE7,
-    tileSet: Dungeon_Tileset,
-    tileSetName: 'Dungeon_Tileset',
-    gameSize: caveGameSize,
+    tileSet: tileSets.dungeonTileset,
+    gameSize: gameSizes.cave,
+    htmlElementParameters: caveHtmlElementParameters,
+  },
+  {
+    sceneName: 'CaveP7',
+    tileMap: CaveP7,
+    tileSet: tileSets.dungeonTileset,
+    gameSize: gameSizes.cave,
+    htmlElementParameters: caveHtmlElementParameters,
+  },
+  {
+    sceneName: 'CaveO6',
+    tileMap: CaveO6,
+    tileSet: tileSets.dungeonTileset,
+    gameSize: gameSizes.cave,
+    htmlElementParameters: caveHtmlElementParameters,
+  },
+  {
+    sceneName: 'CaveM4',
+    tileMap: CaveM4,
+    tileSet: tileSets.dungeonTileset,
+    gameSize: gameSizes.cave,
     htmlElementParameters: caveHtmlElementParameters,
   },
 ];
 
 // Code below here automatically generates all of the scenes from the lists above,
 // which is used by the phaserConfigObject.js for the Phaser scene array.
-
 const sceneList = [];
 scenes.forEach((scene) => {
   sceneList.push(sceneFactory(scene));

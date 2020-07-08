@@ -12,39 +12,26 @@ import gamePieceList from '../objects/gamePieceList';
 import pixelHighlightInput from '../objects/pixelHighlightInput';
 import getSpriteData from '../utilities/getSpriteData';
 import convertCoordinates from '../utilities/convertCordinates';
+import validateGamePieceData from './sceneFactoryHelpers/validateGamePieceData';
 
 import fullscreen from '../assets/spriteSheets/fullscreen.png';
 
-// TODO: Is this actually a proper factory?
-//  https://www.theodinproject.com/courses/javascript/lessons/factory-functions-and-the-module-pattern
-
-const validateGamePieceData = (gamePiece) => {
-  const result =
-    typeof gamePiece.id === 'number' &&
-    typeof gamePiece.x === 'number' &&
-    typeof gamePiece.y === 'number' &&
-    gamePiece.sprite;
-  if (!result) {
-    console.error(
-      `Bad Game Piece received - ID: ${gamePiece.id} Type: ${gamePiece.type} Name: ${gamePiece.name} Sprite: ${gamePiece.sprite} X: ${gamePiece.x} Y: ${gamePiece.y}`,
-    );
-  }
-  return result;
-};
-
+/**
+ * @name sceneFactory
+ * @type {function({sceneName?: String, tileMap?: JSON, tileSet: Object, gameSize: Object, htmlElementParameters?: Object}): Phaser.Scene}
+ */
 const sceneFactory = ({
-  sceneName,
-  tileMap,
-  tileSet,
-  tileSetName,
-  gameSize,
+  sceneName, // Every scene needs a name
+  tileMap, // The tileMap is the layout of the tiles as set in Tiled.
+  tileSet, // An object containing the actual image and the name to reference it by
+  gameSize, // TODO: Is this required if the camera always covers the entire scene?
   htmlElementParameters = {},
 }) => {
+  const serverUpdateInterval = 40; // TODO: Move to some config file.
   const scene = new Phaser.Scene(sceneName);
-  let tileset;
-
-  // Some multi-scene example code:
-  // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/scenes/changing%20scene.js
+  let map;
+  let tileset; // TODO: Bad form having both a tileSet and tileset variable!
+  let lastServerUpdate = 0;
 
   // eslint-disable-next-line func-names
   scene.preload = function () {
@@ -52,7 +39,9 @@ const sceneFactory = ({
     // All of these text based "keys" are basically global variables in Phaser.
     // You can reuse the same name, but phaser will just reuse the first thing you
     // assigned to it.
-    this.load.image(`${tileSetName}-tiles`, tileSet);
+    // NOTE: This also means we are not wasting memory by loading the same tileSet over and over,
+    // because phaser just overwrites them.
+    this.load.image(`${tileSet.name}-tiles`, tileSet.image);
     // NOTE: The key must be different for each tilemap,
     // otherwise Phaser will get confused and reuse the same tilemap
     // even though you think you loaded another one.
@@ -61,7 +50,7 @@ const sceneFactory = ({
 
     // Spritesheet example: https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
     // The sprites can be added in this preload phase,
-    // but the animations have to be added in the create phase.
+    // but the animations have to be added in the create phase later.
     spriteSheetList.forEach((spriteSheet) => {
       this.load.spritesheet(spriteSheet.name, spriteSheet.file, {
         frameWidth: spriteSheet.frameWidth,
@@ -78,10 +67,7 @@ const sceneFactory = ({
     });
   };
 
-  let sceneOpen;
-
   function cleanUpScene() {
-    sceneOpen = false;
     // Mark all scene text objects as not currently displayed so the new scene can display them again
     // eslint-disable-next-line no-unused-vars
     for (const [, value] of Object.entries(textObject)) {
@@ -96,7 +82,7 @@ const sceneFactory = ({
     destinationSceneName,
     destinationSceneEntrance,
   ) {
-    if (sceneOpen && destinationSceneName !== sceneName) {
+    if (destinationSceneName !== sceneName) {
       cleanUpScene();
       if (this.scene.getIndex(destinationSceneName) === -1) {
         console.log(
@@ -196,7 +182,8 @@ const sceneFactory = ({
     // Hot key scene switch for testing.
     if (playerObject.keyState.h === 'keydown') {
       playerObject.keyState.h = null;
-      if (sceneOpen && sceneName !== playerObject.defaultOpeningScene) {
+      if (sceneName !== playerObject.defaultOpeningScene) {
+        // Don't teleport here if we ARE here.
         playerObject.dotTrailsOn = false; // Game crashes if this is on during this operation.
         cleanUpSceneAndTeleport.call(
           this,
@@ -308,12 +295,12 @@ const sceneFactory = ({
     }
   }
 
-  function checkIfLayerExists(map, layer) {
+  function checkIfLayerExists(layer) {
     const tilemapList = map.getTileLayerNames();
     return tilemapList.findIndex((entry) => entry === layer) > -1;
   }
 
-  function checkThatPlayerIsOnTeleportTile(map, camera) {
+  function checkThatPlayerIsOnTeleportTile(camera) {
     // Check if we are on a Teleport tile, and Teleport!
     const tilemapList = map.getTileLayerNames();
     const teleportTileMapLayers = tilemapList.filter((entry) => {
@@ -416,9 +403,6 @@ const sceneFactory = ({
       playerObject.playerStopped = true;
     }
   }
-
-  let lastServerUpdate = 0;
-  const serverUpdateInterval = 40;
 
   function sendUpdateToServer(time) {
     if (time - lastServerUpdate > serverUpdateInterval) {
@@ -870,15 +854,11 @@ const sceneFactory = ({
     }
   }
 
-  let map;
-  let camera;
-
   // eslint-disable-next-line func-names
   scene.create = function () {
     // Runs once, after all assets in preload are loaded
-    sceneOpen = true;
 
-    // The sprites can be added in this preload phase,
+    // The sprites can be added in the preload phase above,
     // but the animations have to be added in the create phase.
     spriteSheetList.forEach((spriteSheet) => {
       if (spriteSheet.animations) {
@@ -889,6 +869,7 @@ const sceneFactory = ({
               start: animation.start,
               end: animation.end,
               zeroPad: animation.zeroPad,
+              frames: animation.frames,
             }),
             frameRate: spriteSheet.animationFrameRate,
             repeat: animation.repeat,
@@ -899,14 +880,15 @@ const sceneFactory = ({
 
     map = this.make.tilemap({ key: `${sceneName}-map` });
 
-    // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
-    // Phaser's cache (i.e. the name you used in preload)
-    tileset = map.addTilesetImage(tileSetName, `${tileSetName}-tiles`);
+    // Arguments for addTilesetImage are:
+    // the name you gave the tileset in Tiled and
+    // the key of the tileset image in Phaser's cache (i.e. the name you used in preload)
+    tileset = map.addTilesetImage(tileSet.name, `${tileSet.name}-tiles`);
 
-    // Set tilemap area background is white for areas whre no tiles were placed
-    // NOTE: If all tilemaps had 100% coverage, this woudl not be needed.
+    // Set tile map area background is white for areas where no tiles were placed
+    // NOTE: If all tile maps had 100% coverage, this would not be needed.
     // Done after we create the tileset variable, because we need the tile width.
-    // TODO: I do not actually know why I have to multiple the gameSize values by 2
+    // TODO: I do not actually know why I have to multiply the gameSize values by 2
     // One tile on each side has to be dropped for the teleport zone.
     const tilemapBackgroundRenderTexture = scene.add.renderTexture(
       tileset.tileWidth,
@@ -937,7 +919,7 @@ const sceneFactory = ({
       .createStaticLayer('Stuff You Run Into', tileset, 0, 0)
       .setCollisionByExclusion([-1]);
     let waterLayer;
-    if (checkIfLayerExists(map, 'Water')) {
+    if (checkIfLayerExists('Water')) {
       waterLayer = map
         .createStaticLayer('Water', tileset, 0, 0)
         .setCollisionByExclusion([-1]);
@@ -958,7 +940,7 @@ const sceneFactory = ({
     //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     // });
 
-    // make "off screen" area black
+    // make "off scene" area black
     // https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3/
     this.cameras.main.setBackgroundColor('#000000');
 
@@ -999,6 +981,7 @@ const sceneFactory = ({
       if (playerObject.initialScene !== sceneName) {
         cleanUpScene(playerObject.initialScene);
         this.scene.start(playerObject.initialScene);
+        return; // We left this scene, we do not need to continue creating it now.
       }
     }
 
@@ -1010,10 +993,7 @@ const sceneFactory = ({
     playerObject.spriteData = getSpriteData(playerObject.spriteName);
 
     // Use the player's last position from the server if it exists
-    if (sceneOpen && !playerObject.initialPositionFromServerAlreadyUsed) {
-      // "sceneOpen" is a bit of a hack to ensure we don't waste this on
-      // the default opening scene before the player is moved away to
-      // the server provided scene.
+    if (!playerObject.initialPositionFromServerAlreadyUsed) {
       playerObject.initialPositionFromServerAlreadyUsed = true;
       // 0,0 is assumed to be an empty position from a new player.
       // NOTE: This could be a bug if 0,0 is ever a legitimate last position.
@@ -1066,8 +1046,6 @@ const sceneFactory = ({
     if (waterLayer) {
       this.physics.add.collider(playerObject.player, waterLayer);
     }
-    camera = this.cameras.main;
-
     // This section finds the Objects in the Tilemap that trigger features
     // Useful info on how this works:
     // https://www.html5gamedevs.com/topic/37978-overlapping-on-a-tilemap-object-layer/?do=findComment&comment=216742
@@ -1160,13 +1138,7 @@ const sceneFactory = ({
   scene.update = function (time, delta) {
     // Runs once per frame for the duration of the scene
 
-    // Don't do anything if the scene is no longer open.
-    // This may not be necessary, but it may prevent race conditions
-    if (!sceneOpen) {
-      return;
-    }
-
-    if (checkThatPlayerIsOnTeleportTile.call(this, map, camera)) {
+    if (checkThatPlayerIsOnTeleportTile.call(this, this.cameras.main)) {
       return;
     }
 
