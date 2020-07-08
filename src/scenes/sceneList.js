@@ -245,14 +245,14 @@ const scenes = [
     sceneName: 'LoruleH8',
     tileMap: LoruleH8,
     tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
+    gameSize: gameSizes.loruleWide,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
     sceneName: 'LoruleI8',
     tileMap: LoruleI8,
     tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
+    gameSize: gameSizes.loruleWide,
     htmlElementParameters: loruleHtmlElementParameters,
   },
   {
@@ -924,7 +924,7 @@ const scenes = [
     sceneName: 'backYard1',
     tileMap: backYard1,
     tileSet: tileSets.ZoriaOverworld,
-    gameSize: gameSizes.lorule,
+    gameSize: gameSizes.loruleWide,
     htmlElementParameters: {
       Center: {
         fontSize: '.1', // percent of scene height.
