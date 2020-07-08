@@ -14,6 +14,8 @@ import deadTree from '../assets/spriteSheets/deadTree.png';
 import chest from '../assets/spriteSheets/chest.png';
 import bones from '../assets/spriteSheets/bones.png';
 import lilolyon from '../assets/spriteSheets/Lilolyon.png';
+import grassAndWaterDark from '../assets/spriteSheets/GrassAndWaterDark.png';
+import RainbowTileOne from '../assets/spriteSheets/RainbowTileOne.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -327,6 +329,70 @@ const spriteSheetList = [
     },
     displayWidth: 53 * 0.3,
     displayHeight: 33 * 0.3,
+  },
+  {
+    type: 'other',
+    name: 'grassAndWaterDark',
+    file: grassAndWaterDark,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      {
+        keyName: 'move-stationary',
+        zeroPad: 3,
+        repeat: -1,
+        frames: [
+          88 + 10,
+          88 + 10 + 11,
+          88 + 10 + 22,
+          88 + 10 + 33,
+          88 + 10 + 44,
+          88 + 10 + 55,
+          88 + 10 + 66,
+          88 + 10 + 77,
+        ],
+      },
+      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 50,
+      y: 50,
+    },
+    physicsOffset: {
+      x: 22,
+      y: 35,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'RainbowTileOne',
+    file: RainbowTileOne,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 3,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 7, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 50,
+      y: 50,
+    },
+    physicsOffset: {
+      x: 22,
+      y: 35,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
   },
   {
     // Flaming Goose is the default sprite used whenever a requested sprite cannot be found,
