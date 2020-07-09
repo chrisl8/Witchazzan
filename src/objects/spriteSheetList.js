@@ -144,17 +144,17 @@ const spriteSheetList = [
     type: 'other',
     name: 'herbivore',
     file: lilolyon,
-    faces: 'right',
-    frameWidth: 16,
-    frameHeight: 16,
+    faces: 'left',
+    frameWidth: 15,
+    frameHeight: 15,
     endFrame: -1, // How many frames to extract from the sheet. -1 means all
-    animationFrameRate: 5,
+    animationFrameRate: 7,
     animations: [
       { keyName: 'move-stationary', start: 0, end: 1, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-left', start: 13, end: 16, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-right', start: 17, end: 20, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-back', start: 9, end: 10, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-front', start: 11, end: 12, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-left', start: 10, end: 13, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 10, end: 13, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 8, end: 9, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 6, end: 7, zeroPad: 3, repeat: -1 },
     ],
     physicsSize: {
       x: 53 * 0.8, // "Width" direction
