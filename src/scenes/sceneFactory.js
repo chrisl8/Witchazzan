@@ -16,6 +16,11 @@ import validateGamePieceData from './sceneFactoryHelpers/validateGamePieceData';
 
 import fullscreen from '../assets/spriteSheets/fullscreen.png';
 
+// Example of adding sound.
+import leftTheBrakesOn from '../assets/sounds/tardis.mp3';
+
+let didThisOnce = false; // For the sound example.
+
 /**
  * @name sceneFactory
  * @type {function({sceneName?: String, tileMap?: JSON, tileSet: Object, gameSize: Object, htmlElementParameters?: Object}): Phaser.Scene}
@@ -65,6 +70,8 @@ const sceneFactory = ({
       frameWidth: 64,
       frameHeight: 64,
     });
+
+    this.load.audio('leftTheBrakesOn', leftTheBrakesOn);
   };
 
   function cleanUpScene() {
@@ -858,6 +865,11 @@ const sceneFactory = ({
   scene.create = function () {
     // Runs once, after all assets in preload are loaded
 
+    if (!didThisOnce) {
+      didThisOnce = true; // So it doesn't get annoying . . . more annoying.
+      this.sound.play('leftTheBrakesOn');
+    }
+
     // The sprites can be added in the preload phase above,
     // but the animations have to be added in the create phase.
     spriteSheetList.forEach((spriteSheet) => {
@@ -1093,6 +1105,42 @@ const sceneFactory = ({
         }
       });
     }
+
+    // TODO: Animated tile replacement experiment
+    map.filterTiles(
+      (tile) => {
+        console.log(tile.pixelX, tile.pixelY, tile.index);
+        const spriteData = getSpriteData('grassAndWaterDark');
+        const newThing = this.physics.add
+          .sprite(tile.pixelX, tile.pixelY, spriteData.name)
+          .setSize(tile.width, tile.height)
+          .setOrigin(0, 0);
+        // if (spriteData.physicsOffset) {
+        //   newThing.body.setOffset(
+        //     spriteData.physicsOffset.x,
+        //     spriteData.physicsOffset.y,
+        //   );
+        // }
+        newThing.displayHeight = tile.width;
+        newThing.displayWidth = tile.height;
+        newThing.flipX = spriteData.faces === 'right';
+
+        if (
+          this.anims.anims.entries.hasOwnProperty(
+            `${spriteData.name}-move-stationary`,
+          )
+        ) {
+          newThing.anims.play(`${spriteData.name}-move-stationary`, true);
+        }
+      },
+      this,
+      1,
+      1,
+      gameSize.width,
+      gameSize.height,
+      { isNotEmpty: true },
+      'Water',
+    );
 
     // Globally send all keyboard input to the keyboard input handler
     this.input.keyboard.on('keydown', handleKeyboardInput);
