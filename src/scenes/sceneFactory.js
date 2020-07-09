@@ -17,7 +17,8 @@ import validateGamePieceData from './sceneFactoryHelpers/validateGamePieceData';
 import fullscreen from '../assets/spriteSheets/fullscreen.png';
 
 // Example of adding sound.
-import leftTheBrakesOn from '../assets/sounds/tardis.mp3';
+import sunriseMp3 from '../assets/sounds/sunrise.mp3';
+import sunriseOgg from '../assets/sounds/sunrise.ogg';
 
 let didThisOnce = false; // For the sound example.
 
@@ -71,7 +72,7 @@ const sceneFactory = ({
       frameHeight: 64,
     });
 
-    this.load.audio('leftTheBrakesOn', leftTheBrakesOn);
+    this.load.audio('sunrise', [sunriseOgg, sunriseMp3]);
   };
 
   function cleanUpScene() {
@@ -867,7 +868,7 @@ const sceneFactory = ({
 
     if (!didThisOnce) {
       didThisOnce = true; // So it doesn't get annoying . . . more annoying.
-      this.sound.play('leftTheBrakesOn');
+      this.sound.play('sunrise');
     }
 
     // The sprites can be added in the preload phase above,

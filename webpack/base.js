@@ -25,7 +25,7 @@ module.exports = {
         use: 'raw-loader',
       },
       {
-        test: /\.(gif|png|jpe?g|svg|xml|mp3)$/i,
+        test: /\.(gif|png|jpe?g|svg|xml|mp3|ogg)$/i,
         use: 'file-loader',
       },
       // https://what-problem-does-it-solve.com/webpack/css.html
