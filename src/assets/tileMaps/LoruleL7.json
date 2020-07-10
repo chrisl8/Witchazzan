@@ -1,4 +1,11 @@
 { "compressionlevel":0,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":13,
  "infinite":false,
  "layers":[
@@ -15,7 +22,7 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"LoruleJ7"
+                         "value":"LoruleK7"
                         }, 
                         {
                          "name":"Entrance",
@@ -38,7 +45,7 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"LoruleL7"
+                         "value":"LoruleM7"
                         }, 
                         {
                          "name":"Entrance",
@@ -61,7 +68,7 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"LoruleK6"
+                         "value":"LoruleL6"
                         }, 
                         {
                          "name":"Entrance",
@@ -84,7 +91,7 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"LoruleK5"
+                         "value":"LoruleL8"
                         }, 
                         {
                          "name":"Entrance",
@@ -227,7 +234,7 @@
  "nextobjectid":34,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.0",
+ "tiledversion":"1.4.1",
  "tileheight":16,
  "tilesets":[
         {
