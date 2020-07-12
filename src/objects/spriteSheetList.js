@@ -7,6 +7,11 @@ import bloomby from '../assets/spriteSheets/bloomby.png';
 import joosh from '../assets/spriteSheets/joosh.png';
 import pantingDog from '../assets/spriteSheets/panting-dog.png';
 import carrot from '../assets/spriteSheets/carrot.png';
+import carrot01 from '../assets/spriteSheets/carrot01.png';
+import carrot02 from '../assets/spriteSheets/carrot02.png';
+import carrot03 from '../assets/spriteSheets/carrot03.png';
+import carrot04 from '../assets/spriteSheets/carrot04.png';
+import carrot05 from '../assets/spriteSheets/carrot05.png';
 import christmasTree from '../assets/spriteSheets/ChristmasTree.png';
 import pinkTree from '../assets/spriteSheets/pinkTree.png';
 import greenTree from '../assets/spriteSheets/greenTree.png';
@@ -226,6 +231,101 @@ const spriteSheetList = [
     type: 'other',
     name: 'carrot',
     file: carrot,
+    frameWidth: 37,
+    frameHeight: 56,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 37 * 0.45,
+    displayHeight: 56 * 0.45,
+  },
+  {
+    type: 'other',
+    name: 'carrot01',
+    file: carrot01,
+    frameWidth: 37,
+    frameHeight: 56,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 37 * 0.45,
+    displayHeight: 56 * 0.45,
+  },
+  {
+    type: 'other',
+    name: 'carrot02',
+    file: carrot02,
+    frameWidth: 37,
+    frameHeight: 56,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 37 * 0.45,
+    displayHeight: 56 * 0.45,
+  },
+  {
+    type: 'other',
+    name: 'carrot03',
+    file: carrot03,
+    frameWidth: 37,
+    frameHeight: 56,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 37 * 0.45,
+    displayHeight: 56 * 0.45,
+  },
+  {
+    type: 'other',
+    name: 'carrot04',
+    file: carrot04,
+    frameWidth: 37,
+    frameHeight: 56,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 37 * 0.45,
+    displayHeight: 56 * 0.45,
+  },
+  {
+    type: 'other',
+    name: 'carrot05',
+    file: carrot05,
     frameWidth: 37,
     frameHeight: 56,
     endFrame: -1,

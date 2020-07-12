@@ -526,6 +526,83 @@ const sceneFactory = ({
     }
   }
 
+  function addNewSprites(gamePiece) {
+    let spriteData; // Convenient short variable to hold some data.
+
+    // If no `sprite` key is given, no sprite is displayed.
+    // This also prevents race conditions with remote players during reload
+    // If a remote player changes their sprite, we won't know about it,
+    //       although currently they have to disconnect to do this, so
+    //       the game piece is removed and resent anyway.
+
+    // Add new Sprites for new objects.
+    if (!playerObject.spawnedObjectList[gamePiece.id]) {
+      // Add new sprites to the scene
+      playerObject.spawnedObjectList[gamePiece.id] = {};
+
+      playerObject.spawnedObjectList[gamePiece.id].spriteData = getSpriteData(
+        gamePiece.sprite,
+      );
+
+      // Use different carrot colors for different genetic code
+      // TODO: This code is terribly hard coded and not config based.
+      if (gamePiece.type === 'carrot') {
+        // gamePiece.genes.color range 0 to 255
+        // Currently carrot options are 01 to 05 - more to come
+        const carrotSpriteId = Math.floor(5 * (gamePiece.genes.color / 255));
+        const alternateCarrotSpriteName = `carrot${
+          carrotSpriteId < 10 ? 0 : ''
+        }${carrotSpriteId}`;
+        console.log(
+          gamePiece.genes.color,
+          gamePiece.genes.color / 255,
+          carrotSpriteId,
+          alternateCarrotSpriteName,
+          gamePiece.energy,
+        );
+        const newSprite = getSpriteData(alternateCarrotSpriteName);
+        if (newSprite.name !== playerObject.defaultSpriteName) {
+          playerObject.spawnedObjectList[gamePiece.id].spriteData = newSprite;
+        }
+      }
+
+      // To shorten variable names and make code more consistent
+      spriteData = playerObject.spawnedObjectList[gamePiece.id].spriteData;
+
+      playerObject.spawnedObjectList[
+        gamePiece.id
+      ].sprite = this.physics.add
+        .sprite(
+          convertCoordinates.gamePieceToPhaser(gamePiece.x, tileMap.tilewidth),
+          convertCoordinates.gamePieceToPhaser(gamePiece.y, tileMap.tilewidth),
+          spriteData.name,
+        )
+        .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
+
+      if (gamePiece.id === playerObject.playerId) {
+        playerObject.spawnedObjectList[gamePiece.id].sprite.tint = 0x000000;
+      }
+
+      if (spriteData.physicsOffset) {
+        playerObject.spawnedObjectList[gamePiece.id].sprite.body.setOffset(
+          spriteData.physicsOffset.x,
+          spriteData.physicsOffset.y,
+        );
+      }
+
+      playerObject.spawnedObjectList[gamePiece.id].sprite.displayHeight =
+        spriteData.displayHeight;
+      playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
+        spriteData.displayWidth;
+    }
+
+    if (!spriteData) {
+      spriteData = playerObject.spawnedObjectList[gamePiece.id].spriteData;
+    }
+
+    return spriteData;
+  }
+
   function updateGamePieces() {
     // Deal with game pieces from server.
     const activeObjectList = [];
@@ -569,86 +646,8 @@ const sceneFactory = ({
             // This is used for debugging server code
             renderPixelHighlightDataFromServer();
 
-            let spriteData;
+            const spriteData = addNewSprites.call(this, gamePiece);
 
-            // If no `sprite` key is given, no sprite is displayed.
-            // This also prevents race conditions with remote players during reload
-            // If a remote player changes their sprite, we won't know about it,
-            //       although currently they have to disconnect to do this, so
-            //       the game piece is removed and resent anyway.
-            if (!playerObject.spawnedObjectList[gamePiece.id]) {
-              // Add new sprites to the scene
-              playerObject.spawnedObjectList[gamePiece.id] = {};
-
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].spriteData = getSpriteData(gamePiece.sprite);
-
-              // To shorten variable names and make code more consistent
-              spriteData =
-                playerObject.spawnedObjectList[gamePiece.id].spriteData;
-
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite = this.physics.add
-                .sprite(
-                  convertCoordinates.gamePieceToPhaser(
-                    gamePiece.x,
-                    tileMap.tilewidth,
-                  ),
-                  convertCoordinates.gamePieceToPhaser(
-                    gamePiece.y,
-                    tileMap.tilewidth,
-                  ),
-                  spriteData.name,
-                )
-                .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
-
-              if (gamePiece.id === playerObject.playerId) {
-                playerObject.spawnedObjectList[
-                  gamePiece.id
-                ].sprite.tint = 0x000000;
-              }
-
-              // Make the carrots visually distinct based on their genetic code
-              /*
-              if (gamePiece.type === 'carrot') {
-                playerObject.spawnedObjectList[
-                  gamePiece.id
-                ].sprite.tint = `0x${(
-                  (1 << 24) + // eslint-disable-line no-bitwise
-                  (gamePiece.genes['color-r'] << 16) + // eslint-disable-line no-bitwise
-                  (gamePiece.genes['color-g'] << 8) + // eslint-disable-line no-bitwise
-                  gamePiece.genes['color-b']
-                )
-                  .toString(16)
-                  .slice(1)}`;
-                // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-                // console.log("0x" + ((1 << 24) + (gamePiece.genes['color-r'] << 16) + (gamePiece.genes['color-g'] << 8) + gamePiece.genes['color-b']).toString(16).slice(1));
-              }
-               */
-
-              if (spriteData.physicsOffset) {
-                playerObject.spawnedObjectList[
-                  gamePiece.id
-                ].sprite.body.setOffset(
-                  spriteData.physicsOffset.x,
-                  spriteData.physicsOffset.y,
-                );
-              }
-
-              playerObject.spawnedObjectList[
-                gamePiece.id
-              ].sprite.displayHeight = spriteData.displayHeight;
-              playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
-                spriteData.displayWidth;
-            }
-
-            if (!spriteData) {
-              // To shorten variable names and make code more consistent
-              spriteData =
-                playerObject.spawnedObjectList[gamePiece.id].spriteData;
-            }
             // Sometimes they go inactive.
             playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
 
