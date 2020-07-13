@@ -142,15 +142,14 @@ const sceneFactory = ({
         // Make sure the canvas is big enough to show the camera.
         this.scale.setGameSize(gameWidth, gameHeight);
 
-        // TODO: I do not understand why these have to be doubled.
-        this.cameras.main.setBounds(
-          tileset.tileWidth,
-          tileset.tileWidth,
-          gameSize.width * 2 - tileset.tileWidth * 2,
-          gameSize.height * 2 - tileset.tileWidth * 2,
-        );
-
-        this.cameras.main.centerOn(gameSize.width / 2, gameSize.height / 2);
+        this.cameras.main
+          .setBounds(
+            tileset.tileWidth,
+            tileset.tileHeight,
+            gameSize.width,
+            gameSize.height,
+          )
+          .setOrigin(0.5, 0.5);
       }
     }
     playerObject.cameraOffset = {
@@ -899,25 +898,23 @@ const sceneFactory = ({
     // Set tile map area background to white for areas where no tiles were placed
     // NOTE: If all tile maps had 100% coverage, this would not be needed.
     // Done after we create the tileset variable, because we need the tile width.
-    // TODO: I do not actually know why I have to multiply the gameSize values by 2
-    // One tile on each side has to be dropped for the teleport zone.
     const tilemapBackgroundRenderTexture = scene.add.renderTexture(
       tileset.tileWidth,
-      tileset.tileWidth,
-      gameSize.width * 2 - tileset.tileWidth * 2,
-      gameSize.height * 2 - tileset.tileWidth * 2,
+      tileset.tileHeight,
+      gameSize.width,
+      gameSize.height,
     );
     const fillColor = 0xffffff;
     tilemapBackgroundRenderTexture.draw(
       new Phaser.GameObjects.Rectangle(
         scene,
-        tileset.tileWidth,
-        tileset.tileWidth,
-        gameSize.width * 2 - tileset.tileWidth * 2,
-        gameSize.height * 2 - tileset.tileWidth * 2,
+        0,
+        0,
+        gameSize.width,
+        gameSize.height,
         fillColor,
         1,
-      ),
+      ).setOrigin(0, 0),
     );
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
