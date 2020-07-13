@@ -407,7 +407,7 @@ const spriteSheetList = [
     frameHeight: 16,
     endFrame: -1,
     faces: 'left',
-    animationFrameRate: 3,
+    animationFrameRate: 1,
     animations: [
       { keyName: 'move-stationary', start: 0, end: 7, zeroPad: 3, repeat: -1 },
     ],
