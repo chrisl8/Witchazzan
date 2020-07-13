@@ -210,7 +210,7 @@ const updateInGameDomElements = (htmlElementParameters) => {
             ].style.fontSize = `${newFontSize}px`;
 
             // Location
-            // NOTE: This is tweaked for the "thougth bubble",
+            // NOTE: This is tweaked for the "thought bubble",
             // which clearly goes to the RIGHT of the player,
             // unlike the hearts on your own player that start at the top left.
             playerObject.domElements.otherPlayerTags[

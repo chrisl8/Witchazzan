@@ -896,7 +896,7 @@ const sceneFactory = ({
     // the key of the tileset image in Phaser's cache (i.e. the name you used in preload)
     tileset = map.addTilesetImage(tileSet.name, `${tileSet.name}-tiles`);
 
-    // Set tile map area background is white for areas where no tiles were placed
+    // Set tile map area background to white for areas where no tiles were placed
     // NOTE: If all tile maps had 100% coverage, this would not be needed.
     // Done after we create the tileset variable, because we need the tile width.
     // TODO: I do not actually know why I have to multiply the gameSize values by 2
