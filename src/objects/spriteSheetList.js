@@ -12,6 +12,29 @@ import carrot02 from '../assets/spriteSheets/carrot02.png';
 import carrot03 from '../assets/spriteSheets/carrot03.png';
 import carrot04 from '../assets/spriteSheets/carrot04.png';
 import carrot05 from '../assets/spriteSheets/carrot05.png';
+import carrot06 from '../assets/spriteSheets/carrot06.png';
+import carrot07 from '../assets/spriteSheets/carrot07.png';
+import carrot08 from '../assets/spriteSheets/carrot08.png';
+import carrot09 from '../assets/spriteSheets/carrot09.png';
+import carrot10 from '../assets/spriteSheets/carrot10.png';
+import carrot11 from '../assets/spriteSheets/carrot11.png';
+import carrot12 from '../assets/spriteSheets/carrot12.png';
+import carrot13 from '../assets/spriteSheets/carrot13.png';
+import carrot14 from '../assets/spriteSheets/carrot14.png';
+import carrot15 from '../assets/spriteSheets/carrot15.png';
+import carrot16 from '../assets/spriteSheets/carrot16.png';
+import carrot17 from '../assets/spriteSheets/carrot17.png';
+import carrot18 from '../assets/spriteSheets/carrot18.png';
+import carrot19 from '../assets/spriteSheets/carrot19.png';
+import carrot20 from '../assets/spriteSheets/carrot20.png';
+import carrot21 from '../assets/spriteSheets/carrot21.png';
+import carrot22 from '../assets/spriteSheets/carrot22.png';
+import carrot23 from '../assets/spriteSheets/carrot23.png';
+import carrot24 from '../assets/spriteSheets/carrot24.png';
+import carrot25 from '../assets/spriteSheets/carrot25.png';
+import carrot26 from '../assets/spriteSheets/carrot26.png';
+import carrot27 from '../assets/spriteSheets/carrot27.png';
+import carrot28 from '../assets/spriteSheets/carrot28.png';
 import christmasTree from '../assets/spriteSheets/ChristmasTree.png';
 import pinkTree from '../assets/spriteSheets/pinkTree.png';
 import greenTree from '../assets/spriteSheets/greenTree.png';
@@ -248,101 +271,6 @@ const spriteSheetList = [
   },
   {
     type: 'other',
-    name: 'carrot01',
-    file: carrot01,
-    frameWidth: 37,
-    frameHeight: 56,
-    endFrame: -1,
-    faces: 'left',
-    animationFrameRate: 2,
-    animations: [
-      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
-    ],
-    physicsSize: {
-      x: 16,
-      y: 16,
-    },
-    displayWidth: 37 * 0.45,
-    displayHeight: 56 * 0.45,
-  },
-  {
-    type: 'other',
-    name: 'carrot02',
-    file: carrot02,
-    frameWidth: 37,
-    frameHeight: 56,
-    endFrame: -1,
-    faces: 'left',
-    animationFrameRate: 2,
-    animations: [
-      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
-    ],
-    physicsSize: {
-      x: 16,
-      y: 16,
-    },
-    displayWidth: 37 * 0.45,
-    displayHeight: 56 * 0.45,
-  },
-  {
-    type: 'other',
-    name: 'carrot03',
-    file: carrot03,
-    frameWidth: 37,
-    frameHeight: 56,
-    endFrame: -1,
-    faces: 'left',
-    animationFrameRate: 2,
-    animations: [
-      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
-    ],
-    physicsSize: {
-      x: 16,
-      y: 16,
-    },
-    displayWidth: 37 * 0.45,
-    displayHeight: 56 * 0.45,
-  },
-  {
-    type: 'other',
-    name: 'carrot04',
-    file: carrot04,
-    frameWidth: 37,
-    frameHeight: 56,
-    endFrame: -1,
-    faces: 'left',
-    animationFrameRate: 2,
-    animations: [
-      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
-    ],
-    physicsSize: {
-      x: 16,
-      y: 16,
-    },
-    displayWidth: 37 * 0.45,
-    displayHeight: 56 * 0.45,
-  },
-  {
-    type: 'other',
-    name: 'carrot05',
-    file: carrot05,
-    frameWidth: 37,
-    frameHeight: 56,
-    endFrame: -1,
-    faces: 'left',
-    animationFrameRate: 2,
-    animations: [
-      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
-    ],
-    physicsSize: {
-      x: 16,
-      y: 16,
-    },
-    displayWidth: 37 * 0.45,
-    displayHeight: 56 * 0.45,
-  },
-  {
-    type: 'other',
     name: 'chestFront',
     file: chest,
     frameWidth: 46,
@@ -524,5 +452,64 @@ const spriteSheetList = [
     displayHeight: 16,
   },
 ];
+
+const carrotList = [
+  carrot01,
+  carrot02,
+  carrot03,
+  carrot04,
+  carrot05,
+  carrot06,
+  carrot07,
+  carrot08,
+  carrot09,
+  carrot10,
+  carrot11,
+  carrot12,
+  carrot13,
+  carrot14,
+  carrot15,
+  carrot16,
+  carrot17,
+  carrot18,
+  carrot19,
+  carrot20,
+  carrot21,
+  carrot22,
+  carrot23,
+  carrot24,
+  carrot25,
+  carrot26,
+  carrot27,
+  carrot28,
+];
+let carrotEntry = 0;
+
+carrotList.forEach((thisCarrot) => {
+  carrotEntry++;
+  const carrotName = `carrot${carrotEntry < 10 ? 0 : ''}${carrotEntry}`;
+  // console.log(
+  //   `import ${carrotName} from '../assets/spriteSheets/${carrotName}.png';`,
+  // );
+  spriteSheetList.push({
+    type: 'other',
+    name: `${carrotName}`,
+    file: thisCarrot,
+    frameWidth: 37,
+    frameHeight: 56,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: -1, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 37 * 0.45,
+    displayHeight: 56 * 0.45,
+  });
+});
 
 export default spriteSheetList;

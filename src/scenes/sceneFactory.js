@@ -545,21 +545,20 @@ const sceneFactory = ({
       );
 
       // Use different carrot colors for different genetic code
-      // TODO: This code is terribly hard coded and not config based.
       if (gamePiece.type === 'carrot') {
         // gamePiece.genes.color range 0 to 255
-        // Currently carrot options are 01 to 05 - more to come
-        const carrotSpriteId = Math.floor(5 * (gamePiece.genes.color / 255));
+        // Currently carrot options are 01 to 28
+        const carrotSpriteId = Math.floor(28 * (gamePiece.genes.color / 255));
         const alternateCarrotSpriteName = `carrot${
           carrotSpriteId < 10 ? 0 : ''
         }${carrotSpriteId}`;
-        console.log(
-          gamePiece.genes.color,
-          gamePiece.genes.color / 255,
-          carrotSpriteId,
-          alternateCarrotSpriteName,
-          gamePiece.energy,
-        );
+        // console.log(
+        //   gamePiece.genes.color,
+        //   gamePiece.genes.color / 255,
+        //   carrotSpriteId,
+        //   alternateCarrotSpriteName,
+        //   gamePiece.energy,
+        // );
         const newSprite = getSpriteData(alternateCarrotSpriteName);
         if (newSprite.name !== playerObject.defaultSpriteName) {
           playerObject.spawnedObjectList[gamePiece.id].spriteData = newSprite;
