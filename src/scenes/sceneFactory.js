@@ -867,7 +867,7 @@ const sceneFactory = ({
   scene.create = function () {
     // Runs once, after all assets in preload are loaded
 
-    if (!didThisOnce) {
+    if (!didThisOnce && playerObject.enableSound) {
       didThisOnce = true; // So it doesn't get annoying . . . more annoying.
       this.sound.play('sunrise');
     }

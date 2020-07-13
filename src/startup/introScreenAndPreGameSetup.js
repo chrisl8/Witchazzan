@@ -236,6 +236,12 @@ async function introScreenAndPreGameSetup() {
     document.getElementById('camera_zoom_off').checked = true;
   }
 
+  // Check local storage for enableSound
+  let enableSound = localStorage.getItem('enableSound');
+  if (enableSound === 'true') {
+    document.getElementById('enable_sound').checked = true;
+  }
+
   // Handle spell settings:
   // Populate Intro Page with Spell selection HTML and fill with defaults
   let spellAssignmentInnerHTML = '';
@@ -332,7 +338,15 @@ async function introScreenAndPreGameSetup() {
     localStorage.removeItem('disableCameraZoom');
   }
 
-  playerObject.disableCameraZoom = disableCameraZoom;
+  // Settle up enableSound and set local storage if need be
+  enableSound = document.getElementById('enable_sound').checked;
+  if (enableSound) {
+    localStorage.setItem('enableSound', 'true');
+  } else {
+    localStorage.removeItem('enableSound');
+  }
+
+  playerObject.enableSound = enableSound;
 
   const spriteName = document.querySelector('input[name="sprite"]:checked')
     .value;
