@@ -16,6 +16,6 @@ SCRIPTDIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 # echo "${SCRIPTDIR}" # For debugging
 
 cd "${SCRIPTDIR}" || exit
-export NODE_ENV=development
+export NODE_ENV=production
 npm ci
 npm run build
