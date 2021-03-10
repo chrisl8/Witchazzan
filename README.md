@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.com/chrisl8/witchazzan-client.svg)](https://travis-ci.com/chrisl8/witchazzan-client)
 
+**This project has come to an end. It was fun, but we are not maintaining it or developing any further on it now.**
+
 # Witchazzan - A Game!
 
 This is the start of a game that [doby162](https://github.com/doby162) and [chrisl8](https://github.com/chrisl8) are building.  
