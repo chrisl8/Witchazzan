@@ -22,8 +22,7 @@ const options = {
 app.use(cors(options));
 app.options("*", cors()); // include before other routes
 
-// TODO: Put this into a config file
-const webserverPort = 8080;
+const webserverPort = process.env.PORT || 8080;
 
 // All web content is housed in the website folder
 app.use(express.static(`${dirName}/../client/dist`));
@@ -32,7 +31,7 @@ app.use(express.static(`${dirName}/../client/dist`));
 app.use(bodyParser.json());
 
 async function server() {
-  const webServer = app.listen(webserverPort ? webserverPort : 8080);
+  const webServer = app.listen(webserverPort);
   const io = new Server(webServer, {
     cors: {
       origin: "*",

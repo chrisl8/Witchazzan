@@ -63,12 +63,49 @@ If you want to customize your build, such as adding a new webpack loader or plug
 modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create
 new configuration files and target them in specific npm tasks inside of `package.json'.
 
-## Deploying Code
-After you run the `npm run build` command, your code will be built into a single bundle located at 
-`dist/bundle.min.js` along with any other assets you project depended. 
+## Deploying Code in Production
+### Initial setup
+NOTE: Webpack does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. if you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to ro less than 1GB, you may need to increase it to reliably run webpack. 
 
-If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), 
-you should be able to open `http://mycoolserver.com/index.html` and play your game.
+The production server must have a recent LTS version of Node.js installed.  
+`node -v`
+
+If it is not, I suggest using [nvm](https://github.com/nvm-sh/nvm) to install node.js:
+```
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install --lts
+node -v
+```
+
+Use pm2 to keep the server running.  
+`pm2 --version`  
+If it isn't installed, install it:
+```
+npm install -g pm2
+pm2 --version
+```
+
+Pull down and build the code:
+
+```
+git clone https://github.com/chrisl8/Witchazzan.git
+cd ../server
+npm ci
+cd Witchazzan/client
+npm ci
+npm run build
+```
+
+Add to crontab:  
+`crontab -e`  
+Add this line:  
+`@reboot /home/<userID>/Witchazzan/startpm2.sh`  
+which should automatically run at startup.
+
+
+
+### Updating code
+
 
 ## Code Standards
 
@@ -89,10 +126,6 @@ Running `npm ci` uses the exact stack of dependencies that were set by the devel
 7. Commit the changes to **both** the `package.json` and `package-lock.json` files.
 
 Now `npm ci` will use the new dependencies.
-
-## Deployment in Production
-
-
 
 ## Editing Tile Maps
 
