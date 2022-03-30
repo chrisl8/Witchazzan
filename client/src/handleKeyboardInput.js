@@ -35,10 +35,7 @@ function handleKeyboardInput(event) {
         }px`;
         playerObject.scrollingTextBox.display(false);
       }
-    } else if (
-      communicationsObject.socket.readyState ===
-      communicationsObject.status.OPEN
-    ) {
+    } else if (communicationsObject.socket.connected) {
       // Other events only happen while connected
 
       // Anything that isn't a special game command is tracked in

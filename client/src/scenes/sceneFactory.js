@@ -571,9 +571,7 @@ const sceneFactory = ({
       // To shorten variable names and make code more consistent
       spriteData = playerObject.spawnedObjectList[gamePiece.id].spriteData;
 
-      playerObject.spawnedObjectList[
-        gamePiece.id
-      ].sprite = this.physics.add
+      playerObject.spawnedObjectList[gamePiece.id].sprite = this.physics.add
         .sprite(
           convertCoordinates.gamePieceToPhaser(gamePiece.x, tileMap.tilewidth),
           convertCoordinates.gamePieceToPhaser(gamePiece.y, tileMap.tilewidth),
@@ -626,6 +624,7 @@ const sceneFactory = ({
               // If so, act on special keys.
 
               // The force key lets the server change the player's position.
+              // TODO: Should this be removed or is this how we initiate a new player at a previous location?
               if (gamePiece.force) {
                 playerObject.force = true; // This tells the data sender to update this to false;
                 // The player has now been forced to a new location by the server,
@@ -853,7 +852,7 @@ const sceneFactory = ({
       if (
         playerObject.spawnedObjectList.hasOwnProperty(property) &&
         playerObject.spawnedObjectList[property] &&
-        activeObjectList.indexOf(Number(property)) === -1
+        activeObjectList.indexOf(property) === -1
       ) {
         if (playerObject.spawnedObjectList[property].sprite) {
           playerObject.spawnedObjectList[property].sprite.destroy();

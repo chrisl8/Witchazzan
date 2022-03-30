@@ -1,0 +1,52 @@
+{
+  "name": "witchazzan-client",
+  "version": "0.0.1",
+  "description": "Witchazzan Client",
+  "main": "index.html",
+  "scripts": {
+    "build": "webpack --config webpack/prod.js ",
+    "start": "webpack serve --config webpack/base.js --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisl8/Witchazzan.git"
+  },
+  "author": "Christen Lofland <christen@lofland.net> (https://www.ekpyroticfrood.net)",
+  "license": "MIT",
+  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+  "bugs": {
+    "url": "https://github.com/chrisl8/Witchazzan/issues"
+  },
+  "homepage": "https://witchazzan.space/",
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.16.3",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.0.2",
+    "tile-extruder": "^2.0.3"
+  },
+  "dependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "favicons-webpack-plugin": "^5.0.2",
+    "file-loader": "^6.0.0",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "nipplejs": "^0.9.1",
+    "phaser": "3.5",
+    "raw-loader": "^4.0.0",
+    "socket.io-client": "^4.4.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.0.9"
+  }
+}

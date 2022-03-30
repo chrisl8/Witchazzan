@@ -1,9 +1,17 @@
 /* globals localStorage:true */
 /* globals fetch:true */
 /* globals document:true */
+/* globals window:true */
 import playerObject from '../objects/playerObject';
 import wait from '../utilities/wait';
-import communicationsObject from '../objects/communicationsObject';
+
+// TODO: Can we just use / instead of adding the actual href path?
+let apiURL = `${window.location.href}api`;
+if (window.location.hostname === 'localhost') {
+  apiURL = `http://localhost:8080/api`;
+}
+
+// TODO: Implement all of the apiURL paths used here.
 
 let playerName = '';
 let loginFailure = false;
@@ -35,9 +43,8 @@ function updateDOMElements() {
   document.getElementById('login_buttons').hidden = creatingNewAccount;
   document.getElementById('repeat_password_input').hidden = !creatingNewAccount;
   document.getElementById('create_account_button').hidden = !creatingNewAccount;
-  document.getElementById(
-    'account_creation_in_progress',
-  ).hidden = !sendingAccountCreation;
+  document.getElementById('account_creation_in_progress').hidden =
+    !sendingAccountCreation;
 
   document.getElementById('login_error_text_box').hidden = !loginErrorText;
   document.getElementById('login_error_text').innerText = loginErrorText;
@@ -45,7 +52,7 @@ function updateDOMElements() {
 
 async function checkLoggedInStatus(userRequest) {
   try {
-    const res = await fetch(`${communicationsObject.apiURL}/me`, {
+    const res = await fetch(`${apiURL}/me`, {
       credentials: 'include', // Otherwise, no cookies!
     });
     if (res.status === 200) {
@@ -79,12 +86,13 @@ async function login() {
   updateDOMElements();
   try {
     // Build formData object.
+    // TODO: We can now use JSON instead of formData with Node.js I think.
     // The API expects a form input, not JSON.
     const formData = new URLSearchParams();
     formData.append('name', domElements.playerNameInputBox.value);
     formData.append('password', domElements.passwordInputBox.value);
 
-    const res = await fetch(`${communicationsObject.apiURL}/auth`, {
+    const res = await fetch(`${apiURL}/auth`, {
       method: 'POST',
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -119,7 +127,7 @@ async function login() {
 
 async function logOut() {
   try {
-    const res = await fetch(`${communicationsObject.apiURL}/log-out`, {
+    const res = await fetch(`${apiURL}/log-out`, {
       credentials: 'include', // Otherwise, no cookies!
     });
     if (res.status === 200 || res.status === 401) {
@@ -150,8 +158,9 @@ async function createAccount() {
   sendingAccountCreation = false;
   const userName = document.getElementById('player_name_input_box').value;
   const password = document.getElementById('password_input_box').value;
-  const repeatPasword = document.getElementById('repeat_password_input_box')
-    .value;
+  const repeatPasword = document.getElementById(
+    'repeat_password_input_box',
+  ).value;
   if (password !== repeatPasword) {
     loginErrorText = 'Passwords do not match.';
   } else if (password === userName) {
@@ -170,7 +179,7 @@ async function createAccount() {
     formData.append('password', domElements.passwordInputBox.value);
 
     try {
-      const res = await fetch(`${communicationsObject.apiURL}/sign-up`, {
+      const res = await fetch(`${apiURL}/sign-up`, {
         method: 'POST',
         headers: {
           'content-type': 'application/x-www-form-urlencoded',
@@ -267,9 +276,8 @@ async function introScreenAndPreGameSetup() {
     spellAssignmentInnerHTML += `</select><br />`;
   }
   // Push new HTML code into DOM
-  document.getElementById(
-    'spell-assignment',
-  ).innerHTML = spellAssignmentInnerHTML;
+  document.getElementById('spell-assignment').innerHTML =
+    spellAssignmentInnerHTML;
 
   // The helpTextVersion is a way to force all users
   // back to the intro screen on next connection.
@@ -348,8 +356,9 @@ async function introScreenAndPreGameSetup() {
 
   playerObject.enableSound = enableSound;
 
-  const spriteName = document.querySelector('input[name="sprite"]:checked')
-    .value;
+  const spriteName = document.querySelector(
+    'input[name="sprite"]:checked',
+  ).value;
   if (spriteName) {
     localStorage.setItem('playerSprite', spriteName);
     playerObject.spriteName = spriteName;
@@ -358,8 +367,9 @@ async function introScreenAndPreGameSetup() {
   // Add all spell selections to local storage,
   // and inject them into the playerObject
   for (const [key] of Object.entries(playerObject.spellAssignments)) {
-    const spellSettingFromDOM = document.getElementById(`spell_${key}_selector`)
-      .value;
+    const spellSettingFromDOM = document.getElementById(
+      `spell_${key}_selector`,
+    ).value;
     localStorage.setItem(`key${key}SpellAssignment`, spellSettingFromDOM);
     playerObject.spellAssignments[key] = Number(spellSettingFromDOM);
   }

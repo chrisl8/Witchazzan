@@ -4,24 +4,33 @@ import playerObject from './objects/playerObject';
 const sendDataToServer = {};
 
 sendDataToServer.chat = (text, targetPlayerId) => {
-  if (
-    communicationsObject.socket.readyState === communicationsObject.status.OPEN
-  ) {
-    const obj = {};
-    obj.message_type = 'chat';
-    obj.text = text;
+  if (communicationsObject.socket.connected) {
+    const obj = { text };
     if (targetPlayerId) {
       obj.targetPlayerId = targetPlayerId;
     }
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
+    communicationsObject.socket.emit('chat', obj);
   }
 };
 
+// TODO: This assumes that the server will process the data,
+//       but now the clients process it instead, so it probably needs to change somewhat.
+/*
+  TODO:
+  Instead of sending "this is me", instead send any sprite that I want to exist.
+  I don't think "spawn" vs. "update" matters, but "destroy"might.
+  Each sprite will have a GUID, even my own player.
+  Each sprite can be its own emit, or they could be bundled together,
+  but it might be easier on the client code to just send them ad hoc from the various
+  points within the client code that are aware of them and update them.
+
+  NOTE: There should still probably be a bundle of "player data" taht has like, what scene "I" am in,
+  which is not related to the "spriteData" taht will include the player's sprite along with others.
+ */
+
+// TODO: We also need to note and send out collisions that happen on our client, so that other players know about it and/or deal with them?
 sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
-  if (
-    communicationsObject.socket.readyState === communicationsObject.status.OPEN
-  ) {
+  if (communicationsObject.socket.connected) {
     const obj = {
       x: tileBasedCoordinates.x,
       y: tileBasedCoordinates.y,
@@ -63,7 +72,7 @@ sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
       // rather than wasting bandwidth and
       // the server's CPU cycles.
       objectToSend.message_type = 'location-update';
-      communicationsObject.socket.send(JSON.stringify(objectToSend));
+      communicationsObject.socket.emit('playerData', objectToSend);
     }
     playerObject.lastSentPlayerDataObject = obj;
   }
@@ -73,29 +82,18 @@ sendDataToServer.login = () => {
   // The server only uses two fields from the login packet:
   // sprite
   // moving - which is always false at login of course.
-  if (
-    communicationsObject.socket.readyState === communicationsObject.status.OPEN
-  ) {
-    const obj = {
-      message_type: 'login',
+  if (communicationsObject.socket.connected) {
+    communicationsObject.socket.emit('login', {
       sprite: playerObject.spriteName,
       moving: false,
-    };
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
+    });
   }
 };
 
 sendDataToServer.command = (command) => {
-  if (
-    communicationsObject.socket.readyState === communicationsObject.status.OPEN
-  ) {
-    const obj = {};
-    obj.message_type = 'command';
-    obj.command = command;
-    const jsonString = JSON.stringify(obj);
-    communicationsObject.socket.send(jsonString);
-    console.log(`Sent ${jsonString} to server.`);
+  if (communicationsObject.socket.connected) {
+    communicationsObject.socket.emit('command', { command });
+    console.log(`Sent ${command} command to server.`);
   }
 };
 

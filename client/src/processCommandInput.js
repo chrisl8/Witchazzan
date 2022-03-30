@@ -35,9 +35,8 @@ function processCommandInput(event) {
     playerObject.scrollingTextBox.hide();
     textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
   } else if (event.key === 'Enter') {
-    playerObject.chatInputTextArray = playerObject.domElements.chatInput.value.split(
-      '',
-    );
+    playerObject.chatInputTextArray =
+      playerObject.domElements.chatInput.value.split('');
     // Enter is used to 'send' the chat/command.
 
     if (playerObject.chatInputTextArray[0] === '/') {
@@ -51,10 +50,7 @@ function processCommandInput(event) {
         addEntryToCommandHistory(command);
       } else if (inputTextSpaceDelimitedArray[0] === 'whisper') {
         // Sends chat to specific user
-        if (
-          communicationsObject.socket.readyState ===
-          communicationsObject.status.OPEN
-        ) {
+        if (communicationsObject.socket.connected) {
           inputTextSpaceDelimitedArray.shift();
           const targetPlayerId = Number(inputTextSpaceDelimitedArray.shift());
           const chatText = inputTextSpaceDelimitedArray.join(' ');
@@ -69,10 +65,7 @@ function processCommandInput(event) {
       } else if (inputTextSpaceDelimitedArray[0] === 'exit') {
         // Used on mobile to get back to setup screen
         playerObject.keyState.p = 'keydown';
-      } else if (
-        communicationsObject.socket.readyState ===
-        communicationsObject.status.OPEN
-      ) {
+      } else if (communicationsObject.socket.connected) {
         // Any 'command' that does not exist on the client is just sent directly to the server.
         sendDataToServer.command(command);
         addEntryToCommandHistory(command);
@@ -80,10 +73,7 @@ function processCommandInput(event) {
         // Warn user that command cannot be sent due to lack of server connection.
         textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
       }
-    } else if (
-      communicationsObject.socket.readyState ===
-      communicationsObject.status.OPEN
-    ) {
+    } else if (communicationsObject.socket.connected) {
       if (playerObject.chatInputTextArray.length > 0) {
         sendDataToServer.chat(playerObject.chatInputTextArray.join(''));
       }
@@ -99,22 +89,18 @@ function processCommandInput(event) {
       commandHistoryIndex--;
     }
     if (commandHistory[commandHistoryIndex]) {
-      playerObject.chatInputTextArray = commandHistory[
-        commandHistoryIndex
-      ].split('');
-      playerObject.domElements.chatInput.value = playerObject.chatInputTextArray.join(
-        '',
-      );
+      playerObject.chatInputTextArray =
+        commandHistory[commandHistoryIndex].split('');
+      playerObject.domElements.chatInput.value =
+        playerObject.chatInputTextArray.join('');
     }
   } else if (event.key === 'ArrowDown') {
     if (commandHistoryIndex < commandHistory.length - 1) {
       commandHistoryIndex++;
-      playerObject.chatInputTextArray = commandHistory[
-        commandHistoryIndex
-      ].split('');
-      playerObject.domElements.chatInput.value = playerObject.chatInputTextArray.join(
-        '',
-      );
+      playerObject.chatInputTextArray =
+        commandHistory[commandHistoryIndex].split('');
+      playerObject.domElements.chatInput.value =
+        playerObject.chatInputTextArray.join('');
     } else {
       commandHistoryIndex = commandHistory.length;
       // https://stackoverflow.com/a/1232046/4982408

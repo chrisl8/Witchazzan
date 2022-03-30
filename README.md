@@ -7,12 +7,20 @@
 This is the start of a game that [doby162](https://github.com/doby162) and [chrisl8](https://github.com/chrisl8) are building.  
 
 The game exists in two parts:  
-1. This is the Phaser 3 based web front end.  
-2. [A Clojure based server](https://github.com/doby162/witchazzan-server)
+1. A Phaser 3 based web front end.  
+2. A Node.js based server.  
 
 Both parts are required for the game to function.
 
 We started with the [Phaser 3 Webpack Project Template](https://github.com/photonstorm/phaser3-project-template).
+
+The instructions here are split up into Client and Server.
+
+# Client
+
+## Location
+
+    /client/
 
 ## Requirements
 
@@ -20,19 +28,18 @@ We started with the [Phaser 3 Webpack Project Template](https://github.com/photo
 
 ## Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install project dependencies |
-| `npm start` | Build project and open web server running project |
+| Command         | Description |
+|-----------------|-------------|
+| `npm ci`        | Install project dependencies |
+| `npm start`     | Build project and open web server running project |
 | `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
 
 ## Writing Code
 
-After cloning the repo, run `npm install` from your project directory. Then, you can start the local development
-server by running `npm start`.
+After cloning the repo, enter the client folder `cd witchazzan/client`, run `npm ci`, then, you can start the local development instance of the client by running `npm start`.
 
 
-After starting the development server with `npm start`, you can edit any files in the `src` folder
+After starting the development server with `npm start`, you can edit any files in the `client/src` folder
 and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
 by default).
 
@@ -67,7 +74,25 @@ you should be able to open `http://mycoolserver.com/index.html` and play your ga
 
 I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). The configurations for both are in the code.  
 Don't worry about it if you don't want to run them, I will not reject any pull requests based on formatting, but if you want to "fit in" run your code through Prettier and Eslint first.  
+NOTE: I assume you may and will set some things that Eslint complains about to "ignore" inline. That is perfectly fine and legitimate. Do not be a slave to Eslint, just run it and see what it says, and if you want to fix it, do so, if not, mark it as ignored inline.  
 They are [easy to set up](https://imgs.xkcd.com/comics/will_it_work.png), and your IDE and VIM should both support them easily.
+
+## Updating dependencies
+
+Running `npm ci` uses the exact stack of dependencies that were set by the developer who commited the `package-loc.json` file. If you want to update dependencies:  
+1. Run `npm outdated` to see what dependencies are out of date.
+2. Anything in red will automatically update, so ignore it.
+3. Anything in yellow will **not** be updated **unless* you incremeent the version number in `package.json`.
+4. Update the `package.json` file with new version numbers for the ones you want to update.
+5. Run `rm package-lock.json;rm -rf node_modules;npm install;npm outdated`.
+6. If you are happy with the results, then TEST the client and server to make sure that your new upgrades didn't break anything!
+7. Commit the changes to **both** the `package.json` and `package-lock.json` files.
+
+Now `npm ci` will use the new dependencies.
+
+## Deployment in Production
+
+
 
 ## Editing Tile Maps
 
@@ -128,22 +153,9 @@ In addition, add an Objects layer.
 2. Save it in .json format to `src/assets/tileMaps`
 3. Edit `src/scenes/sceneList.js` to add the scene to the game.
 
-## Exits
+### Tilemap Exits
 
-# NOTE: These instructions are out of date.
-Make an object layer in your tilemap.  
-Draw boxes beside the "exits".
-Name them the name of the scene you want to go to when the character passes that exit.
-The "Type" must be "SwitchToScene".  
-REMEMBER that Phaser 3 Arcade Physics only thinks in squares and circles, so don't try to get fancy. The box you draw is NOT ACTUALLY what the player will collide with. The code will draw a new box at the same location with the same width and height. So if you make a polygon, the code will still draw a rectangle.
-- Add a Custom string Property to each Exit Named "Entrance" with the Value of the "Entrance" you want this exit to take you to in the other scene.
-
-Notes on making "Exit" boxes:
-1. Do not let them spill into the scene, they will be outlined in bright colors like red for debugging, so they shouldn't show up in the camera.  
-2. Don't be stingy with their size:  
-    a. Make them wide enough that nobody can "sneak past" them.  
-    b. Make them deep enough that we can require a significant overlap before triggering them. This way if we want to ensure a character is fully or mostly off of the screen before switching rather than barely at the edge, we can, without a larger character accidentally getting over the box.  
-    c. One tile width deep and wide past the edge of the door is plenty.
+TODO: Document more of how to make them work.
 
 ### Image Sources
 

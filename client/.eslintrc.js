@@ -14,7 +14,7 @@
 // rules for Web front end code.
 
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   plugins: ['prettier'],
   extends: ['airbnb', 'prettier'],
   env: {
@@ -23,15 +23,8 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'warn',
-    // These are not code style or real errors, just "best practices" that really mean
-    // me making wonky code to fit requirements I don't need to fulfill.
-    // Someday I'll remove these as I get better. ;)
-    'react/prop-types': 0,
-    'jsx-a11y/no-static-element-interactions': 0,
-    'jsx-a11y/click-events-have-key-events': 0,
-    'jsx-a11y/label-has-for': 0,
     'class-methods-use-this': 0,
-    'no-console': 'off', // As a node.js app, we clearly need console.
+    'no-console': 'off', // Sometimes we want to, okay?
     'no-prototype-builtins': 'off', // This seems like overkill
     'prefer-destructuring': 'off',
     'no-plusplus': 'off',

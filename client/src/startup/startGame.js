@@ -1,7 +1,7 @@
 /* globals document:true */
 import Phaser from 'phaser';
 import phaserConfigObject from '../objects/phaserConfigObject';
-import socketCommunications from '../socketCommunication';
+import receiveDataFromServer from '../receiveDataFromServer';
 import touchInput from '../touchInput';
 import playerObject from '../objects/playerObject';
 import wait from '../utilities/wait';
@@ -26,7 +26,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
 async function startGame({ phaserDebug }) {
   phaserConfigObject.physics.arcade.debug = phaserDebug;
 
-  socketCommunications();
+  receiveDataFromServer();
 
   await waitForConnectionAndInitialPlayerPosition();
 

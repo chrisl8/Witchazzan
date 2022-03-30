@@ -8,6 +8,7 @@
  *
  */
 const playerObject = {
+  initialPositionReceived: false,
   helpTextVersion: 12, // Increment this to force players to see the Instructions again.
   // This is the scene you start the game in,
   // and go to if a non-existent scene is requested,
@@ -70,9 +71,9 @@ const playerObject = {
   chatOpen: false,
   spellOptions: ['fireball', 'teleball', 'push'],
   spellAssignments: {
-    '1': 0,
-    '2': 1,
-    '3': 2,
+    1: 0,
+    2: 1,
+    3: 2,
   }, // Keyboard keys 1 to 9
   activeSpellKey: 0,
   teleportToSceneNow: null,

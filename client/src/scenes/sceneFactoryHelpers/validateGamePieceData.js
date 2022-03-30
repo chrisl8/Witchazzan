@@ -1,6 +1,6 @@
 const validateGamePieceData = (gamePiece) => {
   const result =
-    typeof gamePiece.id === 'number' &&
+    typeof gamePiece.id === 'string' &&
     typeof gamePiece.x === 'number' &&
     typeof gamePiece.y === 'number' &&
     gamePiece.sprite;

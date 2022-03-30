@@ -8,7 +8,7 @@
 
 const textObject = {
   escapeToLeaveChat: {
-    text: `Press Escape to return to game, use / to send commands, /run to run a function`,
+    text: `Press Escape to return to game, use / to send commands.`,
     shouldBeActiveNow: false,
     location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
   },
