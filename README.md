@@ -65,7 +65,7 @@ new configuration files and target them in specific npm tasks inside of `package
 
 ## Deploying Code in Production
 ### Initial setup
-NOTE: Webpack does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. if you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to ro less than 1GB, you may need to increase it to reliably run webpack. 
+NOTE: Webpack does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. if you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to ro less than 1GB, you may need to increase it or alternatively [create a swap file](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04) to reliably run webpack (`npm run build`). 
 
 The production server must have a recent LTS version of Node.js installed.  
 `node -v`
@@ -82,6 +82,7 @@ Use pm2 to keep the server running.
 If it isn't installed, install it:
 ```
 npm install -g pm2
+pm2 install pm2-logrotate # Otherwise logs can grow to fill disk space
 pm2 --version
 ```
 
@@ -89,7 +90,7 @@ Pull down and build the code:
 
 ```
 git clone https://github.com/chrisl8/Witchazzan.git
-cd ../server
+cd Witchazzan/server
 npm ci
 cd Witchazzan/client
 npm ci
@@ -102,10 +103,36 @@ Add this line:
 `@reboot /home/<userID>/Witchazzan/startpm2.sh`  
 which should automatically run at startup.
 
+You will also need to set up a Web server to serve the built code, as Node.js is not fit to perform SSL and other important functions of a front end web server.
+
+TODO: Add nginx instructions.
+
+### Updating installed code
+```
+cd Witchazzan
+git pull
+cd server
+npm ci
+cd Witchazzan/client
+npm ci
+npm run build
+pm2 restart Witchazzan
+```
 
 
-### Updating code
+## Persistent Data
 
+All persistent data is stored in a folder called `persistentData`.  
+If this folder does not exist, it will be created.  
+So you can just wipe the entire folder and start fresh any time you want to.  
+
+The data currently stored there is:
+ - `persistentData/database.sqlite` - A SQLite database that stores all of the user accounts.
+ - `persistentData/serverConfig.json5` - A JSON5 file that stores the server configuration data.
+ - `persistentData/sprites.json5` - A JSON5 file that stores the last saved game state for retrieval upon a server restart.
+
+The `.sqlite` files are SQLite databases that are not meant to be human readable or written to. The server takes care of them. There are tools to read/write such files though if you really want to.
+The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simple an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
 
 ## Code Standards
 

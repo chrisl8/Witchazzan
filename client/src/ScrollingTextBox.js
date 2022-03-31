@@ -42,15 +42,16 @@ class ScrollingTextBox {
       // Add a line break if there is existing text.
       textObject.incomingChatText.text = `${textObject.incomingChatText.text}<br/>`;
     }
-    textObject.incomingChatText.text = `${textObject.incomingChatText.text}${inputData.name}: ${inputData.content}`;
+    const sender = inputData.name ? `${inputData.name}: ` : '';
+    textObject.incomingChatText.text = `${textObject.incomingChatText.text}${sender}${inputData.content}`;
     textObject.incomingChatText.shouldBeActiveNow = true;
   }
 
   display = (enableTimeout) => {
     this.timeoutEnabled = enableTimeout;
     if (textObject.incomingChatText.text !== '') {
-      textObject.incomingChatText.shouldBeActiveNow = !textObject
-        .incomingChatText.shouldBeActiveNow;
+      textObject.incomingChatText.shouldBeActiveNow =
+        !textObject.incomingChatText.shouldBeActiveNow;
       this.activeTime = 0;
     }
   };

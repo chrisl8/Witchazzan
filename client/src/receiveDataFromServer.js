@@ -1,4 +1,5 @@
 /* globals window:true */
+/* globals localStorage:true */
 import openSocket from 'socket.io-client';
 import communicationsObject from './objects/communicationsObject';
 import textObject from './objects/textObject';
@@ -19,41 +20,45 @@ function receiveDataFromServer() {
     communicationsObject.socket = openSocket();
   }
 
+  communicationsObject.socket.on('sendToken', () => {
+    sendDataToServer.token();
+  });
+
+  communicationsObject.socket.on('unauthorized', () => {
+    localStorage.removeItem('authToken');
+    window.location.reload();
+  });
+
   // This is just the server saying, "Hi", to which we respond with a formal login.
   communicationsObject.socket.on('welcome', () => {
     playerObject.socketCurrentlyConnected = true;
     textObject.connectingText.shouldBeActiveNow = false;
     textObject.reconnectingText.shouldBeActiveNow = false;
     textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
-
-    // Send our username here, in case the server doesn't know who we are yet.
-    sendDataToServer.login();
   });
 
+  function reviver(key, value) {
+    if (typeof value === 'object' && value !== null) {
+      if (value.dataType === 'Map') {
+        return new Map(value.value);
+      }
+    }
+    return value;
+  }
   // The local client won't start the game until this is received and parsed.
-  communicationsObject.socket.on('gamePieceList', (inputData) => {
-    parseGamePieceListFromServer(inputData);
+  communicationsObject.socket.on('sprites', (inputData) => {
+    const sprites = JSON.parse(inputData, reviver);
+    parseGamePieceListFromServer(sprites);
   });
 
-  // TODO: Implement these on the server.
   communicationsObject.socket.on('chat', (inputData) => {
-    console.log(inputData);
     if (playerObject.scrollingTextBox) {
       // Sometimes we get a chat message before scrollingTextBox is initialized
       playerObject.scrollingTextBox.chat(inputData);
     }
   });
   communicationsObject.socket.on('identity', (inputData) => {
-    console.log(inputData);
     playerObject.playerId = inputData.id;
-  });
-  communicationsObject.socket.on('highlight_pixels', (inputData) => {
-    console.log(inputData);
-    pixelHighlightInput.content = inputData.content;
-  });
-  communicationsObject.socket.on('time', (inputData) => {
-    console.log(inputData);
-    playerObject.gameTime = inputData.content;
   });
 
   // Handle disconnect

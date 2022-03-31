@@ -22,6 +22,7 @@ let pleaseStartGameNow = false;
 let existingHelpTextVersion = null;
 let creatingNewAccount = false;
 let sendingAccountCreation = false;
+const token = localStorage.getItem('authToken');
 
 const domElements = {
   startGameButton: document.getElementById('start_game_button'),
@@ -40,7 +41,8 @@ function updateDOMElements() {
   document.getElementById('login_in_progress').hidden = !loginInProgress;
   document.getElementById('player_name_text').innerText = playerName;
 
-  document.getElementById('login_buttons').hidden = creatingNewAccount;
+  document.getElementById('login_buttons').hidden =
+    creatingNewAccount || loginInProgress;
   document.getElementById('repeat_password_input').hidden = !creatingNewAccount;
   document.getElementById('create_account_button').hidden = !creatingNewAccount;
   document.getElementById('account_creation_in_progress').hidden =
@@ -50,32 +52,40 @@ function updateDOMElements() {
   document.getElementById('login_error_text').innerText = loginErrorText;
 }
 
-async function checkLoggedInStatus(userRequest) {
-  try {
-    const res = await fetch(`${apiURL}/me`, {
-      credentials: 'include', // Otherwise, no cookies!
-    });
-    if (res.status === 200) {
-      loggedIn = true;
-      const resultObject = await res.json();
-      playerName = resultObject.username;
-    } else if (res.status === 401) {
-      if (userRequest) {
-        loginFailure = true;
+async function checkLoggedInStatus() {
+  if (token) {
+    try {
+      const res = await fetch(`${apiURL}/auth`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          token,
+        }),
+      });
+      if (res.status === 200) {
+        loggedIn = true;
+        // NOTE: atob is deprecated in NODE, but NOT in browsers.
+        playerName = JSON.parse(window.atob(token.split('.')[1])).name;
+      } else if (res.status === 401) {
+        localStorage.removeItem('authToken');
+        loggedIn = false;
+      } else {
+        loggedIn = false;
+        console.error('Unexpected response from server.');
+        console.log(res);
+        console.log(res.status);
+        console.log(await res.text());
+        console.log(await res.json());
       }
+    } catch (error) {
       loggedIn = false;
-    } else {
-      loggedIn = false;
-      console.error('Unexpected response from server.');
-      console.log(res);
-      console.log(res.status);
-      console.log(await res.text());
-      console.log(await res.json());
+      console.error('Error contacting server:');
+      console.error(error);
     }
-  } catch (error) {
+  } else {
     loggedIn = false;
-    console.error('Error contacting server:');
-    console.error(error);
   }
   updateDOMElements();
 }
@@ -85,24 +95,24 @@ async function login() {
   loginInProgress = true;
   updateDOMElements();
   try {
-    // Build formData object.
-    // TODO: We can now use JSON instead of formData with Node.js I think.
-    // The API expects a form input, not JSON.
-    const formData = new URLSearchParams();
-    formData.append('name', domElements.playerNameInputBox.value);
-    formData.append('password', domElements.passwordInputBox.value);
-
-    const res = await fetch(`${apiURL}/auth`, {
+    const res = await fetch(`${apiURL}/login`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/json',
       },
-      credentials: 'include', // Otherwise, no cookies!
-      body: formData,
+      body: JSON.stringify({
+        name: domElements.playerNameInputBox.value,
+        password: domElements.passwordInputBox.value,
+      }),
     });
     if (res.status === 200) {
-      // NOTE: Currently a 200 is returned whether it succeeds or not.
-      await checkLoggedInStatus(true);
+      loggedIn = true;
+      const resultObject = await res.json();
+      localStorage.setItem('authToken', resultObject.token);
+      // NOTE: atob is deprecated in NODE, but NOT in browsers.
+      playerName = JSON.parse(
+        window.atob(resultObject.token.split('.')[1]),
+      ).name;
     } else if (res.status === 401) {
       loggedIn = false;
       loginFailure = true;
@@ -126,23 +136,8 @@ async function login() {
 }
 
 async function logOut() {
-  try {
-    const res = await fetch(`${apiURL}/log-out`, {
-      credentials: 'include', // Otherwise, no cookies!
-    });
-    if (res.status === 200 || res.status === 401) {
-      loggedIn = false;
-    } else {
-      console.error('Unexpected response from server.');
-      console.log(res);
-      console.log(res.status);
-      console.log(await res.text());
-      console.log(await res.json());
-    }
-  } catch (error) {
-    console.error('Error contacting server:');
-    console.error(error);
-  }
+  localStorage.removeItem('authToken');
+  loggedIn = false;
   updateDOMElements();
 }
 
@@ -156,47 +151,34 @@ function createNewAccount() {
 async function createAccount() {
   loginErrorText = null;
   sendingAccountCreation = false;
-  const userName = document.getElementById('player_name_input_box').value;
   const password = document.getElementById('password_input_box').value;
   const repeatPasword = document.getElementById(
     'repeat_password_input_box',
   ).value;
   if (password !== repeatPasword) {
     loginErrorText = 'Passwords do not match.';
-  } else if (password === userName) {
-    loginErrorText = 'Passwords and username must be different.';
-  } else if (password.length < 8) {
-    loginErrorText = 'Passwords must be at least 8 characters long.';
-  } else if (password.length > 4096) {
-    loginErrorText = 'Password is too long';
   } else {
     sendingAccountCreation = true;
     updateDOMElements();
-    // Build formData object.
-    // The API expects a form input, not JSON.
-    const formData = new URLSearchParams();
-    formData.append('name', domElements.playerNameInputBox.value);
-    formData.append('password', domElements.passwordInputBox.value);
-
     try {
       const res = await fetch(`${apiURL}/sign-up`, {
         method: 'POST',
         headers: {
-          'content-type': 'application/x-www-form-urlencoded',
+          'content-type': 'application/json',
         },
-        credentials: 'include', // Otherwise, no cookies!
-        body: formData,
+        body: JSON.stringify({
+          name: domElements.playerNameInputBox.value,
+          password: domElements.passwordInputBox.value,
+        }),
       });
+      let resultText = await res.text();
+      if (resultText.Error) {
+        resultText = resultText.Error;
+      }
       if (res.status === 200) {
-        // NOTE: Currently a 200 is returned whether it succeeds or not.
-        const resultText = await res.text();
-        if (resultText !== 'Success') {
-          loginErrorText = resultText;
-        } else {
-          creatingNewAccount = false;
-        }
+        creatingNewAccount = false;
       } else {
-        loginErrorText = 'Unknown error creating account.';
+        loginErrorText = resultText || 'Unknown error.';
       }
     } catch (error) {
       loginErrorText = 'Error contacting server.';
@@ -230,9 +212,6 @@ const startGameNow = () => {
 
 // eslint-disable-next-line func-names
 async function introScreenAndPreGameSetup() {
-  // Find out if we are logged in already
-  await checkLoggedInStatus();
-
   // Check local storage for Player Sprite
   const existingPlayerSprite = localStorage.getItem('playerSprite');
   if (existingPlayerSprite) {
@@ -285,10 +264,13 @@ async function introScreenAndPreGameSetup() {
   existingHelpTextVersion = Number(localStorage.getItem('helpTextVersion'));
 
   if (
-    !loggedIn ||
+    !token ||
     !existingHelpTextVersion ||
     existingHelpTextVersion < playerObject.helpTextVersion
   ) {
+    // Find out if we are logged in already
+    await checkLoggedInStatus();
+
     document.getElementById('loading_text').hidden = true;
     document.getElementById('pre_game_div').hidden = false;
 
@@ -328,7 +310,7 @@ async function introScreenAndPreGameSetup() {
   }
 
   // Save the player name to local storage for use next time
-  // in the login box.
+  // in the login box in case the token was wiped.
   // In theory the browser could do this for me?
   localStorage.setItem('playerName', playerName);
 

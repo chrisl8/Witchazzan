@@ -1,3 +1,4 @@
+/* globals localStorage:true */
 import communicationsObject from './objects/communicationsObject';
 import playerObject from './objects/playerObject';
 
@@ -24,28 +25,32 @@ sendDataToServer.chat = (text, targetPlayerId) => {
   but it might be easier on the client code to just send them ad hoc from the various
   points within the client code that are aware of them and update them.
 
-  NOTE: There should still probably be a bundle of "player data" taht has like, what scene "I" am in,
-  which is not related to the "spriteData" taht will include the player's sprite along with others.
+  NOTE: There should still probably be a bundle of "player data" that has like, what scene "I" am in,
+  which is not related to the "spriteData" that will include the player's sprite along with others.
  */
 
 // TODO: We also need to note and send out collisions that happen on our client, so that other players know about it and/or deal with them?
-sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
+sendDataToServer.spriteData = ({ sceneName, x, y }) => {
   if (communicationsObject.socket.connected) {
     const obj = {
-      x: tileBasedCoordinates.x,
-      y: tileBasedCoordinates.y,
+      x,
+      y,
       scene: sceneName,
+      // TODO: This needs to work for any injected sprite, not just the player.
+      id: playerObject.playerId,
       direction: playerObject.playerDirection,
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
       chatOpen: playerObject.chatOpen,
     };
+    // TODO: This is going to have to change in some way.
     if (playerObject.sendSpell) {
       // Only send positive spell, and only send it once.
       // Otherwise we may overwrite the server's version before it is acted upon.
       obj.spell = playerObject.spellOptions[playerObject.activeSpellKey];
       playerObject.sendSpell = false;
     }
+    // TODO: This is going to have to change in some way.
     if (playerObject.force) {
       // Always reset this to false
       obj.force = false;
@@ -60,6 +65,7 @@ sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
       if (
         playerObject.lastSentPlayerDataObject[key] === undefined ||
         playerObject.lastSentPlayerDataObject[key] !== obj[key] ||
+        // TODO: This is going to have to change in some way.
         // The client needs to send force: false EVERY time it gets a force: true
         // from the server, even if it sent force: false already in the last packet.
         key === 'force'
@@ -71,22 +77,18 @@ sendDataToServer.playerData = ({ sceneName, tileBasedCoordinates }) => {
       // Only send data if it has changed,
       // rather than wasting bandwidth and
       // the server's CPU cycles.
-      objectToSend.message_type = 'location-update';
-      communicationsObject.socket.emit('playerData', objectToSend);
+      // Must ALWAYS send the id
+      objectToSend.id = obj.id;
+      communicationsObject.socket.emit('spriteData', objectToSend);
     }
     playerObject.lastSentPlayerDataObject = obj;
   }
 };
 
-sendDataToServer.login = () => {
-  // The server only uses two fields from the login packet:
-  // sprite
-  // moving - which is always false at login of course.
+sendDataToServer.token = () => {
+  const token = localStorage.getItem('authToken');
   if (communicationsObject.socket.connected) {
-    communicationsObject.socket.emit('login', {
-      sprite: playerObject.spriteName,
-      moving: false,
-    });
+    communicationsObject.socket.emit('token', token);
   }
 };
 
