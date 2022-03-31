@@ -313,7 +313,7 @@ async function introScreenAndPreGameSetup() {
 
     while (!pleaseStartGameNow) {
       // eslint-disable-next-line no-await-in-loop
-      await wait(1);
+      await wait(250);
     }
 
     // Clean up event listeners

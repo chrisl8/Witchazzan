@@ -13,7 +13,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
 
   while (!playerObject.initialPositionReceived) {
     // eslint-disable-next-line no-await-in-loop
-    await wait(1);
+    await wait(250);
   }
 }
 
