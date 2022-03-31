@@ -108,6 +108,8 @@ You will also need to set up a Web server to serve the built code, as Node.js is
 TODO: Add nginx instructions.
 
 ### Updating installed code
+URun `updateProduction.sh` or here is the manual process:
+
 ```
 cd Witchazzan
 git pull
