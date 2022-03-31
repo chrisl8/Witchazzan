@@ -3,28 +3,6 @@
 <!--NOTE: You cannot nest html-loads inside other partials.-->
 <head>
   <meta charset="utf-8" />
-  <!-- Matomo -->
-  <script type="text/javascript">
-    if (window.location.hostname === 'www.witchazzan.space') {
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(["setCookieDomain", "*.www.witchazzan.space"]);
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function () {
-        var u = "//matomo.witchazzan.space/";
-        _paq.push(['setTrackerUrl', u + 'matomo.php']);
-        _paq.push(['setSiteId', '1']);
-        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-        g.type = 'text/javascript';
-        g.async = true;
-        g.defer = true;
-        g.src = u + 'matomo.js';
-        s.parentNode.insertBefore(g, s);
-      })();
-    }
-  </script>
-  <!-- End Matomo Code -->
   <!-- Fonts -->
   <!-- https://fonts.google.com/?category=Monospace&selection.family=Roboto+Mono -->
   <link
@@ -90,7 +68,7 @@
               type="password"
               required
           />
-          <p style="color:blue">Password must 8 or more characters, but not more than 4096.</p>
+          <p style="color:blue">Password must at least 8 characters, but not more than 72.</p>
         </div>
         <div id="login_failure" hidden>
           <span style="color:red;">Login Failed. :'(</span>
@@ -439,6 +417,8 @@
         <li>Tap with THREE fingers to open/close the chat/command input</li>
       </ul>
     </div>
+    <p style="padding-bottom: 25px; text-align: center"><a href="https://github.com/chrisl8/Witchazzan">https://github.com/chrisl8/Witchazzan</a>
+    </p>
   </div>
   <!-- End Intro Screen -->
 </div>
