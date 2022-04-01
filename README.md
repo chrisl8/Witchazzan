@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.com/chrisl8/witchazzan-client.svg)](https://travis-ci.com/chrisl8/witchazzan-client)
+**IT LIVES!** We are working on this project again!  
+The back end server is now Node.js, and included in this repository.  
 
-**This project has come to an end. It was fun, but we are not maintaining it or developing any further on it now.**
+You can play the game at [https://witchazzan.com](https://witchazzan.com)
 
 # Witchazzan - A Game!
 
@@ -32,8 +33,8 @@ The data currently stored there is:
 - `persistentData/serverConfig.json5` - A JSON5 file that stores the server configuration data.
 - `persistentData/sprites.json5` - A JSON5 file that stores the last saved game state for retrieval upon a server restart.
 
-The `.sqlite` files are SQLite databases that are not meant to be human readable or written to. The server takes care of them. There are tools to read/write such files though if you really want to.
-The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simple an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
+The `.sqlite` files are SQLite databases that are not meant to be human readable or written to. The server takes care of them. There are tools to read/write such files though if you really want to.  
+The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simply an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
 
 ## Code Standards
 

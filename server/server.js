@@ -13,6 +13,9 @@ import wait from "./wait.js";
 import persistentData from "./persistentData.js";
 import jsonMapStringify from "./jsonMapStringify.js";
 
+console.log("------------------------------");
+console.log("Witchazzan server is starting...");
+
 // https://stackoverflow.com/a/64383997/4982408
 const fileName = fileURLToPath(import.meta.url);
 const dirName = dirname(fileName);
