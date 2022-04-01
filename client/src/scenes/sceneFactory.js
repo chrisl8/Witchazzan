@@ -854,28 +854,6 @@ const sceneFactory = ({
     // the key of the tileset image in Phaser's cache (i.e. the name you used in preload)
     tileset = map.addTilesetImage(tileSet.name, `${tileSet.name}-tiles`);
 
-    // Set tile map area background to white for areas where no tiles were placed
-    // NOTE: If all tile maps had 100% coverage, this would not be needed.
-    // Done after we create the tileset variable, because we need the tile width.
-    const tilemapBackgroundRenderTexture = scene.add.renderTexture(
-      tileset.tileWidth,
-      tileset.tileHeight,
-      gameSize.width,
-      gameSize.height,
-    );
-    const fillColor = 0xffffff;
-    tilemapBackgroundRenderTexture.draw(
-      new Phaser.GameObjects.Rectangle(
-        scene,
-        0,
-        0,
-        gameSize.width,
-        gameSize.height,
-        fillColor,
-        1,
-      ).setOrigin(0, 0),
-    );
-
     // Parameters: layer name (or index) from Tiled, tileset, x, y
     map.createStaticLayer('Ground', tileset, 0, 0);
     map.createStaticLayer('Stuff on the Ground You Can Walk On', tileset, 0, 0);
@@ -906,6 +884,10 @@ const sceneFactory = ({
     //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
     //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     // });
+
+    // Set camera background to white for areas where no tiles were placed
+    // NOTE: If all tile maps had 100% coverage, this would not be needed.
+    this.cameras.main.setBackgroundColor('#ffffff');
 
     // By default, everything gets depth sorted on the screen in the order we created things. Here, we
     // want the "Above Player" layer to sit on top of the player, so we explicitly give it a depth.
