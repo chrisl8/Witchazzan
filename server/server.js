@@ -517,8 +517,14 @@ io.on("connection", (socket) => {
 console.log(`Witchazzan server is running`);
 
 process.on("SIGINT", async () => {
+  console.log("Witchazzan shutdown requested:");
+  console.log("Disconnecting users and giving them a mo...");
+  io.close();
+  await wait(1000);
   console.log("Saving game data to disk...");
   await saveGameStateToDisk();
+  console.log("Closing Database...");
+  await db.close();
   console.log("Witchazzan is going poof! Bye.\n\n");
   process.exit();
 });
