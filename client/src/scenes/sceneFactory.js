@@ -855,21 +855,21 @@ const sceneFactory = ({
     tileset = map.addTilesetImage(tileSet.name, `${tileSet.name}-tiles`);
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
-    map.createStaticLayer('Ground', tileset, 0, 0);
-    map.createStaticLayer('Stuff on the Ground You Can Walk On', tileset, 0, 0);
+    map.createLayer('Ground', tileset, 0, 0);
+    map.createLayer('Stuff on the Ground You Can Walk On', tileset, 0, 0);
 
     // We collide with EVERYTHING in this layer. Collision isn't based on tiles themselves,
     // but the layer they are in.
     const collisionLayer = map
-      .createStaticLayer('Stuff You Run Into', tileset, 0, 0)
+      .createLayer('Stuff You Run Into', tileset, 0, 0)
       .setCollisionByExclusion([-1]);
     let waterLayer;
     if (checkIfLayerExists('Water')) {
       waterLayer = map
-        .createStaticLayer('Water', tileset, 0, 0)
+        .createLayer('Water', tileset, 0, 0)
         .setCollisionByExclusion([-1]);
     }
-    const overheadLayer = map.createStaticLayer(
+    const overheadLayer = map.createLayer(
       'Stuff You Walk Under',
       tileset,
       0,
@@ -1022,16 +1022,16 @@ const sceneFactory = ({
       }
     });
 
-    // This only displays the Teleport tiles on the screen,
-    // which is only visible when map zoom is off anyway.
-    if (playerObject.disableCameraZoom) {
-      map.layers.forEach((layer) => {
-        const splitLayerName = layer.name.split('/');
-        if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
-          map.createStaticLayer(layer.name, tileset, 0, 0);
-        }
-      });
-    }
+    // We cannot use getTileAtWorldXY() to find out if a player
+    // is on a teleport tile unless we add the Teleport tiles as a layer.
+    // Just make sure that they are invisible, because they can show at the
+    // edges of the screen.
+    map.layers.forEach((layer) => {
+      const splitLayerName = layer.name.split('/');
+      if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
+        map.createLayer(layer.name, tileset, 0, 0);
+      }
+    });
 
     // TODO: Animated tile replacement experiment
     // Animated water tiles
