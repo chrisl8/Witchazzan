@@ -541,6 +541,7 @@ if (process.env.CI === "true") {
   console.log("CI Test environment detected,");
   console.log("Server will self-terminate in 45 seconds...");
   setTimeout(() => {
+    console.log("===========================================");
     closeServer();
   }, 45000);
 }
