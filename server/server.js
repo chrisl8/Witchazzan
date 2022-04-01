@@ -317,8 +317,7 @@ io.on("connection", (socket) => {
             // We now know that we have a valid authenticated user!
             const name = decoded.name;
             const id = decoded.id;
-            const address = socket.request.connection.remoteAddress;
-            console.log(`${name} connected from ${address}`);
+            console.log(`${name} connected`);
             // TODO: Nesting all of this in here is annoying!
 
             // TODO: The user's ID should actually be the OWNER of the data,
