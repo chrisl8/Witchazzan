@@ -9,7 +9,6 @@ import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { randomUUID, randomBytes } from "crypto";
-import ipAddress from "./ipAddress.js";
 import wait from "./wait.js";
 import persistentData from "./persistentData.js";
 import jsonMapStringify from "./jsonMapStringify.js";
@@ -515,9 +514,7 @@ io.on("connection", (socket) => {
   });
 });
 
-console.log(
-  `Web server is running at: http://${ipAddress()}:${webserverPort}/`
-);
+console.log(`Witchazzan server is running`);
 
 process.on("SIGINT", async () => {
   console.log("Saving game data to disk...");
