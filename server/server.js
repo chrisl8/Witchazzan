@@ -75,6 +75,8 @@ db.query = function (sql, params) {
 
 // Create an empty sprites Map for game state.
 const sprites = new Map();
+// Create an empty connectedPlayerData Map for player information.
+const connectedPlayerData = new Map();
 // Load saved game state into inactiveSprites. They are all inactive until players join.
 let inactiveSprites;
 try {
@@ -335,6 +337,27 @@ io.on("connection", (socket) => {
             // TODO: IF no entry for the player themselves exist, fabricate one for them so they can exist.
             // TODO: I think that the "player" should be the unique instance of a piece that uses the id as both the sprite ID adn the owner ID. All other sprites that the player owns will have different IDs, but be owned by them.
 
+            let connectedPlayerList = [];
+            connectedPlayerData.forEach((player) => {
+              connectedPlayerList.push(player.name);
+            });
+            if (connectedPlayerList.length > 0) {
+              // The client scroll text box takes a moment to initialize.
+              setTimeout(() => {
+                socket.emit("chat", {
+                  content: `${connectedPlayerList.join(", ")} ${
+                    connectedPlayerList.length === 1 ? "is" : "are"
+                  } currently online.`,
+                });
+              }, 1000);
+            }
+
+            // Add user to list of connected players
+            connectedPlayerData.set(id, {
+              id,
+              name,
+            });
+
             // Resurrect all inactive sprites owned by this user.
             inactiveSprites.forEach((sprite, key) => {
               if (sprite.owner === id) {
@@ -446,6 +469,8 @@ io.on("connection", (socket) => {
             });
 
             socket.on("disconnect", () => {
+              connectedPlayerData.delete(id);
+
               // Announce new players.
               socket.broadcast.emit("chat", {
                 content: `${name} has left the game. :'(`,
