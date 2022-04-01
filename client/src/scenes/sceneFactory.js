@@ -9,7 +9,6 @@ import updateInGameDomElements from '../updateInGameDomElements';
 import sendDataToServer from '../sendDataToServer';
 import spriteSheetList from '../objects/spriteSheetList';
 import gamePieceList from '../objects/gamePieceList';
-import pixelHighlightInput from '../objects/pixelHighlightInput';
 import getSpriteData from '../utilities/getSpriteData';
 import validateGamePieceData from './sceneFactoryHelpers/validateGamePieceData';
 
@@ -482,41 +481,6 @@ const sceneFactory = ({
     }
   }
 
-  function renderPixelHighlightDataFromServer() {
-    // Render Pixel Highlight debug data from server
-    if (pixelHighlightInput.content) {
-      // Always wipe this and start fresh, because they only come in rarely on demand
-      if (playerObject.pixelHighlightTexture) {
-        playerObject.pixelHighlightTexture.destroy();
-        playerObject.pixelHighlightTexture = null;
-      }
-
-      playerObject.pixelHighlightTexture = scene.add.renderTexture(
-        0,
-        0,
-        640,
-        480,
-      );
-      pixelHighlightInput.content.forEach((entry) => {
-        playerObject.pixelHighlightTexture.draw(
-          new Phaser.GameObjects.Rectangle(
-            scene,
-            entry.x,
-            entry.y,
-            1,
-            1,
-            0xffff00,
-            1,
-          ).setOrigin(0.5, 0.5),
-        );
-      });
-
-      playerObject.pixelHighlightTexture.setDepth(3);
-      // Wipe the data so we don't draw it again.
-      pixelHighlightInput.content = null;
-    }
-  }
-
   function addNewSprites(gamePiece) {
     let spriteData; // Convenient short variable to hold some data.
 
@@ -616,9 +580,6 @@ const sceneFactory = ({
               playerObject.player.body.reset(gamePiece.x, gamePiece.y);
             }
           }
-
-          // This is used for debugging server code
-          renderPixelHighlightDataFromServer();
 
           const spriteData = addNewSprites.call(this, gamePiece);
 

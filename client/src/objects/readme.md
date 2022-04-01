@@ -41,8 +41,3 @@ In reality sometimes it also has to do with avoiding circular references.
  - Never edit this.
  - The incoming Game Pieces list from the server is stored here.
  - The object file is purely to allow the code to "import" the data and then set and share it.
- 
-## pixelHighlightInput
- - Never edit this.
- - The incoming Pixel Highlight Input from the server is stored here.
- - The object file is purely to allow the code to "import" the data and then set and share it.
