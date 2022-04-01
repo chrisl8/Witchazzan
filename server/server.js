@@ -493,7 +493,7 @@ io.on("connection", (socket) => {
               //       but use debounce to make it actually only like once a minute.
               saveGameStateToDisk();
 
-              console.log(`${name} disconnected.`);
+              console.log(`${name} disconnected`);
             });
           } else {
             console.log(
