@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#!/usr/bin/env bash
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh"   ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -12,14 +11,14 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we
 need to resolve it relative to the path where the symlink file was located
 done
-SCRIPTDIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
-# echo "${SCRIPTDIR}" # For debugging
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+# echo "${SCRIPT_DIR}" # For debugging
 
-cd "${SCRIPTDIR}" || exit
+cd "${SCRIPT_DIR}" || exit
 git pull
-cd "${SCRIPTDIR}/server" || exit
+cd "${SCRIPT_DIR}/server" || exit
 npm ci
-cd "${SCRIPTDIR}/client" || exit
+cd "${SCRIPT_DIR}/client" || exit
 npm ci
 npm run build
 pm2 restart Witchazzan

@@ -14,34 +14,45 @@ Both parts are required for the game to function.
 
 We started with the [Phaser 3 Webpack Project Template](https://github.com/photonstorm/phaser3-project-template).
 
-The instructions here are split up into Client and Server.
+## How to Run a Local Copy for DEVELOPMENT!
 
-# Client
+1. Clone the repository.
+2. Run `devUpdate.sh`
 
-## Location
+That should get you going and provide some guidance if you are missing anything, along with how to run it.
 
-    /client/
+## Persistent Data Storage Information
+
+All persistent data is stored in a folder called `persistentData`.  
+If this folder does not exist, it will be created.  
+So you can just wipe the entire folder and start fresh any time you want to.
+
+The data currently stored there is:
+- `persistentData/database.sqlite` - A SQLite database that stores all of the user accounts.
+- `persistentData/serverConfig.json5` - A JSON5 file that stores the server configuration data.
+- `persistentData/sprites.json5` - A JSON5 file that stores the last saved game state for retrieval upon a server restart.
+
+The `.sqlite` files are SQLite databases that are not meant to be human readable or written to. The server takes care of them. There are tools to read/write such files though if you really want to.
+The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simple an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
+
+## Code Standards
+
+I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). The configurations for both are in the code.  
+Don't worry about it if you don't want to run them, I will not reject any pull requests based on formatting, but if you want to "fit in" run your code through Prettier and Eslint first.  
+NOTE: I assume you may and will set some things that Eslint complains about to "ignore" inline. That is perfectly fine and legitimate. Do not be a slave to Eslint, just run it and see what it says, and if you want to fix it, do so, if not, mark it as ignored inline.  
+They are [easy to set up](https://imgs.xkcd.com/comics/will_it_work.png), and your IDE and VIM should both support them easily.
 
 ## Requirements
 
 [Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
 
-## Available Commands
+## Available Client Commands in `/client`
 
 | Command         | Description |
 |-----------------|-------------|
 | `npm ci`        | Install project dependencies |
 | `npm start`     | Build project and open web server running project |
 | `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
-
-## Writing Code
-
-After cloning the repo, enter the client folder `cd witchazzan/client`, run `npm ci`, then, you can start the local development instance of the client by running `npm start`.
-
-
-After starting the development server with `npm start`, you can edit any files in the `client/src` folder
-and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
-by default).
 
 ## Customizing The Phaser Build Environment
 
@@ -108,7 +119,7 @@ You will also need to set up a Web server to serve the built code, as Node.js is
 TODO: Add nginx instructions.
 
 ### Updating installed code
-URun `updateProduction.sh` or here is the manual process:
+Run `updateProduction.sh` or here is the manual process:
 
 ```
 cd Witchazzan
@@ -120,28 +131,6 @@ npm ci
 npm run build
 pm2 restart Witchazzan
 ```
-
-
-## Persistent Data
-
-All persistent data is stored in a folder called `persistentData`.  
-If this folder does not exist, it will be created.  
-So you can just wipe the entire folder and start fresh any time you want to.  
-
-The data currently stored there is:
- - `persistentData/database.sqlite` - A SQLite database that stores all of the user accounts.
- - `persistentData/serverConfig.json5` - A JSON5 file that stores the server configuration data.
- - `persistentData/sprites.json5` - A JSON5 file that stores the last saved game state for retrieval upon a server restart.
-
-The `.sqlite` files are SQLite databases that are not meant to be human readable or written to. The server takes care of them. There are tools to read/write such files though if you really want to.
-The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simple an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
-
-## Code Standards
-
-I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). The configurations for both are in the code.  
-Don't worry about it if you don't want to run them, I will not reject any pull requests based on formatting, but if you want to "fit in" run your code through Prettier and Eslint first.  
-NOTE: I assume you may and will set some things that Eslint complains about to "ignore" inline. That is perfectly fine and legitimate. Do not be a slave to Eslint, just run it and see what it says, and if you want to fix it, do so, if not, mark it as ignored inline.  
-They are [easy to set up](https://imgs.xkcd.com/comics/will_it_work.png), and your IDE and VIM should both support them easily.
 
 ## Updating dependencies
 
