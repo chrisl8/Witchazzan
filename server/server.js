@@ -519,7 +519,7 @@ io.on("connection", (socket) => {
 
 console.log(`Witchazzan server is running`);
 
-process.on("SIGINT", async () => {
+async function closeServer() {
   console.log("Witchazzan shutdown requested:");
   console.log("Disconnecting users and giving them a mo...");
   io.close();
@@ -530,4 +530,17 @@ process.on("SIGINT", async () => {
   await db.close();
   console.log("Witchazzan is going poof! Bye.\n\n");
   process.exit();
+}
+
+process.on("SIGINT", () => {
+  closeServer();
 });
+
+if (process.env.CI === "true") {
+  console.log("===========================================");
+  console.log("CI Test environment detected,");
+  console.log("Server will self-terminate in 45 seconds...");
+  setTimeout(() => {
+    closeServer();
+  }, 45000);
+}
