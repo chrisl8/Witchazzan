@@ -65,10 +65,6 @@ const sceneFactory = ({
     });
 
     // Fullscreen button
-    console.log(
-      '%c TOOD: Colorize fullscreen button and adjust size per scene size.',
-      'background: green; color: white; display: block;',
-    );
     // TODO: Color and size should be configured per scene.
     this.load.spritesheet('fullscreen', fullscreen, {
       frameWidth: 64,
@@ -1061,10 +1057,6 @@ const sceneFactory = ({
 
     // TODO: Animated tile replacement experiment
     // Animated water tiles
-    console.log(
-      '%c TOOD: Animated water.',
-      'background: blue; color: white; display: block;',
-    );
     map.filterTiles(
       (tile) => {
         // console.log(tile.pixelX, tile.pixelY, tile.index);
