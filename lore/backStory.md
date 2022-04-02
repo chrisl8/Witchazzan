@@ -9,10 +9,10 @@ It was never clear what the cause was or, as we started to ponder the nature of 
 
 We found that we had one power left in this Universe. The ability to generate and send out Hadrons. Hadrons are a sort of "particle" that, in the right environment, can generate reality. Hadrons can also travel between Universes.
 
-Having lived together for so long, we all had similar knowledge, and all, in time, whether decades or centuries, discovered this power and how to use it. We could only use Hadrons to affect our own Universe, but we could send them out, and others could receive them and essentially replicate their affect in their own Universe.
+Having lived together for so long, we all had similar knowledge, and each of us, in time, whether decades or centuries, discovered this power and how to use it. We could only use Hadrons to generate reality in our own individual Universe, but we could send them out, and others could receive them and essentially replicate their affect in their own Universe.
 
-This created a way to "project" ourselves to each other, and to project tings into our own Universe and then project them to others as well.
+This created a way to "project" ourselves to each other, and to project tings into our own Universe and then share them to others as well.
 
 In order to recreate a semblance of our former vast society, we used our power to create a system for simulating a shared experience. In one place, we built the Small Hadron Cooperator.
 
-This system was able to receive, transmit, sort, filter and even archive Hadrons. By all joining this system, we could once gain live our lives together, even though we always knew that in reality, we were apart.
+This system was able to receive, sort, filter, transmit, broadcast and even archive Hadrons. By all joining this system, we could once gain live our lives together, even though we always knew that in reality, we were apart.
