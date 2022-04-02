@@ -13,12 +13,12 @@ const textObject = {
     location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
   },
   connectingText: {
-    text: 'Connecting to server<br/>Please wait...',
+    text: 'Connecting to Small Hadron Cooperator<br/>Please wait...',
     shouldBeActiveNow: true,
     location: 'Center', // UpperLeft, 'Scrolling', or 'Center'
   },
   reconnectingText: {
-    text: 'Server connection lost\nreconnecting...',
+    text: 'Small Hadron Cooperator connection lost\nreconnecting...',
     shouldBeActiveNow: false,
     location: 'Center', // UpperLeft, 'Scrolling', or 'Center'
   },
