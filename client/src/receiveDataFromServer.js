@@ -1,6 +1,5 @@
 /* globals window:true */
 /* globals localStorage:true */
-import openSocket from 'socket.io-client';
 import communicationsObject from './objects/communicationsObject.js';
 import textObject from './objects/textObject.js';
 import sendDataToServer from './sendDataToServer.js';
@@ -14,10 +13,13 @@ function receiveDataFromServer() {
     communicationsObject.socket.close();
   }
 
-  if (window.location.hostname === 'localhost') {
-    communicationsObject.socket = openSocket('http://localhost:8080/');
+  if (
+    window.location.hostname === 'localhost' &&
+    window.location.port !== '8080'
+  ) {
+    communicationsObject.socket = window.io.connect('localhost:8080');
   } else {
-    communicationsObject.socket = openSocket();
+    communicationsObject.socket = window.io.connect();
   }
 
   communicationsObject.socket.on('sendToken', () => {

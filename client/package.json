@@ -44,7 +44,6 @@
     "nipplejs": "^0.9.1",
     "phaser": "^3.55.2",
     "raw-loader": "^4.0.0",
-    "socket.io-client": "^4.4.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
