@@ -3,7 +3,7 @@
  */
 
 import Phaser from 'phaser';
-import scene from '../scenes/sceneList';
+import scene from '../scenes/sceneList.js';
 
 const phaserConfigObject = {
   type: Phaser.AUTO, // Which renderer to use

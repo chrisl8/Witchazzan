@@ -1,7 +1,7 @@
 /* globals window:true */
 /* globals document:true */
-import playerObject from './objects/playerObject';
-import textObject from './objects/textObject';
+import playerObject from './objects/playerObject.js';
+import textObject from './objects/textObject.js';
 
 const updateInGameDomElements = (htmlElementParameters) => {
   const consolidatedTextObject = {
@@ -133,7 +133,8 @@ const updateInGameDomElements = (htmlElementParameters) => {
         newPlayerTagInnerHTML
       ) {
         playerObject.domElements.playerTag.innerHTML = newPlayerTagInnerHTML;
-        playerObject.domElementHistory.playerTag.innerHTML = newPlayerTagInnerHTML;
+        playerObject.domElementHistory.playerTag.innerHTML =
+          newPlayerTagInnerHTML;
       }
 
       // Font size
@@ -179,9 +180,8 @@ const updateInGameDomElements = (htmlElementParameters) => {
           value.spriteData.type === 'player'
         ) {
           if (!playerObject.domElements.otherPlayerTags[Number(key)]) {
-            playerObject.domElements.otherPlayerTags[
-              Number(key)
-            ] = document.createElement('span');
+            playerObject.domElements.otherPlayerTags[Number(key)] =
+              document.createElement('span');
             playerObject.domElements.otherPlayerTags[Number(key)].classList.add(
               'other_player_tag',
             );
@@ -195,9 +195,8 @@ const updateInGameDomElements = (htmlElementParameters) => {
           if (value.gamePiece.chatOpen) {
             newInnerHTML = '&#x1F4AD;';
           }
-          playerObject.domElements.otherPlayerTags[
-            Number(key)
-          ].innerHTML = newInnerHTML;
+          playerObject.domElements.otherPlayerTags[Number(key)].innerHTML =
+            newInnerHTML;
 
           if (newInnerHTML !== '') {
             // Font size

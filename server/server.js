@@ -11,15 +11,17 @@ import { dirname } from "path";
 import { randomUUID, randomBytes } from "crypto";
 import wait from "./wait.js";
 import persistentData from "./persistentData.js";
-import jsonMapStringify from "./jsonMapStringify.js";
+import jsonMapStringify from "../shared/jsonMapStringify.mjs";
+import validateJWT from "./validateJWT.js";
+import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 
 console.log("------------------------------");
 console.log("Witchazzan server is starting...");
 
 // https://stackoverflow.com/a/64383997/4982408
-const fileName = fileURLToPath(import.meta.url);
-const dirName = dirname(fileName);
-const persistentDataFolder = `${dirName}/../persistentData`;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const persistentDataFolder = `${__dirname}/../persistentData`;
 
 // Create persistent data folder if it doesn't exist
 // Sync operations on server startup are fine.

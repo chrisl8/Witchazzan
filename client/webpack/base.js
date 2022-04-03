@@ -1,9 +1,16 @@
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+import webpack from 'webpack';
+import path, { dirname } from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import { fileURLToPath } from 'url';
 
-module.exports = {
+// https://stackoverflow.com/a/64383997/4982408
+// eslint-disable-next-line no-underscore-dangle
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = dirname(__filename);
+
+export default {
   mode: 'development',
   devtool: 'eval-source-map',
   devServer: {

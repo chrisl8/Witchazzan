@@ -1,7 +1,7 @@
-import communicationsObject from './objects/communicationsObject';
-import playerObject from './objects/playerObject';
-import textObject from './objects/textObject';
-import processCommandInput from './processCommandInput';
+import communicationsObject from './objects/communicationsObject.js';
+import playerObject from './objects/playerObject.js';
+import textObject from './objects/textObject.js';
+import processCommandInput from './processCommandInput.js';
 
 // Local keys will work even if the server is disconnected.
 // I suggest making these RARE, and also not recording their state,

@@ -1,12 +1,13 @@
 /* globals window:true */
 /* globals localStorage:true */
 import openSocket from 'socket.io-client';
-import communicationsObject from './objects/communicationsObject';
-import textObject from './objects/textObject';
-import sendDataToServer from './sendDataToServer';
-import playerObject from './objects/playerObject';
-import cleanUpAfterDisconnect from './cleanUpAfterDisconnect';
-import parseGamePieceListFromServer from './parseGamePieceListFromServer';
+import communicationsObject from './objects/communicationsObject.js';
+import textObject from './objects/textObject.js';
+import sendDataToServer from './sendDataToServer.js';
+import playerObject from './objects/playerObject.js';
+import cleanUpAfterDisconnect from './cleanUpAfterDisconnect.js';
+import parseHadronsFromServer from './parseHadronsFromServer.js';
+import jsonMapStringify from '../../shared/jsonMapStringify.mjs';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -36,14 +37,6 @@ function receiveDataFromServer() {
     textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
   });
 
-  function reviver(key, value) {
-    if (typeof value === 'object' && value !== null) {
-      if (value.dataType === 'Map') {
-        return new Map(value.value);
-      }
-    }
-    return value;
-  }
   // The local client won't start the game until this is received and parsed.
   communicationsObject.socket.on('sprites', (inputData) => {
     const sprites = JSON.parse(inputData, reviver);

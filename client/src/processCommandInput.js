@@ -1,8 +1,8 @@
 /* globals localStorage:true */
-import textObject from './objects/textObject';
-import playerObject from './objects/playerObject';
-import sendDataToServer from './sendDataToServer';
-import communicationsObject from './objects/communicationsObject';
+import textObject from './objects/textObject.js';
+import playerObject from './objects/playerObject.js';
+import sendDataToServer from './sendDataToServer.js';
+import communicationsObject from './objects/communicationsObject.js';
 
 if (!Array.isArray(JSON.parse(localStorage.getItem('commandHistory')))) {
   localStorage.setItem('commandHistory', JSON.stringify([]));

@@ -2,8 +2,8 @@
 /* globals fetch:true */
 /* globals document:true */
 /* globals window:true */
-import playerObject from '../objects/playerObject';
-import wait from '../utilities/wait';
+import playerObject from '../objects/playerObject.js';
+import wait from '../../../shared/wait.mjs';
 
 // TODO: Can we just use / instead of adding the actual href path?
 let apiURL = `${window.location.href}api`;

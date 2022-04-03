@@ -1,6 +1,6 @@
 /* globals localStorage:true */
-import communicationsObject from './objects/communicationsObject';
-import playerObject from './objects/playerObject';
+import communicationsObject from './objects/communicationsObject.js';
+import playerObject from './objects/playerObject.js';
 
 const sendDataToServer = {};
 

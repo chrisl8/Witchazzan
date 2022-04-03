@@ -20,7 +20,7 @@
  * Typically this wil be a 20 x 11 32 pixel map with a 16:9 aspect ratio.
  * Although for the old school maps it can be 16 x 11 16 pixel maps for 4:3.
  */
-import sceneFactory from './sceneFactory';
+import sceneFactory from './sceneFactory.js';
 
 // Scenes
 import LoruleH8 from '../assets/tileMaps/LoruleH8.json';

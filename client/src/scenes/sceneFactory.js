@@ -2,15 +2,15 @@
 /* globals localStorage:true */
 /* globals document:true */
 import Phaser from 'phaser';
-import playerObject from '../objects/playerObject';
-import textObject from '../objects/textObject';
-import handleKeyboardInput from '../handleKeyboardInput';
-import updateInGameDomElements from '../updateInGameDomElements';
-import sendDataToServer from '../sendDataToServer';
-import spriteSheetList from '../objects/spriteSheetList';
-import gamePieceList from '../objects/gamePieceList';
-import getSpriteData from '../utilities/getSpriteData';
-import validateGamePieceData from './sceneFactoryHelpers/validateGamePieceData';
+import playerObject from '../objects/playerObject.js';
+import textObject from '../objects/textObject.js';
+import handleKeyboardInput from '../handleKeyboardInput.js';
+import updateInGameDomElements from '../updateInGameDomElements.js';
+import sendDataToServer from '../sendDataToServer.js';
+import spriteSheetList from '../objects/spriteSheetList.js';
+import hadrons from '../objects/hadrons.js';
+import getSpriteData from '../utilities/getSpriteData.js';
+import validateHadronData from './sceneFactoryHelpers/validateHadronData.js';
 
 import fullscreen from '../assets/spriteSheets/fullscreen.png';
 

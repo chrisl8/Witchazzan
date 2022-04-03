@@ -1,5 +1,5 @@
-import spriteSheetList from '../objects/spriteSheetList';
-import playerObject from '../objects/playerObject';
+import spriteSheetList from '../objects/spriteSheetList.js';
+import playerObject from '../objects/playerObject.js';
 
 function getSpriteData(spriteName) {
   if (!spriteName) {

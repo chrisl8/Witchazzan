@@ -3,8 +3,8 @@
  * Everything related to it is here.
  */
 
-import textObject from './objects/textObject';
-import playerObject from './objects/playerObject';
+import textObject from './objects/textObject.js';
+import playerObject from './objects/playerObject.js';
 
 // TODO: Sort out Scrolling text box (push old text off of the bottom).
 // TODO: How to handle multiple center texts and/or "fading texts" from the same location

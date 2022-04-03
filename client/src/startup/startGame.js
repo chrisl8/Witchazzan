@@ -1,11 +1,11 @@
 /* globals document:true */
 import Phaser from 'phaser';
-import phaserConfigObject from '../objects/phaserConfigObject';
-import receiveDataFromServer from '../receiveDataFromServer';
-import touchInput from '../touchInput';
-import playerObject from '../objects/playerObject';
-import wait from '../utilities/wait';
-import ScrollingTextBox from '../ScrollingTextBox';
+import phaserConfigObject from '../objects/phaserConfigObject.js';
+import receiveDataFromServer from '../receiveDataFromServer.js';
+import touchInput from '../touchInput.js';
+import playerObject from '../objects/playerObject.js';
+import wait from '../../../shared/wait.mjs';
+import ScrollingTextBox from '../ScrollingTextBox.js';
 
 async function waitForConnectionAndInitialPlayerPosition() {
   // Don't start until we have the initial connection

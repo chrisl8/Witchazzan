@@ -1,7 +1,7 @@
 import fs from "fs";
 import JSON5 from "json5";
 import prettier from "prettier";
-import jsonMapStringify from "./jsonMapStringify.js";
+import jsonMapStringify from "../shared/jsonMapStringify.mjs";
 
 const writeObject = (path, objectLiteral) => {
   return new Promise((resolve, reject) => {
