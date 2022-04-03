@@ -143,14 +143,10 @@ app.options("*", cors()); // include before other routes
 const webserverPort = process.env.PORT || 8080;
 
 // All web content is housed in the website folder
-app.use(express.static(`${dirName}/../client/dist`));
+app.use(express.static(`${__dirname}/../client/dist`));
 
 // parse application/json
 app.use(bodyParser.json());
-
-function between(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
 
 const webServer = app.listen(webserverPort);
 const io = new Server(webServer, {
