@@ -253,11 +253,11 @@ app.post("/api/login", async (req, res) => {
           }
         );
       } else {
-        rejectUnauthorized();
+        rejectUnauthorized(res, name);
       }
     });
   } else {
-    await rejectUnauthorized();
+    await rejectUnauthorized(res, name);
   }
 });
 
