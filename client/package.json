@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Witchazzan Client",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
     "start": "webpack serve --config webpack/base.js --open"
