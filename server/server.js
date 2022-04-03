@@ -209,10 +209,11 @@ app.post("/api/sign-up", async (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
-  async function rejectUnauthorized() {
+  async function rejectUnauthorized(res, name) {
     console.log(`Failed login attempt from ${name}.`);
     // A somewhat random wait stalls brute force attacks and somewhat mitigates timing attacks used to guess names.
-    await wait(between(3, 5) * 1000);
+    // It also prevents client side bugs from crippling the server with inadvertent DOS attacks.
+    await wait(makeRandomNumber.between(3, 5) * 1000);
     res.sendStatus(401);
   }
   let name = req.body.name;
@@ -260,96 +261,60 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+// This allows the client to check if it has a valid token BEFORE
+// starting the socket connection, in order to show a "logged in" status on
+// the startup page.
 app.post("/api/auth", async (req, res) => {
-  // TODO: This code block is almost entirely duplicated in the socket code.
-  jwt.verify(
-    req.body.token,
-    serverConfiguration.jwtSecret,
-    async (err, decoded) => {
-      if (err) {
-        console.log("Failed to authenticate token.");
-        res.sendStatus(401);
-      } else {
-        // We also must ensure the user exists in the database. Their account could have been deleted.
-        try {
-          const sql = "SELECT id FROM Users WHERE name = ?";
-          const result = await db.query(sql, [decoded.name]);
-          if (result.rows.length > 0 && result.rows[0].id === decoded.id) {
-            console.log(`${decoded.name} authenticated a valid token`);
-            res.sendStatus(200);
-            return;
-          } else {
-            console.log(
-              `${decoded.name} has a valid token, but is not in the database, or their UUID changed.`
-            );
-            res.sendStatus(401);
-            return;
-          }
-        } catch (e) {
-          console.error("Error retrieving user:");
-          console.error(e.message);
-          res.status(500).send("Unknown error.");
-          return;
-        }
-      }
-    }
-  );
+  try {
+    await validateJWT(req.body.token, serverConfiguration.jwtSecret, db);
+    res.sendStatus(200);
+  } catch (e) {
+    res.sendStatus(401);
+  }
 });
 
 // Socket listeners
 io.on("connection", (socket) => {
   // User cannot do anything until we have their token and have validated it.
+  // The socket connection is entirely unrelated any get/post requests, so we
+  // have to do it again even if they used the /auth POST endpoint.
   socket.emit("sendToken");
 
-  socket.on("token", (token) => {
-    jwt.verify(token, serverConfiguration.jwtSecret, async (err, decoded) => {
-      if (err) {
-        console.log("Failed to authenticate token.");
-        socket.emit("unauthorized");
-        await wait(500); // I think the client needs a moment to receive the message and deal with it.
-        socket.disconnect();
-      } else {
-        // We also must ensure the user exists in the database. Their account could have been deleted.
-        try {
-          const sql = "SELECT id FROM Users WHERE name = ?";
-          const result = await db.query(sql, [decoded.name]);
-          if (result.rows.length > 0 && result.rows[0].id === decoded.id) {
-            // We now know that we have a valid authenticated user!
-            const name = decoded.name;
-            const id = decoded.id;
-            console.log(`${name} connected`);
-            // TODO: Nesting all of this in here is annoying!
+  // Nothin gelse is available until they have authenticated.
+  socket.on("token", async (token) => {
+    try {
+      const decoded = await validateJWT(
+        token,
+        serverConfiguration.jwtSecret,
+        db
+      );
+      // We now know that we have a valid authenticated user!
+      const name = decoded.name;
+      const id = decoded.id;
+      console.log(`${name} connected`);
+      // TODO: Nesting all of this in here is annoying!
 
-            // TODO: The user's ID should actually be the OWNER of the data,
-            //       and the player ID should be ONE OF the owned data elements,
-            //       but that will require some client side code changes too.
-
-            // TODO: Probably don't need 3 "init" packets. One would do.
-            socket.emit("welcome");
-            // TODO: I'm not sure if this is required, and it certainly has to be a legit unique ID!
-            socket.emit("identity", {
-              id,
-            });
-            // The local client won't start the game until this is received and parsed.
-            // TODO: This is kind of a hack for a a new player. There should be a better method.
-            // TODO: Look at saved non-active data for persistent data owned by this user and add it back into the
-            // TODO: IF no entry for the player themselves exist, fabricate one for them so they can exist.
-            // TODO: I think that the "player" should be the unique instance of a piece that uses the id as both the sprite ID adn the owner ID. All other sprites that the player owns will have different IDs, but be owned by them.
-
-            let connectedPlayerList = [];
-            connectedPlayerData.forEach((player) => {
-              connectedPlayerList.push(player.name);
-            });
-            if (connectedPlayerList.length > 0) {
-              // The client scroll text box takes a moment to initialize.
-              setTimeout(() => {
-                socket.emit("chat", {
-                  content: `${connectedPlayerList.join(", ")} ${
-                    connectedPlayerList.length === 1 ? "is" : "are"
-                  } currently online.`,
-                });
-              }, 1000);
-            }
+      // TODO: Probably don't need 3 "init" packets. One would do.
+      socket.emit("welcome");
+      // TODO: I'm not sure if this is required, and it certainly has to be a legit unique ID!
+      socket.emit("identity", {
+        id,
+      });
+      // The local client won't start the game until this is received and parsed.
+      let connectedPlayerList = [];
+      connectedPlayerData.forEach((player) => {
+        connectedPlayerList.push(player.name);
+      });
+      if (connectedPlayerList.length > 0) {
+        // The client scroll text box takes a moment to initialize.
+        setTimeout(() => {
+          socket.emit("chat", {
+            content: `${connectedPlayerList.join(", ")} ${
+              connectedPlayerList.length === 1 ? "is" : "are"
+            } currently online.`,
+          });
+        }, 1000);
+      }
 
             // Add user to list of connected players
             connectedPlayerData.set(id, {
@@ -493,25 +458,18 @@ io.on("connection", (socket) => {
               //       but use debounce to make it actually only like once a minute.
               saveGameStateToDisk();
 
-              console.log(`${name} disconnected`);
-            });
-          } else {
-            console.log(
-              `${decoded.name} has a valid token, but is not in the database, or their UUID changed.`
-            );
-            socket.emit("unauthorized");
-            await wait(500); // I think the client needs a moment to receive the message and deal with it.
-            socket.disconnect();
-          }
-        } catch (e) {
-          console.error("Error retrieving user:");
-          console.error(e.message);
-          socket.emit("unauthorized");
-          await wait(500); // I think the client needs a moment to receive the message and deal with it.
-          socket.disconnect();
-        }
-      }
-    });
+        console.log(`${name} disconnected`);
+      });
+    } catch (e) {
+      console.log("Failed to authenticate token.");
+      console.log(e);
+      // A somewhat random wait stalls brute force attacks and somewhat mitigates timing attacks used to guess names.
+      // It also prevents client side bugs from crippling the server with inadvertent DOS attacks.
+      await wait(makeRandomNumber.between(3, 5) * 1000);
+      socket.emit("unauthorized");
+      await wait(500); // I think the client needs a moment to receive the message and deal with it.
+      socket.disconnect();
+    }
   });
 });
 
