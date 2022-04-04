@@ -37,7 +37,8 @@ In reality sometimes it also has to do with avoiding circular references.
 ## communicationsObject
  - This holds the websocket connection once it is made, so that other code can look at the connection or use it.
 
-## gamePieceList
+## hadrons
  - Never edit this.
- - The incoming Game Pieces list from the server is stored here.
+ - This is the master list of hadrons (game pieces) being managed by the game.
+ - The incoming hadrons from the server are merged with this.
  - The object file is purely to allow the code to "import" the data and then set and share it.

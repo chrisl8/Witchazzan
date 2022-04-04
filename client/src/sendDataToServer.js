@@ -18,15 +18,15 @@ sendDataToServer.chat = (text, targetPlayerId) => {
 //       but now the clients process it instead, so it probably needs to change somewhat.
 /*
   TODO:
-  Instead of sending "this is me", instead send any sprite that I want to exist.
-  I don't think "spawn" vs. "update" matters, but "destroy"might.
-  Each sprite will have a GUID, even my own player.
-  Each sprite can be its own emit, or they could be bundled together,
+  Instead of sending "this is me", instead send any hadron that I want to exist.
+  I don't think "spawn" vs. "update" matters, but "destroy" does.
+  Each hadron will have a GUID, even my own player.
+  Each hadron can be its own emit, or they could be bundled together,
   but it might be easier on the client code to just send them ad hoc from the various
   points within the client code that are aware of them and update them.
 
   NOTE: There should still probably be a bundle of "player data" that has like, what scene "I" am in,
-  which is not related to the "spriteData" that will include the player's sprite along with others.
+  which is not related to the "hadronData" that will include the player's hadron along with others.
  */
 
 // TODO: We also need to note and send out collisions that happen on our client, so that other players know about it and/or deal with them?

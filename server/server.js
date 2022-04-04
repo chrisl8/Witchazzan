@@ -10,6 +10,7 @@ import msgpackparser from "socket.io-msgpack-parser";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { randomUUID, randomBytes } from "crypto";
+import _ from "lodash";
 import wait from "./wait.js";
 import persistentData from "./persistentData.js";
 import jsonMapStringify from "../shared/jsonMapStringify.mjs";
@@ -51,6 +52,9 @@ if (!serverConfiguration.jwtSecret) {
 }
 if (!serverConfiguration.jwtExpiresInSeconds) {
   serverConfiguration.jwtExpiresInSeconds = 60 * 60 * 24 * 7; // 1 week
+}
+if (!serverConfiguration.gameStateSaveInterval) {
+  serverConfiguration.gameStateSaveInterval = 60 * 1000; // 1 minute
 }
 // The file is always rewritten, so the formatting will get fixed if it is bad.
 await persistentData.writeObject(
@@ -275,6 +279,17 @@ app.post("/api/auth", async (req, res) => {
   }
 });
 
+function sendHadrons() {
+  // TODO: Should we attempt to filter and only send a player the data for the scene they are in and/or ignore their own data?
+  // TODO: Note that socket has the idea of "rooms" too which could be leveraged to deal with scenes.
+  io.sockets.emit(
+    "hadrons",
+    JSON.stringify(hadrons, jsonMapStringify.replacer)
+  );
+}
+
+const throttledSendHadrons = _.throttle(sendHadrons, 50);
+
 // Socket listeners
 io.on("connection", (socket) => {
   // User cannot do anything until we have their token and have validated it.
@@ -332,22 +347,21 @@ io.on("connection", (socket) => {
               }
             });
 
-            // If no sprite for the user exists, create one.
-            if (!sprites.get(id)) {
-              sprites.set(id, {
-                id, // The player's own sprite is a unique instance of a sprite with the same ID as the owner.
-                owner: id,
-                x: 0,
-                y: 0,
-                scene: "LoruleH8",
-                sprite: "bloomby",
-              });
-            }
-            // TODO: Should this be a shared function?
-            socket.emit(
-              "sprites",
-              JSON.stringify(sprites, jsonMapStringify.replacer)
-            );
+      // If no hadron for the user exists, create one.
+      // TODO: Player should be able to pick their sprite though.
+      if (!hadrons.get(id)) {
+        hadrons.set(id, {
+          id, // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
+          owner: id,
+          x: 0,
+          y: 0,
+          scene: "LoruleH8",
+          sprite: "bloomby",
+          name,
+        });
+      }
+
+      throttledSendHadrons();
 
             // Announce new players.
             socket.broadcast.emit("chat", {

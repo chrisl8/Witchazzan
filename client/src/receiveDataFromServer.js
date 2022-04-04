@@ -24,6 +24,12 @@ function receiveDataFromServer() {
 
   communicationsObject.socket.on('sendToken', () => {
     sendDataToServer.token();
+    // TODO: Test if we can hack the client to receive data without authenticating.
+    // playerObject.socketCurrentlyConnected = true;
+    // textObject.connectingText.shouldBeActiveNow = false;
+    // textObject.reconnectingText.shouldBeActiveNow = false;
+    // textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
+    // playerObject.playerId = 1;
   });
 
   communicationsObject.socket.on('unauthorized', () => {
@@ -40,9 +46,8 @@ function receiveDataFromServer() {
   });
 
   // The local client won't start the game until this is received and parsed.
-  communicationsObject.socket.on('sprites', (inputData) => {
-    const sprites = JSON.parse(inputData, reviver);
-    parseGamePieceListFromServer(sprites);
+  communicationsObject.socket.on('hadrons', (inputData) => {
+    parseHadronsFromServer(JSON.parse(inputData, jsonMapStringify.reviver));
   });
 
   communicationsObject.socket.on('chat', (inputData) => {

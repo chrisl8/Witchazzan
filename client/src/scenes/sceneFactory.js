@@ -442,30 +442,30 @@ const sceneFactory = ({
       let fillColor = 0x00ff00;
       let width = 1;
       let height = 1;
-      if (['carrot'].indexOf(gamePiece.type) > -1) {
+      if (['carrot'].indexOf(hadron.type) > -1) {
         fillColor = 0x0000ff;
         width = 5;
         height = 5;
-      } else if (['slime'].indexOf(gamePiece.type) > -1) {
+      } else if (['slime'].indexOf(hadron.type) > -1) {
         fillColor = 0xff0000;
-      } else if (['fireball'].indexOf(gamePiece.type) > -1) {
+      } else if (['fireball'].indexOf(hadron.type) > -1) {
         fillColor = 0xffa500;
-      } else if (['teleball'].indexOf(gamePiece.type) > -1) {
+      } else if (['teleball'].indexOf(hadron.type) > -1) {
         fillColor = 0xffa500;
-      } else if (['push'].indexOf(gamePiece.type) > -1) {
+      } else if (['push'].indexOf(hadron.type) > -1) {
         fillColor = 0xffa500;
-      } else if (gamePiece.id === playerObject.playerId) {
+      } else if (key === playerObject.playerId) {
         // it me
         fillColor = 0x00a500;
-      } else if (['player'].indexOf(gamePiece.type) > -1) {
+      } else if (['player'].indexOf(hadron.type) > -1) {
         // it !me
         fillColor = 0x6a0dad;
       }
       playerObject.dotTrailRenderTexture.draw(
         new Phaser.GameObjects.Rectangle(
           scene,
-          gamePiece.x,
-          gamePiece.y,
+          hadron.x,
+          hadron.y,
           width,
           height,
           fillColor,
@@ -473,7 +473,7 @@ const sceneFactory = ({
         ).setOrigin(0.5, 0.5),
       );
       // this.add
-      //   .rectangle(gamePiece.x, gamePiece.y, 1, 1, 0xff0000, 1)
+      //   .rectangle(hadron.x, hadron.y, 1, 1, 0xff0000, 1)
       //   .setOrigin(0, 0);
     } else if (playerObject.dotTrailRenderTexture) {
       playerObject.dotTrailRenderTexture.destroy();
@@ -491,239 +491,217 @@ const sceneFactory = ({
     //       the game piece is removed and resent anyway.
 
     // Add new Sprites for new objects.
-    if (!playerObject.spawnedObjectList[gamePiece.id]) {
+    if (!playerObject.spawnedObjectList[key]) {
       // Add new sprites to the scene
-      playerObject.spawnedObjectList[gamePiece.id] = {};
+      playerObject.spawnedObjectList[key] = {};
 
-      playerObject.spawnedObjectList[gamePiece.id].spriteData = getSpriteData(
-        gamePiece.sprite,
+      playerObject.spawnedObjectList[key].spriteData = getSpriteData(
+        hadron.sprite,
       );
 
       // Use different carrot colors for different genetic code
-      if (gamePiece.type === 'carrot') {
-        // gamePiece.genes.color range 0 to 255
+      if (hadron.type === 'carrot') {
+        // hadron.genes.color range 0 to 255
         // Currently carrot options are 01 to 28
-        const carrotSpriteId = Math.floor(28 * (gamePiece.genes.color / 255));
+        const carrotSpriteId = Math.floor(28 * (hadron.genes.color / 255));
         const alternateCarrotSpriteName = `carrot${
           carrotSpriteId < 10 ? 0 : ''
         }${carrotSpriteId}`;
         // console.log(
-        //   gamePiece.genes.color,
-        //   gamePiece.genes.color / 255,
+        //   hadron.genes.color,
+        //   hadron.genes.color / 255,
         //   carrotSpriteId,
         //   alternateCarrotSpriteName,
-        //   gamePiece.energy,
+        //   hadron.energy,
         // );
         const newSprite = getSpriteData(alternateCarrotSpriteName);
         if (newSprite.name !== playerObject.defaultSpriteName) {
-          playerObject.spawnedObjectList[gamePiece.id].spriteData = newSprite;
+          playerObject.spawnedObjectList[key].spriteData = newSprite;
         }
       }
 
       // To shorten variable names and make code more consistent
-      spriteData = playerObject.spawnedObjectList[gamePiece.id].spriteData;
+      spriteData = playerObject.spawnedObjectList[key].spriteData;
 
-      playerObject.spawnedObjectList[gamePiece.id].sprite = this.physics.add
-        .sprite(gamePiece.x, gamePiece.y, spriteData.name)
+      playerObject.spawnedObjectList[key].sprite = this.physics.add
+        .sprite(hadron.x, hadron.y, spriteData.name)
         .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
 
       if (gamePiece.id === playerObject.playerId) {
         playerObject.spawnedObjectList[gamePiece.id].sprite.tint = 0x000000;
       }
 
+      // Some sprites don't line up well with their physics object,
+      // so this allows for offsetting that in the config.
       if (spriteData.physicsOffset) {
-        playerObject.spawnedObjectList[gamePiece.id].sprite.body.setOffset(
+        playerObject.spawnedObjectList[key].sprite.body.setOffset(
           spriteData.physicsOffset.x,
           spriteData.physicsOffset.y,
         );
       }
 
-      playerObject.spawnedObjectList[gamePiece.id].sprite.displayHeight =
+      playerObject.spawnedObjectList[key].sprite.displayHeight =
         spriteData.displayHeight;
-      playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
+      playerObject.spawnedObjectList[key].sprite.displayWidth =
         spriteData.displayWidth;
     }
 
     if (!spriteData) {
-      spriteData = playerObject.spawnedObjectList[gamePiece.id].spriteData;
+      spriteData = playerObject.spawnedObjectList[key].spriteData;
     }
 
     return spriteData;
   }
 
-  function updateGamePieces() {
+  // TODO: We need to SEND data for all of our sprites.
+  // TODO: We need to UPDATE location for all of our sprites, even if they aren't in our scene?
+  // TODO: How do we deal with collisions for sprites not in our scene, but that we own? Perhaps others can help with that? Group collision detection and consensus handling?
+  function updateHadrons() {
     // Deal with game pieces from server.
     const activeObjectList = [];
 
-    gamePieceList.pieces.forEach((gamePiece) => {
+    hadrons.forEach((hadron, key) => {
       // Sometimes a game piece is not something we can use
-      if (validateGamePieceData(gamePiece)) {
-        activeObjectList.push(gamePiece.id);
+      if (validateHadronData(hadron, key)) {
+        activeObjectList.push(key);
 
-        // Only render game pieces for THIS scene, and only if they have a sprite key
-        if (gamePiece.scene === sceneName && gamePiece.sprite) {
+        // Only render game pieces for THIS scene, and only if they have a hadron key
+        if (hadron.scene === sceneName && hadron.sprite) {
           // This is used for debugging
-          renderDebugDotTrails(gamePiece);
+          renderDebugDotTrails(hadron, key);
 
           // Is this ME?
-          if (gamePiece.id === playerObject.playerId) {
+          if (key === playerObject.playerId) {
             // If so, act on special keys.
 
             // The force key lets the server change the player's position.
-            // TODO: Should this be removed or is this how we initiate a new player at a previous location?
-            if (gamePiece.force) {
+            // TODO: Should this be removed or is there some use for this still?
+            if (hadron.force) {
               playerObject.force = true; // This tells the data sender to update this to false;
               // The player has now been forced to a new location by the server,
               // this location needs to be set and player input ignored
               // Stop player if they are moving
               playerObject.player.body.setVelocity(0);
-              playerObject.player.body.reset(gamePiece.x, gamePiece.y);
+              playerObject.player.body.reset(hadron.x, hadron.y);
             }
           }
 
-          const spriteData = addNewSprites.call(this, gamePiece);
+          const spriteData = addNewSprites.call(this, hadron, key);
 
           // Sometimes they go inactive.
-          playerObject.spawnedObjectList[gamePiece.id].sprite.active = true;
+          playerObject.spawnedObjectList[key].sprite.active = true;
 
           // Use health to adjust size for veggies
-          if (gamePiece.type === 'carrot' && spriteData) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.displayHeight =
-              spriteData.displayHeight * (gamePiece.energy / 100);
-            playerObject.spawnedObjectList[gamePiece.id].sprite.displayWidth =
-              spriteData.displayWidth * (gamePiece.energy / 100);
+          if (hadron.type === 'carrot' && spriteData) {
+            playerObject.spawnedObjectList[key].sprite.displayHeight =
+              spriteData.displayHeight * (hadron.energy / 100);
+            playerObject.spawnedObjectList[key].sprite.displayWidth =
+              spriteData.displayWidth * (hadron.energy / 100);
           }
 
-          // Use Game Piece direction to set sprite rotation or flip it
-          if (
-            playerObject.spawnedObjectList[gamePiece.id].spriteData.rotatable
-          ) {
-            // Rotate sprite to face requested direction.
-            if (
-              gamePiece.direction === 'left' ||
-              gamePiece.direction === 'west'
-            ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(180);
+          // Use Game Piece direction to set hadron rotation or flip it
+          if (playerObject.spawnedObjectList[key].spriteData.rotatable) {
+            // Rotate hadron to face requested direction.
+            if (hadron.direction === 'left' || hadron.direction === 'west') {
+              playerObject.spawnedObjectList[key].sprite.setAngle(180);
             } else if (
-              gamePiece.direction === 'right' ||
-              gamePiece.direction === 'east'
+              hadron.direction === 'right' ||
+              hadron.direction === 'east'
             ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(0);
+              playerObject.spawnedObjectList[key].sprite.setAngle(0);
             } else if (
-              gamePiece.direction === 'up' ||
-              gamePiece.direction === 'north'
+              hadron.direction === 'up' ||
+              hadron.direction === 'north'
             ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(-90);
+              playerObject.spawnedObjectList[key].sprite.setAngle(-90);
             } else if (
-              gamePiece.direction === 'down' ||
-              gamePiece.direction === 'south'
+              hadron.direction === 'down' ||
+              hadron.direction === 'south'
             ) {
-              playerObject.spawnedObjectList[gamePiece.id].sprite.setAngle(90);
+              playerObject.spawnedObjectList[key].sprite.setAngle(90);
             }
           } else if (
-            gamePiece.direction === 'left' ||
-            gamePiece.direction === 'west'
+            hadron.direction === 'left' ||
+            hadron.direction === 'west'
           ) {
             // For non rotatable sprites, only flip them for left/right
-            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-              playerObject.spawnedObjectList[gamePiece.id].spriteData.faces ===
-                'right',
+            playerObject.spawnedObjectList[key].sprite.setFlipX(
+              playerObject.spawnedObjectList[key].spriteData.faces === 'right',
             );
           } else if (
-            gamePiece.direction === 'right' ||
-            gamePiece.direction === 'east'
+            hadron.direction === 'right' ||
+            hadron.direction === 'east'
           ) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.setFlipX(
-              playerObject.spawnedObjectList[gamePiece.id].spriteData.faces ===
-                'left',
+            playerObject.spawnedObjectList[key].sprite.setFlipX(
+              playerObject.spawnedObjectList[key].spriteData.faces === 'left',
             );
           }
 
           // The only way to know if the remote item is in motion is for the server to tell us
           //       We cannot divine it, because the local tick is always faster than the server update.
           let objectInMotion = true; // Default to animate if server does not tell us otherwise.
-          if (gamePiece.moving === false) {
+          if (hadron.moving === false) {
             objectInMotion = false;
           }
           if (!objectInMotion) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.anims.stop();
+            playerObject.spawnedObjectList[key].sprite.anims.stop();
           } else if (
             playerObject.spawnedObjectList[
-              gamePiece.id
+              key
             ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-left`,
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-left`,
             ) &&
-            (gamePiece.direction === 'left' || gamePiece.direction === 'west')
+            (hadron.direction === 'left' || hadron.direction === 'west')
           ) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-left`,
+            playerObject.spawnedObjectList[key].sprite.anims.play(
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-left`,
               true,
             );
           } else if (
             playerObject.spawnedObjectList[
-              gamePiece.id
+              key
             ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-right`,
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-right`,
             ) &&
-            (gamePiece.direction === 'right' || gamePiece.direction === 'east')
+            (hadron.direction === 'right' || hadron.direction === 'east')
           ) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-right`,
+            playerObject.spawnedObjectList[key].sprite.anims.play(
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-right`,
               true,
             );
           } else if (
             playerObject.spawnedObjectList[
-              gamePiece.id
+              key
             ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-back`,
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-back`,
             ) &&
-            (gamePiece.direction === 'up' || gamePiece.direction === 'north')
+            (hadron.direction === 'up' || hadron.direction === 'north')
           ) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-back`,
+            playerObject.spawnedObjectList[key].sprite.anims.play(
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-back`,
               true,
             );
           } else if (
             playerObject.spawnedObjectList[
-              gamePiece.id
+              key
             ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-front`,
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-front`,
             ) &&
-            (gamePiece.direction === 'down' || gamePiece.direction === 'south')
+            (hadron.direction === 'down' || hadron.direction === 'south')
           ) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-front`,
+            playerObject.spawnedObjectList[key].sprite.anims.play(
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-front`,
               true,
             );
           } else if (
             playerObject.spawnedObjectList[
-              gamePiece.id
+              key
             ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-stationary`,
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-stationary`,
             )
           ) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.anims.play(
-              `${
-                playerObject.spawnedObjectList[gamePiece.id].spriteData.name
-              }-move-stationary`,
+            playerObject.spawnedObjectList[key].sprite.anims.play(
+              `${playerObject.spawnedObjectList[key].spriteData.name}-move-stationary`,
               true,
             );
           }
@@ -731,32 +709,40 @@ const sceneFactory = ({
           // Easing demonstrations:
           // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
 
-          this.tweens.add({
-            targets: playerObject.spawnedObjectList[gamePiece.id].sprite,
-            x: gamePiece.x,
-            y: gamePiece.y,
-            duration: 1, // Adjust this to be smooth without being too slow.
-            ease: 'Linear', // Anything else is wonky when tracking server updates.
-          });
+          // TODO: I think this needs to actually move now, but it works.
+          // Only do this for other player's objects,
+          // and my shadow.
+          if (
+            hadron.owner !== playerObject.playerId ||
+            key === playerObject.playerId
+          ) {
+            this.tweens.add({
+              targets: playerObject.spawnedObjectList[key].sprite,
+              x: hadron.x,
+              y: hadron.y,
+              duration: 1, // Adjust this to be smooth without being too slow.
+              ease: 'Linear', // Anything else is wonky when tracking server updates.
+            });
+          }
         } else if (
-          playerObject.spawnedObjectList[gamePiece.id] &&
-          playerObject.spawnedObjectList[gamePiece.id].sprite
+          playerObject.spawnedObjectList[key] &&
+          playerObject.spawnedObjectList[key].sprite
         ) {
           // Destroy any sprites left over from incorrect scenes
-          if (playerObject.spawnedObjectList[gamePiece.id].sprite) {
-            playerObject.spawnedObjectList[gamePiece.id].sprite.destroy();
+          if (playerObject.spawnedObjectList[key].sprite) {
+            playerObject.spawnedObjectList[key].sprite.destroy();
           }
           // and wipe their data so we do not see it anymore.
-          playerObject.spawnedObjectList[gamePiece.id] = null;
+          playerObject.spawnedObjectList[key] = null;
         }
 
         // Add game piece data to object for use elsewhere later
         // (I'm not 100% sure what this is for anymore.
         if (
-          playerObject.spawnedObjectList.hasOwnProperty(gamePiece.id) &&
-          playerObject.spawnedObjectList[gamePiece.id]
+          playerObject.spawnedObjectList.hasOwnProperty(key) &&
+          playerObject.spawnedObjectList[key]
         ) {
-          playerObject.spawnedObjectList[gamePiece.id].gamePiece = gamePiece;
+          playerObject.spawnedObjectList[key].hadron = hadron;
         }
       }
     });
@@ -765,16 +751,16 @@ const sceneFactory = ({
 
   function removeDespawnedObjects(activeObjectList) {
     // Remove de-spawned objects
-    for (const property in playerObject.spawnedObjectList) {
+    for (const key in playerObject.spawnedObjectList) {
       if (
-        playerObject.spawnedObjectList.hasOwnProperty(property) &&
-        playerObject.spawnedObjectList[property] &&
-        activeObjectList.indexOf(property) === -1
+        playerObject.spawnedObjectList.hasOwnProperty(key) &&
+        playerObject.spawnedObjectList[key] &&
+        activeObjectList.indexOf(key) === -1
       ) {
-        if (playerObject.spawnedObjectList[property].sprite) {
-          playerObject.spawnedObjectList[property].sprite.destroy();
+        if (playerObject.spawnedObjectList[key].sprite) {
+          playerObject.spawnedObjectList[key].sprite.destroy();
         }
-        playerObject.spawnedObjectList[property] = null;
+        playerObject.spawnedObjectList[key] = null;
       }
     }
   }
@@ -1121,7 +1107,7 @@ const sceneFactory = ({
 
     updateAnimation();
 
-    sendUpdateToServer(time);
+    const activeObjectList = updateHadrons.call(this);
 
     const activeObjectList = updateGamePieces.call(this);
 

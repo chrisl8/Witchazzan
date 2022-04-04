@@ -117,7 +117,7 @@ const updateInGameDomElements = (htmlElementParameters) => {
     ) {
       // Hearts
       const health =
-        playerObject.spawnedObjectList[playerObject.playerId].gamePiece.health;
+        playerObject.spawnedObjectList[playerObject.playerId].hadron.health;
       let newPlayerTagInnerHTML = '';
       if (health > 99) {
         newPlayerTagInnerHTML = '&#x2764;&#x2764;&#x2764;&#x2764;';
@@ -192,7 +192,7 @@ const updateInGameDomElements = (htmlElementParameters) => {
 
           // Text
           let newInnerHTML = '';
-          if (value.gamePiece.chatOpen) {
+          if (value.hadron.chatOpen) {
             newInnerHTML = '&#x1F4AD;';
           }
           playerObject.domElements.otherPlayerTags[Number(key)].innerHTML =
