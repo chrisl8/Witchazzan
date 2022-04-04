@@ -42,7 +42,7 @@
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "nipplejs": "^0.9.1",
-    "phaser": "^3.55.2",
+    "phaser": "^3.60.0-beta.5",
     "raw-loader": "^4.0.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
