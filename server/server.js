@@ -300,10 +300,10 @@ const throttledSendHadrons = _.throttle(sendHadrons, 50);
 // Socket listeners
 io.on("connection", (socket) => {
   // User cannot do anything until we have their token and have validated it.
-  // The socket connection is entirely unrelated any get/post requests, so we
-  // have to do it again even if they used the /auth POST endpoint.
+  // The socket connection is entirely unrelated to any get/post requests, so we
+  // have to validate the token again even if they used the /auth POST endpoint before.
   // TODO: In theory, if they do not send their token, they remain connected,
-  //       and hence will receive messages, even though nothing they send will
+  //       and hence will receive broadcast messages, even though nothing they send will
   //       be processed. How do we prevent this?
   socket.emit("sendToken");
 

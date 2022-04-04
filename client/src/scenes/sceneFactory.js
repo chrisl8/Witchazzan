@@ -514,10 +514,11 @@ const sceneFactory = ({
       // Because of how things spawn, they all hit me when launched,
       // so if we want to do otherwise we have more work to do.
       return;
+      // TODO: At some point these will matter, such as if I make a boss that shoots at me.
     }
     if (obstacleLayer) {
       // for now despawning silently if we hit a "layer"
-      // TODO: More sophisticated collision detection.
+      // TODO: More sophisticated collision detection. i.e. Maybe fireballs cross over water?
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else if (
@@ -527,14 +528,18 @@ const sceneFactory = ({
     ) {
       // If the obstacle is a hadron, and it has a name, it is a player,
       // so make them say "Oof!"
+      // TODO: Player hadrons should have a better "tag" and we should tag other "things" too to thelp with this.
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
       sendDataToServer.makePlayerSayOff(obstacleSpriteKey);
     } else if (obstacleSpriteKey) {
-      // TODO: Add data to hadrons to help us know if this was a player or something else.
+      // Any sprite collision that wasn't a player
+      // TODO: Obviousy this needs to be more sophisticated.
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else {
+      // I don't think that we will ever get here, but if so, now what? :)
+      // Also this is a good example of how to log out collision events.
       console.log(
         spriteKey,
         sprite,

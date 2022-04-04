@@ -55,6 +55,7 @@ sendDataToServer.playerData = ({ sceneName, x, y }) => {
 sendDataToServer.hadronData = (key) => {
   if (!hadrons.get(key).id === key) {
     // Every hadron must also have the key as an id inside of it.
+    // TODO: Fix it so that isn't required.
     const newHadron = { ...hadrons.get(key), id: key };
     hadrons.set(key, newHadron);
   }
