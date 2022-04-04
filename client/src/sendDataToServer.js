@@ -1,8 +1,12 @@
 /* globals localStorage:true */
+import _ from 'lodash';
 import communicationsObject from './objects/communicationsObject.js';
 import playerObject from './objects/playerObject.js';
+import hadrons from './objects/hadrons.js';
 
 const sendDataToServer = {};
+const sentData = new Map();
+let lastSentPlayerDataObject;
 
 sendDataToServer.chat = (text, targetPlayerId) => {
   if (communicationsObject.socket.connected) {
@@ -29,60 +33,46 @@ sendDataToServer.chat = (text, targetPlayerId) => {
   which is not related to the "hadronData" that will include the player's hadron along with others.
  */
 
-// TODO: We also need to note and send out collisions that happen on our client, so that other players know about it and/or deal with them?
-sendDataToServer.spriteData = ({ sceneName, x, y }) => {
+sendDataToServer.playerData = ({ sceneName, x, y }) => {
   if (communicationsObject.socket.connected) {
-    const obj = {
+    const objectToSend = {
       x,
       y,
       scene: sceneName,
-      // TODO: This needs to work for any injected sprite, not just the player.
       id: playerObject.playerId,
       direction: playerObject.playerDirection,
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
       chatOpen: playerObject.chatOpen,
     };
-    // TODO: This is going to have to change in some way.
-    if (playerObject.sendSpell) {
-      // Only send positive spell, and only send it once.
-      // Otherwise we may overwrite the server's version before it is acted upon.
-      obj.spell = playerObject.spellOptions[playerObject.activeSpellKey];
-      playerObject.sendSpell = false;
+    if (!_.isEqual(objectToSend, lastSentPlayerDataObject)) {
+      communicationsObject.socket.emit('hadronData', objectToSend);
+      lastSentPlayerDataObject = { ...objectToSend };
     }
-    // TODO: This is going to have to change in some way.
-    if (playerObject.force) {
-      // Always reset this to false
-      obj.force = false;
-      playerObject.force = false;
-    }
-    // Only send data if it has changed,
-    // and only send the actual keys that have changed.
-    // This saves bandwidth and server CPU cycles,
-    // as well as avoids some race conditions on ths server.
-    const objectToSend = {};
-    Object.entries(obj).forEach(([key, value]) => {
-      if (
-        playerObject.lastSentPlayerDataObject[key] === undefined ||
-        playerObject.lastSentPlayerDataObject[key] !== obj[key] ||
-        // TODO: This is going to have to change in some way.
-        // The client needs to send force: false EVERY time it gets a force: true
-        // from the server, even if it sent force: false already in the last packet.
-        key === 'force'
-      ) {
-        objectToSend[key] = value;
-      }
-    });
-    if (Object.keys(objectToSend).length > 0) {
-      // Only send data if it has changed,
-      // rather than wasting bandwidth and
-      // the server's CPU cycles.
-      // Must ALWAYS send the id
-      objectToSend.id = obj.id;
-      communicationsObject.socket.emit('spriteData', objectToSend);
-    }
-    playerObject.lastSentPlayerDataObject = obj;
   }
+};
+
+sendDataToServer.hadronData = (key) => {
+  if (!hadrons.get(key).id === key) {
+    // Every hadron must also have the key as an id inside of it.
+    const newHadron = { ...hadrons.get(key), id: key };
+    hadrons.set(key, newHadron);
+  }
+  if (
+    communicationsObject.socket.connected &&
+    (!sentData.has(key) || !_.isEqual(sentData.get(key), hadrons.get(key)))
+  ) {
+    sentData.set(key, hadrons.get(key));
+    communicationsObject.socket.emit('hadronData', hadrons.get(key));
+  }
+};
+
+sendDataToServer.destroyHadron = (key) => {
+  communicationsObject.socket.emit('destroyHadron', key);
+};
+
+sendDataToServer.makePlayerSayOff = (key) => {
+  communicationsObject.socket.emit('makePlayerSayOff', key);
 };
 
 sendDataToServer.token = () => {

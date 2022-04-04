@@ -1,6 +1,7 @@
 /* globals window:true */
 /* globals localStorage:true */
 /* globals document:true */
+/* globals crypto:true */
 import Phaser from 'phaser';
 import playerObject from '../objects/playerObject.js';
 import textObject from '../objects/textObject.js';
@@ -31,11 +32,10 @@ const sceneFactory = ({
   gameSize, // TODO: Is this required if the camera always covers the entire scene?
   htmlElementParameters = {},
 }) => {
-  const serverUpdateInterval = 40; // TODO: Move to some config file.
   const scene = new Phaser.Scene(sceneName);
   let map;
   let tileset; // TODO: Bad form having both a tileSet and tileset variable!
-  let lastServerUpdate = 0;
+  let collisionLayer;
 
   // eslint-disable-next-line func-names
   scene.preload = function () {
@@ -177,6 +177,39 @@ const sceneFactory = ({
     }
   }
 
+  // TODO: This is the first sprite to be inserted into the new game!
+  //       Use this as an example/template!
+  function castSpell() {
+    // TODO: There should be some way to pick what spell/sprite is used.
+    //       probably from an object with setting that are easy to edit.
+    const newHadronId = crypto.randomUUID();
+    const direction = playerObject.playerDirection;
+    const velocity = 150;
+    let velocityX = 0;
+    let velocityY = 0;
+    if (direction === 'left') {
+      velocityX = -velocity;
+    } else if (direction === 'right') {
+      velocityX = velocity;
+    } else if (direction === 'up') {
+      velocityY = -velocity;
+    } else if (direction === 'down') {
+      velocityY = velocity;
+    }
+
+    hadrons.set(newHadronId, {
+      id: newHadronId, // Unfortunately each hadron must also hold it's ID internally.
+      owner: playerObject.playerId,
+      sprite: 'fireball',
+      x: playerObject.player.x,
+      y: playerObject.player.y,
+      direction,
+      scene: sceneName,
+      velocityX,
+      velocityY,
+    });
+  }
+
   function hotKeyHandler() {
     // Return to intro text
     if (playerObject.keyState.p === 'keydown') {
@@ -213,7 +246,7 @@ const sceneFactory = ({
     // Send default Spell with spacebar
     if (playerObject.keyState[' '] === 'keydown') {
       playerObject.keyState[' '] = null;
-      playerObject.sendSpell = true;
+      castSpell.call(this);
     }
   }
 
@@ -409,20 +442,7 @@ const sceneFactory = ({
     }
   }
 
-  function sendUpdateToServer(time) {
-    if (time - lastServerUpdate > serverUpdateInterval) {
-      lastServerUpdate = time;
-      // TODO: Do this for EACH sprite that we are in charge of.
-      sendDataToServer.spriteData({
-        id: playerObject.id,
-        sceneName,
-        x: playerObject.player.x,
-        y: playerObject.player.y,
-      });
-    }
-  }
-
-  function renderDebugDotTrails(gamePiece) {
+  function renderDebugDotTrails(hadron, key) {
     if (playerObject.dotTrailsOn) {
       // Use this to track the server location of objects on the screen across time.
       // It is activated with 't'
@@ -481,7 +501,52 @@ const sceneFactory = ({
     }
   }
 
-  function addNewSprites(gamePiece) {
+  function spriteCollisionHandler({
+    spriteKey,
+    sprite,
+    obstacleLayerName,
+    obstacleLayer,
+    obstacleSpriteKey,
+    obstacleSprite,
+  }) {
+    if (obstacleSpriteKey === playerObject.playerId) {
+      // Ignore things that I created that hit myself. For now.
+      // Because of how things spawn, they all hit me when launched,
+      // so if we want to do otherwise we have more work to do.
+      return;
+    }
+    if (obstacleLayer) {
+      // for now despawning silently if we hit a "layer"
+      // TODO: More sophisticated collision detection.
+      sendDataToServer.destroyHadron(spriteKey);
+      hadrons.delete(spriteKey);
+    } else if (
+      obstacleSpriteKey &&
+      hadrons.has(obstacleSpriteKey) &&
+      hadrons.get(obstacleSpriteKey).name
+    ) {
+      // If the obstacle is a hadron, and it has a name, it is a player,
+      // so make them say "Oof!"
+      sendDataToServer.destroyHadron(spriteKey);
+      hadrons.delete(spriteKey);
+      sendDataToServer.makePlayerSayOff(obstacleSpriteKey);
+    } else if (obstacleSpriteKey) {
+      // TODO: Add data to hadrons to help us know if this was a player or something else.
+      sendDataToServer.destroyHadron(spriteKey);
+      hadrons.delete(spriteKey);
+    } else {
+      console.log(
+        spriteKey,
+        sprite,
+        obstacleLayerName,
+        obstacleLayer,
+        obstacleSpriteKey,
+        obstacleSprite,
+      );
+    }
+  }
+
+  function addNewSprites(hadron, key) {
     let spriteData; // Convenient short variable to hold some data.
 
     // If no `sprite` key is given, no sprite is displayed.
@@ -527,8 +592,59 @@ const sceneFactory = ({
         .sprite(hadron.x, hadron.y, spriteData.name)
         .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
 
-      if (gamePiece.id === playerObject.playerId) {
-        playerObject.spawnedObjectList[gamePiece.id].sprite.tint = 0x000000;
+      if (
+        hadron.owner === playerObject.playerId &&
+        key !== playerObject.playerId
+      ) {
+        // Track collisions for owned sprites.
+        // Collisions with tilemap layer
+        this.physics.add.collider(
+          playerObject.spawnedObjectList[key].sprite,
+          collisionLayer,
+          (sprite, obstacle) => {
+            spriteCollisionHandler({
+              spriteKey: key,
+              sprite,
+              obstacleLayerName: 'collisionLayer',
+              obstacleLayer: obstacle,
+            });
+          },
+        );
+
+        // Collisions with other sprites
+        for (const otherSpriteKey in playerObject.spawnedObjectList) {
+          if (
+            playerObject.spawnedObjectList.hasOwnProperty(otherSpriteKey) &&
+            playerObject.spawnedObjectList[otherSpriteKey] &&
+            playerObject.spawnedObjectList[otherSpriteKey].sprite
+          ) {
+            this.physics.add.collider(
+              playerObject.spawnedObjectList[key].sprite,
+              playerObject.spawnedObjectList[otherSpriteKey].sprite,
+              (sprite, obstacle) => {
+                spriteCollisionHandler({
+                  spriteKey: key,
+                  sprite,
+                  obstacleSpriteKey: otherSpriteKey,
+                  obstacleSprite: obstacle,
+                });
+              },
+            );
+          }
+        }
+
+        // Set velocity on owned sprites
+        playerObject.spawnedObjectList[key].sprite.body.setVelocityX(
+          hadron.velocityX,
+        );
+        playerObject.spawnedObjectList[key].sprite.body.setVelocityY(
+          hadron.velocityY,
+        );
+      }
+
+      // Set the "shadow" of my own player to black.
+      if (key === playerObject.playerId) {
+        playerObject.spawnedObjectList[key].sprite.tint = 0x000000;
       }
 
       // Some sprites don't line up well with their physics object,
@@ -744,6 +860,35 @@ const sceneFactory = ({
         ) {
           playerObject.spawnedObjectList[key].hadron = hadron;
         }
+
+        // TODO: I think this is where to send data to the server.
+        if (
+          hadron.owner === playerObject.playerId &&
+          key !== playerObject.playerId
+        ) {
+          // Update all data on owned hadrons.
+          const newHadronData = { ...hadron };
+          newHadronData.x = playerObject.spawnedObjectList[key].sprite.x;
+          newHadronData.y = playerObject.spawnedObjectList[key].sprite.y;
+          // TODO: I'm not sure how to handle other sprites that we own when we leave the scene.
+          newHadronData.scene = sceneName;
+          if (key === playerObject.playerId) {
+            newHadronData.scene = sceneName;
+            newHadronData.chatOpen = playerObject.chatOpen;
+            newHadronData.moving = !playerObject.playerStopped;
+          }
+          hadrons.set(key, newHadronData);
+
+          // TODO: Anything from here that we are missing?
+          // const obj = {
+          //   id: playerObject.playerId,
+          //   direction: playerObject.playerDirection,
+          //   sprite: playerObject.spriteName,
+          // };
+
+          // Send owned hadron data to server.
+          sendDataToServer.hadronData(key);
+        }
       }
     });
     return activeObjectList;
@@ -807,7 +952,7 @@ const sceneFactory = ({
 
     // We collide with EVERYTHING in this layer. Collision isn't based on tiles themselves,
     // but the layer they are in.
-    const collisionLayer = map
+    collisionLayer = map
       .createLayer('Stuff You Run Into', tileset, 0, 0)
       .setCollisionByExclusion([-1]);
     let waterLayer;
@@ -1109,7 +1254,13 @@ const sceneFactory = ({
 
     const activeObjectList = updateHadrons.call(this);
 
-    const activeObjectList = updateGamePieces.call(this);
+    // Send Player data, which is unique
+    sendDataToServer.playerData({
+      id: playerObject.id,
+      sceneName,
+      x: playerObject.player.x,
+      y: playerObject.player.y,
+    });
 
     removeDespawnedObjects(activeObjectList);
 

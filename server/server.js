@@ -6,7 +6,7 @@ import sqlite3 from "sqlite3";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Server } from "socket.io";
-import msgpackparser from "socket.io-msgpack-parser";
+import msgpackParser from "socket.io-msgpack-parser";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { randomUUID, randomBytes } from "crypto";
@@ -82,39 +82,46 @@ db.query = function (sql, params) {
   });
 };
 
-// Create an empty sprites Map for game state.
-const sprites = new Map();
+// Create an empty hadrons Map for game state.
+const hadrons = new Map();
 // Create an empty connectedPlayerData Map for player information.
 const connectedPlayerData = new Map();
-// Load saved game state into inactiveSprites. They are all inactive until players join.
-let inactiveSprites;
+// Load saved game state into inactiveHadrons. They are all inactive until players join.
+let inactiveHadrons;
 try {
-  inactiveSprites = await persistentData.readMap(
-    `${persistentDataFolder}/sprites.json5`
+  inactiveHadrons = await persistentData.readMap(
+    `${persistentDataFolder}/hadrons.json5`
   );
 } catch (error) {
   // File not existing will just return an empty Map to start using.
   // So an actual error is something worse, like the file being corrupted.
   process.exit(1);
 }
-// TODO: On load wipe any sprites that are owned by users no longer in the database so that deleting a user doesn't leave orphaned sprites.
+// TODO: On load wipe any hadrons that are owned by users no longer in the database so that deleting a user doesn't leave orphaned hadrons.
 
 async function saveGameStateToDisk() {
-  // Combine active and inactive sprites into one list Map for saving.
-  const spritesToSave = new Map();
-  inactiveSprites.forEach((sprite, key) => {
-    spritesToSave.set(key, sprite);
+  // Combine active and inactive hadrons into one list Map for saving.
+  const hadronsToSave = new Map();
+  inactiveHadrons.forEach((hadron, key) => {
+    hadronsToSave.set(key, hadron);
   });
-  sprites.forEach((sprite, key) => {
-    spritesToSave.set(key, sprite);
+  hadrons.forEach((hadron, key) => {
+    hadronsToSave.set(key, hadron);
   });
   // TODO: Call a debounced function to update the game state files.
   await persistentData.writeMap(
-    `${persistentDataFolder}/sprites.json5`,
-    spritesToSave
+    `${persistentDataFolder}/hadrons.json5`,
+    hadronsToSave
   );
+  console.log("Game state saved to disk.");
 }
+const throttledSaveGameStateToDisk = _.throttle(
+  saveGameStateToDisk,
+  serverConfiguration.gameStateSaveInterval
+);
 
+// Invoke immediately to ensure data is saved and formatted correctly,
+// in case it was edited by hand while the server was not running.
 await saveGameStateToDisk();
 
 // Database functions start here, because they must be inside of an async function to work.
@@ -155,7 +162,7 @@ app.use(bodyParser.json());
 
 const webServer = app.listen(webserverPort);
 const io = new Server(webServer, {
-  parser: msgpackparser,
+  parser: msgpackParser, // TODO: I'm not sure if this is faster/better or not. Test?
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -295,9 +302,12 @@ io.on("connection", (socket) => {
   // User cannot do anything until we have their token and have validated it.
   // The socket connection is entirely unrelated any get/post requests, so we
   // have to do it again even if they used the /auth POST endpoint.
+  // TODO: In theory, if they do not send their token, they remain connected,
+  //       and hence will receive messages, even though nothing they send will
+  //       be processed. How do we prevent this?
   socket.emit("sendToken");
 
-  // Nothin gelse is available until they have authenticated.
+  // Nothing else is available until they have authenticated.
   socket.on("token", async (token) => {
     try {
       const decoded = await validateJWT(
@@ -333,19 +343,19 @@ io.on("connection", (socket) => {
         }, 1000);
       }
 
-            // Add user to list of connected players
-            connectedPlayerData.set(id, {
-              id,
-              name,
-            });
+      // Add user to list of connected players
+      connectedPlayerData.set(id, {
+        id,
+        name,
+      });
 
-            // Resurrect all inactive sprites owned by this user.
-            inactiveSprites.forEach((sprite, key) => {
-              if (sprite.owner === id) {
-                sprites.set(key, sprite);
-                inactiveSprites.delete(key);
-              }
-            });
+      // Resurrect all inactive hadrons owned by this user.
+      inactiveHadrons.forEach((hadron, key) => {
+        if (hadron.owner === id) {
+          hadrons.set(key, hadron);
+          inactiveHadrons.delete(key);
+        }
+      });
 
       // If no hadron for the user exists, create one.
       // TODO: Player should be able to pick their sprite though.
@@ -363,118 +373,133 @@ io.on("connection", (socket) => {
 
       throttledSendHadrons();
 
-            // Announce new players.
-            socket.broadcast.emit("chat", {
-              content: `${name} has joined the game!`,
-            });
+      // Announce new players.
+      socket.broadcast.emit("chat", {
+        content: `${name} has joined the game!`,
+      });
 
-            socket.on("chat", (data) => {
-              // TODO: Implement chat targeting a specific user.
-              // TODO: Implement per room/scene chat.
-              socket.broadcast.emit("chat", {
-                name,
-                content: data.text,
-              });
-            });
+      socket.on("chat", (data) => {
+        // TODO: Implement chat targeting a specific user.
+        // TODO: Implement per room/scene chat.
+        socket.broadcast.emit("chat", {
+          name,
+          content: data.text,
+        });
+        // Send back to user also.
+        // TODO: Create a more elegant solution.
+        socket.emit("chat", {
+          name,
+          content: data.text,
+        });
+      });
 
-            socket.on("spriteData", (data) => {
-              // TODO: Implement this.
-              /*
-                  TODO:
-                  Instead of "playerData" think this should be spriteData, and it will be anything.
-                  The clients all have the ability to spawn, update, and destroy sprites anywhere they please.
-                  The server will take this data and consolidate it into a game status object.
-                  When any of 1. A player joins, 2. A player leaves, 3. A player sends us a spriteData then:
-                   - The server will use a debounce to send this data bundle to all clients. So the debounce rate will be the effective "frame rate" of the server, but it also will be quiet if nothing is happening.
+      socket.on("makePlayerSayOff", (key) => {
+        if (hadrons.has(key) && hadrons.get(key).name) {
+          socket.broadcast.emit("chat", {
+            name: hadrons.get(key).name,
+            content: "Oof!",
+          });
+          socket.emit("chat", {
+            name: hadrons.get(key).name,
+            content: "Oof!",
+          });
+        }
+      });
 
-                   The server MAY or MAY NOT, haven't decided yet, cull the data bundle that is sent to each client, i.e. only send a client data for the scene that they are in? Or maybe a broadcast of the entire bundle is fine too?
+      socket.on("hadronData", (data) => {
+        // TODO: Implement this.
+        /*
+            TODO:
+            Instead of "playerData" think this should be hadronData, and it will be anything.
+            The clients all have the ability to spawn, update, and destroy hadrons anywhere they please.
+            The server will take this data and consolidate it into a game status object.
+            When any of 1. A player joins, 2. A player leaves, 3. A player sends us a hadronData then:
+             - The server will use a debounce to send this data bundle to all clients. So the debounce rate will be the effective "frame rate" of the server, but it also will be quiet if nothing is happening.
 
-                   NOTE: There should still be "playerData" that includes at least the scene they are in, because we don't actually know which sprite is "them" from the incoming spriteData, but we want to know that,
-                   we also want to be able to act on things like send chat messages only to players who are "in" a given scene, without specifically knowing what sprite is "them".
-                   */
+             The server MAY or MAY NOT, haven't decided yet, cull the data bundle that is sent to each client, i.e. only send a client data for the scene that they are in? Or maybe a broadcast of the entire bundle is fine too?
 
-              // TODO: Update not only personal player data, but any sprite they care to spawn, update, or destroy.
-              // TODO: When we load the game state, wipe any data in it for owner UUID's that do not exist in the database, such that deleting your account also wipes all your data.
-              // TODO: Owner ID and Sprite ID should not be the same.
-              // Look for an existing sprite already in our data that matches the incoming sprite ID,
-              // and has the owner's id on it.
-              const existingSprite = sprites.get(data.id);
+             NOTE: There should still be "playerData" that includes at least the scene they are in, because we don't actually know which hadron is "them" from the incoming hadronData, but we want to know that,
+             we also want to be able to act on things like send chat messages only to players who are "in" a given scene, without specifically knowing what hadron is "them".
+             */
 
-              // You cannot update other people's sprites.
-              if (!existingSprite || existingSprite.owner === id) {
-                const newSpriteData = { ...data };
+        // TODO: Update not only personal player data, but any hadron they care to spawn, update, or destroy.
+        // TODO: When we load the game state, wipe any data in it for owner UUID's that do not exist in the database, such that deleting your account also wipes all your data.
+        // TODO: Owner ID and Hadron ID should not be the same.
+        // Look for an existing hadron already in our data that matches the incoming hadron ID,
+        // and has the owner's id on it.
+        const existingHadron = hadrons.get(data.id);
 
-                // If we found an existing sprite, use it to fill in data from the incoming sprite data.
-                if (existingSprite) {
-                  for (const key in existingSprite) {
-                    if (!newSpriteData.hasOwnProperty(key)) {
-                      newSpriteData[key] = existingSprite[key];
-                    }
-                  }
-                }
+        // You cannot update other people's hadrons.
+        if (!existingHadron || existingHadron.owner === id) {
+          const newHadronData = { ...data };
 
-                // The user's authenticated GUID is ALWAYS the owner of sprites they send. You cannot set an alternate owner on a sprite that you created. You also don't need to include the owner id, as it will be added automatically.
-                newSpriteData.owner = id;
-
-                // Discard sprites that are missing required data.
-                // TODO: Make an array of required fields to always check before adding.
-                if (
-                  newSpriteData.x &&
-                  newSpriteData.y &&
-                  newSpriteData.scene &&
-                  newSpriteData.sprite
-                ) {
-                  sprites.set(data.id, newSpriteData);
-                }
-
-                // TODO: Should this be a debounced function? And should it ignore the player's own data?
-                // TODO: Note that socket has the idea of "rooms" too which could be leveraged to deal with scenes.
-                // https://socket.io/docs/v3/emit-cheatsheet/
-                socket.broadcast.emit(
-                  "sprites",
-                  JSON.stringify(sprites, jsonMapStringify.replacer)
-                );
-                // broadcast skips the sender, so we need to add them, because they need to update their shadow, although in theory they don't need the entire sprite data!
-                socket.emit(
-                  "sprites",
-                  JSON.stringify(sprites, jsonMapStringify.replacer)
-                );
+          // If we found an existing hadron, use it to fill in data from the incoming hadron data.
+          if (existingHadron) {
+            for (const key in existingHadron) {
+              if (!newHadronData.hasOwnProperty(key)) {
+                newHadronData[key] = existingHadron[key];
               }
-            });
+            }
+          }
 
-            socket.on("command", (data) => {
-              // TODO: Implement this.
-              console.log("command");
-              console.log(data);
-            });
+          // The user's authenticated GUID is ALWAYS the owner of hadrons they send. You cannot set an alternate owner on a hadron that you created. You also don't need to include the owner id, as it will be added automatically.
+          newHadronData.owner = id;
 
-            socket.on("disconnect", () => {
-              connectedPlayerData.delete(id);
+          // Discard hadrons that are missing required data.
+          // TODO: Make an array of required fields to always check before adding.
+          if (
+            newHadronData.x &&
+            newHadronData.y &&
+            newHadronData.scene &&
+            newHadronData.sprite
+          ) {
+            hadrons.set(data.id, newHadronData);
+          }
 
-              // Announce new players.
-              socket.broadcast.emit("chat", {
-                content: `${name} has left the game. :'(`,
-              });
+          throttledSendHadrons();
+        }
+        throttledSaveGameStateToDisk();
+      });
 
-              // Archive all sprites owned by this user.
-              sprites.forEach((sprite, key) => {
-                if (sprite.owner === id) {
-                  inactiveSprites.set(key, sprite);
-                  sprites.delete(key);
-                }
-              });
-              socket.broadcast.emit(
-                "sprites",
-                JSON.stringify(sprites, jsonMapStringify.replacer)
-              );
+      socket.on("destroyHadron", (key) => {
+        // You cannot update other people's hadrons.
+        if (hadrons.has(key) && hadrons.get(key).owner === id) {
+          hadrons.delete(key);
+          throttledSendHadrons();
+          throttledSaveGameStateToDisk();
+        }
+      });
 
-              // TODO: Instead of just doing this, use a debounce,
-              //       and save it every time it is updated,
-              //       both on sprite and disconnect events,
-              //       but use debounce to make it actually only like once a minute.
-              saveGameStateToDisk();
+      socket.on("command", (data) => {
+        // TODO: Implement this.
+        console.log("command");
+        console.log(data);
+      });
+
+      socket.on("disconnect", () => {
+        connectedPlayerData.delete(id);
+
+        // Announce new players.
+        socket.broadcast.emit("chat", {
+          content: `${name} has left the game. :'(`,
+        });
+
+        // Archive all hadrons owned by this user.
+        hadrons.forEach((hadron, key) => {
+          if (hadron.owner === id) {
+            inactiveHadrons.set(key, hadron);
+            hadrons.delete(key);
+          }
+        });
+        socket.broadcast.emit(
+          "hadrons",
+          JSON.stringify(hadrons, jsonMapStringify.replacer)
+        );
 
         console.log(`${name} disconnected`);
+        // We do not need to request a save on disconnect,
+        // because the save data assumes every player is offline,
+        // because they are when the server is starting up.
       });
     } catch (e) {
       console.log("Failed to authenticate token.");
@@ -489,18 +514,31 @@ io.on("connection", (socket) => {
   });
 });
 
-console.log(`Witchazzan server is running`);
+setTimeout(() => {
+  // A welcome message for clients already waiting to connect when the server starts.
+  io.sockets.emit("chat", {
+    content: "Welcome. The Small Hadron Cooperator has recently started.",
+  });
+}, 2000); // Hopefully enough delay for the clients to all be ready.
+
+console.log(`Small Hadron Cooperator is running`);
 
 async function closeServer() {
-  console.log("Witchazzan shutdown requested:");
+  console.log("Shutdown requested:");
+  io.sockets.emit("chat", {
+    content: "The Small Hadron Cooperator is shutting down.",
+  });
   console.log("Disconnecting users and giving them a mo...");
   io.close();
   await wait(1000);
-  console.log("Saving game data to disk...");
+  console.log("Saving game state (hadrons) to disk...");
+  // Flush would only run it if it was requested, so we cancel and force it,
+  // although in theory if flush didn't call it, no changes were made.
+  await throttledSaveGameStateToDisk.cancel();
   await saveGameStateToDisk();
   console.log("Closing Database...");
   await db.close();
-  console.log("Witchazzan is going poof! Bye.\n\n");
+  console.log("Small Hadron Cooperator is going poof! Bye.\n\n");
   process.exit();
 }
 
