@@ -31,9 +31,9 @@
   },
   "dependencies": {
     "@babel/core": "^7.10.5",
+    "@babel/eslint-parser": "^7.16.3",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.7",
-    "@babel/eslint-parser": "^7.16.3",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
@@ -41,6 +41,7 @@
     "file-loader": "^6.0.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "lodash": "^4.17.21",
     "nipplejs": "^0.9.1",
     "phaser": "^3.60.0-beta.5",
     "raw-loader": "^4.0.0",
