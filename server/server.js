@@ -316,16 +316,15 @@ io.on("connection", (socket) => {
         db
       );
       // We now know that we have a valid authenticated user!
-      const name = decoded.name;
-      const id = decoded.id;
-      console.log(`${name} connected`);
-      // TODO: Nesting all of this in here is annoying!
+      const PlayerName = decoded.name;
+      const PlayerId = decoded.id;
+      console.log(`${PlayerName} connected`);
 
       // TODO: Probably don't need 3 "init" packets. One would do.
       socket.emit("welcome");
       // TODO: I'm not sure if this is required, and it certainly has to be a legit unique ID!
       socket.emit("identity", {
-        id,
+        id: PlayerId,
       });
       // The local client won't start the game until this is received and parsed.
       let connectedPlayerList = [];
@@ -344,14 +343,14 @@ io.on("connection", (socket) => {
       }
 
       // Add user to list of connected players
-      connectedPlayerData.set(id, {
-        id,
-        name,
+      connectedPlayerData.set(PlayerId, {
+        id: PlayerId,
+        name: PlayerName,
       });
 
       // Resurrect all inactive hadrons owned by this user.
       inactiveHadrons.forEach((hadron, key) => {
-        if (hadron.owner === id) {
+        if (hadron.owner === PlayerId) {
           hadrons.set(key, hadron);
           inactiveHadrons.delete(key);
         }
@@ -359,15 +358,15 @@ io.on("connection", (socket) => {
 
       // If no hadron for the user exists, create one.
       // TODO: Player should be able to pick their sprite though.
-      if (!hadrons.get(id)) {
-        hadrons.set(id, {
-          id, // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
-          owner: id,
+      if (!hadrons.get(PlayerId)) {
+        hadrons.set(PlayerId, {
+          id: PlayerId, // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
+          owner: PlayerId,
           x: 0,
           y: 0,
           scene: "LoruleH8",
           sprite: "bloomby",
-          name,
+          name: PlayerName,
         });
       }
 
@@ -375,20 +374,20 @@ io.on("connection", (socket) => {
 
       // Announce new players.
       socket.broadcast.emit("chat", {
-        content: `${name} has joined the game!`,
+        content: `${PlayerName} has joined the game!`,
       });
 
       socket.on("chat", (data) => {
         // TODO: Implement chat targeting a specific user.
         // TODO: Implement per room/scene chat.
         socket.broadcast.emit("chat", {
-          name,
+          name: PlayerName,
           content: data.text,
         });
         // Send back to user also.
         // TODO: Create a more elegant solution.
         socket.emit("chat", {
-          name,
+          name: PlayerName,
           content: data.text,
         });
       });
@@ -430,7 +429,7 @@ io.on("connection", (socket) => {
         const existingHadron = hadrons.get(data.id);
 
         // You cannot update other people's hadrons.
-        if (!existingHadron || existingHadron.owner === id) {
+        if (!existingHadron || existingHadron.owner === PlayerId) {
           const newHadronData = { ...data };
 
           // If we found an existing hadron, use it to fill in data from the incoming hadron data.
@@ -443,7 +442,7 @@ io.on("connection", (socket) => {
           }
 
           // The user's authenticated GUID is ALWAYS the owner of hadrons they send. You cannot set an alternate owner on a hadron that you created. You also don't need to include the owner id, as it will be added automatically.
-          newHadronData.owner = id;
+          newHadronData.owner = PlayerId;
 
           // Discard hadrons that are missing required data.
           // TODO: Make an array of required fields to always check before adding.
@@ -463,7 +462,7 @@ io.on("connection", (socket) => {
 
       socket.on("destroyHadron", (key) => {
         // You cannot update other people's hadrons.
-        if (hadrons.has(key) && hadrons.get(key).owner === id) {
+        if (hadrons.has(key) && hadrons.get(key).owner === PlayerId) {
           hadrons.delete(key);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
@@ -477,16 +476,16 @@ io.on("connection", (socket) => {
       });
 
       socket.on("disconnect", () => {
-        connectedPlayerData.delete(id);
+        connectedPlayerData.delete(PlayerId);
 
         // Announce new players.
         socket.broadcast.emit("chat", {
-          content: `${name} has left the game. :'(`,
+          content: `${PlayerName} has left the game. :'(`,
         });
 
         // Archive all hadrons owned by this user.
         hadrons.forEach((hadron, key) => {
-          if (hadron.owner === id) {
+          if (hadron.owner === PlayerId) {
             inactiveHadrons.set(key, hadron);
             hadrons.delete(key);
           }
@@ -496,7 +495,7 @@ io.on("connection", (socket) => {
           JSON.stringify(hadrons, jsonMapStringify.replacer)
         );
 
-        console.log(`${name} disconnected`);
+        console.log(`${PlayerName} disconnected`);
         // We do not need to request a save on disconnect,
         // because the save data assumes every player is offline,
         // because they are when the server is starting up.
