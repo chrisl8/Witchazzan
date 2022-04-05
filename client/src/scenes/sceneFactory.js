@@ -729,7 +729,8 @@ const sceneFactory = ({
               spriteData.displayWidth * (hadron.energy / 100);
           }
 
-          // Use Game Piece direction to set hadron rotation or flip it
+          // SET SPRITE ROTATION BASED ON HADRON DATA
+          // Use Hadron direction to set sprite rotation or flip it
           if (playerObject.spawnedObjectList[key].spriteData.rotatable) {
             // Rotate hadron to face requested direction.
             if (hadron.direction === 'left' || hadron.direction === 'west') {
@@ -767,8 +768,11 @@ const sceneFactory = ({
             );
           }
 
+          // SET SPRITE ANIMATION BASED ON HADRON DATA
           // The only way to know if the remote item is in motion is for the server to tell us
           //       We cannot divine it, because the local tick is always faster than the server update.
+          // This only matters in that we like to animate the sprite when it is "in motion", but not when it is still,
+          // i.e. when a user is "walking", even into a wall, it is nice to see it animated, to indicate it is walking.
           let objectInMotion = true; // Default to animate if server does not tell us otherwise.
           if (hadron.moving === false) {
             objectInMotion = false;
@@ -836,12 +840,12 @@ const sceneFactory = ({
             );
           }
 
+          // PERFORM EASING ON HADRONS BEING CONTROLLED BY OTHER PLAYERS
+          // i.e. If the hadron is ours, we set velocities, and that does this for us,
+          // but if we are just updating x/y positions, we need this to make it smooth.
           // Easing demonstrations:
           // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
-
-          // TODO: I think this needs to actually move now, but it works.
-          // Only do this for other player's objects,
-          // and my shadow.
+          // Only do this for other player's objects, and my shadow.
           if (
             hadron.owner !== playerObject.playerId ||
             key === playerObject.playerId
@@ -875,7 +879,7 @@ const sceneFactory = ({
           playerObject.spawnedObjectList[key].hadron = hadron;
         }
 
-        // Send hadron data to the server
+        // SEND HADRON DATA TO THE SERVER
         if (
           hadron.owner === playerObject.playerId &&
           key !== playerObject.playerId
@@ -900,13 +904,6 @@ const sceneFactory = ({
             newHadronData.moving = !playerObject.playerStopped;
           }
           hadrons.set(key, newHadronData);
-
-          // TODO: Anything from here that we are missing?
-          // const obj = {
-          //   id: playerObject.playerId,
-          //   direction: playerObject.playerDirection,
-          //   sprite: playerObject.spriteName,
-          // };
 
           // Send owned hadron data to server.
           sendDataToServer.hadronData(key);
