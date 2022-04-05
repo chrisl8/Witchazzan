@@ -359,6 +359,7 @@ io.on("connection", (socket) => {
       // If no hadron for the user exists, create one.
       // TODO: Player should be able to pick their sprite though.
       if (!hadrons.get(PlayerId)) {
+        // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
         hadrons.set(PlayerId, {
           id: PlayerId, // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
           owner: PlayerId,
@@ -431,15 +432,6 @@ io.on("connection", (socket) => {
         // You cannot update other people's hadrons.
         if (!existingHadron || existingHadron.owner === PlayerId) {
           const newHadronData = { ...data };
-
-          // If we found an existing hadron, use it to fill in data from the incoming hadron data.
-          if (existingHadron) {
-            for (const key in existingHadron) {
-              if (!newHadronData.hasOwnProperty(key)) {
-                newHadronData[key] = existingHadron[key];
-              }
-            }
-          }
 
           // The user's authenticated GUID is ALWAYS the owner of hadrons they send. You cannot set an alternate owner on a hadron that you created. You also don't need to include the owner id, as it will be added automatically.
           newHadronData.owner = PlayerId;
