@@ -880,6 +880,7 @@ const sceneFactory = ({
         }
 
         // SEND HADRON DATA TO THE SERVER
+        // We skip our own player, because it has special requirements.
         if (
           hadron.owner === playerObject.playerId &&
           key !== playerObject.playerId
@@ -897,12 +898,6 @@ const sceneFactory = ({
             newHadronData.y = playerObject.spawnedObjectList[key].sprite.y;
           }
 
-          // My player hadron ALWAYS follows me, unlike other hadrons.
-          if (key === playerObject.playerId) {
-            newHadronData.scene = sceneName;
-            newHadronData.chatOpen = playerObject.chatOpen;
-            newHadronData.moving = !playerObject.playerStopped;
-          }
           hadrons.set(key, newHadronData);
 
           // Send owned hadron data to server.
@@ -1280,10 +1275,7 @@ const sceneFactory = ({
 
     // Send Player data, which is unique
     sendDataToServer.playerData({
-      id: playerObject.id,
       sceneName,
-      x: playerObject.player.x,
-      y: playerObject.player.y,
     });
 
     removeDespawnedObjects(activeObjectList);

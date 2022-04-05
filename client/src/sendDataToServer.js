@@ -33,11 +33,12 @@ sendDataToServer.chat = (text, targetPlayerId) => {
   which is not related to the "hadronData" that will include the player's hadron along with others.
  */
 
-sendDataToServer.playerData = ({ sceneName, x, y }) => {
+sendDataToServer.playerData = ({ sceneName }) => {
   if (communicationsObject.socket.connected) {
     const objectToSend = {
-      x,
-      y,
+      name: playerObject.name,
+      x: playerObject.player.x,
+      y: playerObject.player.y,
       scene: sceneName,
       id: playerObject.playerId,
       direction: playerObject.playerDirection,

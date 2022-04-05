@@ -49,6 +49,7 @@ function receiveDataFromServer() {
   });
   communicationsObject.socket.on('init', (inputData) => {
     playerObject.playerId = inputData.id;
+    playerObject.name = inputData.name;
     textObject.connectingText.shouldBeActiveNow = false;
     textObject.reconnectingText.shouldBeActiveNow = false;
     textObject.notConnectedCommandResponse.shouldBeActiveNow = false;

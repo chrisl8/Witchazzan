@@ -8,6 +8,7 @@
  *
  */
 const playerObject = {
+  name: null,
   disableCameraZoom: false,
   initialPositionReceived: false,
   helpTextVersion: 12, // Increment this to force players to see the Instructions again.

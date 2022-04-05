@@ -324,6 +324,7 @@ io.on("connection", (socket) => {
       // This also servers as the "game is read" "init" message to the client.
       socket.emit("init", {
         id: PlayerId,
+        name: PlayerName,
       });
 
       // The local client won't start the game until they receive
