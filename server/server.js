@@ -387,7 +387,11 @@ io.on("connection", (socket) => {
           content: data.text,
         });
         // Send back to user also.
-        // TODO: Create a more elegant solution.
+        // TODO: Create a more elegant solution to seeing your own chats,
+        //       including colorizing them.
+        // It is nice to use the server to echo them back, to help you know that it is working,
+        // and in theory give you a better sense of what order the messages actually show up in
+        // for everybody else.
         socket.emit("chat", {
           name: PlayerName,
           content: data.text,
@@ -408,24 +412,6 @@ io.on("connection", (socket) => {
       });
 
       socket.on("hadronData", (data) => {
-        // TODO: Implement this.
-        /*
-            TODO:
-            Instead of "playerData" think this should be hadronData, and it will be anything.
-            The clients all have the ability to spawn, update, and destroy hadrons anywhere they please.
-            The server will take this data and consolidate it into a game status object.
-            When any of 1. A player joins, 2. A player leaves, 3. A player sends us a hadronData then:
-             - The server will use a debounce to send this data bundle to all clients. So the debounce rate will be the effective "frame rate" of the server, but it also will be quiet if nothing is happening.
-
-             The server MAY or MAY NOT, haven't decided yet, cull the data bundle that is sent to each client, i.e. only send a client data for the scene that they are in? Or maybe a broadcast of the entire bundle is fine too?
-
-             NOTE: There should still be "playerData" that includes at least the scene they are in, because we don't actually know which hadron is "them" from the incoming hadronData, but we want to know that,
-             we also want to be able to act on things like send chat messages only to players who are "in" a given scene, without specifically knowing what hadron is "them".
-             */
-
-        // TODO: Update not only personal player data, but any hadron they care to spawn, update, or destroy.
-        // TODO: When we load the game state, wipe any data in it for owner UUID's that do not exist in the database, such that deleting your account also wipes all your data.
-        // TODO: Owner ID and Hadron ID should not be the same.
         // Look for an existing hadron already in our data that matches the incoming hadron ID,
         // and has the owner's id on it.
         const existingHadron = hadrons.get(data.id);
@@ -439,6 +425,7 @@ io.on("connection", (socket) => {
 
           // Discard hadrons that are missing required data.
           // TODO: Make an array of required fields to always check before adding.
+          // TODO: Honestly, do they need an x, y, sprite? Maybe some don't. Clients might just need to learn to deal.
           if (
             newHadronData.x &&
             newHadronData.y &&
@@ -449,8 +436,8 @@ io.on("connection", (socket) => {
           }
 
           throttledSendHadrons();
+          throttledSaveGameStateToDisk();
         }
-        throttledSaveGameStateToDisk();
       });
 
       socket.on("destroyHadron", (key) => {
@@ -471,27 +458,23 @@ io.on("connection", (socket) => {
       socket.on("disconnect", () => {
         connectedPlayerData.delete(PlayerId);
 
-        // Announce new players.
+        // Announce player's leaving.
         socket.broadcast.emit("chat", {
           content: `${PlayerName} has left the game. :'(`,
         });
 
         // Archive all hadrons owned by this user.
+        // TODO: Some hadrons may need to stay, so we should have a flag for that.
         hadrons.forEach((hadron, key) => {
           if (hadron.owner === PlayerId) {
             inactiveHadrons.set(key, hadron);
             hadrons.delete(key);
           }
         });
-        socket.broadcast.emit(
-          "hadrons",
-          JSON.stringify(hadrons, jsonMapStringify.replacer)
-        );
+        throttledSendHadrons();
+        throttledSaveGameStateToDisk();
 
         console.log(`${PlayerName} disconnected`);
-        // We do not need to request a save on disconnect,
-        // because the save data assumes every player is offline,
-        // because they are when the server is starting up.
       });
     } catch (e) {
       console.log("Failed to authenticate token.");
