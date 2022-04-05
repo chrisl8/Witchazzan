@@ -18,6 +18,8 @@ if ! (node -v | grep "v16" > /dev/null); then
   echo "Node 16 (LTS) is required"
   echo "Use node -v to check your version"
   echo "and update your node version"
+  echo "If you are using nvm, then run this to update node:"
+  echo "nvm install --lts"
   exit 1
 fi
 
@@ -51,6 +53,7 @@ echo "cd ${SCRIPT_DIR}/server"
 echo "pm2-dev server.js"
 echo ""
 echo "This will start the server, and restart it when file changes are made."
+echo "It is the same as running 'node server.js', except that it will auto restart when you update your code."
 echo ""
 echo "In the second run:"
 echo "cd ${SCRIPT_DIR}/client"
