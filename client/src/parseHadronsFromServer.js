@@ -12,11 +12,13 @@ function parseHadronsFromServer(serverHadrons) {
   });
 
   // Then add all hadrons that we do not own,
+  // or that we don't have in our list,
   // from the server's list
   // Ignore hadrons that we own,
-  // because our local copy is authoritative for owned hadrons.
+  // because our local copy is authoritative for owned hadrons,
+  // unless we don't know about the hadron (we forgot about it).
   serverHadrons.forEach((hadron, key) => {
-    if (hadron.owner !== playerObject.playerId) {
+    if (hadron.owner !== playerObject.playerId || !hadrons.has(key)) {
       hadrons.set(key, hadron);
     }
   });
