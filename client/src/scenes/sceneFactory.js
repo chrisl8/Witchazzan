@@ -716,22 +716,6 @@ const sceneFactory = ({
           // This is used for debugging
           renderDebugDotTrails(hadron, key);
 
-          // Is this ME?
-          if (key === playerObject.playerId) {
-            // If so, act on special keys.
-
-            // The force key lets the server change the player's position.
-            // TODO: Should this be removed or is there some use for this still?
-            if (hadron.force) {
-              playerObject.force = true; // This tells the data sender to update this to false;
-              // The player has now been forced to a new location by the server,
-              // this location needs to be set and player input ignored
-              // Stop player if they are moving
-              playerObject.player.body.setVelocity(0);
-              playerObject.player.body.reset(hadron.x, hadron.y);
-            }
-          }
-
           const spriteData = addNewSprites.call(this, hadron, key);
 
           // Sometimes they go inactive.
@@ -891,7 +875,7 @@ const sceneFactory = ({
           playerObject.spawnedObjectList[key].hadron = hadron;
         }
 
-        // TODO: I think this is where to send data to the server.
+        // Send hadron data to the server
         if (
           hadron.owner === playerObject.playerId &&
           key !== playerObject.playerId
