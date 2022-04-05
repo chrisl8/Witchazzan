@@ -1,5 +1,6 @@
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
+import deletedHadronList from './objects/deletedHadronList.js';
 
 function parseHadronsFromServer(serverHadrons) {
   // First wipe out all hadrons (game pieces) that we don't own,
@@ -11,14 +12,19 @@ function parseHadronsFromServer(serverHadrons) {
     }
   });
 
-  // Then add all hadrons that we do not own,
-  // or that we don't have in our list,
-  // from the server's list
-  // Ignore hadrons that we own,
-  // because our local copy is authoritative for owned hadrons,
-  // unless we don't know about the hadron (we forgot about it).
+  // Then add all hadrons that we do not own
   serverHadrons.forEach((hadron, key) => {
-    if (hadron.owner !== playerObject.playerId || !hadrons.has(key)) {
+    if (hadron.owner !== playerObject.playerId) {
+      hadrons.set(key, hadron);
+    }
+    // Ignore hadrons that we own,
+    // because our local copy is authoritative for owned hadrons,
+    // unless we don't know about the hadron (we forgot about it).
+    if (
+      hadron.owner === playerObject.playerId &&
+      !hadrons.has(key) &&
+      deletedHadronList.indexOf(key) === -1
+    ) {
       hadrons.set(key, hadron);
     }
   });

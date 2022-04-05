@@ -10,6 +10,7 @@ import updateInGameDomElements from '../updateInGameDomElements.js';
 import sendDataToServer from '../sendDataToServer.js';
 import spriteSheetList from '../objects/spriteSheetList.js';
 import hadrons from '../objects/hadrons.js';
+import deletedHadronList from '../objects/deletedHadronList.js';
 import getSpriteData from '../utilities/getSpriteData.js';
 import validateHadronData from './sceneFactoryHelpers/validateHadronData.js';
 
@@ -523,10 +524,12 @@ const sceneFactory = ({
     if (obstacleLayer) {
       // for now despawning silently if we hit a "layer"
       // TODO: More sophisticated collision detection. i.e. Maybe fireballs cross over water?
+      deletedHadronList.push(spriteKey);
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else if (teleportLayer) {
       // for now despawning silently if we hit a "teleport layer"
+      deletedHadronList.push(spriteKey);
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else if (
@@ -537,12 +540,14 @@ const sceneFactory = ({
       // If the obstacle is a hadron, and it has a name, it is a player,
       // so make them say "Oof!"
       // TODO: Player hadrons should have a better "tag" and we should tag other "things" too to thelp with this.
+      deletedHadronList.push(spriteKey);
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
       sendDataToServer.makePlayerSayOff(obstacleSpriteKey);
     } else if (obstacleSpriteKey) {
       // Any sprite collision that wasn't a player
       // TODO: Obviously this needs to be more sophisticated.
+      deletedHadronList.push(spriteKey);
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else {
