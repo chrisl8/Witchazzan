@@ -308,10 +308,10 @@ io.on("connection", (socket) => {
   socket.emit("sendToken");
 
   // Nothing else is available until they have authenticated.
-  socket.on("token", async (token) => {
+  socket.on("token", async (playerData) => {
     try {
       const decoded = await validateJWT(
-        token,
+        playerData.token,
         serverConfiguration.jwtSecret,
         db
       );
@@ -357,20 +357,25 @@ io.on("connection", (socket) => {
         }
       });
 
-      // If no hadron for the user exists, create one.
-      // TODO: Player should be able to pick their sprite though.
-      if (!hadrons.get(PlayerId)) {
-        // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
-        hadrons.set(PlayerId, {
+      // Create or update the player's hadron
+      let newPlayerHadron;
+      if (hadrons.has(PlayerId)) {
+        newPlayerHadron = { ...hadrons.get(PlayerId) };
+      } else {
+        newPlayerHadron = {
           id: PlayerId, // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
           owner: PlayerId,
           x: 0,
           y: 0,
-          scene: "LoruleH8",
-          sprite: "bloomby",
-          name: PlayerName,
-        });
+          scene: "LoruleH8", // Default scene. Could be set in config file too.
+        };
       }
+
+      // Always update their name and sprite.
+      newPlayerHadron.name = PlayerName; // Names can be changed, with the UUID staying the same.
+      newPlayerHadron.sprite = playerData.sprite; // Client should be sending the requested sprite always.
+
+      hadrons.set(PlayerId, newPlayerHadron);
 
       throttledSendHadrons();
 

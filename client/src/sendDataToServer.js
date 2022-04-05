@@ -79,7 +79,10 @@ sendDataToServer.makePlayerSayOff = (key) => {
 sendDataToServer.token = () => {
   const token = localStorage.getItem('authToken');
   if (communicationsObject.socket.connected) {
-    communicationsObject.socket.emit('token', token);
+    communicationsObject.socket.emit('token', {
+      token,
+      sprite: playerObject.spriteName,
+    });
   }
 };
 
