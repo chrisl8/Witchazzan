@@ -50,6 +50,7 @@ function receiveDataFromServer() {
   communicationsObject.socket.on('init', (inputData) => {
     playerObject.playerId = inputData.id;
     playerObject.name = inputData.name;
+    localStorage.setItem('playerName', playerObject.name);
     textObject.connectingText.shouldBeActiveNow = false;
     textObject.reconnectingText.shouldBeActiveNow = false;
     textObject.notConnectedCommandResponse.shouldBeActiveNow = false;

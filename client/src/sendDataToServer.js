@@ -18,21 +18,6 @@ sendDataToServer.chat = (text, targetPlayerId) => {
   }
 };
 
-// TODO: This assumes that the server will process the data,
-//       but now the clients process it instead, so it probably needs to change somewhat.
-/*
-  TODO:
-  Instead of sending "this is me", instead send any hadron that I want to exist.
-  I don't think "spawn" vs. "update" matters, but "destroy" does.
-  Each hadron will have a GUID, even my own player.
-  Each hadron can be its own emit, or they could be bundled together,
-  but it might be easier on the client code to just send them ad hoc from the various
-  points within the client code that are aware of them and update them.
-
-  NOTE: There should still probably be a bundle of "player data" that has like, what scene "I" am in,
-  which is not related to the "hadronData" that will include the player's hadron along with others.
- */
-
 sendDataToServer.playerData = ({ sceneName }) => {
   if (communicationsObject.socket.connected) {
     const objectToSend = {
@@ -47,8 +32,8 @@ sendDataToServer.playerData = ({ sceneName }) => {
       chatOpen: playerObject.chatOpen,
     };
     if (!_.isEqual(objectToSend, lastSentPlayerDataObject)) {
-      communicationsObject.socket.emit('hadronData', objectToSend);
       lastSentPlayerDataObject = { ...objectToSend };
+      communicationsObject.socket.emit('hadronData', objectToSend);
     }
   }
 };
