@@ -36,6 +36,7 @@ const sceneFactory = ({
   let map;
   let tileset; // TODO: Bad form having both a tileSet and tileset variable!
   let collisionLayer;
+  const teleportLayersColliders = new Map();
 
   // eslint-disable-next-line func-names
   scene.preload = function () {
@@ -339,6 +340,7 @@ const sceneFactory = ({
   }
 
   function checkThatPlayerIsOnTeleportTile(camera) {
+    // TODO: Would it be more efficient to use collisions to do this instead?
     // Check if we are on a Teleport tile, and Teleport!
     const tilemapList = map.getTileLayerNames();
     const teleportTileMapLayers = tilemapList.filter((entry) => {
@@ -508,6 +510,8 @@ const sceneFactory = ({
     obstacleLayer,
     obstacleSpriteKey,
     obstacleSprite,
+    teleportLayerName,
+    teleportLayer,
   }) {
     if (obstacleSpriteKey === playerObject.playerId) {
       // Ignore things that I created that hit myself. For now.
@@ -519,6 +523,10 @@ const sceneFactory = ({
     if (obstacleLayer) {
       // for now despawning silently if we hit a "layer"
       // TODO: More sophisticated collision detection. i.e. Maybe fireballs cross over water?
+      sendDataToServer.destroyHadron(spriteKey);
+      hadrons.delete(spriteKey);
+    } else if (teleportLayer) {
+      // for now despawning silently if we hit a "teleport layer"
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else if (
@@ -534,7 +542,7 @@ const sceneFactory = ({
       sendDataToServer.makePlayerSayOff(obstacleSpriteKey);
     } else if (obstacleSpriteKey) {
       // Any sprite collision that wasn't a player
-      // TODO: Obviousy this needs to be more sophisticated.
+      // TODO: Obviously this needs to be more sophisticated.
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else {
@@ -602,7 +610,8 @@ const sceneFactory = ({
         key !== playerObject.playerId
       ) {
         // Track collisions for owned sprites.
-        // Collisions with tilemap layer
+
+        // Collisions with tilemap collisionLayer layer
         this.physics.add.collider(
           playerObject.spawnedObjectList[key].sprite,
           collisionLayer,
@@ -615,6 +624,22 @@ const sceneFactory = ({
             });
           },
         );
+
+        // Collisions with tilemap teleport layers
+        teleportLayersColliders.forEach((layer) => {
+          this.physics.add.collider(
+            playerObject.spawnedObjectList[key].sprite,
+            layer,
+            (sprite, obstacle) => {
+              spriteCollisionHandler({
+                spriteKey: key,
+                sprite,
+                teleportLayerName: layer.name,
+                teleportLayer: obstacle,
+              });
+            },
+          );
+        });
 
         // Collisions with other sprites
         for (const otherSpriteKey in playerObject.spawnedObjectList) {
@@ -1126,7 +1151,12 @@ const sceneFactory = ({
     map.layers.forEach((layer) => {
       const splitLayerName = layer.name.split('/');
       if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
-        map.createLayer(layer.name, tileset, 0, 0);
+        teleportLayersColliders.set(
+          layer.name,
+          map
+            .createLayer(layer.name, tileset, 0, 0)
+            .setCollisionByExclusion([-1]),
+        );
       }
     });
 
