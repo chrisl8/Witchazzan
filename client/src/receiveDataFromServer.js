@@ -25,7 +25,6 @@ function receiveDataFromServer() {
   communicationsObject.socket.on('sendToken', () => {
     sendDataToServer.token();
     // TODO: Test if we can hack the client to receive data without authenticating.
-    // playerObject.socketCurrentlyConnected = true;
     // textObject.connectingText.shouldBeActiveNow = false;
     // textObject.reconnectingText.shouldBeActiveNow = false;
     // textObject.notConnectedCommandResponse.shouldBeActiveNow = false;

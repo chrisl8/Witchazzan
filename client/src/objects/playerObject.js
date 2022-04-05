@@ -64,7 +64,6 @@ const playerObject = {
   },
   joystickDistance: 0,
   dotTrailsOn: false,
-  socketCurrentlyConnected: false,
   gameTime: null,
   lastSentPlayerDataObject: {},
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
