@@ -711,8 +711,8 @@ const sceneFactory = ({
       if (validateHadronData(hadron, key)) {
         activeObjectList.push(key);
 
-        // Only render game pieces for THIS scene, and only if they have a hadron key
-        if (hadron.scene === sceneName && hadron.sprite) {
+        // Only render game pieces for THIS scene
+        if (hadron.scene === sceneName) {
           // This is used for debugging
           renderDebugDotTrails(hadron, key);
 
@@ -898,10 +898,18 @@ const sceneFactory = ({
         ) {
           // Update all data on owned hadrons.
           const newHadronData = { ...hadron };
-          newHadronData.x = playerObject.spawnedObjectList[key].sprite.x;
-          newHadronData.y = playerObject.spawnedObjectList[key].sprite.y;
-          // TODO: I'm not sure how to handle other sprites that we own when we leave the scene.
-          newHadronData.scene = sceneName;
+
+          // Obviously we can only update the x/y position IF we are tracking a sprite for this hadron,
+          // which, for instance, doesn't happen if the hadron is in another scene.
+          if (
+            playerObject.spawnedObjectList[key] &&
+            playerObject.spawnedObjectList[key].sprite
+          ) {
+            newHadronData.x = playerObject.spawnedObjectList[key].sprite.x;
+            newHadronData.y = playerObject.spawnedObjectList[key].sprite.y;
+          }
+
+          // My player hadron ALWAYS follows me, unlike other hadrons.
           if (key === playerObject.playerId) {
             newHadronData.scene = sceneName;
             newHadronData.chatOpen = playerObject.chatOpen;
