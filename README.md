@@ -212,6 +212,10 @@ In addition, add an Objects layer.
 
 TODO: Document more of how to make them work.
 
+## Attribution
+
+Emoji are from the [Twemoji](https://twemoji.twitter.com/) project.
+
 ### Image Sources
 
 I will keep track of the Image sources here for attribution.
