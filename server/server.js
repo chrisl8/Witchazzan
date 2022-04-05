@@ -320,13 +320,14 @@ io.on("connection", (socket) => {
       const PlayerId = decoded.id;
       console.log(`${PlayerName} connected`);
 
-      // TODO: Probably don't need 3 "init" packets. One would do.
-      socket.emit("welcome");
-      // TODO: I'm not sure if this is required, and it certainly has to be a legit unique ID!
-      socket.emit("identity", {
+      // Send player their ID, because there is no other easy way for them to know it.
+      // This also servers as the "game is read" "init" message to the client.
+      socket.emit("init", {
         id: PlayerId,
       });
-      // The local client won't start the game until this is received and parsed.
+
+      // The local client won't start the game until they receive
+      // their first set of hadrons that includes one to track themselves.
       let connectedPlayerList = [];
       connectedPlayerData.forEach((player) => {
         connectedPlayerList.push(player.name);

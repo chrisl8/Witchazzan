@@ -36,14 +36,6 @@ function receiveDataFromServer() {
     window.location.reload();
   });
 
-  // This is just the server saying, "Hi", to which we respond with a formal login.
-  communicationsObject.socket.on('welcome', () => {
-    playerObject.socketCurrentlyConnected = true;
-    textObject.connectingText.shouldBeActiveNow = false;
-    textObject.reconnectingText.shouldBeActiveNow = false;
-    textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
-  });
-
   // The local client won't start the game until this is received and parsed.
   communicationsObject.socket.on('hadrons', (inputData) => {
     parseHadronsFromServer(JSON.parse(inputData, jsonMapStringify.reviver));
@@ -55,14 +47,16 @@ function receiveDataFromServer() {
       playerObject.scrollingTextBox.chat(inputData);
     }
   });
-  communicationsObject.socket.on('identity', (inputData) => {
+  communicationsObject.socket.on('init', (inputData) => {
     playerObject.playerId = inputData.id;
+    textObject.connectingText.shouldBeActiveNow = false;
+    textObject.reconnectingText.shouldBeActiveNow = false;
+    textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
   });
 
   // Handle disconnect
   communicationsObject.socket.on('disconnect', () => {
     console.log('disconnect');
-    playerObject.socketCurrentlyConnected = false;
     // Clear last sent data to make sure we send it all again
     playerObject.lastSentPlayerDataObject = {};
     cleanUpAfterDisconnect();
