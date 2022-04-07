@@ -28,14 +28,9 @@ export default {
           loader: 'babel-loader',
         },
       },
-      // TODO: https://webpack.js.org/guides/asset-modules/
-      {
-        test: [/\.vert$/, /\.frag$/],
-        use: 'raw-loader',
-      },
       {
         test: /\.(gif|png|jpe?g|svg|xml|mp3|wav|ogg|acc|flac)$/i,
-        use: 'file-loader',
+        type: 'asset/resource',
       },
       {
         test: /\.(html)$/i,
