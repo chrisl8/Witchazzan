@@ -58,6 +58,7 @@ export default {
       devMode: 'webapp',
       favicons: {
         appName: 'Witchazzan',
+        start_url: '',
       },
     }),
   ],
