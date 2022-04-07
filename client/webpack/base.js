@@ -52,6 +52,13 @@ export default {
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
-    new FaviconsWebpackPlugin('./src/favicon/bloomby.png'),
+    new FaviconsWebpackPlugin({
+      logo: './src/favicon/bloomby.png',
+      mode: 'webapp',
+      devMode: 'webapp',
+      favicons: {
+        appName: 'Witchazzan',
+      },
+    }),
   ],
 };

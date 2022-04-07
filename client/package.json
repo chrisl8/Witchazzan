@@ -1,5 +1,6 @@
 {
   "name": "witchazzan-client",
+  "short_name": "Witchazzan",
   "version": "0.0.1",
   "description": "Witchazzan Client",
   "main": "index.html",
