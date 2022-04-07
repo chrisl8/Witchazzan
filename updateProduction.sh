@@ -15,10 +15,16 @@ SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
 
 cd "${SCRIPT_DIR}" || exit
+echo "Pulling latest changes from the repo"
 git pull
 cd "${SCRIPT_DIR}/server" || exit
+echo "Installing dependencies for server"
 npm ci
 cd "${SCRIPT_DIR}/client" || exit
+echo "Installing dependencies for client"
 npm ci
+echo "Building client (this is the slow part)"
 npm run build
+echo "Restarting server"
 pm2 restart Witchazzan
+# TODO: Add some method for the client to force a browser refresh after a client update.

@@ -17,7 +17,8 @@ fi
 if ! (node -v | grep "v16" > /dev/null); then
   echo "Node 16 (LTS) is required"
   echo "Use node -v to check your version"
-  echo "and update your node version"
+  echo "and update your node version."
+  echo ""
   echo "If you are using nvm, then run this to update node:"
   echo "nvm install --lts"
   exit 1
@@ -59,6 +60,6 @@ echo "In the second run:"
 echo "cd ${SCRIPT_DIR}/client"
 echo "npm run start"
 echo ""
-echo "This will start the client, and rebuild and cause a browser refresh when file changes are made."
+echo "This will build the client as well as rebuild and cause a browser refresh when file changes are made."
 echo "It should also automatically open your web browser to the page."
 echo "If not, go to http://localhost:3001"
