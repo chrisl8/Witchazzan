@@ -39,10 +39,15 @@ SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
 
 cd "${SCRIPT_DIR}" || exit
+echo "Pulling latest changes from the GitHub repo:"
 git pull
 cd "${SCRIPT_DIR}/server" || exit
+echo ""
+echo "Installing dependencies for server"
 npm ci
 cd "${SCRIPT_DIR}/client" || exit
+echo ""
+echo "Installing dependencies for client"
 npm ci
 
 echo ""
