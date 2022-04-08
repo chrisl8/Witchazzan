@@ -17,9 +17,13 @@ function receiveDataFromServer() {
     window.location.hostname === 'localhost' &&
     window.location.port !== '8080'
   ) {
-    communicationsObject.socket = window.io.connect('localhost:8080');
+    communicationsObject.socket = window.io.connect('localhost:8080', {
+      transports: ['websocket'],
+    });
   } else {
-    communicationsObject.socket = window.io.connect();
+    communicationsObject.socket = window.io.connect({
+      transports: ['websocket'],
+    });
   }
 
   communicationsObject.socket.on('sendToken', () => {
