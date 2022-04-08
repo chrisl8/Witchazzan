@@ -35,7 +35,7 @@ const sceneFactory = ({
 }) => {
   const scene = new Phaser.Scene(sceneName);
   let map;
-  let tileset; // TODO: Bad form having both a tileSet and tileset variable!
+  let sceneTileSet;
   let collisionLayer;
   const teleportLayersColliders = new Map();
 
@@ -144,8 +144,8 @@ const sceneFactory = ({
 
         this.cameras.main
           .setBounds(
-            tileset.tileWidth,
-            tileset.tileHeight,
+            sceneTileSet.tileWidth,
+            sceneTileSet.tileHeight,
             gameSize.width,
             gameSize.height,
           )
@@ -963,26 +963,26 @@ const sceneFactory = ({
     // Arguments for addTilesetImage are:
     // the name you gave the tileset in Tiled and
     // the key of the tileset image in Phaser's cache (i.e. the name you used in preload)
-    tileset = map.addTilesetImage(tileSet.name, `${tileSet.name}-tiles`);
+    sceneTileSet = map.addTilesetImage(tileSet.name, `${tileSet.name}-tiles`);
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
-    map.createLayer('Ground', tileset, 0, 0);
-    map.createLayer('Stuff on the Ground You Can Walk On', tileset, 0, 0);
+    map.createLayer('Ground', sceneTileSet, 0, 0);
+    map.createLayer('Stuff on the Ground You Can Walk On', sceneTileSet, 0, 0);
 
     // We collide with EVERYTHING in this layer. Collision isn't based on tiles themselves,
     // but the layer they are in.
     collisionLayer = map
-      .createLayer('Stuff You Run Into', tileset, 0, 0)
+      .createLayer('Stuff You Run Into', sceneTileSet, 0, 0)
       .setCollisionByExclusion([-1]);
     let waterLayer;
     if (checkIfLayerExists('Water')) {
       waterLayer = map
-        .createLayer('Water', tileset, 0, 0)
+        .createLayer('Water', sceneTileSet, 0, 0)
         .setCollisionByExclusion([-1]);
     }
     const overheadLayer = map.createLayer(
       'Stuff You Walk Under',
-      tileset,
+      sceneTileSet,
       0,
       0,
     );
@@ -1143,7 +1143,7 @@ const sceneFactory = ({
         teleportLayersColliders.set(
           layer.name,
           map
-            .createLayer(layer.name, tileset, 0, 0)
+            .createLayer(layer.name, sceneTileSet, 0, 0)
             .setCollisionByExclusion([-1]),
         );
       }
