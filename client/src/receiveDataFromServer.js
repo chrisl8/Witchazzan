@@ -54,6 +54,7 @@ function receiveDataFromServer() {
   communicationsObject.socket.on('init', (inputData) => {
     playerObject.playerId = inputData.id;
     playerObject.name = inputData.name;
+    playerObject.defaultOpeningScene = inputData.defaultOpeningScene;
     localStorage.setItem('playerName', playerObject.name);
     textObject.connectingText.shouldBeActiveNow = false;
     textObject.reconnectingText.shouldBeActiveNow = false;

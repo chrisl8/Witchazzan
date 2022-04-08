@@ -61,6 +61,9 @@ if (!serverConfiguration.jwtExpiresInSeconds) {
 if (!serverConfiguration.gameStateSaveInterval) {
   serverConfiguration.gameStateSaveInterval = 60 * 1000; // 1 minute
 }
+if (!serverConfiguration.defaultOpeningScene) {
+  serverConfiguration.defaultOpeningScene = "LoruleH8";
+}
 // The file is always rewritten, so the formatting will get fixed if it is bad.
 await persistentData.writeObject(
   `${persistentDataFolder}/serverConfiguration.json5`,
@@ -77,6 +80,7 @@ const db = new sqlite3.Database(dbName, (err) => {
   console.log("Connected to the database.");
 });
 
+// eslint-disable-next-line func-names
 db.query = function (sql, params) {
   const that = this;
   return new Promise((resolve, reject) => {
@@ -329,6 +333,7 @@ io.on("connection", (socket) => {
       socket.emit("init", {
         id: PlayerId,
         name: PlayerName,
+        defaultOpeningScene: serverConfiguration.defaultOpeningScene,
       });
 
       // The local client won't start the game until they receive
@@ -372,13 +377,13 @@ io.on("connection", (socket) => {
           owner: PlayerId,
           x: 0,
           y: 0,
-          scene: "LoruleH8", // Default scene. Could be set in config file too.
+          scene: serverConfiguration.defaultOpeningScene,
         };
       }
 
       // Always update their name and sprite.
-      newPlayerHadron.name = PlayerName; // Names can be changed, with the UUID staying the same.
-      newPlayerHadron.sprite = playerData.sprite; // Client should be sending the requested sprite always.
+      newPlayerHadron.name = PlayerName; // Names can be changed, with the UUID staying the same, so we update the client.
+      newPlayerHadron.sprite = playerData.sprite; // Client should always be sending the requested sprite.
 
       hadrons.set(PlayerId, newPlayerHadron);
 

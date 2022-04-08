@@ -15,7 +15,7 @@ const playerObject = {
   // This is the scene you start the game in,
   // and go to if a non-existent scene is requested,
   // and if you press the designated "go home" key.
-  defaultOpeningScene: 'LoruleH8',
+  defaultOpeningScene: 'LoruleH8', // NOTE: This will be overwritten by the server upon connection.
   defaultSpriteName: 'flamingGoose', // Used when a sprite by the given name does not exist
   maxSpeed: 175,
   acceleration: 3,
