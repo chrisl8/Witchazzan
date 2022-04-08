@@ -54,7 +54,6 @@ const playerObject = {
   playerId: null,
   playerDirection: 'left',
   playerStopped: true,
-  spawnedObjectList: {},
   sceneObjectList: [],
   spriteData: {},
   joystickDirection: {

@@ -10,6 +10,7 @@ import updateInGameDomElements from '../updateInGameDomElements.js';
 import sendDataToServer from '../sendDataToServer.js';
 import spriteSheetList from '../objects/spriteSheetList.js';
 import hadrons from '../objects/hadrons.js';
+import clientSprites from '../objects/clientSprites.js';
 import deletedHadronList from '../objects/deletedHadronList.js';
 import getSpriteData from '../utilities/getSpriteData.js';
 import validateHadronData from './sceneFactoryHelpers/validateHadronData.js';
@@ -566,22 +567,18 @@ const sceneFactory = ({
   }
 
   function addNewSprites(hadron, key) {
-    let spriteData; // Convenient short variable to hold some data.
-
     // If no `sprite` key is given, no sprite is displayed.
     // This also prevents race conditions with remote players during reload
     // If a remote player changes their sprite, we won't know about it,
     //       although currently they have to disconnect to do this, so
     //       the game piece is removed and resent anyway.
 
-    // Add new Sprites for new objects.
-    if (!playerObject.spawnedObjectList[key]) {
+    // Add new Sprites for new hadrons.
+    if (!clientSprites.has(key)) {
       // Add new sprites to the scene
-      playerObject.spawnedObjectList[key] = {};
+      const newClientSprite = {};
 
-      playerObject.spawnedObjectList[key].spriteData = getSpriteData(
-        hadron.sprite,
-      );
+      newClientSprite.spriteData = getSpriteData(hadron.sprite);
 
       // Use different carrot colors for different genetic code
       if (hadron.type === 'carrot') {
@@ -600,16 +597,20 @@ const sceneFactory = ({
         // );
         const newSprite = getSpriteData(alternateCarrotSpriteName);
         if (newSprite.name !== playerObject.defaultSpriteName) {
-          playerObject.spawnedObjectList[key].spriteData = newSprite;
+          newClientSprite.spriteData = newSprite;
         }
       }
 
-      // To shorten variable names and make code more consistent
-      spriteData = playerObject.spawnedObjectList[key].spriteData;
-
-      playerObject.spawnedObjectList[key].sprite = this.physics.add
-        .sprite(hadron.x, hadron.y, spriteData.name)
-        .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
+      newClientSprite.sprite = this.physics.add
+        .sprite(hadron.x, hadron.y, newClientSprite.spriteData.name)
+        .setSize(
+          newClientSprite.spriteData.physicsSize.x,
+          newClientSprite.spriteData.physicsSize.y,
+        )
+        .setDisplaySize(
+          newClientSprite.spriteData.displayHeight,
+          newClientSprite.spriteData.displayWidth,
+        );
 
       if (
         hadron.owner === playerObject.playerId &&
@@ -619,7 +620,7 @@ const sceneFactory = ({
 
         // Collisions with tilemap collisionLayer layer
         this.physics.add.collider(
-          playerObject.spawnedObjectList[key].sprite,
+          newClientSprite.sprite,
           collisionLayer,
           (sprite, obstacle) => {
             spriteCollisionHandler({
@@ -634,7 +635,7 @@ const sceneFactory = ({
         // Collisions with tilemap teleport layers
         teleportLayersColliders.forEach((layer) => {
           this.physics.add.collider(
-            playerObject.spawnedObjectList[key].sprite,
+            newClientSprite.sprite,
             layer,
             (sprite, obstacle) => {
               spriteCollisionHandler({
@@ -648,15 +649,11 @@ const sceneFactory = ({
         });
 
         // Collisions with other sprites
-        for (const otherSpriteKey in playerObject.spawnedObjectList) {
-          if (
-            playerObject.spawnedObjectList.hasOwnProperty(otherSpriteKey) &&
-            playerObject.spawnedObjectList[otherSpriteKey] &&
-            playerObject.spawnedObjectList[otherSpriteKey].sprite
-          ) {
+        clientSprites.forEach((otherSprite, otherSpriteKey) => {
+          if (otherSprite.sprite) {
             this.physics.add.collider(
-              playerObject.spawnedObjectList[key].sprite,
-              playerObject.spawnedObjectList[otherSpriteKey].sprite,
+              newClientSprite.sprite,
+              otherSprite.sprite,
               (sprite, obstacle) => {
                 spriteCollisionHandler({
                   spriteKey: key,
@@ -667,104 +664,90 @@ const sceneFactory = ({
               },
             );
           }
-        }
+        });
 
         // Set velocity on owned sprites
-        playerObject.spawnedObjectList[key].sprite.body.setVelocityX(
-          hadron.velocityX,
-        );
-        playerObject.spawnedObjectList[key].sprite.body.setVelocityY(
-          hadron.velocityY,
-        );
+        newClientSprite.sprite.body.setVelocityX(hadron.velocityX);
+        newClientSprite.sprite.body.setVelocityY(hadron.velocityY);
       }
 
       // Set the "shadow" of my own player to black.
       if (key === playerObject.playerId) {
-        playerObject.spawnedObjectList[key].sprite.tint = 0x000000;
+        newClientSprite.sprite.tint = 0x000000;
       }
 
       // Some sprites don't line up well with their physics object,
       // so this allows for offsetting that in the config.
-      if (spriteData.physicsOffset) {
-        playerObject.spawnedObjectList[key].sprite.body.setOffset(
-          spriteData.physicsOffset.x,
-          spriteData.physicsOffset.y,
+      if (newClientSprite.spriteData.physicsOffset) {
+        newClientSprite.sprite.body.setOffset(
+          newClientSprite.spriteData.physicsOffset.x,
+          newClientSprite.spriteData.physicsOffset.y,
         );
       }
 
-      playerObject.spawnedObjectList[key].sprite.displayHeight =
-        spriteData.displayHeight;
-      playerObject.spawnedObjectList[key].sprite.displayWidth =
-        spriteData.displayWidth;
+      clientSprites.set(key, newClientSprite);
     }
-
-    if (!spriteData) {
-      spriteData = playerObject.spawnedObjectList[key].spriteData;
-    }
+  }
 
   function updateHadrons() {
     // Deal with game pieces from server.
-    const activeObjectList = [];
+    const activeObjectList = new Map();
 
     hadrons.forEach((hadron, key) => {
       // Sometimes a game piece is not something we can use
       if (validateHadronData(hadron, key)) {
-        activeObjectList.push(key);
+        activeObjectList.set(key, '');
 
         // Only render game pieces for THIS scene
         if (hadron.scene === sceneName) {
           // This is used for debugging
           renderDebugDotTrails(hadron, key);
 
-          const spriteData = addNewSprites.call(this, hadron, key);
+          // This will add the sprite if it doesn't exist,
+          // and do nothing if it does.
+          addNewSprites.call(this, hadron, key);
+          // Now we know that we have a sprite.
+          const clientSprite = clientSprites.get(key);
 
           // Sometimes they go inactive.
-          playerObject.spawnedObjectList[key].sprite.active = true;
-
-          // Use health to adjust size for veggies
-          if (hadron.type === 'carrot' && spriteData) {
-            playerObject.spawnedObjectList[key].sprite.displayHeight =
-              spriteData.displayHeight * (hadron.energy / 100);
-            playerObject.spawnedObjectList[key].sprite.displayWidth =
-              spriteData.displayWidth * (hadron.energy / 100);
-          }
+          clientSprite.sprite.active = true;
 
           // SET SPRITE ROTATION BASED ON HADRON DATA
           // Use Hadron direction to set sprite rotation or flip it
-          if (playerObject.spawnedObjectList[key].spriteData.rotatable) {
+          if (clientSprite.spriteData.rotatable) {
             // Rotate hadron to face requested direction.
             if (hadron.direction === 'left' || hadron.direction === 'west') {
-              playerObject.spawnedObjectList[key].sprite.setAngle(180);
+              clientSprite.sprite.setAngle(180);
             } else if (
               hadron.direction === 'right' ||
               hadron.direction === 'east'
             ) {
-              playerObject.spawnedObjectList[key].sprite.setAngle(0);
+              clientSprite.sprite.setAngle(0);
             } else if (
               hadron.direction === 'up' ||
               hadron.direction === 'north'
             ) {
-              playerObject.spawnedObjectList[key].sprite.setAngle(-90);
+              clientSprite.sprite.setAngle(-90);
             } else if (
               hadron.direction === 'down' ||
               hadron.direction === 'south'
             ) {
-              playerObject.spawnedObjectList[key].sprite.setAngle(90);
+              clientSprite.sprite.setAngle(90);
             }
           } else if (
             hadron.direction === 'left' ||
             hadron.direction === 'west'
           ) {
             // For non rotatable sprites, only flip them for left/right
-            playerObject.spawnedObjectList[key].sprite.setFlipX(
-              playerObject.spawnedObjectList[key].spriteData.faces === 'right',
+            clientSprite.sprite.setFlipX(
+              clientSprite.spriteData.faces === 'right',
             );
           } else if (
             hadron.direction === 'right' ||
             hadron.direction === 'east'
           ) {
-            playerObject.spawnedObjectList[key].sprite.setFlipX(
-              playerObject.spawnedObjectList[key].spriteData.faces === 'left',
+            clientSprite.sprite.setFlipX(
+              clientSprite.spriteData.faces === 'left',
             );
           }
 
@@ -778,64 +761,54 @@ const sceneFactory = ({
             objectInMotion = false;
           }
           if (!objectInMotion) {
-            playerObject.spawnedObjectList[key].sprite.anims.stop();
+            clientSprite.sprite.anims.stop();
           } else if (
-            playerObject.spawnedObjectList[
-              key
-            ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-left`,
+            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+              `${clientSprite.spriteData.name}-move-left`,
             ) &&
             (hadron.direction === 'left' || hadron.direction === 'west')
           ) {
-            playerObject.spawnedObjectList[key].sprite.anims.play(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-left`,
+            clientSprite.sprite.anims.play(
+              `${clientSprite.spriteData.name}-move-left`,
               true,
             );
           } else if (
-            playerObject.spawnedObjectList[
-              key
-            ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-right`,
+            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+              `${clientSprite.spriteData.name}-move-right`,
             ) &&
             (hadron.direction === 'right' || hadron.direction === 'east')
           ) {
-            playerObject.spawnedObjectList[key].sprite.anims.play(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-right`,
+            clientSprite.sprite.anims.play(
+              `${clientSprite.spriteData.name}-move-right`,
               true,
             );
           } else if (
-            playerObject.spawnedObjectList[
-              key
-            ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-back`,
+            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+              `${clientSprite.spriteData.name}-move-back`,
             ) &&
             (hadron.direction === 'up' || hadron.direction === 'north')
           ) {
-            playerObject.spawnedObjectList[key].sprite.anims.play(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-back`,
+            clientSprite.sprite.anims.play(
+              `${clientSprite.spriteData.name}-move-back`,
               true,
             );
           } else if (
-            playerObject.spawnedObjectList[
-              key
-            ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-front`,
+            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+              `${clientSprite.spriteData.name}-move-front`,
             ) &&
             (hadron.direction === 'down' || hadron.direction === 'south')
           ) {
-            playerObject.spawnedObjectList[key].sprite.anims.play(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-front`,
+            clientSprite.sprite.anims.play(
+              `${clientSprite.spriteData.name}-move-front`,
               true,
             );
           } else if (
-            playerObject.spawnedObjectList[
-              key
-            ].sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-stationary`,
+            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+              `${clientSprite.spriteData.name}-move-stationary`,
             )
           ) {
-            playerObject.spawnedObjectList[key].sprite.anims.play(
-              `${playerObject.spawnedObjectList[key].spriteData.name}-move-stationary`,
+            clientSprite.sprite.anims.play(
+              `${clientSprite.spriteData.name}-move-stationary`,
               true,
             );
           }
@@ -851,32 +824,22 @@ const sceneFactory = ({
             key === playerObject.playerId
           ) {
             this.tweens.add({
-              targets: playerObject.spawnedObjectList[key].sprite,
+              targets: clientSprite.sprite,
               x: hadron.x,
               y: hadron.y,
               duration: 1, // Adjust this to be smooth without being too slow.
               ease: 'Linear', // Anything else is wonky when tracking server updates.
             });
           }
-        } else if (
-          playerObject.spawnedObjectList[key] &&
-          playerObject.spawnedObjectList[key].sprite
-        ) {
+        } else if (clientSprites.has(key)) {
+          const clientSprite = clientSprites.get(key);
+
           // Destroy any sprites left over from incorrect scenes
-          if (playerObject.spawnedObjectList[key].sprite) {
-            playerObject.spawnedObjectList[key].sprite.destroy();
+          if (clientSprite.sprite) {
+            clientSprite.sprite.destroy();
           }
           // and wipe their data so we do not see it anymore.
-          playerObject.spawnedObjectList[key] = null;
-        }
-
-        // Add game piece data to object for use elsewhere later
-        // (I'm not 100% sure what this is for anymore.
-        if (
-          playerObject.spawnedObjectList.hasOwnProperty(key) &&
-          playerObject.spawnedObjectList[key]
-        ) {
-          playerObject.spawnedObjectList[key].hadron = hadron;
+          clientSprites.delete(key);
         }
 
         // SEND HADRON DATA TO THE SERVER
@@ -890,12 +853,12 @@ const sceneFactory = ({
 
           // Obviously we can only update the x/y position IF we are tracking a sprite for this hadron,
           // which, for instance, doesn't happen if the hadron is in another scene.
-          if (
-            playerObject.spawnedObjectList[key] &&
-            playerObject.spawnedObjectList[key].sprite
-          ) {
-            newHadronData.x = playerObject.spawnedObjectList[key].sprite.x;
-            newHadronData.y = playerObject.spawnedObjectList[key].sprite.y;
+          if (clientSprites.has(key)) {
+            const clientSprite = clientSprites.get(key);
+            if (clientSprite.sprite) {
+              newHadronData.x = clientSprite.sprite.x;
+              newHadronData.y = clientSprite.sprite.y;
+            }
           }
 
           hadrons.set(key, newHadronData);
@@ -910,18 +873,14 @@ const sceneFactory = ({
 
   function removeDeSpawnedObjects(activeObjectList) {
     // Remove de-spawned objects
-    for (const key in playerObject.spawnedObjectList) {
-      if (
-        playerObject.spawnedObjectList.hasOwnProperty(key) &&
-        playerObject.spawnedObjectList[key] &&
-        activeObjectList.indexOf(key) === -1
-      ) {
-        if (playerObject.spawnedObjectList[key].sprite) {
-          playerObject.spawnedObjectList[key].sprite.destroy();
+    clientSprites.forEach((clientSprite, key) => {
+      if (!activeObjectList.has(key)) {
+        if (clientSprite.sprite) {
+          clientSprite.sprite.destroy();
         }
-        playerObject.spawnedObjectList[key] = null;
+        clientSprites.delete(key);
       }
-    }
+    });
   }
 
   // eslint-disable-next-line func-names
@@ -1071,6 +1030,10 @@ const sceneFactory = ({
       .setSize(
         playerObject.spriteData.physicsSize.x,
         playerObject.spriteData.physicsSize.y,
+      )
+      .setDisplaySize(
+        playerObject.spriteData.displayHeight,
+        playerObject.spriteData.displayWidth,
       );
 
     playerObject.player.setDepth(1);
@@ -1081,10 +1044,6 @@ const sceneFactory = ({
         playerObject.spriteData.physicsOffset.y,
       );
     }
-
-    // If sprite is out of scale with tiles, adjusting here
-    playerObject.player.displayHeight = playerObject.spriteData.displayHeight;
-    playerObject.player.displayWidth = playerObject.spriteData.displayWidth;
 
     // Watch the player and worldLayer for collisions, for the duration of the scene:
     this.physics.add.collider(playerObject.player, collisionLayer);

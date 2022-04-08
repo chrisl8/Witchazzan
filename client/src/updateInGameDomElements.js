@@ -2,6 +2,8 @@
 /* globals document:true */
 import playerObject from './objects/playerObject.js';
 import textObject from './objects/textObject.js';
+import hadrons from './objects/hadrons.js';
+import clientSprites from './objects/clientSprites.js';
 
 const updateInGameDomElements = (htmlElementParameters) => {
   const consolidatedTextObject = {
@@ -111,13 +113,11 @@ const updateInGameDomElements = (htmlElementParameters) => {
     );
 
     // Player Tag
-    if (
-      playerObject.spawnedObjectList.hasOwnProperty(playerObject.playerId) &&
-      playerObject.spawnedObjectList[playerObject.playerId]
-    ) {
+    // Technically this is acting on the player's "shadow"
+    if (hadrons.has(playerObject.playerId)) {
+      const playerHadron = hadrons.get(playerObject.playerId);
       // Hearts
-      const health =
-        playerObject.spawnedObjectList[playerObject.playerId].hadron.health;
+      const health = playerHadron.health;
       let newPlayerTagInnerHTML = '';
       if (health > 99) {
         newPlayerTagInnerHTML = '&#x2764;&#x2764;&#x2764;&#x2764;';
@@ -173,29 +173,27 @@ const updateInGameDomElements = (htmlElementParameters) => {
     }
 
     // Other player tags
-    for (const [key, value] of Object.entries(playerObject.spawnedObjectList)) {
-      if (value) {
-        if (
-          Number(key) !== playerObject.playerId &&
-          value.spriteData.type === 'player'
-        ) {
-          if (!playerObject.domElements.otherPlayerTags[Number(key)]) {
-            playerObject.domElements.otherPlayerTags[Number(key)] =
+    hadrons.forEach((hadron, key) => {
+      if (key !== playerObject.playerId && clientSprites.has(key)) {
+        const clientSprite = clientSprites.get(key);
+        if (clientSprite.spriteData.type === 'player') {
+          if (!playerObject.domElements.otherPlayerTags[key]) {
+            playerObject.domElements.otherPlayerTags[key] =
               document.createElement('span');
-            playerObject.domElements.otherPlayerTags[Number(key)].classList.add(
+            playerObject.domElements.otherPlayerTags[key].classList.add(
               'other_player_tag',
             );
             playerObject.domElements.otherPlayerTagsDiv.appendChild(
-              playerObject.domElements.otherPlayerTags[Number(key)],
+              playerObject.domElements.otherPlayerTags[key],
             );
           }
 
           // Text
           let newInnerHTML = '';
-          if (value.hadron.chatOpen) {
+          if (hadron.chatOpen) {
             newInnerHTML = '&#x1F4AD;';
           }
-          playerObject.domElements.otherPlayerTags[Number(key)].innerHTML =
+          playerObject.domElements.otherPlayerTags[key].innerHTML =
             newInnerHTML;
 
           if (newInnerHTML !== '') {
@@ -205,37 +203,33 @@ const updateInGameDomElements = (htmlElementParameters) => {
                 playerObject.cameraScaleFactor) /
               2;
             playerObject.domElements.otherPlayerTags[
-              Number(key)
+              key
             ].style.fontSize = `${newFontSize}px`;
 
             // Location
             // NOTE: This is tweaked for the "thought bubble",
             // which clearly goes to the RIGHT of the player,
             // unlike the hearts on your own player that start at the top left.
-            playerObject.domElements.otherPlayerTags[
-              Number(key)
-            ].style.left = `${
+            playerObject.domElements.otherPlayerTags[key].style.left = `${
               canvasLeftMargin +
-              (value.sprite.x - playerObject.cameraOffset.x) *
+              (clientSprite.sprite.x - playerObject.cameraOffset.x) *
                 playerObject.cameraScaleFactor +
               4
             }px`;
-            playerObject.domElements.otherPlayerTags[
-              Number(key)
-            ].style.top = `${
-              (value.sprite.y -
-                value.sprite.displayHeight -
+            playerObject.domElements.otherPlayerTags[key].style.top = `${
+              (clientSprite.sprite.y -
+                clientSprite.sprite.displayHeight -
                 playerObject.cameraOffset.y) *
                 playerObject.cameraScaleFactor +
               4
             }px`;
           }
         }
-      } else if (playerObject.domElements.otherPlayerTags[Number(key)]) {
-        playerObject.domElements.otherPlayerTags[Number(key)].remove();
-        playerObject.domElements.otherPlayerTags[Number(key)] = null;
+      } else if (playerObject.domElements.otherPlayerTags[key]) {
+        playerObject.domElements.otherPlayerTags[key].remove();
+        playerObject.domElements.otherPlayerTags[key] = null;
       }
-    }
+    });
 
     // Store current settings so we do not update unless required.
     playerObject.domElementHistory[textLocation] = newValueObject;
