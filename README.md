@@ -25,6 +25,10 @@ We started with the [Phaser 3 Webpack Project Template](https://github.com/photo
 
 That should get you going and provide some guidance if you are missing anything, along with how to run it.
 
+## Where to start
+
+`client/src/scenes/sceneFactory.js` is where 99% of the game logic is, so you probably want to start there.
+
 ## Persistent Data Storage Information
 
 All persistent data is stored in a folder called `persistentData`.  
