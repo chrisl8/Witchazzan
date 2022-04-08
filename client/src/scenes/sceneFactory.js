@@ -184,9 +184,9 @@ const sceneFactory = ({
   function castSpell() {
     // TODO: There should be some way to pick what spell/sprite is used.
     //       probably from an object with setting that are easy to edit.
-    const newHadronId = crypto.randomUUID();
     const direction = playerObject.playerDirection;
-    const velocity = 150;
+    const velocity = 150; // TODO: Should be set "per spell"
+    // TODO: Should the velocity be ADDED to the player's current velocity?
     let velocityX = 0;
     let velocityY = 0;
     if (direction === 'left') {
@@ -199,8 +199,9 @@ const sceneFactory = ({
       velocityY = velocity;
     }
 
+    const newHadronId = crypto.randomUUID();
     hadrons.set(newHadronId, {
-      id: newHadronId, // Unfortunately each hadron must also hold it's ID internally.
+      id: newHadronId, // TODO: Make a hadron creator, used by client and server, that ensures this is added.
       owner: playerObject.playerId,
       sprite: 'fireball',
       x: playerObject.player.x,
@@ -701,12 +702,6 @@ const sceneFactory = ({
       spriteData = playerObject.spawnedObjectList[key].spriteData;
     }
 
-    return spriteData;
-  }
-
-  // TODO: We need to SEND data for all of our sprites.
-  // TODO: We need to UPDATE location for all of our sprites, even if they aren't in our scene?
-  // TODO: How do we deal with collisions for sprites not in our scene, but that we own? Perhaps others can help with that? Group collision detection and consensus handling?
   function updateHadrons() {
     // Deal with game pieces from server.
     const activeObjectList = [];
