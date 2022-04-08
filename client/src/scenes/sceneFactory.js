@@ -183,8 +183,7 @@ const sceneFactory = ({
   // TODO: This is the first sprite to be inserted into the new game!
   //       Use this as an example/template!
   function castSpell() {
-    // TODO: There should be some way to pick what spell/sprite is used.
-    //       probably from an object with setting that are easy to edit.
+    console.log(playerObject.activeSpell);
     const direction = playerObject.playerDirection;
     const velocity = 150; // TODO: Should be set "per spell"
     // TODO: Should the velocity be ADDED to the player's current velocity?
@@ -200,17 +199,24 @@ const sceneFactory = ({
       velocityY = velocity;
     }
 
+    // TODO: Using a different spell is more than just a matter of changing the sprite,
+    //       but that is what we have here for now.
+    // TODO: Each spell should have an entire description in some sort of spells file.
     const newHadronId = crypto.randomUUID();
     hadrons.set(newHadronId, {
       id: newHadronId, // TODO: Make a hadron creator, used by client and server, that ensures this is added.
       owner: playerObject.playerId,
-      sprite: 'fireball',
+      sprite: playerObject.activeSpell, // TODO: Use the spell's sprite setting, not just the spell name as the sprite.
       x: playerObject.player.x,
       y: playerObject.player.y,
       direction,
       scene: sceneName,
       velocityX,
       velocityY,
+      // hideWhenLeavingScene: true, // TODO: Implement this.
+      // destroyWhenLeavingScene: true, // TODO: Implement this.
+      // destroyOnDisconnect: true, // TODO: Implement this.
+      // transferOwnershipWhenLeavingScene: false, // TODO: Implement this.
     });
   }
 
