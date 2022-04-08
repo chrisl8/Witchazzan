@@ -1,10 +1,11 @@
 import fs from "fs";
 import JSON5 from "json5";
 import prettier from "prettier";
+// eslint-disable-next-line
 import jsonMapStringify from "../shared/jsonMapStringify.mjs";
 
-const writeObject = (path, objectLiteral) => {
-  return new Promise((resolve, reject) => {
+const writeObject = (path, objectLiteral) =>
+  new Promise((resolve, reject) => {
     const formatted = prettier.format(JSON.stringify(objectLiteral), {
       parser: "json5",
       singleQuote: true,
@@ -19,10 +20,9 @@ const writeObject = (path, objectLiteral) => {
       }
     });
   });
-};
 
-const readObject = (path) => {
-  return new Promise((resolve, reject) => {
+const readObject = (path) =>
+  new Promise((resolve, reject) => {
     fs.readFile(path, "utf8", (err, data) => {
       if (err) {
         console.log("Error reading config file. Starting from scratch.");
@@ -43,10 +43,9 @@ const readObject = (path) => {
       }
     });
   });
-};
 
-const writeMap = (path, map) => {
-  return new Promise((resolve, reject) => {
+const writeMap = (path, map) =>
+  new Promise((resolve, reject) => {
     const formatted = prettier.format(
       JSON.stringify(map, jsonMapStringify.replacer),
       {
@@ -64,10 +63,9 @@ const writeMap = (path, map) => {
       }
     });
   });
-};
 
-const readMap = (path) => {
-  return new Promise((resolve, reject) => {
+const readMap = (path) =>
+  new Promise((resolve, reject) => {
     fs.readFile(path, "utf8", (err, data) => {
       if (err) {
         console.log("Error reading map file. Starting from scratch.");
@@ -88,6 +86,5 @@ const readMap = (path) => {
       }
     });
   });
-};
 
 export default { writeObject, readObject, writeMap, readMap };

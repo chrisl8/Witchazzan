@@ -1,10 +1,10 @@
 /* globals document:true */
 /*
  * This is an empty object for declaring and sharing the Player and its data.
- * I am also currently putting the keyState in this object.
  *
  * Note that the null entries are NOT required,
- * but they make it a little easier to know what to expect to find in this object.
+ * but they make it a little easier to know what to expect to find in this object,
+ * especially for your IDE.
  *
  */
 const playerObject = {

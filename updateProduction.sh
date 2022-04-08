@@ -20,16 +20,16 @@ git pull
 echo ""
 cd "${SCRIPT_DIR}/server" || exit
 echo ""
-echo "Installing dependencies for server"
+echo "Installing dependencies for server..."
 npm ci
 echo ""
 cd "${SCRIPT_DIR}/client" || exit
-echo "Installing dependencies for client"
+echo "Installing dependencies for client..."
 npm ci
 echo ""
-echo "Building client (this is the slow part)"
+echo "Building client (this is the slow part)..."
 npm run build
 echo ""
-echo "Restarting server"
+echo "Restarting server:"
 pm2 restart Witchazzan
 # TODO: Add some method for the client to force a browser refresh after a client update.

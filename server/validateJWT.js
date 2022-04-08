@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
-import wait from "./wait.js";
+// eslint-disable-next-line
+import wait from "../shared/wait.mjs";
+// eslint-disable-next-line
 import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 
 async function validateJWT(token, secret, db) {

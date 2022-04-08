@@ -11,17 +11,22 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { randomUUID, randomBytes } from "crypto";
 import _ from "lodash";
-import wait from "./wait.js";
 import persistentData from "./persistentData.js";
-import jsonMapStringify from "../shared/jsonMapStringify.mjs";
 import validateJWT from "./validateJWT.js";
+// eslint-disable-next-line
+import wait from "../shared/wait.mjs";
+// eslint-disable-next-line
+import jsonMapStringify from "../shared/jsonMapStringify.mjs";
+// eslint-disable-next-line
 import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 
 console.log("------------------------------");
 console.log("Witchazzan server is starting...");
 
 // https://stackoverflow.com/a/64383997/4982408
+// eslint-disable-next-line no-underscore-dangle
 const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(__filename);
 const persistentDataFolder = `${__dirname}/../persistentData`;
 
@@ -74,10 +79,10 @@ const db = new sqlite3.Database(dbName, (err) => {
 
 db.query = function (sql, params) {
   const that = this;
-  return new Promise(function (resolve, reject) {
-    that.all(sql, params, function (error, rows) {
+  return new Promise((resolve, reject) => {
+    that.all(sql, params, (error, rows) => {
       if (error) reject(error);
-      else resolve({ rows: rows });
+      else resolve({ rows });
     });
   });
 };
@@ -127,12 +132,12 @@ await saveGameStateToDisk();
 // Database functions start here, because they must be inside of an async function to work.
 try {
   // Creating the users table if it does not exist.
-  const sql_create = `CREATE TABLE IF NOT EXISTS users (
+  const sqlCreate = `CREATE TABLE IF NOT EXISTS users (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
       password TEXT NOT NULL
     );`;
-  await db.query(sql_create, []);
+  await db.query(sqlCreate, []);
   // Displaying the user table count for fun and debugging.
   const result = await db.query("SELECT COUNT(*) AS count FROM Users", []);
   const count = result.rows[0].count;
@@ -209,9 +214,9 @@ app.post("/api/sign-up", async (req, res) => {
 
   try {
     bcrypt.hash(password, serverConfiguration.saltRounds, async (err, hash) => {
-      const sql_insert =
+      const sqlInsert =
         "INSERT INTO Users (id, name, password) VALUES ($1, $2, $3);";
-      await db.query(sql_insert, [userId, name, hash]);
+      await db.query(sqlInsert, [userId, name, hash]);
     });
     res.sendStatus(200);
   } catch (e) {
@@ -222,17 +227,17 @@ app.post("/api/sign-up", async (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
-  async function rejectUnauthorized(res, name) {
+  async function rejectUnauthorized(innerRes, name) {
     console.log(`Failed login attempt from ${name}.`);
     // A somewhat random wait stalls brute force attacks and somewhat mitigates timing attacks used to guess names.
     // It also prevents client side bugs from crippling the server with inadvertent DOS attacks.
     await wait(makeRandomNumber.between(3, 5) * 1000);
-    res.sendStatus(401);
+    innerRes.sendStatus(401);
   }
-  let name = req.body.name;
+  const name = req.body.name;
   let id;
   let hash;
-  let password = req.body.password;
+  const password = req.body.password;
   try {
     const sql = "SELECT id, name, password FROM Users WHERE name = ?";
     const result = await db.query(sql, [name]);
@@ -248,7 +253,7 @@ app.post("/api/login", async (req, res) => {
     return;
   }
   if (hash) {
-    bcrypt.compare(password, hash, function (err, result) {
+    bcrypt.compare(password, hash, (err, result) => {
       if (result) {
         jwt.sign(
           {
@@ -259,10 +264,9 @@ app.post("/api/login", async (req, res) => {
           {
             expiresIn: serverConfiguration.jwtExpiresInSeconds,
           },
-          function (err, token) {
+          (innerErr, token) => {
             console.log(`${name} successfully logged in`);
             res.json({ token });
-            return;
           }
         );
       } else {
@@ -329,7 +333,7 @@ io.on("connection", (socket) => {
 
       // The local client won't start the game until they receive
       // their first set of hadrons that includes one to track themselves.
-      let connectedPlayerList = [];
+      const connectedPlayerList = [];
       connectedPlayerData.forEach((player) => {
         connectedPlayerList.push(player.name);
       });

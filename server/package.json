@@ -21,6 +21,7 @@
   "homepage": "https://witchazzan.space/",
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
+    "@babel/plugin-syntax-top-level-await": "^7.14.5",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
