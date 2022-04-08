@@ -392,7 +392,7 @@ const sceneFactory = ({
     return false;
   }
 
-  function updateAnimation() {
+  function updatePlayerSpriteAnimation() {
     // Update the animation last and give left/right animations precedence over up/down animations
     if (
       playerObject.keyState.ArrowLeft === 'keydown' ||
@@ -908,7 +908,7 @@ const sceneFactory = ({
     return activeObjectList;
   }
 
-  function removeDespawnedObjects(activeObjectList) {
+  function removeDeSpawnedObjects(activeObjectList) {
     // Remove de-spawned objects
     for (const key in playerObject.spawnedObjectList) {
       if (
@@ -1269,7 +1269,7 @@ const sceneFactory = ({
 
     handlePlayerMovement(maxSpeed, useAcceleration);
 
-    updateAnimation();
+    updatePlayerSpriteAnimation();
 
     const activeObjectList = updateHadrons.call(this);
 
@@ -1278,7 +1278,7 @@ const sceneFactory = ({
       sceneName,
     });
 
-    removeDespawnedObjects(activeObjectList);
+    removeDeSpawnedObjects(activeObjectList);
 
     updateInGameDomElements(htmlElementParameters);
   };
