@@ -1,5 +1,6 @@
 import communicationsObject from './objects/communicationsObject.js';
 import playerObject from './objects/playerObject.js';
+import spellAssignments from './objects/spellAssignments.js';
 import textObject from './objects/textObject.js';
 import processCommandInput from './processCommandInput.js';
 
@@ -42,26 +43,25 @@ function handleKeyboardInput(event) {
       // the player object, and acted upon during the next Phaser
       // game loop.
 
-      // Keys 1-0 set the active spell
-      const spellKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-      const shiftedSpellKeys = ['!', '@', '#', '$', '%', '^', '&', '*', '('];
       if (
-        spellKeys.indexOf(event.key) > -1 ||
-        shiftedSpellKeys.indexOf(event.key) > -1
+        playerObject.spellKeys.indexOf(event.key) > -1 ||
+        playerObject.shiftedSpellKeys.indexOf(event.key) > -1
       ) {
         let spellKey = event.key;
-        const shiftedSpellKeyIndex = shiftedSpellKeys.indexOf(spellKey);
+        const shiftedSpellKeyIndex =
+          playerObject.shiftedSpellKeys.indexOf(spellKey);
         if (shiftedSpellKeyIndex > -1) {
-          // Convert shifted keys to number keys,
+          // Convert shifted keys to un-shifted keys,
           // in case somebody tried to hit a spell key while sprinting
-          spellKey = spellKeys[shiftedSpellKeyIndex];
+          spellKey = playerObject.spellKeys[shiftedSpellKeyIndex];
         }
-        if (playerObject.spellAssignments[spellKey] !== undefined) {
-          playerObject.activeSpellKey = playerObject.spellAssignments[spellKey];
+        if (spellAssignments.has(spellKey)) {
+          playerObject.activeSpell = spellAssignments.get(spellKey);
         } else {
-          // Catch keys that are outside of currently assigned list,
-          // so that we don't have to update code when we expand them.
-          playerObject.activeSpellKey = playerObject.spellAssignments['1'];
+          // Catch keys that are outside of currently assigned list.
+          playerObject.activeSpell = spellAssignments.get(
+            playerObject.spellKeys[0],
+          );
         }
       } else if (event.key.length === 1) {
         // Translate all single letter keys to lower case. We do not have "cased" keyboard inputs.

@@ -3,6 +3,7 @@
 /* globals document:true */
 /* globals window:true */
 import playerObject from '../objects/playerObject.js';
+import spellAssignments from '../objects/spellAssignments.js';
 import wait from '../../../shared/wait.mjs';
 
 // TODO: Can we just use / instead of adding the actual href path?
@@ -231,25 +232,35 @@ async function introScreenAndPreGameSetup() {
   }
 
   // Handle spell settings:
-  // Populate Intro Page with Spell selection HTML and fill with defaults
-  let spellAssignmentInnerHTML = '';
-  for (const [key] of Object.entries(playerObject.spellAssignments)) {
+  for (const [key, value] of Object.entries(playerObject.spellKeys)) {
     // Check local storage to see if there is a stored value
     const spellSettingFromLocalStorage = localStorage.getItem(
-      `key${key}SpellAssignment`,
+      `key${value}SpellAssignment`,
     );
-    if (spellSettingFromLocalStorage !== null) {
-      playerObject.spellAssignments[key] = Number(spellSettingFromLocalStorage);
+    if (
+      spellSettingFromLocalStorage !== null &&
+      playerObject.spellOptions.indexOf(spellSettingFromLocalStorage) !== -1
+    ) {
+      spellAssignments.set(value, spellSettingFromLocalStorage);
+    } else if (playerObject.spellOptions[key]) {
+      // Otherwise fill them in with the default value,
+      // but only assign defaults as if they exist.
+      spellAssignments.set(value, playerObject.spellOptions[key]);
     }
-
+  }
+  // Populate Intro Page with Spell selection HTML and fill with defaults
+  let spellAssignmentInnerHTML = '';
+  for (const [, spellKeyValue] of Object.entries(playerObject.spellKeys)) {
     // Create Inner HTML for Spell selection
-    spellAssignmentInnerHTML += `<label for="spell_${key}_selector">${key}</label> - <select id="spell_${key}_selector" class="spell-selector">`;
+    spellAssignmentInnerHTML += `<label for="spell_${spellKeyValue}_selector">${spellKeyValue}</label> - <select id="spell_${spellKeyValue}_selector" class="spell-selector">`;
     // eslint-disable-next-line no-loop-func
-    for (let i = 0; i < playerObject.spellOptions.length; i++) {
-      if (playerObject.spellAssignments[key] === i) {
-        spellAssignmentInnerHTML += `<option value="${i}" selected>${playerObject.spellOptions[i]}</option>`;
+    for (const [, spellOptionValue] of Object.entries(
+      playerObject.spellOptions,
+    )) {
+      if (spellAssignments.get(spellKeyValue) === spellOptionValue) {
+        spellAssignmentInnerHTML += `<option value="${spellOptionValue}" selected>${spellOptionValue}</option>`;
       } else {
-        spellAssignmentInnerHTML += `<option value="${i}">${playerObject.spellOptions[i]}</option>`;
+        spellAssignmentInnerHTML += `<option value="${spellOptionValue}">${spellOptionValue}</option>`;
       }
     }
     spellAssignmentInnerHTML += `</select><br />`;
@@ -346,18 +357,16 @@ async function introScreenAndPreGameSetup() {
     playerObject.spriteName = spriteName;
   }
 
-  // Add all spell selections to local storage,
-  // and inject them into the playerObject
-  for (const [key] of Object.entries(playerObject.spellAssignments)) {
+  // Add all spell selections to local storage for later retrieval
+  for (const [, value] of Object.entries(playerObject.spellKeys)) {
     const spellSettingFromDOM = document.getElementById(
-      `spell_${key}_selector`,
+      `spell_${value}_selector`,
     ).value;
-    localStorage.setItem(`key${key}SpellAssignment`, spellSettingFromDOM);
-    playerObject.spellAssignments[key] = Number(spellSettingFromDOM);
+    spellAssignments.set(value, spellSettingFromDOM);
+    localStorage.setItem(`key${value}SpellAssignment`, spellSettingFromDOM);
   }
-  // Set the currently active spell to whatever was listed for key 1
-  // This also sets the spell for mobile
-  playerObject.activeSpellKey = playerObject.spellAssignments['1'];
+  // Set active spell to first spell key's assignment.
+  playerObject.activeSpell = spellAssignments.get(playerObject.spellKeys[0]);
 
   // Un-hide joystick input box
   document.getElementById('joystick_container').hidden = false;

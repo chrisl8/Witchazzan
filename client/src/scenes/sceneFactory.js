@@ -247,7 +247,7 @@ const sceneFactory = ({
       playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
     }
 
-    // Send default Spell with spacebar
+    // Send currently active Spell with space bar
     if (playerObject.keyState[' '] === 'keydown') {
       playerObject.keyState[' '] = null;
       castSpell.call(this);
