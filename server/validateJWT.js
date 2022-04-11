@@ -20,6 +20,12 @@ async function validateJWT(token, secret, db) {
           const result = await db.query(sql, [decoded.name]);
           if (result.rows.length > 0 && result.rows[0].id === decoded.id) {
             console.log(`${decoded.name} authenticated a valid token`);
+            const sqlInsert =
+              "INSERT INTO Connections (id, timestamp) VALUES ($1, $2);";
+            await db.query(sqlInsert, [
+              decoded.id,
+              Math.floor(new Date().getTime() / 1000),
+            ]);
             resolve(decoded);
           } else {
             console.log(

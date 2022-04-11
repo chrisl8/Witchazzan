@@ -150,19 +150,26 @@ const throttledSaveGameStateToDisk = _.throttle(
 // in case it was edited by hand while the server was not running.
 await saveGameStateToDisk();
 
-// Database functions start here, because they must be inside of an async function to work.
+// Database initialization.
 try {
   // Creating the users table if it does not exist.
-  const sqlCreate = `CREATE TABLE IF NOT EXISTS users (
+  const sqlCreateUserTable = `CREATE TABLE IF NOT EXISTS users (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
       password TEXT NOT NULL
     );`;
-  await db.query(sqlCreate, []);
+  await db.query(sqlCreateUserTable, []);
   // Displaying the user table count for fun and debugging.
   const result = await db.query("SELECT COUNT(*) AS count FROM Users", []);
   const count = result.rows[0].count;
   console.log("Registered user count from database:", count);
+
+  // Creating the users table if it does not exist.
+  const sqlCreateConnectionsTable = `CREATE TABLE IF NOT EXISTS Connections (
+      id TEXT,
+      timestamp INTEGER
+    );`;
+  await db.query(sqlCreateConnectionsTable, []);
 } catch (e) {
   console.error(e.message);
   process.exit(1);
@@ -308,6 +315,20 @@ app.post("/api/auth", async (req, res) => {
     res.sendStatus(200);
   } catch (e) {
     res.sendStatus(401);
+  }
+});
+
+// TODO: Make a real web page out of this and/or do we even want this information entirely public?
+app.get("/api/connections", async (req, res) => {
+  try {
+    const sql =
+      "SELECT name, timestamp FROM Connections LEFT JOIN Users ON Connections.id = Users.id ORDER BY timestamp DESC";
+    const result = await db.query(sql);
+    res.json(result.rows);
+  } catch (e) {
+    console.error("Error retrieving connections:");
+    console.error(e.message);
+    res.status(500).send("Unknown error.");
   }
 });
 
