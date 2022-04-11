@@ -20,6 +20,23 @@ import jsonMapStringify from "../shared/jsonMapStringify.mjs";
 // eslint-disable-next-line
 import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 
+const commandListArray = [
+  {
+    name: "teleportToScene <scene name>",
+    description: "Teleport to a scene.",
+  },
+  { name: "exit", description: "Exit to intro screen." },
+  { name: "help", description: "Displays this message." },
+  {
+    name: "dumpPlayerObject",
+    description: "Log player object to console for debugging.",
+  },
+];
+let commandHelpOutput = "The following commands are available:";
+commandListArray.forEach((command) => {
+  commandHelpOutput += `<br/>${command.name} - ${command.description}`;
+});
+
 console.log("------------------------------");
 console.log("Witchazzan server is starting...");
 
@@ -465,9 +482,14 @@ io.on("connection", (socket) => {
       });
 
       socket.on("command", (data) => {
-        // TODO: Implement this.
-        console.log("command");
-        console.log(data);
+        if (data.command === "help") {
+          socket.emit("chat", {
+            content: commandHelpOutput,
+          });
+        } else {
+          console.log("command");
+          console.log(data);
+        }
       });
 
       socket.on("disconnect", () => {
