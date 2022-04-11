@@ -126,6 +126,11 @@
       <h3>Spells</h3>
       <div class="intro-screen-subsection" id="spell-assignment">
       </div>
+      <h3>Sound</h3>
+      <div class="intro-screen-subsection">
+        <input type="checkbox" id="disable_sound" name="disable_sound">
+        <label for="disable_sound">Disable sound</label>
+      </div>
     </div>
     <h2>Debugging</h2>
     <div class="intro-screen-subsection">
@@ -134,9 +139,6 @@
       <br />
       <input type="checkbox" id="camera_zoom_off" name="camera_zoom_off">
       <label for="camera_zoom_off">Disable Camera Zoom for Debugging</label>
-      <br />
-      <input type="checkbox" id="enable_sound" name="enable_sound">
-      <label for="enable_sound">Enable sound</label>
     </div>
     <h1>Key Map</h1>
     <!--  https://codepen.io/Mickel07/pen/YdONYK-->
@@ -365,6 +367,22 @@
     </div>
     <h1>Instructions</h1>
     <div class="intro-screen-subsection">
+      <h3>Premise</h3>
+      <ul>
+        <li>This is an online Multi-player game. When you click "Start Game" the game will load and connect to the
+          server. Without the server, the game will not function.
+        </li>
+        <li>For <a href="https://github.com/chrisl8/Witchazzan/blob/main/lore/backStory.md" target="_blank">reasons</a>,
+          the server is called the Small Hadron Cooperator.
+        </li>
+      </ul>
+      <h3>Remote Shadow</h3>
+      <ul>
+        <li>You will quickly notice a darkened instance of your sprite that follows you. This is not another player, it
+          is <strong>you</strong> as seen by the server and other players. It provides a visual indication of the lag
+          between you and the remote world.
+        </li>
+      </ul>
       <h3>Directional Controls</h3>
       <ul>
         <li>wasd or Arrow Keys
@@ -388,7 +406,9 @@
         <li>t - turn dot Trails on/off for debugging</li>
         <li>p - "Pause" returns you to this screen
           <ul>
-            <li>This will also reload and pause your game.</li>
+            <li>This will also reload and pause your game, but rememeber the game is online multi-player, so it goes on
+              without you.
+            </li>
           </ul>
         </li>
       </ul>
@@ -396,14 +416,8 @@
       <ul>
         <li>Any text entered is broadcast as chat text to other players.</li>
         <li>Esc - Close Chat/Command input box</li>
-        <li>/ - send commands instead of chat
-          <ul>
-            <li>/who - list who is online</li>
-            <li>/exit - exit to back to this screen. Same as the 'p' key, but handy on mobile to change setup.</li>
-            <li>/teleportToSceneNow &lt;scene&gt; - Teleport to named scene.</li>
-            <li>/run &lt;command&gt; - run built in functions</li>
-          </ul>
-        </li>
+        <li>/ - send commands instead of chat</li>
+        <li>Send /help to get a list of available commands.</li>
       </ul>
       <h3>Touch Controls</h3>
       <ul>
@@ -417,6 +431,11 @@
             <li>The spell you set for key 1 will be the spell used on mobile</li>
           </ul>
         <li>Tap with THREE fingers to open/close the chat/command input</li>
+      </ul>
+      <h3>Back Story</h3>
+      <ul>
+        <li><a href="https://github.com/chrisl8/Witchazzan/blob/main/lore/backStory.md" target="_blank">Back Story</a>
+        </li>
       </ul>
     </div>
     <p style="padding-bottom: 25px; text-align: center"><a href="https://github.com/chrisl8/Witchazzan">https://github.com/chrisl8/Witchazzan</a>

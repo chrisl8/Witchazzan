@@ -225,10 +225,10 @@ async function introScreenAndPreGameSetup() {
     document.getElementById('camera_zoom_off').checked = true;
   }
 
-  // Check local storage for enableSound
-  let enableSound = localStorage.getItem('enableSound');
-  if (enableSound === 'true') {
-    document.getElementById('enable_sound').checked = true;
+  // Check local storage for disableSound
+  let disableSound = localStorage.getItem('disableSound');
+  if (disableSound === 'true') {
+    document.getElementById('disable_sound').checked = true;
   }
 
   // Handle spell settings:
@@ -339,15 +339,15 @@ async function introScreenAndPreGameSetup() {
     localStorage.removeItem('disableCameraZoom');
   }
 
-  // Settle up enableSound and set local storage if need be
-  enableSound = document.getElementById('enable_sound').checked;
-  if (enableSound) {
-    localStorage.setItem('enableSound', 'true');
+  // Settle up disableSound and set local storage if need be
+  disableSound = document.getElementById('disable_sound').checked;
+  if (disableSound) {
+    localStorage.setItem('disableSound', 'true');
   } else {
-    localStorage.removeItem('enableSound');
+    localStorage.removeItem('disableSound');
   }
 
-  playerObject.enableSound = enableSound;
+  playerObject.disableSound = disableSound;
 
   const spriteName = document.querySelector(
     'input[name="sprite"]:checked',

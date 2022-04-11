@@ -46,9 +46,9 @@ The `.json5` files are JSON5 files that **are** meant to be human readable and e
 ## Code Standards
 
 I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). The configurations for both are in the code.  
-Don't worry about it if you don't want to run them, I will not reject any pull requests based on formatting, but if you want to "fit in" run your code through Prettier and Eslint first.  
-NOTE: I assume you may and will set some things that Eslint complains about to "ignore" inline. That is perfectly fine and legitimate. Do not be a slave to Eslint, just run it and see what it says, and if you want to fix it, do so, if not, mark it as ignored inline.  
-They are [easy to set up](https://imgs.xkcd.com/comics/will_it_work.png), and your IDE and VIM should both support them easily.
+Don't worry about it if you don't want to run them, I will not reject any pull requests based on formatting.  
+If you do use Eslint I assume you may and will set some things that Eslint complains about to "ignore" inline. That is perfectly fine and legitimate. Do not be a slave to Eslint, just run it and see what it says, and if you want to fix it, do so, if not, mark it as ignored inline if the red marks bother you.  
+Prettier and Eslint are [easy to set up](https://imgs.xkcd.com/comics/will_it_work.png), and your IDE and VIM should both support them. If not, just commit your code and I will clean it up later. Messy code that works is better than no code.
 
 ## Requirements
 
@@ -124,7 +124,7 @@ which should automatically run at startup.
 
 You will also need to set up a Web server to serve the built code, as Node.js is not fit to perform SSL and other important functions of a front end web server.
 
-TODO: Add nginx instructions.
+TODO: Add nginx instructions too.
 
 ### Updating installed code
 Run `updateProduction.sh` or here is the manual process:
