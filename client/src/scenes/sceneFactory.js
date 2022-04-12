@@ -4,6 +4,7 @@
 /* globals crypto:true */
 /* globals prompt:true */
 import Phaser from 'phaser';
+import _ from 'lodash';
 import playerObject from '../objects/playerObject.js';
 import textObject from '../objects/textObject.js';
 import handleKeyboardInput from '../handleKeyboardInput.js';
@@ -21,7 +22,6 @@ import fullscreen from '../assets/spriteSheets/fullscreen.png';
 // Example of adding sound.
 import sunriseMp3 from '../assets/sounds/sunrise.mp3';
 import sunriseOgg from '../assets/sounds/sunrise.ogg';
-import _ from 'lodash';
 
 let didThisOnce = false; // For the sound example.
 
