@@ -498,6 +498,10 @@ io.on("connection", (socket) => {
         }
       });
 
+      socket.on("enterScene", (sceneName) => {
+        connectedPlayerData.get(PlayerId).scene = sceneName;
+      });
+
       socket.on("destroyHadron", (key) => {
         // You cannot update other people's hadrons.
         if (hadrons.has(key) && hadrons.get(key).owner === PlayerId) {

@@ -8,6 +8,12 @@ const sendDataToServer = {};
 const sentData = new Map();
 let lastSentPlayerDataObject;
 
+sendDataToServer.enterScene = (sceneName) => {
+  if (communicationsObject.socket.connected) {
+    communicationsObject.socket.emit('enterScene', sceneName);
+  }
+};
+
 sendDataToServer.chat = (text, targetPlayerId) => {
   if (communicationsObject.socket.connected) {
     const obj = { text };

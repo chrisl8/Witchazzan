@@ -44,6 +44,8 @@ const sceneFactory = ({
 
   // eslint-disable-next-line func-names
   scene.preload = function () {
+    sendDataToServer.enterScene(sceneName);
+    console.log(`Entering scene ${sceneName}`);
     // Runs once, loads up assets like images and audio
     // All of these text based "keys" are basically global variables in Phaser.
     // You can reuse the same name, but phaser will just reuse the first thing you
