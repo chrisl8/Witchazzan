@@ -83,6 +83,7 @@ const playerObject = {
     'deadTree',
     'corpse',
     'RainbowTileOne',
+    'writeMessage',
   ],
   // Spell assignments is a Map in the /objects folder,
   spellKeys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],

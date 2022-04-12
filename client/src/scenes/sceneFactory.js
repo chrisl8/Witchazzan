@@ -2,6 +2,7 @@
 /* globals localStorage:true */
 /* globals document:true */
 /* globals crypto:true */
+/* globals prompt:true */
 import Phaser from 'phaser';
 import playerObject from '../objects/playerObject.js';
 import textObject from '../objects/textObject.js';
@@ -20,6 +21,7 @@ import fullscreen from '../assets/spriteSheets/fullscreen.png';
 // Example of adding sound.
 import sunriseMp3 from '../assets/sounds/sunrise.mp3';
 import sunriseOgg from '../assets/sounds/sunrise.ogg';
+import _ from 'lodash';
 
 let didThisOnce = false; // For the sound example.
 
@@ -180,44 +182,69 @@ const sceneFactory = ({
     }
   }
 
+  let currentMessage = '';
+  const chatForThrottle = () => {
+    sendDataToServer.chat(currentMessage);
+  };
+  const throttleSendMessageRead = _.debounce(chatForThrottle, 1000, {
+    leading: true,
+    trailing: false,
+  });
+
   // TODO: This is the first sprite to be inserted into the new game!
   //       Use this as an example/template!
   function castSpell() {
-    console.log(playerObject.activeSpell);
-    const direction = playerObject.playerDirection;
-    const velocity = 150; // TODO: Should be set "per spell"
-    // TODO: Should the velocity be ADDED to the player's current velocity?
-    let velocityX = 0;
-    let velocityY = 0;
-    if (direction === 'left') {
-      velocityX = -velocity;
-    } else if (direction === 'right') {
-      velocityX = velocity;
-    } else if (direction === 'up') {
-      velocityY = -velocity;
-    } else if (direction === 'down') {
-      velocityY = velocity;
-    }
+    if (playerObject.activeSpell === 'writeMessage') {
+      const newHadronId = crypto.randomUUID();
+      const message = prompt('please type some shit');
+      hadrons.set(newHadronId, {
+        id: newHadronId,
+        owner: playerObject.playerId,
+        sprite: playerObject.activeSpell,
+        x: playerObject.player.x,
+        y: playerObject.player.y,
+        direction: 'up',
+        scene: sceneName,
+        velocityX: 0,
+        velocityY: 0,
+        message,
+      });
+    } else {
+      const direction = playerObject.playerDirection;
+      const velocity = 150; // TODO: Should be set "per spell"
+      // TODO: Should the velocity be ADDED to the player's current velocity?
+      let velocityX = 0;
+      let velocityY = 0;
+      if (direction === 'left') {
+        velocityX = -velocity;
+      } else if (direction === 'right') {
+        velocityX = velocity;
+      } else if (direction === 'up') {
+        velocityY = -velocity;
+      } else if (direction === 'down') {
+        velocityY = velocity;
+      }
 
-    // TODO: Using a different spell is more than just a matter of changing the sprite,
-    //       but that is what we have here for now.
-    // TODO: Each spell should have an entire description in some sort of spells file.
-    const newHadronId = crypto.randomUUID();
-    hadrons.set(newHadronId, {
-      id: newHadronId, // TODO: Make a hadron creator, used by client and server, that ensures this is added.
-      owner: playerObject.playerId,
-      sprite: playerObject.activeSpell, // TODO: Use the spell's sprite setting, not just the spell name as the sprite.
-      x: playerObject.player.x,
-      y: playerObject.player.y,
-      direction,
-      scene: sceneName,
-      velocityX,
-      velocityY,
-      // hideWhenLeavingScene: true, // TODO: Implement this.
-      // destroyWhenLeavingScene: true, // TODO: Implement this.
-      // destroyOnDisconnect: true, // TODO: Implement this.
-      // transferOwnershipWhenLeavingScene: false, // TODO: Implement this.
-    });
+      // TODO: Using a different spell is more than just a matter of changing the sprite,
+      //       but that is what we have here for now.
+      // TODO: Each spell should have an entire description in some sort of spells file.
+      const newHadronId = crypto.randomUUID();
+      hadrons.set(newHadronId, {
+        id: newHadronId, // TODO: Make a hadron creator, used by client and server, that ensures this is added.
+        owner: playerObject.playerId,
+        sprite: playerObject.activeSpell, // TODO: Use the spell's sprite setting, not just the spell name as the sprite.
+        x: playerObject.player.x,
+        y: playerObject.player.y,
+        direction,
+        scene: sceneName,
+        velocityX,
+        velocityY,
+        // hideWhenLeavingScene: true, // TODO: Implement this.
+        // destroyWhenLeavingScene: true, // TODO: Implement this.
+        // destroyOnDisconnect: true, // TODO: Implement this.
+        // transferOwnershipWhenLeavingScene: false, // TODO: Implement this.
+      });
+    }
   }
 
   function hotKeyHandler() {
@@ -526,6 +553,10 @@ const sceneFactory = ({
       // Ignore things that I created that hit myself. For now.
       // Because of how things spawn, they all hit me when launched,
       // so if we want to do otherwise we have more work to do.
+      if (hadrons.get(spriteKey)?.message) {
+        currentMessage = hadrons.get(spriteKey).message;
+        throttleSendMessageRead();
+      }
       return;
       // TODO: At some point these will matter, such as if I make a boss that shoots at me.
     }
@@ -548,10 +579,15 @@ const sceneFactory = ({
       // If the obstacle is a hadron, and it has a name, it is a player,
       // so make them say "Oof!"
       // TODO: Player hadrons should have a better "tag" and we should tag other "things" too to thelp with this.
-      deletedHadronList.push(spriteKey);
-      sendDataToServer.destroyHadron(spriteKey);
-      hadrons.delete(spriteKey);
-      sendDataToServer.makePlayerSayOff(obstacleSpriteKey);
+      if (hadrons.get(spriteKey)?.message) {
+        currentMessage = hadrons.get(spriteKey).message;
+        throttleSendMessageRead();
+      } else {
+        deletedHadronList.push(spriteKey);
+        sendDataToServer.destroyHadron(spriteKey);
+        hadrons.delete(spriteKey);
+        sendDataToServer.makePlayerSayOff(obstacleSpriteKey);
+      }
     } else if (obstacleSpriteKey) {
       // Any sprite collision that wasn't a player
       // TODO: Obviously this needs to be more sophisticated.
