@@ -25,6 +25,10 @@ const commandListArray = [
     name: "teleportToScene <scene name>",
     description: "Teleport to a scene.",
   },
+  {
+    name: "who",
+    description: "List currently online players.",
+  },
   { name: "exit", description: "Exit to intro screen." },
   { name: "help", description: "Displays this message." },
   {
@@ -391,12 +395,6 @@ io.on("connection", (socket) => {
         }, 1000);
       }
 
-      // Add user to list of connected players
-      connectedPlayerData.set(PlayerId, {
-        id: PlayerId,
-        name: PlayerName,
-      });
-
       // Resurrect all inactive hadrons owned by this user.
       inactiveHadrons.forEach((hadron, key) => {
         if (hadron.owner === PlayerId) {
@@ -424,6 +422,13 @@ io.on("connection", (socket) => {
       newPlayerHadron.sprite = playerData.sprite; // Client should always be sending the requested sprite.
 
       hadrons.set(PlayerId, newPlayerHadron);
+
+      // Add user to list of connected players
+      connectedPlayerData.set(PlayerId, {
+        id: PlayerId,
+        name: PlayerName,
+        scene: newPlayerHadron.scene,
+      });
 
       throttledSendHadrons();
 
@@ -506,6 +511,14 @@ io.on("connection", (socket) => {
         if (data.command === "help") {
           socket.emit("chat", {
             content: commandHelpOutput,
+          });
+        } else if (data.command === "who") {
+          let whoResponse = "";
+          connectedPlayerData.forEach((entry) => {
+            whoResponse += `${entry.name} is in ${entry.scene}<br/>`;
+          });
+          socket.emit("chat", {
+            content: whoResponse,
           });
         } else {
           console.log("command");
