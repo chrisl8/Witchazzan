@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import communicationsObject from './objects/communicationsObject.js';
 import playerObject from './objects/playerObject.js';
 import spellAssignments from './objects/spellAssignments.js';
@@ -63,6 +64,11 @@ function handleKeyboardInput(event) {
             playerObject.spellKeys[0],
           );
         }
+        textObject.spellSetText.text = playerObject.activeSpell;
+        textObject.spellSetText.shouldBeActiveNow = true;
+        _.debounce(() => {
+          textObject.spellSetText.shouldBeActiveNow = false;
+        }, 1000)();
       } else if (event.key.length === 1) {
         // Translate all single letter keys to lower case. We do not have "cased" keyboard inputs.
         // This solves a few weird issues:

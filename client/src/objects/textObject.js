@@ -32,6 +32,11 @@ const textObject = {
     shouldBeActiveNow: false,
     location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
   },
+  spellSetText: {
+    text: '',
+    shouldBeActiveNow: false,
+    location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
+  },
 };
 
 export default textObject;
