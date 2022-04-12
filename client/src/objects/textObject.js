@@ -6,6 +6,8 @@
  *
  */
 
+import _ from 'lodash';
+
 const textObject = {
   escapeToLeaveChat: {
     text: `Press Escape to return to game, use / to send commands.`,
@@ -36,6 +38,9 @@ const textObject = {
     text: '',
     shouldBeActiveNow: false,
     location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
+    disappearMessageLater: _.debounce(() => {
+      textObject.spellSetText.shouldBeActiveNow = false;
+    }, 1000),
   },
 };
 

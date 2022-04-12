@@ -43,6 +43,33 @@ The data currently stored there is:
 The `.sqlite` files are SQLite databases that are not meant to be human readable or written to. The server takes care of them. There are tools to read/write such files though if you really want to.  
 The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simply an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
 
+## How to...
+### Display text to a user.
+All text display and input is done via HTML overlays on top of the canvas. This makes it easier to deal with font scaling across multiple devices.
+
+client/src/objects/textObject.js contains text entries to display. You can add anything you want to here.
+
+Putting them here allows the game update cycle to parse them and display or remove them as needed without your needing to handle that.
+
+If you have a new text entry that you want to display, add another object entry to the list. Use the existing entries as examples.
+
+Notice that some have functions with debounce to remove the message after a period of time, which you should use.
+
+Each text entry uses on of the predefined locations, currently UpperLeft, Scrolling, and Center.
+
+An example of adding text to an element anywhere in your code is:
+
+```
+        textObject.spellSetText.text = 'Hello World!';
+        textObject.spellSetText.shouldBeActiveNow = true;
+        textObject.spellSetText.disappearMessageLater();
+```
+
+If you want to add a new text location, code must be added in several files, at least:  
+playerObject.js  
+sceneList.js  
+updateInGameDomElements.js
+
 ## Code Standards
 
 I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). The configurations for both are in the code.  
