@@ -15,8 +15,6 @@ import validateJWT from "./validateJWT.js";
 // eslint-disable-next-line
 import wait from "../shared/wait.mjs";
 // eslint-disable-next-line
-import jsonMapStringify from "../shared/jsonMapStringify.mjs";
-// eslint-disable-next-line
 import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 
 const commandListArray = [

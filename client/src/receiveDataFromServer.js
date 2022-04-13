@@ -7,7 +7,6 @@ import sendDataToServer from './sendDataToServer.js';
 import playerObject from './objects/playerObject.js';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect.js';
 import parseHadronsFromServer from './parseHadronsFromServer.js';
-import jsonMapStringify from '../../shared/jsonMapStringify.mjs';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -43,7 +42,7 @@ function receiveDataFromServer() {
 
   // The local client won't start the game until this is received and parsed.
   communicationsObject.socket.on('hadrons', (inputData) => {
-    parseHadronsFromServer(JSON.parse(inputData, jsonMapStringify.reviver));
+    parseHadronsFromServer(new Map(inputData));
   });
 
   communicationsObject.socket.on('chat', (inputData) => {
