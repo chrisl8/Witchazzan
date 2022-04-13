@@ -1,5 +1,6 @@
 /* globals window:true */
 /* globals localStorage:true */
+import socket from 'socket.io-client';
 import communicationsObject from './objects/communicationsObject.js';
 import textObject from './objects/textObject.js';
 import sendDataToServer from './sendDataToServer.js';
@@ -17,11 +18,11 @@ function receiveDataFromServer() {
     window.location.hostname === 'localhost' &&
     window.location.port !== '8080'
   ) {
-    communicationsObject.socket = window.io.connect('localhost:8080', {
+    communicationsObject.socket = socket.connect('localhost:8080', {
       transports: ['websocket'],
     });
   } else {
-    communicationsObject.socket = window.io.connect({
+    communicationsObject.socket = socket.connect({
       transports: ['websocket'],
     });
   }

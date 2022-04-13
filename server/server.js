@@ -6,7 +6,6 @@ import sqlite3 from "sqlite3";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Server } from "socket.io";
-import msgpackParser from "socket.io-msgpack-parser";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { randomUUID, randomBytes } from "crypto";
@@ -199,7 +198,6 @@ app.use(bodyParser.json());
 
 const webServer = app.listen(webserverPort);
 const io = new Server(webServer, {
-  parser: msgpackParser, // TODO: I'm not sure if this is faster/better or not. Test?
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
