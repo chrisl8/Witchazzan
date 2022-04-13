@@ -332,16 +332,43 @@ app.get("/api/connections", async (req, res) => {
   }
 });
 
+// Track which scenes have been updated, and only send hadrons to them on update.
+// NOTE: We could also flag EACH hadron as "updated" or not and then only update scenes where at least one has an update.
+// This works for now though, and doesn't require updating hadrons in the sendHadrons() function.
+const updatedSceneList = [];
+
 function sendHadrons() {
-  // TODO: Should we attempt to filter and only send a player the data for the scene they are in and/or ignore their own data?
-  // TODO: Note that socket has the idea of "rooms" too which could be leveraged to deal with scenes.
-  io.sockets.emit(
-    "hadrons",
-    JSON.stringify(hadrons, jsonMapStringify.replacer)
-  );
+  // Hadrons are filtered by scene and only sent to players in the same scene as they are in.
+  const perSceneHadronList = {};
+
+  // Only worry about rooms that contain players and where scenes have been updated
+  connectedPlayerData.forEach((player) => {
+    const updatedSceneListIndex = updatedSceneList.indexOf(player.scene);
+    if (updatedSceneListIndex > -1 && !perSceneHadronList[player.scene]) {
+      updatedSceneList.splice(updatedSceneListIndex, 1);
+      perSceneHadronList[player.scene] = new Map();
+    }
+  });
+
+  // Sift through hadrons and sort them into per-room maps
+  hadrons.forEach((hadron, key) => {
+    if (perSceneHadronList[hadron.scene]) {
+      perSceneHadronList[hadron.scene].set(key, hadron);
+    }
+  });
+
+  for (const [key, value] of Object.entries(perSceneHadronList)) {
+    io.sockets.to(key).emit("hadrons", Array.from(value.entries()));
+  }
 }
 
 const throttledSendHadrons = _.throttle(sendHadrons, 50);
+
+function flagSceneHasUpdated(sceneName) {
+  if (updatedSceneList.indexOf(sceneName) === -1) {
+    updatedSceneList.push(sceneName);
+  }
+}
 
 // Socket listeners
 io.on("connection", (socket) => {
@@ -355,6 +382,8 @@ io.on("connection", (socket) => {
 
   // Nothing else is available until they have authenticated.
   socket.on("token", async (playerData) => {
+    // This code runs every time a player joins.
+    // Look down below for the list of "events" that the client can send us and will be responded to.
     try {
       const decoded = await validateJWT(
         playerData.token,
@@ -367,15 +396,14 @@ io.on("connection", (socket) => {
       console.log(`${PlayerName} connected`);
 
       // Send player their ID, because there is no other easy way for them to know it.
-      // This also servers as the "game is read" "init" message to the client.
+      // This also servers as the "game is ready" "init" message to the client.
       socket.emit("init", {
         id: PlayerId,
         name: PlayerName,
         defaultOpeningScene: serverConfiguration.defaultOpeningScene,
       });
 
-      // The local client won't start the game until they receive
-      // their first set of hadrons that includes one to track themselves.
+      // Announce to the player who else is currently online.
       const connectedPlayerList = [];
       connectedPlayerData.forEach((player) => {
         connectedPlayerList.push(player.name);
@@ -426,12 +454,25 @@ io.on("connection", (socket) => {
         scene: newPlayerHadron.scene,
       });
 
+      // Join player to the room for the scene that they are in.
+      socket.join(newPlayerHadron.scene);
+
+      // Flag their scene as having been updated and queue a hadron broadcast.
+      flagSceneHasUpdated(newPlayerHadron.scene);
       throttledSendHadrons();
+
+      // NOTE:
+      // The local client won't start the game until they receive
+      // their first set of hadrons that includes one to track themselves.
 
       // Announce new players.
       socket.broadcast.emit("chat", {
-        content: `${PlayerName} has joined the game!`,
+        content: `${PlayerName} has joined the game in ${newPlayerHadron.scene}!`,
       });
+
+      // End of "on join" code.
+      // -------------------------------------------------
+      // Start list of "when client sends this to us" code.
 
       socket.on("chat", (data) => {
         // TODO: Implement chat targeting a specific user.
@@ -470,6 +511,12 @@ io.on("connection", (socket) => {
         // and has the owner's id on it.
         const existingHadron = hadrons.get(data.id);
 
+        // If a hadron moves from one scene to another, both scenes must be flagged as updated
+        let previousScene;
+        if (existingHadron && existingHadron.scene !== data.scene) {
+          previousScene = existingHadron.scene;
+        }
+
         // You cannot update other people's hadrons.
         if (!existingHadron || existingHadron.owner === PlayerId) {
           const newHadronData = { ...data };
@@ -489,18 +536,32 @@ io.on("connection", (socket) => {
             hadrons.set(data.id, newHadronData);
           }
 
+          if (previousScene) {
+            flagSceneHasUpdated(previousScene);
+          }
+          flagSceneHasUpdated(newHadronData.scene);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
         }
       });
 
       socket.on("enterScene", (sceneName) => {
+        // Leave the old room
+        socket.leave(connectedPlayerData.get(PlayerId).scene);
+        // Update our information about what room the player is in.
         connectedPlayerData.get(PlayerId).scene = sceneName;
+        // Join the new room.
+        socket.join(sceneName);
+        // Make sure they get an update and that it includes this room's data
+        flagSceneHasUpdated(sceneName);
+        throttledSendHadrons();
+        throttledSaveGameStateToDisk();
       });
 
       socket.on("destroyHadron", (key) => {
         // You cannot update other people's hadrons.
         if (hadrons.has(key) && hadrons.get(key).owner === PlayerId) {
+          flagSceneHasUpdated(hadrons.get(key).scene);
           hadrons.delete(key);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
@@ -527,6 +588,7 @@ io.on("connection", (socket) => {
       });
 
       socket.on("disconnect", () => {
+        flagSceneHasUpdated(connectedPlayerData.get(PlayerId).scene);
         connectedPlayerData.delete(PlayerId);
 
         // Announce player's leaving.
