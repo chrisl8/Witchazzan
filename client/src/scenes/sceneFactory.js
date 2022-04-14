@@ -13,7 +13,6 @@ import sendDataToServer from '../sendDataToServer.js';
 import spriteSheetList from '../objects/spriteSheetList.js';
 import hadrons from '../objects/hadrons.js';
 import clientSprites from '../objects/clientSprites.js';
-import deletedHadronList from '../objects/deletedHadronList.js';
 import getSpriteData from '../utilities/getSpriteData.js';
 import validateHadronData from './sceneFactoryHelpers/validateHadronData.js';
 
@@ -184,9 +183,9 @@ const sceneFactory = ({
     }
   }
 
-  let currentMessage = '';
+  let broadCastMessage;
   const chatForThrottle = () => {
-    sendDataToServer.chat(currentMessage);
+    sendDataToServer.chat(broadCastMessage);
   };
   const throttleSendMessageRead = _.debounce(chatForThrottle, 1000, {
     leading: true,
@@ -198,7 +197,7 @@ const sceneFactory = ({
   function castSpell() {
     if (playerObject.activeSpell === 'writeMessage') {
       const newHadronId = crypto.randomUUID();
-      const message = prompt('please type some shit');
+      const message = prompt('Please leave a message for other players');
       hadrons.set(newHadronId, {
         id: newHadronId,
         owner: playerObject.playerId,
@@ -210,6 +209,7 @@ const sceneFactory = ({
         velocityX: 0,
         velocityY: 0,
         message,
+        transferOwnerWhenLeavingScene: true,
       });
     } else {
       const direction = playerObject.playerDirection;
@@ -243,8 +243,8 @@ const sceneFactory = ({
         velocityY,
         // hideWhenLeavingScene: true, // TODO: Implement this.
         // destroyWhenLeavingScene: true, // TODO: Implement this.
-        // destroyOnDisconnect: true, // TODO: Implement this.
-        // transferOwnershipWhenLeavingScene: false, // TODO: Implement this.
+        // destroyOnDisconnect: true, // TODO: Test
+        transferOwnerWhenLeavingScene: true,
       });
     }
   }
@@ -551,26 +551,29 @@ const sceneFactory = ({
     teleportLayerName,
     teleportLayer,
   }) {
-    if (obstacleSpriteKey === playerObject.playerId) {
-      // Ignore things that I created that hit myself. For now.
+    if (
+      obstacleSpriteKey === playerObject.playerId &&
+      (!hadrons.get(spriteKey)?.originalOwner ||
+        hadrons.get(spriteKey)?.originalOwner === playerObject.playerId)
+    ) {
+      // Ignore things that I own that hit myself. For now.
       // Because of how things spawn, they all hit me when launched,
       // so if we want to do otherwise we have more work to do.
       if (hadrons.get(spriteKey)?.message) {
-        currentMessage = hadrons.get(spriteKey).message;
+        broadCastMessage = {
+          text: hadrons.get(spriteKey).message,
+          fromPlayerId: hadrons.get(spriteKey).originalOwner,
+        };
         throttleSendMessageRead();
       }
-      return;
       // TODO: At some point these will matter, such as if I make a boss that shoots at me.
-    }
-    if (obstacleLayer) {
-      // for now despawning silently if we hit a "layer"
+    } else if (obstacleLayer) {
+      // for now de-spawning silently if we hit a "layer"
       // TODO: More sophisticated collision detection. i.e. Maybe fireballs cross over water?
-      deletedHadronList.push(spriteKey);
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else if (teleportLayer) {
-      // for now despawning silently if we hit a "teleport layer"
-      deletedHadronList.push(spriteKey);
+      // for now de-spawning silently if we hit a "teleport layer"
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else if (
@@ -580,20 +583,21 @@ const sceneFactory = ({
     ) {
       // If the obstacle is a hadron, and it has a name, it is a player,
       // so make them say "Oof!"
-      // TODO: Player hadrons should have a better "tag" and we should tag other "things" too to thelp with this.
+      // TODO: Player hadrons should have a better "tag" and we should tag other "things" too to help with this.
       if (hadrons.get(spriteKey)?.message) {
-        currentMessage = hadrons.get(spriteKey).message;
+        broadCastMessage = {
+          text: hadrons.get(spriteKey).message,
+          fromPlayerId: hadrons.get(spriteKey).originalOwner,
+        };
         throttleSendMessageRead();
       } else {
-        deletedHadronList.push(spriteKey);
         sendDataToServer.destroyHadron(spriteKey);
         hadrons.delete(spriteKey);
-        sendDataToServer.makePlayerSayOff(obstacleSpriteKey);
+        sendDataToServer.makePlayerSayOof(obstacleSpriteKey);
       }
     } else if (obstacleSpriteKey) {
       // Any sprite collision that wasn't a player
       // TODO: Obviously this needs to be more sophisticated.
-      deletedHadronList.push(spriteKey);
       sendDataToServer.destroyHadron(spriteKey);
       hadrons.delete(spriteKey);
     } else {
@@ -606,16 +610,16 @@ const sceneFactory = ({
         obstacleLayer,
         obstacleSpriteKey,
         obstacleSprite,
+        teleportLayerName,
+        teleportLayer,
       );
     }
   }
 
-  function addNewSprites(hadron, key) {
-    // If no `sprite` key is given, no sprite is displayed.
-    // This also prevents race conditions with remote players during reload
+  function addAndUpdateSprites(hadron, key) {
     // If a remote player changes their sprite, we won't know about it,
     //       although currently they have to disconnect to do this, so
-    //       the game piece is removed and resent anyway.
+    //       the hadron is removed and resent anyway.
 
     // Add new Sprites for new hadrons.
     if (!clientSprites.has(key)) {
@@ -625,6 +629,7 @@ const sceneFactory = ({
       newClientSprite.spriteData = getSpriteData(hadron.sprite);
 
       // Use different carrot colors for different genetic code
+      // TODO: Delete this or make some use of it.
       if (hadron.type === 'carrot') {
         // hadron.genes.color range 0 to 255
         // Currently carrot options are 01 to 28
@@ -656,65 +661,6 @@ const sceneFactory = ({
           newClientSprite.spriteData.displayWidth,
         );
 
-      if (
-        hadron.owner === playerObject.playerId &&
-        key !== playerObject.playerId
-      ) {
-        // Track collisions for owned sprites.
-
-        // Collisions with tilemap collisionLayer layer
-        this.physics.add.collider(
-          newClientSprite.sprite,
-          collisionLayer,
-          (sprite, obstacle) => {
-            spriteCollisionHandler({
-              spriteKey: key,
-              sprite,
-              obstacleLayerName: 'collisionLayer',
-              obstacleLayer: obstacle,
-            });
-          },
-        );
-
-        // Collisions with tilemap teleport layers
-        teleportLayersColliders.forEach((layer) => {
-          this.physics.add.collider(
-            newClientSprite.sprite,
-            layer,
-            (sprite, obstacle) => {
-              spriteCollisionHandler({
-                spriteKey: key,
-                sprite,
-                teleportLayerName: layer.name,
-                teleportLayer: obstacle,
-              });
-            },
-          );
-        });
-
-        // Collisions with other sprites
-        clientSprites.forEach((otherSprite, otherSpriteKey) => {
-          if (otherSprite.sprite) {
-            this.physics.add.collider(
-              newClientSprite.sprite,
-              otherSprite.sprite,
-              (sprite, obstacle) => {
-                spriteCollisionHandler({
-                  spriteKey: key,
-                  sprite,
-                  obstacleSpriteKey: otherSpriteKey,
-                  obstacleSprite: obstacle,
-                });
-              },
-            );
-          }
-        });
-
-        // Set velocity on owned sprites
-        newClientSprite.sprite.body.setVelocityX(hadron.velocityX);
-        newClientSprite.sprite.body.setVelocityY(hadron.velocityY);
-      }
-
       // Set the "shadow" of my own player to black.
       if (key === playerObject.playerId) {
         newClientSprite.sprite.tint = 0x000000;
@@ -731,25 +677,116 @@ const sceneFactory = ({
 
       clientSprites.set(key, newClientSprite);
     }
+
+    // Additional features for owned sprites,
+    // which can be transferred to us,
+    // even if the sprite already existed as a non-owned sprite before.
+    if (
+      // It should exist now, even if it didn't before.
+      clientSprites.has(key) &&
+      // We own it.
+      hadron.owner === playerObject.playerId &&
+      // But it isn't our shadow.
+      key !== playerObject.playerId
+    ) {
+      // If we had a sprite before, but we didn't own it,
+      // and it was transferred to us, the sprite exists,
+      // but it doesn't have a collider or velocity yet.
+      // I think the only way to track that is manually.
+
+      /* TRACK COLLISIONS FOR OWNED SPRITES. */
+
+      if (!clientSprites.get(key).staticCollisionsSet) {
+        clientSprites.get(key).staticCollisionsSet = true;
+
+        // Collisions with tilemap collisionLayer layer
+        this.physics.add.collider(
+          clientSprites.get(key).sprite,
+          collisionLayer,
+          (sprite, obstacle) => {
+            spriteCollisionHandler({
+              spriteKey: key,
+              sprite,
+              obstacleLayerName: 'collisionLayer',
+              obstacleLayer: obstacle,
+            });
+          },
+        );
+
+        // Collisions with tilemap teleport layers
+        teleportLayersColliders.forEach((layer) => {
+          this.physics.add.collider(
+            clientSprites.get(key).sprite,
+            layer,
+            (sprite, obstacle) => {
+              spriteCollisionHandler({
+                spriteKey: key,
+                sprite,
+                teleportLayerName: layer.name,
+                teleportLayer: obstacle,
+              });
+            },
+          );
+        });
+      }
+
+      // COLLISIONS WITH OTHER SPRITES
+      // Other sprites come and go, so we need to check and update colliders with them on every update, or at least when we get new hadrons.
+      // Note that we use overlap, not collide here. This does a couple of things:
+      // 1. A collide will have a physics affect that we don't actually want (the player object, for instance, is controlled directly so bumping it around just causes visual glitches).
+      // 2. By waiting for a full overlap before registering, it looks better to other players, who tend to see
+      //    the sprite deleted before they see it overlap the obstacle (We could add some sort of "animate one more frame" logic, but for now ths is it.)
+      // In the future we could perhaps have a key on the hadron that determines whether we use overlap or collide
+      // for a given object.
+      clientSprites.forEach((otherSprite, otherSpriteKey) => {
+        // Don't add a collider with ourself.
+        if (otherSpriteKey !== key) {
+          if (!otherSprite.colliders) {
+            // eslint-disable-next-line no-param-reassign
+            otherSprite.colliders = {};
+          }
+          // Add new ones
+          if (otherSprite.sprite && !otherSprite.colliders[key]) {
+            // eslint-disable-next-line no-param-reassign
+            otherSprite.colliders[key] = this.physics.add.overlap(
+              clientSprites.get(key).sprite,
+              otherSprite.sprite,
+              (sprite, obstacle) => {
+                spriteCollisionHandler({
+                  spriteKey: key,
+                  sprite,
+                  obstacleSpriteKey: otherSpriteKey,
+                  obstacleSprite: obstacle,
+                });
+              },
+            );
+          }
+        }
+      });
+
+      /* SET VELOCITY ON OWNED SPRITES */
+      if (!clientSprites.get(key).velocitySet) {
+        clientSprites.get(key).velocitySet = true;
+        clientSprites.get(key).sprite.body.setVelocityX(hadron.velocityX);
+        clientSprites.get(key).sprite.body.setVelocityY(hadron.velocityY);
+      }
+    }
   }
 
   function updateHadrons() {
     // Deal with game pieces from server.
-    const activeObjectList = new Map();
 
     hadrons.forEach((hadron, key) => {
-      // Sometimes a game piece is not something we can use
-      if (validateHadronData(hadron, key)) {
-        activeObjectList.set(key, '');
-
-        // Only render game pieces for THIS scene
-        if (hadron.scene === sceneName) {
+      // Only render hadrons for THIS scene
+      if (hadron.scene === sceneName) {
+        // Sometimes a game piece is not something we can use
+        if (validateHadronData(hadron, key)) {
           // This is used for debugging
           renderDebugDotTrails(hadron, key);
 
           // This will add the sprite if it doesn't exist,
           // and do nothing if it does.
-          addNewSprites.call(this, hadron, key);
+          addAndUpdateSprites.call(this, hadron, key);
           // Now we know that we have a sprite.
           const clientSprite = clientSprites.get(key);
 
@@ -796,10 +833,10 @@ const sceneFactory = ({
           }
 
           // SET SPRITE ANIMATION BASED ON HADRON DATA
-          // The only way to know if the remote item is in motion is for the server to tell us
+          // The only way to know if the remote item is in motion is for them to tell us
           //       We cannot divine it, because the local tick is always faster than the server update.
           // This only matters in that we like to animate the sprite when it is "in motion", but not when it is still,
-          // i.e. when a user is "walking", even into a wall, it is nice to see it animated, to indicate it is walking.
+          // i.e. when a user is "walking", even into a wall, it is nice to see it animated, to indicate it is actively walking into the wall.
           let objectInMotion = true; // Default to animate if server does not tell us otherwise.
           if (hadron.moving === false) {
             objectInMotion = false;
@@ -858,11 +895,11 @@ const sceneFactory = ({
           }
 
           // PERFORM EASING ON HADRONS BEING CONTROLLED BY OTHER PLAYERS
-          // i.e. If the hadron is ours, we set velocities, and that does this for us,
+          // , and my own shadow.
+          // If the hadron is ours, we set velocities, and that does this for us,
           // but if we are just updating x/y positions, we need this to make it smooth.
           // Easing demonstrations:
           // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
-          // Only do this for other player's objects, and my shadow.
           if (
             hadron.owner !== playerObject.playerId ||
             key === playerObject.playerId
@@ -875,54 +912,54 @@ const sceneFactory = ({
               ease: 'Linear', // Anything else is wonky when tracking server updates.
             });
           }
-        } else if (clientSprites.has(key)) {
-          const clientSprite = clientSprites.get(key);
 
-          // Destroy any sprites left over from incorrect scenes
-          if (clientSprite.sprite) {
-            clientSprite.sprite.destroy();
+          // SEND HADRON DATA TO THE SERVER
+          // We skip our own player, because it has special requirements.
+          if (
+            hadron.owner === playerObject.playerId &&
+            key !== playerObject.playerId
+          ) {
+            // Update all data on owned hadrons.
+            const newHadronData = { ...hadron };
+
+            newHadronData.x = clientSprites.get(key).sprite.x;
+            newHadronData.y = clientSprites.get(key).sprite.y;
+
+            // Update hadron data
+            hadrons.set(key, newHadronData);
+
+            // Send owned hadron data to server.
+            sendDataToServer.hadronData(key);
           }
-          // and wipe their data so we do not see it anymore.
-          clientSprites.delete(key);
         }
-
-        // SEND HADRON DATA TO THE SERVER
-        // We skip our own player, because it has special requirements.
-        if (
-          hadron.owner === playerObject.playerId &&
-          key !== playerObject.playerId
-        ) {
-          // Update all data on owned hadrons.
-          const newHadronData = { ...hadron };
-
-          // Obviously we can only update the x/y position IF we are tracking a sprite for this hadron,
-          // which, for instance, doesn't happen if the hadron is in another scene.
-          if (clientSprites.has(key)) {
-            const clientSprite = clientSprites.get(key);
-            if (clientSprite.sprite) {
-              newHadronData.x = clientSprite.sprite.x;
-              newHadronData.y = clientSprite.sprite.y;
-            }
-          }
-
-          hadrons.set(key, newHadronData);
-
-          // Send owned hadron data to server.
-          sendDataToServer.hadronData(key);
-        }
+      } else {
+        // We need to wipe our local copy of hadrons that are not in our scene.
+        hadrons.delete(key);
+        // cleanUpClientSprites() will erase the sprites from these if they existed.
       }
     });
-    return activeObjectList;
   }
 
-  function removeDeSpawnedObjects(activeObjectList) {
-    // Remove de-spawned objects
+  function cleanUpClientSprites() {
     clientSprites.forEach((clientSprite, key) => {
-      if (!activeObjectList.has(key)) {
+      // Delete orphaned sprites with no hadron.
+      if (!hadrons.has(key)) {
         if (clientSprite.sprite) {
           clientSprite.sprite.destroy();
         }
         clientSprites.delete(key);
+      } else if (clientSprite.colliders) {
+        // Remove any colliders with non-existent hadrons that are gone now.
+        for (const [colliderKey] of Object.entries(clientSprite.colliders)) {
+          if (!hadrons.has(colliderKey)) {
+            // I'm not entirely sure if this works.
+            this.physics.world.removeCollider(
+              clientSprite.colliders[colliderKey],
+            );
+            // eslint-disable-next-line no-param-reassign
+            delete clientSprite.colliders[colliderKey];
+          }
+        }
       }
     });
   }
@@ -1274,14 +1311,14 @@ const sceneFactory = ({
 
     updatePlayerSpriteAnimation();
 
-    const activeObjectList = updateHadrons.call(this);
+    updateHadrons.call(this);
 
     // Send Player data, which is unique
     sendDataToServer.playerData({
       sceneName,
     });
 
-    removeDeSpawnedObjects(activeObjectList);
+    cleanUpClientSprites.call(this);
 
     updateInGameDomElements(htmlElementParameters);
   };

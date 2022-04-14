@@ -3,6 +3,7 @@ import _ from 'lodash';
 import communicationsObject from './objects/communicationsObject.js';
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
+import deletedHadronList from './objects/deletedHadronList.js';
 
 const sendDataToServer = {};
 const sentData = new Map();
@@ -14,13 +15,14 @@ sendDataToServer.enterScene = (sceneName) => {
   }
 };
 
-sendDataToServer.chat = (text, targetPlayerId) => {
+sendDataToServer.chat = ({ text, targetPlayerId, fromPlayerId, room }) => {
   if (communicationsObject.socket.connected) {
-    const obj = { text };
-    if (targetPlayerId) {
-      obj.targetPlayerId = targetPlayerId;
-    }
-    communicationsObject.socket.emit('chat', obj);
+    communicationsObject.socket.emit('chat', {
+      text,
+      targetPlayerId,
+      fromPlayerId,
+      room,
+    });
   }
 };
 
@@ -61,11 +63,15 @@ sendDataToServer.hadronData = (key) => {
 };
 
 sendDataToServer.destroyHadron = (key) => {
+  // The deletedHadronList is to prevent the race condition of us deleting a hadron,
+  // but then immediately adding it again because we get an incoming packet that includes it,
+  // before the server has a chance to delete it.
+  deletedHadronList.push(key);
   communicationsObject.socket.emit('destroyHadron', key);
 };
 
-sendDataToServer.makePlayerSayOff = (key) => {
-  communicationsObject.socket.emit('makePlayerSayOff', key);
+sendDataToServer.makePlayerSayOof = (key) => {
+  communicationsObject.socket.emit('makePlayerSayOof', key);
 };
 
 sendDataToServer.token = () => {

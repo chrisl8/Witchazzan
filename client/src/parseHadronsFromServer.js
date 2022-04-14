@@ -3,29 +3,34 @@ import hadrons from './objects/hadrons.js';
 import deletedHadronList from './objects/deletedHadronList.js';
 
 function parseHadronsFromServer(serverHadrons) {
-  // First wipe out all hadrons (game pieces) that we don't own,
-  // from our own list,
-  // so that old ones disappear
-  hadrons.forEach((hadron, key) => {
-    if (hadron.owner !== playerObject.playerId) {
+  // First clean out all hadrons (game pieces) that we don't own,
+  // from our own list, so that old ones disappear,
+  // and new for these hadrons takes precedence over our data.
+  hadrons.forEach((clientHadron, key) => {
+    if (clientHadron.owner !== playerObject.playerId) {
       hadrons.delete(key);
     }
   });
 
-  // Then add all hadrons that we do not own
-  serverHadrons.forEach((hadron, key) => {
-    if (hadron.owner !== playerObject.playerId) {
-      hadrons.set(key, hadron);
+  // Then add all hadrons that we do not own from the server list to our list.
+  serverHadrons.forEach((serverHadron, key) => {
+    if (serverHadron.owner !== playerObject.playerId) {
+      hadrons.set(key, serverHadron);
     }
+
     // Ignore hadrons that we own,
     // because our local copy is authoritative for owned hadrons,
-    // unless we don't know about the hadron (we forgot about it).
+    // UNLESS we don't know about the hadron (we forgot about it).
     if (
-      hadron.owner === playerObject.playerId &&
+      serverHadron.owner === playerObject.playerId &&
       !hadrons.has(key) &&
+      // The deletedHadronList is to prevent the race condition of us deleting a hadron,
+      // but then immediately adding it again because we get an incoming packet that includes it,
+      // before the server has a chance to delete it.
+      // TODO: Do we need to clean up the deletedHadronList, lest it get very big and slow stuff down???
       deletedHadronList.indexOf(key) === -1
     ) {
-      hadrons.set(key, hadron);
+      hadrons.set(key, serverHadron);
     }
   });
 

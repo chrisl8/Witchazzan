@@ -32,6 +32,10 @@ const commandListArray = [
     name: "dumpPlayerObject",
     description: "Log player object to console for debugging.",
   },
+  {
+    name: "dumpClientSprites",
+    description: "Log clientSprites Map() to console for debugging.",
+  },
 ];
 let commandHelpOutput = "The following commands are available:";
 commandListArray.forEach((command) => {
@@ -353,11 +357,33 @@ function sendHadrons() {
   // Sift through hadrons and sort them into per-room maps
   hadrons.forEach((hadron, key) => {
     if (perSceneHadronList[hadron.scene]) {
+      // Check to see if the owner of this hadron is in this scene
+      if (connectedPlayerData.get(hadron.owner)?.scene !== hadron.scene) {
+        if (hadron.transferOwnerWhenLeavingScene) {
+          // Find a new owner for the hadron.
+          let newOwnerFound = false;
+          connectedPlayerData.forEach((player, playerKey) => {
+            if (!newOwnerFound && player.scene === hadron.scene) {
+              newOwnerFound = true;
+              if (!hadron.originalOwner) {
+                // eslint-disable-next-line no-param-reassign
+                hadron.originalOwner = hadron.owner;
+              }
+              // eslint-disable-next-line no-param-reassign
+              hadron.owner = playerKey;
+            }
+          });
+        }
+      }
+
+      // Add hadron to this scene's Map
       perSceneHadronList[hadron.scene].set(key, hadron);
     }
   });
 
+  // Loop through each scene's hadrons
   for (const [key, value] of Object.entries(perSceneHadronList)) {
+    // Send all of these hadrons to every player who is in the room with the same name as the scene
     io.sockets.to(key).emit("hadrons", Array.from(value.entries()));
   }
 }
@@ -452,6 +478,7 @@ io.on("connection", (socket) => {
         id: PlayerId,
         name: PlayerName,
         scene: newPlayerHadron.scene,
+        socketId: socket.id,
       });
 
       // Join player to the room for the scene that they are in.
@@ -474,11 +501,27 @@ io.on("connection", (socket) => {
       // -------------------------------------------------
       // Start list of "when client sends this to us" code.
 
-      socket.on("chat", (data) => {
+      socket.on("chat", async (data) => {
+        let name = PlayerName;
+        if (data.fromPlayerId) {
+          try {
+            // User could be offline, so get from database
+            const sql = "SELECT name FROM Users WHERE id = ?";
+            const result = await db.query(sql, [data.fromPlayerId]);
+            if (result.rows.length > 0) {
+              name = result.rows[0].name;
+            }
+          } catch (e) {
+            console.error("Error retrieving user:", data.fromPlayerId);
+            console.error(e.message);
+          }
+        }
         // TODO: Implement chat targeting a specific user.
+        //       You can use the socketId saved in the connectedPlayerData Map()
         // TODO: Implement per room/scene chat.
+        //       Each player is always in a room with the same name as the scene that they are in.
         socket.broadcast.emit("chat", {
-          name: PlayerName,
+          name,
           content: data.text,
         });
         // Send back to user also.
@@ -488,12 +531,12 @@ io.on("connection", (socket) => {
         // and in theory give you a better sense of what order the messages actually show up in
         // for everybody else.
         socket.emit("chat", {
-          name: PlayerName,
+          name,
           content: data.text,
         });
       });
 
-      socket.on("makePlayerSayOff", (key) => {
+      socket.on("makePlayerSayOof", (key) => {
         if (hadrons.has(key) && hadrons.get(key).name) {
           socket.broadcast.emit("chat", {
             name: hadrons.get(key).name,
@@ -596,12 +639,41 @@ io.on("connection", (socket) => {
           content: `${PlayerName} has left the game. :'(`,
         });
 
-        // Archive all hadrons owned by this user.
-        // TODO: Some hadrons may need to stay, so we should have a flag for that.
+        // Handle all hadrons owned by this user.
         hadrons.forEach((hadron, key) => {
-          if (hadron.owner === PlayerId) {
-            inactiveHadrons.set(key, hadron);
-            hadrons.delete(key);
+          if (hadron.owner === PlayerId || hadron.originalOwner === PlayerId) {
+            // Default Behavior
+            let deleteHadron = true;
+            let archiveHadron = true;
+            if (hadron.destroyOnDisconnect) {
+              archiveHadron = false;
+              deleteHadron = true;
+            }
+
+            if (archiveHadron) {
+              inactiveHadrons.set(key, { ...hadron });
+              // Ensure that the owner is the original owner, in case it was transferred.
+              inactiveHadrons.get(key).owner = PlayerId;
+            }
+
+            // Hadron Delete code.
+            if (deleteHadron) {
+              // If the hadron was transferred,
+              // the new owner won't delete the hadron from their own list,
+              // because it thinks it is the owner,
+              // so we have to force it to delete the hadron.
+              if (
+                hadron.owner !== PlayerId &&
+                connectedPlayerData.has(hadron.owner)
+              ) {
+                socket
+                  .to(connectedPlayerData.get(hadron.owner).socketId)
+                  .emit("deleteHadron", key);
+              }
+
+              // Delete it.
+              hadrons.delete(key);
+            }
           }
         });
         throttledSendHadrons();
