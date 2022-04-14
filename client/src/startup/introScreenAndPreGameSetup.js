@@ -31,6 +31,7 @@ const domElements = {
   logOutButton: document.getElementById('logout_button'),
   playerNameInputBox: document.getElementById('player_name_input_box'),
   passwordInputBox: document.getElementById('password_input_box'),
+  repeatPasswordInputBox: document.getElementById('repeat_password_input'),
   createNewAccountButton: document.getElementById('create_new_account_button'),
   createAccountButton: document.getElementById('create_account_button'),
 };
@@ -51,6 +52,16 @@ function updateDOMElements() {
 
   document.getElementById('login_error_text_box').hidden = !loginErrorText;
   document.getElementById('login_error_text').innerText = loginErrorText;
+
+  if (playerName) {
+    document.getElementById('password_input_box').focus();
+  } else {
+    domElements.playerNameInputBox.focus();
+  }
+
+  if (loggedIn) {
+    document.getElementById('start_game_button').focus();
+  }
 }
 
 async function checkLoggedInStatus() {
@@ -298,11 +309,31 @@ async function introScreenAndPreGameSetup() {
     );
     domElements.createAccountButton.addEventListener('click', createAccount);
 
+    // Text box event listeners (on Enter key)
+    domElements.passwordInputBox.addEventListener('keyup', (event) => {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.key === 'Enter') {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        domElements.loginSubmitButton.click();
+      }
+    });
+    domElements.repeatPasswordInputBox.addEventListener('keyup', (event) => {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.key === 'Enter') {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        domElements.createAccountButton.click();
+      }
+    });
+
     if (playerName) {
       domElements.playerNameInputBox.value = playerName;
     }
 
-    domElements.playerNameInputBox.focus();
+    updateDOMElements();
 
     while (!pleaseStartGameNow) {
       // eslint-disable-next-line no-await-in-loop
