@@ -1,6 +1,7 @@
 /* globals localStorage:true */
 import textObject from './objects/textObject.js';
 import playerObject from './objects/playerObject.js';
+import clientSprites from './objects/clientSprites.js';
 import sendDataToServer from './sendDataToServer.js';
 import communicationsObject from './objects/communicationsObject.js';
 
@@ -48,13 +49,16 @@ function processCommandInput(event) {
       if (inputTextSpaceDelimitedArray[0] === 'dumpPlayerObject') {
         console.log(playerObject);
         addEntryToCommandHistory(command);
+      } else if (inputTextSpaceDelimitedArray[0] === 'dumpClientSprites') {
+        console.log(clientSprites);
+        addEntryToCommandHistory(command);
       } else if (inputTextSpaceDelimitedArray[0] === 'whisper') {
         // Sends chat to specific user
         if (communicationsObject.socket.connected) {
           inputTextSpaceDelimitedArray.shift();
           const targetPlayerId = Number(inputTextSpaceDelimitedArray.shift());
-          const chatText = inputTextSpaceDelimitedArray.join(' ');
-          sendDataToServer.chat(chatText, targetPlayerId);
+          const text = inputTextSpaceDelimitedArray.join(' ');
+          sendDataToServer.chat({ text, targetPlayerId });
         } else {
           // Warn user that command cannot be sent due to lack of server connection.
           textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
@@ -75,7 +79,9 @@ function processCommandInput(event) {
       }
     } else if (communicationsObject.socket.connected) {
       if (playerObject.chatInputTextArray.length > 0) {
-        sendDataToServer.chat(playerObject.chatInputTextArray.join(''));
+        sendDataToServer.chat({
+          text: playerObject.chatInputTextArray.join(''),
+        });
       }
       // Clear text after sending.
       playerObject.chatInputTextArray.length = 0;
