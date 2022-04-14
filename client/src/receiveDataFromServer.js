@@ -7,6 +7,7 @@ import sendDataToServer from './sendDataToServer.js';
 import playerObject from './objects/playerObject.js';
 import cleanUpAfterDisconnect from './cleanUpAfterDisconnect.js';
 import parseHadronsFromServer from './parseHadronsFromServer.js';
+import hadrons from './objects/hadrons.js';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -43,6 +44,13 @@ function receiveDataFromServer() {
   // The local client won't start the game until this is received and parsed.
   communicationsObject.socket.on('hadrons', (inputData) => {
     parseHadronsFromServer(new Map(inputData));
+  });
+
+  // Sometimes the server has to force us to delete a hadron,
+  // typically one that we own that was deleted by outside forces,
+  // despite our code being sure we are the owner of it.
+  communicationsObject.socket.on('deleteHadron', (key) => {
+    hadrons.delete(key);
   });
 
   communicationsObject.socket.on('chat', (inputData) => {
