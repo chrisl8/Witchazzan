@@ -657,8 +657,8 @@ const sceneFactory = ({
           newClientSprite.spriteData.physicsSize.y,
         )
         .setDisplaySize(
-          newClientSprite.spriteData.displayHeight,
           newClientSprite.spriteData.displayWidth,
+          newClientSprite.spriteData.displayHeight,
         );
 
       // Set the "shadow" of my own player to black.
@@ -1113,8 +1113,8 @@ const sceneFactory = ({
         playerObject.spriteData.physicsSize.y,
       )
       .setDisplaySize(
-        playerObject.spriteData.displayHeight,
         playerObject.spriteData.displayWidth,
+        playerObject.spriteData.displayHeight,
       );
 
     playerObject.player.setDepth(1);
