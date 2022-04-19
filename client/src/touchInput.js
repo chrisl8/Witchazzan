@@ -10,7 +10,7 @@ function touchInput() {
   document.body.addEventListener(
     'touchstart',
     (evt) => {
-      evt.preventDefault(); // TODO: Does this fix the issue on iPhone's without buttons?
+      evt.preventDefault();
       fingerCount = evt.touches.length;
     },
     false,

@@ -282,8 +282,13 @@ const sceneFactory = ({
       playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
     }
 
-    // Send currently active Spell with space bar
-    if (playerObject.keyState[' '] === 'keydown') {
+    // Send currently active Spell with space bar,
+    // or touch input set by "sendSpell" on playerObject.
+    if (
+      playerObject.keyState[' '] === 'keydown' ||
+      playerObject.sendSpell === true
+    ) {
+      playerObject.sendSpell = false;
       playerObject.keyState[' '] = null;
       castSpell.call(this);
     }
