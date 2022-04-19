@@ -400,7 +400,9 @@ async function introScreenAndPreGameSetup() {
   playerObject.activeSpell = spellAssignments.get(playerObject.spellKeys[0]);
 
   // Un-hide joystick input box
-  document.getElementById('joystick_container').hidden = false;
+  if (navigator.userAgentData.mobile) {
+    document.getElementById('joystick_container').hidden = false;
+  }
 }
 
 export default introScreenAndPreGameSetup;

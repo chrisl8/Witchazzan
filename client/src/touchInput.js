@@ -36,8 +36,8 @@ function touchInput() {
     zone: document.getElementById('joystick_container'),
     mode: 'static',
     position: { left: '40%', top: '50%' },
-    color: 'red',
-    restOpacity: 0.1,
+    color: 'blue',
+    restOpacity: 0.9,
   });
   joystick
     .on('start', () => {
