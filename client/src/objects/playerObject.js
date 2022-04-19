@@ -51,6 +51,7 @@ const playerObject = {
     playerTag: { innerHTML: null, left: null, top: null, fontSize: null },
   },
   spriteName: 'bloomby', // Default set here
+  health: 100,
   playerId: null,
   playerDirection: 'left',
   playerStopped: true,

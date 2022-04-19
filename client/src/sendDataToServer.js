@@ -38,6 +38,7 @@ sendDataToServer.playerData = ({ sceneName }) => {
       sprite: playerObject.spriteName,
       moving: !playerObject.playerStopped,
       chatOpen: playerObject.chatOpen,
+      health: playerObject.health,
     };
     if (!_.isEqual(objectToSend, lastSentPlayerDataObject)) {
       lastSentPlayerDataObject = { ...objectToSend };

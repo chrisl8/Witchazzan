@@ -47,6 +47,8 @@ function parseHadronsFromServer(serverHadrons) {
         y: playerHadron.y,
       };
       playerObject.initialScene = playerHadron.scene;
+      // On connect, get health from server, because disconnecting doesn't automatically heal you!
+      playerObject.health = playerHadron.health;
     }
   }
 }
