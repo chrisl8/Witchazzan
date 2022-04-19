@@ -5,6 +5,7 @@
 import playerObject from '../objects/playerObject.js';
 import spellAssignments from '../objects/spellAssignments.js';
 import wait from '../../../shared/wait.mjs';
+import isMobileBrowser from '../utilities/isMobileBrowser.js';
 
 // TODO: Can we just use / instead of adding the actual href path?
 let apiURL = `${window.location.href}api`;
@@ -400,7 +401,7 @@ async function introScreenAndPreGameSetup() {
   playerObject.activeSpell = spellAssignments.get(playerObject.spellKeys[0]);
 
   // Un-hide joystick input box
-  if (navigator.userAgentData.mobile) {
+  if (isMobileBrowser) {
     document.getElementById('joystick_container').hidden = false;
   }
 }
