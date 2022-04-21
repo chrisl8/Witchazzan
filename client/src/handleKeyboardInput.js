@@ -4,6 +4,7 @@ import playerObject from './objects/playerObject.js';
 import spellAssignments from './objects/spellAssignments.js';
 import textObject from './objects/textObject.js';
 import processCommandInput from './processCommandInput.js';
+import fancyNames from '../../shared/fancyNames.mjs';
 
 // Local keys will work even if the server is disconnected.
 // I suggest making these RARE, and also not recording their state,
@@ -64,7 +65,7 @@ function handleKeyboardInput(event) {
             playerObject.spellKeys[0],
           );
         }
-        textObject.spellSetText.text = playerObject.activeSpell;
+        textObject.spellSetText.text = fancyNames(playerObject.activeSpell);
         textObject.spellSetText.shouldBeActiveNow = true;
         textObject.spellSetText.disappearMessageLater();
       } else if (event.key.length === 1) {
