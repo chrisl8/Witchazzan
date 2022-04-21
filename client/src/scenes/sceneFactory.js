@@ -1,10 +1,6 @@
 /* globals window:true */
 /* globals localStorage:true */
-/* globals document:true */
-/* globals crypto:true */
-/* globals prompt:true */
 import Phaser from 'phaser';
-import _ from 'lodash';
 import playerObject from '../objects/playerObject.js';
 import textObject from '../objects/textObject.js';
 import handleKeyboardInput from '../handleKeyboardInput.js';
@@ -15,8 +11,8 @@ import hadrons from '../objects/hadrons.js';
 import clientSprites from '../objects/clientSprites.js';
 import getSpriteData from '../utilities/getSpriteData.js';
 import validateHadronData from './sceneFactoryHelpers/validateHadronData.js';
-
-import fullscreen from '../assets/spriteSheets/fullscreen.png';
+import castSpell from '../castSpell.js';
+import spriteCollisionHandler from '../spriteCollisionHandler.js';
 
 // Example of adding sound.
 import sunriseMp3 from '../assets/sounds/sunrise.mp3';
@@ -204,72 +200,6 @@ const sceneFactory = ({
     }
   }
 
-  let broadCastMessage;
-  const chatForThrottle = () => {
-    sendDataToServer.chat(broadCastMessage);
-  };
-  const throttleSendMessageRead = _.debounce(chatForThrottle, 1000, {
-    leading: true,
-    trailing: false,
-  });
-
-  // TODO: This is the first sprite to be inserted into the new game!
-  //       Use this as an example/template!
-  function castSpell() {
-    if (playerObject.activeSpell === 'writeMessage') {
-      const newHadronId = crypto.randomUUID();
-      const message = prompt('Please leave a message for other players');
-      hadrons.set(newHadronId, {
-        id: newHadronId,
-        owner: playerObject.playerId,
-        sprite: playerObject.activeSpell,
-        x: playerObject.player.x,
-        y: playerObject.player.y,
-        direction: 'up',
-        scene: sceneName,
-        velocityX: 0,
-        velocityY: 0,
-        message,
-        transferOwnerWhenLeavingScene: true,
-      });
-    } else {
-      const direction = playerObject.playerDirection;
-      const velocity = 150; // TODO: Should be set "per spell"
-      // TODO: Should the velocity be ADDED to the player's current velocity?
-      let velocityX = 0;
-      let velocityY = 0;
-      if (direction === 'left') {
-        velocityX = -velocity;
-      } else if (direction === 'right') {
-        velocityX = velocity;
-      } else if (direction === 'up') {
-        velocityY = -velocity;
-      } else if (direction === 'down') {
-        velocityY = velocity;
-      }
-
-      // TODO: Using a different spell is more than just a matter of changing the sprite,
-      //       but that is what we have here for now.
-      // TODO: Each spell should have an entire description in some sort of spells file.
-      const newHadronId = crypto.randomUUID();
-      hadrons.set(newHadronId, {
-        id: newHadronId, // TODO: Make a hadron creator, used by client and server, that ensures this is added.
-        owner: playerObject.playerId,
-        sprite: playerObject.activeSpell, // TODO: Use the spell's sprite setting, not just the spell name as the sprite.
-        x: playerObject.player.x,
-        y: playerObject.player.y,
-        direction,
-        scene: sceneName,
-        velocityX,
-        velocityY,
-        // hideWhenLeavingScene: true, // TODO: Implement this.
-        // destroyWhenLeavingScene: true, // TODO: Implement this.
-        // destroyOnDisconnect: true, // TODO: Test
-        transferOwnerWhenLeavingScene: true,
-      });
-    }
-  }
-
   function hotKeyHandler() {
     // Return to intro text
     if (playerObject.keyState.p === 'keydown') {
@@ -311,7 +241,7 @@ const sceneFactory = ({
     ) {
       playerObject.sendSpell = false;
       playerObject.keyState[' '] = null;
-      castSpell.call(this);
+      castSpell(sceneName);
     }
   }
 
@@ -564,81 +494,6 @@ const sceneFactory = ({
     } else if (playerObject.dotTrailRenderTexture) {
       playerObject.dotTrailRenderTexture.destroy();
       playerObject.dotTrailRenderTexture = null;
-    }
-  }
-
-  function spriteCollisionHandler({
-    spriteKey,
-    sprite,
-    obstacleLayerName,
-    obstacleLayer,
-    obstacleSpriteKey,
-    obstacleSprite,
-    teleportLayerName,
-    teleportLayer,
-  }) {
-    if (
-      obstacleSpriteKey === playerObject.playerId &&
-      (!hadrons.get(spriteKey)?.originalOwner ||
-        hadrons.get(spriteKey)?.originalOwner === playerObject.playerId)
-    ) {
-      // Ignore things that I own that hit myself. For now.
-      // Because of how things spawn, they all hit me when launched,
-      // so if we want to do otherwise we have more work to do.
-      if (hadrons.get(spriteKey)?.message) {
-        broadCastMessage = {
-          text: hadrons.get(spriteKey).message,
-          fromPlayerId: hadrons.get(spriteKey).originalOwner,
-        };
-        throttleSendMessageRead();
-      }
-      // TODO: At some point these will matter, such as if I make a boss that shoots at me.
-    } else if (obstacleLayer) {
-      // for now de-spawning silently if we hit a "layer"
-      // TODO: More sophisticated collision detection. i.e. Maybe fireballs cross over water?
-      sendDataToServer.destroyHadron(spriteKey);
-      hadrons.delete(spriteKey);
-    } else if (teleportLayer) {
-      // for now de-spawning silently if we hit a "teleport layer"
-      sendDataToServer.destroyHadron(spriteKey);
-      hadrons.delete(spriteKey);
-    } else if (
-      obstacleSpriteKey &&
-      hadrons.has(obstacleSpriteKey) &&
-      hadrons.get(obstacleSpriteKey).name
-    ) {
-      // If the obstacle is a hadron, and it has a name, it is a player,
-      // so make them say "Oof!"
-      // TODO: Player hadrons should have a better "tag" and we should tag other "things" too to help with this.
-      if (hadrons.get(spriteKey)?.message) {
-        broadCastMessage = {
-          text: hadrons.get(spriteKey).message,
-          fromPlayerId: hadrons.get(spriteKey).originalOwner,
-        };
-        throttleSendMessageRead();
-      } else {
-        sendDataToServer.destroyHadron(spriteKey);
-        hadrons.delete(spriteKey);
-        sendDataToServer.makePlayerSayOof(obstacleSpriteKey);
-      }
-    } else if (obstacleSpriteKey) {
-      // Any sprite collision that wasn't a player
-      // TODO: Obviously this needs to be more sophisticated.
-      sendDataToServer.destroyHadron(spriteKey);
-      hadrons.delete(spriteKey);
-    } else {
-      // I don't think that we will ever get here, but if so, now what? :)
-      // Also this is a good example of how to log out collision events.
-      console.log(
-        spriteKey,
-        sprite,
-        obstacleLayerName,
-        obstacleLayer,
-        obstacleSpriteKey,
-        obstacleSprite,
-        teleportLayerName,
-        teleportLayer,
-      );
     }
   }
 
@@ -1156,7 +1011,7 @@ const sceneFactory = ({
       );
     }
 
-    // Watch the player and worldLayer for collisions, for the duration of the scene:
+    // COLLISIONS FOR LOCAL PLAYER
     this.physics.add.collider(playerObject.player, collisionLayer);
     if (waterLayer) {
       this.physics.add.collider(playerObject.player, waterLayer);
