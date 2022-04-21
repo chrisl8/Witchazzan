@@ -1074,8 +1074,8 @@ const sceneFactory = ({
         //     spriteData.physicsOffset.y,
         //   );
         // }
-        newThing.displayHeight = tile.width;
-        newThing.displayWidth = tile.height;
+        newThing.displayHeight = tile.height;
+        newThing.displayWidth = tile.width;
         newThing.flipX = spriteData.faces === 'right';
 
         if (
