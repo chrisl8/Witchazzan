@@ -104,7 +104,11 @@ const sceneFactory = ({
     destinationSceneName,
     destinationSceneEntrance,
   ) {
-    if (destinationSceneName !== sceneName) {
+    if (
+      !playerObject.teleportInProgress &&
+      destinationSceneName !== sceneName
+    ) {
+      playerObject.teleportInProgress = true;
       cleanUpScene();
       if (this.scene.getIndex(destinationSceneName) === -1) {
         console.log(
@@ -123,7 +127,6 @@ const sceneFactory = ({
           `Switching to scene: ${destinationSceneName} at default spawn point.`,
         );
       }
-
       if (playerObject.dotTrailRenderTexture) {
         playerObject.dotTrailRenderTexture.destroy();
         playerObject.dotTrailRenderTexture = null;
@@ -138,6 +141,36 @@ const sceneFactory = ({
     }
   }
 
+  function playerTeleportOverlapHandler(sprite, tile) {
+    if (Array.isArray(tile.layer.properties)) {
+      let destinationSceneName;
+      let destinationSceneEntrance = null;
+      // Get Destination Scene
+      const destinationSceneNameIndex = tile.layer.properties.findIndex(
+        (x) => x.name === 'DestinationScene',
+      );
+      if (destinationSceneNameIndex > -1) {
+        destinationSceneName =
+          tile.layer.properties[destinationSceneNameIndex].value;
+      }
+      // Get Destination Entrance
+      const entrancePropertyIndex = tile.layer.properties.findIndex(
+        (x) => x.name === 'Entrance',
+      );
+      if (entrancePropertyIndex > -1) {
+        destinationSceneEntrance =
+          tile.layer.properties[entrancePropertyIndex].value;
+      }
+      if (destinationSceneName) {
+        cleanUpSceneAndTeleport.call(
+          this,
+          destinationSceneName,
+          destinationSceneEntrance,
+        );
+      }
+    }
+  }
+
   function setCameraZoom() {
     if (!playerObject.disableCameraZoom) {
       const widthScaleFactor = window.innerWidth / gameSize.width;
@@ -146,25 +179,23 @@ const sceneFactory = ({
         widthScaleFactor < heightScaleFactor // > - Zoomed < - fit screen
           ? widthScaleFactor
           : heightScaleFactor;
-      if (cameraScaleFactor !== playerObject.cameraScaleFactor) {
-        playerObject.cameraScaleFactor = cameraScaleFactor;
-        // Use camera zoom to fill screen.
-        this.cameras.main.setZoom(cameraScaleFactor);
-        const gameWidth = Math.trunc(gameSize.width * cameraScaleFactor);
-        const gameHeight = Math.trunc(gameSize.height * cameraScaleFactor);
+      playerObject.cameraScaleFactor = cameraScaleFactor;
+      // Use camera zoom to fill screen.
+      this.cameras.main.setZoom(cameraScaleFactor);
+      const gameWidth = Math.trunc(gameSize.width * cameraScaleFactor);
+      const gameHeight = Math.trunc(gameSize.height * cameraScaleFactor);
 
-        // Make sure the canvas is big enough to show the camera.
-        this.scale.setGameSize(gameWidth, gameHeight);
+      // Make sure the canvas is big enough to show the camera.
+      this.scale.setGameSize(gameWidth, gameHeight);
 
-        this.cameras.main
-          .setBounds(
-            sceneTileSet.tileWidth,
-            sceneTileSet.tileHeight,
-            gameSize.width,
-            gameSize.height,
-          )
-          .setOrigin(0.5, 0.5);
-      }
+      this.cameras.main
+        .setBounds(
+          sceneTileSet.tileWidth,
+          sceneTileSet.tileHeight,
+          gameSize.width,
+          gameSize.height,
+        )
+        .setOrigin(0.5, 0.5);
     }
     playerObject.cameraOffset = {
       x: this.cameras.main.worldView.x,
@@ -324,57 +355,6 @@ const sceneFactory = ({
   function checkIfLayerExists(layer) {
     const tilemapList = map.getTileLayerNames();
     return tilemapList.findIndex((entry) => entry === layer) > -1;
-  }
-
-  function checkThatPlayerIsOnTeleportTile(camera) {
-    // TODO: Would it be more efficient to use collisions to do this instead?
-    // Check if we are on a Teleport tile, and Teleport!
-    const tilemapList = map.getTileLayerNames();
-    const teleportTileMapLayers = tilemapList.filter((entry) => {
-      const splitLayerName = entry.split('/');
-      return splitLayerName.length > 1 && splitLayerName[0] === 'Teleport';
-    });
-    let destinationSceneName;
-    let destinationSceneEntrance = null;
-    teleportTileMapLayers.forEach((entry) => {
-      const tile = map.getTileAtWorldXY(
-        playerObject.player.x,
-        playerObject.player.y,
-        false,
-        camera,
-        entry,
-      );
-      if (tile && tile.hasOwnProperty('index') && tile.index > -1) {
-        // Use the Teleport layer's "Custom Properties" array to get the destination Scene and Entrance
-        if (Array.isArray(tile.layer.properties)) {
-          // Get Destination Scene
-          const destinationSceneNameIndex = tile.layer.properties.findIndex(
-            (x) => x.name === 'DestinationScene',
-          );
-          if (destinationSceneNameIndex > -1) {
-            destinationSceneName =
-              tile.layer.properties[destinationSceneNameIndex].value;
-          }
-          // Get Destination Entrance
-          const entrancePropertyIndex = tile.layer.properties.findIndex(
-            (x) => x.name === 'Entrance',
-          );
-          if (entrancePropertyIndex > -1) {
-            destinationSceneEntrance =
-              tile.layer.properties[entrancePropertyIndex].value;
-          }
-        }
-      }
-    });
-    if (destinationSceneName) {
-      cleanUpSceneAndTeleport.call(
-        this,
-        destinationSceneName,
-        destinationSceneEntrance,
-      );
-      return true;
-    }
-    return false;
   }
 
   function updatePlayerSpriteAnimation() {
@@ -900,6 +880,19 @@ const sceneFactory = ({
       0,
     );
 
+    // Teleport Layers
+    map.layers.forEach((layer) => {
+      const splitLayerName = layer.name.split('/');
+      if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
+        teleportLayersColliders.set(
+          layer.name,
+          map
+            .createLayer(layer.name, sceneTileSet, 0, 0)
+            .setCollisionByExclusion([-1]),
+        );
+      }
+    });
+
     // If you want to verify that you’ve got the right tiles marked as colliding, use the layer’s debug rendering:
     // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
     // const debugGraphics = this.add.graphics().setAlpha(0.75);
@@ -938,8 +931,6 @@ const sceneFactory = ({
         }
       }
     }
-
-    setCameraZoom.call(this);
 
     // Use scene from server. Switch to different scene if this is not it
     // NOTE: Remember to do this BEFORE setting the position from the server.
@@ -1009,6 +1000,24 @@ const sceneFactory = ({
     if (waterLayer) {
       this.physics.add.collider(playerObject.player, waterLayer);
     }
+    teleportLayersColliders.forEach((layer) => {
+      this.physics.add.overlap(
+        playerObject.player,
+        layer,
+        playerTeleportOverlapHandler,
+        (player, tile) =>
+          tile.index !== -1 &&
+          Phaser.Math.Distance.Chebyshev(
+            player.x,
+            player.y,
+            tile.pixelX + tile.width / 2,
+            tile.pixelY + tile.height / 2,
+          ) <=
+            tile.width / 2,
+        this,
+      );
+    });
+
     // This section finds the Objects in the Tilemap that trigger features
     // Useful info on how this works:
     // https://www.html5gamedevs.com/topic/37978-overlapping-on-a-tilemap-object-layer/?do=findComment&comment=216742
@@ -1039,22 +1048,6 @@ const sceneFactory = ({
         ) {
           newThing.anims.play(`${spriteData.name}-move-stationary`, true);
         }
-      }
-    });
-
-    // We cannot use getTileAtWorldXY() to find out if a player
-    // is on a teleport tile unless we add the Teleport tiles as a layer.
-    // Just make sure that they are invisible, because they can show at the
-    // edges of the screen.
-    map.layers.forEach((layer) => {
-      const splitLayerName = layer.name.split('/');
-      if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
-        teleportLayersColliders.set(
-          layer.name,
-          map
-            .createLayer(layer.name, sceneTileSet, 0, 0)
-            .setCollisionByExclusion([-1]),
-        );
       }
     });
 
@@ -1102,37 +1095,8 @@ const sceneFactory = ({
     // Phaser controlled mouse input
     this.input.mouse.disableContextMenu();
 
-    // Fullscreen button
-    // http://labs.phaser.io/100.html?src=src%5Cscalemanager%5Cfull%20screen%20game.js
-    // NOTE: You can scale SPRITES, but not IMAGES, hence loading this as a sprite.
-    // this.load.image('logo', 'images/logo.png');
-    // var logo = this.game.add.sprite(x, y, 'logo');
-    // logo.scale.setTo(1, 1); // here is where you can scale your image. 1 , 1 is original size so you can make it twice as big with 2 , 2 or half the size with 0.5, 0.5
-    this.game.scale.fullscreenTarget = document.getElementsByTagName('body')[0];
-    const fullScreenButton = this.physics.add
-      .sprite(gameSize.width, 32, 'fullscreen', 0)
-      .setSize(16, 16)
-      .setInteractive();
-    fullScreenButton.displayHeight = 16;
-    fullScreenButton.displayWidth = 16;
-    fullScreenButton.on(
-      'pointerup',
-      () => {
-        console.log('Fullscreen pointerup');
-        if (this.scale.isFullscreen) {
-          fullScreenButton.setFrame(0);
-
-          this.scale.stopFullscreen();
-        } else {
-          fullScreenButton.setFrame(1);
-
-          this.scale.startFullscreen();
-        }
-      },
-      this,
-    );
-
-    updateInGameDomElements(htmlElementParameters);
+    // Essentially announce that the scene is ready.
+    playerObject.teleportInProgress = false;
   };
 
   // GAME LOOP RUN ON EVERY FRAME
@@ -1140,7 +1104,8 @@ const sceneFactory = ({
   scene.update = function (time, delta) {
     // Runs once per frame for the duration of the scene
 
-    if (checkThatPlayerIsOnTeleportTile.call(this, this.cameras.main)) {
+    // Do not do ANYTHING while a player is potentially leaving this scene.
+    if (playerObject.teleportInProgress) {
       return;
     }
 
