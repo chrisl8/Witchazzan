@@ -28,7 +28,7 @@ div .intro-screen-subsection {
   margin-bottom: 25px;
 }
 
-#command_input_div, #upper_left_text_overlay_div, #scrolling_text_overlay_div, #center_text_overlay_div, #player_tag, .other_player_tag {
+#command_input_div, #upper_left_text_overlay_div, #scrolling_text_overlay_div, #center_text_overlay_div, #fading_text_overlay_div, #player_tag, .other_player_tag {
   position: absolute;
 }
 
@@ -68,6 +68,15 @@ div .intro-screen-subsection {
 
 #center_text_overlay_div {
   font-family: 'PT Serif', serif;
+  text-shadow: 2px 2px 2px #4a430b;
+}
+
+#fading_text_overlay_div {
+  font-family: 'PT Serif', serif;
+  text-shadow: 2px 2px 2px #4a430b;
+  border-radius: 32px;
+  padding-right: 25px;
+  padding-left: 25px;
 }
 
 /*For Twitter emoji*/

@@ -19,6 +19,10 @@ const updateInGameDomElements = (htmlElementParameters) => {
       text: '',
       hidden: true,
     },
+    Fading: {
+      text: '',
+      hidden: true,
+    },
   };
 
   // Set up text for various text fields
@@ -38,7 +42,7 @@ const updateInGameDomElements = (htmlElementParameters) => {
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
 
-  ['Center', 'UpperLeft', 'Scrolling'].forEach((textLocation) => {
+  ['Center', 'UpperLeft', 'Scrolling', 'Fading'].forEach((textLocation) => {
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
 
     // Create temp object to store new settings to compare with current
@@ -71,6 +75,17 @@ const updateInGameDomElements = (htmlElementParameters) => {
       }px`;
       newValueObject.style.top = `${
         canvasHeight / 2 -
+        playerObject.domElements[textLocation].offsetHeight / 2
+      }px`;
+    }
+
+    // Location for Fading Text
+    if (textLocation === 'Fading') {
+      newValueObject.style.left = `${
+        canvasWidth / 2 - playerObject.domElements[textLocation].offsetWidth / 2
+      }px`;
+      newValueObject.style.top = `${
+        canvasHeight * 0.8 -
         playerObject.domElements[textLocation].offsetHeight / 2
       }px`;
     }
