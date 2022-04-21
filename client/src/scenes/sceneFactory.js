@@ -45,6 +45,27 @@ const sceneFactory = ({
   scene.preload = function () {
     sendDataToServer.enterScene(sceneName);
     console.log(`Entering scene ${sceneName}`);
+
+    // Display Tile Map's welcome message
+    if (
+      tileMap &&
+      tileMap.hasOwnProperty('properties') &&
+      Array.isArray(tileMap.properties)
+    ) {
+      const welcomeMessageIndex = tileMap.properties.findIndex(
+        (x) => x.name === 'EntranceMessage',
+      );
+      if (welcomeMessageIndex > -1) {
+        textObject.enterSceneText.text =
+          tileMap.properties[welcomeMessageIndex].value;
+        textObject.enterSceneText.display();
+      } else {
+        textObject.enterSceneText.text = '';
+      }
+    } else {
+      textObject.enterSceneText.text = '';
+    }
+
     // Runs once, loads up assets like images and audio
     // All of these text based "keys" are basically global variables in Phaser.
     // You can reuse the same name, but phaser will just reuse the first thing you
