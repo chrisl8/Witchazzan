@@ -86,13 +86,6 @@ const sceneFactory = ({
       });
     });
 
-    // Fullscreen button
-    // TODO: Color and size should be configured per scene.
-    this.load.spritesheet('fullscreen', fullscreen, {
-      frameWidth: 64,
-      frameHeight: 64,
-    });
-
     this.load.audio('sunrise', [sunriseOgg, sunriseMp3]);
   };
 
