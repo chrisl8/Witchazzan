@@ -9,7 +9,7 @@ import fancyNames from '../../shared/fancyNames.mjs';
 // Local keys will work even if the server is disconnected.
 // I suggest making these RARE, and also not recording their state,
 // as we assume you can act on them without doing that.
-const localKeys = ['c'];
+const localKeys = ['c', 'C'];
 
 function handleKeyboardInput(event) {
   // Everything is different if in the "chat" window.
@@ -18,7 +18,7 @@ function handleKeyboardInput(event) {
   if (playerObject.domElements.chatInputDiv.style.display === 'none') {
     if (localKeys.indexOf(event.key) > -1) {
       // Some (ok, one right now) events can happen when the server isn't connected.
-      if (event.key === 'c' && event.type === 'keyup') {
+      if ((event.key === 'c' || event.key === 'C') && event.type === 'keyup') {
         // If we do this on 'keydown', we end up with a 'c'
         // stuck in the input box.
 
