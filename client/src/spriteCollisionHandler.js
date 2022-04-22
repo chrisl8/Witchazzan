@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import sendDataToServer from './sendDataToServer.js';
 
@@ -12,8 +11,16 @@ const throttleSendMessageRead = _.debounce(chatForThrottle, 1000, {
   trailing: false,
 });
 
+/*
+  REMEMBER!
+  You have to act on collisions of your sprites, even if they are with sprites other players control,
+  because often you are the only one who will see it,
+  so you may have to send out messages saying, "do this" with your sprite!
+  Otherwise we get into a problem of who is in 'control' when two sprites collide that are controlled
+  by different clients.
+ */
+
 function spriteCollisionHandler({
-  isLocalPlayer,
   spriteKey,
   sprite,
   obstacleLayerName,
@@ -23,75 +30,88 @@ function spriteCollisionHandler({
   teleportLayerName,
   teleportLayer,
 }) {
-  console.log(
-    isLocalPlayer,
-    spriteKey,
-    sprite,
-    obstacleLayerName,
-    obstacleLayer,
-    obstacleSpriteKey,
-    obstacleSprite,
-    teleportLayerName,
-    teleportLayer,
-  );
+  // console.log(
+  //   '--------------',
+  //   '\nspriteKey',
+  //   spriteKey,
+  //   '\nsprite',
+  //   sprite,
+  //   '\nobstacleLayerName',
+  //   obstacleLayerName,
+  //   '\nobstacleLayer',
+  //   obstacleLayer,
+  //   '\nobstacleSpriteKey',
+  //   obstacleSpriteKey,
+  //   '\nobstacleSprite',
+  //   obstacleSprite,
+  //   '\nteleportLayerName',
+  //   teleportLayerName,
+  //   '\nteleportLayer',
+  //   teleportLayer,
+  // );
   if (teleportLayer) {
-    // Something hit a Teleport Layer
+    // Teleport Layer interactions.
     // for now de-spawning silently if we hit a "teleport layer"
     sendDataToServer.destroyHadron(spriteKey);
-    hadrons.delete(spriteKey);
   } else if (obstacleLayer) {
-    // Something hit any one of our defined Obstacle Layers
+    // Obstacle Layers interactions.
     // for now de-spawning silently if we hit any Obstacle Layer
     sendDataToServer.destroyHadron(spriteKey);
-    hadrons.delete(spriteKey);
   } else if (obstacleSprite) {
     // Sprite to Sprite interactions
     if (
-      obstacleSpriteKey === playerObject.playerId &&
-      (!hadrons.get(spriteKey)?.originalOwner ||
-        hadrons.get(spriteKey)?.originalOwner === playerObject.playerId)
+      hadrons.get(spriteKey)?.typ === 'message' &&
+      hadrons.get(spriteKey)?.txt !== undefined
     ) {
-      // Ignore things that I own that hit myself. For now.
-      // Because of how things spawn, they all hit me when launched,
-      // so if we want to do otherwise we have more work to do.
-      if (hadrons.get(spriteKey)?.message) {
+      // Messages - A message sprite that we are tracking has collided with something.
+      console.log('message', hadrons.get(spriteKey)?.txt);
+      if (hadrons.get(obstacleSpriteKey)?.typ === 'player') {
+        // If it is a player, broadcast the message within to everyone, "from" the owner.
         broadCastMessage = {
-          text: hadrons.get(spriteKey).message,
-          fromPlayerId: hadrons.get(spriteKey).originalOwner,
+          text: hadrons.get(spriteKey).txt,
+          fromPlayerId: hadrons.get(spriteKey).own,
         };
         throttleSendMessageRead();
       }
-      // TODO: At some point these will matter, such as if I make a boss that shoots at me.
+    } else if (hadrons.get(obstacleSpriteKey)?.typ === 'message') {
+      // Message was hit by something that I control.
+      if (
+        hadrons.get(spriteKey)?.typ !== 'player' &&
+        hadrons.get(spriteKey)?.own === hadrons.get(obstacleSpriteKey)?.own
+      ) {
+        // Anything that is NOT a player, and is owned by the same owner as the message
+        // will de-spawn
+        // and destroy the message.
+        sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
+        sendDataToServer.destroyHadron(obstacleSpriteKey);
+      }
     } else if (
-      obstacleSpriteKey &&
-      hadrons.has(obstacleSpriteKey) &&
-      hadrons.get(obstacleSpriteKey).name
+      hadrons.get(spriteKey)?.typ === 'fireball' &&
+      hadrons.get(obstacleSpriteKey)?.typ === 'fireball' &&
+      hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
     ) {
-      // If the obstacle is a hadron, and it has a name, it is a player,
-      // so make them say "Oof!"
-      // TODO: Player hadrons should have a better "tag" and we should tag other "things" too to help with this.
-      if (hadrons.get(spriteKey)?.message) {
-        broadCastMessage = {
-          text: hadrons.get(spriteKey).message,
-          fromPlayerId: hadrons.get(spriteKey).originalOwner,
-        };
-        throttleSendMessageRead();
-      } else {
-        sendDataToServer.destroyHadron(spriteKey);
-        hadrons.delete(spriteKey);
-        sendDataToServer.makePlayerSayOof(obstacleSpriteKey);
-      }
-    } else if (obstacleSpriteKey) {
-      // Any sprite collision that wasn't a player
-      // TODO: Obviously this needs to be more sophisticated.
-      sendDataToServer.destroyHadron(spriteKey);
-      hadrons.delete(spriteKey);
+      // If two fireballs, owned by different players, collide, the destroy each other.
+      sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
+      sendDataToServer.destroyHadron(obstacleSpriteKey);
+    } else if (
+      hadrons.get(spriteKey)?.typ === 'fireball' &&
+      hadrons.get(obstacleSpriteKey)?.typ === 'player' &&
+      hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
+    ) {
+      // If a fireball hits a player that is not the owner, de-spawn the fireball, and make them say "oof".
+      sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
+      sendDataToServer.makePlayerSayOof(obstacleSpriteKey);
+    } else {
+      // Anything else just passes through
+      console.log(
+        hadrons.get(spriteKey)?.typ,
+        hadrons.get(obstacleSpriteKey)?.typ,
+      );
     }
   } else {
     // You should never get here unless you are testing out new things.
     // NOTE: IF in doubt, copy this to to BEFORE the if/else chain to see what is happening.
     console.log(
-      isLocalPlayer,
       spriteKey,
       sprite,
       obstacleLayerName,

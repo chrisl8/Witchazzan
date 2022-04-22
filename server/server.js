@@ -16,6 +16,10 @@ import validateJWT from "./validateJWT.js";
 import wait from "../shared/wait.mjs";
 // eslint-disable-next-line
 import makeRandomNumber from "../shared/makeRandomNumber.mjs";
+// eslint-disable-next-line
+import validateHadron from "../shared/validateHadron.mjs";
+
+const hadronBroadcastThrottleTime = 50;
 
 const commandListArray = [
   {
@@ -356,28 +360,24 @@ function sendHadrons() {
 
   // Sift through hadrons and sort them into per-room maps
   hadrons.forEach((hadron, key) => {
-    if (perSceneHadronList[hadron.scene]) {
-      // Check to see if the owner of this hadron is in this scene
-      if (connectedPlayerData.get(hadron.owner)?.scene !== hadron.scene) {
-        if (hadron.transferOwnerWhenLeavingScene) {
-          // Find a new owner for the hadron.
-          let newOwnerFound = false;
+    if (perSceneHadronList[hadron.scn]) {
+      // Check to see if the controller of this hadron is in this scene
+      if (connectedPlayerData.get(hadron.ctrl)?.scene !== hadron.scn) {
+        if (hadron.tcwls) {
+          // Find a new controller for the hadron.
+          let newControllerFound = false;
           connectedPlayerData.forEach((player, playerKey) => {
-            if (!newOwnerFound && player.scene === hadron.scene) {
-              newOwnerFound = true;
-              if (!hadron.originalOwner) {
-                // eslint-disable-next-line no-param-reassign
-                hadron.originalOwner = hadron.owner;
-              }
+            if (!newControllerFound && player.scene === hadron.scn) {
+              newControllerFound = true;
               // eslint-disable-next-line no-param-reassign
-              hadron.owner = playerKey;
+              hadron.ctrl = playerKey;
             }
           });
         }
       }
 
       // Add hadron to this scene's Map
-      perSceneHadronList[hadron.scene].set(key, hadron);
+      perSceneHadronList[hadron.scn].set(key, hadron);
     }
   });
 
@@ -388,7 +388,10 @@ function sendHadrons() {
   }
 }
 
-const throttledSendHadrons = _.throttle(sendHadrons, 50);
+const throttledSendHadrons = _.throttle(
+  sendHadrons,
+  hadronBroadcastThrottleTime
+);
 
 function flagSceneHasUpdated(sceneName) {
   if (updatedSceneList.indexOf(sceneName) === -1) {
@@ -447,7 +450,7 @@ io.on("connection", (socket) => {
 
       // Resurrect all inactive hadrons owned by this user.
       inactiveHadrons.forEach((hadron, key) => {
-        if (hadron.owner === PlayerId) {
+        if (hadron.own === PlayerId) {
           hadrons.set(key, hadron);
           inactiveHadrons.delete(key);
         }
@@ -460,16 +463,20 @@ io.on("connection", (socket) => {
       } else {
         newPlayerHadron = {
           id: PlayerId, // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
-          owner: PlayerId,
+          typ: "player",
           x: 0,
           y: 0,
-          scene: serverConfiguration.defaultOpeningScene,
+          scn: serverConfiguration.defaultOpeningScene,
         };
       }
 
       // Always update their name and sprite.
       newPlayerHadron.name = PlayerName; // Names can be changed, with the UUID staying the same, so we update the client.
-      newPlayerHadron.sprite = playerData.sprite; // Client should always be sending the requested sprite.
+      newPlayerHadron.sprt = playerData.sprite; // Client should always be sending the requested sprite.
+      newPlayerHadron.own = PlayerId; // Always belongs to and is controlled by player themselves.
+      newPlayerHadron.ctrl = PlayerId; // Always belongs to and is controlled by player themselves.
+
+      validateHadron.server(newPlayerHadron);
 
       hadrons.set(PlayerId, newPlayerHadron);
 
@@ -477,15 +484,15 @@ io.on("connection", (socket) => {
       connectedPlayerData.set(PlayerId, {
         id: PlayerId,
         name: PlayerName,
-        scene: newPlayerHadron.scene,
+        scene: newPlayerHadron.scn,
         socketId: socket.id,
       });
 
       // Join player to the room for the scene that they are in.
-      socket.join(newPlayerHadron.scene);
+      socket.join(newPlayerHadron.scn);
 
       // Flag their scene as having been updated and queue a hadron broadcast.
-      flagSceneHasUpdated(newPlayerHadron.scene);
+      flagSceneHasUpdated(newPlayerHadron.scn);
       throttledSendHadrons();
 
       // NOTE:
@@ -494,7 +501,7 @@ io.on("connection", (socket) => {
 
       // Announce new players.
       socket.broadcast.emit("chat", {
-        content: `${PlayerName} has joined the game in ${newPlayerHadron.scene}!`,
+        content: `${PlayerName} has joined the game in ${newPlayerHadron.scn}!`,
       });
 
       // End of "on join" code.
@@ -556,33 +563,29 @@ io.on("connection", (socket) => {
 
         // If a hadron moves from one scene to another, both scenes must be flagged as updated
         let previousScene;
-        if (existingHadron && existingHadron.scene !== data.scene) {
-          previousScene = existingHadron.scene;
+        if (existingHadron && existingHadron.scn !== data.scn) {
+          previousScene = existingHadron.scn;
         }
 
-        // You cannot update other people's hadrons.
-        if (!existingHadron || existingHadron.owner === PlayerId) {
+        // You cannot update hadrons that you are not in control of.
+        if (!existingHadron || existingHadron.ctrl === PlayerId) {
           const newHadronData = { ...data };
 
-          // The user's authenticated GUID is ALWAYS the owner of hadrons they send. You cannot set an alternate owner on a hadron that you created. You also don't need to include the owner id, as it will be added automatically.
-          newHadronData.owner = PlayerId;
-
-          // Discard hadrons that are missing required data.
-          // TODO: Make an array of required fields to always check before adding.
-          // TODO: Honestly, do they need an x, y, sprite? Maybe some don't. Clients might just need to learn to deal.
-          if (
-            newHadronData.x &&
-            newHadronData.y &&
-            newHadronData.scene &&
-            newHadronData.sprite
-          ) {
-            hadrons.set(data.id, newHadronData);
+          if (!existingHadron) {
+            // If you introduce a new hadron, then you own it and control it,
+            // but ownership never changes on existing hadrons.
+            newHadronData.own = PlayerId;
+            newHadronData.ctrl = PlayerId;
           }
+
+          validateHadron.server(newPlayerHadron);
+
+          hadrons.set(data.id, newHadronData);
 
           if (previousScene) {
             flagSceneHasUpdated(previousScene);
           }
-          flagSceneHasUpdated(newHadronData.scene);
+          flagSceneHasUpdated(newHadronData.scn);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
         }
@@ -602,9 +605,19 @@ io.on("connection", (socket) => {
       });
 
       socket.on("destroyHadron", (key) => {
-        // You cannot update other people's hadrons.
-        if (hadrons.has(key) && hadrons.get(key).owner === PlayerId) {
-          flagSceneHasUpdated(hadrons.get(key).scene);
+        if (hadrons.has(key)) {
+          // If the hadron was transferred,
+          // the controller won't delete the hadron from their own list,
+          // so we have to force it to delete the hadron.
+          if (
+            hadrons.get(key).ctrl !== PlayerId &&
+            connectedPlayerData.has(hadrons.get(key).ctrl)
+          ) {
+            socket
+              .to(connectedPlayerData.get(hadrons.get(key).ctrl).socketId)
+              .emit("deleteHadron", key);
+          }
+          flagSceneHasUpdated(hadrons.get(key).scn);
           hadrons.delete(key);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
@@ -639,35 +652,34 @@ io.on("connection", (socket) => {
           content: `${PlayerName} has left the game. :'(`,
         });
 
-        // Handle all hadrons owned by this user.
+        // Handle all hadrons owned or currently controlled by this user.
         hadrons.forEach((hadron, key) => {
-          if (hadron.owner === PlayerId || hadron.originalOwner === PlayerId) {
+          if (hadron.own === PlayerId || hadron.ctrl === PlayerId) {
             // Default Behavior
             let deleteHadron = true;
             let archiveHadron = true;
-            if (hadron.destroyOnDisconnect) {
+            if (hadron.dod) {
               archiveHadron = false;
               deleteHadron = true;
             }
 
             if (archiveHadron) {
               inactiveHadrons.set(key, { ...hadron });
-              // Ensure that the owner is the original owner, in case it was transferred.
-              inactiveHadrons.get(key).owner = PlayerId;
+              // Set the owner back to being the controller.
+              inactiveHadrons.get(key).ctrl = PlayerId;
             }
 
             // Hadron Delete code.
             if (deleteHadron) {
               // If the hadron was transferred,
-              // the new owner won't delete the hadron from their own list,
-              // because it thinks it is the owner,
+              // the controller won't delete the hadron from their own list,
               // so we have to force it to delete the hadron.
               if (
-                hadron.owner !== PlayerId &&
-                connectedPlayerData.has(hadron.owner)
+                hadron.ctrl !== PlayerId &&
+                connectedPlayerData.has(hadron.ctrl)
               ) {
                 socket
-                  .to(connectedPlayerData.get(hadron.owner).socketId)
+                  .to(connectedPlayerData.get(hadron.ctrl).socketId)
                   .emit("deleteHadron", key);
               }
 

@@ -6,22 +6,22 @@ import hadrons from './objects/hadrons.js';
 
 function castSpell(sceneName) {
   if (playerObject.activeSpell === 'writeMessage') {
-    const newHadronId = crypto.randomUUID();
     const message = prompt('Please leave a message for other players');
     if (message) {
-      hadrons.set(newHadronId, {
-        id: newHadronId,
-        owner: playerObject.playerId,
-        sprite: playerObject.activeSpell,
+      const newHadronData = {
+        id: crypto.randomUUID(),
+        typ: 'message',
+        sprt: playerObject.activeSpell,
         x: playerObject.player.x,
         y: playerObject.player.y,
-        direction: 'up',
-        scene: sceneName,
-        velocityX: 0,
-        velocityY: 0,
-        message,
-        transferOwnerWhenLeavingScene: true,
-      });
+        dir: 'up',
+        scn: sceneName,
+        velX: 0,
+        velY: 0,
+        txt: message,
+        tcwls: true,
+      };
+      hadrons.set(newHadronData.id, newHadronData);
     }
   } else {
     const direction = playerObject.playerDirection;
@@ -42,22 +42,22 @@ function castSpell(sceneName) {
     // TODO: Using a different spell is more than just a matter of changing the sprite,
     //       but that is what we have here for now.
     // TODO: Each spell should have an entire description in some sort of spells file.
-    const newHadronId = crypto.randomUUID();
-    hadrons.set(newHadronId, {
-      id: newHadronId, // TODO: Make a hadron creator, used by client and server, that ensures this is added.
-      owner: playerObject.playerId,
-      sprite: playerObject.activeSpell, // TODO: Use the spell's sprite setting, not just the spell name as the sprite.
+    const newHadronData = {
+      id: crypto.randomUUID(), // TODO: Make a hadron creator, used by client and server, that ensures this is added.
+      typ: playerObject.activeSpell,
+      sprt: playerObject.activeSpell, // TODO: Use the spell's sprite setting, not just the spell name as the sprite.
       x: playerObject.player.x,
       y: playerObject.player.y,
-      direction,
-      scene: sceneName,
-      velocityX,
-      velocityY,
+      dir: direction,
+      scn: sceneName,
+      velX: velocityX,
+      velY: velocityY,
       // hideWhenLeavingScene: true, // TODO: Implement this.
       // destroyWhenLeavingScene: true, // TODO: Implement this.
       // destroyOnDisconnect: true, // TODO: Test
-      transferOwnerWhenLeavingScene: true,
-    });
+      tcwls: true,
+    };
+    hadrons.set(newHadronData.id, newHadronData);
   }
 }
 

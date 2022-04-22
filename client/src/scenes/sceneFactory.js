@@ -10,7 +10,6 @@ import spriteSheetList from '../objects/spriteSheetList.js';
 import hadrons from '../objects/hadrons.js';
 import clientSprites from '../objects/clientSprites.js';
 import getSpriteData from '../utilities/getSpriteData.js';
-import validateHadronData from './sceneFactoryHelpers/validateHadronData.js';
 import castSpell from '../castSpell.js';
 import spriteCollisionHandler from '../spriteCollisionHandler.js';
 
@@ -431,22 +430,22 @@ const sceneFactory = ({
       let fillColor = 0x00ff00;
       let width = 1;
       let height = 1;
-      if (['carrot'].indexOf(hadron.type) > -1) {
+      if (['carrot'].indexOf(hadron.typ) > -1) {
         fillColor = 0x0000ff;
         width = 5;
         height = 5;
-      } else if (['slime'].indexOf(hadron.type) > -1) {
+      } else if (['slime'].indexOf(hadron.typ) > -1) {
         fillColor = 0xff0000;
-      } else if (['fireball'].indexOf(hadron.type) > -1) {
+      } else if (['fireball'].indexOf(hadron.typ) > -1) {
         fillColor = 0xffa500;
-      } else if (['teleball'].indexOf(hadron.type) > -1) {
+      } else if (['teleball'].indexOf(hadron.typ) > -1) {
         fillColor = 0xffa500;
-      } else if (['push'].indexOf(hadron.type) > -1) {
+      } else if (['push'].indexOf(hadron.typ) > -1) {
         fillColor = 0xffa500;
       } else if (key === playerObject.playerId) {
         // it me
         fillColor = 0x00a500;
-      } else if (['player'].indexOf(hadron.type) > -1) {
+      } else if (['player'].indexOf(hadron.typ) > -1) {
         // it !me
         fillColor = 0x6a0dad;
       }
@@ -480,11 +479,11 @@ const sceneFactory = ({
       // Add new sprites to the scene
       const newClientSprite = {};
 
-      newClientSprite.spriteData = getSpriteData(hadron.sprite);
+      newClientSprite.spriteData = getSpriteData(hadron.sprt);
 
       // Use different carrot colors for different genetic code
       // TODO: Delete this or make some use of it.
-      if (hadron.type === 'carrot') {
+      if (hadron.typ === 'carrot') {
         // hadron.genes.color range 0 to 255
         // Currently carrot options are 01 to 28
         const carrotSpriteId = Math.floor(28 * (hadron.genes.color / 255));
@@ -538,8 +537,8 @@ const sceneFactory = ({
     if (
       // It should exist now, even if it didn't before.
       clientSprites.has(key) &&
-      // We own it.
-      hadron.owner === playerObject.playerId &&
+      // We control it.
+      hadron.ctrl === playerObject.playerId &&
       // But it isn't our shadow.
       key !== playerObject.playerId
     ) {
@@ -606,7 +605,7 @@ const sceneFactory = ({
               clientSprites.get(key).sprite,
               otherSprite.sprite,
               (sprite, obstacle) => {
-                spriteCollisionHandler({
+                spriteCollisionHandler.call(this, {
                   spriteKey: key,
                   sprite,
                   obstacleSpriteKey: otherSpriteKey,
@@ -621,8 +620,8 @@ const sceneFactory = ({
       /* SET VELOCITY ON OWNED SPRITES */
       if (!clientSprites.get(key).velocitySet) {
         clientSprites.get(key).velocitySet = true;
-        clientSprites.get(key).sprite.body.setVelocityX(hadron.velocityX);
-        clientSprites.get(key).sprite.body.setVelocityY(hadron.velocityY);
+        clientSprites.get(key).sprite.body.setVelocityX(hadron.velX);
+        clientSprites.get(key).sprite.body.setVelocityY(hadron.velY);
       }
     }
   }
@@ -632,159 +631,143 @@ const sceneFactory = ({
 
     hadrons.forEach((hadron, key) => {
       // Only render hadrons for THIS scene
-      if (hadron.scene === sceneName) {
-        // Sometimes a game piece is not something we can use
-        if (validateHadronData(hadron, key)) {
-          // This is used for debugging
-          renderDebugDotTrails(hadron, key);
+      if (hadron.scn === sceneName) {
+        // This is used for debugging
+        renderDebugDotTrails(hadron, key);
 
-          // This will add the sprite if it doesn't exist,
-          // and do nothing if it does.
-          addAndUpdateSprites.call(this, hadron, key);
-          // Now we know that we have a sprite.
-          const clientSprite = clientSprites.get(key);
+        // This will add the sprite if it doesn't exist,
+        // and do nothing if it does.
+        addAndUpdateSprites.call(this, hadron, key);
+        // Now we know that we have a sprite.
+        const clientSprite = clientSprites.get(key);
 
-          // Sometimes they go inactive.
-          clientSprite.sprite.active = true;
+        // Sometimes they go inactive.
+        clientSprite.sprite.active = true;
 
-          // SET SPRITE ROTATION BASED ON HADRON DATA
-          // Use Hadron direction to set sprite rotation or flip it
-          if (clientSprite.spriteData.rotatable) {
-            // Rotate hadron to face requested direction.
-            if (hadron.direction === 'left' || hadron.direction === 'west') {
-              clientSprite.sprite.setAngle(180);
-            } else if (
-              hadron.direction === 'right' ||
-              hadron.direction === 'east'
-            ) {
-              clientSprite.sprite.setAngle(0);
-            } else if (
-              hadron.direction === 'up' ||
-              hadron.direction === 'north'
-            ) {
-              clientSprite.sprite.setAngle(-90);
-            } else if (
-              hadron.direction === 'down' ||
-              hadron.direction === 'south'
-            ) {
-              clientSprite.sprite.setAngle(90);
-            }
-          } else if (
-            hadron.direction === 'left' ||
-            hadron.direction === 'west'
-          ) {
-            // For non rotatable sprites, only flip them for left/right
-            clientSprite.sprite.setFlipX(
-              clientSprite.spriteData.faces === 'right',
-            );
-          } else if (
-            hadron.direction === 'right' ||
-            hadron.direction === 'east'
-          ) {
-            clientSprite.sprite.setFlipX(
-              clientSprite.spriteData.faces === 'left',
-            );
+        // SET SPRITE ROTATION BASED ON HADRON DATA
+        // Use Hadron direction to set sprite rotation or flip it
+        if (clientSprite.spriteData.rotatable) {
+          // Rotate hadron to face requested direction.
+          if (hadron.dir === 'left' || hadron.dir === 'west') {
+            clientSprite.sprite.setAngle(180);
+          } else if (hadron.dir === 'right' || hadron.dir === 'east') {
+            clientSprite.sprite.setAngle(0);
+          } else if (hadron.dir === 'up' || hadron.dir === 'north') {
+            clientSprite.sprite.setAngle(-90);
+          } else if (hadron.dir === 'down' || hadron.dir === 'south') {
+            clientSprite.sprite.setAngle(90);
           }
+        } else if (hadron.dir === 'left' || hadron.dir === 'west') {
+          // For non rotatable sprites, only flip them for left/right
+          clientSprite.sprite.setFlipX(
+            clientSprite.spriteData.faces === 'right',
+          );
+        } else if (hadron.dir === 'right' || hadron.dir === 'east') {
+          clientSprite.sprite.setFlipX(
+            clientSprite.spriteData.faces === 'left',
+          );
+        }
 
-          // SET SPRITE ANIMATION BASED ON HADRON DATA
-          // The only way to know if the remote item is in motion is for them to tell us
-          //       We cannot divine it, because the local tick is always faster than the server update.
-          // This only matters in that we like to animate the sprite when it is "in motion", but not when it is still,
-          // i.e. when a user is "walking", even into a wall, it is nice to see it animated, to indicate it is actively walking into the wall.
-          let objectInMotion = true; // Default to animate if server does not tell us otherwise.
-          if (hadron.moving === false) {
-            objectInMotion = false;
-          }
-          if (!objectInMotion) {
-            clientSprite.sprite.anims.stop();
-          } else if (
-            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${clientSprite.spriteData.name}-move-left`,
-            ) &&
-            (hadron.direction === 'left' || hadron.direction === 'west')
-          ) {
-            clientSprite.sprite.anims.play(
-              `${clientSprite.spriteData.name}-move-left`,
-              true,
-            );
-          } else if (
-            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${clientSprite.spriteData.name}-move-right`,
-            ) &&
-            (hadron.direction === 'right' || hadron.direction === 'east')
-          ) {
-            clientSprite.sprite.anims.play(
-              `${clientSprite.spriteData.name}-move-right`,
-              true,
-            );
-          } else if (
-            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${clientSprite.spriteData.name}-move-back`,
-            ) &&
-            (hadron.direction === 'up' || hadron.direction === 'north')
-          ) {
-            clientSprite.sprite.anims.play(
-              `${clientSprite.spriteData.name}-move-back`,
-              true,
-            );
-          } else if (
-            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${clientSprite.spriteData.name}-move-front`,
-            ) &&
-            (hadron.direction === 'down' || hadron.direction === 'south')
-          ) {
-            clientSprite.sprite.anims.play(
-              `${clientSprite.spriteData.name}-move-front`,
-              true,
-            );
-          } else if (
-            clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
-              `${clientSprite.spriteData.name}-move-stationary`,
-            )
-          ) {
-            clientSprite.sprite.anims.play(
-              `${clientSprite.spriteData.name}-move-stationary`,
-              true,
-            );
-          }
+        // SET SPRITE ANIMATION BASED ON HADRON DATA
+        // The only way to know if the remote item is in motion is for them to tell us
+        //       We cannot divine it, because the local tick is always faster than the server update.
+        // This only matters in that we like to animate the sprite when it is "in motion", but not when it is still,
+        // i.e. when a user is "walking", even into a wall, it is nice to see it animated, to indicate it is actively walking into the wall.
+        let objectInMotion = true; // Default to animate if server does not tell us otherwise.
+        if (hadron.mov === false) {
+          objectInMotion = false;
+        }
+        if (!objectInMotion) {
+          clientSprite.sprite.anims.stop();
+        } else if (
+          clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+            `${clientSprite.spriteData.name}-move-left`,
+          ) &&
+          (hadron.dir === 'left' || hadron.dir === 'west')
+        ) {
+          clientSprite.sprite.anims.play(
+            `${clientSprite.spriteData.name}-move-left`,
+            true,
+          );
+        } else if (
+          clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+            `${clientSprite.spriteData.name}-move-right`,
+          ) &&
+          (hadron.dir === 'right' || hadron.dir === 'east')
+        ) {
+          clientSprite.sprite.anims.play(
+            `${clientSprite.spriteData.name}-move-right`,
+            true,
+          );
+        } else if (
+          clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+            `${clientSprite.spriteData.name}-move-back`,
+          ) &&
+          (hadron.dir === 'up' || hadron.dir === 'north')
+        ) {
+          clientSprite.sprite.anims.play(
+            `${clientSprite.spriteData.name}-move-back`,
+            true,
+          );
+        } else if (
+          clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+            `${clientSprite.spriteData.name}-move-front`,
+          ) &&
+          (hadron.dir === 'down' || hadron.dir === 'south')
+        ) {
+          clientSprite.sprite.anims.play(
+            `${clientSprite.spriteData.name}-move-front`,
+            true,
+          );
+        } else if (
+          clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+            `${clientSprite.spriteData.name}-move-stationary`,
+          )
+        ) {
+          clientSprite.sprite.anims.play(
+            `${clientSprite.spriteData.name}-move-stationary`,
+            true,
+          );
+        }
 
-          // PERFORM EASING ON HADRONS BEING CONTROLLED BY OTHER PLAYERS
-          // , and my own shadow.
-          // If the hadron is ours, we set velocities, and that does this for us,
-          // but if we are just updating x/y positions, we need this to make it smooth.
-          // Easing demonstrations:
-          // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
-          if (
-            hadron.owner !== playerObject.playerId ||
-            key === playerObject.playerId
-          ) {
-            this.tweens.add({
-              targets: clientSprite.sprite,
-              x: hadron.x,
-              y: hadron.y,
-              duration: 1, // Adjust this to be smooth without being too slow.
-              ease: 'Linear', // Anything else is wonky when tracking server updates.
-            });
-          }
+        // PERFORM EASING ON HADRONS BEING CONTROLLED BY OTHER PLAYERS
+        // , and my own shadow.
+        // If the hadron is ours, we set velocities, and that does this for us,
+        // but if we are just updating x/y positions, we need this to make it smooth.
+        // Easing demonstrations:
+        // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
+        if (
+          hadron.ctrl !== playerObject.playerId ||
+          key === playerObject.playerId
+        ) {
+          this.tweens.add({
+            targets: clientSprite.sprite,
+            x: hadron.x,
+            y: hadron.y,
+            duration: 1, // Adjust this to be smooth without being too slow.
+            ease: 'Linear', // Anything else is wonky when tracking server updates.
+          });
+        }
 
-          // SEND HADRON DATA TO THE SERVER
-          // We skip our own player, because it has special requirements.
-          if (
-            hadron.owner === playerObject.playerId &&
-            key !== playerObject.playerId
-          ) {
-            // Update all data on owned hadrons.
-            const newHadronData = { ...hadron };
+        // SEND HADRON DATA TO THE SERVER
+        // We skip our own player, because it has special requirements.
+        if (
+          // New hadrons that we create have no ctrl yet, only the server assigns that.
+          (hadron.ctrl === undefined ||
+            hadron.ctrl === playerObject.playerId) &&
+          key !== playerObject.playerId
+        ) {
+          // Update all data on owned hadrons.
+          const newHadronData = { ...hadron };
 
-            newHadronData.x = clientSprites.get(key).sprite.x;
-            newHadronData.y = clientSprites.get(key).sprite.y;
+          newHadronData.x = clientSprites.get(key).sprite.x;
+          newHadronData.y = clientSprites.get(key).sprite.y;
 
-            // Update hadron data
-            hadrons.set(key, newHadronData);
+          // Update hadron data
+          hadrons.set(key, newHadronData);
 
-            // Send owned hadron data to server.
-            sendDataToServer.hadronData(key);
-          }
+          // Send owned hadron data to server.
+          sendDataToServer.hadronData(key);
         }
       } else {
         // We need to wipe our local copy of hadrons that are not in our scene.

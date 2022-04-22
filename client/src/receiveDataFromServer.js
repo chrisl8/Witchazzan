@@ -48,7 +48,7 @@ function receiveDataFromServer() {
 
   // Sometimes the server has to force us to delete a hadron,
   // typically one that we own that was deleted by outside forces,
-  // despite our code being sure we are the owner of it.
+  // despite our code being sure we are the on currently in control of it.
   communicationsObject.socket.on('deleteHadron', (key) => {
     hadrons.delete(key);
   });
