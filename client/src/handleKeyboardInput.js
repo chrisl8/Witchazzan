@@ -1,4 +1,4 @@
-import _ from 'lodash';
+/* globals localStorage:true */
 import communicationsObject from './objects/communicationsObject.js';
 import playerObject from './objects/playerObject.js';
 import spellAssignments from './objects/spellAssignments.js';
@@ -65,6 +65,7 @@ function handleKeyboardInput(event) {
             playerObject.spellKeys[0],
           );
         }
+        localStorage.setItem(`activeSpell`, playerObject.activeSpell);
         textObject.spellSetText.text = fancyNames(playerObject.activeSpell);
         textObject.spellSetText.shouldBeActiveNow = true;
         textObject.spellSetText.disappearMessageLater();

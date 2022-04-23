@@ -397,8 +397,13 @@ async function introScreenAndPreGameSetup() {
     spellAssignments.set(value, spellSettingFromDOM);
     localStorage.setItem(`key${value}SpellAssignment`, spellSettingFromDOM);
   }
-  // Set active spell to first spell key's assignment.
-  playerObject.activeSpell = spellAssignments.get(playerObject.spellKeys[0]);
+
+  if (localStorage.getItem('activeSpell')) {
+    playerObject.activeSpell = localStorage.getItem('activeSpell');
+  } else {
+    // Set active spell to first spell key's assignment.
+    playerObject.activeSpell = spellAssignments.get(playerObject.spellKeys[0]);
+  }
 
   // Un-hide joystick input box
   if (isMobileBrowser) {
