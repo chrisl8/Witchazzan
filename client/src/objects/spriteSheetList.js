@@ -44,6 +44,8 @@ import bones from '../assets/spriteSheets/bones.png';
 import lilolyon from '../assets/spriteSheets/Lilolyon.png';
 import grassAndWaterDark from '../assets/spriteSheets/GrassAndWaterDark.png';
 import RainbowTileOne from '../assets/spriteSheets/RainbowTileOne.png';
+import BlackWater from '../assets/spriteSheets/BlackWater.png';
+import writtenPaper from '../assets/spriteSheets/written_paper_no_background.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -408,6 +410,52 @@ const spriteSheetList = [
     endFrame: -1,
     faces: 'left',
     animationFrameRate: 1,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 7, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 50,
+      y: 50,
+    },
+    physicsOffset: {
+      x: 22,
+      y: 35,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'writtenPaper',
+    file: writtenPaper,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 2,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 10, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    // physicsOffset: {
+    //   x: 22,
+    //   y: 35,
+    // },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlackWater',
+    file: BlackWater,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 10,
     animations: [
       { keyName: 'move-stationary', start: 0, end: 7, zeroPad: 3, repeat: -1 },
     ],

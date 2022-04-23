@@ -11,7 +11,7 @@ function castSpell(sceneName) {
       const newHadronData = {
         id: crypto.randomUUID(),
         typ: 'message',
-        sprt: playerObject.activeSpell,
+        sprt: 'writtenPaper',
         x: playerObject.player.x,
         y: playerObject.player.y,
         dir: 'up',
