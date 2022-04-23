@@ -243,6 +243,12 @@ async function introScreenAndPreGameSetup() {
     document.getElementById('disable_sound').checked = true;
   }
 
+  // Check local storage for enableDebug
+  let enableDebug = localStorage.getItem('enableDebug');
+  if (enableDebug === 'true') {
+    document.getElementById('phaser_debug').checked = true;
+  }
+
   // Handle spell settings:
   for (const [key, value] of Object.entries(playerObject.spellKeys)) {
     // Check local storage to see if there is a stored value
@@ -378,8 +384,16 @@ async function introScreenAndPreGameSetup() {
   } else {
     localStorage.removeItem('disableSound');
   }
-
   playerObject.disableSound = disableSound;
+
+  // Settle up enableDebug and set local storage if need be
+  enableDebug = document.getElementById('phaser_debug').checked;
+  if (enableDebug) {
+    localStorage.setItem('enableDebug', 'true');
+  } else {
+    localStorage.removeItem('enableDebug');
+  }
+  playerObject.enableDebug = enableDebug;
 
   const spriteName = document.querySelector(
     'input[name="sprite"]:checked',

@@ -5,6 +5,7 @@ import './css/styles.css';
 import introScreenAndPreGameSetup from './startup/introScreenAndPreGameSetup.js';
 import updateDomSettingsForGame from './startup/updateDomSettingsForGame.js';
 import startGame from './startup/startGame.js';
+import playerObject from './objects/playerObject.js';
 
 /*
  * This just loads up the game.
@@ -21,6 +22,6 @@ import startGame from './startup/startGame.js';
   updateDomSettingsForGame();
 
   await startGame({
-    phaserDebug: document.getElementById('phaser_debug').checked,
+    phaserDebug: playerObject.enableDebug,
   });
 })();
