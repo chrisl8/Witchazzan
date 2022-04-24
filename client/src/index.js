@@ -1,4 +1,3 @@
-/* globals document:true */
 // https://what-problem-does-it-solve.com/webpack/css.html
 import './css/styles.css';
 
@@ -15,8 +14,7 @@ import playerObject from './objects/playerObject.js';
  * kind of like "index.html" I guess.
  */
 
-// eslint-disable-next-line func-names
-(async function () {
+(async () => {
   await introScreenAndPreGameSetup();
 
   updateDomSettingsForGame();
