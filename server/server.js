@@ -651,7 +651,9 @@ io.on("connection", (socket) => {
       });
 
       socket.on("disconnect", () => {
-        flagSceneHasUpdated(connectedPlayerData.get(PlayerId).scene);
+        if (connectedPlayerData.has(PlayerId)) {
+          flagSceneHasUpdated(connectedPlayerData.get(PlayerId).scene);
+        }
         connectedPlayerData.delete(PlayerId);
 
         // Announce player's leaving.
