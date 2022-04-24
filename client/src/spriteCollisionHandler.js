@@ -64,7 +64,6 @@ function spriteCollisionHandler({
       hadrons.get(spriteKey)?.txt !== undefined
     ) {
       // Messages - A message sprite that we are tracking has collided with something.
-      console.log('message', hadrons.get(spriteKey)?.txt);
       if (hadrons.get(obstacleSpriteKey)?.typ === 'player') {
         // If it is a player, broadcast the message within to everyone, "from" the owner.
         broadCastMessage = {

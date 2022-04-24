@@ -1,28 +1,52 @@
 /* globals crypto:true */
-/* globals prompt:true */
+/* globals $:true */
+// noinspection JSJQueryEfficiency
 
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 
 function castSpell(sceneName) {
   if (playerObject.activeSpell === 'writeMessage') {
-    const message = prompt('Please leave a message for other players');
-    if (message) {
-      const newHadronData = {
-        id: crypto.randomUUID(),
-        typ: 'message',
-        sprt: 'writtenPaper',
-        x: playerObject.player.x,
-        y: playerObject.player.y,
-        dir: 'up',
-        scn: sceneName,
-        velX: 0,
-        velY: 0,
-        txt: message,
-        tcwls: true,
-      };
-      hadrons.set(newHadronData.id, newHadronData);
-    }
+    playerObject.externalDialogOpen = true;
+    // Clear any data left from last time the dialog was opened,
+    // and reset state.
+    $('#new_message_text').val('');
+    $('#message_always_visible').prop('checked', false);
+    $('#message_visible_when_online').prop('checked', true);
+    $('.checkbox_radio').checkboxradio({ icon: false });
+    const dialog = $('#new_message_dialog_div').dialog({
+      width: '50%',
+      modal: true,
+      buttons: {
+        Ok() {
+          const message = $('#new_message_text').val();
+          if (message) {
+            const newHadronData = {
+              id: crypto.randomUUID(),
+              typ: 'message',
+              sprt: 'writtenPaper',
+              x: playerObject.player.x,
+              y: playerObject.player.y,
+              dir: 'up',
+              scn: sceneName,
+              velX: 0,
+              velY: 0,
+              txt: message,
+              tcwls: true,
+              pod: $('#message_always_visible').is(':checked'),
+            };
+            hadrons.set(newHadronData.id, newHadronData);
+          }
+          dialog.dialog('close');
+        },
+        Cancel() {
+          dialog.dialog('close');
+        },
+      },
+      close() {
+        playerObject.externalDialogOpen = false;
+      },
+    });
   } else {
     const direction = playerObject.playerDirection;
     const velocity = 150; // TODO: Should be set "per spell"
@@ -43,7 +67,7 @@ function castSpell(sceneName) {
     //       but that is what we have here for now.
     // TODO: Each spell should have an entire description in some sort of spells file.
     const newHadronData = {
-      id: crypto.randomUUID(), // TODO: Make a hadron creator, used by client and server, that ensures this is added.
+      id: crypto.randomUUID(),
       typ: playerObject.activeSpell,
       sprt: playerObject.activeSpell, // TODO: Use the spell's sprite setting, not just the spell name as the sprite.
       x: playerObject.player.x,
@@ -52,9 +76,6 @@ function castSpell(sceneName) {
       scn: sceneName,
       velX: velocityX,
       velY: velocityY,
-      // hideWhenLeavingScene: true, // TODO: Implement this.
-      // destroyWhenLeavingScene: true, // TODO: Implement this.
-      // destroyOnDisconnect: true, // TODO: Test
       tcwls: true,
     };
     hadrons.set(newHadronData.id, newHadronData);

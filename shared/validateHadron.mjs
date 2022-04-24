@@ -36,6 +36,7 @@ const optionalKeys = [
   "hlth", // Health - Health level for Player or NPC, etc.
   "dod", // "Destroy On Disconnect (dod)" (Bool) - Destroy this hadron if the owner disconnects.
   "tcwls", // "Transfer Control When Leaving Scene (tcwls)" (Bool) - Set to true if you want the sprite to be transferred to a new controller when the current controller leaves the scene. Otherwise the sprite is archived until the owner returns.
+  "pod", // "Persist On Disconnect (pod)" (Bool) - Normally any hadrons owned by a player are removed from the game and 'archived' when a player disconnects, even if they aren't controlling them. This causes them to persist even if the player disconnects, and to be brought online even when the player isn't online.
 ];
 
 const allKeys = alwaysRequiredKeys.concat(

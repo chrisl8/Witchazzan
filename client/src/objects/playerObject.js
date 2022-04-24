@@ -33,6 +33,7 @@ const playerObject = {
   // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection
   // MEANING that you can't use it NOW, but it will be live (not empty) in places like the sceneFactory
   chatInputTextArray: [],
+  externalDialogOpen: false,
   scrollingTextOverlayInputText: '',
   domElements: {
     Center: document.getElementById('center_text_overlay_div'),

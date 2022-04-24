@@ -134,6 +134,14 @@ try {
 }
 // TODO: On load wipe any hadrons that are owned by users no longer in the database so that deleting a user doesn't leave orphaned hadrons.
 
+// Resurrect any "Persist On Disconnect (pod)" hadrons immediately.
+inactiveHadrons.forEach((hadron, key) => {
+  if (hadron.pod) {
+    hadrons.set(key, hadron);
+    inactiveHadrons.delete(key);
+  }
+});
+
 async function saveGameStateToDisk() {
   // Combine active and inactive hadrons into one list Map for saving.
   const hadronsToSave = new Map();
@@ -143,7 +151,6 @@ async function saveGameStateToDisk() {
   hadrons.forEach((hadron, key) => {
     hadronsToSave.set(key, hadron);
   });
-  // TODO: Call a debounced function to update the game state files.
   await persistentData.writeMap(
     `${persistentDataFolder}/hadrons.json5`,
     hadronsToSave
@@ -658,9 +665,17 @@ io.on("connection", (socket) => {
             // Default Behavior
             let deleteHadron = true;
             let archiveHadron = true;
+
+            // "Delete On Disconnect (dod)
             if (hadron.dod) {
               archiveHadron = false;
               deleteHadron = true;
+            }
+
+            // "Persist On Disconnect (pod)
+            if (hadron.pod) {
+              archiveHadron = false;
+              deleteHadron = false;
             }
 
             if (archiveHadron) {

@@ -5,12 +5,15 @@ body {
 }
 
 /*Allow body to fill browser window, so that joystick can be used BELOW game canvas.*/
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin-top: 5px;
   margin-bottom: 0;
 }
@@ -28,7 +31,13 @@ div .intro-screen-subsection {
   margin-bottom: 25px;
 }
 
-#command_input_div, #upper_left_text_overlay_div, #scrolling_text_overlay_div, #center_text_overlay_div, #fading_text_overlay_div, #player_tag, .other_player_tag {
+#command_input_div,
+#upper_left_text_overlay_div,
+#scrolling_text_overlay_div,
+#center_text_overlay_div,
+#fading_text_overlay_div,
+#player_tag,
+.other_player_tag {
   position: absolute;
 }
 
@@ -65,7 +74,6 @@ div .intro-screen-subsection {
   overflow-x: auto;
 }
 
-
 #center_text_overlay_div {
   font-family: 'PT Serif', serif;
   text-shadow: 2px 2px 2px #4a430b;
@@ -84,7 +92,7 @@ div .intro-screen-subsection {
 img.emoji {
   height: 1em;
   width: 1em;
-  margin: 0 .05em 0 .1em;
+  margin: 0 0.05em 0 0.1em;
   vertical-align: -0.1em;
 }
 
@@ -117,10 +125,10 @@ img.emoji {
 /*Key map keyboard*/
 
 :root {
-  --green: #A2CCB6;
-  --yellow: #FCEEB5;
-  --peach: #EE786E;
-  --off-white: #FFFFF4;
+  --green: #a2ccb6;
+  --yellow: #fceeb5;
+  --peach: #ee786e;
+  --off-white: #fffff4;
 }
 
 .keyboard {
