@@ -55,7 +55,7 @@ const textObject = {
         .fadeIn({
           duration: 1000,
           complete: () => {
-            $('#fading_text_overlay_div').delay(2000).fadeOut({
+            $('#fading_text_overlay_div').delay(5000).fadeOut({
               duration: 1000,
             });
           },
