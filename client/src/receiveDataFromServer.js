@@ -20,10 +20,12 @@ function receiveDataFromServer() {
   ) {
     communicationsObject.socket = socket.connect('localhost:8080', {
       transports: ['websocket'],
+      timeout: 5000,
     });
   } else {
     communicationsObject.socket = socket.connect({
       transports: ['websocket'],
+      timeout: 5000,
     });
   }
 
