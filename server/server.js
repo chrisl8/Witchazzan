@@ -19,6 +19,9 @@ import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 // eslint-disable-next-line
 import validateHadron from "../shared/validateHadron.mjs";
 
+// Increase this to force the client to update.
+const clientVersion = 3;
+
 const hadronBroadcastThrottleTime = 50;
 
 const commandListArray = [
@@ -75,7 +78,7 @@ try {
   process.exit(1);
 }
 // Increase this to force the client to update.
-serverConfiguration.clientVersion = 2;
+serverConfiguration.clientVersion = clientVersion;
 // Set defaults for missing values.
 if (!serverConfiguration.saltRounds) {
   serverConfiguration.saltRounds = 10;
@@ -463,6 +466,7 @@ io.on("connection", (socket) => {
         if (hadron.own === PlayerId) {
           hadrons.set(key, hadron);
           inactiveHadrons.delete(key);
+          flagSceneHasUpdated(hadron.scn);
         }
       });
 
@@ -664,9 +668,9 @@ io.on("connection", (socket) => {
           content: `${PlayerName} has left the game. :'(`,
         });
 
-        // Handle all hadrons owned or currently controlled by this user.
+        // Handle all hadrons owned by this user.
         hadrons.forEach((hadron, key) => {
-          if (hadron.own === PlayerId || hadron.ctrl === PlayerId) {
+          if (hadron.own === PlayerId) {
             // Default Behavior
             let deleteHadron = true;
             let archiveHadron = true;
