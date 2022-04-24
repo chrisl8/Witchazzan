@@ -74,13 +74,11 @@ try {
   // So an actual error is something worse, like the file being corrupted.
   process.exit(1);
 }
+// Increase this to force the client to update.
+serverConfiguration.clientVersion = 2;
 // Set defaults for missing values.
 if (!serverConfiguration.saltRounds) {
   serverConfiguration.saltRounds = 10;
-}
-if (!serverConfiguration.clientVersion) {
-  // Increase this IN THE CONFIG FILE to force the client to update.
-  serverConfiguration.clientVersion = 0;
 }
 if (!serverConfiguration.jwtSecret) {
   serverConfiguration.jwtSecret = randomBytes(64).toString("hex");

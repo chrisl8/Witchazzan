@@ -63,7 +63,10 @@ function receiveDataFromServer() {
     // Check whether we need to force a client update.
     const clientVersion = localStorage.getItem('clientVersion');
     localStorage.setItem('clientVersion', inputData.clientVersion);
-    if (!clientVersion || inputData.clientVersion > clientVersion) {
+    if (
+      !clientVersion ||
+      Number(inputData.clientVersion) > Number(clientVersion)
+    ) {
       window.location.reload();
     }
 

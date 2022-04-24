@@ -32,4 +32,3 @@ npm run build
 echo ""
 echo "Restarting server:"
 pm2 restart Witchazzan
-# TODO: Add some method for the client to force a browser refresh after a client update.
