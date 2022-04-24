@@ -60,6 +60,13 @@ function receiveDataFromServer() {
     }
   });
   communicationsObject.socket.on('init', (inputData) => {
+    // Check whether we need to force a client update.
+    const clientVersion = localStorage.getItem('clientVersion');
+    localStorage.setItem('clientVersion', inputData.clientVersion);
+    if (!clientVersion || inputData.clientVersion > clientVersion) {
+      window.location.reload();
+    }
+
     playerObject.playerId = inputData.id;
     playerObject.name = inputData.name;
     playerObject.defaultOpeningScene = inputData.defaultOpeningScene;

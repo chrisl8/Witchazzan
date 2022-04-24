@@ -78,6 +78,10 @@ try {
 if (!serverConfiguration.saltRounds) {
   serverConfiguration.saltRounds = 10;
 }
+if (!serverConfiguration.clientVersion) {
+  // Increase this IN THE CONFIG FILE to force the client to update.
+  serverConfiguration.clientVersion = 0;
+}
 if (!serverConfiguration.jwtSecret) {
   serverConfiguration.jwtSecret = randomBytes(64).toString("hex");
 }
@@ -437,6 +441,7 @@ io.on("connection", (socket) => {
         id: PlayerId,
         name: PlayerName,
         defaultOpeningScene: serverConfiguration.defaultOpeningScene,
+        clientVersion: serverConfiguration.clientVersion,
       });
 
       // Announce to the player who else is currently online.
