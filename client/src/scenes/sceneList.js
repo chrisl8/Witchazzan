@@ -208,7 +208,13 @@ const loruleScrollingFontSize = loruleUpperLeftFontSize;
 const loruleHtmlElementParameters = {
   Center: {
     fontSize: '.1', // percent of scene height.
-    color: 'red',
+    color: '#5a8ab7',
+    background: '255,255,255,0.9', // rgba
+  },
+  Fading: {
+    fontSize: '.05', // percent of scene height.
+    color: '#981c9e',
+    background: '255,255,255,0.9', // rgba
   },
   UpperLeft: {
     fontSize: loruleUpperLeftFontSize, // percent of scene height.
