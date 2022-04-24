@@ -472,7 +472,7 @@
     <!-- Modal Dialogs -->
     <div id="new_message_dialog_div" title="New Message" style="display: none">
       <p id="dialog_text_overlay_input">What do you want to say?</p>
-      <form>
+      <form onSubmit="return false;">
         <input
           type="text"
           name="message"
@@ -498,12 +498,6 @@
             id="message_always_visible"
           />
         </fieldset>
-        <!-- Allow form submission with keyboard without duplicating the dialog button -->
-        <input
-          type="submit"
-          tabindex="-1"
-          style="position: absolute; top: -1000px"
-        />
       </form>
     </div>
   </body>
