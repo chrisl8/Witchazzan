@@ -30,6 +30,8 @@ jobs:
         with:
           node-version: 'lts/*'
       - run: npm ci
+        working-directory: client
+      - run: npm ci
         working-directory: server
       - run: node server.js
         working-directory: server
