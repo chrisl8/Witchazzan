@@ -217,33 +217,11 @@ const sceneFactory = ({
     window.location.reload();
   }
 
-  function sceneFactoryRelatedCommandHandler() {
-    if (playerObject.teleportToSceneNow) {
-      const destinationScene = playerObject.teleportToSceneNow;
-      playerObject.teleportToSceneNow = null;
-      cleanUpSceneAndTeleport.call(this, destinationScene, null);
-    }
-  }
-
   function hotKeyHandler() {
     // Return to intro text
     if (playerObject.keyState.p === 'keydown') {
       playerObject.keyState.p = null;
       returnToIntroScreen();
-    }
-
-    // Hot key scene switch for testing.
-    if (playerObject.keyState.h === 'keydown') {
-      playerObject.keyState.h = null;
-      if (sceneName !== playerObject.defaultOpeningScene) {
-        // Don't teleport here if we ARE here.
-        playerObject.dotTrailsOn = false; // Game crashes if this is on during this operation.
-        cleanUpSceneAndTeleport.call(
-          this,
-          playerObject.defaultOpeningScene,
-          null,
-        );
-      }
     }
 
     // Hot key to display/hide chat log
@@ -421,6 +399,33 @@ const sceneFactory = ({
       // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/rendertexture/
       // Rectangles:
       // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Rectangle.html
+
+      // NOTE: If you are getting the error:
+      //        Uncaught TypeError: Cannot set properties of null (setting '4')
+      // when you try to teleport with dot trails on, this will fix it, BUT
+      // the cause is that you are running this after a scene was closed,
+      // so try to sort out why you have your teleports out of order before
+      // engaging this code.
+      // if (
+      //   playerObject.dotTrailRenderTexture &&
+      //   !playerObject.dotTrailRenderTexture.scene
+      // ) {
+      //   console.log(
+      //     'renderDebugDotTrails-!scene',
+      //     playerObject.dotTrailRenderTexture,
+      //   );
+      //   playerObject.dotTrailRenderTexture.destroy();
+      //   console.log(
+      //     'renderDebugDotTrails-!scene',
+      //     playerObject.dotTrailRenderTexture,
+      //   );
+      //   playerObject.dotTrailRenderTexture = null;
+      //   console.log(
+      //     'renderDebugDotTrails-!scene',
+      //     playerObject.dotTrailRenderTexture,
+      //   );
+      // }
+
       if (!playerObject.dotTrailRenderTexture) {
         playerObject.dotTrailRenderTexture = scene.add.renderTexture(
           0,
@@ -925,7 +930,7 @@ const sceneFactory = ({
     // Use scene from server. Switch to different scene if this is not it
     // NOTE: Remember to do this BEFORE setting the position from the server.
     // HOWEVER: This MUST be done after setCameraZoom, or the scene
-    // will load unzoomed. I'm not sure why.
+    // will load un-zoomed. I'm not sure why.
     if (!playerObject.initialSceneFromServerAlreadyUsed) {
       playerObject.initialSceneFromServerAlreadyUsed = true;
       if (playerObject.initialScene !== sceneName) {
@@ -1094,9 +1099,33 @@ const sceneFactory = ({
   scene.update = function (time, delta) {
     // Runs once per frame for the duration of the scene
 
+    // TELEPORT?
+    // Anything that teleports us needs to run FIRST and then stop the rest of the update process.
+
     // Do not do ANYTHING while a player is potentially leaving this scene.
     if (playerObject.teleportInProgress) {
       return;
+    }
+
+    // teleportToSceneNow is set when a player uses the teleportToScene command in the chat input.
+    if (playerObject.teleportToSceneNow) {
+      const destinationScene = playerObject.teleportToSceneNow;
+      playerObject.teleportToSceneNow = null;
+      cleanUpSceneAndTeleport.call(this, destinationScene, null);
+      return;
+    }
+
+    if (playerObject.keyState.h === 'keydown') {
+      playerObject.keyState.h = null;
+      if (sceneName !== playerObject.defaultOpeningScene) {
+        // Don't teleport here if we ARE here.
+        cleanUpSceneAndTeleport.call(
+          this,
+          playerObject.defaultOpeningScene,
+          null,
+        );
+        return;
+      }
     }
 
     // This is required on every update, in case the user resizes their browser window.
@@ -1131,8 +1160,6 @@ const sceneFactory = ({
     }
 
     playerObject.player.body.velocity.clone();
-
-    sceneFactoryRelatedCommandHandler.call(this);
 
     hotKeyHandler.call(this);
 
