@@ -16,6 +16,7 @@ import spriteCollisionHandler from '../spriteCollisionHandler.js';
 // Example of adding sound.
 import sunriseMp3 from '../assets/sounds/sunrise.mp3';
 import sunriseOgg from '../assets/sounds/sunrise.ogg';
+import closeChatInputBox from '../closeChatInputBox.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -108,6 +109,7 @@ const sceneFactory = ({
       destinationSceneName !== sceneName
     ) {
       playerObject.teleportInProgress = true;
+      closeChatInputBox();
       cleanUpScene();
       if (this.scene.getIndex(destinationSceneName) === -1) {
         console.log(

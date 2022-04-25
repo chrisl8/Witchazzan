@@ -4,6 +4,7 @@ import playerObject from './objects/playerObject.js';
 import clientSprites from './objects/clientSprites.js';
 import sendDataToServer from './sendDataToServer.js';
 import communicationsObject from './objects/communicationsObject.js';
+import closeChatInputBox from './closeChatInputBox.js';
 
 if (!Array.isArray(JSON.parse(localStorage.getItem('commandHistory')))) {
   localStorage.setItem('commandHistory', JSON.stringify([]));
@@ -26,15 +27,7 @@ function addEntryToCommandHistory(command) {
 function processCommandInput(event) {
   if (event.key === 'Escape') {
     // Escape is used to exit the chat/command input box.
-    textObject.escapeToLeaveChat.shouldBeActiveNow = false;
-    // https://stackoverflow.com/a/1232046/4982408
-    playerObject.chatInputTextArray.length = 0;
-    // Otherwise it still has text on it when you open it again:
-    playerObject.domElements.chatInput.value = '';
-    playerObject.chatOpen = false; // Broadcast to other players that chat is closed
-    playerObject.domElements.chatInputDiv.style.display = 'none';
-    playerObject.scrollingTextBox.hide();
-    textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
+    closeChatInputBox();
   } else if (event.key === 'Enter') {
     playerObject.chatInputTextArray =
       playerObject.domElements.chatInput.value.split('');
