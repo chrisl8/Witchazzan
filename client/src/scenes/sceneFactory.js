@@ -785,6 +785,11 @@ const sceneFactory = ({
           clientSprite.sprite.destroy();
         }
         clientSprites.delete(key);
+        // Clean up dom elements attached to removed sprites
+        if (playerObject.domElements.otherPlayerTags[key]) {
+          playerObject.domElements.otherPlayerTags[key].remove();
+          playerObject.domElements.otherPlayerTags[key] = null;
+        }
       } else if (clientSprite.colliders) {
         // Remove any colliders with non-existent hadrons that are gone now.
         for (const [colliderKey] of Object.entries(clientSprite.colliders)) {
