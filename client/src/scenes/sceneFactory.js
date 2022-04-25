@@ -410,20 +410,8 @@ const sceneFactory = ({
       //   playerObject.dotTrailRenderTexture &&
       //   !playerObject.dotTrailRenderTexture.scene
       // ) {
-      //   console.log(
-      //     'renderDebugDotTrails-!scene',
-      //     playerObject.dotTrailRenderTexture,
-      //   );
       //   playerObject.dotTrailRenderTexture.destroy();
-      //   console.log(
-      //     'renderDebugDotTrails-!scene',
-      //     playerObject.dotTrailRenderTexture,
-      //   );
       //   playerObject.dotTrailRenderTexture = null;
-      //   console.log(
-      //     'renderDebugDotTrails-!scene',
-      //     playerObject.dotTrailRenderTexture,
-      //   );
       // }
 
       if (!playerObject.dotTrailRenderTexture) {
