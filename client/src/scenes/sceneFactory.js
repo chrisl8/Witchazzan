@@ -927,6 +927,28 @@ const sceneFactory = ({
       }
     }
 
+    // Allow a scene entrance to specify to carry over the X or Y value from the previous scene so that you can enter at any point along the edge in a wide doorway.
+    if (
+      spawnPoint &&
+      spawnPoint.hasOwnProperty('properties') &&
+      playerObject.player &&
+      Array.isArray(spawnPoint.properties)
+    ) {
+      if (
+        spawnPoint.properties.find((x) => x.name === 'allowCustomX')?.value &&
+        playerObject.player?.x
+      ) {
+        spawnPoint.x = playerObject.player.x;
+      }
+
+      if (
+        spawnPoint.properties.find((x) => x.name === 'allowCustomY')?.value &&
+        playerObject.player?.y
+      ) {
+        spawnPoint.y = playerObject.player.y;
+      }
+    }
+
     // Use scene from server. Switch to different scene if this is not it
     // NOTE: Remember to do this BEFORE setting the position from the server.
     // HOWEVER: This MUST be done after setCameraZoom, or the scene
