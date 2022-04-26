@@ -870,7 +870,12 @@ const sceneFactory = ({
         teleportLayersColliders.set(
           layer.name,
           map
-            .createLayer(layer.name, sceneTileSet, 0, 0)
+            .createLayer(
+              layer.name,
+              playerObject.disableCameraZoom ? sceneTileSet : null,
+              0,
+              0,
+            )
             .setCollisionByExclusion([-1]),
         );
       }
