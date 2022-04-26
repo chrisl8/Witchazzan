@@ -376,6 +376,7 @@ async function introScreenAndPreGameSetup() {
   } else {
     localStorage.removeItem('disableCameraZoom');
   }
+  playerObject.disableCameraZoom = disableCameraZoom;
 
   // Settle up disableSound and set local storage if need be
   disableSound = document.getElementById('disable_sound').checked;
