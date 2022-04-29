@@ -58,33 +58,13 @@ const gameLoopAndSceneFactory = ({
   const teleportLayersColliders = new Map();
 
   // SCENE PRE-LOAD SETUP
+  // ** This should ONLY BE USED TO LOAD ASSETS! **
   // This is run every time the scene is entered or re-entered.
+  // Any scene startup logic should be in scene.create found further down.
   // eslint-disable-next-line func-names
   scene.preload = function () {
-    sendDataToServer.enterScene(sceneName);
-    console.log(`Entering scene ${sceneName}`);
-
-    // Display Tile Map's welcome message
-    if (
-      tileMap &&
-      tileMap.hasOwnProperty('properties') &&
-      Array.isArray(tileMap.properties)
-    ) {
-      const welcomeMessageIndex = tileMap.properties.findIndex(
-        (x) => x.name === 'EntranceMessage',
-      );
-      if (welcomeMessageIndex > -1) {
-        textObject.enterSceneText.text =
-          tileMap.properties[welcomeMessageIndex].value;
-        textObject.enterSceneText.display();
-      } else {
-        textObject.enterSceneText.text = '';
-      }
-    } else {
-      textObject.enterSceneText.text = '';
-    }
-
     // Runs once, loads up assets like images and audio
+    // ** This should ONLY BE USED TO LOAD ASSETS! **
     // All of these text based "keys" are basically global variables in Phaser.
     // You can reuse the same name, but phaser will just reuse the first thing you
     // assigned to it.
@@ -113,9 +93,33 @@ const gameLoopAndSceneFactory = ({
 
   // INITIAL SCENE SETUP
   // This is ALSO run every time the scene is entered or re-entered.
+  // Place any scene startup logic that you need in here.
   // eslint-disable-next-line func-names
   scene.create = function () {
     // Runs once, after all assets in preload are loaded
+
+    sendDataToServer.enterScene(sceneName);
+    console.log(`Entering scene ${sceneName}`);
+
+    // Display Tile Map's welcome message
+    if (
+      tileMap &&
+      tileMap.hasOwnProperty('properties') &&
+      Array.isArray(tileMap.properties)
+    ) {
+      const welcomeMessageIndex = tileMap.properties.findIndex(
+        (x) => x.name === 'EntranceMessage',
+      );
+      if (welcomeMessageIndex > -1) {
+        textObject.enterSceneText.text =
+          tileMap.properties[welcomeMessageIndex].value;
+        textObject.enterSceneText.display();
+      } else {
+        textObject.enterSceneText.text = '';
+      }
+    } else {
+      textObject.enterSceneText.text = '';
+    }
 
     if (!didThisOnce && !playerObject.disableSound) {
       didThisOnce = true; // So it doesn't get annoying . . . more annoying.
