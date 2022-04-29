@@ -1,9 +1,9 @@
 /* globals window:true */
 /* globals document:true */
-import playerObject from './objects/playerObject.js';
-import textObject from './objects/textObject.js';
-import hadrons from './objects/hadrons.js';
-import clientSprites from './objects/clientSprites.js';
+import playerObject from '../objects/playerObject.js';
+import textObject from '../objects/textObject.js';
+import hadrons from '../objects/hadrons.js';
+import clientSprites from '../objects/clientSprites.js';
 
 const updateInGameDomElements = (htmlElementParameters) => {
   const consolidatedTextObject = {

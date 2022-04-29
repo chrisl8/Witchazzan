@@ -20,175 +20,175 @@
  * Typically this wil be a 20 x 11 32 pixel map with a 16:9 aspect ratio.
  * Although for the old school maps it can be 16 x 11 16 pixel maps for 4:3.
  */
-import sceneFactory from './sceneFactory.js';
+import gameLoopAndSceneFactory from './gameLoopAndSceneFactory.js';
 
 // Lorule Scenes
-import LoruleA1 from '../assets/tileMaps/LoruleA1.json';
-import LoruleA2 from '../assets/tileMaps/LoruleA2.json';
-import LoruleA3 from '../assets/tileMaps/LoruleA3.json';
-import LoruleA4 from '../assets/tileMaps/LoruleA4.json';
-import LoruleA5 from '../assets/tileMaps/LoruleA5.json';
-import LoruleA6 from '../assets/tileMaps/LoruleA6.json';
-import LoruleA7 from '../assets/tileMaps/LoruleA7.json';
-import LoruleA8 from '../assets/tileMaps/LoruleA8.json';
-import LoruleA9 from '../assets/tileMaps/LoruleA9.json';
+import LoruleA1 from './assets/tileMaps/LoruleA1.json';
+import LoruleA2 from './assets/tileMaps/LoruleA2.json';
+import LoruleA3 from './assets/tileMaps/LoruleA3.json';
+import LoruleA4 from './assets/tileMaps/LoruleA4.json';
+import LoruleA5 from './assets/tileMaps/LoruleA5.json';
+import LoruleA6 from './assets/tileMaps/LoruleA6.json';
+import LoruleA7 from './assets/tileMaps/LoruleA7.json';
+import LoruleA8 from './assets/tileMaps/LoruleA8.json';
+import LoruleA9 from './assets/tileMaps/LoruleA9.json';
 
-import LoruleB1 from '../assets/tileMaps/LoruleB1.json';
-import LoruleB2 from '../assets/tileMaps/LoruleB2.json';
-import LoruleB3 from '../assets/tileMaps/LoruleB3.json';
-import LoruleB4 from '../assets/tileMaps/LoruleB4.json';
-import LoruleB5 from '../assets/tileMaps/LoruleB5.json';
-import LoruleB6 from '../assets/tileMaps/LoruleB6.json';
-import LoruleB7 from '../assets/tileMaps/LoruleB7.json';
-import LoruleB8 from '../assets/tileMaps/LoruleB8.json';
+import LoruleB1 from './assets/tileMaps/LoruleB1.json';
+import LoruleB2 from './assets/tileMaps/LoruleB2.json';
+import LoruleB3 from './assets/tileMaps/LoruleB3.json';
+import LoruleB4 from './assets/tileMaps/LoruleB4.json';
+import LoruleB5 from './assets/tileMaps/LoruleB5.json';
+import LoruleB6 from './assets/tileMaps/LoruleB6.json';
+import LoruleB7 from './assets/tileMaps/LoruleB7.json';
+import LoruleB8 from './assets/tileMaps/LoruleB8.json';
 
-import LoruleC1 from '../assets/tileMaps/LoruleC1.json';
-import LoruleC2 from '../assets/tileMaps/LoruleC2.json';
-import LoruleC3 from '../assets/tileMaps/LoruleC3.json';
-import LoruleC4 from '../assets/tileMaps/LoruleC4.json';
-import LoruleC5 from '../assets/tileMaps/LoruleC5.json';
-import LoruleC6 from '../assets/tileMaps/LoruleC6.json';
-import LoruleC7 from '../assets/tileMaps/LoruleC7.json';
-import LoruleC8 from '../assets/tileMaps/LoruleC8.json';
+import LoruleC1 from './assets/tileMaps/LoruleC1.json';
+import LoruleC2 from './assets/tileMaps/LoruleC2.json';
+import LoruleC3 from './assets/tileMaps/LoruleC3.json';
+import LoruleC4 from './assets/tileMaps/LoruleC4.json';
+import LoruleC5 from './assets/tileMaps/LoruleC5.json';
+import LoruleC6 from './assets/tileMaps/LoruleC6.json';
+import LoruleC7 from './assets/tileMaps/LoruleC7.json';
+import LoruleC8 from './assets/tileMaps/LoruleC8.json';
 
-import LoruleD1 from '../assets/tileMaps/LoruleD1.json';
-import LoruleD2 from '../assets/tileMaps/LoruleD2.json';
-import LoruleD3 from '../assets/tileMaps/LoruleD3.json';
-import LoruleD4 from '../assets/tileMaps/LoruleD4.json';
-import LoruleD5 from '../assets/tileMaps/LoruleD5.json';
-import LoruleD6 from '../assets/tileMaps/LoruleD6.json';
-import LoruleD7 from '../assets/tileMaps/LoruleD7.json';
-import LoruleD8 from '../assets/tileMaps/LoruleD8.json';
+import LoruleD1 from './assets/tileMaps/LoruleD1.json';
+import LoruleD2 from './assets/tileMaps/LoruleD2.json';
+import LoruleD3 from './assets/tileMaps/LoruleD3.json';
+import LoruleD4 from './assets/tileMaps/LoruleD4.json';
+import LoruleD5 from './assets/tileMaps/LoruleD5.json';
+import LoruleD6 from './assets/tileMaps/LoruleD6.json';
+import LoruleD7 from './assets/tileMaps/LoruleD7.json';
+import LoruleD8 from './assets/tileMaps/LoruleD8.json';
 
-import LoruleE1 from '../assets/tileMaps/LoruleE1.json';
-import LoruleE2 from '../assets/tileMaps/LoruleE2.json';
-import LoruleE3 from '../assets/tileMaps/LoruleE3.json';
-import LoruleE4 from '../assets/tileMaps/LoruleE4.json';
-import LoruleE5 from '../assets/tileMaps/LoruleE5.json';
-import LoruleE6 from '../assets/tileMaps/LoruleE6.json';
-import LoruleE7 from '../assets/tileMaps/LoruleE7.json';
-import LoruleE8 from '../assets/tileMaps/LoruleE8.json';
+import LoruleE1 from './assets/tileMaps/LoruleE1.json';
+import LoruleE2 from './assets/tileMaps/LoruleE2.json';
+import LoruleE3 from './assets/tileMaps/LoruleE3.json';
+import LoruleE4 from './assets/tileMaps/LoruleE4.json';
+import LoruleE5 from './assets/tileMaps/LoruleE5.json';
+import LoruleE6 from './assets/tileMaps/LoruleE6.json';
+import LoruleE7 from './assets/tileMaps/LoruleE7.json';
+import LoruleE8 from './assets/tileMaps/LoruleE8.json';
 
-import LoruleF1 from '../assets/tileMaps/LoruleF1.json';
-import LoruleF2 from '../assets/tileMaps/LoruleF2.json';
-import LoruleF3 from '../assets/tileMaps/LoruleF3.json';
-import LoruleF4 from '../assets/tileMaps/LoruleF4.json';
-import LoruleF5 from '../assets/tileMaps/LoruleF5.json';
-import LoruleF6 from '../assets/tileMaps/LoruleF6.json';
-import LoruleF7 from '../assets/tileMaps/LoruleF7.json';
-import LoruleF8 from '../assets/tileMaps/LoruleF8.json';
+import LoruleF1 from './assets/tileMaps/LoruleF1.json';
+import LoruleF2 from './assets/tileMaps/LoruleF2.json';
+import LoruleF3 from './assets/tileMaps/LoruleF3.json';
+import LoruleF4 from './assets/tileMaps/LoruleF4.json';
+import LoruleF5 from './assets/tileMaps/LoruleF5.json';
+import LoruleF6 from './assets/tileMaps/LoruleF6.json';
+import LoruleF7 from './assets/tileMaps/LoruleF7.json';
+import LoruleF8 from './assets/tileMaps/LoruleF8.json';
 
-import LoruleG1 from '../assets/tileMaps/LoruleG1.json';
-import LoruleG2 from '../assets/tileMaps/LoruleG2.json';
-import LoruleG3 from '../assets/tileMaps/LoruleG3.json';
-import LoruleG4 from '../assets/tileMaps/LoruleG4.json';
-import LoruleG5 from '../assets/tileMaps/LoruleG5.json';
-import LoruleG6 from '../assets/tileMaps/LoruleG6.json';
-import LoruleG7 from '../assets/tileMaps/LoruleG7.json';
-import LoruleG8 from '../assets/tileMaps/LoruleG8.json';
+import LoruleG1 from './assets/tileMaps/LoruleG1.json';
+import LoruleG2 from './assets/tileMaps/LoruleG2.json';
+import LoruleG3 from './assets/tileMaps/LoruleG3.json';
+import LoruleG4 from './assets/tileMaps/LoruleG4.json';
+import LoruleG5 from './assets/tileMaps/LoruleG5.json';
+import LoruleG6 from './assets/tileMaps/LoruleG6.json';
+import LoruleG7 from './assets/tileMaps/LoruleG7.json';
+import LoruleG8 from './assets/tileMaps/LoruleG8.json';
 
-import LoruleH1 from '../assets/tileMaps/LoruleH1.json';
-import LoruleH2 from '../assets/tileMaps/LoruleH2.json';
-import LoruleH3 from '../assets/tileMaps/LoruleH3.json';
-import LoruleH4 from '../assets/tileMaps/LoruleH4.json';
-import LoruleH5 from '../assets/tileMaps/LoruleH5.json';
-import LoruleH6 from '../assets/tileMaps/LoruleH6.json';
-import LoruleH7 from '../assets/tileMaps/LoruleH7.json';
-import LoruleH8 from '../assets/tileMaps/LoruleH8.json';
+import LoruleH1 from './assets/tileMaps/LoruleH1.json';
+import LoruleH2 from './assets/tileMaps/LoruleH2.json';
+import LoruleH3 from './assets/tileMaps/LoruleH3.json';
+import LoruleH4 from './assets/tileMaps/LoruleH4.json';
+import LoruleH5 from './assets/tileMaps/LoruleH5.json';
+import LoruleH6 from './assets/tileMaps/LoruleH6.json';
+import LoruleH7 from './assets/tileMaps/LoruleH7.json';
+import LoruleH8 from './assets/tileMaps/LoruleH8.json';
 
-import LoruleI1 from '../assets/tileMaps/LoruleI1.json';
-import LoruleI2 from '../assets/tileMaps/LoruleI2.json';
-import LoruleI3 from '../assets/tileMaps/LoruleI3.json';
-import LoruleI4 from '../assets/tileMaps/LoruleI4.json';
-import LoruleI5 from '../assets/tileMaps/LoruleI5.json';
-import LoruleI6 from '../assets/tileMaps/LoruleI6.json';
-import LoruleI7 from '../assets/tileMaps/LoruleI7.json';
-import LoruleI8 from '../assets/tileMaps/LoruleI8.json';
+import LoruleI1 from './assets/tileMaps/LoruleI1.json';
+import LoruleI2 from './assets/tileMaps/LoruleI2.json';
+import LoruleI3 from './assets/tileMaps/LoruleI3.json';
+import LoruleI4 from './assets/tileMaps/LoruleI4.json';
+import LoruleI5 from './assets/tileMaps/LoruleI5.json';
+import LoruleI6 from './assets/tileMaps/LoruleI6.json';
+import LoruleI7 from './assets/tileMaps/LoruleI7.json';
+import LoruleI8 from './assets/tileMaps/LoruleI8.json';
 
-import LoruleJ1 from '../assets/tileMaps/LoruleJ1.json';
-import LoruleJ2 from '../assets/tileMaps/LoruleJ2.json';
-import LoruleJ3 from '../assets/tileMaps/LoruleJ3.json';
-import LoruleJ4 from '../assets/tileMaps/LoruleJ4.json';
-import LoruleJ5 from '../assets/tileMaps/LoruleJ5.json';
-import LoruleJ6 from '../assets/tileMaps/LoruleJ6.json';
-import LoruleJ7 from '../assets/tileMaps/LoruleJ7.json';
-import LoruleJ8 from '../assets/tileMaps/LoruleJ8.json';
+import LoruleJ1 from './assets/tileMaps/LoruleJ1.json';
+import LoruleJ2 from './assets/tileMaps/LoruleJ2.json';
+import LoruleJ3 from './assets/tileMaps/LoruleJ3.json';
+import LoruleJ4 from './assets/tileMaps/LoruleJ4.json';
+import LoruleJ5 from './assets/tileMaps/LoruleJ5.json';
+import LoruleJ6 from './assets/tileMaps/LoruleJ6.json';
+import LoruleJ7 from './assets/tileMaps/LoruleJ7.json';
+import LoruleJ8 from './assets/tileMaps/LoruleJ8.json';
 
-import LoruleK1 from '../assets/tileMaps/LoruleK1.json';
-import LoruleK2 from '../assets/tileMaps/LoruleK2.json';
-import LoruleK3 from '../assets/tileMaps/LoruleK3.json';
-import LoruleK4 from '../assets/tileMaps/LoruleK4.json';
-import LoruleK5 from '../assets/tileMaps/LoruleK5.json';
-import LoruleK6 from '../assets/tileMaps/LoruleK6.json';
-import LoruleK7 from '../assets/tileMaps/LoruleK7.json';
-import LoruleK8 from '../assets/tileMaps/LoruleK8.json';
+import LoruleK1 from './assets/tileMaps/LoruleK1.json';
+import LoruleK2 from './assets/tileMaps/LoruleK2.json';
+import LoruleK3 from './assets/tileMaps/LoruleK3.json';
+import LoruleK4 from './assets/tileMaps/LoruleK4.json';
+import LoruleK5 from './assets/tileMaps/LoruleK5.json';
+import LoruleK6 from './assets/tileMaps/LoruleK6.json';
+import LoruleK7 from './assets/tileMaps/LoruleK7.json';
+import LoruleK8 from './assets/tileMaps/LoruleK8.json';
 
-import LoruleL1 from '../assets/tileMaps/LoruleL1.json';
-import LoruleL2 from '../assets/tileMaps/LoruleL2.json';
-import LoruleL3 from '../assets/tileMaps/LoruleL3.json';
-import LoruleL4 from '../assets/tileMaps/LoruleL4.json';
-import LoruleL5 from '../assets/tileMaps/LoruleL5.json';
-import LoruleL6 from '../assets/tileMaps/LoruleL6.json';
-import LoruleL7 from '../assets/tileMaps/LoruleL7.json';
-import LoruleL8 from '../assets/tileMaps/LoruleL8.json';
+import LoruleL1 from './assets/tileMaps/LoruleL1.json';
+import LoruleL2 from './assets/tileMaps/LoruleL2.json';
+import LoruleL3 from './assets/tileMaps/LoruleL3.json';
+import LoruleL4 from './assets/tileMaps/LoruleL4.json';
+import LoruleL5 from './assets/tileMaps/LoruleL5.json';
+import LoruleL6 from './assets/tileMaps/LoruleL6.json';
+import LoruleL7 from './assets/tileMaps/LoruleL7.json';
+import LoruleL8 from './assets/tileMaps/LoruleL8.json';
 
-import LoruleM1 from '../assets/tileMaps/LoruleM1.json';
-import LoruleM2 from '../assets/tileMaps/LoruleM2.json';
-import LoruleM3 from '../assets/tileMaps/LoruleM3.json';
-import LoruleM4 from '../assets/tileMaps/LoruleM4.json';
-import LoruleM5 from '../assets/tileMaps/LoruleM5.json';
-import LoruleM6 from '../assets/tileMaps/LoruleM6.json';
-import LoruleM7 from '../assets/tileMaps/LoruleM7.json';
-import LoruleM8 from '../assets/tileMaps/LoruleM8.json';
+import LoruleM1 from './assets/tileMaps/LoruleM1.json';
+import LoruleM2 from './assets/tileMaps/LoruleM2.json';
+import LoruleM3 from './assets/tileMaps/LoruleM3.json';
+import LoruleM4 from './assets/tileMaps/LoruleM4.json';
+import LoruleM5 from './assets/tileMaps/LoruleM5.json';
+import LoruleM6 from './assets/tileMaps/LoruleM6.json';
+import LoruleM7 from './assets/tileMaps/LoruleM7.json';
+import LoruleM8 from './assets/tileMaps/LoruleM8.json';
 
-import LoruleN1 from '../assets/tileMaps/LoruleN1.json';
-import LoruleN2 from '../assets/tileMaps/LoruleN2.json';
-import LoruleN3 from '../assets/tileMaps/LoruleN3.json';
-import LoruleN4 from '../assets/tileMaps/LoruleN4.json';
-import LoruleN5 from '../assets/tileMaps/LoruleN5.json';
-import LoruleN6 from '../assets/tileMaps/LoruleN6.json';
-import LoruleN7 from '../assets/tileMaps/LoruleN7.json';
-import LoruleN8 from '../assets/tileMaps/LoruleN8.json';
+import LoruleN1 from './assets/tileMaps/LoruleN1.json';
+import LoruleN2 from './assets/tileMaps/LoruleN2.json';
+import LoruleN3 from './assets/tileMaps/LoruleN3.json';
+import LoruleN4 from './assets/tileMaps/LoruleN4.json';
+import LoruleN5 from './assets/tileMaps/LoruleN5.json';
+import LoruleN6 from './assets/tileMaps/LoruleN6.json';
+import LoruleN7 from './assets/tileMaps/LoruleN7.json';
+import LoruleN8 from './assets/tileMaps/LoruleN8.json';
 
-import LoruleO1 from '../assets/tileMaps/LoruleO1.json';
-import LoruleO2 from '../assets/tileMaps/LoruleO2.json';
-import LoruleO3 from '../assets/tileMaps/LoruleO3.json';
-import LoruleO4 from '../assets/tileMaps/LoruleO4.json';
-import LoruleO5 from '../assets/tileMaps/LoruleO5.json';
-import LoruleO6 from '../assets/tileMaps/LoruleO6.json';
-import LoruleO7 from '../assets/tileMaps/LoruleO7.json';
-import LoruleO8 from '../assets/tileMaps/LoruleO8.json';
+import LoruleO1 from './assets/tileMaps/LoruleO1.json';
+import LoruleO2 from './assets/tileMaps/LoruleO2.json';
+import LoruleO3 from './assets/tileMaps/LoruleO3.json';
+import LoruleO4 from './assets/tileMaps/LoruleO4.json';
+import LoruleO5 from './assets/tileMaps/LoruleO5.json';
+import LoruleO6 from './assets/tileMaps/LoruleO6.json';
+import LoruleO7 from './assets/tileMaps/LoruleO7.json';
+import LoruleO8 from './assets/tileMaps/LoruleO8.json';
 
-import LoruleP1 from '../assets/tileMaps/LoruleP1.json';
-import LoruleP2 from '../assets/tileMaps/LoruleP2.json';
-import LoruleP3 from '../assets/tileMaps/LoruleP3.json';
-import LoruleP4 from '../assets/tileMaps/LoruleP4.json';
-import LoruleP5 from '../assets/tileMaps/LoruleP5.json';
-import LoruleP6 from '../assets/tileMaps/LoruleP6.json';
-import LoruleP7 from '../assets/tileMaps/LoruleP7.json';
-import LoruleP8 from '../assets/tileMaps/LoruleP8.json';
+import LoruleP1 from './assets/tileMaps/LoruleP1.json';
+import LoruleP2 from './assets/tileMaps/LoruleP2.json';
+import LoruleP3 from './assets/tileMaps/LoruleP3.json';
+import LoruleP4 from './assets/tileMaps/LoruleP4.json';
+import LoruleP5 from './assets/tileMaps/LoruleP5.json';
+import LoruleP6 from './assets/tileMaps/LoruleP6.json';
+import LoruleP7 from './assets/tileMaps/LoruleP7.json';
+import LoruleP8 from './assets/tileMaps/LoruleP8.json';
 
-import backYard1 from '../assets/tileMaps/backYard1.json';
-import arena1 from '../assets/tileMaps/arena1.json';
+import backYard1 from './assets/tileMaps/backYard1.json';
+import arena1 from './assets/tileMaps/arena1.json';
 
-import EmptyCave from '../assets/tileMaps/EmptyCave.json';
-import SlimeCave from '../assets/tileMaps/SlimeCave.json';
-import EmptySpace from '../assets/tileMaps/EmptySpace.json';
+import EmptyCave from './assets/tileMaps/EmptyCave.json';
+import SlimeCave from './assets/tileMaps/SlimeCave.json';
+import EmptySpace from './assets/tileMaps/EmptySpace.json';
 
-import CaveA8 from '../assets/tileMaps/CaveA8.json';
-import CaveC3 from '../assets/tileMaps/CaveC3.json';
-import CaveE1 from '../assets/tileMaps/CaveE1.json';
-import CaveE5 from '../assets/tileMaps/CaveE5.json';
-import CaveE7 from '../assets/tileMaps/CaveE7.json';
-import CaveF3 from '../assets/tileMaps/CaveF3.json';
-import CaveK1 from '../assets/tileMaps/CaveK1.json';
-import CaveK5 from '../assets/tileMaps/CaveK5.json';
-import CaveL1 from '../assets/tileMaps/CaveL1.json';
-import CaveM1 from '../assets/tileMaps/CaveM1.json';
-import CaveM4 from '../assets/tileMaps/CaveM4.json';
-import CaveO6 from '../assets/tileMaps/CaveO6.json';
-import CaveP2 from '../assets/tileMaps/CaveP2.json';
-import CaveP7 from '../assets/tileMaps/CaveP7.json';
+import CaveA8 from './assets/tileMaps/CaveA8.json';
+import CaveC3 from './assets/tileMaps/CaveC3.json';
+import CaveE1 from './assets/tileMaps/CaveE1.json';
+import CaveE5 from './assets/tileMaps/CaveE5.json';
+import CaveE7 from './assets/tileMaps/CaveE7.json';
+import CaveF3 from './assets/tileMaps/CaveF3.json';
+import CaveK1 from './assets/tileMaps/CaveK1.json';
+import CaveK5 from './assets/tileMaps/CaveK5.json';
+import CaveL1 from './assets/tileMaps/CaveL1.json';
+import CaveM1 from './assets/tileMaps/CaveM1.json';
+import CaveM4 from './assets/tileMaps/CaveM4.json';
+import CaveO6 from './assets/tileMaps/CaveO6.json';
+import CaveP2 from './assets/tileMaps/CaveP2.json';
+import CaveP7 from './assets/tileMaps/CaveP7.json';
 
 // NOTE: You must also add any new scenes to witchazzan-server/config/default-config.edn
 
@@ -211,9 +211,9 @@ https://github.com/sporadic-labs/tile-extruder
  */
 
 // Tile Sets
-import tileset1bit16x16 from '../assets/tileSets/tileset_1bit-16x16-extruded.png';
-import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld-extruded.png';
-import dungeonTileset from '../assets/tileSets/Dungeon_Tileset.png';
+import tileset1bit16x16 from './assets/tileSets/tileset_1bit-16x16-extruded.png';
+import tilesetZoriaOverworld from './assets/tileSets/zoria_overworld-extruded.png';
+import dungeonTileset from './assets/tileSets/Dungeon_Tileset.png';
 
 // Each entry consists of an image and a name.
 // The name is used for tagging the imported tile set image,
@@ -1375,7 +1375,7 @@ const scenes = [
 // which is used by the phaserConfigObject.js for the Phaser scene array.
 const sceneList = [];
 scenes.forEach((scene) => {
-  sceneList.push(sceneFactory(scene));
+  sceneList.push(gameLoopAndSceneFactory(scene));
 });
 
 export default sceneList;

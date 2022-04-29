@@ -46,6 +46,7 @@ import grassAndWaterDark from '../assets/spriteSheets/GrassAndWaterDark.png';
 import RainbowTileOne from '../assets/spriteSheets/RainbowTileOne.png';
 import BlackWater from '../assets/spriteSheets/BlackWater.png';
 import writtenPaper from '../assets/spriteSheets/written_paper_no_background.png';
+import redTankSingleFrame from '../assets/spriteSheets/redTankSingle.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -435,6 +436,30 @@ const spriteSheetList = [
     animationFrameRate: 2,
     animations: [
       { keyName: 'move-stationary', start: 0, end: 10, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    // physicsOffset: {
+    //   x: 22,
+    //   y: 35,
+    // },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  // redTankSingleFrame
+  {
+    type: 'other',
+    name: 'redTankSingleFrame',
+    file: redTankSingleFrame,
+    frameWidth: 38,
+    frameHeight: 46,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 0,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 0, zeroPad: 3, repeat: -1 },
     ],
     physicsSize: {
       x: 16,

@@ -102,10 +102,10 @@ function spriteCollisionHandler({
       sendDataToServer.makePlayerSayOof(obstacleSpriteKey);
     } else {
       // Anything else just passes through
-      console.log(
-        hadrons.get(spriteKey)?.typ,
-        hadrons.get(obstacleSpriteKey)?.typ,
-      );
+      // console.log(
+      //   hadrons.get(spriteKey)?.typ,
+      //   hadrons.get(obstacleSpriteKey)?.typ,
+      // );
     }
   } else {
     // You should never get here unless you are testing out new things.

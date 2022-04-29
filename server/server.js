@@ -20,7 +20,7 @@ import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 import validateHadron from "../shared/validateHadron.mjs";
 
 // Increase this to force the client to update.
-const clientVersion = 5;
+const clientVersion = 6;
 
 const hadronBroadcastThrottleTime = 50;
 
