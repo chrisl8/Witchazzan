@@ -25,6 +25,12 @@ We started with the [Phaser 3 Webpack Project Template](https://github.com/photo
 
 That should get you going and provide some guidance if you are missing anything, along with how to run it.
 
+## Phaser Documentation
+
+Start with the [New Phaser API Documentation](https://newdocs.phaser.io/docs/3.55.2/Phaser).
+
+Phaser has been through a lot of versions, so online searches are often frustrating as you find answers that don't apply anymore. If you can follow the code to figure out where in the API the function you are looking at is, and then find that in the documentation above, it helps a lot. Just be patient as JavaScript lets you assign Methods to variables and it can be difficult to trace a given variable back to exactly where in the Phaser API the variable you are looking at resides.
+
 ## Where to start
 
 `client/src/gameLoopAndSceneFactory.js` is where the game is set up, and the every loo update is. Start there and follow the functions it calls.
