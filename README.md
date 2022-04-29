@@ -27,7 +27,7 @@ That should get you going and provide some guidance if you are missing anything,
 
 ## Where to start
 
-`client/src/scenes/sceneFactory.js` is where 99% of the game logic is, so you probably want to start there.
+`client/src/gameLoopAndSceneFactory.js` is where the game is set up, and the every loo update is. Start there and follow the functions it calls.
 
 ## Persistent Data Storage Information
 
