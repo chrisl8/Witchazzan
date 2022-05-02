@@ -2,6 +2,8 @@ import playerObject from '../objects/playerObject.js';
 import closeChatInputBox from '../closeChatInputBox.js';
 import cleanUpScene from './cleanUpScene.js';
 import deletedHadronList from '../objects/deletedHadronList.js';
+import currentSceneNPCs from '../objects/currentSceneNPCs.js';
+import textObject from '../objects/textObject.js';
 
 function cleanUpSceneAndTeleport(
   destinationSceneName,
