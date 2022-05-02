@@ -135,15 +135,16 @@ function updateHadrons(
         });
       }
 
-      // SEND HADRON DATA TO THE SERVER
-      // We skip our own player, because it has special requirements.
-      if (
-        // New hadrons that we create have no ctrl yet, only the server assigns that.
-        (hadron.ctrl === undefined || hadron.ctrl === playerObject.playerId) &&
-        key !== playerObject.playerId
-      ) {
-        // Update all data on owned hadrons.
-        const newHadronData = { ...hadron };
+        // SEND HADRON DATA TO THE SERVER
+        // Send all data on hadrons that we currently control.
+        // We skip our own player, because it has special requirements.
+        if (
+          // New hadrons that we create have no ctrl yet, only the server assigns that.
+          (hadron.ctrl === undefined ||
+            hadron.ctrl === playerObject.playerId) &&
+          key !== playerObject.playerId
+        ) {
+          const newHadronData = { ...hadron };
 
         newHadronData.x = clientSprites.get(key).sprite.x;
         newHadronData.y = clientSprites.get(key).sprite.y;

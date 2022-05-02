@@ -7,7 +7,7 @@ import textObject from './objects/textObject.js';
 function parseHadronsFromServer(serverHadrons) {
   // First clean out all hadrons (game pieces) that we are not in control of,
   // from our own list, so that old ones disappear,
-  // and new for these hadrons takes precedence over our data.
+  // and new data for these hadrons takes precedence over our data.
   hadrons.forEach((clientHadron, key) => {
     if (clientHadron.ctrl !== playerObject.playerId) {
       hadrons.delete(key);
