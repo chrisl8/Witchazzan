@@ -11,21 +11,21 @@ BRIGHT_WHITE='\033[1;97m'
 NC='\033[0m' # NoColor
 
 if ! (command -v git >/dev/null 2>&1); then
-    printf "\n${LIGHT_PURPLE}git is not installed!${NC}\n"
-    exit 1
+  printf "\n${LIGHT_PURPLE}git is not installed!${NC}\n"
+  exit 1
 fi
 
 if ! (command -v node >/dev/null 2>&1); then
-    printf "\n${LIGHT_PURPLE}node is not installed${NC}\n"
-    printf "I recommend that you use nvm:\n"
-    printf "https://github.com/nvm-sh/nvm\n"
-    printf "\n"
-    printf "${LIGHTCYAN}wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash${NC}\n"
-    printf "${LIGHTCYAN}nvm install --lts${NC}\n"
-    exit 1
+  printf "\n${LIGHT_PURPLE}node is not installed${NC}\n"
+  printf "I recommend that you use nvm:\n"
+  printf "https://github.com/nvm-sh/nvm\n"
+  printf "\n"
+  printf "${LIGHTCYAN}wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash${NC}\n"
+  printf "${LIGHTCYAN}nvm install --lts${NC}\n"
+  exit 1
 fi
 
-if ! (node -v | grep "v16" > /dev/null); then
+if ! (node -v | grep "v16" >/dev/null); then
   printf "\n${LIGHT_PURPLE}Node 16 (LTS) is required${NC}\n"
   printf "Use node -v to check your version\n"
   printf "and update your node version.\n"
@@ -44,8 +44,7 @@ SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
   DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
   SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we
-need to resolve it relative to the path where the symlink file was located
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
