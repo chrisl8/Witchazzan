@@ -345,7 +345,14 @@ app.get("/api/connections", async (req, res) => {
     const sql =
       "SELECT name, timestamp FROM Connections LEFT JOIN Users ON Connections.id = Users.id ORDER BY timestamp DESC";
     const result = await db.query(sql);
-    res.json(result.rows);
+    let prettyOutput = `<html lang="en-US"><head><title>Connections</title></head><body><table><thead><tr><th>User</th><th>Login Time</th></thead></tbody>`;
+    result.rows.forEach((entry) => {
+      prettyOutput += `<tr><td>${entry.name}</td><td>${Date(
+        entry.timestamp * 1000
+      )}</td></tr>`;
+    });
+    prettyOutput += "</tbody></table></body></html>";
+    res.send(prettyOutput);
   } catch (e) {
     console.error("Error retrieving connections:");
     console.error(e.message);
