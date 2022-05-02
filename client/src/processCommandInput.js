@@ -39,13 +39,17 @@ function processCommandInput(event) {
       inputText.shift(); // Remove the /
       const command = inputText.join('');
       const inputTextSpaceDelimitedArray = command.split(' ');
-      if (inputTextSpaceDelimitedArray[0] === 'dumpPlayerObject') {
+      if (
+        inputTextSpaceDelimitedArray[0].toLowerCase() === 'dumpplayerobject'
+      ) {
         console.log(playerObject);
         addEntryToCommandHistory(command);
-      } else if (inputTextSpaceDelimitedArray[0] === 'dumpClientSprites') {
+      } else if (
+        inputTextSpaceDelimitedArray[0].toLowerCase() === 'dumpclientsprites'
+      ) {
         console.log(clientSprites);
         addEntryToCommandHistory(command);
-      } else if (inputTextSpaceDelimitedArray[0] === 'whisper') {
+      } else if (inputTextSpaceDelimitedArray[0].toLowerCase() === 'whisper') {
         // Sends chat to specific user
         if (communicationsObject.socket.connected) {
           inputTextSpaceDelimitedArray.shift();
@@ -56,15 +60,17 @@ function processCommandInput(event) {
           // Warn user that command cannot be sent due to lack of server connection.
           textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
         }
-      } else if (inputTextSpaceDelimitedArray[0] === 'teleportToScene') {
+      } else if (
+        inputTextSpaceDelimitedArray[0].toLowerCase() === 'teleporttoscene'
+      ) {
         playerObject.teleportToSceneNow = inputTextSpaceDelimitedArray[1];
         addEntryToCommandHistory(command);
-      } else if (inputTextSpaceDelimitedArray[0] === 'exit') {
+      } else if (inputTextSpaceDelimitedArray[0].toLowerCase() === 'exit') {
         // Used on mobile to get back to setup screen
         playerObject.keyState.p = 'keydown';
       } else if (communicationsObject.socket.connected) {
         // Any 'command' that does not exist on the client is just sent directly to the server.
-        sendDataToServer.command(command);
+        sendDataToServer.command(command.toLowerCase());
         addEntryToCommandHistory(command);
       } else {
         // Warn user that command cannot be sent due to lack of server connection.
