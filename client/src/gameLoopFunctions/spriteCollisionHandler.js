@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import hadrons from './objects/hadrons.js';
-import sendDataToServer from './sendDataToServer.js';
+import hadrons from '../objects/hadrons.js';
+import sendDataToServer from '../sendDataToServer.js';
 
 let broadCastMessage;
 const chatForThrottle = () => {
@@ -85,27 +85,51 @@ function spriteCollisionHandler({
         sendDataToServer.destroyHadron(obstacleSpriteKey);
       }
     } else if (
-      hadrons.get(spriteKey)?.typ === 'fireball' &&
-      hadrons.get(obstacleSpriteKey)?.typ === 'fireball' &&
+      hadrons.get(spriteKey)?.typ === 'spell' &&
+      hadrons.get(spriteKey)?.sub === 'fireball' &&
+      hadrons.get(obstacleSpriteKey)?.typ === 'spell' &&
+      hadrons.get(obstacleSpriteKey)?.sub === 'fireball' &&
       hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
     ) {
-      // If two fireballs, owned by different players, collide, the destroy each other.
+      // If two fireballs, owned by different players, collide, they destroy each other.
+      console.log(
+        hadrons.get(spriteKey)?.own,
+        hadrons.get(obstacleSpriteKey)?.own,
+      );
       sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
       sendDataToServer.destroyHadron(obstacleSpriteKey);
     } else if (
-      hadrons.get(spriteKey)?.typ === 'fireball' &&
+      hadrons.get(spriteKey)?.typ === 'spell' &&
+      hadrons.get(spriteKey)?.sub === 'fireball' &&
       hadrons.get(obstacleSpriteKey)?.typ === 'player' &&
       hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
     ) {
       // If a fireball hits a player that is not the owner, de-spawn the fireball, and make them say "oof".
       sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
       sendDataToServer.makePlayerSayOof(obstacleSpriteKey);
+      // TODO: Amount should probably be stored in the sprite data and gotten from the spell?
+      sendDataToServer.damageHadron({ id: obstacleSpriteKey, amount: 1 });
+    } else if (
+      hadrons.get(spriteKey)?.typ === 'spell' &&
+      hadrons.get(obstacleSpriteKey)?.typ === 'npc' &&
+      hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
+    ) {
+      // If a spell hits an NPC...
+      // Destroy the spell hadron
+      sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
+      // Render damage to the NPC
+      // TODO: Amount should probably be stored in the sprite data and gotten from the spell?
+      sendDataToServer.damageHadron({ id: obstacleSpriteKey, amount: 1 });
     } else {
-      // Anything else just passes through
-      // console.log(
-      //   hadrons.get(spriteKey)?.typ,
-      //   hadrons.get(obstacleSpriteKey)?.typ,
-      // );
+      // // Anything else just passes through
+      // if (!hadrons.get(spriteKey)?.typ) {
+      //   console.log(hadrons.get(spriteKey));
+      // } else {
+      //   console.log(
+      //     hadrons.get(spriteKey)?.typ,
+      //     hadrons.get(obstacleSpriteKey)?.typ,
+      //   );
+      // }
     }
   } else {
     // You should never get here unless you are testing out new things.
