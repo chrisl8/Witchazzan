@@ -1,7 +1,7 @@
 import clientSprites from '../objects/clientSprites.js';
 import getSpriteData from '../utilities/getSpriteData.js';
 import playerObject from '../objects/playerObject.js';
-import spriteCollisionHandler from '../spriteCollisionHandler.js';
+import spriteCollisionHandler from './spriteCollisionHandler.js';
 
 function addAndUpdateSprites(
   hadron,
