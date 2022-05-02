@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2059
 
-GREEN='\033[0;32m'
-RED='\033[0;31m'
+#GREEN='\033[0;32m'
+#RED='\033[0;31m'
 #PURPLE='\033[0;35m'
 YELLOW='\033[1;33m'
 LIGHTCYAN='\033[1;36m'
