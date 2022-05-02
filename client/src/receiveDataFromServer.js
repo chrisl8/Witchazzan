@@ -62,13 +62,10 @@ function receiveDataFromServer() {
     }
   });
   communicationsObject.socket.on('init', (inputData) => {
-    // Check whether we need to force a client update.
-    const clientVersion = localStorage.getItem('clientVersion');
-    localStorage.setItem('clientVersion', inputData.clientVersion);
-    if (
-      !clientVersion ||
-      Number(inputData.clientVersion) > Number(clientVersion)
-    ) {
+    // Check whether we need to force a client refresh.
+    const serverVersion = localStorage.getItem('serverVersion');
+    localStorage.setItem('serverVersion', inputData.serverVersion);
+    if (!serverVersion || inputData.serverVersion !== serverVersion) {
       window.location.reload();
     }
 

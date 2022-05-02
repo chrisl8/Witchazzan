@@ -19,8 +19,11 @@ import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 // eslint-disable-next-line
 import validateHadron from "../shared/validateHadron.mjs";
 
-// Increase this to force the client to update.
-const clientVersion = 6;
+// Every time the server starts it creates a unique GUID,
+// this forces the clients to reload if the server reloaded,
+// which avoids all kinds of weird problems,
+// as well as ensuring client code updates when an update is pushed to the server.
+const serverVersion = randomUUID();
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -77,8 +80,6 @@ try {
   // So an actual error is something worse, like the file being corrupted.
   process.exit(1);
 }
-// Increase this to force the client to update.
-serverConfiguration.clientVersion = clientVersion;
 // Set defaults for missing values.
 if (!serverConfiguration.saltRounds) {
   serverConfiguration.saltRounds = 10;
@@ -442,7 +443,7 @@ io.on("connection", (socket) => {
         id: PlayerId,
         name: PlayerName,
         defaultOpeningScene: serverConfiguration.defaultOpeningScene,
-        clientVersion: serverConfiguration.clientVersion,
+        serverVersion,
       });
 
       // Announce to the player who else is currently online.
