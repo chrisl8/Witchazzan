@@ -495,8 +495,8 @@ io.on("connection", (socket) => {
       // Always update their name and sprite.
       newPlayerHadron.name = PlayerName; // Names can be changed, with the UUID staying the same, so we update the client.
       newPlayerHadron.sprt = playerData.sprite; // Client should always be sending the requested sprite.
-      newPlayerHadron.own = PlayerId; // Always belongs to and is controlled by player themselves.
-      newPlayerHadron.ctrl = PlayerId; // Always belongs to and is controlled by player themselves.
+      newPlayerHadron.own = PlayerId; // Player always belongs to and is controlled by player themselves.
+      newPlayerHadron.ctrl = PlayerId; // Player always belongs to and is controlled by player themselves.
 
       validateHadron.server(newPlayerHadron);
 
@@ -594,9 +594,12 @@ io.on("connection", (socket) => {
           const newHadronData = { ...data };
 
           if (!existingHadron) {
-            // If you introduce a new hadron, then you own it and control it,
-            // but ownership never changes on existing hadrons.
-            newHadronData.own = PlayerId;
+            // If you introduce a new hadron, then you control it.
+            // Ownership never changes on existing hadrons.
+            // A client CAN set an owner on the hadron other than themselves, such as for NPCs and their spells
+            if (!data.own) {
+              newHadronData.own = PlayerId;
+            }
             newHadronData.ctrl = PlayerId;
           }
 
