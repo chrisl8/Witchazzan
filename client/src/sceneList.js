@@ -289,6 +289,11 @@ const caveHtmlElementParameters = {
     fontSize: '.1', // percent of scene height.
     color: 'red',
   },
+  Fading: {
+    fontSize: '.05', // percent of scene height.
+    color: '#981c9e',
+    background: '255,255,255,0.9', // rgba
+  },
   UpperLeft: {
     fontSize: loruleUpperLeftFontSize, // percent of scene height.
     color: 'black',
