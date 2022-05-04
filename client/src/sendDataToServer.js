@@ -58,13 +58,16 @@ sendDataToServer.playerData = ({ sceneName }) => {
 };
 
 sendDataToServer.hadronData = (key) => {
-  if (validateHadron.client(hadrons.get(key))) {
+  // Using a copy of the data to avoid race conditions with
+  // the sentData test, and failing to send all updates.
+  const hadronData = { ...hadrons.get(key) };
+  if (validateHadron.client(hadronData)) {
     if (
       communicationsObject.socket.connected &&
-      (!sentData.has(key) || !_.isEqual(sentData.get(key), hadrons.get(key)))
+      (!sentData.has(key) || !_.isEqual(sentData.get(key), hadronData))
     ) {
-      sentData.set(key, hadrons.get(key));
-      communicationsObject.socket.emit('hadronData', hadrons.get(key));
+      communicationsObject.socket.emit('hadronData', hadronData);
+      sentData.set(key, hadronData);
     }
   } else {
     console.error('Bad hadron key:', key);
