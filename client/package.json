@@ -6,7 +6,7 @@
   "type": "module",
   "source": "index.html",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel --port 3001 --open",
     "prebuild": "rm -rf dist",
     "build": "parcel build"
   },
