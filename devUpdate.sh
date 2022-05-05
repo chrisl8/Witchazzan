@@ -31,13 +31,10 @@ if ! (node -v | grep "v16" >/dev/null); then
   printf "Use node -v to check your version\n"
   printf "and update your node version.\n"
   printf "\n"
-  printf "If you are using nvm, then run this to update node:\n"
+  printf "If you are already using nvm, then just run this to update node:\n"
   printf "${LIGHTCYAN}nvm install --lts${NC}\n"
   exit 1
 fi
-
-printf "\n${YELLOW}[Installing pm2 for running Dev Server]${NC}\n"
-npm i -g pm2
 
 # Grab and save the path to this script
 # http://stackoverflow.com/a/246128
@@ -69,7 +66,7 @@ printf "\n"
 printf "${BRIGHT_WHITE}-------------------------${NC}\n"
 printf "${YELLOW}SERVER:${NC} In the first run:\n"
 printf "${LIGHTCYAN}cd ${SCRIPT_DIR}/server${NC}\n"
-printf "${LIGHTCYAN}pm2-dev server.js${NC}\n"
+printf "${LIGHTCYAN}npm start${NC}\n"
 printf "\n"
 printf "This will start the server, and restart it when file changes are made.\n"
 printf "It is the same as running 'node server.js', except that it will\n"
