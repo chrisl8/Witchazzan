@@ -1,6 +1,3 @@
-// https://what-problem-does-it-solve.com/webpack/css.html
-import './css/styles.css';
-
 import introScreenAndPreGameSetup from './startup/introScreenAndPreGameSetup.js';
 import updateDomSettingsForGame from './startup/updateDomSettingsForGame.js';
 import startGame from './startup/startGame.js';

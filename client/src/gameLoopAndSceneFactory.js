@@ -13,6 +13,15 @@
  */
 
 import Phaser from 'phaser';
+
+// Music and sounds
+// Notice that Parcel, our bundler, requires this goofy url: format
+// and eslint cannot comprehend it either.
+// eslint-disable-next-line import/no-unresolved
+import sunriseMp3 from 'url:./assets/sounds/sunrise.mp3';
+// eslint-disable-next-line import/no-unresolved
+import sunriseOgg from 'url:./assets/sounds/sunrise.ogg';
+
 import playerObject from './objects/playerObject.js';
 import textObject from './objects/textObject.js';
 import handleKeyboardInput from './handleKeyboardInput.js';

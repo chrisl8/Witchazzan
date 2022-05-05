@@ -226,3 +226,25 @@ img.emoji {
   width: 25%;
   touch-action: none;
 }
+
+/*Health bar for players*/
+.w3-round-small {
+  border-radius: 2px;
+}
+.w3-round {
+  border-radius: 4px;
+}
+.w3-light-grey,
+.w3-light-gray {
+  color: #000 !important;
+  background-color: #000000 !important;
+}
+.w3-blue {
+  color: #fff !important;
+  /*background-color: #2196f3 !important;*/
+}
+.w3-blue-grey,
+.w3-blue-gray {
+  color: #fff !important;
+  background-color: #607d8b !important;
+}
