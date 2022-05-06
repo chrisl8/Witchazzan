@@ -77,22 +77,12 @@ const playerObject = {
   chatOpen: false,
   // The order here determines the default order in the game,
   // although players can change the order in the Help screen.
-  spellOptions: [
-    'fireball',
-    'teleball',
-    'flamingGoose',
-    'gloobScaryman',
-    'carrot',
-    'chestFront',
-    'pinkTree',
-    'greenTree',
-    'deadTree',
-    'corpse',
-    'RainbowTileOne',
-    'writeMessage',
-  ],
+  spellOptions: ['fireball', 'teleball', 'writeMessage'],
   // Spell assignments is a Map in the /objects folder,
-  spellKeys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
+  // Keeping it short until we have more spells to fill it with.
+  spellKeys: ['1', '2', '3'],
+  // FUll List. Expand the above as you add more spells.
+  // spellKeys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
   shiftedSpellKeys: [
     '!',
     '@',
