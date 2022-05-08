@@ -14,7 +14,7 @@ function cleanUpSceneAndTeleport(
     closeChatInputBox();
     cleanUpScene();
     if (this.scene.getIndex(destinationSceneName) === -1) {
-      console.log(
+      console.error(
         `Switching to scene: ${destinationSceneName} does not exist.`,
       );
       // eslint-disable-next-line no-param-reassign
