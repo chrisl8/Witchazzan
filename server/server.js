@@ -46,6 +46,11 @@ const commandListArray = [
     name: "dumpClientSprites",
     description: "Log clientSprites Map() to console for debugging.",
   },
+  {
+    name: "deleteAllNPC",
+    description:
+      "Delete all NPC data from the server so that they must respawn from Tilemap data.",
+  },
 ];
 let commandHelpOutput = "The following commands are available:";
 commandListArray.forEach((command) => {
@@ -685,6 +690,20 @@ io.on("connection", (socket) => {
           });
           socket.emit("chat", {
             content: whoResponse,
+          });
+        } else if (
+          data.command === "deleteallnpc" ||
+          data.command === "deleteallnpcs"
+        ) {
+          hadrons.forEach((hadron, key) => {
+            if (hadron.typ === "npc") {
+              hadrons.delete(key);
+            }
+          });
+          inactiveHadrons.forEach((hadron, key) => {
+            if (hadron.typ === "npc") {
+              inactiveHadrons.delete(key);
+            }
           });
         } else {
           console.log("command");
