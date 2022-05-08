@@ -14,6 +14,7 @@ const sentData = new Map();
 let lastSentPlayerDataObject;
 
 sendDataToServer.enterScene = (sceneName) => {
+  sentData.clear(); // Avoid memory leaks.
   if (communicationsObject.socket.connected) {
     communicationsObject.socket.emit('enterScene', sceneName);
   }
@@ -81,6 +82,7 @@ sendDataToServer.createHadron = (data) => {
 };
 
 sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
+  sentData.delete(key); // Avoid memory leak.
   // Sometimes we get multiple delete requests for the same hadron.
   if (deletedHadronList.indexOf(key) === -1 && hadrons.has(key)) {
     // The deletedHadronList is to prevent the race condition of us deleting a hadron,
