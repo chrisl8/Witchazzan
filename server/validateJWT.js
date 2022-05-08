@@ -16,7 +16,9 @@ async function validateJWT(token, secret, db) {
       } else {
         // We also must ensure the user exists in the database. Their account could have been deleted.
         try {
-          const sql = "SELECT id FROM Users WHERE name = ?";
+          // LIKE allows for case insensitive name comparison.
+          // User names shouldn't be case sensitive.
+          const sql = "SELECT id FROM Users WHERE name LIKE ?";
           const result = await db.query(sql, [decoded.name]);
           if (result.rows.length > 0 && result.rows[0].id === decoded.id) {
             console.log(`${decoded.name} authenticated a valid token`);

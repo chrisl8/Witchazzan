@@ -246,7 +246,9 @@ app.post("/api/sign-up", async (req, res) => {
   }
 
   try {
-    const sql = "SELECT * FROM Users WHERE name = ?";
+    // LIKE allows for case insensitive name comparison.
+    // User names shouldn't be case sensitive.
+    const sql = "SELECT * FROM Users WHERE name LIKE ?";
     const result = await db.query(sql, [name]);
     if (result.rows.length > 0) {
       res.status(400).send("Name already exists");
@@ -288,7 +290,9 @@ app.post("/api/login", async (req, res) => {
   let hash;
   const password = req.body.password;
   try {
-    const sql = "SELECT id, name, password FROM Users WHERE name = ?";
+    // LIKE allows for case insensitive name comparison.
+    // User names shouldn't be case sensitive.
+    const sql = "SELECT id, name, password FROM Users WHERE name LIKE ?";
     const result = await db.query(sql, [name]);
     if (result.rows.length > 0) {
       // We do not confirm or deny that the user exists.
