@@ -127,74 +127,18 @@ const updateInGameDomElements = (htmlElementParameters) => {
       canvasStyle['margin-left'].replace('px', ''),
     );
 
-    // Player Tag
-    // Technically this is acting on the player's "shadow"
-    if (hadrons.has(playerObject.playerId)) {
-      const playerHadron = hadrons.get(playerObject.playerId);
-      // Hearts
-      const health = playerHadron.hlth;
-      let newPlayerTagInnerHTML = '';
-      if (health > 99) {
-        newPlayerTagInnerHTML = '&#x2764;&#x2764;&#x2764;&#x2764;';
-      } else if (health > 74) {
-        newPlayerTagInnerHTML = '&#x2764;&#x2764;&#x2764;';
-      } else if (health > 49) {
-        newPlayerTagInnerHTML = '&#x2764;&#x2764;';
-      } else if (health > 24) {
-        newPlayerTagInnerHTML = '&#x2764;';
-      }
-      if (
-        playerObject.domElementHistory.playerTag.innerHTML !==
-        newPlayerTagInnerHTML
-      ) {
-        playerObject.domElements.playerTag.innerHTML = newPlayerTagInnerHTML;
-        playerObject.domElementHistory.playerTag.innerHTML =
-          newPlayerTagInnerHTML;
-      }
-
-      // Font size
-      const newFontSize =
-        (playerObject.player.displayWidth * playerObject.cameraScaleFactor) / 2;
-      if (playerObject.domElementHistory.playerTag.fontSize !== newFontSize) {
-        playerObject.domElements.playerTag.style.fontSize = `${newFontSize}px`;
-        playerObject.domElementHistory.playerTag.fontSize = newFontSize;
-      }
-
-      // Location
-      const constantOffsetForPretty = 4;
-      const newLeft = `${
-        canvasLeftMargin +
-        (playerObject.player.x -
-          playerObject.player.displayWidth -
-          playerObject.cameraOffset.x) *
-          playerObject.cameraScaleFactor +
-        constantOffsetForPretty
-      }px`;
-      const newTop = `${
-        (playerObject.player.y -
-          playerObject.player.displayHeight -
-          playerObject.cameraOffset.y) *
-          playerObject.cameraScaleFactor +
-        constantOffsetForPretty
-      }px`;
-      if (playerObject.domElementHistory.playerTag.left !== newLeft) {
-        playerObject.domElements.playerTag.style.left = newLeft;
-        playerObject.domElementHistory.playerTag.left = newLeft;
-      }
-      if (playerObject.domElementHistory.playerTag.top !== newTop) {
-        playerObject.domElements.playerTag.style.top = newTop;
-        playerObject.domElementHistory.playerTag.top = newTop;
-      }
-    }
-
-    // Other player tags
+    // Player and NPC tags
     hadrons.forEach((hadron, key) => {
-      if (key !== playerObject.playerId && clientSprites.has(key)) {
-        const clientSprite = clientSprites.get(key);
-        if (clientSprite.spriteData.type === 'player') {
+      if (clientSprites.has(key)) {
+        let clientSprite = clientSprites.get(key);
+        if (hadron.typ === 'player' || hadron.typ === 'npc') {
+          if (key === playerObject.playerId) {
+            // Act on the local player, not the shadow.
+            clientSprite = { sprite: playerObject.player };
+          }
           if (!playerObject.domElements.otherPlayerTags[key]) {
             playerObject.domElements.otherPlayerTags[key] =
-              document.createElement('span');
+              document.createElement('div');
             playerObject.domElements.otherPlayerTags[key].classList.add(
               'other_player_tag',
             );
@@ -206,12 +150,8 @@ const updateInGameDomElements = (htmlElementParameters) => {
           // Text
           let newInnerHTML = '';
           if (hadron.chtO) {
+            // Chat bubble takes precedence over health bar.
             newInnerHTML = '&#x1F4AD;';
-          }
-          playerObject.domElements.otherPlayerTags[key].innerHTML =
-            newInnerHTML;
-
-          if (newInnerHTML !== '') {
             // Font size
             const newFontSize =
               (playerObject.player.displayWidth *
@@ -237,6 +177,54 @@ const updateInGameDomElements = (htmlElementParameters) => {
                 playerObject.cameraScaleFactor +
               4
             }px`;
+          } else if (hadron.hlth < 100) {
+            const healthBarWidth =
+              clientSprite.sprite.displayWidth *
+              playerObject.cameraScaleFactor *
+              1.75;
+            const healthBarHeight =
+              clientSprite.sprite.displayHeight *
+              playerObject.cameraScaleFactor *
+              0.1;
+            let healthBarColor = '#27d727';
+            if (hadron.hlth < 70) {
+              healthBarColor = 'orange';
+            }
+            if (hadron.hlth < 20) {
+              healthBarColor = 'red';
+            }
+            newInnerHTML = `<div class="w3-light-grey w3-round" style="width:${healthBarWidth}px; height:${healthBarHeight}px"><div class="w3-container w3-blue w3-round" style="width:${hadron.hlth}%; height:${healthBarHeight}px; background-color: ${healthBarColor};">&nbsp</div></div>`;
+            // Location
+            playerObject.domElements.otherPlayerTags[key].style.left = `${
+              canvasLeftMargin +
+              (clientSprite.sprite.x -
+                clientSprite.sprite.displayWidth -
+                playerObject.cameraOffset.x) *
+                playerObject.cameraScaleFactor +
+              4
+            }px`;
+            playerObject.domElements.otherPlayerTags[key].style.top = `${
+              (clientSprite.sprite.y -
+                clientSprite.sprite.displayHeight * 0.6 -
+                playerObject.cameraOffset.y) *
+              playerObject.cameraScaleFactor
+            }px`;
+          }
+
+          // Only update it if it has changed, because repeatedly updating the DOM will slow down the browser.
+          if (
+            !playerObject.domElementHistory.otherPlayerTags.hasOwnProperty(key)
+          ) {
+            playerObject.domElementHistory.otherPlayerTags[key] = {};
+          }
+          if (
+            newInnerHTML !==
+            playerObject.domElementHistory.otherPlayerTags[key].innerHTML
+          ) {
+            playerObject.domElementHistory.otherPlayerTags[key].innerHTML =
+              newInnerHTML;
+            playerObject.domElements.otherPlayerTags[key].innerHTML =
+              newInnerHTML;
           }
         }
       } else if (playerObject.domElements.otherPlayerTags[key]) {
