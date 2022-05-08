@@ -13,8 +13,6 @@ if (window.location.hostname === 'localhost') {
   apiURL = `http://localhost:8080/api`;
 }
 
-// TODO: Implement all of the apiURL paths used here.
-
 let playerName = '';
 let loginFailure = false;
 let loginErrorText = null;

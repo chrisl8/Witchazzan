@@ -30,7 +30,6 @@ function parseHadronsFromServer(serverHadrons) {
         // The deletedHadronList is to prevent the race condition of us deleting a hadron,
         // but then immediately adding it again because we get an incoming packet that includes it,
         // before the server has a chance to delete it.
-        // TODO: Do we need to clean up the deletedHadronList, lest it get very big and slow stuff down???
         deletedHadronList.indexOf(key) === -1
       ) {
         hadrons.set(key, serverHadron);

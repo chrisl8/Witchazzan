@@ -40,7 +40,7 @@ function cleanUpSceneAndTeleport(
       playerObject.pixelHighlightTexture = null;
     }
 
-    // Prevent memory leak of an infinitely growing list.
+    // Prevent memory leak of an infinitely growing lists.
     deletedHadronList.length = 0;
 
     this.scene.start(destinationSceneName);

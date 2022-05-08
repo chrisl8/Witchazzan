@@ -5,7 +5,7 @@
  *
  * TODO: Write a script to generate this file based on the names
  *  of the files in the tile map folder,
- *  which would run before the webpack build.
+ *  which would run before the Parcel build.
  *
  * For now, to add a scene:
  * 1. Add an import line for it.
