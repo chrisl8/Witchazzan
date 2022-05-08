@@ -314,20 +314,75 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"dod",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"dps",
+                         "type":"int",
+                         "value":10
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"438a4ff3-04b3-4839-9931-9f91b50dd2a0"
+                        }, 
+                        {
                          "name":"initialSpriteRotation",
                          "type":"int",
                          "value":-90
                         }, 
                         {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rateOfFire",
+                         "type":"int",
+                         "value":100
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":10
+                        }, 
+                        {
+                         "name":"spell",
+                         "type":"string",
+                         "value":"fireball"
+                        }, 
+                        {
                          "name":"sprite",
                          "type":"string",
                          "value":"redTankSingleFrame"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":5
+                        }, 
+                        {
+                         "name":"subType",
+                         "type":"string",
+                         "value":"stationaryTank"
+                        }, 
+                        {
+                         "name":"tcwls",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"NPC",
                  "visible":true,
                  "width":0,
-                 "x":167.715624138881,
+                 "x":168.715624138881,
                  "y":104.491595480849
                 }],
          "opacity":1,
