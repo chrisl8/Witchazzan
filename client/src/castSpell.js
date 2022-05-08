@@ -5,8 +5,8 @@
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 
-function castSpell(sceneName) {
-  if (playerObject.activeSpell === 'writeMessage') {
+function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
+  if (spell === 'writeMessage') {
     playerObject.externalDialogOpen = true;
     // Clear any data left from last time the dialog was opened,
     // and reset state.
@@ -23,10 +23,11 @@ function castSpell(sceneName) {
           if (message) {
             const newHadronData = {
               id: crypto.randomUUID(),
+              own: owner,
               typ: 'message',
               sprt: 'writtenPaper',
-              x: playerObject.player.x,
-              y: playerObject.player.y,
+              x: initialX,
+              y: initialY,
               dir: 'up',
               scn: sceneName,
               velX: 0,
@@ -48,9 +49,13 @@ function castSpell(sceneName) {
       },
     });
   } else {
-    const direction = playerObject.playerDirection;
     const velocity = 150; // TODO: Should be set "per spell"
     // TODO: Should the velocity be ADDED to the player's current velocity?
+    // TODO: This is a bit hacked to deal with numeric velocities, which should probably be improved.
+    if (direction === -90) {
+      // eslint-disable-next-line no-param-reassign
+      direction = 'right';
+    }
     let velocityX = 0;
     let velocityY = 0;
     if (direction === 'left') {
@@ -68,10 +73,12 @@ function castSpell(sceneName) {
     // TODO: Each spell should have an entire description in some sort of spells file.
     const newHadronData = {
       id: crypto.randomUUID(),
-      typ: playerObject.activeSpell,
-      sprt: playerObject.activeSpell, // TODO: Use the spell's sprite setting, not just the spell name as the sprite.
-      x: playerObject.player.x,
-      y: playerObject.player.y,
+      own: owner,
+      typ: 'spell',
+      sub: spell,
+      sprt: spell,
+      x: initialX,
+      y: initialY,
       dir: direction,
       scn: sceneName,
       velX: velocityX,
