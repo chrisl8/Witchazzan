@@ -40,13 +40,13 @@ function renderDebugDotTrails(hadron, key, scene) {
       fillColor = 0x0000ff;
       width = 5;
       height = 5;
-    } else if (['slime'].indexOf(hadron.typ) > -1) {
+    } else if (['slime'].indexOf(hadron.sub) > -1) {
       fillColor = 0xff0000;
-    } else if (['fireball'].indexOf(hadron.typ) > -1) {
+    } else if (['fireball'].indexOf(hadron.sub) > -1) {
       fillColor = 0xffa500;
-    } else if (['teleball'].indexOf(hadron.typ) > -1) {
+    } else if (['teleball'].indexOf(hadron.sub) > -1) {
       fillColor = 0xffa500;
-    } else if (['push'].indexOf(hadron.typ) > -1) {
+    } else if (['push'].indexOf(hadron.sub) > -1) {
       fillColor = 0xffa500;
     } else if (key === playerObject.playerId) {
       // it me
