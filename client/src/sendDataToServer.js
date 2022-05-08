@@ -47,6 +47,7 @@ sendDataToServer.playerData = ({ sceneName }) => {
       mov: !playerObject.playerStopped,
       chtO: playerObject.chatOpen,
       hlth: playerObject.health,
+      dph: 4,
     };
     if (
       validateHadron.client(objectToSend) &&
