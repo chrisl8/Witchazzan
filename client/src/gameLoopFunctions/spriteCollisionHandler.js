@@ -92,10 +92,6 @@ function spriteCollisionHandler({
       hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
     ) {
       // If two fireballs, owned by different players, collide, they destroy each other.
-      console.log(
-        hadrons.get(spriteKey)?.own,
-        hadrons.get(obstacleSpriteKey)?.own,
-      );
       sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
       sendDataToServer.destroyHadron(obstacleSpriteKey);
     } else if (

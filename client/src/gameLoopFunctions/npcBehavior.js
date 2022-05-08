@@ -16,7 +16,6 @@ function npcBehavior(delta) {
         // Turn the NPC "off" if the health falls to 0 or below.
         hadrons.get(key).off = true;
         hadrons.get(key).tmoff = Math.floor(Date.now() / 1000);
-        console.log(hadron);
         // TODO: A massive explosion would be appreciated.
       } else if (
         hadron.off &&
