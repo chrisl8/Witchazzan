@@ -107,6 +107,7 @@ sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
     // The other players need to see the last position before it was deleted.
     await wait(100); // TODO: Is there a way to determine this instead of guessing?
     hadrons.delete(key);
+    // Once the hadron is deleted then cleanUpClientSprites() will remove the sprite itself.
     communicationsObject.socket.emit('destroyHadron', key);
   }
 };

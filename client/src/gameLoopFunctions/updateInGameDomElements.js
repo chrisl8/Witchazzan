@@ -222,9 +222,8 @@ const updateInGameDomElements = (htmlElementParameters) => {
             ].style.fontSize = `${newFontSize}px`;
 
             // Location
-            // NOTE: This is tweaked for the "thought bubble",
-            // which clearly goes to the RIGHT of the player,
-            // unlike the hearts on your own player that start at the top left.
+            // This is tweaked for the "thought bubble",
+            // to make it up and to the right of the player.
             playerObject.domElements.otherPlayerTags[key].style.left = `${
               canvasLeftMargin +
               (clientSprite.sprite.x - playerObject.cameraOffset.x) *

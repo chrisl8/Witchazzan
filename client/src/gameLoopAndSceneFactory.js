@@ -70,7 +70,7 @@ const gameLoopAndSceneFactory = ({
   // SCENE PRE-LOAD SETUP
   // ** This should ONLY BE USED TO LOAD ASSETS! **
   // This is run every time the scene is entered or re-entered.
-  // Any scene startup logic should be in scene.create found further down.
+  // However, any scene startup logic should be in scene.create found further down.
   // eslint-disable-next-line func-names
   scene.preload = function () {
     // Runs once, loads up assets like images and audio
@@ -472,10 +472,7 @@ const gameLoopAndSceneFactory = ({
   scene.update = function (time, delta) {
     // Runs once per frame for the duration of the scene
 
-    // TELEPORT?
-    // Anything that teleports us needs to run FIRST and then stop the rest of the update process.
-
-    // Do not do ANYTHING while a player is potentially leaving this scene.
+    // ALREADY TELEPORTING? - Do not do ANYTHING while a player is potentially leaving this scene.
     if (playerObject.teleportInProgress) {
       return;
     }
@@ -525,11 +522,12 @@ const gameLoopAndSceneFactory = ({
       teleportLayersColliders,
     );
 
-    // Send Player data, which is unique
+    // Send Player data, which is unique from all hadrons, to the server.
     sendDataToServer.playerData({
       sceneName,
     });
 
+    // Delete any sprites that no longer have an associated hadron.
     cleanUpClientSprites.call(this);
 
     updateInGameDomElements(htmlElementParameters);

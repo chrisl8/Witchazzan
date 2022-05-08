@@ -199,7 +199,7 @@ try {
 
 const app = express();
 
-// TODO: Perhaps lock cors down for production, but open it up for local dev somehow.
+// TODO: Perhaps lock cors down for production, but open it up for local dev somehow?
 const options = {
   origin: true,
   credentials: true,
@@ -343,7 +343,7 @@ app.post("/api/auth", async (req, res) => {
   }
 });
 
-// TODO: Make a real web page out of this and/or do we even want this information entirely public?
+// TODO: Do we even want this information to be entirely public?
 app.get("/api/connections", async (req, res) => {
   try {
     const sql =
@@ -549,20 +549,11 @@ io.on("connection", (socket) => {
             console.error(e.message);
           }
         }
-        // TODO: Implement chat targeting a specific user.
-        //       You can use the socketId saved in the connectedPlayerData Map()
-        // TODO: Implement per room/scene chat.
-        //       Each player is always in a room with the same name as the scene that they are in.
         socket.broadcast.emit("chat", {
           name,
           content: data.text,
         });
-        // Send back to user also.
-        // TODO: Create a more elegant solution to seeing your own chats,
-        //       including colorizing them.
-        // It is nice to use the server to echo them back, to help you know that it is working,
-        // and in theory give you a better sense of what order the messages actually show up in
-        // for everybody else.
+        // Send back to user also so their chat windows makes sense.
         socket.emit("chat", {
           name,
           content: data.text,
