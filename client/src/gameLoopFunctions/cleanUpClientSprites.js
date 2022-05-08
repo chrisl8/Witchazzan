@@ -5,7 +5,7 @@ import playerObject from '../objects/playerObject.js';
 function cleanUpClientSprites() {
   clientSprites.forEach((clientSprite, key) => {
     // Delete orphaned sprites with no hadron.
-    if (!hadrons.has(key)) {
+    if (!hadrons.has(key) || hadrons.get(key)?.off) {
       if (clientSprite.sprite) {
         clientSprite.sprite.destroy();
       }
