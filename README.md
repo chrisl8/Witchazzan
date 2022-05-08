@@ -2,7 +2,7 @@
 [![Client Build Test](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml)
 
 **IT LIVES!** We are working on this project again!  
-The back end server is now Node.js, and included in this repository.  
+The back end server is now built in Node.js, and is included in this repository.  
 
 You can play the game at [https://witchazzan.com](https://witchazzan.com)
 
@@ -11,12 +11,10 @@ You can play the game at [https://witchazzan.com](https://witchazzan.com)
 This is the start of a game that [doby162](https://github.com/doby162) and [chrisl8](https://github.com/chrisl8) are building.  
 
 The game exists in two parts:  
-1. A Phaser 3 based web front end.  
-2. A Node.js based server.  
+1. A Phaser 3 based JavaScript web front end.  
+2. A Node.js JavaScript server.  
 
 Both parts are required for the game to function.
-
-We started with the [Phaser 3 Webpack Project Template](https://github.com/photonstorm/phaser3-project-template).
 
 ## How to Run a Local Copy for DEVELOPMENT!
 
@@ -50,6 +48,33 @@ The `.sqlite` files are SQLite databases that are not meant to be human readable
 The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simply an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
 
 ## How to...
+### Hadrons
+Hadrons are the silly name for the "game objects" that are used to track and control everything in the game. They are continuously spent back and forth between the clients and the server.
+
+They are basically just JavaScript Object Literals, but are often encoded.
+
+Because their contents are sent over the network constantly, their keys are kept short (abreviated).
+
+You can add **any** key/value pair to a hadaron, **but** they do get valiated at various points, so if you want to use a new key, edit `shared/validateHadron.mjs` and add your new key along with a descriptoin of what it does. Remember to keep it short.
+
+In the browser you can watch the actual data:
+ - Open Developer Tools
+ - Go to the Network tab
+ - Click on "WS" to juts see websocket data
+ - Pick the one line for the websocket connection
+   - If there are more than one, find the one with the most data or that updates when you move your character on screen.
+ - Look under "Messages".
+
+You will see a lot of single integer messages, which are just Socket.io's heart beats, which you can ignore.
+
+The others messages will be either single hadrons sent from the client to the server, or big chunks of them sent from server to client. Because they are sent over the network in plain JSON, they are easy to read and check what is happening.
+
+The server also dumps all of its data to the file `persistentData/hadrons.json5` periodically.
+ - You can open and read this file anytime to see what the data in the game looks like.
+ - **When the server is shut down** you can edit this file, and when you start the server again, it will read it.
+   - This is a great way to remove bad data if you messed up your code, or you can inject data if you want to.
+   - When you start the server again watch for errors, as it will validate this file and crash if the data is invalid.
+
 ### Display text to a user.
 All text display and input is done via HTML overlays on top of the canvas. This makes it easier to deal with font scaling across multiple devices.
 
@@ -76,6 +101,52 @@ playerObject.js
 sceneList.js  
 updateInGameDomElements.js
 
+### Add a Sprite to the Game
+Sprites are in "sheets" meaning a single image containing a series of "frames". I find [aseprite](https://www.aseprite.org/) to be the easiest program to use for making these.
+
+Once you have your sprite image file put it in `client/src/assets/spriteSheets/`.
+
+Then add the data about it to the file `client/src/objects/spriteSheetList.js`:
+ - First add an `import` statement for it at the top.
+ - Then add metadata about it in the big oject below.
+
+Use the existing data as an example.
+
+Some important things:
+ - `rotatable` is indicating to the game if the sprite can be rotated. Think about a humanoid character vs. a tank. A humanoid would look dumb rotated 180 degrees to walk backwards. It should clearly be flipped. However, a tank would work perfectly to rotate.
+
+### Add an NPC to the game.
+ - First add a Sprite, see "Add a Sprite to the Game", or pick one that is already in the game.
+ - Edit the Tilemap: Currently all NPCs are flagged in the tilemaps, so open the Tilemap for the scene that you want to add an NPC to in Tiled, and add an Object in the location where you want the NPC to be.
+   - The Object's "Type" should be "NPC".
+   - Under "Custom Properties" there are some required and some optional things to add:
+     - `id` **REQUIRED** (String) - This is a GUID. Open your browser, open dev tools, and run `crypto.randomUUID()` then copy the long string, withOUT quotes, but WITH the dashes into the value for the `id`
+     - `subType` **REQUIRED** (String) - This is the NPC Type to help identify it and group it with similar NPC functionalities.
+     - `sprite` **REQUIRED** (String) - The name of the sprite to use for this NPC.
+     - `initialSpriteRotation` Optional - Direction to start the sprite facing.
+       - It can be left/right/up/down string or east/west/north/shouth string, or an intenger for rotation from 0.
+     - `health` Optional (Integer) - Initial health of this NPC. Use this to make it more or less squishy. 100 is the default if nothing is set.
+     - `respawnInSeconds` Optional (Integer) - How many seconds after it is destroyed before it respawns. Otherwise it only comes back if the NPC data is somehow removed from the server.
+     - `dps` Optional Float - "Damage Per Shot" - This value is multiplied against any damage done by a "shot" or "spell cast" from this NPC. Use it to make this NPC's shots more or less powerful. Remember that you can also increase and decrease this in "real time" in the code later. A default of 1 is assumed, meaning no modification to default "damage".
+     - `tcwls` Optional Bool = "Transfer Control When Leaving Scene" - This instructs the server to transfer control of this NPC to another client when you leave the scene. **You probably want to set this to true.** Otherwise the NPC will stop working when the first client to enter the scene leaves.
+     - `pod` Optional Bool - "Persist on Disconnect" - If a player disconnects, by default their hadrons are archived. This prevents that behavior. **You probably want this set to true.** Otherwise, the NPC will dissapear when the first client who enters the room leaves.
+     - `dod` Optional Bool - "Destroy on Disconnect" - If this is true, the NPC will be destroyed when the owner disconnects. This is probably not normally what you want for an NPC in a multi-player game, **but it is helpful during initial testing to set it true** so that your NPC is wiped and built from scratch when you refresh your browser.
+     - `spriteLayerDepth` Optional (Integer) = "Sprite Layer Depth" - This is the depth used when adding the sprite to the scene. This will determine if it appears on top of or underneath other objects, based on their depth.
+     - `rateOfFire` Optional (Integer) - "Rate of Fire" - If this is set, then the given spell is fired every time the last spell cast was X milliseconds ago based on the frame to frame delta. **This means the lower this number is, the faster it fires.** If this is left out, then no spell will be cast at all. You muts also set the "spell" name.
+     - `spell` Optional (String) - Name of the spell to cast. If you aren't sure, use 'fireball'. The spell is only cast if rateOfFire is also set.
+     - **You may add other things here as well and use them in your code, but if you do, you must update the code in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {` to copy these key/value pairs into the hadron, and you must alo update `shared/validateHadron.mjs` to add your additional hadron keys as valid keys.**
+   - NOTE: If you update sprite properties or add new ones, existing sprites won't get updated. use the `/deleteAllNPCs` command to clear them and make new ones. Also note that you need to not be in a scene with the sprite for the delete to work.
+ - **Informational:** These sprites are imported by the client in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {`
+   - You should **not need** to update any code there, but it is important to understand the flow and where to go if you do find that you need to enhance the import process.
+ - Set up Collisions: Each NPC type's collisions are custom coded in the file `client/src/gameLoopFunctions/spriteCollisionHandler.js`.
+   - Find the section under `} else if (obstacleSprite) {`, because this will be an "obstacleSprite" and then at the bottom of that section add to the `else if` chain to incorporate your desired collision response.
+   - Note that this function can be mess, so test your work and be creative.
+   - I highly recommend checking the "Enable Phaser Debugging" box form the title screen.
+     - This will display the colliders for your sprites, as well as their velocity, which is very helpful in debugging.
+     - You may find from looking at the colliders that you need to tweak your sprite settings in `client/src/objects/spriteSheetList.js` to get the size and shape of collider that you want.
+ - Set up Behavior: Each NPC's sub-type can have custom behavior coded in the file `client/src/gameLoopFunctions/npcBehavior.js`
+   - Use the existing NPCs as a model of how to add new ones.
+
 ## Code Standards
 
 I am using [Prettier](https://prettier.io/) and [Eslint](https://eslint.org/). The configurations for both are in the code.  
@@ -95,30 +166,8 @@ Prettier and Eslint are [easy to set up](https://imgs.xkcd.com/comics/will_it_wo
 | `npm start`     | Build project and open web server running project |
 | `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
 
-## Customizing The Phaser Build Environment
-
-### Babel
-You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you
-want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently
-targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
-
-  ```
-  "browsers": [
-    ">0.25%",
-    "not ie 11",
-    "not op_mini all"
-  ]
-  ```
-
-### Webpack
-If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can
-modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create
-new configuration files and target them in specific npm tasks inside of `package.json'.
-
 ## Deploying Code in Production
 ### Initial setup
-NOTE: Webpack does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. if you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to ro less than 1GB, you may need to increase it or alternatively [create a swap file](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04) to reliably run webpack (`npm run build`). 
-
 The production server must have a recent LTS version of Node.js installed.  
 `node -v`
 
@@ -175,7 +224,7 @@ pm2 restart Witchazzan
 
 ## Updating dependencies
 
-Running `npm ci` uses the exact stack of dependencies that were set by the developer who commited the `package-loc.json` file. If you want to update dependencies:  
+Running `npm ci` uses the exact stack of dependencies that were set by the developer who commited the `package-lock.json` file. If you want to update dependencies:  
 1. Run `npm outdated` to see what dependencies are out of date.
 2. Anything in red will automatically update, so ignore it.
 3. Anything in yellow will **not** be updated **unless* you incremeent the version number in `package.json`.
@@ -206,11 +255,6 @@ When working with Tiled to generate maps for Phaser, there are a few things youâ
 - Tile Render Order: Right Down
 - Map Size: Fixed
   - The map should not be infinite, but the actual size is variable.
-  - There are two "screen sizes" supported:
-    - TODO: This is not true anymore:
-    - The Normal Standard is a 16:9 "screen" that is 20 tiles wide by 11 tiles high.
-    - A 4:3 aspect ratio using 16 tiles wide by 11 tiles high is also supported. This is what you need to copy a NES map for instance.
-    - **However, if** you make the map bigger, in either direction, the camera will stick to 20x11 tiles, and scroll as the player moves to cover more territory. However, for the sake of memory, do not make infinite maps.
 - Tile Size
   - 16x16  
   or
@@ -237,7 +281,7 @@ Create the following layers for tiles, which should be obvious as to how they wo
 - Ground
 
 In addition, add an Objects layer.
-- Every Scen must have an Objected named "Default Spawn Point" where new characters arrive by default.
+- Every Scene must have an Object named "Default Spawn Point" where new characters arrive by default.
 - Further, you can make points of Type "Entrance" with a name of our choosing for directing players to when entering this scene from other scenes.
 
 ### Adding Scenes to the Program
@@ -248,6 +292,33 @@ In addition, add an Objects layer.
 ### Tilemap Exits
 
 TODO: Document more of how to make them work.
+
+## Parcel Notes
+Parcel is pretty nice, but it has quirks. Here are my notes.
+- [The dist folder is not cleaned between builds](https://github.com/parcel-bundler/parcel/issues/1234)
+  - This will cause the folder to get very big as it fills with old junk that we deleted.
+  - Solution: Add `"prebuild": "rm -rf dist",` under the scripts key in `package.json`. Note that this won't work on Windows.  
+- [How to import audio files](https://github.com/parcel-bundler/parcel/issues/1911#issuecomment-1042854678)
+  - You must add "url:" to the front of the file name.
+  - You can see an example of this in `gameLoopAndSceneFactor.js` where the .ogg and .mp3 files are imported.
+- [@parcel/transformer-js: Browser scripts cannot have imports or exports.](https://github.com/fregante/browser-extension-template/issues/51#issuecomment-869420069)
+  - You have to add `type="module"` to all script imports in your .html files
+  - Example at the bottom of the main `index.html` file where `index.js` is imported.
+- Other ways to do things
+  - Of course there are a dozen other ways to do things and a dozen other package managers, but I have been aiming for simplicity in this build, even at the possible expense of build size. It is a game, so one should expect some load time when first visiting the site.
+
+## Favicon Notes
+ - I used https://www.favicon-generator.org/ to generate the favicon files.
+ - The source file is `client/src/favicon/bloomby.png`.
+ - I put the resulting files in `client/src/favicon/`
+   - I deleted the `ms-icon-*.` files as I'm not using them.
+   - I also deleted `browserconfig.xml`
+ - I put `manifest.json` directly in `client` next to the `index.html` file.
+   - I had to edit it to point to the correct folders, so please compare to the existing one. 
+ - I put the generated html into `client/index.html`
+   - Again, I had to edit some parts of it and remove references to things I deleted, so compare the new lines to the existing ones.
+     - Technically if you replace the icon images, the file names will stay the same, so you may not have to update `index.html` anyway.
+ - Parcel bundling will ensure that browser cacheing sees that the files have changed.
 
 ## Attribution
 
@@ -285,9 +356,11 @@ License [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
 Author: [SCay](https://opengameart.org/users/scay)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
 Filename: carrot.png
-- [Panting Dog](https://www.pinterest.com/pin/329888741428973815/)  
-Source: Pinterest  
-Filename: panting-dog.png  
+- [Written Paper](https://opengameart.org/content/written-paper)  
+Author: [Harry Tzioukas](https://opengameart.org/users/harrytzioukas)  
+License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
+Filename: `written_paper_no_background.png`  
+Note: Converted from static image to sprite sheet by me.
 
 #### These images were created by our own team!
 - bloomby
@@ -302,7 +375,7 @@ Filename: panting-dog.png
 - pinkTree
 - Teleport
 
-### If you want to keep building the NES Hyrule map
+### NES Hyrule Map Information
 
 The map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
 

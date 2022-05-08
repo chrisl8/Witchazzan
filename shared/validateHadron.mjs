@@ -26,17 +26,30 @@ const serverAdditionalRequiredKeys = [
 
 // Optionally a hadron can also have:
 const optionalKeys = [
+  "name", // Player name. Players always have a name, but no other hadron currently makes use of this.
+  "sub", // Sub-Type, i.e. A hadron of Type 'spell' might be Subtype 'fireball' or a hadron of type 'NPC' might be a Subtype 'stationaryTank'
+  // Sprite information
   "dir", // Direction of the Sprite
   "velX", // X Velocity of the sprite
   "velY", // Y Velocity f the sprite.
-  "name", // Player name.
-  "txt", // For message type hadrons.
+  "rot", // Rotation of sprite.
   "mov", // Moving - Communicates to other clients whether the client is "in motion" or not, triggering motion animations.
+  // Specific to certain kinds of hadrons
+  "txt", // For message type hadrons.
+  // Character and NPC Information
   "chtO", // Chat Open - Indicates to other clients when a player's chat dialog is open, so that they can display an icon for it.
   "hlth", // Health - Health level for Player or NPC, etc.
+  "dps", // "Damage Per Shot (dps)" (Float) - For an NPC or anything that fires spells, this will be multiplied against the spell's default damage level. Use this to make a given NPC's shots more or less powerful relative to players and other NPCs.
+  // What to do when an owner disconnects or changes scenes:
   "dod", // "Destroy On Disconnect (dod)" (Bool) - Destroy this hadron if the owner disconnects.
   "tcwls", // "Transfer Control When Leaving Scene (tcwls)" (Bool) - Set to true if you want the sprite to be transferred to a new controller when the current controller leaves the scene. Otherwise the sprite is archived until the owner returns.
   "pod", // "Persist On Disconnect (pod)" (Bool) - Normally any hadrons owned by a player are removed from the game and 'archived' when a player disconnects, even if they aren't controlling them. This causes them to persist even if the player disconnects, and to be brought online even when the player isn't online.
+  "off", // "Off" (Bool) - If set to true, indicates that a hadron is "off", that is "dormant", and should have no sprite attached it and not register colliders. The purpose of this is to "hold" hadrons for things like NPCs that may need to be "killed", but still hold their place so that when a client enters the room it won't immediately respawn.
+  "tmoff", // "Time Off" - The time that a hadron was turned off. For use in respawning NPCs based on this time.
+  "ris", // "Respawn In Seconds (ris)" (Integer) - How many seconds after it is shut "off" before it respawns.
+  "dph", // "Sprite Layer Depth (dph)" (Integer) - Layer assigned to the sprite when added to the scene. Determines if it is on top of or underneath other sprites and tilemap scenery.
+  "rof", // "Rate of Fire (rof)" (Integer) - For NPC's, a spell is cast when this many milliseconds has past since the last one, based on the frame to frame delta. This means the lower the number, the faster it fires.
+  "spl", // "Spell (spl)" (String) - Name of the spell to cast for an NPC.
 ];
 
 const allKeys = alwaysRequiredKeys.concat(

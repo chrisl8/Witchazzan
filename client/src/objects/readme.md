@@ -3,6 +3,8 @@
 Document the objects here.
 
 ### Rational
+Note that many objects are now implemented with [Map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) , but the basic premise is the same.
+
 Objects store data that is used throughout the game in different places.  Objects in Node.js allow you to keep a single persistent instance of something in the entire program.  
 
 In a perfect world data is put in different objects based on logical organization.  
@@ -41,4 +43,27 @@ In reality sometimes it also has to do with avoiding circular references.
  - Never edit this.
  - This is the master list of hadrons (game pieces) being managed by the game.
  - The incoming hadrons from the server are merged with this.
- - The object file is purely to allow the code to "import" the data and then set and share it.
+ - The object file is purely to allow the code to "import" the data and then set and share it with other functions.
+- More information may be available in the file itself in comments at the top.
+
+## clientSprites
+- Never edit this.
+- This is the master list of all sprites that the code has created.
+- The object file is purely to allow the code to "import" the data and then set and share it with other functions.
+- More information may be available in the file itself in comments at the top.
+
+## clientSprites
+- Never edit this.
+- This is the master list of all sprites that the code has created.
+- The object file is purely to allow the code to "import" the data and then set and share it with other functions.
+- More information may be available in the file itself in comments at the top.
+
+## currentSceneNPCs
+- Never edit this.
+- This is an empty Map for holding all of the NPCs in the current scene.
+- More information may be available in the file itself in comments at the top.
+
+## spellAssignments
+- Never edit this.
+- This is an empty Map for holding all of the Spell assignments.
+- More information may be available in the file itself in comments at the top.
