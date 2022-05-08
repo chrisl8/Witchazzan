@@ -24,11 +24,12 @@ import sunriseOgg from 'url:./assets/sounds/sunrise.ogg';
 
 import playerObject from './objects/playerObject.js';
 import textObject from './objects/textObject.js';
-import handleKeyboardInput from './handleKeyboardInput.js';
+import currentSceneNPCs from './objects/currentSceneNPCs.js';
 import sendDataToServer from './sendDataToServer.js';
 import spriteSheetList from './objects/spriteSheetList.js';
 import handleKeyboardInput from './handleKeyboardInput.js';
 import getSpriteData from './utilities/getSpriteData.js';
+import convertTileMapPropertyArrayToObject from './utilities/convertTileMapPropertyArrayToObject.js';
 
 // Game Loop Functions
 import cleanUpScene from './gameLoopFunctions/cleanUpScene.js';
@@ -44,9 +45,9 @@ import updatePlayerSpriteAnimation from './gameLoopFunctions/updatePlayerSpriteA
 import updateHadrons from './gameLoopFunctions/updateHadrons.js';
 
 // Example of adding sound.
-import sunriseMp3 from './assets/sounds/sunrise.mp3';
-import sunriseOgg from './assets/sounds/sunrise.ogg';
-import convertTileMapPropertyArrayToObject from './utilities/convertTileMapPropertyArrayToObject.js';
+
+import npcBehavior from './gameLoopFunctions/npcBehavior.js';
+import specialPlayerActions from './gameLoopFunctions/specialPlayerActions.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -130,7 +131,9 @@ const gameLoopAndSceneFactory = ({
     } else {
       textObject.enterSceneText.text = '';
     }
-
+    if (sceneName === 'EmptyCave' && playerObject.health <= 0) {
+      textObject.enterSceneText.text = 'you were damaged, let us heal you';
+    }
     if (!didThisOnce && !playerObject.disableSound) {
       didThisOnce = true; // So it doesn't get annoying . . . more annoying.
       this.sound.play('sunrise');
@@ -365,7 +368,6 @@ const gameLoopAndSceneFactory = ({
         // "SpawnNPC" is a left over from the old version.
         // TODO: Come up with a better "type" for these and update them all.
         // This spawns sprites embedded in the tileMap.
-        // TODO: There is currently NO accommodation for interacting with these items.
         const spriteData = getSpriteData(object.name);
         const newThing = this.physics.add
           .sprite(object.x, object.y, spriteData.name)
@@ -390,31 +392,65 @@ const gameLoopAndSceneFactory = ({
       } else if (object.type === 'NPC') {
         // Type "NPC" will be used for actual NPCs.
         const objectProperties = convertTileMapPropertyArrayToObject(object);
-        console.log(object);
-        console.log(objectProperties);
-        const spriteData = getSpriteData(objectProperties.sprite);
-        const newThing = this.physics.add
-          .sprite(object.x, object.y, spriteData.name)
-          .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
-        if (spriteData.physicsOffset) {
-          newThing.body.setOffset(
-            spriteData.physicsOffset.x,
-            spriteData.physicsOffset.y,
-          );
-        }
-        newThing.displayHeight = spriteData.displayHeight;
-        newThing.displayWidth = spriteData.displayWidth;
-        newThing.flipX = spriteData.faces === 'right';
-
-        if (
-          this.anims.anims.entries.hasOwnProperty(
-            `${spriteData.name}-move-stationary`,
-          )
-        ) {
-          newThing.anims.play(`${spriteData.name}-move-stationary`, true);
-        }
-        if (objectProperties.initialSpriteRotation) {
-          newThing.setAngle(objectProperties.initialSpriteRotation);
+        if (objectProperties.id && !currentSceneNPCs.has(objectProperties.id)) {
+          const newHadron = {
+            id: objectProperties.id,
+            own: objectProperties.id, // NPC's own themselves just as players do.
+            x: object.x,
+            y: object.y,
+            sprt: objectProperties.sprite,
+            typ: 'npc',
+            sub: objectProperties.subType,
+            scn: sceneName,
+            dod: objectProperties.dod,
+            pod: objectProperties.pod,
+            tcwls: objectProperties.tcwls,
+            hlth: 100,
+            dps: 1,
+            off: false,
+            ris: objectProperties.respawnInSeconds,
+          };
+          if (objectProperties.hasOwnProperty('initialSpriteRotation')) {
+            newHadron.dir = objectProperties.initialSpriteRotation;
+          }
+          if (
+            objectProperties.hasOwnProperty('health') &&
+            // eslint-disable-next-line no-restricted-globals
+            !isNaN(objectProperties.health)
+          ) {
+            newHadron.hlth = Number(objectProperties.health);
+          }
+          if (
+            objectProperties.hasOwnProperty('dps') &&
+            // eslint-disable-next-line no-restricted-globals
+            !isNaN(objectProperties.dps)
+          ) {
+            newHadron.dps = Number(objectProperties.dps);
+          }
+          if (
+            objectProperties.hasOwnProperty('spriteLayerDepth') &&
+            // eslint-disable-next-line no-restricted-globals
+            !isNaN(objectProperties.spriteLayerDepth)
+          ) {
+            newHadron.dph = Number(objectProperties.spriteLayerDepth);
+          }
+          if (
+            objectProperties.hasOwnProperty('rateOfFire') &&
+            // eslint-disable-next-line no-restricted-globals
+            !isNaN(objectProperties.rateOfFire)
+          ) {
+            newHadron.rof = Number(objectProperties.rateOfFire);
+          }
+          // spell
+          // spl
+          if (objectProperties.hasOwnProperty('spell')) {
+            newHadron.spl = objectProperties.spell;
+          }
+          currentSceneNPCs.set(objectProperties.id, newHadron);
+          // All we do here is tell the server that the scene we entered has NPC hadrons in it.
+          // The server will decide if they already exist or not,
+          // and add them, and assign a controller if needed.
+          sendDataToServer.createHadron(newHadron);
         }
       }
     });
@@ -517,6 +553,9 @@ const gameLoopAndSceneFactory = ({
 
     updatePlayerSpriteAnimation();
 
+    npcBehavior(delta);
+
+    // Iterate over ALL of the hadrons and do what needs to be done.
     updateHadrons.call(
       this,
       sceneName,
