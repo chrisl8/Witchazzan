@@ -76,6 +76,10 @@ sendDataToServer.hadronData = (key) => {
   }
 };
 
+sendDataToServer.createHadron = (data) => {
+  communicationsObject.socket.emit('createHadron', data);
+};
+
 sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
   // Sometimes we get multiple delete requests for the same hadron.
   if (deletedHadronList.indexOf(key) === -1 && hadrons.has(key)) {

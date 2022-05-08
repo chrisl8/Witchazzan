@@ -655,6 +655,33 @@ io.on("connection", (socket) => {
         }
       });
 
+      socket.on("createHadron", (data) => {
+        // Typically this is used to create NPCs from data in the tilemap,
+        // although a client could also spawn one of these using internal logic.
+
+        // These come with their own permanent ID, and are not created if they already exist.
+        if (!hadrons.has(data.id)) {
+          // The hadron could exist in the inactive Map()
+          if (inactiveHadrons.has(data.id)) {
+            hadrons.set(data.id, { ...inactiveHadrons.get(data.id) });
+            inactiveHadrons.delete(data.id);
+          } else {
+            const newHadronData = { ...data };
+            if (!data.own) {
+              newHadronData.own = PlayerId;
+            }
+            console.log(data.own, PlayerId);
+            newHadronData.ctrl = PlayerId;
+            if (validateHadron.server(newHadronData)) {
+              hadrons.set(data.id, newHadronData);
+              flagSceneHasUpdated(newHadronData.scn);
+              throttledSendHadrons();
+              throttledSaveGameStateToDisk();
+            }
+          }
+        }
+      });
+
       socket.on("command", (data) => {
         if (data.command === "help") {
           socket.emit("chat", {
