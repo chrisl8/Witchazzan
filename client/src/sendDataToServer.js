@@ -104,8 +104,8 @@ sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
   }
 };
 
-sendDataToServer.makePlayerSayOof = (key) => {
-  communicationsObject.socket.emit('makePlayerSayOof', key);
+sendDataToServer.damageHadron = (data) => {
+  communicationsObject.socket.emit('damageHadron', data);
 };
 
 sendDataToServer.token = () => {

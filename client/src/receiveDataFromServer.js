@@ -85,6 +85,34 @@ function receiveDataFromServer() {
     playerObject.lastSentPlayerDataObject = {};
     cleanUpAfterDisconnect();
   });
+
+  communicationsObject.socket.on('damageHadron', (data) => {
+    if (data.id === playerObject.playerId) {
+      // Player's own health isn't held in their hadron.
+      let newHealth = playerObject.health;
+      if (!newHealth === undefined) {
+        newHealth = 100;
+      }
+      newHealth -= data.amount;
+      if (newHealth < 0) {
+        newHealth = 0;
+      }
+      playerObject.health = newHealth;
+    } else if (
+      hadrons.has(data.id) &&
+      hadrons.get(data.id)?.ctrl === playerObject.playerId
+    ) {
+      let newHealth = hadrons.get(data.id)?.hlth;
+      if (newHealth === undefined) {
+        newHealth = 100;
+      }
+      newHealth -= data.amount;
+      if (newHealth < 0) {
+        newHealth = 0;
+      }
+      hadrons.get(data.id).hlth = newHealth;
+    }
+  });
 }
 
 export default receiveDataFromServer;

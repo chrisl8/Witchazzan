@@ -569,16 +569,18 @@ io.on("connection", (socket) => {
         });
       });
 
-      socket.on("makePlayerSayOof", (key) => {
-        if (hadrons.has(key) && hadrons.get(key).name) {
-          socket.broadcast.emit("chat", {
-            name: hadrons.get(key).name,
-            content: "Oof!",
-          });
-          socket.emit("chat", {
-            name: hadrons.get(key).name,
-            content: "Oof!",
-          });
+      socket.on("damageHadron", (data) => {
+        if (
+          hadrons.has(data.id) &&
+          connectedPlayerData.has(hadrons.get(data.id).ctrl)
+        ) {
+          if (hadrons.get(data.id).ctrl === PlayerId) {
+            socket.emit("damageHadron", data);
+          } else {
+            socket
+              .to(connectedPlayerData.get(hadrons.get(data.id).ctrl).socketId)
+              .emit("damageHadron", data);
+          }
         }
       });
 
