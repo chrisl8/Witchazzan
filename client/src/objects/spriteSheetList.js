@@ -225,6 +225,9 @@ const spriteSheetList = [
     animations: [
       { keyName: 'move-stationary', start: 0, end: 2, zeroPad: 2, repeat: -1 },
     ],
+    physicsCircle: {
+      radius: 12,
+    },
     physicsSize: {
       x: 16,
       y: 16,
@@ -245,6 +248,9 @@ const spriteSheetList = [
     animations: [
       { keyName: 'move-stationary', start: 0, end: 2, zeroPad: 2, repeat: -1 },
     ],
+    physicsCircle: {
+      radius: 12,
+    },
     physicsSize: {
       x: 16,
       y: 16,
@@ -462,8 +468,8 @@ const spriteSheetList = [
       { keyName: 'move-stationary', start: 0, end: 0, zeroPad: 3, repeat: -1 },
     ],
     physicsSize: {
-      x: 16,
-      y: 16,
+      x: 24,
+      y: 24,
     },
     // physicsOffset: {
     //   x: 22,
@@ -471,6 +477,7 @@ const spriteSheetList = [
     // },
     displayWidth: 16,
     displayHeight: 16,
+    rotatable: true,
   },
   {
     type: 'other',
