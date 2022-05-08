@@ -13,6 +13,7 @@ done
 SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
 
+pm2 stop Witchazzan
 cd "${SCRIPT_DIR}" || exit
 echo "Pulling latest changes from the GitHub repo:"
 git pull

@@ -168,6 +168,9 @@ Prettier and Eslint are [easy to set up](https://imgs.xkcd.com/comics/will_it_wo
 
 ## Deploying Code in Production
 ### Initial setup
+**NOTE: Parcel does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. if you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to or less than 2GB, you may need to increase it or alternatively [create a swap file](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04) to reliably run webpack (`npm run build`).**
+
+
 The production server must have a recent LTS version of Node.js installed.  
 `node -v`
 
