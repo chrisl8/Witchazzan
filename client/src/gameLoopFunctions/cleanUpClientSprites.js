@@ -15,6 +15,10 @@ function cleanUpClientSprites() {
         playerObject.domElements.otherPlayerTags[key].remove();
         playerObject.domElements.otherPlayerTags[key] = null;
       }
+      // Erase other player tag history so that it updates when they return.
+      if (playerObject.domElementHistory.otherPlayerTags.hasOwnProperty(key)) {
+        delete playerObject.domElementHistory.otherPlayerTags[key];
+      }
     } else if (clientSprite.colliders) {
       // Remove any colliders with non-existent hadrons that are gone now.
       for (const [colliderKey] of Object.entries(clientSprite.colliders)) {
