@@ -773,7 +773,9 @@ io.on("connection", (socket) => {
       });
     } catch (e) {
       console.log("Failed to authenticate token.");
-      console.log(e);
+      if (e) {
+        console.log(e);
+      }
       // A somewhat random wait stalls brute force attacks and somewhat mitigates timing attacks used to guess names.
       // It also prevents client side bugs from crippling the server with inadvertent DOS attacks.
       await wait(makeRandomNumber.between(3, 5) * 1000);
@@ -794,7 +796,7 @@ setTimeout(() => {
 console.log(`Small Hadron Cooperator is running`);
 
 async function closeServer() {
-  console.log("Shutdown requested:");
+  console.log("Shutdown requested. PLEASE BE PATIENT! Working on it...");
   io.sockets.emit("chat", {
     content: "The Small Hadron Cooperator is shutting down.",
   });
