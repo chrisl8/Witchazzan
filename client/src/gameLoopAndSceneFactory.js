@@ -27,6 +27,7 @@ import textObject from './objects/textObject.js';
 import handleKeyboardInput from './handleKeyboardInput.js';
 import sendDataToServer from './sendDataToServer.js';
 import spriteSheetList from './objects/spriteSheetList.js';
+import handleKeyboardInput from './handleKeyboardInput.js';
 import getSpriteData from './utilities/getSpriteData.js';
 
 // Game Loop Functions
@@ -503,41 +504,16 @@ const gameLoopAndSceneFactory = ({
     // This is required on every update, in case the user resizes their browser window.
     setCameraZoom.call(this, gameSize, sceneTileSet);
 
-    let maxSpeed = playerObject.maxSpeed;
-    let useAcceleration = true;
-    if (
-      playerObject.joystickDirection.left ||
-      playerObject.joystickDirection.right ||
-      playerObject.joystickDirection.up ||
-      playerObject.joystickDirection.down
-    ) {
-      // In case of joystick usage, disable acceleration,
-      // and use joystick force instead.
-      useAcceleration = false;
+    // TODO: Delete this line once we are sure it is not needed.
+    //       It was used to set a variable ages ago, but then the variable was removed, so it seems to do nothing.
+    // playerObject.player.body.velocity.clone();
 
-      let distance = playerObject.joystickDistance;
-      if (distance > playerObject.maxJoystickDistance) {
-        distance = playerObject.maxJoystickDistance;
-      }
-      const newMaxSpeed =
-        (maxSpeed * distance) / playerObject.maxJoystickDistance;
-      if (newMaxSpeed < maxSpeed) {
-        maxSpeed = newMaxSpeed;
-      }
-    }
-
-    // Shift to sprint
-    if (playerObject.keyState.Shift === 'keydown') {
-      useAcceleration = false;
-    }
-
-    playerObject.player.body.velocity.clone();
-
+    // Handles all keyboard input other than player movement.
     hotKeyHandler.call(this, sceneName);
 
     playerObject.scrollingTextBox.sceneUpdate(delta);
 
-    handlePlayerMovement(maxSpeed, useAcceleration);
+    handlePlayerMovement();
 
     updatePlayerSpriteAnimation();
 

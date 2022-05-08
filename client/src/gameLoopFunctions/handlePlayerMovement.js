@@ -1,6 +1,34 @@
 import playerObject from '../objects/playerObject.js';
 
-function handlePlayerMovement(maxSpeed, useAcceleration) {
+function handlePlayerMovement() {
+  let maxSpeed = playerObject.maxSpeed;
+  let useAcceleration = true;
+  if (
+    playerObject.joystickDirection.left ||
+    playerObject.joystickDirection.right ||
+    playerObject.joystickDirection.up ||
+    playerObject.joystickDirection.down
+  ) {
+    // In case of joystick usage, disable acceleration,
+    // and use joystick force instead.
+    useAcceleration = false;
+
+    let distance = playerObject.joystickDistance;
+    if (distance > playerObject.maxJoystickDistance) {
+      distance = playerObject.maxJoystickDistance;
+    }
+    const newMaxSpeed =
+      (maxSpeed * distance) / playerObject.maxJoystickDistance;
+    if (newMaxSpeed < maxSpeed) {
+      maxSpeed = newMaxSpeed;
+    }
+  }
+
+  // Shift to sprint
+  if (playerObject.keyState.Shift === 'keydown') {
+    useAcceleration = false;
+  }
+
   // Stop any previous movement from the last frame
   const previousVelocityX = playerObject.player.body.velocity.x;
   const previousVelocityY = playerObject.player.body.velocity.y;

@@ -3,6 +3,13 @@ import castSpell from '../castSpell.js';
 import returnToIntroScreen from './returnToIntroScreen.js';
 
 function hotKeyHandler(sceneName) {
+  // Teleport back to home scene
+  if (playerObject.keyState.h === 'keydown') {
+    playerObject.keyState.h = null;
+    playerObject.teleportToSceneNow = playerObject.defaultOpeningScene;
+    playerObject.teleportToSceneNowEntrance = null;
+  }
+
   // Return to intro text
   if (playerObject.keyState.p === 'keydown') {
     playerObject.keyState.p = null;
@@ -29,7 +36,14 @@ function hotKeyHandler(sceneName) {
   ) {
     playerObject.sendSpell = false;
     playerObject.keyState[' '] = null;
-    castSpell(sceneName);
+    castSpell({
+      sceneName,
+      spell: playerObject.activeSpell,
+      direction: playerObject.playerDirection,
+      initialX: playerObject.player.x,
+      initialY: playerObject.player.y,
+      owner: playerObject.playerId,
+    });
   }
 }
 
