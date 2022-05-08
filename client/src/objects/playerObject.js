@@ -23,7 +23,6 @@ const playerObject = {
   acceleration: 3,
   maxJoystickDistance: 50,
   player: null,
-  destinationEntrance: null,
   keyState: {}, // keep track of the keyboard state. Send only when it changes
 
   // NOTE: This assumes that there is only the one Phaser canvas.
@@ -54,9 +53,11 @@ const playerObject = {
     UpperLeft: { style: {} },
     Scrolling: { style: {} },
     playerTag: { innerHTML: null, left: null, top: null, fontSize: null },
+    otherPlayerTags: {},
   },
   spriteName: 'bloomby', // Default set here
   health: 100,
+  previousHealth: null,
   playerId: null,
   playerDirection: 'left',
   playerStopped: true,
@@ -99,6 +100,8 @@ const playerObject = {
   ],
   activeSpell: null,
   teleportToSceneNow: null,
+  teleportToSceneNowEntrance: null,
+  destinationEntrance: null,
   cameraOffset: {
     x: 0,
     y: 0,
