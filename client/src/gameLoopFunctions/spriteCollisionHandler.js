@@ -104,11 +104,20 @@ function spriteCollisionHandler({
       hadrons.get(obstacleSpriteKey)?.typ === 'player' &&
       hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
     ) {
-      // If a fireball hits a player that is not the owner, de-spawn the fireball, and make them say "oof".
+      // If a fireball hits a player that is not the owner:
+      // 1. De-spawn the fireball.
       sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
-      sendDataToServer.makePlayerSayOof(obstacleSpriteKey);
-      // TODO: Amount should probably be stored in the sprite data and gotten from the spell?
-      sendDataToServer.damageHadron({ id: obstacleSpriteKey, amount: 1 });
+      // 2. Apply damage to the player.
+      let amount = 1;
+      const spriteOwnerHadron = { ...hadrons.get(hadrons.get(spriteKey)?.own) };
+      if (
+        spriteOwnerHadron.hasOwnProperty('dps') &&
+        // eslint-disable-next-line no-restricted-globals
+        !isNaN(spriteOwnerHadron.dps)
+      ) {
+        amount *= spriteOwnerHadron.dps;
+      }
+      sendDataToServer.damageHadron({ id: obstacleSpriteKey, amount });
     } else if (
       hadrons.get(spriteKey)?.typ === 'spell' &&
       hadrons.get(obstacleSpriteKey)?.typ === 'npc' &&

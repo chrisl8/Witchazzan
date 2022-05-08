@@ -477,25 +477,28 @@ const gameLoopAndSceneFactory = ({
       return;
     }
 
+    /* SPECIAL PLAYER ACTIONS */
+    // This function handles stuff like
+    //  - updating player health bar
+    //  - automatic teleports when dead,
+    //  - healing when in a certain room,
+    // etc.
+    specialPlayerActions(sceneName);
+
+    // READY TO TELEPORT?
     // teleportToSceneNow is set when a player uses the teleportToScene command in the chat input.
     if (playerObject.teleportToSceneNow) {
       const destinationScene = playerObject.teleportToSceneNow;
       playerObject.teleportToSceneNow = null;
-      cleanUpSceneAndTeleport.call(this, destinationScene, null);
+      const destinationEntrance = playerObject.teleportToSceneNowEntrance;
+      playerObject.teleportToSceneNowEntrance = null;
+      cleanUpSceneAndTeleport.call(
+        this,
+        destinationScene,
+        destinationEntrance,
+        sceneName,
+      );
       return;
-    }
-
-    if (playerObject.keyState.h === 'keydown') {
-      playerObject.keyState.h = null;
-      if (sceneName !== playerObject.defaultOpeningScene) {
-        // Don't teleport here if we ARE here.
-        cleanUpSceneAndTeleport.call(
-          this,
-          playerObject.defaultOpeningScene,
-          null,
-        );
-        return;
-      }
     }
 
     // This is required on every update, in case the user resizes their browser window.
