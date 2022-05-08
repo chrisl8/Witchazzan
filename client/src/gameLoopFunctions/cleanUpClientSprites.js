@@ -11,7 +11,7 @@ function cleanUpClientSprites() {
       }
       clientSprites.delete(key);
       // Clean up dom elements attached to removed sprites
-      if (playerObject.domElements.otherPlayerTags[key]) {
+      if (playerObject.domElements.otherPlayerTags.hasOwnProperty(key)) {
         playerObject.domElements.otherPlayerTags[key].remove();
         playerObject.domElements.otherPlayerTags[key] = null;
       }
