@@ -43,6 +43,9 @@ function cleanUpSceneAndTeleport(
     // Prevent memory leak of an infinitely growing lists.
     deletedHadronList.length = 0;
 
+    // Empty out the local NPC list, as we are no longer in charge of them.
+    currentSceneNPCs.clear();
+
     this.scene.start(destinationSceneName);
   }
 }
