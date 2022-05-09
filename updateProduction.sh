@@ -28,6 +28,9 @@ echo "Installing dependencies for client..."
 npm ci
 echo ""
 echo "Building client (this is the slow part)..."
+if [[ -d .parcel-cache ]]; then
+  rm -rf .parcel-cache
+fi
 npm run build
 echo ""
 echo "Restarting server:"

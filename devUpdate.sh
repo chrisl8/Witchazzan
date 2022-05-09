@@ -57,6 +57,9 @@ npm ci
 cd "${SCRIPT_DIR}/client" || exit
 echo ""
 printf "\n${YELLOW}[Installing dependencies for client]${NC}\n"
+if [[ -d .parcel-cache ]]; then
+  rm -rf .parcel-cache
+fi
 npm ci
 
 printf "\n"
