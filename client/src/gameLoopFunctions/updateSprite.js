@@ -118,6 +118,7 @@ function updateSprite(hadron, key) {
 
     // ADD BRIEF RED TINT TO PLAYERS AND NPCs THAT HAVE TAKEN DAMAGE
     if (
+      hadron.id !== playerObject.playerId && // Do not tint or worse, clear tint from shadow
       hadron.hlth &&
       hadron.hlth < 100 &&
       clientSprite.previousHealth !== undefined &&
