@@ -268,12 +268,9 @@ When working with Tiled to generate maps for Phaser, there are a few things you�
 - When adding a Tileset to the map be sure to check **Embed in map**
 
 ### Notes on saving Tile Maps with Tiled
-Copied From [Modular Game Worlds in Phaser 3](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)  
 When working with Tiled to generate maps for Phaser, there are a few things you’ll want to make sure to do:  
-1. When you load a tileset into your map, make sure to check the “Embed in map” option. (If you forget to do this, then you can click the embed tileset button the bottom of the screen.)  
-2. Make sure you aren't using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
-3. When you export your map, save it as a JSON file.  
-(There are pictures to illustrate these 3 points on the linked site above.)
+1. Make sure you aren't using a compressed “Tile Layer Format.” You can adjust that in map properties sidebar… which you can open by hitting “Map → Map Properties” in the top toolbar.  
+2. When you export your map, save it as a JSON file.  
 
 ### Layers
 
@@ -283,9 +280,62 @@ Create the following layers for tiles, which should be obvious as to how they wo
   - This is the layer we collied with.
 - Ground
 
+Optionally you can also create:
+- Stuff on the Ground You Can Walk On
+  - So you can put things "on" the ground that are still walked on.
+- Water
+  - The intention is that water collisions will be special,
+    - i.e. Spells normally pass over them, but you cannot walk on it!
+
 In addition, add an Objects layer.
 - Every Scene must have an Object named "Default Spawn Point" where new characters arrive by default.
 - Further, you can make points of Type "Entrance" with a name of our choosing for directing players to when entering this scene from other scenes.
+
+#### Default Camelopardalis Map dimensions
+- Tile Size: 16 x 16 
+- Map Size in Tiles
+  - Width: 44
+  - Height: 26
+- Map Size in Pixels
+  - Width: 44 * 16 = 704
+  - Height: 26 * 16 = 416
+- Teleport Layer
+  - Tiles: 2
+  - Width in Pixels: 2 * 16 = 32
+- Map Borders in Pixels without Teleport Layer
+  - Left (x): 32
+  - Right (x): 672
+  - Top (y): 32
+  - Bottom (y): 384
+
+Overall Width: 
+
+#### Entrance Default Locations
+If there isn't any obstructions in the map itself,  
+then the entrances are set in the exact middle on the "wide" axis,  
+and exactly half a tile (8 pixels) in from the edge.
+- Default
+  - x: 352
+  - y: 208
+- Right
+  - x: 664
+  - y: 208
+- Left
+  - x: 40
+  - y: 208
+- Upper
+    - x: 352
+    - y: 40
+- Lower
+  - x: 352
+  - y: 376
+
+NOTE: For wide open entrances, add the custom properties to the entrance:  
+allowCustomX: true  
+  or  
+allowCustomY: true  
+to allow the exact x or y position to be carried over from the previous scene.  
+In some cases, like a narrow hall, or a transiton from  wide to narrow area, this is not a good idea. Use your judgement.  
 
 ### Adding Scenes to the Program
 1. Create a new Tilemap with Tiled.
