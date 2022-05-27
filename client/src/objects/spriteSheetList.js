@@ -3,7 +3,7 @@ import gloobScarymanSpriteSheet from '../assets/spriteSheets/gloob-scaryman.png'
 import flamingGoose from '../assets/spriteSheets/flamingGoose.png';
 import fireball from '../assets/spriteSheets/fireball.png';
 import teleball from '../assets/spriteSheets/Teleport.png';
-import bloomby from '../assets/spriteSheets/bloomby.png';
+import bloomby from '../assets/spriteSheets/bloomby16.png';
 import joosh from '../assets/spriteSheets/joosh.png';
 import pantingDog from '../assets/spriteSheets/panting-dog.png';
 import carrot from '../assets/spriteSheets/carrot.png';
@@ -60,13 +60,13 @@ const spriteSheetList = [
     name: 'bloomby',
     file: bloomby,
     faces: 'right',
-    frameWidth: 55,
-    frameHeight: 65,
+    frameWidth: 16,
+    frameHeight: 16,
     endFrame: -1, // How many frames to extract from the sheet. -1 means all
-    animationFrameRate: 5,
+    animationFrameRate: 10,
     animations: [
-      { keyName: 'move-left', start: 12, end: 15, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-right', start: 12, end: 15, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-left', start: 12, end: 14, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 12, end: 14, zeroPad: 3, repeat: -1 },
       { keyName: 'move-back', start: 6, end: 11, zeroPad: 3, repeat: -1 },
       { keyName: 'move-front', start: 0, end: 5, zeroPad: 3, repeat: -1 },
     ],
@@ -85,16 +85,16 @@ const spriteSheetList = [
       // sized sprites will not produce the same results!
       // Using a multiplier can help keep it consistent between different sprites,
       // but remember different size sprites will still end up with different end results after multiplication.
-      x: 53, // "Width" direction
-      y: 63, // "Height" direction
+      x: 12, // "Width" direction
+      y: 14, // "Height" direction
     },
     // DELETE or COMMENT OUT the entire physicsOffset to ignore it and default to object center.
     // physicsOffset: {
     //   x: 25, // left/right aka in relation to width
     //   y: 25,
     // },
-    displayWidth: (53 / 4) * 0.8,
-    displayHeight: (63 / 4) * 0.8,
+    displayWidth: 16,
+    displayHeight: 16,
   },
   {
     type: 'player',
