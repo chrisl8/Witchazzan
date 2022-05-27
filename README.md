@@ -1,12 +1,18 @@
 [![Server Run Test](https://github.com/chrisl8/Witchazzan/actions/workflows/server.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/server.yml)
 [![Client Build Test](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml)
 
-**IT LIVES!** We are working on this project again!  
-The back end server is now built in Node.js, and is included in this repository.  
-
 You can play the game at [https://witchazzan.com](https://witchazzan.com)
 
 # Witchazzan - A Game!
+
+## How to Play the Game
+
+Just navigate to [https://witchazzan.com](https://witchazzan.com) where the game is up and live.
+
+## About the Code
+
+**IT LIVES!** After a break of almost two years, we are working on this project again!  
+The back end server is now built in Node.js, and is included in this repository.  
 
 This is the start of a game that [doby162](https://github.com/doby162) and [chrisl8](https://github.com/chrisl8) are building.  
 
@@ -31,7 +37,7 @@ Phaser has been through a lot of versions, so online searches are often frustrat
 
 ## Where to start
 
-`client/src/gameLoopAndSceneFactory.js` is where the game is set up, and the every loo update is. Start there and follow the functions it calls.
+`client/src/gameLoopAndSceneFactory.js` is where the game is set up, and also the game update loop that runs every frame. Start there and follow the functions it calls.
 
 ## Persistent Data Storage Information
 
@@ -47,7 +53,7 @@ The data currently stored there is:
 The `.sqlite` files are SQLite databases that are not meant to be human readable or written to. The server takes care of them. There are tools to read/write such files though if you really want to.  
 The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simply an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
 
-## How to...
+## Development How to...
 ### Hadrons
 Hadrons are the silly name for the "game objects" that are used to track and control everything in the game. They are continuously spent back and forth between the clients and the server.
 
@@ -154,21 +160,9 @@ Don't worry about it if you don't want to run them, I will not reject any pull r
 If you do use Eslint I assume you may and will set some things that Eslint complains about to "ignore" inline. That is perfectly fine and legitimate. Do not be a slave to Eslint, just run it and see what it says, and if you want to fix it, do so, if not, mark it as ignored inline if the red marks bother you.  
 Prettier and Eslint are [easy to set up](https://imgs.xkcd.com/comics/will_it_work.png), and your IDE and VIM should both support them. If not, just commit your code and I will clean it up later. Messy code that works is better than no code.
 
-## Requirements
-
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
-
-## Available Client Commands in `/client`
-
-| Command         | Description |
-|-----------------|-------------|
-| `npm ci`        | Install project dependencies |
-| `npm start`     | Build project and open web server running project |
-| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
-
 ## Deploying Code in Production
 ### Initial setup
-**NOTE: Parcel does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. if you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to or less than 2GB, you may need to increase it or alternatively [create a swap file](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04) to reliably run webpack (`npm run build`).**
+**NOTE: Parcel does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. If you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to or less than 2GB, you may need to increase it or alternatively [create a swap file](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04) to reliably build (`npm run build`).**
 
 
 The production server must have a recent LTS version of Node.js installed.  
@@ -371,7 +365,7 @@ Parcel is pretty nice, but it has quirks. Here are my notes.
  - I put the generated html into `client/index.html`
    - Again, I had to edit some parts of it and remove references to things I deleted, so compare the new lines to the existing ones.
      - Technically if you replace the icon images, the file names will stay the same, so you may not have to update `index.html` anyway.
- - Parcel bundling will ensure that browser cacheing sees that the files have changed.
+ - Parcel bundling will ensure that browser caching sees that the files have changed.
 
 ## Attribution
 
@@ -381,16 +375,15 @@ Emoji are from the [Twemoji](https://twemoji.twitter.com/) project.
 
 I will keep track of the Image sources here for attribution.
 
-- [Tileset 1bit Color](https://opengameart.org/content/tileset-1bit-color)  
-Author: [Clint Bellanger](https://opengameart.org/users/clint-bellanger)  
-License: [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
-FileName: tileset_1bit-16x16.png  
+- [Kenney Assets](https://kenney.nl/assets)  
+I have purchased a lot of Kenney assets over teh years, and a few of them can be found in this game.
+
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
 Author: [DragonDePlatino](https://openga    // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
 meart.org/users/dragondeplatino)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
 FileNames: zoria_overworld.png, zoria_underworld.png  
-See also: [Mockups](https://opengameart.org/sites/default/files/mockups_1.png)  
+See also: [Mockups](https://opengameart.org/sites/default/files/mockups_1.png)
 - [Exterior 32x32 Town tileset](https://opengameart.org/content/exterior-32x32-town-tileset)  
 Author: [n2liquid](https://opengameart.org/users/n2liquid)  
 License [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -400,12 +393,7 @@ See Also: [Forum Post](http://forum.solarus-games.org/index.php/topic,881.0.html
 Author: [ffomega](http://forum.solarus-games.org/index.php?action=profile;u=423)  
 License: Unknown, see [Solaris Game License](https://www.solarus-games.org/en/about/faq)  
 FileNames: solarus_full_hyrule.png  
-- [Tiny 16: Basic](https://opengameart.org/content/tiny-16-basic)  
-- Old Carrot [8-Bit PixelArt Carrot](https://opengameart.org/content/8-bit-pixelart-carrot)  
-Author: sufan02  
-License [CC0](https://creativecommons.org/publicdomain/zero/1.0/)  
-~~Filename: carrot.png~~
-- New Carrot [Veggy friends](https://opengameart.org/content/veggy-friends)  
+- Carrots [Veggy friends](https://opengameart.org/content/veggy-friends)  
 Author: [SCay](https://opengameart.org/users/scay)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
 Filename: carrot.png
@@ -428,9 +416,17 @@ Note: Converted from static image to sprite sheet by me.
 - pinkTree
 - Teleport
 
-### NES Hyrule Map Information
+### 8-bit NES Legend of Zelda Map Information
 
-The map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
+The main map is heavily inspired by the beloved 8-bit NES Legend of Zelda game, which I played as a child.
+
+My assets and the map are not an exact copy, but they are derived from and heavily inspired by these materials.
+
+[Python Zelda Walking Tour program](http://inventwithpython.com/blog/2012/12/10/8-bit-nes-legend-of-zelda-map-data/)
+
+[NES Zelda Map Data](https://github.com/asweigart/nes_zelda_map_data)
+
+Another copy of the Hyrule map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
 
 ### Good Tutorials for learning Phaser
 - [Modular Game Worlds in Phaser 3](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)
