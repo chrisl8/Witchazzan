@@ -341,8 +341,19 @@
                  "id":12,
                  "name":"chestFront",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"2d7c2786-5af2-46f6-aeab-28bc1f26fad6"
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"chestFront"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
+                 "type":"NPC",
                  "visible":true,
                  "width":0,
                  "x":120,
