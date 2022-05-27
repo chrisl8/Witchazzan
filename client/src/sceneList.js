@@ -291,7 +291,8 @@ const caveHtmlElementParameters = {
   },
 };
 
-const camelopardalisColor16x16AnimatedTileReplacementStrategy = {
+// TODO: Allow per-sprite probability.
+const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
   'Stuff You Run Into': {
     probability: 0.4,
     76: 'MountainWallSparkleOne',
@@ -322,8 +323,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisI8',
@@ -331,8 +332,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisH7',
@@ -340,8 +341,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisG7',
@@ -349,8 +350,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisG8',
@@ -358,8 +359,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisF8',
@@ -367,8 +368,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisH6',
@@ -376,8 +377,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisI7',
@@ -385,8 +386,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisJ8',
@@ -394,8 +395,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisE8',
@@ -403,8 +404,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisF7',
@@ -412,8 +413,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisG6',
@@ -421,8 +422,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisH5',
@@ -430,8 +431,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisI6',
@@ -439,8 +440,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisJ7',
@@ -448,8 +449,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisK8',
@@ -457,8 +458,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisK7',
@@ -466,8 +467,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisL8',
@@ -475,8 +476,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisJ6',
@@ -484,8 +485,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisI4',
@@ -493,8 +494,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisI5',
@@ -502,8 +503,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisH4',
@@ -511,8 +512,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisG5',
@@ -520,8 +521,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisF6',
@@ -529,8 +530,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisE7',
@@ -538,8 +539,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisD8',
@@ -547,8 +548,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisD7',
@@ -556,8 +557,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisL1',
@@ -565,8 +566,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisL2',
@@ -574,8 +575,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisM1',
@@ -583,8 +584,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisM2',
@@ -592,8 +593,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisM3',
@@ -601,8 +602,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisN1',
@@ -610,8 +611,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisN2',
@@ -619,8 +620,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisN3',
@@ -628,8 +629,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisN4',
@@ -637,8 +638,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisO1',
@@ -646,8 +647,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisO2',
@@ -655,8 +656,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisO3',
@@ -664,8 +665,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisO4',
@@ -673,8 +674,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisO5',
@@ -682,8 +683,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisP1',
@@ -691,8 +692,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisP2',
@@ -700,8 +701,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisP3',
@@ -709,8 +710,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisP4',
@@ -718,8 +719,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisP5',
@@ -727,8 +728,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisP6',
@@ -736,8 +737,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisP7',
@@ -745,8 +746,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisO6',
@@ -754,8 +755,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisN5',
@@ -763,8 +764,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisM4',
@@ -772,8 +773,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisL3',
@@ -781,8 +782,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisJ1',
@@ -790,8 +791,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisK1',
@@ -799,8 +800,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisK2',
@@ -808,8 +809,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisE1',
@@ -817,8 +818,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisE2',
@@ -826,8 +827,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisE3',
@@ -835,8 +836,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisF1',
@@ -844,8 +845,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisD1',
@@ -853,8 +854,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisD2',
@@ -862,8 +863,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisD3',
@@ -871,8 +872,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisC1',
@@ -880,8 +881,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisC2',
@@ -889,8 +890,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisC3',
@@ -898,8 +899,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisC4',
@@ -907,8 +908,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisB1',
@@ -916,8 +917,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisB2',
@@ -925,8 +926,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisB3',
@@ -934,8 +935,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisB4',
@@ -943,8 +944,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisB5',
@@ -952,8 +953,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA1',
@@ -961,8 +962,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA2',
@@ -970,8 +971,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA3',
@@ -979,8 +980,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA4',
@@ -988,8 +989,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA5',
@@ -997,8 +998,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA6',
@@ -1006,8 +1007,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisL4',
@@ -1015,8 +1016,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisK3',
@@ -1024,8 +1025,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisJ2',
@@ -1033,8 +1034,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisI1',
@@ -1042,8 +1043,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisF2',
@@ -1051,8 +1052,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisD4',
@@ -1060,8 +1061,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisC5',
@@ -1069,8 +1070,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisB6',
@@ -1078,8 +1079,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA7',
@@ -1087,8 +1088,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisM5',
@@ -1096,8 +1097,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisN6',
@@ -1105,8 +1106,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisO7',
@@ -1114,8 +1115,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisP8',
@@ -1123,8 +1124,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisO8',
@@ -1132,8 +1133,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisN7',
@@ -1141,8 +1142,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisM6',
@@ -1150,8 +1151,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisL5',
@@ -1159,8 +1160,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisK4',
@@ -1168,8 +1169,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisJ3',
@@ -1177,8 +1178,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisI2',
@@ -1186,8 +1187,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisH1',
@@ -1195,8 +1196,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisG1',
@@ -1204,8 +1205,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisG2',
@@ -1213,8 +1214,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisF3',
@@ -1222,8 +1223,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisE4',
@@ -1231,8 +1232,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisD5',
@@ -1240,8 +1241,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisC6',
@@ -1249,8 +1250,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisB7',
@@ -1258,8 +1259,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA8',
@@ -1267,8 +1268,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisA9',
@@ -1276,8 +1277,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisN8',
@@ -1285,8 +1286,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisM7',
@@ -1294,8 +1295,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisL6',
@@ -1303,8 +1304,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisK5',
@@ -1312,8 +1313,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisJ4',
@@ -1321,8 +1322,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisH2',
@@ -1330,8 +1331,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisI3',
@@ -1339,8 +1340,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisG3',
@@ -1348,8 +1349,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisF4',
@@ -1357,8 +1358,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisE5',
@@ -1366,8 +1367,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisD6',
@@ -1375,8 +1376,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisC7',
@@ -1384,8 +1385,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisB8',
@@ -1393,8 +1394,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisM8',
@@ -1402,8 +1403,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisL7',
@@ -1411,8 +1412,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisK6',
@@ -1420,8 +1421,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisH3',
@@ -1429,8 +1430,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisJ5',
@@ -1438,8 +1439,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisG4',
@@ -1447,8 +1448,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisF5',
@@ -1456,8 +1457,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisE6',
@@ -1465,8 +1466,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisC8',
@@ -1474,8 +1475,8 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.CamelopardalisColor16x16,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    animatedTileReplacementStrategy:
-      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+    animatedTileOverlayStrategy:
+      camelopardalisColor16x16AnimatedTileOverlayStrategy,
   },
   {
     sceneName: 'backYard1',

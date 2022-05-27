@@ -1,30 +1,30 @@
 import getSpriteData from './utilities/getSpriteData.js';
 import objectDepthSettings from './objects/objectDepthSettings.js';
 
-function replaceTilemapTilesWithAnimatedSprites(
+function overlayTilemapTilesWithAnimatedSprites(
   map,
   gameSize,
-  animatedTileReplacementStrategy,
+  animatedTileOverlayStrategy,
 ) {
   map.layers.forEach((layer) => {
     const splitLayerName = layer.name.split('/');
     if (splitLayerName.length === 1) {
-      if (animatedTileReplacementStrategy[layer.name]) {
+      if (animatedTileOverlayStrategy[layer.name]) {
         map.filterTiles(
           (tile) => {
             if (
-              animatedTileReplacementStrategy[layer.name][tile.index] !==
+              animatedTileOverlayStrategy[layer.name][tile.index] !==
                 undefined &&
-              // A probability can be set for a layer, and then only X percentage will randomly be replaced, instead of all of them.
-              (!animatedTileReplacementStrategy[layer.name].hasOwnProperty(
+              // A probability can be set for a layer, and then only X percentage will randomly be overlaid, instead of all of them.
+              (!animatedTileOverlayStrategy[layer.name].hasOwnProperty(
                 'probability',
               ) ||
                 // https://stackoverflow.com/a/36756480/4982408
                 Math.random() <
-                  animatedTileReplacementStrategy[layer.name].probability)
+                  animatedTileOverlayStrategy[layer.name].probability)
             ) {
               const spriteData = getSpriteData(
-                animatedTileReplacementStrategy[layer.name][tile.index],
+                animatedTileOverlayStrategy[layer.name][tile.index],
               );
               const newThing = this.physics.add
                 .sprite(tile.pixelX, tile.pixelY, spriteData.name)
@@ -54,7 +54,7 @@ function replaceTilemapTilesWithAnimatedSprites(
               // There is no reason for these to have physics bodies,
               // they are just for animation. In theory this will improve performance?
               newThing.disableBody();
-              // Uncomment this section to see what tiles are not being replaced.
+              // Uncomment this section to see what tiles are not being overlaid.
               // } else {
               //   console.log(layer.name, tile.index);
             }
@@ -72,4 +72,4 @@ function replaceTilemapTilesWithAnimatedSprites(
   });
 }
 
-export default replaceTilemapTilesWithAnimatedSprites;
+export default overlayTilemapTilesWithAnimatedSprites;

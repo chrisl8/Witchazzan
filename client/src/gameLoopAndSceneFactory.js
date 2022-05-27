@@ -48,7 +48,7 @@ import updateHadrons from './gameLoopFunctions/updateHadrons.js';
 
 import npcBehavior from './gameLoopFunctions/npcBehavior.js';
 import specialPlayerActions from './gameLoopFunctions/specialPlayerActions.js';
-import replaceTilemapTilesWithAnimatedSprites from './replaceTilemapTilesWithAnimatedSprites.js';
+import overlayTilemapTilesWithAnimatedSprites from './overlayTilemapTilesWithAnimatedSprites.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -62,7 +62,7 @@ const gameLoopAndSceneFactory = ({
   tileSet, // An object containing the actual image and the name to reference it by
   gameSize, // In theory we could make a map that is bigger than the screen, although that would need testing.
   htmlElementParameters = {},
-  animatedTileReplacementStrategy,
+  animatedTileOverlayStrategy,
 }) => {
   const scene = new Phaser.Scene(sceneName);
   let map;
@@ -460,12 +460,12 @@ const gameLoopAndSceneFactory = ({
       }
     });
 
-    if (animatedTileReplacementStrategy) {
-      replaceTilemapTilesWithAnimatedSprites.call(
+    if (animatedTileOverlayStrategy) {
+      overlayTilemapTilesWithAnimatedSprites.call(
         this,
         map,
         gameSize,
-        animatedTileReplacementStrategy,
+        animatedTileOverlayStrategy,
       );
     }
 
