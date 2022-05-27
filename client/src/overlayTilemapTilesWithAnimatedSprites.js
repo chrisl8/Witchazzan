@@ -16,15 +16,16 @@ function overlayTilemapTilesWithAnimatedSprites(
               animatedTileOverlayStrategy[layer.name][tile.index] !==
                 undefined &&
               // A probability can be set for a layer, and then only X percentage will randomly be overlaid, instead of all of them.
-              (!animatedTileOverlayStrategy[layer.name].hasOwnProperty(
-                'probability',
-              ) ||
+              (!animatedTileOverlayStrategy[layer.name][
+                tile.index
+              ].hasOwnProperty('probability') ||
                 // https://stackoverflow.com/a/36756480/4982408
                 Math.random() <
-                  animatedTileOverlayStrategy[layer.name].probability)
+                  animatedTileOverlayStrategy[layer.name][tile.index]
+                    .probability)
             ) {
               const spriteData = getSpriteData(
-                animatedTileOverlayStrategy[layer.name][tile.index],
+                animatedTileOverlayStrategy[layer.name][tile.index].sprite,
               );
               const newThing = this.physics.add
                 .sprite(tile.pixelX, tile.pixelY, spriteData.name)

@@ -291,27 +291,32 @@ const caveHtmlElementParameters = {
   },
 };
 
-// TODO: Allow per-sprite probability.
 const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
   'Stuff You Run Into': {
-    probability: 0.4,
-    76: 'MountainWallSparkleOne',
-    244: 'MountainWallSparkleOne',
-    255: 'MountainWallSparkleTwo',
+    76: {
+      probability: 0.4,
+      sprite: 'MountainWallSparkleOne',
+    },
+    244: {
+      probability: 0.4,
+      sprite: 'MountainWallSparkleOne',
+    },
+    255: {
+      probability: 0.1,
+      sprite: 'MountainWallSparkleTwo',
+    },
   },
   'Stuff You Walk Under': {
-    probability: 0.08,
-    363: 'SkullWink',
+    363: { probability: 0.08, sprite: 'SkullWink' },
   },
   Ground: {
-    probability: 0.2,
-    163: 'GroundSparkleOne',
+    163: { probability: 0.2, sprite: 'GroundSparkleOne' },
   },
   Water: {
-    110: 'BlueWater',
-    98: 'BlueWaterNorthShore',
-    97: 'BlueWaterNorthWestShore',
-    109: 'BlueWaterWestShore',
+    110: { sprite: 'BlueWater' },
+    98: { sprite: 'BlueWaterNorthShore' },
+    97: { sprite: 'BlueWaterNorthWestShore' },
+    109: { sprite: 'BlueWaterWestShore' },
   },
 };
 
