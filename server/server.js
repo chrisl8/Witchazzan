@@ -99,7 +99,7 @@ if (!serverConfiguration.gameStateSaveInterval) {
   serverConfiguration.gameStateSaveInterval = 60 * 1000; // 1 minute
 }
 if (!serverConfiguration.defaultOpeningScene) {
-  serverConfiguration.defaultOpeningScene = "LoruleH8";
+  serverConfiguration.defaultOpeningScene = "CamelopardalisH8";
 }
 // The file is always rewritten, so the formatting will get fixed if it is bad.
 await persistentData.writeObject(

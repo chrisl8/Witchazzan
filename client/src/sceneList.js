@@ -22,151 +22,151 @@
  */
 import gameLoopAndSceneFactory from './gameLoopAndSceneFactory.js';
 
-// Lorule Scenes
-import LoruleA1 from './assets/tileMaps/LoruleA1.json';
-import LoruleA2 from './assets/tileMaps/LoruleA2.json';
-import LoruleA3 from './assets/tileMaps/LoruleA3.json';
-import LoruleA4 from './assets/tileMaps/LoruleA4.json';
-import LoruleA5 from './assets/tileMaps/LoruleA5.json';
-import LoruleA6 from './assets/tileMaps/LoruleA6.json';
-import LoruleA7 from './assets/tileMaps/LoruleA7.json';
-import LoruleA8 from './assets/tileMaps/LoruleA8.json';
-import LoruleA9 from './assets/tileMaps/LoruleA9.json';
+// Camelopardalis Scenes
+import CamelopardalisA1 from './assets/tileMaps/CamelopardalisA1.json';
+import CamelopardalisA2 from './assets/tileMaps/CamelopardalisA2.json';
+import CamelopardalisA3 from './assets/tileMaps/CamelopardalisA3.json';
+import CamelopardalisA4 from './assets/tileMaps/CamelopardalisA4.json';
+import CamelopardalisA5 from './assets/tileMaps/CamelopardalisA5.json';
+import CamelopardalisA6 from './assets/tileMaps/CamelopardalisA6.json';
+import CamelopardalisA7 from './assets/tileMaps/CamelopardalisA7.json';
+import CamelopardalisA8 from './assets/tileMaps/CamelopardalisA8.json';
+import CamelopardalisA9 from './assets/tileMaps/CamelopardalisA9.json';
 
-import LoruleB1 from './assets/tileMaps/LoruleB1.json';
-import LoruleB2 from './assets/tileMaps/LoruleB2.json';
-import LoruleB3 from './assets/tileMaps/LoruleB3.json';
-import LoruleB4 from './assets/tileMaps/LoruleB4.json';
-import LoruleB5 from './assets/tileMaps/LoruleB5.json';
-import LoruleB6 from './assets/tileMaps/LoruleB6.json';
-import LoruleB7 from './assets/tileMaps/LoruleB7.json';
-import LoruleB8 from './assets/tileMaps/LoruleB8.json';
+import CamelopardalisB1 from './assets/tileMaps/CamelopardalisB1.json';
+import CamelopardalisB2 from './assets/tileMaps/CamelopardalisB2.json';
+import CamelopardalisB3 from './assets/tileMaps/CamelopardalisB3.json';
+import CamelopardalisB4 from './assets/tileMaps/CamelopardalisB4.json';
+import CamelopardalisB5 from './assets/tileMaps/CamelopardalisB5.json';
+import CamelopardalisB6 from './assets/tileMaps/CamelopardalisB6.json';
+import CamelopardalisB7 from './assets/tileMaps/CamelopardalisB7.json';
+import CamelopardalisB8 from './assets/tileMaps/CamelopardalisB8.json';
 
-import LoruleC1 from './assets/tileMaps/LoruleC1.json';
-import LoruleC2 from './assets/tileMaps/LoruleC2.json';
-import LoruleC3 from './assets/tileMaps/LoruleC3.json';
-import LoruleC4 from './assets/tileMaps/LoruleC4.json';
-import LoruleC5 from './assets/tileMaps/LoruleC5.json';
-import LoruleC6 from './assets/tileMaps/LoruleC6.json';
-import LoruleC7 from './assets/tileMaps/LoruleC7.json';
-import LoruleC8 from './assets/tileMaps/LoruleC8.json';
+import CamelopardalisC1 from './assets/tileMaps/CamelopardalisC1.json';
+import CamelopardalisC2 from './assets/tileMaps/CamelopardalisC2.json';
+import CamelopardalisC3 from './assets/tileMaps/CamelopardalisC3.json';
+import CamelopardalisC4 from './assets/tileMaps/CamelopardalisC4.json';
+import CamelopardalisC5 from './assets/tileMaps/CamelopardalisC5.json';
+import CamelopardalisC6 from './assets/tileMaps/CamelopardalisC6.json';
+import CamelopardalisC7 from './assets/tileMaps/CamelopardalisC7.json';
+import CamelopardalisC8 from './assets/tileMaps/CamelopardalisC8.json';
 
-import LoruleD1 from './assets/tileMaps/LoruleD1.json';
-import LoruleD2 from './assets/tileMaps/LoruleD2.json';
-import LoruleD3 from './assets/tileMaps/LoruleD3.json';
-import LoruleD4 from './assets/tileMaps/LoruleD4.json';
-import LoruleD5 from './assets/tileMaps/LoruleD5.json';
-import LoruleD6 from './assets/tileMaps/LoruleD6.json';
-import LoruleD7 from './assets/tileMaps/LoruleD7.json';
-import LoruleD8 from './assets/tileMaps/LoruleD8.json';
+import CamelopardalisD1 from './assets/tileMaps/CamelopardalisD1.json';
+import CamelopardalisD2 from './assets/tileMaps/CamelopardalisD2.json';
+import CamelopardalisD3 from './assets/tileMaps/CamelopardalisD3.json';
+import CamelopardalisD4 from './assets/tileMaps/CamelopardalisD4.json';
+import CamelopardalisD5 from './assets/tileMaps/CamelopardalisD5.json';
+import CamelopardalisD6 from './assets/tileMaps/CamelopardalisD6.json';
+import CamelopardalisD7 from './assets/tileMaps/CamelopardalisD7.json';
+import CamelopardalisD8 from './assets/tileMaps/CamelopardalisD8.json';
 
-import LoruleE1 from './assets/tileMaps/LoruleE1.json';
-import LoruleE2 from './assets/tileMaps/LoruleE2.json';
-import LoruleE3 from './assets/tileMaps/LoruleE3.json';
-import LoruleE4 from './assets/tileMaps/LoruleE4.json';
-import LoruleE5 from './assets/tileMaps/LoruleE5.json';
-import LoruleE6 from './assets/tileMaps/LoruleE6.json';
-import LoruleE7 from './assets/tileMaps/LoruleE7.json';
-import LoruleE8 from './assets/tileMaps/LoruleE8.json';
+import CamelopardalisE1 from './assets/tileMaps/CamelopardalisE1.json';
+import CamelopardalisE2 from './assets/tileMaps/CamelopardalisE2.json';
+import CamelopardalisE3 from './assets/tileMaps/CamelopardalisE3.json';
+import CamelopardalisE4 from './assets/tileMaps/CamelopardalisE4.json';
+import CamelopardalisE5 from './assets/tileMaps/CamelopardalisE5.json';
+import CamelopardalisE6 from './assets/tileMaps/CamelopardalisE6.json';
+import CamelopardalisE7 from './assets/tileMaps/CamelopardalisE7.json';
+import CamelopardalisE8 from './assets/tileMaps/CamelopardalisE8.json';
 
-import LoruleF1 from './assets/tileMaps/LoruleF1.json';
-import LoruleF2 from './assets/tileMaps/LoruleF2.json';
-import LoruleF3 from './assets/tileMaps/LoruleF3.json';
-import LoruleF4 from './assets/tileMaps/LoruleF4.json';
-import LoruleF5 from './assets/tileMaps/LoruleF5.json';
-import LoruleF6 from './assets/tileMaps/LoruleF6.json';
-import LoruleF7 from './assets/tileMaps/LoruleF7.json';
-import LoruleF8 from './assets/tileMaps/LoruleF8.json';
+import CamelopardalisF1 from './assets/tileMaps/CamelopardalisF1.json';
+import CamelopardalisF2 from './assets/tileMaps/CamelopardalisF2.json';
+import CamelopardalisF3 from './assets/tileMaps/CamelopardalisF3.json';
+import CamelopardalisF4 from './assets/tileMaps/CamelopardalisF4.json';
+import CamelopardalisF5 from './assets/tileMaps/CamelopardalisF5.json';
+import CamelopardalisF6 from './assets/tileMaps/CamelopardalisF6.json';
+import CamelopardalisF7 from './assets/tileMaps/CamelopardalisF7.json';
+import CamelopardalisF8 from './assets/tileMaps/CamelopardalisF8.json';
 
-import LoruleG1 from './assets/tileMaps/LoruleG1.json';
-import LoruleG2 from './assets/tileMaps/LoruleG2.json';
-import LoruleG3 from './assets/tileMaps/LoruleG3.json';
-import LoruleG4 from './assets/tileMaps/LoruleG4.json';
-import LoruleG5 from './assets/tileMaps/LoruleG5.json';
-import LoruleG6 from './assets/tileMaps/LoruleG6.json';
-import LoruleG7 from './assets/tileMaps/LoruleG7.json';
-import LoruleG8 from './assets/tileMaps/LoruleG8.json';
+import CamelopardalisG1 from './assets/tileMaps/CamelopardalisG1.json';
+import CamelopardalisG2 from './assets/tileMaps/CamelopardalisG2.json';
+import CamelopardalisG3 from './assets/tileMaps/CamelopardalisG3.json';
+import CamelopardalisG4 from './assets/tileMaps/CamelopardalisG4.json';
+import CamelopardalisG5 from './assets/tileMaps/CamelopardalisG5.json';
+import CamelopardalisG6 from './assets/tileMaps/CamelopardalisG6.json';
+import CamelopardalisG7 from './assets/tileMaps/CamelopardalisG7.json';
+import CamelopardalisG8 from './assets/tileMaps/CamelopardalisG8.json';
 
-import LoruleH1 from './assets/tileMaps/LoruleH1.json';
-import LoruleH2 from './assets/tileMaps/LoruleH2.json';
-import LoruleH3 from './assets/tileMaps/LoruleH3.json';
-import LoruleH4 from './assets/tileMaps/LoruleH4.json';
-import LoruleH5 from './assets/tileMaps/LoruleH5.json';
-import LoruleH6 from './assets/tileMaps/LoruleH6.json';
-import LoruleH7 from './assets/tileMaps/LoruleH7.json';
-import LoruleH8 from './assets/tileMaps/LoruleH8.json';
+import CamelopardalisH1 from './assets/tileMaps/CamelopardalisH1.json';
+import CamelopardalisH2 from './assets/tileMaps/CamelopardalisH2.json';
+import CamelopardalisH3 from './assets/tileMaps/CamelopardalisH3.json';
+import CamelopardalisH4 from './assets/tileMaps/CamelopardalisH4.json';
+import CamelopardalisH5 from './assets/tileMaps/CamelopardalisH5.json';
+import CamelopardalisH6 from './assets/tileMaps/CamelopardalisH6.json';
+import CamelopardalisH7 from './assets/tileMaps/CamelopardalisH7.json';
+import CamelopardalisH8 from './assets/tileMaps/CamelopardalisH8.json';
 
-import LoruleI1 from './assets/tileMaps/LoruleI1.json';
-import LoruleI2 from './assets/tileMaps/LoruleI2.json';
-import LoruleI3 from './assets/tileMaps/LoruleI3.json';
-import LoruleI4 from './assets/tileMaps/LoruleI4.json';
-import LoruleI5 from './assets/tileMaps/LoruleI5.json';
-import LoruleI6 from './assets/tileMaps/LoruleI6.json';
-import LoruleI7 from './assets/tileMaps/LoruleI7.json';
-import LoruleI8 from './assets/tileMaps/LoruleI8.json';
+import CamelopardalisI1 from './assets/tileMaps/CamelopardalisI1.json';
+import CamelopardalisI2 from './assets/tileMaps/CamelopardalisI2.json';
+import CamelopardalisI3 from './assets/tileMaps/CamelopardalisI3.json';
+import CamelopardalisI4 from './assets/tileMaps/CamelopardalisI4.json';
+import CamelopardalisI5 from './assets/tileMaps/CamelopardalisI5.json';
+import CamelopardalisI6 from './assets/tileMaps/CamelopardalisI6.json';
+import CamelopardalisI7 from './assets/tileMaps/CamelopardalisI7.json';
+import CamelopardalisI8 from './assets/tileMaps/CamelopardalisI8.json';
 
-import LoruleJ1 from './assets/tileMaps/LoruleJ1.json';
-import LoruleJ2 from './assets/tileMaps/LoruleJ2.json';
-import LoruleJ3 from './assets/tileMaps/LoruleJ3.json';
-import LoruleJ4 from './assets/tileMaps/LoruleJ4.json';
-import LoruleJ5 from './assets/tileMaps/LoruleJ5.json';
-import LoruleJ6 from './assets/tileMaps/LoruleJ6.json';
-import LoruleJ7 from './assets/tileMaps/LoruleJ7.json';
-import LoruleJ8 from './assets/tileMaps/LoruleJ8.json';
+import CamelopardalisJ1 from './assets/tileMaps/CamelopardalisJ1.json';
+import CamelopardalisJ2 from './assets/tileMaps/CamelopardalisJ2.json';
+import CamelopardalisJ3 from './assets/tileMaps/CamelopardalisJ3.json';
+import CamelopardalisJ4 from './assets/tileMaps/CamelopardalisJ4.json';
+import CamelopardalisJ5 from './assets/tileMaps/CamelopardalisJ5.json';
+import CamelopardalisJ6 from './assets/tileMaps/CamelopardalisJ6.json';
+import CamelopardalisJ7 from './assets/tileMaps/CamelopardalisJ7.json';
+import CamelopardalisJ8 from './assets/tileMaps/CamelopardalisJ8.json';
 
-import LoruleK1 from './assets/tileMaps/LoruleK1.json';
-import LoruleK2 from './assets/tileMaps/LoruleK2.json';
-import LoruleK3 from './assets/tileMaps/LoruleK3.json';
-import LoruleK4 from './assets/tileMaps/LoruleK4.json';
-import LoruleK5 from './assets/tileMaps/LoruleK5.json';
-import LoruleK6 from './assets/tileMaps/LoruleK6.json';
-import LoruleK7 from './assets/tileMaps/LoruleK7.json';
-import LoruleK8 from './assets/tileMaps/LoruleK8.json';
+import CamelopardalisK1 from './assets/tileMaps/CamelopardalisK1.json';
+import CamelopardalisK2 from './assets/tileMaps/CamelopardalisK2.json';
+import CamelopardalisK3 from './assets/tileMaps/CamelopardalisK3.json';
+import CamelopardalisK4 from './assets/tileMaps/CamelopardalisK4.json';
+import CamelopardalisK5 from './assets/tileMaps/CamelopardalisK5.json';
+import CamelopardalisK6 from './assets/tileMaps/CamelopardalisK6.json';
+import CamelopardalisK7 from './assets/tileMaps/CamelopardalisK7.json';
+import CamelopardalisK8 from './assets/tileMaps/CamelopardalisK8.json';
 
-import LoruleL1 from './assets/tileMaps/LoruleL1.json';
-import LoruleL2 from './assets/tileMaps/LoruleL2.json';
-import LoruleL3 from './assets/tileMaps/LoruleL3.json';
-import LoruleL4 from './assets/tileMaps/LoruleL4.json';
-import LoruleL5 from './assets/tileMaps/LoruleL5.json';
-import LoruleL6 from './assets/tileMaps/LoruleL6.json';
-import LoruleL7 from './assets/tileMaps/LoruleL7.json';
-import LoruleL8 from './assets/tileMaps/LoruleL8.json';
+import CamelopardalisL1 from './assets/tileMaps/CamelopardalisL1.json';
+import CamelopardalisL2 from './assets/tileMaps/CamelopardalisL2.json';
+import CamelopardalisL3 from './assets/tileMaps/CamelopardalisL3.json';
+import CamelopardalisL4 from './assets/tileMaps/CamelopardalisL4.json';
+import CamelopardalisL5 from './assets/tileMaps/CamelopardalisL5.json';
+import CamelopardalisL6 from './assets/tileMaps/CamelopardalisL6.json';
+import CamelopardalisL7 from './assets/tileMaps/CamelopardalisL7.json';
+import CamelopardalisL8 from './assets/tileMaps/CamelopardalisL8.json';
 
-import LoruleM1 from './assets/tileMaps/LoruleM1.json';
-import LoruleM2 from './assets/tileMaps/LoruleM2.json';
-import LoruleM3 from './assets/tileMaps/LoruleM3.json';
-import LoruleM4 from './assets/tileMaps/LoruleM4.json';
-import LoruleM5 from './assets/tileMaps/LoruleM5.json';
-import LoruleM6 from './assets/tileMaps/LoruleM6.json';
-import LoruleM7 from './assets/tileMaps/LoruleM7.json';
-import LoruleM8 from './assets/tileMaps/LoruleM8.json';
+import CamelopardalisM1 from './assets/tileMaps/CamelopardalisM1.json';
+import CamelopardalisM2 from './assets/tileMaps/CamelopardalisM2.json';
+import CamelopardalisM3 from './assets/tileMaps/CamelopardalisM3.json';
+import CamelopardalisM4 from './assets/tileMaps/CamelopardalisM4.json';
+import CamelopardalisM5 from './assets/tileMaps/CamelopardalisM5.json';
+import CamelopardalisM6 from './assets/tileMaps/CamelopardalisM6.json';
+import CamelopardalisM7 from './assets/tileMaps/CamelopardalisM7.json';
+import CamelopardalisM8 from './assets/tileMaps/CamelopardalisM8.json';
 
-import LoruleN1 from './assets/tileMaps/LoruleN1.json';
-import LoruleN2 from './assets/tileMaps/LoruleN2.json';
-import LoruleN3 from './assets/tileMaps/LoruleN3.json';
-import LoruleN4 from './assets/tileMaps/LoruleN4.json';
-import LoruleN5 from './assets/tileMaps/LoruleN5.json';
-import LoruleN6 from './assets/tileMaps/LoruleN6.json';
-import LoruleN7 from './assets/tileMaps/LoruleN7.json';
-import LoruleN8 from './assets/tileMaps/LoruleN8.json';
+import CamelopardalisN1 from './assets/tileMaps/CamelopardalisN1.json';
+import CamelopardalisN2 from './assets/tileMaps/CamelopardalisN2.json';
+import CamelopardalisN3 from './assets/tileMaps/CamelopardalisN3.json';
+import CamelopardalisN4 from './assets/tileMaps/CamelopardalisN4.json';
+import CamelopardalisN5 from './assets/tileMaps/CamelopardalisN5.json';
+import CamelopardalisN6 from './assets/tileMaps/CamelopardalisN6.json';
+import CamelopardalisN7 from './assets/tileMaps/CamelopardalisN7.json';
+import CamelopardalisN8 from './assets/tileMaps/CamelopardalisN8.json';
 
-import LoruleO1 from './assets/tileMaps/LoruleO1.json';
-import LoruleO2 from './assets/tileMaps/LoruleO2.json';
-import LoruleO3 from './assets/tileMaps/LoruleO3.json';
-import LoruleO4 from './assets/tileMaps/LoruleO4.json';
-import LoruleO5 from './assets/tileMaps/LoruleO5.json';
-import LoruleO6 from './assets/tileMaps/LoruleO6.json';
-import LoruleO7 from './assets/tileMaps/LoruleO7.json';
-import LoruleO8 from './assets/tileMaps/LoruleO8.json';
+import CamelopardalisO1 from './assets/tileMaps/CamelopardalisO1.json';
+import CamelopardalisO2 from './assets/tileMaps/CamelopardalisO2.json';
+import CamelopardalisO3 from './assets/tileMaps/CamelopardalisO3.json';
+import CamelopardalisO4 from './assets/tileMaps/CamelopardalisO4.json';
+import CamelopardalisO5 from './assets/tileMaps/CamelopardalisO5.json';
+import CamelopardalisO6 from './assets/tileMaps/CamelopardalisO6.json';
+import CamelopardalisO7 from './assets/tileMaps/CamelopardalisO7.json';
+import CamelopardalisO8 from './assets/tileMaps/CamelopardalisO8.json';
 
-import LoruleP1 from './assets/tileMaps/LoruleP1.json';
-import LoruleP2 from './assets/tileMaps/LoruleP2.json';
-import LoruleP3 from './assets/tileMaps/LoruleP3.json';
-import LoruleP4 from './assets/tileMaps/LoruleP4.json';
-import LoruleP5 from './assets/tileMaps/LoruleP5.json';
-import LoruleP6 from './assets/tileMaps/LoruleP6.json';
-import LoruleP7 from './assets/tileMaps/LoruleP7.json';
-import LoruleP8 from './assets/tileMaps/LoruleP8.json';
+import CamelopardalisP1 from './assets/tileMaps/CamelopardalisP1.json';
+import CamelopardalisP2 from './assets/tileMaps/CamelopardalisP2.json';
+import CamelopardalisP3 from './assets/tileMaps/CamelopardalisP3.json';
+import CamelopardalisP4 from './assets/tileMaps/CamelopardalisP4.json';
+import CamelopardalisP5 from './assets/tileMaps/CamelopardalisP5.json';
+import CamelopardalisP6 from './assets/tileMaps/CamelopardalisP6.json';
+import CamelopardalisP7 from './assets/tileMaps/CamelopardalisP7.json';
+import CamelopardalisP8 from './assets/tileMaps/CamelopardalisP8.json';
 
 import backYard1 from './assets/tileMaps/backYard1.json';
 import arena1 from './assets/tileMaps/arena1.json';
@@ -211,7 +211,7 @@ https://github.com/sporadic-labs/tile-extruder
  */
 
 // Tile Sets
-import tileset1bit16x16 from './assets/tileSets/tileset_1bit-16x16-extruded.png';
+import camelopardalisColor16x16 from './assets/tileSets/CamelopardalisColor16x16.png';
 import tilesetZoriaOverworld from './assets/tileSets/zoria_overworld-extruded.png';
 import dungeonTileset from './assets/tileSets/Dungeon_Tileset.png';
 
@@ -220,9 +220,9 @@ import dungeonTileset from './assets/tileSets/Dungeon_Tileset.png';
 // but it is also used by Phaser
 // WARNING: Phaser requires that this name match the tilesets.name in the Tiled tile map!
 const tileSets = {
-  OneBit16x16: {
-    image: tileset1bit16x16, // Image file from above.
-    name: 'tileset_1bit-16x16', // Must match the name used in the tile map itself!
+  CamelopardalisColor16x16: {
+    image: camelopardalisColor16x16,
+    name: 'CamelopardalisColor16x16',
   },
   dungeonTileset: { image: dungeonTileset, name: 'Dungeon_Tileset' },
   ZoriaOverworld: { image: tilesetZoriaOverworld, name: 'Zoria Overworld' },
@@ -236,32 +236,35 @@ const tileSets = {
 // accounting for the "hidden" teleport tiles on the outside of every scene.
 // TODO: If we are happy with always viewing the full scene, should this data just come from the tile map itself?
 const gameSizes = {
-  lorule: {
-    width: 16 * 16, // In Pixels
-    height: 16 * 11, // Tile pixel count * tile count
-  },
-  // 19/11 is the closest to 16:9 that I can get with tiles.
-  loruleWide: {
-    width: 16 * 19,
-    height: 16 * 11,
+  CamelopardalisColor16x16: {
+    width: 40 * 16, // In Pixels
+    height: 32 * 11, // Tile pixel count * tile count
+    teleportLayerWidth: 16 * 2, // In pixels
   },
   cave: {
     width: 16 * 18,
     height: 16 * 13,
+    teleportLayerWidth: 16, // In pixels
   },
   arena: {
     width: 16 * 40,
     height: 16 * 22,
+    teleportLayerWidth: 16, // In pixels
+  },
+  backYard: {
+    width: 16 * 19,
+    height: 16 * 11,
+    teleportLayerWidth: 16, // In pixels
   },
 };
 
 // HTML Parameters
 // TODO: Wrap up the htmlElementParameters options into an object too like gameSizes and tileSets.
 
-const loruleUpperLeftFontSize = '.03';
-const loruleScrollingFontSize = loruleUpperLeftFontSize;
+const camelopardalisUpperLeftFontSize = '.03';
+const camelopardalisScrollingFontSize = camelopardalisUpperLeftFontSize;
 
-const loruleHtmlElementParameters = {
+const camelopardalisHtmlElementParameters = {
   Center: {
     fontSize: '.1', // percent of scene height.
     color: '#5a8ab7',
@@ -273,12 +276,12 @@ const loruleHtmlElementParameters = {
     background: '255,255,255,0.9', // rgba
   },
   UpperLeft: {
-    fontSize: loruleUpperLeftFontSize, // percent of scene height.
+    fontSize: camelopardalisUpperLeftFontSize, // percent of scene height.
     color: 'blue',
     background: '255,255,255,0.9', // rgba
   },
   Scrolling: {
-    fontSize: loruleScrollingFontSize, // percent of scene height.
+    fontSize: camelopardalisScrollingFontSize, // percent of scene height.
     color: '#d84b65',
     background: '255,255,255,0.9', // rgba
   },
@@ -295,939 +298,1219 @@ const caveHtmlElementParameters = {
     background: '255,255,255,0.9', // rgba
   },
   UpperLeft: {
-    fontSize: loruleUpperLeftFontSize, // percent of scene height.
+    fontSize: camelopardalisUpperLeftFontSize, // percent of scene height.
     color: 'black',
     background: '255,255,255,0.8', // rgba
   },
   Scrolling: {
-    fontSize: loruleScrollingFontSize, // percent of scene height.
+    fontSize: camelopardalisScrollingFontSize, // percent of scene height.
     color: 'black',
     background: '255,255,255,0.8', // rgba
+  },
+};
+
+const camelopardalisColor16x16AnimatedTileReplacementStrategy = {
+  'Stuff You Run Into': {
+    probability: 0.4,
+    76: 'GreenMountainWallSparkleOne',
+    244: 'BrownMountainWallSparkleOne',
+  },
+  'Stuff You Walk Under': {
+    probability: 0.08,
+    363: 'SkullWink',
+  },
+  Ground: {
+    probability: 0.2,
+    163: 'GroundSparkleOne',
+  },
+  Water: {
+    110: 'BlueWater',
+    98: 'BlueWaterNorthShore',
+    97: 'BlueWaterNorthWestShore',
+    109: 'BlueWaterWestShore',
   },
 };
 
 // Scenes
 const scenes = [
   {
-    sceneName: 'LoruleH8',
-    tileMap: LoruleH8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.loruleWide,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleI8',
-    tileMap: LoruleI8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.loruleWide,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleH7',
-    tileMap: LoruleH7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleG7',
-    tileMap: LoruleG7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleG8',
-    tileMap: LoruleG8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleF8',
-    tileMap: LoruleF8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleH6',
-    tileMap: LoruleH6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleI7',
-    tileMap: LoruleI7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleJ8',
-    tileMap: LoruleJ8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleE8',
-    tileMap: LoruleE8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleF7',
-    tileMap: LoruleF7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleG6',
-    tileMap: LoruleG6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleH5',
-    tileMap: LoruleH5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleI6',
-    tileMap: LoruleI6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleJ7',
-    tileMap: LoruleJ7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleK8',
-    tileMap: LoruleK8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleK7',
-    tileMap: LoruleK7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleL8',
-    tileMap: LoruleL8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleJ6',
-    tileMap: LoruleJ6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleI4',
-    tileMap: LoruleI4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleI5',
-    tileMap: LoruleI5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleH4',
-    tileMap: LoruleH4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleG5',
-    tileMap: LoruleG5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleF6',
-    tileMap: LoruleF6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleE7',
-    tileMap: LoruleE7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleD8',
-    tileMap: LoruleD8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleD7',
-    tileMap: LoruleD7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleL1',
-    tileMap: LoruleL1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleL2',
-    tileMap: LoruleL2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleM1',
-    tileMap: LoruleM1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleM2',
-    tileMap: LoruleM2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleM3',
-    tileMap: LoruleM3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleN1',
-    tileMap: LoruleN1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleN2',
-    tileMap: LoruleN2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleN3',
-    tileMap: LoruleN3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleN4',
-    tileMap: LoruleN4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleO1',
-    tileMap: LoruleO1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleO2',
-    tileMap: LoruleO2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleO3',
-    tileMap: LoruleO3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleO4',
-    tileMap: LoruleO4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleO5',
-    tileMap: LoruleO5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleP1',
-    tileMap: LoruleP1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleP2',
-    tileMap: LoruleP2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleP3',
-    tileMap: LoruleP3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleP4',
-    tileMap: LoruleP4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleP5',
-    tileMap: LoruleP5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleP6',
-    tileMap: LoruleP6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleP7',
-    tileMap: LoruleP7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleO6',
-    tileMap: LoruleO6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleN5',
-    tileMap: LoruleN5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleM4',
-    tileMap: LoruleM4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleL3',
-    tileMap: LoruleL3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleJ1',
-    tileMap: LoruleJ1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleK1',
-    tileMap: LoruleK1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleK2',
-    tileMap: LoruleK2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleE1',
-    tileMap: LoruleE1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleE2',
-    tileMap: LoruleE2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleE3',
-    tileMap: LoruleE3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleF1',
-    tileMap: LoruleF1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleD1',
-    tileMap: LoruleD1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleD2',
-    tileMap: LoruleD2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleD3',
-    tileMap: LoruleD3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleC1',
-    tileMap: LoruleC1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleC2',
-    tileMap: LoruleC2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleC3',
-    tileMap: LoruleC3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleC4',
-    tileMap: LoruleC4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleB1',
-    tileMap: LoruleB1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleB2',
-    tileMap: LoruleB2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleB3',
-    tileMap: LoruleB3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleB4',
-    tileMap: LoruleB4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleB5',
-    tileMap: LoruleB5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA1',
-    tileMap: LoruleA1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA2',
-    tileMap: LoruleA2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA3',
-    tileMap: LoruleA3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA4',
-    tileMap: LoruleA4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA5',
-    tileMap: LoruleA5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA6',
-    tileMap: LoruleA6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleL4',
-    tileMap: LoruleL4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleK3',
-    tileMap: LoruleK3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleJ2',
-    tileMap: LoruleJ2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleI1',
-    tileMap: LoruleI1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleF2',
-    tileMap: LoruleF2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleD4',
-    tileMap: LoruleD4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleC5',
-    tileMap: LoruleC5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleB6',
-    tileMap: LoruleB6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA7',
-    tileMap: LoruleA7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleM5',
-    tileMap: LoruleM5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleN6',
-    tileMap: LoruleN6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleO7',
-    tileMap: LoruleO7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleP8',
-    tileMap: LoruleP8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleO8',
-    tileMap: LoruleO8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleN7',
-    tileMap: LoruleN7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleM6',
-    tileMap: LoruleM6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleL5',
-    tileMap: LoruleL5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleK4',
-    tileMap: LoruleK4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleJ3',
-    tileMap: LoruleJ3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleI2',
-    tileMap: LoruleI2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleH1',
-    tileMap: LoruleH1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleG1',
-    tileMap: LoruleG1,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleG2',
-    tileMap: LoruleG2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleF3',
-    tileMap: LoruleF3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleE4',
-    tileMap: LoruleE4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleD5',
-    tileMap: LoruleD5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleC6',
-    tileMap: LoruleC6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleB7',
-    tileMap: LoruleB7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA8',
-    tileMap: LoruleA8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleA9',
-    tileMap: LoruleA9,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleN8',
-    tileMap: LoruleN8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleM7',
-    tileMap: LoruleM7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleL6',
-    tileMap: LoruleL6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleK5',
-    tileMap: LoruleK5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleJ4',
-    tileMap: LoruleJ4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleH2',
-    tileMap: LoruleH2,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleI3',
-    tileMap: LoruleI3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleG3',
-    tileMap: LoruleG3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleF4',
-    tileMap: LoruleF4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleE5',
-    tileMap: LoruleE5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleD6',
-    tileMap: LoruleD6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleC7',
-    tileMap: LoruleC7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleB8',
-    tileMap: LoruleB8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleM8',
-    tileMap: LoruleM8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleL7',
-    tileMap: LoruleL7,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleK6',
-    tileMap: LoruleK6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleH3',
-    tileMap: LoruleH3,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleJ5',
-    tileMap: LoruleJ5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleG4',
-    tileMap: LoruleG4,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleF5',
-    tileMap: LoruleF5,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleE6',
-    tileMap: LoruleE6,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
-  },
-  {
-    sceneName: 'LoruleC8',
-    tileMap: LoruleC8,
-    tileSet: tileSets.OneBit16x16,
-    gameSize: gameSizes.lorule,
-    htmlElementParameters: loruleHtmlElementParameters,
+    sceneName: 'CamelopardalisH8',
+    tileMap: CamelopardalisH8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisI8',
+    tileMap: CamelopardalisI8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisH7',
+    tileMap: CamelopardalisH7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisG7',
+    tileMap: CamelopardalisG7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisG8',
+    tileMap: CamelopardalisG8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisF8',
+    tileMap: CamelopardalisF8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisH6',
+    tileMap: CamelopardalisH6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisI7',
+    tileMap: CamelopardalisI7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisJ8',
+    tileMap: CamelopardalisJ8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisE8',
+    tileMap: CamelopardalisE8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisF7',
+    tileMap: CamelopardalisF7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisG6',
+    tileMap: CamelopardalisG6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisH5',
+    tileMap: CamelopardalisH5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisI6',
+    tileMap: CamelopardalisI6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisJ7',
+    tileMap: CamelopardalisJ7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisK8',
+    tileMap: CamelopardalisK8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisK7',
+    tileMap: CamelopardalisK7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisL8',
+    tileMap: CamelopardalisL8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisJ6',
+    tileMap: CamelopardalisJ6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisI4',
+    tileMap: CamelopardalisI4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisI5',
+    tileMap: CamelopardalisI5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisH4',
+    tileMap: CamelopardalisH4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisG5',
+    tileMap: CamelopardalisG5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisF6',
+    tileMap: CamelopardalisF6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisE7',
+    tileMap: CamelopardalisE7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisD8',
+    tileMap: CamelopardalisD8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisD7',
+    tileMap: CamelopardalisD7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisL1',
+    tileMap: CamelopardalisL1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisL2',
+    tileMap: CamelopardalisL2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisM1',
+    tileMap: CamelopardalisM1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisM2',
+    tileMap: CamelopardalisM2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisM3',
+    tileMap: CamelopardalisM3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisN1',
+    tileMap: CamelopardalisN1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisN2',
+    tileMap: CamelopardalisN2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisN3',
+    tileMap: CamelopardalisN3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisN4',
+    tileMap: CamelopardalisN4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisO1',
+    tileMap: CamelopardalisO1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisO2',
+    tileMap: CamelopardalisO2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisO3',
+    tileMap: CamelopardalisO3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisO4',
+    tileMap: CamelopardalisO4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisO5',
+    tileMap: CamelopardalisO5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisP1',
+    tileMap: CamelopardalisP1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisP2',
+    tileMap: CamelopardalisP2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisP3',
+    tileMap: CamelopardalisP3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisP4',
+    tileMap: CamelopardalisP4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisP5',
+    tileMap: CamelopardalisP5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisP6',
+    tileMap: CamelopardalisP6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisP7',
+    tileMap: CamelopardalisP7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisO6',
+    tileMap: CamelopardalisO6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisN5',
+    tileMap: CamelopardalisN5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisM4',
+    tileMap: CamelopardalisM4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisL3',
+    tileMap: CamelopardalisL3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisJ1',
+    tileMap: CamelopardalisJ1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisK1',
+    tileMap: CamelopardalisK1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisK2',
+    tileMap: CamelopardalisK2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisE1',
+    tileMap: CamelopardalisE1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisE2',
+    tileMap: CamelopardalisE2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisE3',
+    tileMap: CamelopardalisE3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisF1',
+    tileMap: CamelopardalisF1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisD1',
+    tileMap: CamelopardalisD1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisD2',
+    tileMap: CamelopardalisD2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisD3',
+    tileMap: CamelopardalisD3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisC1',
+    tileMap: CamelopardalisC1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisC2',
+    tileMap: CamelopardalisC2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisC3',
+    tileMap: CamelopardalisC3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisC4',
+    tileMap: CamelopardalisC4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisB1',
+    tileMap: CamelopardalisB1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisB2',
+    tileMap: CamelopardalisB2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisB3',
+    tileMap: CamelopardalisB3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisB4',
+    tileMap: CamelopardalisB4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisB5',
+    tileMap: CamelopardalisB5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA1',
+    tileMap: CamelopardalisA1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA2',
+    tileMap: CamelopardalisA2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA3',
+    tileMap: CamelopardalisA3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA4',
+    tileMap: CamelopardalisA4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA5',
+    tileMap: CamelopardalisA5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA6',
+    tileMap: CamelopardalisA6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisL4',
+    tileMap: CamelopardalisL4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisK3',
+    tileMap: CamelopardalisK3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisJ2',
+    tileMap: CamelopardalisJ2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisI1',
+    tileMap: CamelopardalisI1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisF2',
+    tileMap: CamelopardalisF2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisD4',
+    tileMap: CamelopardalisD4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisC5',
+    tileMap: CamelopardalisC5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisB6',
+    tileMap: CamelopardalisB6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA7',
+    tileMap: CamelopardalisA7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisM5',
+    tileMap: CamelopardalisM5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisN6',
+    tileMap: CamelopardalisN6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisO7',
+    tileMap: CamelopardalisO7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisP8',
+    tileMap: CamelopardalisP8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisO8',
+    tileMap: CamelopardalisO8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisN7',
+    tileMap: CamelopardalisN7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisM6',
+    tileMap: CamelopardalisM6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisL5',
+    tileMap: CamelopardalisL5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisK4',
+    tileMap: CamelopardalisK4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisJ3',
+    tileMap: CamelopardalisJ3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisI2',
+    tileMap: CamelopardalisI2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisH1',
+    tileMap: CamelopardalisH1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisG1',
+    tileMap: CamelopardalisG1,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisG2',
+    tileMap: CamelopardalisG2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisF3',
+    tileMap: CamelopardalisF3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisE4',
+    tileMap: CamelopardalisE4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisD5',
+    tileMap: CamelopardalisD5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisC6',
+    tileMap: CamelopardalisC6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisB7',
+    tileMap: CamelopardalisB7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA8',
+    tileMap: CamelopardalisA8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisA9',
+    tileMap: CamelopardalisA9,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisN8',
+    tileMap: CamelopardalisN8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisM7',
+    tileMap: CamelopardalisM7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisL6',
+    tileMap: CamelopardalisL6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisK5',
+    tileMap: CamelopardalisK5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisJ4',
+    tileMap: CamelopardalisJ4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisH2',
+    tileMap: CamelopardalisH2,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisI3',
+    tileMap: CamelopardalisI3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisG3',
+    tileMap: CamelopardalisG3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisF4',
+    tileMap: CamelopardalisF4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisE5',
+    tileMap: CamelopardalisE5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisD6',
+    tileMap: CamelopardalisD6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisC7',
+    tileMap: CamelopardalisC7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisB8',
+    tileMap: CamelopardalisB8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisM8',
+    tileMap: CamelopardalisM8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisL7',
+    tileMap: CamelopardalisL7,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisK6',
+    tileMap: CamelopardalisK6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisH3',
+    tileMap: CamelopardalisH3,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisJ5',
+    tileMap: CamelopardalisJ5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisG4',
+    tileMap: CamelopardalisG4,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisF5',
+    tileMap: CamelopardalisF5,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisE6',
+    tileMap: CamelopardalisE6,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
+  },
+  {
+    sceneName: 'CamelopardalisC8',
+    tileMap: CamelopardalisC8,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileReplacementStrategy:
+      camelopardalisColor16x16AnimatedTileReplacementStrategy,
   },
   {
     sceneName: 'backYard1',
     tileMap: backYard1,
     tileSet: tileSets.ZoriaOverworld,
-    gameSize: gameSizes.loruleWide,
+    gameSize: gameSizes.backYard,
     htmlElementParameters: {
       Center: {
         fontSize: '.1', // percent of scene height.
         color: 'red',
       },
       UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
+        fontSize: camelopardalisUpperLeftFontSize, // percent of scene height.
         color: 'black',
         background: '255,255,255,0.8', // rgba
       },
       Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
+        fontSize: camelopardalisScrollingFontSize, // percent of scene height.
         color: 'black',
         background: '255,255,255,0.8', // rgba
       },
@@ -1244,12 +1527,12 @@ const scenes = [
         color: 'red',
       },
       UpperLeft: {
-        fontSize: loruleUpperLeftFontSize, // percent of scene height.
+        fontSize: camelopardalisUpperLeftFontSize, // percent of scene height.
         color: 'black',
         background: '255,255,255,0.8', // rgba
       },
       Scrolling: {
-        fontSize: loruleScrollingFontSize, // percent of scene height.
+        fontSize: camelopardalisScrollingFontSize, // percent of scene height.
         color: 'black',
         background: '255,255,255,0.8', // rgba
       },

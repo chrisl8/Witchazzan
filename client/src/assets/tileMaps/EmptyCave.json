@@ -23,13 +23,13 @@
                     79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79],
                  "height":15,
                  "id":17,
-                 "name":"LoruleH8",
+                 "name":"CamelopardalisH8",
                  "opacity":1,
                  "properties":[
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"LoruleH8"
+                         "value":"CamelopardalisH8"
                         }, 
                         {
                          "name":"Entrance",
