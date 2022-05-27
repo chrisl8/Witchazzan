@@ -6,8 +6,8 @@
   "type": "module",
   "source": "index.html",
   "scripts": {
-    "start": "parcel --port 3001 --open",
-    "prebuild": "rm -rf dist",
+    "start": "rm -rf .parcel-cache;parcel --port 3001 --open",
+    "prebuild": "rm -rf dist;rm -rf .parcel-cache",
     "build": "parcel build"
   },
   "repository": {
