@@ -6,11 +6,10 @@ import Phaser from 'phaser';
 import scene from '../sceneList.js';
 
 const phaserConfigObject = {
-  type: Phaser.AUTO, // Which renderer to use
+  type: Phaser.WEBGL, // Which renderer to use
   parent: 'game_container', // ID of the DOM element to add the canvas to. If no parent is given, it will default to using the document body.
   scale: {
-    mode: Phaser.Scale.NONE,
-    autoRound: true, // Might improve performance?
+    mode: Phaser.Scale.FIT, // Works and looks a lot better than my manual attempts!
     autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
   },
   physics: {

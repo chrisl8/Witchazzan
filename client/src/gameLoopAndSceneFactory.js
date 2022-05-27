@@ -38,7 +38,6 @@ import cleanUpSceneAndTeleport from './gameLoopFunctions/cleanUpSceneAndTeleport
 import playerTeleportOverlapHandler from './gameLoopFunctions/playerTeleportOverlapHandler.js';
 import cleanUpClientSprites from './gameLoopFunctions/cleanUpClientSprites.js';
 import updateInGameDomElements from './gameLoopFunctions/updateInGameDomElements.js';
-import setCameraZoom from './gameLoopFunctions/setCameraZoom.js';
 import hotKeyHandler from './gameLoopFunctions/hotKeyHandler.js';
 import handlePlayerMovement from './gameLoopFunctions/handlePlayerMovement.js';
 import checkIfLayerExists from './gameLoopFunctions/checkIfLayerExists.js';
@@ -502,6 +501,20 @@ const gameLoopAndSceneFactory = ({
     // Phaser controlled mouse input
     this.input.mouse.disableContextMenu();
 
+    // Tell phaser what the size of the game is,
+    // because not every scene is the same size, nor needs to be.
+    this.scale.setGameSize(gameSize.width, gameSize.height);
+
+    // Move the teleport area off camera
+    this.cameras.main
+      .setBounds(
+        gameSize.teleportLayerWidth,
+        gameSize.teleportLayerWidth,
+        gameSize.width,
+        gameSize.height,
+      )
+      .setOrigin(0.5, 0.5);
+
     // Essentially announce that the scene is ready.
     playerObject.teleportInProgress = false;
   };
@@ -515,6 +528,17 @@ const gameLoopAndSceneFactory = ({
     if (playerObject.teleportInProgress) {
       return;
     }
+
+    // TODO: I'm not sure if we need this or not? Check if and how it is used.
+    //       If I set it in create(), it is just always 0,0, but here it is ALWAYS 32,32.
+    //       Maybe it never changes? Not sure where it even comes from.
+    playerObject.cameraOffset = {
+      x: this.cameras.main.worldView.x,
+      y: this.cameras.main.worldView.y,
+    };
+
+    // Used for placing DOM elements in the correct location relevant to the game elements.
+    playerObject.cameraScaleFactor = this.scale.displayScale.x;
 
     /* SPECIAL PLAYER ACTIONS */
     // This function handles stuff like
@@ -539,9 +563,6 @@ const gameLoopAndSceneFactory = ({
       );
       return;
     }
-
-    // This is required on every update, in case the user resizes their browser window.
-    setCameraZoom.call(this, gameSize, sceneTileSet);
 
     // TODO: Delete this line once we are sure it is not needed.
     //       It was used to set a variable ages ago, but then the variable was removed, so it seems to do nothing.

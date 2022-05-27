@@ -39,6 +39,8 @@ const updateInGameDomElements = (htmlElementParameters) => {
   // Update element styles and insert text if needed.
 
   // Set HTML element options based on the new canvas properties
+  // TODO: Oddly this is using the browser window size, NOT the canvas,
+  //       Is that on purpose?
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
 
@@ -154,8 +156,8 @@ const updateInGameDomElements = (htmlElementParameters) => {
             newInnerHTML = '&#x1F4AD;';
             // Font size
             const newFontSize =
-              (playerObject.player.displayWidth *
-                playerObject.cameraScaleFactor) /
+              playerObject.player.displayWidth /
+              playerObject.cameraScaleFactor /
               2;
             playerObject.domElements.otherPlayerTags[
               key
@@ -166,25 +168,25 @@ const updateInGameDomElements = (htmlElementParameters) => {
             // to make it up and to the right of the player.
             playerObject.domElements.otherPlayerTags[key].style.left = `${
               canvasLeftMargin +
-              (clientSprite.sprite.x - playerObject.cameraOffset.x) *
+              (clientSprite.sprite.x - playerObject.cameraOffset.x) /
                 playerObject.cameraScaleFactor +
               4
             }px`;
             playerObject.domElements.otherPlayerTags[key].style.top = `${
               (clientSprite.sprite.y -
                 clientSprite.sprite.displayHeight -
-                playerObject.cameraOffset.y) *
+                playerObject.cameraOffset.y) /
                 playerObject.cameraScaleFactor +
               4
             }px`;
           } else if (hadron.hlth < 100) {
             const healthBarWidth =
-              clientSprite.sprite.displayWidth *
-              playerObject.cameraScaleFactor *
+              (clientSprite.sprite.displayWidth /
+                playerObject.cameraScaleFactor) *
               1.75;
             const healthBarHeight =
-              clientSprite.sprite.displayHeight *
-              playerObject.cameraScaleFactor *
+              (clientSprite.sprite.displayHeight /
+                playerObject.cameraScaleFactor) *
               0.1;
             let healthBarColor = '#27d727';
             if (hadron.hlth < 70) {
@@ -199,14 +201,14 @@ const updateInGameDomElements = (htmlElementParameters) => {
               canvasLeftMargin +
               (clientSprite.sprite.x -
                 clientSprite.sprite.displayWidth -
-                playerObject.cameraOffset.x) *
+                playerObject.cameraOffset.x) /
                 playerObject.cameraScaleFactor +
               4
             }px`;
             playerObject.domElements.otherPlayerTags[key].style.top = `${
               (clientSprite.sprite.y -
                 clientSprite.sprite.displayHeight * 0.6 -
-                playerObject.cameraOffset.y) *
+                playerObject.cameraOffset.y) /
               playerObject.cameraScaleFactor
             }px`;
           }
