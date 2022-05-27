@@ -5,7 +5,6 @@ import fireball from '../assets/spriteSheets/fireball.png';
 import teleball from '../assets/spriteSheets/Teleport.png';
 import bloomby from '../assets/spriteSheets/bloomby16.png';
 import joosh from '../assets/spriteSheets/joosh.png';
-import pantingDog from '../assets/spriteSheets/panting-dog.png';
 import carrot from '../assets/spriteSheets/carrot.png';
 import carrot01 from '../assets/spriteSheets/carrot01.png';
 import carrot02 from '../assets/spriteSheets/carrot02.png';
@@ -143,33 +142,6 @@ const spriteSheetList = [
     physicsSize: {
       x: 101 * 0.8,
       y: 128 * 0.8,
-    },
-    physicsOffset: {
-      x: 12,
-      y: 12,
-    },
-    displayWidth: 12,
-    displayHeight: 16,
-  },
-  {
-    type: 'player',
-    name: 'pantingDog',
-    file: pantingDog,
-    faces: 'right',
-    frameWidth: 500,
-    frameHeight: 397,
-    endFrame: -1, // How many frames to extract from the sheet. -1 means all
-    animationFrameRate: 8,
-    animations: [
-      { keyName: 'move-stationary', start: 0, end: 1, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-    ],
-    physicsSize: {
-      x: 500 * 0.8,
-      y: 397 * 0.8,
     },
     physicsOffset: {
       x: 12,
