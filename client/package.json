@@ -34,8 +34,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "prettier": "^2.0.2",
-    "parcel": "^2.5.0",
-    "tile-extruder": "^2.1.0"
+    "parcel": "^2.5.0"
   },
   "browserslist": [
     "> 0.5%",

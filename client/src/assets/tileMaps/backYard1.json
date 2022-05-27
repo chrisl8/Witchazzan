@@ -364,12 +364,12 @@
         {
          "columns":32,
          "firstgid":1,
-         "image":"..\/tileSets\/zoria_overworld-extruded.png",
-         "imageheight":270,
-         "imagewidth":576,
-         "margin":1,
+         "image":"..\/tileSets\/zoria_overworld.png",
+         "imageheight":240,
+         "imagewidth":512,
+         "margin":0,
          "name":"Zoria Overworld",
-         "spacing":2,
+         "spacing":0,
          "tilecount":480,
          "tileheight":16,
          "tilewidth":16
