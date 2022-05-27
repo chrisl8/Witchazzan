@@ -48,6 +48,7 @@ import updateHadrons from './gameLoopFunctions/updateHadrons.js';
 
 import npcBehavior from './gameLoopFunctions/npcBehavior.js';
 import specialPlayerActions from './gameLoopFunctions/specialPlayerActions.js';
+import replaceTilemapTilesWithAnimatedSprites from './replaceTilemapTilesWithAnimatedSprites.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -61,6 +62,7 @@ const gameLoopAndSceneFactory = ({
   tileSet, // An object containing the actual image and the name to reference it by
   gameSize, // In theory we could make a map that is bigger than the screen, although that would need testing.
   htmlElementParameters = {},
+  animatedTileReplacementStrategy,
 }) => {
   const scene = new Phaser.Scene(sceneName);
   let map;
@@ -154,6 +156,7 @@ const gameLoopAndSceneFactory = ({
             }),
             frameRate: spriteSheet.animationFrameRate,
             repeat: animation.repeat,
+            repeatDelay: animation.repeatDelay,
           });
         });
       }
@@ -457,42 +460,14 @@ const gameLoopAndSceneFactory = ({
       }
     });
 
-    // TODO: Animated tile replacement experiment
-    // Animated water tiles
-    map.filterTiles(
-      (tile) => {
-        // console.log(tile.pixelX, tile.pixelY, tile.index);
-        const spriteData = getSpriteData('grassAndWaterDark');
-        const newThing = this.physics.add
-          .sprite(tile.pixelX, tile.pixelY, spriteData.name)
-          .setSize(tile.width, tile.height)
-          .setOrigin(0, 0);
-        // if (spriteData.physicsOffset) {
-        //   newThing.body.setOffset(
-        //     spriteData.physicsOffset.x,
-        //     spriteData.physicsOffset.y,
-        //   );
-        // }
-        newThing.displayHeight = tile.height;
-        newThing.displayWidth = tile.width;
-        newThing.flipX = spriteData.faces === 'right';
-
-        if (
-          this.anims.anims.entries.hasOwnProperty(
-            `${spriteData.name}-move-stationary`,
-          )
-        ) {
-          newThing.anims.play(`${spriteData.name}-move-stationary`, true);
-        }
-      },
-      this,
-      1,
-      1,
-      gameSize.width,
-      gameSize.height,
-      { isNotEmpty: true },
-      'Water',
-    );
+    if (animatedTileReplacementStrategy) {
+      replaceTilemapTilesWithAnimatedSprites.call(
+        this,
+        map,
+        gameSize,
+        animatedTileReplacementStrategy,
+      );
+    }
 
     // Globally send all keyboard input to the keyboard input handler
     this.input.keyboard.on('keydown', handleKeyboardInput);
