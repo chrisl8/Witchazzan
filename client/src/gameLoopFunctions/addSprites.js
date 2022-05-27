@@ -1,6 +1,7 @@
 import clientSprites from '../objects/clientSprites.js';
 import getSpriteData from '../utilities/getSpriteData.js';
 import playerObject from '../objects/playerObject.js';
+import objectDepthSettings from '../objects/objectDepthSettings.js';
 
 function addSprites(hadron, key) {
   // Add new Sprites for new hadrons.
@@ -64,6 +65,14 @@ function addSprites(hadron, key) {
     // Set the depth for the sprite.
     if (hadron.typ === 'npc' && hadron.hasOwnProperty('dph')) {
       newClientSprite.sprite.setDepth(hadron.dph);
+    } else if (hadron.typ === 'npc') {
+      newClientSprite.sprite.setDepth(objectDepthSettings.npc);
+    } else if (key === playerObject.playerId) {
+      newClientSprite.sprite.setDepth(objectDepthSettings.playerShadow);
+    } else if (hadron.typ === 'player') {
+      newClientSprite.sprite.setDepth(objectDepthSettings.otherPlayer);
+    } else if (hadron.typ === 'spell') {
+      newClientSprite.sprite.setDepth(objectDepthSettings.spells);
     }
 
     // Set the "shadow" of my own player to black.

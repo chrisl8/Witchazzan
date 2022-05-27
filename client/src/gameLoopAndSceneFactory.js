@@ -30,6 +30,7 @@ import spriteSheetList from './objects/spriteSheetList.js';
 import handleKeyboardInput from './handleKeyboardInput.js';
 import getSpriteData from './utilities/getSpriteData.js';
 import convertTileMapPropertyArrayToObject from './utilities/convertTileMapPropertyArrayToObject.js';
+import objectDepthSettings from './objects/objectDepthSettings.js';
 
 // Game Loop Functions
 import cleanUpScene from './gameLoopFunctions/cleanUpScene.js';
@@ -170,26 +171,33 @@ const gameLoopAndSceneFactory = ({
     // TILEMAP LAYERS
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
-    map.createLayer('Ground', sceneTileSet, 0, 0);
-    map.createLayer('Stuff on the Ground You Can Walk On', sceneTileSet, 0, 0);
+    map
+      .createLayer('Ground', sceneTileSet, 0, 0)
+      .setDepth(objectDepthSettings.tileMapLayers.Ground);
+    map
+      .createLayer('Stuff on the Ground You Can Walk On', sceneTileSet, 0, 0)
+      .setDepth(
+        objectDepthSettings.tileMapLayers[
+          'Stuff on the Ground You Can Walk On'
+        ],
+      );
 
     // We collide with EVERYTHING in this layer. Collision isn't based on tiles themselves,
     // but the layer they are in.
     collisionLayer = map
       .createLayer('Stuff You Run Into', sceneTileSet, 0, 0)
-      .setCollisionByExclusion([-1]);
+      .setCollisionByExclusion([-1])
+      .setDepth(objectDepthSettings.tileMapLayers['Stuff You Run Into']);
     let waterLayer;
     if (checkIfLayerExists('Water', map)) {
       waterLayer = map
         .createLayer('Water', sceneTileSet, 0, 0)
-        .setCollisionByExclusion([-1]);
+        .setCollisionByExclusion([-1])
+        .setDepth(objectDepthSettings.tileMapLayers.Water);
     }
-    const overheadLayer = map.createLayer(
-      'Stuff You Walk Under',
-      sceneTileSet,
-      0,
-      0,
-    );
+    map
+      .createLayer('Stuff You Walk Under', sceneTileSet, 0, 0)
+      .setDepth(objectDepthSettings.tileMapLayers['Stuff You Walk Under']);
 
     // Teleport Layers
     map.layers.forEach((layer) => {
@@ -221,11 +229,6 @@ const gameLoopAndSceneFactory = ({
     // Set camera background to white for areas where no tiles were placed
     // NOTE: If all tile maps had 100% coverage, this would not be needed.
     this.cameras.main.setBackgroundColor('#ffffff');
-
-    // By default, everything gets depth sorted on the screen in the order we created things. Here, we
-    // want the "Above Player" layer to sit on top of the player, so we explicitly give it a depth.
-    // Higher depths will sit on top of lower depth objects.
-    overheadLayer.setDepth(2);
 
     // Object layers in Tiled let you embed extra info into a map - like a spawn point or custom
     // collision shapes. In the .json file, there's an object layer with a point named "Spawn Point"
@@ -324,7 +327,7 @@ const gameLoopAndSceneFactory = ({
         playerObject.spriteData.displayHeight,
       );
 
-    playerObject.player.setDepth(1);
+    playerObject.player.setDepth(objectDepthSettings.player);
 
     if (playerObject.spriteData.physicsOffset) {
       playerObject.player.body.setOffset(
