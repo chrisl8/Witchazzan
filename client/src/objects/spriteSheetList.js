@@ -47,8 +47,8 @@ import BlueWater from '../assets/spriteSheets/BlueWater.png';
 import BlueWaterNorthShore from '../assets/spriteSheets/BlueWaterNorthShore.png';
 import BlueWaterNorthWestShore from '../assets/spriteSheets/BlueWaterNorthWestShore.png';
 import BlueWaterWestShore from '../assets/spriteSheets/BlueWaterWestShore.png';
-import GreenMountainWallSparkleOne from '../assets/spriteSheets/GreenMountainWallSparkleOne.png';
-import BrownMountainWallSparkleOne from '../assets/spriteSheets/BrownMountainWallSparkleOne.png';
+import MountainWallSparkleOne from '../assets/spriteSheets/MountainWallSparkleOne.png';
+import MountainWallSparkleTwo from '../assets/spriteSheets/MountainWallSparkleTwo.png';
 import GroundSparkleOne from '../assets/spriteSheets/GroundSparkleOne.png';
 import writtenPaper from '../assets/spriteSheets/written_paper_no_background.png';
 import redTankSingleFrame from '../assets/spriteSheets/redTankSingle.png';
@@ -511,30 +511,44 @@ const spriteSheetList = [
   },
   {
     type: 'other',
-    name: 'GreenMountainWallSparkleOne',
-    file: GreenMountainWallSparkleOne,
+    name: 'MountainWallSparkleOne',
+    file: MountainWallSparkleOne,
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
     faces: 'left',
     animationFrameRate: 1,
     animations: [
-      { keyName: 'move-stationary', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      {
+        keyName: 'move-stationary',
+        start: 0,
+        end: 4,
+        zeroPad: 3,
+        repeat: -1,
+        repeatDelay: 500,
+      },
     ],
     displayWidth: 16,
     displayHeight: 16,
   },
   {
     type: 'other',
-    name: 'BrownMountainWallSparkleOne',
-    file: BrownMountainWallSparkleOne,
+    name: 'MountainWallSparkleTwo',
+    file: MountainWallSparkleTwo,
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
     faces: 'left',
-    animationFrameRate: 1,
+    animationFrameRate: 8,
     animations: [
-      { keyName: 'move-stationary', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+      {
+        keyName: 'move-stationary',
+        start: 0,
+        end: 8,
+        zeroPad: 3,
+        repeat: -1,
+        repeatDelay: 10000,
+      },
     ],
     displayWidth: 16,
     displayHeight: 16,

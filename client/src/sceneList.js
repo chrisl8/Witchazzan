@@ -294,8 +294,9 @@ const caveHtmlElementParameters = {
 const camelopardalisColor16x16AnimatedTileReplacementStrategy = {
   'Stuff You Run Into': {
     probability: 0.4,
-    76: 'GreenMountainWallSparkleOne',
-    244: 'BrownMountainWallSparkleOne',
+    76: 'MountainWallSparkleOne',
+    244: 'MountainWallSparkleOne',
+    255: 'MountainWallSparkleTwo',
   },
   'Stuff You Walk Under': {
     probability: 0.08,
