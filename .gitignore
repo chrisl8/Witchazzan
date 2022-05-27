@@ -16,4 +16,8 @@ dist/
 # Configuration
 persistentData/
 
+# Tiled
+assets.tiled-project
+assets.tiled-session
+
 .parcel-cache
