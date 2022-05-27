@@ -42,11 +42,18 @@ import deadTree from '../assets/spriteSheets/deadTree.png';
 import chest from '../assets/spriteSheets/chest.png';
 import bones from '../assets/spriteSheets/bones.png';
 import lilolyon from '../assets/spriteSheets/Lilolyon.png';
-import grassAndWaterDark from '../assets/spriteSheets/GrassAndWaterDark.png';
 import RainbowTileOne from '../assets/spriteSheets/RainbowTileOne.png';
 import BlackWater from '../assets/spriteSheets/BlackWater.png';
+import BlueWater from '../assets/spriteSheets/BlueWater.png';
+import BlueWaterNorthShore from '../assets/spriteSheets/BlueWaterNorthShore.png';
+import BlueWaterNorthWestShore from '../assets/spriteSheets/BlueWaterNorthWestShore.png';
+import BlueWaterWestShore from '../assets/spriteSheets/BlueWaterWestShore.png';
+import GreenMountainWallSparkleOne from '../assets/spriteSheets/GreenMountainWallSparkleOne.png';
+import BrownMountainWallSparkleOne from '../assets/spriteSheets/BrownMountainWallSparkleOne.png';
+import GroundSparkleOne from '../assets/spriteSheets/GroundSparkleOne.png';
 import writtenPaper from '../assets/spriteSheets/written_paper_no_background.png';
 import redTankSingleFrame from '../assets/spriteSheets/redTankSingle.png';
+import SkullWink from '../assets/spriteSheets/SkullWink.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -369,47 +376,6 @@ const spriteSheetList = [
   },
   {
     type: 'other',
-    name: 'grassAndWaterDark',
-    file: grassAndWaterDark,
-    frameWidth: 16,
-    frameHeight: 16,
-    endFrame: -1,
-    faces: 'left',
-    animationFrameRate: 7,
-    animations: [
-      {
-        keyName: 'move-stationary',
-        zeroPad: 3,
-        repeat: -1,
-        frames: [
-          88 + 10,
-          88 + 10 + 11,
-          88 + 10 + 22,
-          88 + 10 + 33,
-          88 + 10 + 44,
-          88 + 10 + 55,
-          88 + 10 + 66,
-          88 + 10 + 77,
-        ],
-      },
-      { keyName: 'move-left', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-right', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-back', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-      { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
-    ],
-    physicsSize: {
-      x: 50,
-      y: 50,
-    },
-    physicsOffset: {
-      x: 22,
-      y: 35,
-    },
-    displayWidth: 16,
-    displayHeight: 16,
-  },
-  {
-    type: 'other',
     name: 'RainbowTileOne',
     file: RainbowTileOne,
     frameWidth: 16,
@@ -423,10 +389,6 @@ const spriteSheetList = [
     physicsSize: {
       x: 50,
       y: 50,
-    },
-    physicsOffset: {
-      x: 22,
-      y: 35,
     },
     displayWidth: 16,
     displayHeight: 16,
@@ -447,14 +409,9 @@ const spriteSheetList = [
       x: 16,
       y: 16,
     },
-    // physicsOffset: {
-    //   x: 22,
-    //   y: 35,
-    // },
     displayWidth: 16,
     displayHeight: 16,
   },
-  // redTankSingleFrame
   {
     type: 'other',
     name: 'redTankSingleFrame',
@@ -471,10 +428,6 @@ const spriteSheetList = [
       x: 24,
       y: 24,
     },
-    // physicsOffset: {
-    //   x: 22,
-    //   y: 35,
-    // },
     displayWidth: 16,
     displayHeight: 16,
     rotatable: true,
@@ -499,6 +452,133 @@ const spriteSheetList = [
       x: 22,
       y: 35,
     },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'SkullWink',
+    file: SkullWink,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 8,
+    animations: [
+      {
+        keyName: 'move-stationary',
+        start: 0,
+        end: 3,
+        zeroPad: 3,
+        repeat: -1,
+        repeatDelay: 10000,
+      },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWater',
+    file: BlueWater,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 7, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterNorthShore',
+    file: BlueWaterNorthShore,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterNorthWestShore',
+    file: BlueWaterNorthWestShore,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterWestShore',
+    file: BlueWaterWestShore,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'GreenMountainWallSparkleOne',
+    file: GreenMountainWallSparkleOne,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 1,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BrownMountainWallSparkleOne',
+    file: BrownMountainWallSparkleOne,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 1,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 3, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'GroundSparkleOne',
+    file: GroundSparkleOne,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 1,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 5, zeroPad: 3, repeat: -1 },
+    ],
     displayWidth: 16,
     displayHeight: 16,
   },
