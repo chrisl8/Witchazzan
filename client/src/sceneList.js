@@ -317,6 +317,7 @@ const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
     98: { sprite: 'BlueWaterNorthShore' },
     97: { sprite: 'BlueWaterNorthWestShore' },
     109: { sprite: 'BlueWaterWestShore' },
+    134: { sprite: 'BlueWaterFlowingDown' },
   },
 };
 

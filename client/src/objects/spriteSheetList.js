@@ -44,6 +44,7 @@ import lilolyon from '../assets/spriteSheets/Lilolyon.png';
 import RainbowTileOne from '../assets/spriteSheets/RainbowTileOne.png';
 import BlackWater from '../assets/spriteSheets/BlackWater.png';
 import BlueWater from '../assets/spriteSheets/BlueWater.png';
+import BlueWaterFlowingDown from '../assets/spriteSheets/BlueWaterFlowingDown.png';
 import BlueWaterNorthShore from '../assets/spriteSheets/BlueWaterNorthShore.png';
 import BlueWaterNorthWestShore from '../assets/spriteSheets/BlueWaterNorthWestShore.png';
 import BlueWaterWestShore from '../assets/spriteSheets/BlueWaterWestShore.png';
@@ -453,6 +454,21 @@ const spriteSheetList = [
     type: 'other',
     name: 'BlueWater',
     file: BlueWater,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 7, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterFlowingDown',
+    file: BlueWaterFlowingDown,
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
