@@ -27,6 +27,7 @@ const objectDepthSettings = {
   npc: 15, // Can be overridden, but this is the default.
   otherPlayer: 20,
   playerShadow: 21,
-  player: 22,
+  dotTrails: 22,
+  player: 25,
 };
 export default objectDepthSettings;

@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import playerObject from '../objects/playerObject.js';
+import objectDepthSettings from '../objects/objectDepthSettings.js';
 
 function renderDebugDotTrails(hadron, key, scene) {
   if (playerObject.dotTrailsOn) {
@@ -34,8 +35,8 @@ function renderDebugDotTrails(hadron, key, scene) {
       );
     }
     let fillColor = 0x00ff00;
-    let width = 1;
-    let height = 1;
+    let width = 5;
+    let height = 5;
     if (['carrot'].indexOf(hadron.typ) > -1) {
       fillColor = 0x0000ff;
       width = 5;
@@ -50,7 +51,7 @@ function renderDebugDotTrails(hadron, key, scene) {
       fillColor = 0xffa500;
     } else if (key === playerObject.playerId) {
       // it me
-      fillColor = 0x00a500;
+      fillColor = 0xffff00;
     } else if (['player'].indexOf(hadron.typ) > -1) {
       // it !me
       fillColor = 0x6a0dad;
@@ -64,7 +65,9 @@ function renderDebugDotTrails(hadron, key, scene) {
         height,
         fillColor,
         1,
-      ).setOrigin(0.5, 0.5),
+      )
+        .setOrigin(0.5, 0.5)
+        .setDepth(objectDepthSettings.dotTrails),
     );
     // this.add
     //   .rectangle(hadron.x, hadron.y, 1, 1, 0xff0000, 1)
