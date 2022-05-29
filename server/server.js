@@ -348,17 +348,24 @@ app.post("/api/auth", async (req, res) => {
   }
 });
 
-// TODO: Do we even want this information to be entirely public?
 app.get("/api/connections", async (req, res) => {
   try {
     const sql =
       "SELECT name, timestamp FROM Connections LEFT JOIN Users ON Connections.id = Users.id ORDER BY timestamp DESC";
     const result = await db.query(sql);
     let prettyOutput = `<html lang="en-US"><head><title>Connections</title></head><body><table><thead><tr><th>User</th><th>Login Time</th></thead></tbody>`;
+    let previousEntry = {};
     result.rows.forEach((entry) => {
-      const connectionTime = new Date();
-      connectionTime.setTime(entry.timestamp * 1000);
-      prettyOutput += `<tr><td>${entry.name}</td><td>${connectionTime}</td></tr>`;
+      console.log();
+      if (
+        entry.name !== previousEntry.name ||
+        previousEntry.timestamp - entry.timestamp > 600
+      ) {
+        const connectionTime = new Date();
+        connectionTime.setTime(entry.timestamp * 1000);
+        prettyOutput += `<tr><td>${entry.name}</td><td>${connectionTime}</td></tr>`;
+        previousEntry = entry;
+      }
     });
     prettyOutput += "</tbody></table></body></html>";
     res.send(prettyOutput);
