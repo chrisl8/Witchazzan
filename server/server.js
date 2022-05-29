@@ -183,7 +183,8 @@ try {
   const sqlCreateUserTable = `CREATE TABLE IF NOT EXISTS users (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
-      password TEXT NOT NULL
+      password TEXT NOT NULL,
+      admin INTEGER DEFAULT 0
     );`;
   await db.query(sqlCreateUserTable, []);
   // Displaying the user table count for fun and debugging.
@@ -293,16 +294,18 @@ app.post("/api/login", async (req, res) => {
   const name = req.body.name;
   let id;
   let hash;
+  let admin = 0;
   const password = req.body.password;
   try {
     // LIKE allows for case insensitive name comparison.
     // User names shouldn't be case sensitive.
-    const sql = "SELECT id, name, password FROM Users WHERE name LIKE ?";
+    const sql = "SELECT id, name, password, admin FROM Users WHERE name LIKE ?";
     const result = await db.query(sql, [name]);
     if (result.rows.length > 0) {
       // We do not confirm or deny that the user exists.
       hash = result.rows[0].password;
       id = result.rows[0].id;
+      admin = result.rows[0].admin;
     }
   } catch (e) {
     console.error("Error retrieving user:");
@@ -317,6 +320,7 @@ app.post("/api/login", async (req, res) => {
           {
             id,
             name,
+            admin,
           },
           serverConfiguration.jwtSecret,
           {
@@ -443,6 +447,8 @@ io.on("connection", (socket) => {
   // TODO: In theory, if they do not send their token, they remain connected,
   //       and hence will receive broadcast messages, even though nothing they send will
   //       be processed. How do we prevent this?
+  //       Although the only think that is broadcast is chat messages, it still seems incorrect to leave
+  //       this hole open if it really exists.
   socket.emit("sendToken");
 
   // Nothing else is available until they have authenticated.
@@ -458,6 +464,7 @@ io.on("connection", (socket) => {
       // We now know that we have a valid authenticated user!
       const PlayerName = decoded.name;
       const PlayerId = decoded.id;
+      const isAdmin = decoded.admin;
       console.log(`${PlayerName} connected`);
 
       // Send player their ID, because there is no other easy way for them to know it.
@@ -465,6 +472,7 @@ io.on("connection", (socket) => {
       socket.emit("init", {
         id: PlayerId,
         name: PlayerName,
+        admin: isAdmin,
         defaultOpeningScene: serverConfiguration.defaultOpeningScene,
         serverVersion,
       });

@@ -71,6 +71,7 @@ function receiveDataFromServer() {
 
     playerObject.playerId = inputData.id;
     playerObject.name = inputData.name;
+    playerObject.isAdmin = inputData.admin;
     playerObject.defaultOpeningScene = inputData.defaultOpeningScene;
     localStorage.setItem('playerName', playerObject.name);
     textObject.connectingText.shouldBeActiveNow = false;

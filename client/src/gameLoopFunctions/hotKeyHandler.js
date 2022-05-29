@@ -25,7 +25,9 @@ function hotKeyHandler(sceneName) {
   // Hot key to turn dot trails on/off
   if (playerObject.keyState.t === 'keydown') {
     playerObject.keyState.t = null;
-    playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
+    if (playerObject.isAdmin) {
+      playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
+    }
   }
 
   // Send currently active Spell with space bar,

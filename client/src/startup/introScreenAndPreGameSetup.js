@@ -1,7 +1,7 @@
 /* globals localStorage:true */
-/* globals fetch:true */
 /* globals document:true */
 /* globals window:true */
+/* globals $:true */
 import playerObject from '../objects/playerObject.js';
 import spellAssignments from '../objects/spellAssignments.js';
 import wait from '../../../shared/wait.mjs';
@@ -14,6 +14,7 @@ if (window.location.hostname === 'localhost') {
 }
 
 let playerName = '';
+let isAdmin = false;
 let loginFailure = false;
 let loginErrorText = null;
 let loggedIn = false;
@@ -52,6 +53,13 @@ function updateDOMElements() {
   document.getElementById('login_error_text_box').hidden = !loginErrorText;
   document.getElementById('login_error_text').innerText = loginErrorText;
 
+  if (!isAdmin) {
+    $('#game_debuging').hide();
+    $('#dot_trails').hide();
+    $('#home_key').hide();
+  }
+  document.getElementById('dot_trails').hidden = !isAdmin;
+
   if (playerName) {
     document.getElementById('password_input_box').focus();
   } else {
@@ -79,6 +87,7 @@ async function checkLoggedInStatus() {
         loggedIn = true;
         // NOTE: atob is deprecated in NODE, but NOT in browsers.
         playerName = JSON.parse(window.atob(token.split('.')[1])).name;
+        isAdmin = JSON.parse(window.atob(token.split('.')[1])).admin === 1;
       } else if (res.status === 401) {
         localStorage.removeItem('authToken');
         loggedIn = false;
@@ -124,6 +133,7 @@ async function login() {
       playerName = JSON.parse(
         window.atob(resultObject.token.split('.')[1]),
       ).name;
+      isAdmin = JSON.parse(window.atob(token.split('.')[1])).admin === 1;
     } else if (res.status === 401) {
       loggedIn = false;
       loginFailure = true;

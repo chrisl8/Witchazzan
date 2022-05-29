@@ -264,13 +264,21 @@
             <label for="disable_sound">Disable sound</label>
           </div>
         </div>
-        <h2>Debugging</h2>
-        <div class="intro-screen-subsection">
-          <input type="checkbox" id="phaser_debug" name="phaser_debug" />
-          <label for="phaser_debug">Enable Phaser Debugging</label>
-          <br />
-          <input type="checkbox" id="camera_zoom_off" name="camera_zoom_off" />
-          <label for="camera_zoom_off">Disable Camera Zoom for Debugging</label>
+        <div id="game_debuging">
+          <h2>Debugging</h2>
+          <div class="intro-screen-subsection">
+            <input type="checkbox" id="phaser_debug" name="phaser_debug" />
+            <label for="phaser_debug">Enable Phaser Debugging</label>
+            <br />
+            <input
+              type="checkbox"
+              id="camera_zoom_off"
+              name="camera_zoom_off"
+            />
+            <label for="camera_zoom_off"
+              >Disable Camera Zoom for Debugging</label
+            >
+          </div>
         </div>
         <h1>Key Map</h1>
         <!--  https://codepen.io/Mickel07/pen/YdONYK-->
@@ -312,7 +320,7 @@
             <div class="key">R</div>
             <div class="key">
               T
-              <span class="description">dot Trails</span>
+              <span class="description" id="dot_trails">dot Trails</span>
             </div>
             <div class="key">Y</div>
             <div class="key">U</div>
@@ -345,7 +353,7 @@
             <div class="key">G</div>
             <div class="key">
               H
-              <span class="description">Home</span>
+              <span class="description" id="home_key">Home</span>
             </div>
             <div class="key">J</div>
             <div class="key">K</div>
