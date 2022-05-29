@@ -356,9 +356,9 @@ app.get("/api/connections", async (req, res) => {
     const result = await db.query(sql);
     let prettyOutput = `<html lang="en-US"><head><title>Connections</title></head><body><table><thead><tr><th>User</th><th>Login Time</th></thead></tbody>`;
     result.rows.forEach((entry) => {
-      prettyOutput += `<tr><td>${entry.name}</td><td>${Date(
-        entry.timestamp * 1000
-      )}</td></tr>`;
+      const connectionTime = new Date();
+      connectionTime.setTime(entry.timestamp * 1000);
+      prettyOutput += `<tr><td>${entry.name}</td><td>${connectionTime}</td></tr>`;
     });
     prettyOutput += "</tbody></table></body></html>";
     res.send(prettyOutput);
