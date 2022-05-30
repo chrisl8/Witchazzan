@@ -233,12 +233,6 @@ const startGameNow = () => {
 
 // eslint-disable-next-line func-names
 async function introScreenAndPreGameSetup() {
-  // Check local storage for Player Sprite
-  const existingPlayerSprite = localStorage.getItem('playerSprite');
-  if (existingPlayerSprite) {
-    document.getElementById(existingPlayerSprite).checked = true;
-  }
-
   // Check local storage for disableCameraZoom
   let disableCameraZoom = localStorage.getItem('disableCameraZoom');
   if (disableCameraZoom === 'true') {
@@ -403,14 +397,6 @@ async function introScreenAndPreGameSetup() {
     localStorage.removeItem('enableDebug');
   }
   playerObject.enableDebug = enableDebug;
-
-  const spriteName = document.querySelector(
-    'input[name="sprite"]:checked',
-  ).value;
-  if (spriteName) {
-    localStorage.setItem('playerSprite', spriteName);
-    playerObject.spriteName = spriteName;
-  }
 
   // Add all spell selections to local storage for later retrieval
   for (const [, value] of Object.entries(playerObject.spellKeys)) {
