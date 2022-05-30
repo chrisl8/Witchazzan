@@ -462,7 +462,7 @@
                         {
                          "name":"rateOfFire",
                          "type":"int",
-                         "value":100
+                         "value":500
                         }, 
                         {
                          "name":"respawnInSeconds",
@@ -472,7 +472,7 @@
                         {
                          "name":"spell",
                          "type":"string",
-                         "value":"fireball"
+                         "value":"laserArrow"
                         }, 
                         {
                          "name":"sprite",

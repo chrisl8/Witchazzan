@@ -12,7 +12,7 @@ import textObject from "../client/src/objects/textObject.js";
 
 const alwaysRequiredKeys = [
   "id", // Output of crypto.randomUUID(); The GUID of the sprite itself, also used as the key in Map()s
-  "typ", // Type like message, player, fireball, etc. Every unique kind should have a type.
+  "typ", // Type like message, player, spell, etc. Every unique kind should have a type.
   "sprt", // The sprite to display for this hadron.
   "x", // X location of sprite
   "y", // Y location of sprite
@@ -27,7 +27,7 @@ const serverAdditionalRequiredKeys = [
 // Optionally a hadron can also have:
 const optionalKeys = [
   "name", // Player name. Players always have a name, but no other hadron currently makes use of this.
-  "sub", // Sub-Type, i.e. A hadron of Type 'spell' might be Subtype 'fireball' or a hadron of type 'NPC' might be a Subtype 'stationaryTank'
+  "sub", // Sub-Type, i.e. A hadron of Type 'spell' might be Subtype 'spell' or a hadron of type 'NPC' might be a Subtype 'stationaryTank'
   // Sprite information
   "dir", // Direction of the Sprite
   "velX", // X Velocity of the sprite

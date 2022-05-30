@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
+import spells from '../objects/spells.js';
 
 let broadCastMessage;
 const chatForThrottle = () => {
@@ -86,22 +87,22 @@ function spriteCollisionHandler({
       }
     } else if (
       hadrons.get(spriteKey)?.typ === 'spell' &&
-      hadrons.get(spriteKey)?.sub === 'fireball' &&
+      spells[hadrons.get(spriteKey)?.sub].type === 'damage' &&
       hadrons.get(obstacleSpriteKey)?.typ === 'spell' &&
-      hadrons.get(obstacleSpriteKey)?.sub === 'fireball' &&
+      spells[hadrons.get(obstacleSpriteKey)?.sub].type === 'damage' &&
       hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
     ) {
-      // If two fireballs, owned by different players, collide, they destroy each other.
+      // If two damage spells, owned by different players, collide, they destroy each other.
       sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
       sendDataToServer.destroyHadron(obstacleSpriteKey);
     } else if (
       hadrons.get(spriteKey)?.typ === 'spell' &&
-      hadrons.get(spriteKey)?.sub === 'fireball' &&
+      spells[hadrons.get(spriteKey)?.sub].type === 'damage' &&
       hadrons.get(obstacleSpriteKey)?.typ === 'player' &&
       hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
     ) {
-      // If a fireball hits a player that is not the owner:
-      // 1. De-spawn the fireball.
+      // If a damage spell hits a player that is not the owner:
+      // 1. De-spawn the spell.
       sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
       // 2. Apply damage to the player.
       let amount = 1;

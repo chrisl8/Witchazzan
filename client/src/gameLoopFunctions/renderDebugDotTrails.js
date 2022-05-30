@@ -35,15 +35,11 @@ function renderDebugDotTrails(hadron, key, scene) {
       );
     }
     let fillColor = 0x00ff00;
-    let width = 5;
-    let height = 5;
-    if (['carrot'].indexOf(hadron.typ) > -1) {
-      fillColor = 0x0000ff;
-      width = 5;
-      height = 5;
-    } else if (['slime'].indexOf(hadron.sub) > -1) {
-      fillColor = 0xff0000;
-    } else if (['fireball'].indexOf(hadron.sub) > -1) {
+    const width = 5;
+    const height = 5;
+    if (['laserArrow'].indexOf(hadron.sub) > -1) {
+      fillColor = 0xffa500;
+    } else if (['quasar'].indexOf(hadron.sub) > -1) {
       fillColor = 0xffa500;
     } else if (['teleball'].indexOf(hadron.sub) > -1) {
       fillColor = 0xffa500;

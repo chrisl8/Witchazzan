@@ -50,8 +50,12 @@ The data currently stored there is:
 - `persistentData/serverConfig.json5` - A JSON5 file that stores the server configuration data.
 - `persistentData/hadrons.json5` - A JSON5 file that stores the last saved game state for retrieval upon a server restart.
 
+### SQLite
 The `.sqlite` files are SQLite databases that are not meant to be human readable or written to. The server takes care of them. There are tools to read/write such files though if you really want to.  
-The `.json5` files are JSON5 files that **are** meant to be human readable and editable. JSON5 is simply an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
+If you do need to edit a SQLite file, I recommend [DB Browser for SQLite](https://sqlitebrowser.org)
+
+### JSON5
+The `.json5` files are [JSON5](https://json5.org/) files that **are** meant to be human readable and editable. JSON5 is simply an ES6+ syntax JavaScript object literal in a file, so just treat it like a Javascript object. The server will warn you and refuse to start if you break the format, and it will also reformat it for you when it starts and any time it saves data to the config files, which it does do.
 
 ## Development How to...
 ### Hadrons
@@ -138,8 +142,8 @@ Some important things:
      - `pod` Optional Bool - "Persist on Disconnect" - If a player disconnects, by default their hadrons are archived. This prevents that behavior. **You probably want this set to true.** Otherwise, the NPC will dissapear when the first client who enters the room leaves.
      - `dod` Optional Bool - "Destroy on Disconnect" - If this is true, the NPC will be destroyed when the owner disconnects. This is probably not normally what you want for an NPC in a multi-player game, **but it is helpful during initial testing to set it true** so that your NPC is wiped and built from scratch when you refresh your browser.
      - `spriteLayerDepth` Optional (Integer) = "Sprite Layer Depth" - This is the depth used when adding the sprite to the scene. This will determine if it appears on top of or underneath other objects, based on their depth.
-     - `rateOfFire` Optional (Integer) - "Rate of Fire" - If this is set, then the given spell is fired every time the last spell cast was X milliseconds ago based on the frame to frame delta. **This means the lower this number is, the faster it fires.** If this is left out, then no spell will be cast at all. You muts also set the "spell" name.
-     - `spell` Optional (String) - Name of the spell to cast. If you aren't sure, use 'fireball'. The spell is only cast if rateOfFire is also set.
+     - `rateOfFire` Optional (Integer) - "Rate of Fire" - If this is set, then the given spell is fired every time the last spell cast was X milliseconds ago based on the frame to frame delta. **This means the lower this number is, the faster it fires.** If this is left out, then no spell will be cast at all. You must also set the "spell" name.
+     - `spell` Optional (String) - Name of the spell to cast. If you aren't sure, use 'quasar'. The spell is only cast if rateOfFire is also set.
      - **You may add other things here as well and use them in your code, but if you do, you must update the code in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {` to copy these key/value pairs into the hadron, and you must alo update `shared/validateHadron.mjs` to add your additional hadron keys as valid keys.**
    - NOTE: If you update sprite properties or add new ones, existing sprites won't get updated. use the `/deleteAllNPCs` command to clear them and make new ones. Also note that you need to not be in a scene with the sprite for the delete to work.
  - **Informational:** These sprites are imported by the client in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {`
@@ -393,10 +397,6 @@ See Also: [Forum Post](http://forum.solarus-games.org/index.php/topic,881.0.html
 Author: [ffomega](http://forum.solarus-games.org/index.php?action=profile;u=423)  
 License: Unknown, see [Solaris Game License](https://www.solarus-games.org/en/about/faq)  
 FileNames: solarus_full_hyrule.png  
-- Carrots [Veggy friends](https://opengameart.org/content/veggy-friends)  
-Author: [SCay](https://opengameart.org/users/scay)  
-License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
-Filename: carrot.png
 - [Written Paper](https://opengameart.org/content/written-paper)  
 Author: [Harry Tzioukas](https://opengameart.org/users/harrytzioukas)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
@@ -406,15 +406,6 @@ Note: Converted from static image to sprite sheet by me.
 #### These images were created by our own team!
 - bloomby
 - chest
-- ChristmasTree
-- deadTree
-- fireball
-- gloob-scaryman
-- greenTree
-- joosh
-- Lilolyon
-- pinkTree
-- Teleport
 
 ### 8-bit NES Legend of Zelda Map Information
 

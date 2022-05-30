@@ -4,6 +4,7 @@
 
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
+import spells from './objects/spells.js';
 
 function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
   if (spell === 'writeMessage') {
@@ -49,9 +50,6 @@ function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
       },
     });
   } else {
-    const velocity = 150; // TODO: Should be set "per spell"
-    // TODO: Should the velocity be ADDED to the player's current velocity?
-    // TODO: This is a bit hacked to deal with numeric velocities, which should probably be improved.
     if (direction === -90) {
       // eslint-disable-next-line no-param-reassign
       direction = 'right';
@@ -59,24 +57,21 @@ function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
     let velocityX = 0;
     let velocityY = 0;
     if (direction === 'left') {
-      velocityX = -velocity;
+      velocityX = -spells[spell].velocity;
     } else if (direction === 'right') {
-      velocityX = velocity;
+      velocityX = spells[spell].velocity;
     } else if (direction === 'up') {
-      velocityY = -velocity;
+      velocityY = -spells[spell].velocity;
     } else if (direction === 'down') {
-      velocityY = velocity;
+      velocityY = spells[spell].velocity;
     }
 
-    // TODO: Using a different spell is more than just a matter of changing the sprite,
-    //       but that is what we have here for now.
-    // TODO: Each spell should have an entire description in some sort of spells file.
     const newHadronData = {
       id: crypto.randomUUID(),
       own: owner,
       typ: 'spell',
       sub: spell,
-      sprt: spell,
+      sprt: spells[spell].sprite,
       x: initialX,
       y: initialY,
       dir: direction,

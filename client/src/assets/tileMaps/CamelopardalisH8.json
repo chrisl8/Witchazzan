@@ -473,42 +473,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":22,
-                 "name":"greenTree",
-                 "point":true,
-                 "rotation":0,
-                 "type":"SpawnNPC",
-                 "visible":true,
-                 "width":0,
-                 "x":352.666666666667,
-                 "y":287.333333333333
-                }, 
-                {
-                 "height":0,
-                 "id":24,
-                 "name":"pinkTree",
-                 "point":true,
-                 "rotation":0,
-                 "type":"SpawnNPC",
-                 "visible":true,
-                 "width":0,
-                 "x":262.666666666667,
-                 "y":225.333333333333
-                }, 
-                {
-                 "height":0,
-                 "id":27,
-                 "name":"deadTree",
-                 "point":true,
-                 "rotation":0,
-                 "type":"SpawnNPC",
-                 "visible":true,
-                 "width":0,
-                 "x":416.666666666667,
-                 "y":286.666666666667
-                }, 
-                {
-                 "height":0,
                  "id":57,
                  "name":"Cave",
                  "point":true,

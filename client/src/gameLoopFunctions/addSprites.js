@@ -11,30 +11,6 @@ function addSprites(hadron, key) {
 
     newClientSprite.spriteData = getSpriteData(hadron.sprt);
 
-    // Use different carrot colors for different genetic code
-    // TODO: Delete this or make some use of it.
-    //       Maybe make a scene where carrots grow,
-    //       and boost health when they are "eaten" (walked over or hit with a certain spell?)
-    if (hadron.typ === 'carrot') {
-      // hadron.genes.color range 0 to 255
-      // Currently carrot options are 01 to 28
-      const carrotSpriteId = Math.floor(28 * (hadron.genes.color / 255));
-      const alternateCarrotSpriteName = `carrot${
-        carrotSpriteId < 10 ? 0 : ''
-      }${carrotSpriteId}`;
-      // console.log(
-      //   hadron.genes.color,
-      //   hadron.genes.color / 255,
-      //   carrotSpriteId,
-      //   alternateCarrotSpriteName,
-      //   hadron.energy,
-      // );
-      const newSprite = getSpriteData(alternateCarrotSpriteName);
-      if (newSprite.name !== playerObject.defaultSpriteName) {
-        newClientSprite.spriteData = newSprite;
-      }
-    }
-
     newClientSprite.sprite = this.physics.add
       .sprite(hadron.x, hadron.y, newClientSprite.spriteData.name)
       .setSize(
