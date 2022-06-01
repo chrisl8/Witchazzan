@@ -133,7 +133,8 @@ async function login() {
       playerName = JSON.parse(
         window.atob(resultObject.token.split('.')[1]),
       ).name;
-      isAdmin = JSON.parse(window.atob(token.split('.')[1])).admin === 1;
+      isAdmin =
+        JSON.parse(window.atob(resultObject.token.split('.')[1])).admin === 1;
     } else if (res.status === 401) {
       loggedIn = false;
       loginFailure = true;
