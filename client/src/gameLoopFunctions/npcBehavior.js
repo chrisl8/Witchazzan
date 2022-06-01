@@ -24,7 +24,7 @@ function npcBehavior(delta) {
         Math.floor(Date.now() / 1000) - hadron.tmoff > hadron.ris
       ) {
         // Resurrect the hadron on a timer if it exists.
-        hadrons.get(key).hlth = 100;
+        hadrons.get(key).hlth = hadrons.get(key).maxhlth;
         hadrons.get(key).off = false;
       } else if (!hadron.off) {
         // If the hadron is active, then...

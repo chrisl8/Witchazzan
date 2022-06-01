@@ -411,6 +411,7 @@ const gameLoopAndSceneFactory = ({
             pod: objectProperties.pod,
             tcwls: objectProperties.tcwls,
             hlth: 100,
+            maxhlth: 100,
             dps: 1,
             off: false,
             ris: objectProperties.respawnInSeconds,
@@ -424,6 +425,7 @@ const gameLoopAndSceneFactory = ({
             !isNaN(objectProperties.health)
           ) {
             newHadron.hlth = Number(objectProperties.health);
+            newHadron.maxhlth = Number(objectProperties.health);
           }
           if (
             objectProperties.hasOwnProperty('dps') &&

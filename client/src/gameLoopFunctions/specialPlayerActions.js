@@ -12,7 +12,7 @@ import hadrons from '../objects/hadrons.js';
 
 function specialPlayerActions(sceneName) {
   if (sceneName === 'EmptyCave') {
-    if (playerObject.health < 100) {
+    if (playerObject.health < playerObject.maxHealth) {
       playerObject.health += 1;
     }
   } else if (playerObject.health <= 0) {
@@ -42,7 +42,7 @@ function specialPlayerActions(sceneName) {
       playerObject.teleportToSceneNowEntrance = 'HealingSpawnPoint';
     }, 100);
   } else if (
-    playerObject.health < 100 &&
+    playerObject.health < playerObject.maxHealth &&
     playerObject.previousHealth !== null &&
     playerObject.health < playerObject.previousHealth
   ) {

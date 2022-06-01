@@ -58,6 +58,7 @@ const playerObject = {
   },
   spriteName: 'bloomby', // Default set here
   health: 100,
+  maxHealth: 100,
   previousHealth: null,
   playerId: null,
   playerDirection: 'left',

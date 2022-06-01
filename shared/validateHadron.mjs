@@ -39,6 +39,7 @@ const optionalKeys = [
   // Character and NPC Information
   "chtO", // Chat Open - Indicates to other clients when a player's chat dialog is open, so that they can display an icon for it.
   "hlth", // Health - Health level for Player or NPC, etc.
+  "maxhlth", // Max Health - Health when Player or NPC is fully healed.
   "dps", // "Damage Per Shot (dps)" (Float) - For an NPC or anything that fires spells, this will be multiplied against the spell's default damage level. Use this to make a given NPC's shots more or less powerful relative to players and other NPCs.
   // What to do when an owner disconnects or changes scenes:
   "dod", // "Destroy On Disconnect (dod)" (Bool) - Destroy this hadron if the owner disconnects.

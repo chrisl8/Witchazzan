@@ -92,7 +92,7 @@ function receiveDataFromServer() {
       // Player's own health isn't held in their hadron.
       let newHealth = playerObject.health;
       if (!newHealth === undefined) {
-        newHealth = 100;
+        newHealth = playerObject.maxHealth;
       }
       newHealth -= data.amount;
       if (newHealth < 0) {
@@ -105,7 +105,9 @@ function receiveDataFromServer() {
     ) {
       let newHealth = hadrons.get(data.id)?.hlth;
       if (newHealth === undefined) {
-        newHealth = 100;
+        newHealth = hadrons.get(data.id)?.maxhlth
+          ? hadrons.get(data.id)?.maxhlth
+          : 100;
       }
       newHealth -= data.amount;
       if (newHealth < 0) {

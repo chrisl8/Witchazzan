@@ -120,7 +120,7 @@ function updateSprite(hadron, key) {
     if (
       hadron.id !== playerObject.playerId && // Do not tint or worse, clear tint from shadow
       hadron.hlth &&
-      hadron.hlth < 100 &&
+      hadron.hlth < hadron.maxhlth &&
       clientSprite.previousHealth !== undefined &&
       hadron.hlth < clientSprite.previousHealth
     ) {

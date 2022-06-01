@@ -179,23 +179,27 @@ const updateInGameDomElements = (htmlElementParameters) => {
                 playerObject.cameraScaleFactor +
               4
             }px`;
-          } else if (hadron.hlth < 100) {
-            const healthBarWidth =
+          } else if (hadron.hlth < hadron.maxhlth) {
+            const healthBarWidth = Math.trunc(
               (clientSprite.sprite.displayWidth /
                 playerObject.cameraScaleFactor) *
-              1.75;
+                1.75,
+            );
+            const healthPercentage = hadron.hlth / hadron.maxhlth;
             const healthBarHeight =
               (clientSprite.sprite.displayHeight /
                 playerObject.cameraScaleFactor) *
               0.1;
             let healthBarColor = '#27d727';
-            if (hadron.hlth < 70) {
+            if (healthPercentage < 0.7) {
               healthBarColor = 'orange';
             }
-            if (hadron.hlth < 20) {
+            if (healthPercentage < 0.2) {
               healthBarColor = 'red';
             }
-            newInnerHTML = `<div class="w3-light-grey w3-round" style="width:${healthBarWidth}px; height:${healthBarHeight}px"><div class="w3-container w3-blue w3-round" style="width:${hadron.hlth}%; height:${healthBarHeight}px; background-color: ${healthBarColor};">&nbsp</div></div>`;
+            newInnerHTML = `<div class="w3-light-grey w3-round" style="width:${healthBarWidth}px; height:${healthBarHeight}px"><div class="w3-container w3-blue w3-round" style="width:${Math.trunc(
+              healthPercentage * 100,
+            )}%; height:${healthBarHeight}px; background-color: ${healthBarColor};">&nbsp</div></div>`;
             // Location
             playerObject.domElements.otherPlayerTags[key].style.left = `${
               canvasLeftMargin +
