@@ -16,6 +16,24 @@ if ! (command -v git >/dev/null 2>&1); then
   exit 1
 fi
 
+if ! (command -v gcc >/dev/null 2>&1); then
+  printf "\n${LIGHT_PURPLE}gcc is not installed!${NC}\n"
+  printf "sudo apt install -y gcc\n"
+  exit 1
+fi
+
+if ! (command -v g++ >/dev/null 2>&1); then
+  printf "\n${LIGHT_PURPLE}g++ is not installed!${NC}\n"
+  printf "sudo apt install -y g++\n"
+  exit 1
+fi
+
+if ! (command -v make >/dev/null 2>&1); then
+  printf "\n${LIGHT_PURPLE}make is not installed!${NC}\n"
+  printf "sudo apt install -y make\n"
+  exit 1
+fi
+
 if ! (command -v node >/dev/null 2>&1); then
   printf "\n${LIGHT_PURPLE}node is not installed${NC}\n"
   printf "I recommend that you use nvm:\n"
