@@ -2,10 +2,8 @@
 /* globals localStorage:true */
 import socket from 'socket.io-client';
 import communicationsObject from './objects/communicationsObject.js';
-import textObject from './objects/textObject.js';
 import sendDataToServer from './sendDataToServer.js';
 import playerObject from './objects/playerObject.js';
-import cleanUpAfterDisconnect from './cleanUpAfterDisconnect.js';
 import parseHadronsFromServer from './parseHadronsFromServer.js';
 import hadrons from './objects/hadrons.js';
 
@@ -14,14 +12,14 @@ function receiveDataFromServer() {
     communicationsObject.socket.close();
   }
 
-  if (
-    window.location.hostname === 'localhost' &&
-    window.location.port !== '8080'
-  ) {
-    communicationsObject.socket = socket.connect('localhost:8080', {
-      transports: ['websocket'],
-      timeout: 5000,
-    });
+  if (window.location.port === '3001') {
+    communicationsObject.socket = socket.connect(
+      `${window.location.hostname}:8080`,
+      {
+        transports: ['websocket'],
+        timeout: 5000,
+      },
+    );
   } else {
     communicationsObject.socket = socket.connect({
       transports: ['websocket'],
@@ -56,6 +54,7 @@ function receiveDataFromServer() {
       playerObject.scrollingTextBox.chat(inputData);
     }
   });
+
   communicationsObject.socket.on('init', (inputData) => {
     // Check whether we need to force a client refresh.
     // A client refresh is forced on every server restart.
