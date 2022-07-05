@@ -460,7 +460,7 @@
                  "name":"Cave",
                  "point":true,
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"","properties":[{"name":"Type","type":"string","value":"Entrance"}],
                  "visible":true,
                  "width":0,
                  "x":87.7781629116118,
@@ -476,9 +476,13 @@
                          "name":"allowCustomX",
                          "type":"bool",
                          "value":true
+                        },{
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
                         }],
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
@@ -494,9 +498,13 @@
                       "name":"allowCustomX",
                       "type":"bool",
                       "value":true
-                    }],
+                    },{
+                       "name":"Type",
+                       "type":"string",
+                       "value":"Entrance"
+                     }],
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,

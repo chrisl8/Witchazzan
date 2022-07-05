@@ -416,9 +416,13 @@
                          "name":"allowCustomX",
                          "type":"bool",
                          "value":true
+                        },{
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
                         }],
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
@@ -434,9 +438,13 @@
                       "name":"allowCustomX",
                       "type":"bool",
                       "value":true
-                    }],
+                    },{
+                       "name":"Type",
+                       "type":"string",
+                       "value":"Entrance"
+                     }],
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,

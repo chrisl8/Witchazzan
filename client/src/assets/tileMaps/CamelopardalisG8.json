@@ -358,77 +358,98 @@
          "name":"Objects",
          "objects":[
                 {
+                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":368,
                  "y":208
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Left",
                  "point":true,
                  "properties":[
                         {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
+                        }, 
+                        {
                          "name":"allowCustomY",
                          "type":"bool",
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"Entrance",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":27,
                  "name":"Upper",
                  "point":true,
                  "properties":[
                         {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
+                        }, 
+                        {
                          "name":"allowCustomX",
                          "type":"bool",
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"Entrance",
                  "visible":true,
                  "width":0,
                  "x":576,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"Right",
                  "point":true,
                  "properties":[
                         {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
+                        }, 
+                        {
                          "name":"allowCustomY",
                          "type":"bool",
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"Entrance",
                  "visible":true,
                  "width":0,
                  "x":664,
                  "y":208
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":33,
                  "name":"StationaryTankOne",
                  "point":true,
                  "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
                         {
                          "name":"dod",
                          "type":"bool",
@@ -437,7 +458,7 @@
                         {
                          "name":"dps",
                          "type":"int",
-                         "value":10
+                         "value":100
                         }, 
                         {
                          "name":"health",
@@ -462,7 +483,27 @@
                         {
                          "name":"rateOfFire",
                          "type":"int",
-                         "value":250
+                         "value":100
+                        }, 
+                        {
+                         "name":"rayCast",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rayCastDegrees",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"rayCastDistance",
+                         "type":"int",
+                         "value":190
+                        }, 
+                        {
+                         "name":"rayCastType",
+                         "type":"string",
+                         "value":"cone"
                         }, 
                         {
                          "name":"respawnInSeconds",
@@ -475,9 +516,14 @@
                          "value":"laserArrow"
                         }, 
                         {
+                         "name":"spellVelocity",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
                          "name":"sprite",
                          "type":"string",
-                         "value":"redTankSingleFrame"
+                         "value":"redTankSingle"
                         }, 
                         {
                          "name":"subType",
@@ -490,7 +536,6 @@
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"NPC",
                  "visible":true,
                  "width":0,
                  "x":464,
@@ -503,10 +548,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":34,
+ "nextobjectid":37,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.5",
+ "tiledversion":"1.9.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -524,6 +569,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.9",
  "width":44
 }

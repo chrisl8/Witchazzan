@@ -242,7 +242,7 @@ const gameLoopAndSceneFactory = ({
     if (playerObject.destinationEntrance) {
       const entranceList = map.filterObjects(
         'Objects',
-        (obj) => obj.type === 'Entrance',
+        (obj) => convertTileMapPropertyArrayToObject(obj).Type === 'Entrance',
       );
       if (entranceList && entranceList.length > 0) {
         const requestedEntranceIndex = entranceList.findIndex(
@@ -370,10 +370,10 @@ const gameLoopAndSceneFactory = ({
     // https://github.com/B3L7/phaser3-tilemap-pack/blob/master/src/scenes/Level.js
     const objects = map.getObjectLayer('Objects');
     objects.objects.forEach((object) => {
-      if (object.type === 'SpawnNPC') {
-        // "SpawnNPC" is a left over from the old version.
-        // TODO: Come up with a better "type" for these and update them all.
-        // This spawns sprites embedded in the tileMap.
+      const objectProperties = convertTileMapPropertyArrayToObject(object);
+      if (objectProperties.Type === 'AnimationOnly') {
+        // "AnimationOnly" is for plopping non-physics sprites into a tilemap for aesthetic reasons.
+        // They won't have colliders, but they will animate.
         const spriteData = getSpriteData(object.name);
         const newThing = this.physics.add
           .sprite(object.x, object.y, spriteData.name)
@@ -395,9 +395,8 @@ const gameLoopAndSceneFactory = ({
         ) {
           newThing.anims.play(`${spriteData.name}-move-stationary`, true);
         }
-      } else if (object.type === 'NPC') {
+      } else if (objectProperties.Type === 'NPC') {
         // Type "NPC" will be used for actual NPCs.
-        const objectProperties = convertTileMapPropertyArrayToObject(object);
         if (objectProperties.id && !currentSceneNPCs.has(objectProperties.id)) {
           const newHadron = {
             id: objectProperties.id,

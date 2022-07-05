@@ -379,9 +379,13 @@
                          "name":"allowCustomY",
                          "type":"bool",
                          "value":true
+                        },{
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
                         }],
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
@@ -393,7 +397,7 @@
                  "name":"UpperRight",
                  "point":true,
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"","properties":[{"name":"Type","type":"string","value":"Entrance"}],
                  "visible":true,
                  "width":0,
                  "x":231.671232876712,
@@ -405,7 +409,7 @@
                  "name":"UpperLeft",
                  "point":true,
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"","properties":[{"name":"Type","type":"string","value":"Entrance"}],
                  "visible":true,
                  "width":0,
                  "x":120.328767123288,

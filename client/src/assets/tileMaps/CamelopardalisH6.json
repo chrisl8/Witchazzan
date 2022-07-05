@@ -379,9 +379,13 @@
                          "name":"allowCustomY",
                          "type":"bool",
                          "value":true
+                        },{
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
                         }],
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
@@ -397,9 +401,13 @@
                          "name":"allowCustomY",
                          "type":"bool",
                          "value":true
+                        },{
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
                         }],
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":664,
@@ -411,7 +419,7 @@
                  "name":"EmptyTile",
                  "point":true,
                  "rotation":0,
-                 "type":"Entrance",
+                 "type":"","properties":[{"name":"Type","type":"string","value":"Entrance"}],
                  "visible":true,
                  "width":0,
                  "x":39.6533795493934,

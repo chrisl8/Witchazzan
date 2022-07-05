@@ -159,240 +159,360 @@
          "name":"Objects",
          "objects":[
                 {
+                 "class":"",
+                  "properties":[
+                    {
+                      "name":"Type",
+                      "type":"string",
+                      "value":"Entrance"
+                    }],
                  "height":0,
                  "id":1,
                  "name":"HealingSpawnPoint",
                  "point":true,
                  "rotation":0,
-                 "type":"Entrance",
                  "visible":true,
                  "width":0,
                  "x":160,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":57,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":58,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":59,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":60,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":61,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":62,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":63,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":64,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":65,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":66,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":67,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":68,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":79,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":80,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":81,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":82,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":83,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":84,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":85,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
@@ -400,240 +520,360 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":86,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":87,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":88,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":89,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":90,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":56,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":91,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":92,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":93,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":94,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":95,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":96,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":97,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":98,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":99,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":100,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":101,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":102,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":72,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":115,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":116,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":117,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
@@ -641,240 +881,360 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":118,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":119,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":120,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":121,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":122,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":123,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":124,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":125,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":126,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":88,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":127,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":128,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":129,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":130,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":131,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":132,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":133,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":134,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":135,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":136,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":137,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
@@ -882,240 +1242,360 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":138,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":104,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":139,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":140,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":141,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":142,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":143,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":144,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":145,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":146,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":147,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":148,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":149,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":150,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":120,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":151,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":152,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":153,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":154,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":155,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":156,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":157,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
@@ -1123,240 +1603,360 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":158,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":159,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":160,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":161,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":162,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":136,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":163,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":164,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":165,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":166,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":167,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":168,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":169,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":170,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":171,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":172,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":173,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":174,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":152,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":175,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":176,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":177,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
@@ -1364,240 +1964,360 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":178,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":179,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":180,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":181,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":182,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":183,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":184,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":185,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":186,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":187,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":188,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":189,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":190,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":191,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":192,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":193,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":194,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":195,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":196,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":197,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
@@ -1605,240 +2325,360 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":198,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":184,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":199,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":200,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":201,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":202,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":203,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":204,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":205,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":206,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":207,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":208,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":209,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":210,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":200,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":211,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":212,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":213,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":214,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":215,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":216,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":217,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
@@ -1846,240 +2686,360 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":218,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":219,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":220,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":221,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":222,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":223,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":224,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":225,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":226,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":227,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":228,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":229,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":230,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":231,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":232,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":233,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":234,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":232,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":235,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":236,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":237,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
@@ -2087,240 +3047,360 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":238,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":239,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":240,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":241,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":242,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":243,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":244,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":245,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":246,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":248,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":247,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":248,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":249,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":250,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":251,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":252,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":253,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":254,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":255,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":256,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":257,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
@@ -2328,168 +3408,246 @@
                 },
             
                 {
+                 "class":"",
                  "height":0,
                  "id":258,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":264,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":259,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":40
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":260,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":68
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":261,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":52
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":262,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":84
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":263,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":100
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":264,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":128
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":265,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":112
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":266,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":267,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":160
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":268,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":188
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":269,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":172
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":270,
                  "name":"RainbowTileOne",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
                  "rotation":0,
-                 "type":"SpawnNPC",
                  "visible":true,
                  "width":0,
                  "x":280,
                  "y":204
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":271,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":161.755311762255,
@@ -2511,7 +3669,7 @@
          "value":"a crystal cave with unusual properties"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.4",
+ "tiledversion":"1.9.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -2529,6 +3687,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.9",
  "width":20
 }
