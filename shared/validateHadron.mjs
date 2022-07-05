@@ -8,8 +8,6 @@ Use this code to validate any hadrons to ensure that you made them correctly. Th
  */
 
 // Every hadron must have:
-import textObject from "../client/src/objects/textObject.js";
-
 const alwaysRequiredKeys = [
   "id", // Output of crypto.randomUUID(); The GUID of the sprite itself, also used as the key in Map()s
   "typ", // Type like message, player, spell, etc. Every unique kind should have a type.
@@ -51,6 +49,12 @@ const optionalKeys = [
   "dph", // "Sprite Layer Depth (dph)" (Integer) - Layer assigned to the sprite when added to the scene. Determines if it is on top of or underneath other sprites and tilemap scenery.
   "rof", // "Rate of Fire (rof)" (Integer) - For NPC's, a spell is cast when this many milliseconds has past since the last one, based on the frame to frame delta. This means the lower the number, the faster it fires.
   "spl", // "Spell (spl)" (String) - Name of the spell to cast for an NPC.
+  "anim", // Animation to set on hadron's sprite at the moment.
+  "rac", // "Ray Casat (rac)" (Bool) Whether or not to set up a Raycast for this sprite.
+  "rtp", // "Raycast Type (rtp)" (String) What kind of raycast to perform: Cone, Circle, or Line (Line is default is this isn't specified, so you don't need to specify line)
+  "rcd", // "Raycast Degree (rcd)" (Integer) The range in degrees for a raycast Cone (Not used for other types at the moment)
+  "rdt", // "Raycast Distance (rdt)" (Integer) Distance to raycast out to.
+  "spv", // "Spell Velocity (spv)" (Integer) - Velocity set on spells.
 ];
 
 const allKeys = alwaysRequiredKeys.concat(

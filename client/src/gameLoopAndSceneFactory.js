@@ -455,6 +455,32 @@ const gameLoopAndSceneFactory = ({
           ) {
             newHadron.rof = Number(objectProperties.rateOfFire);
           }
+          if (
+            objectProperties.hasOwnProperty('rayCast') &&
+            objectProperties.rayCast
+          ) {
+            newHadron.rac = true;
+          }
+          if (
+            objectProperties.hasOwnProperty('rayCastType') &&
+            objectProperties.rayCastType
+          ) {
+            newHadron.rtp = objectProperties.rayCastType;
+          }
+          if (
+            objectProperties.hasOwnProperty('rayCastDegrees') &&
+            // eslint-disable-next-line no-restricted-globals
+            !isNaN(objectProperties.rayCastDegrees)
+          ) {
+            newHadron.rcd = objectProperties.rayCastDegrees;
+          }
+          if (
+            objectProperties.hasOwnProperty('rayCastDistance') &&
+            // eslint-disable-next-line no-restricted-globals
+            !isNaN(objectProperties.rayCastDistance)
+          ) {
+            newHadron.rdt = objectProperties.rayCastDistance;
+          }
           // spell
           // spl
           if (objectProperties.hasOwnProperty('spell')) {
