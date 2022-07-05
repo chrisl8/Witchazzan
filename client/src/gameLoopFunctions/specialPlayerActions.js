@@ -1,4 +1,3 @@
-/* globals crypto:true */
 // This function handles stuff like
 //  - updating player health bar
 //  - automatic teleports when dead,
@@ -16,7 +15,8 @@ function specialPlayerActions(sceneName) {
     if (playerObject.health < playerObject.maxHealth) {
       playerObject.health += 1;
     }
-  } else if (playerObject.health <= 0) {
+  } else if (playerObject.health <= 0 && !playerObject.isDead) {
+    playerObject.isDead = true;
     // Leave death marker - Death marker is essentially a special message with a different sprite.
     const today = new Date();
     const deathMaker = {
@@ -41,6 +41,7 @@ function specialPlayerActions(sceneName) {
     setTimeout(() => {
       playerObject.teleportToSceneNow = 'EmptyCave';
       playerObject.teleportToSceneNowEntrance = 'HealingSpawnPoint';
+      playerObject.isDead = false;
     }, 100);
   } else if (
     playerObject.health < playerObject.maxHealth &&
