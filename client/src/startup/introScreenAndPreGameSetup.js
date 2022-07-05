@@ -7,10 +7,9 @@ import spellAssignments from '../objects/spellAssignments.js';
 import wait from '../../../shared/wait.mjs';
 import isMobileBrowser from '../utilities/isMobileBrowser.js';
 
-// TODO: Can we just use / instead of adding the actual href path?
 let apiURL = `${window.location.href}api`;
-if (window.location.hostname === 'localhost') {
-  apiURL = `http://localhost:8080/api`;
+if (window.location.port === '3001') {
+  apiURL = `http://${window.location.hostname}:8080/api`;
 }
 
 let playerName = '';
