@@ -157,6 +157,13 @@ function updateSprite(hadron, key, gameSizeData) {
       newHadronData.y = clientSprites.get(key).sprite.y;
       hadrons.set(key, newHadronData);
 
+      // SET UP RAY CASTER FOR SPRITE IF NPC SHOULD HAVE ONE
+      if (hadron.rac) {
+        if (!clientSprite.ray) {
+          clientSprite.ray = this.raycaster.createRay();
+        }
+      }
+
       // IF SPRITE IS OFF OF THE MAP, DESTROY IT
       // This is usually caused by putting delays in before removing sprites,
       // and then the owner closing their browser (or putting it in the background)

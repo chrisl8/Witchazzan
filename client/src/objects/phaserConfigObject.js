@@ -3,6 +3,7 @@
  */
 
 import Phaser from 'phaser';
+import PhaserRaycaster from 'phaser-raycaster';
 import scene from '../sceneList.js';
 
 const phaserConfigObject = {
@@ -25,6 +26,15 @@ const phaserConfigObject = {
       debugBodyColor: 0x0000ff,
       debugStaticBodyColor: 0xffffff,
     },
+  },
+  plugins: {
+    scene: [
+      {
+        key: 'PhaserRaycaster',
+        plugin: PhaserRaycaster,
+        mapping: 'raycasterPlugin',
+      },
+    ],
   },
   scene,
   // Make the pixels "perfect", not fuzzy!

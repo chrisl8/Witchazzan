@@ -5,12 +5,15 @@ import clientSprites from '../objects/clientSprites.js';
 
 function npcBehavior(delta) {
   hadrons.forEach((hadron, key) => {
+    const newHadronData = { ...hadron };
     // Only perform behavior operations on hadrons under our control.
     if (hadron.typ === 'npc' && hadron.ctrl === playerObject.playerId) {
       // This is all of the "base NPC" behavior.
       // Remember that you can further control or limit the behavior for specific NPCs
       // by checking the hadron.sub field in your if/else statements below.
       // Feel free to exclude a given hadron.sub from these more generic checks at the top.
+
+      let rayCastFoundTarget = false;
 
       if (hadron.hlth <= 0 && !hadron.off) {
         // Turn the NPC "off" if the health falls to 0 or below.
@@ -29,9 +32,57 @@ function npcBehavior(delta) {
       } else if (!hadron.off) {
         // If the hadron is active, then...
 
+        // RAYCAST UPDATE
+        const ray = clientSprites.get(key)?.ray;
+        if (ray) {
+          // enable auto slicing field of view
+          ray.autoSlice = true;
+          // enable arcade physics body
+          ray.enablePhysics();
+          // Update ray origin
+          ray.setOrigin(hadron.x, hadron.y);
+          if (
+            hadron.rdt &&
+            // eslint-disable-next-line no-restricted-globals
+            !isNaN(hadron.rdt)
+          ) {
+            ray.setCollisionRange(hadron.rdt);
+          } else {
+            ray.setCollisionRange(1000); // TODO: Maybe tie this to game size?
+          }
+          if (hadron.rtp === 'cone') {
+            if (hadron.rcd) {
+              ray.setConeDeg(hadron.rcd);
+            }
+            ray.castCone();
+          } else if (hadron.rtp === 'circle') {
+            // Circle is default.
+            ray.castCircle();
+          } else {
+            // Line is default.
+            // TODO: Set to direction NPC is facing.
+            ray.setAngleDeg(0);
+            ray.cast();
+          }
+
+          // get all game objects in field of view (which bodies overlap ray's field of view)
+          const visibleObjects = ray.overlap();
+          visibleObjects.forEach((entry) => {
+            if (entry.data) {
+              const id = entry.getData('hadronId');
+              if (
+                id !== key &&
+                hadrons.get(id)?.typ !== 'spell' &&
+                hadrons.get(id)?.typ !== 'message'
+              ) {
+                rayCastFoundTarget = true;
+              }
+            }
+          });
+        }
+
         let spellCastTimer = clientSprites.get(key)?.spellCastTimer;
         if (hadron.hasOwnProperty('rof') && hadron.hasOwnProperty('spl')) {
-          // TODO: Consider tying rate of fire to NPC's health (in either direction).
           // Store local rapidly updating data in clientSprites,
           // to avoid clogging the network with hadron updates that other
           // clients don't need to see.
@@ -41,20 +92,19 @@ function npcBehavior(delta) {
           } else {
             spellCastTimer = 0;
           }
+
           if (spellCastTimer > hadron.rof) {
-            castSpell({
-              sceneName: hadron.scn,
-              spell: hadron.spl,
-              direction: hadron.dir,
-              initialX: hadron.x,
-              initialY: hadron.y,
-              owner: hadron.id,
-            });
-            // TODO: Detect player and only fire when they are in line of fire.
-            // https://phaser.io/news/2021/05/phaser-raycaster
-            // TODO: Detect player distance and limit "range" that it will attempt to fire to.
-            //       Note, the spells may go further than this range, but it won't TRY to fire if you aren't closer.
-            //       Eventually we could limit the range?
+            if (rayCastFoundTarget || !hadron.rac) {
+              castSpell({
+                sceneName: hadron.scn,
+                spell: hadron.spl,
+                direction: hadron.dir,
+                initialX: hadron.x,
+                initialY: hadron.y,
+                owner: hadron.id,
+                dps: hadron.dps,
+              });
+            }
             spellCastTimer = 0;
           }
           newHadronData.anim = 'stationary';

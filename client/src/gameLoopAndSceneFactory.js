@@ -525,6 +525,21 @@ const gameLoopAndSceneFactory = ({
       )
       .setOrigin(0.5, 0.5);
 
+    // Set up raycaster
+    this.raycaster = this.raycasterPlugin.createRaycaster();
+    this.raycaster.debugOptions.enabled = playerObject.enableDebug;
+    // TODO: If debug is enabled, provide a way to see the stats that raycaster provides.
+    //       https://wiserim.github.io/phaser-raycaster/#toc11__anchor
+    this.raycaster.mapGameObjects(collisionLayer, false, {
+      collisionTiles: collisionLayer.layer.collideIndexes,
+    });
+    this.raycaster.setBoundingBox(
+      gameSize.teleportLayerWidth,
+      gameSize.teleportLayerWidth,
+      gameSize.width,
+      gameSize.height,
+    );
+
     // Essentially announce that the scene is ready.
     playerObject.teleportInProgress = false;
   };

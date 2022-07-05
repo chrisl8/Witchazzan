@@ -46,6 +46,15 @@ function cleanUpSceneAndTeleport(
     // Empty out the local NPC list, as we are no longer in charge of them.
     currentSceneNPCs.clear();
 
+    // Clean up raycasters
+    // Note: The .destroy() methods cause Phaser to crash, so I'm not using them.
+    // If we do not remove the old raycaster,
+    // it will stick around and crash the game if you reenter the same scene again.
+    if (this.raycaster) {
+      this.raycaster.debugOptions.enabled = false;
+      this.raycaster = null;
+    }
+
     this.scene.start(destinationSceneName);
   }
 }
