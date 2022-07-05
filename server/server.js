@@ -703,12 +703,21 @@ io.on("connection", (socket) => {
               newHadronData.ctrl = PlayerId;
               if (validateHadron.server(newHadronData)) {
                 hadrons.set(data.id, newHadronData);
-                flagSceneHasUpdated(newHadronData.scn);
-                throttledSendHadrons();
-                throttledSaveGameStateToDisk();
               }
             }
           }
+
+          // Resurrect all inactive hadrons owned by this hadron.
+          inactiveHadrons.forEach((hadron, key) => {
+            if (hadron.own === data.id) {
+              hadrons.set(key, hadron);
+              inactiveHadrons.delete(key);
+            }
+          });
+
+          flagSceneHasUpdated(data.scn);
+          throttledSendHadrons();
+          throttledSaveGameStateToDisk();
         }
       });
 
