@@ -604,7 +604,7 @@ const gameLoopAndSceneFactory = ({
 
     // WARNING: npcBehavior must be above updateHadrons,
     // otherwise fired spells are very erratic.
-    npcBehavior(delta);
+    npcBehavior(delta, sceneName);
 
     // Iterate over ALL of the hadrons and do what needs to be done.
     updateHadrons.call(

@@ -3,11 +3,15 @@ import playerObject from '../objects/playerObject.js';
 import castSpell from '../castSpell.js';
 import clientSprites from '../objects/clientSprites.js';
 
-function npcBehavior(delta) {
+function npcBehavior(delta, sceneName) {
   hadrons.forEach((hadron, key) => {
     const newHadronData = { ...hadron };
     // Only perform behavior operations on hadrons under our control.
-    if (hadron.typ === 'npc' && hadron.ctrl === playerObject.playerId) {
+    if (
+      hadron.typ === 'npc' &&
+      hadron.ctrl === playerObject.playerId &&
+      hadron.scn === sceneName
+    ) {
       // This is all of the "base NPC" behavior.
       // Remember that you can further control or limit the behavior for specific NPCs
       // by checking the hadron.sub field in your if/else statements below.
