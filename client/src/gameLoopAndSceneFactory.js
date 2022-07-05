@@ -375,19 +375,23 @@ const gameLoopAndSceneFactory = ({
         // "AnimationOnly" is for plopping non-physics sprites into a tilemap for aesthetic reasons.
         // They won't have colliders, but they will animate.
         const spriteData = getSpriteData(object.name);
-        const newThing = this.physics.add
-          .sprite(object.x, object.y, spriteData.name)
-          .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y);
-        if (spriteData.physicsOffset) {
-          newThing.body.setOffset(
-            spriteData.physicsOffset.x,
-            spriteData.physicsOffset.y,
-          );
-        }
-        newThing.displayHeight = spriteData.displayHeight;
-        newThing.displayWidth = spriteData.displayWidth;
-        newThing.flipX = spriteData.faces === 'right';
 
+        // Depth
+        let depth = objectDepthSettings.animatedObjects;
+        if (
+          objectProperties.hasOwnProperty('spriteLayerDepth') &&
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(objectProperties.spriteLayerDepth)
+        ) {
+          depth = Number(objectProperties.spriteLayerDepth);
+        }
+
+        const newThing = this.add
+          .sprite(object.x, object.y, spriteData.name)
+          .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y)
+          .setDepth(depth);
+
+        // Animation
         if (
           this.anims.anims.entries.hasOwnProperty(
             `${spriteData.name}-move-stationary`,
@@ -413,11 +417,14 @@ const gameLoopAndSceneFactory = ({
             hlth: 100,
             maxhlth: 100,
             dps: 1,
-            off: false,
             ris: objectProperties.respawnInSeconds,
+            anim: 'stationary',
           };
           if (objectProperties.hasOwnProperty('initialSpriteRotation')) {
             newHadron.dir = objectProperties.initialSpriteRotation;
+          }
+          if (objectProperties.hasOwnProperty('initialAnimationState')) {
+            newHadron.anim = objectProperties.initialAnimationState;
           }
           if (
             objectProperties.hasOwnProperty('health') &&

@@ -57,11 +57,16 @@ function npcBehavior(delta) {
             //       Eventually we could limit the range?
             spellCastTimer = 0;
           }
+          newHadronData.anim = 'stationary';
+          if (rayCastFoundTarget) {
+            newHadronData.anim = 'casting';
+          }
         }
         if (clientSprites.has(key)) {
           // There is a moment before the client sprite exists.
           clientSprites.get(key).spellCastTimer = spellCastTimer;
         }
+        hadrons.set(key, newHadronData);
       }
     }
   });

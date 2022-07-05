@@ -88,6 +88,17 @@ function updateSprite(hadron, key, gameSizeData) {
         true,
       );
     } else if (
+      hadron.hasOwnProperty('anim') &&
+      hadron.anim &&
+      clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+        `${clientSprite.spriteData.name}-move-${hadron.anim}`,
+      )
+    ) {
+      clientSprite.sprite.anims.play(
+        `${clientSprite.spriteData.name}-move-${hadron.anim}`,
+        true,
+      );
+    } else if (
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-stationary`,
       )
