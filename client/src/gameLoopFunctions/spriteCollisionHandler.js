@@ -102,17 +102,17 @@ function spriteCollisionHandler({
       hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
     ) {
       // If a damage spell hits a player that is not the owner:
+      const dps = hadrons.get(spriteKey)?.dps;
       // 1. De-spawn the spell.
       sendDataToServer.destroyHadron(spriteKey, obstacleSpriteKey, this);
       // 2. Apply damage to the player.
       let amount = 1;
-      const spriteOwnerHadron = { ...hadrons.get(hadrons.get(spriteKey)?.own) };
       if (
-        spriteOwnerHadron.hasOwnProperty('dps') &&
+        dps &&
         // eslint-disable-next-line no-restricted-globals
-        !isNaN(spriteOwnerHadron.dps)
+        !isNaN(dps)
       ) {
-        amount *= spriteOwnerHadron.dps;
+        amount *= dps;
       }
       sendDataToServer.damageHadron({ id: obstacleSpriteKey, amount });
     } else if (

@@ -1,4 +1,3 @@
-/* globals crypto:true */
 /* globals $:true */
 // noinspection JSJQueryEfficiency
 
@@ -7,7 +6,15 @@ import hadrons from './objects/hadrons.js';
 import spells from './objects/spells.js';
 import getUUID from './utilities/getUUID.js';
 
-function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
+function castSpell({
+  sceneName,
+  spell,
+  direction,
+  initialX,
+  initialY,
+  owner,
+  dps = 1,
+}) {
   if (spell === 'writeMessage') {
     playerObject.externalDialogOpen = true;
     // Clear any data left from last time the dialog was opened,
@@ -80,6 +87,7 @@ function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
       velX: velocityX,
       velY: velocityY,
       tcwls: true,
+      dps,
     };
     hadrons.set(newHadronData.id, newHadronData);
   }
