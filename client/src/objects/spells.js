@@ -6,7 +6,7 @@ export default {
   },
   laserArrow: {
     sprite: 'laserArrow',
-    velocity: 400,
+    velocity: 150,
     type: 'damage',
   },
 };

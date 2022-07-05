@@ -483,7 +483,7 @@
                         {
                          "name":"rateOfFire",
                          "type":"int",
-                         "value":100
+                         "value":250
                         }, 
                         {
                          "name":"rayCast",
