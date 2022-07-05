@@ -439,16 +439,24 @@ function flagSceneHasUpdated(sceneName) {
   }
 }
 
+function validatePlayer(id, socket, PlayerName) {
+  // If the network goes down and back up, clients
+  // sometimes think they are connected and start sending data
+  // when the server has lost track of them.
+  // Forcing them to disconnect will fix the issue and prevent crashes.
+  if (!id || !connectedPlayerData.get(id)) {
+    console.log(`${PlayerName} validation failed`);
+    socket.disconnect();
+    return false;
+  }
+  return true;
+}
+
 // Socket listeners
 io.on("connection", (socket) => {
   // User cannot do anything until we have their token and have validated it.
   // The socket connection is entirely unrelated to any get/post requests, so we
   // have to validate the token again even if they used the /auth POST endpoint before.
-  // TODO: In theory, if they do not send their token, they remain connected,
-  //       and hence will receive broadcast messages, even though nothing they send will
-  //       be processed. How do we prevent this?
-  //       Although the only think that is broadcast is chat messages, it still seems incorrect to leave
-  //       this hole open if it really exists.
   socket.emit("sendToken");
 
   // Nothing else is available until they have authenticated.
@@ -555,29 +563,31 @@ io.on("connection", (socket) => {
       // Start list of "when client sends this to us" code.
 
       socket.on("chat", async (data) => {
-        let name = PlayerName;
-        if (data.fromPlayerId) {
-          try {
-            // User could be offline, so get from database
-            const sql = "SELECT name FROM Users WHERE id = ?";
-            const result = await db.query(sql, [data.fromPlayerId]);
-            if (result.rows.length > 0) {
-              name = result.rows[0].name;
+        if (validatePlayer(PlayerId, socket, PlayerName)) {
+          let name = PlayerName;
+          if (data.fromPlayerId) {
+            try {
+              // User could be offline, so get from database
+              const sql = "SELECT name FROM Users WHERE id = ?";
+              const result = await db.query(sql, [data.fromPlayerId]);
+              if (result.rows.length > 0) {
+                name = result.rows[0].name;
+              }
+            } catch (e) {
+              console.error("Error retrieving user:", data.fromPlayerId);
+              console.error(e.message);
             }
-          } catch (e) {
-            console.error("Error retrieving user:", data.fromPlayerId);
-            console.error(e.message);
           }
+          socket.broadcast.emit("chat", {
+            name,
+            content: data.text,
+          });
+          // Send back to user also so their chat windows makes sense.
+          socket.emit("chat", {
+            name,
+            content: data.text,
+          });
         }
-        socket.broadcast.emit("chat", {
-          name,
-          content: data.text,
-        });
-        // Send back to user also so their chat windows makes sense.
-        socket.emit("chat", {
-          name,
-          content: data.text,
-        });
       });
 
       socket.on("damageHadron", (data) => {
@@ -596,58 +606,62 @@ io.on("connection", (socket) => {
       });
 
       socket.on("hadronData", (data) => {
-        // Look for an existing hadron already in our data that matches the incoming hadron ID,
-        // and has the owner's id on it.
-        const existingHadron = hadrons.get(data.id);
+        if (validatePlayer(PlayerId, socket, PlayerName)) {
+          // Look for an existing hadron already in our data that matches the incoming hadron ID,
+          // and has the owner's id on it.
+          const existingHadron = hadrons.get(data.id);
 
-        // If a hadron moves from one scene to another, both scenes must be flagged as updated
-        let previousScene;
-        if (existingHadron && existingHadron.scn !== data.scn) {
-          previousScene = existingHadron.scn;
-        }
+          // If a hadron moves from one scene to another, both scenes must be flagged as updated
+          let previousScene;
+          if (existingHadron && existingHadron.scn !== data.scn) {
+            previousScene = existingHadron.scn;
+          }
 
-        // You cannot update hadrons that you are not in control of.
-        if (!existingHadron || existingHadron.ctrl === PlayerId) {
-          const newHadronData = { ...data };
+          // You cannot update hadrons that you are not in control of.
+          if (!existingHadron || existingHadron.ctrl === PlayerId) {
+            const newHadronData = { ...data };
 
-          if (!existingHadron) {
-            // If you introduce a new hadron, then you control it.
-            // Ownership never changes on existing hadrons.
-            // A client CAN set an owner on the hadron other than themselves, such as for NPCs and their spells
-            if (!data.own) {
-              newHadronData.own = PlayerId;
+            if (!existingHadron) {
+              // If you introduce a new hadron, then you control it.
+              // Ownership never changes on existing hadrons.
+              // A client CAN set an owner on the hadron other than themselves, such as for NPCs and their spells
+              if (!data.own) {
+                newHadronData.own = PlayerId;
+              }
+              newHadronData.ctrl = PlayerId;
             }
-            newHadronData.ctrl = PlayerId;
+
+            validateHadron.server(newPlayerHadron);
+
+            hadrons.set(data.id, newHadronData);
+
+            if (previousScene) {
+              flagSceneHasUpdated(previousScene);
+            }
+            flagSceneHasUpdated(newHadronData.scn);
+            throttledSendHadrons();
+            throttledSaveGameStateToDisk();
           }
+        }
+      });
 
-          validateHadron.server(newPlayerHadron);
-
-          hadrons.set(data.id, newHadronData);
-
-          if (previousScene) {
-            flagSceneHasUpdated(previousScene);
-          }
-          flagSceneHasUpdated(newHadronData.scn);
+      socket.on("enterScene", (sceneName) => {
+        if (validatePlayer(PlayerId, socket, PlayerName)) {
+          // Leave the old room
+          socket.leave(connectedPlayerData.get(PlayerId).scene);
+          // Update our information about what room the player is in.
+          connectedPlayerData.get(PlayerId).scene = sceneName;
+          // Join the new room.
+          socket.join(sceneName);
+          // Make sure they get an update and that it includes this room's data
+          flagSceneHasUpdated(sceneName);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
         }
       });
 
-      socket.on("enterScene", (sceneName) => {
-        // Leave the old room
-        socket.leave(connectedPlayerData.get(PlayerId).scene);
-        // Update our information about what room the player is in.
-        connectedPlayerData.get(PlayerId).scene = sceneName;
-        // Join the new room.
-        socket.join(sceneName);
-        // Make sure they get an update and that it includes this room's data
-        flagSceneHasUpdated(sceneName);
-        throttledSendHadrons();
-        throttledSaveGameStateToDisk();
-      });
-
       socket.on("destroyHadron", (key) => {
-        if (hadrons.has(key)) {
+        if (validatePlayer(PlayerId, socket, PlayerName) && hadrons.has(key)) {
           // If the hadron was transferred,
           // the controller won't delete the hadron from their own list,
           // so we have to force it to delete the hadron.
@@ -667,62 +681,67 @@ io.on("connection", (socket) => {
       });
 
       socket.on("createHadron", (data) => {
-        // Typically this is used to create NPCs from data in the tilemap,
-        // although a client could also spawn one of these using internal logic.
+        if (validatePlayer(PlayerId, socket, PlayerName)) {
+          // Typically this is used to create NPCs from data in the tilemap,
+          // although a client could also spawn one of these using internal logic.
 
-        // These come with their own permanent ID, and are not created if they already exist.
-        if (!hadrons.has(data.id)) {
-          // The hadron could exist in the inactive Map()
-          if (inactiveHadrons.has(data.id)) {
-            hadrons.set(data.id, { ...inactiveHadrons.get(data.id) });
-            inactiveHadrons.delete(data.id);
-          } else {
-            const newHadronData = { ...data };
-            if (!data.own) {
-              newHadronData.own = PlayerId;
-            }
-            console.log(data.own, PlayerId);
-            newHadronData.ctrl = PlayerId;
-            if (validateHadron.server(newHadronData)) {
-              hadrons.set(data.id, newHadronData);
-              flagSceneHasUpdated(newHadronData.scn);
-              throttledSendHadrons();
-              throttledSaveGameStateToDisk();
+          // These come with their own permanent ID, and are not created if they already exist.
+          if (!hadrons.has(data.id)) {
+            // The hadron could exist in the inactive Map()
+            if (inactiveHadrons.has(data.id)) {
+              hadrons.set(data.id, { ...inactiveHadrons.get(data.id) });
+              inactiveHadrons.delete(data.id);
+            } else {
+              const newHadronData = { ...data };
+              if (!data.own) {
+                newHadronData.own = PlayerId;
+              }
+              console.log(data.own, PlayerId);
+              newHadronData.ctrl = PlayerId;
+              if (validateHadron.server(newHadronData)) {
+                hadrons.set(data.id, newHadronData);
+                flagSceneHasUpdated(newHadronData.scn);
+                throttledSendHadrons();
+                throttledSaveGameStateToDisk();
+              }
             }
           }
         }
       });
 
       socket.on("command", (data) => {
-        if (data.command === "help") {
-          socket.emit("chat", {
-            content: commandHelpOutput,
-          });
-        } else if (data.command === "who") {
-          let whoResponse = "";
-          connectedPlayerData.forEach((entry) => {
-            whoResponse += `${entry.name} is in ${entry.scene}<br/>`;
-          });
-          socket.emit("chat", {
-            content: whoResponse,
-          });
-        } else if (
-          data.command === "deleteallnpc" ||
-          data.command === "deleteallnpcs"
-        ) {
-          hadrons.forEach((hadron, key) => {
-            if (hadron.typ === "npc") {
-              hadrons.delete(key);
-            }
-          });
-          inactiveHadrons.forEach((hadron, key) => {
-            if (hadron.typ === "npc") {
-              inactiveHadrons.delete(key);
-            }
-          });
-        } else {
-          console.log("command");
-          console.log(data);
+        if (validatePlayer(PlayerId, socket, PlayerName)) {
+          if (data.command === "help") {
+            socket.emit("chat", {
+              content: commandHelpOutput,
+            });
+          } else if (data.command === "who") {
+            let whoResponse = "";
+            connectedPlayerData.forEach((entry) => {
+              whoResponse += `${entry.name} is in ${entry.scene}<br/>`;
+            });
+            socket.emit("chat", {
+              content: whoResponse,
+            });
+          } else if (
+            data.command === "deleteallnpc" ||
+            data.command === "deleteallnpcs"
+          ) {
+            hadrons.forEach((hadron, key) => {
+              if (hadron.typ === "npc") {
+                hadrons.delete(key);
+              }
+            });
+            inactiveHadrons.forEach((hadron, key) => {
+              if (hadron.typ === "npc") {
+                inactiveHadrons.delete(key);
+              }
+            });
+            closeServer();
+          } else {
+            console.log("command");
+            console.log(data);
+          }
         }
       });
 
