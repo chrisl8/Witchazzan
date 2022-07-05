@@ -555,8 +555,6 @@ const gameLoopAndSceneFactory = ({
 
     updatePlayerSpriteAnimation();
 
-    npcBehavior(delta);
-
     // Iterate over ALL of the hadrons and do what needs to be done.
     updateHadrons.call(
       this,
@@ -574,6 +572,8 @@ const gameLoopAndSceneFactory = ({
 
     // Delete any sprites that no longer have an associated hadron.
     cleanUpClientSprites.call(this);
+
+    npcBehavior(delta);
 
     updateInGameDomElements(htmlElementParameters);
   };
