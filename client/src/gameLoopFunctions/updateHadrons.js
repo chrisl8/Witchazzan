@@ -11,6 +11,7 @@ function updateHadrons(
   scene,
   collisionLayer,
   teleportLayersColliders,
+  gameSizeData,
 ) {
   // Deal with game pieces from server.
   hadrons.forEach((hadron, key) => {
@@ -33,7 +34,7 @@ function updateHadrons(
 
       addSpriteVelocity.call(this, hadron, key);
 
-      updateSprite.call(this, hadron, key);
+      updateSprite.call(this, hadron, key, gameSizeData);
 
       sendHadronDataToServer(hadron, key);
     } else {

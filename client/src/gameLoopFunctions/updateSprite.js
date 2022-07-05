@@ -1,8 +1,9 @@
 import clientSprites from '../objects/clientSprites.js';
 import playerObject from '../objects/playerObject.js';
 import hadrons from '../objects/hadrons.js';
+import sendDataToServer from '../sendDataToServer.js';
 
-function updateSprite(hadron, key) {
+function updateSprite(hadron, key, gameSizeData) {
   if (clientSprites.has(key)) {
     // Now we know that we have a sprite.
     const clientSprite = clientSprites.get(key);
@@ -144,6 +145,22 @@ function updateSprite(hadron, key) {
       newHadronData.x = clientSprites.get(key).sprite.x;
       newHadronData.y = clientSprites.get(key).sprite.y;
       hadrons.set(key, newHadronData);
+
+      // IF SPRITE IS OFF OF THE MAP, DESTROY IT
+      // This is usually caused by putting delays in before removing sprites,
+      // and then the owner closing their browser (or putting it in the background)
+      // during high intensity operations, like spells being cast at a wall quickly.
+      // Might as well ensure it never stays that way.
+      // As long as it doesn't happen to a player! :-D
+      if (
+        newHadronData.x > gameSizeData.fullWidth + gameSizeData.widthPadding ||
+        newHadronData.x < -gameSizeData.widthPadding ||
+        newHadronData.y > gameSizeData.fullHeight + gameSizeData.heightPadding
+      ) {
+        console.error(`Destroying off-map sprite`);
+        console.error(newHadronData);
+        sendDataToServer.destroyHadron(key);
+      }
     }
   }
 }

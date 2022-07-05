@@ -69,6 +69,11 @@ const gameLoopAndSceneFactory = ({
   let sceneTileSet;
   let collisionLayer;
   const teleportLayersColliders = new Map();
+  const gameSizeData = { ...gameSize };
+  gameSizeData.fullWidth = gameSize.width + gameSize.teleportLayerWidth * 2;
+  gameSizeData.widthPadding = gameSizeData.fullWidth * 0.1;
+  gameSizeData.fullHeight = gameSize.height + gameSize.teleportLayerWidth * 2;
+  gameSizeData.heightPadding = gameSizeData.fullHeight * 0.1;
 
   // SCENE PRE-LOAD SETUP
   // ** This should ONLY BE USED TO LOAD ASSETS! **
@@ -559,6 +564,7 @@ const gameLoopAndSceneFactory = ({
       scene,
       collisionLayer,
       teleportLayersColliders,
+      gameSizeData,
     );
 
     // Send Player data, which is unique from all hadrons, to the server.
