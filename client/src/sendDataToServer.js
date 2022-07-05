@@ -5,7 +5,6 @@ import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import deletedHadronList from './objects/deletedHadronList.js';
 import validateHadron from '../../shared/validateHadron.mjs';
-import wait from '../../shared/wait.mjs';
 import textObject from './objects/textObject.js';
 import clientSprites from './objects/clientSprites.js';
 
@@ -105,8 +104,6 @@ sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
         clientSprites.get(obstacleSpriteKey)?.colliders[key],
       );
     }
-    // The other players need to see the last position before it was deleted.
-    await wait(100); // TODO: Is there a way to determine this instead of guessing?
     hadrons.delete(key);
     // Once the hadron is deleted then cleanUpClientSprites() will remove the sprite itself.
     communicationsObject.socket.emit('destroyHadron', key);

@@ -660,7 +660,7 @@ io.on("connection", (socket) => {
         }
       });
 
-      socket.on("destroyHadron", (key) => {
+      socket.on("destroyHadron", async (key) => {
         if (validatePlayer(PlayerId, socket, PlayerName) && hadrons.has(key)) {
           // If the hadron was transferred,
           // the controller won't delete the hadron from their own list,
@@ -674,6 +674,9 @@ io.on("connection", (socket) => {
               .emit("deleteHadron", key);
           }
           flagSceneHasUpdated(hadrons.get(key).scn);
+          // Give clients a moment to animate the last moments of the sprite so it doesn't appear to disappear before hitting the moment when it should disappear on their screen
+          // Otherwise things seem to despawn before hitting walls, for instnce.
+          await wait(100);
           hadrons.delete(key);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
