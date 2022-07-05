@@ -1,5 +1,6 @@
 /* globals window:true */
 /* globals document:true */
+/* globals localStorage:true */
 import Phaser from 'phaser';
 import phaserConfigObject from '../objects/phaserConfigObject.js';
 import receiveDataFromServer from '../receiveDataFromServer.js';
@@ -34,6 +35,15 @@ async function waitForConnectionAndInitialPlayerPosition() {
  */
 
 async function startGame({ phaserDebug }) {
+  document.getElementById('pre_game_div').hidden = true;
+  const lostConnection = localStorage.getItem('lostConnection');
+  localStorage.removeItem('lostConnection');
+  const paused = localStorage.getItem('paused');
+  localStorage.removeItem('paused');
+  document.getElementById('loading_text').hidden =
+    Boolean(lostConnection) || Boolean(paused);
+  document.getElementById('reconnect_text').hidden = !lostConnection;
+  document.getElementById('paused_text').hidden = !paused;
   phaserConfigObject.physics.arcade.debug = phaserDebug;
 
   await waitForBrowserWindowToBeVisible();
@@ -65,7 +75,14 @@ async function startGame({ phaserDebug }) {
       // Because this is a "game",users should stay focused on it when playing, and be OK with it having to reload
       // when they leave and come back.
       // This keeps the game snappy for everyone else in the game.
-      window.location.reload();
+      setTimeout(() => {
+        // Giving it a second to make sure it stayed that way.
+        // This also prevents page refreshes from setting this.
+        if (document.visibilityState === 'hidden') {
+          localStorage.setItem('paused', '1');
+          window.location.reload();
+        }
+      }, 1000);
     }
   });
 }

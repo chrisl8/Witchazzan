@@ -31,11 +31,6 @@ function receiveDataFromServer() {
 
   communicationsObject.socket.on('sendToken', () => {
     sendDataToServer.token();
-    // TODO: Test if we can hack the client to receive data without authenticating.
-    // textObject.connectingText.shouldBeActiveNow = false;
-    // textObject.reconnectingText.shouldBeActiveNow = false;
-    // textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
-    // playerObject.playerId = 1;
   });
 
   communicationsObject.socket.on('unauthorized', () => {
@@ -63,6 +58,8 @@ function receiveDataFromServer() {
   });
   communicationsObject.socket.on('init', (inputData) => {
     // Check whether we need to force a client refresh.
+    // A client refresh is forced on every server restart.
+    // I'm not sure that this is required, since a client refresh also happens on disconnect.
     const serverVersion = localStorage.getItem('serverVersion');
     localStorage.setItem('serverVersion', inputData.serverVersion);
     if (!serverVersion || inputData.serverVersion !== serverVersion) {
@@ -74,17 +71,14 @@ function receiveDataFromServer() {
     playerObject.isAdmin = inputData.admin;
     playerObject.defaultOpeningScene = inputData.defaultOpeningScene;
     localStorage.setItem('playerName', playerObject.name);
-    textObject.connectingText.shouldBeActiveNow = false;
-    textObject.reconnectingText.shouldBeActiveNow = false;
-    textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
   });
 
   // Handle disconnect
   communicationsObject.socket.on('disconnect', () => {
+    localStorage.setItem('lostConnection', '1');
     console.log('disconnect');
-    // Clear last sent data to make sure we send it all again
-    playerObject.lastSentPlayerDataObject = {};
-    cleanUpAfterDisconnect();
+    // If we were disconnected, there is no point in continuing to display the scene, so we refresh
+    window.location.reload();
   });
 
   communicationsObject.socket.on('damageHadron', (data) => {

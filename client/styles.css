@@ -249,3 +249,12 @@ img.emoji {
   color: #fff !important;
   background-color: #607d8b !important;
 }
+
+.middle-of-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}

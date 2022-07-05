@@ -10,7 +10,6 @@ function closeChatInputBox() {
   playerObject.chatOpen = false; // Broadcast to other players that chat is closed
   playerObject.domElements.chatInputDiv.style.display = 'none';
   playerObject.scrollingTextBox.hide();
-  textObject.notConnectedCommandResponse.shouldBeActiveNow = false;
 }
 
 export default closeChatInputBox;

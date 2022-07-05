@@ -1,9 +1,7 @@
 /* globals localStorage:true */
-import textObject from './objects/textObject.js';
 import playerObject from './objects/playerObject.js';
 import clientSprites from './objects/clientSprites.js';
 import sendDataToServer from './sendDataToServer.js';
-import communicationsObject from './objects/communicationsObject.js';
 import closeChatInputBox from './closeChatInputBox.js';
 
 if (!Array.isArray(JSON.parse(localStorage.getItem('commandHistory')))) {
@@ -51,15 +49,10 @@ function processCommandInput(event) {
         addEntryToCommandHistory(command);
       } else if (inputTextSpaceDelimitedArray[0].toLowerCase() === 'whisper') {
         // Sends chat to specific user
-        if (communicationsObject.socket.connected) {
-          inputTextSpaceDelimitedArray.shift();
-          const targetPlayerId = Number(inputTextSpaceDelimitedArray.shift());
-          const text = inputTextSpaceDelimitedArray.join(' ');
-          sendDataToServer.chat({ text, targetPlayerId });
-        } else {
-          // Warn user that command cannot be sent due to lack of server connection.
-          textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
-        }
+        inputTextSpaceDelimitedArray.shift();
+        const targetPlayerId = Number(inputTextSpaceDelimitedArray.shift());
+        const text = inputTextSpaceDelimitedArray.join(' ');
+        sendDataToServer.chat({ text, targetPlayerId });
       } else if (
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'teleporttoscene'
       ) {
@@ -68,15 +61,12 @@ function processCommandInput(event) {
       } else if (inputTextSpaceDelimitedArray[0].toLowerCase() === 'exit') {
         // Used on mobile to get back to setup screen
         playerObject.keyState.p = 'keydown';
-      } else if (communicationsObject.socket.connected) {
+      } else {
         // Any 'command' that does not exist on the client is just sent directly to the server.
         sendDataToServer.command(command.toLowerCase());
         addEntryToCommandHistory(command);
-      } else {
-        // Warn user that command cannot be sent due to lack of server connection.
-        textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
       }
-    } else if (communicationsObject.socket.connected) {
+    } else {
       if (playerObject.chatInputTextArray.length > 0) {
         sendDataToServer.chat({
           text: playerObject.chatInputTextArray.join(''),
@@ -85,9 +75,6 @@ function processCommandInput(event) {
       // Clear text after sending.
       playerObject.chatInputTextArray.length = 0;
       playerObject.domElements.chatInput.value = '';
-    } else {
-      // Warn user that text cannot be sent due to lack of server connection.
-      textObject.notConnectedCommandResponse.shouldBeActiveNow = true;
     }
   } else if (event.key === 'ArrowUp') {
     if (commandHistoryIndex > 0) {

@@ -15,21 +15,6 @@ const textObject = {
     shouldBeActiveNow: false,
     location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
   },
-  connectingText: {
-    text: 'Connecting to Small Hadron Cooperator<br/>Please wait...',
-    shouldBeActiveNow: true,
-    location: 'Center', // UpperLeft, 'Scrolling', or 'Center'
-  },
-  reconnectingText: {
-    text: 'Small Hadron Cooperator connection lost\nreconnecting...',
-    shouldBeActiveNow: false,
-    location: 'Center', // UpperLeft, 'Scrolling', or 'Center'
-  },
-  notConnectedCommandResponse: {
-    text: 'Not connected, cannot send chat text.',
-    shouldBeActiveNow: false,
-    location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
-  },
   incomingChatText: {
     text: '',
     shouldBeActiveNow: false,

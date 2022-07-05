@@ -132,10 +132,28 @@
       <!--Inline Style is here to make it match up when flipping between a fresh load,-->
       <!--and loading from the intro screen.-->
       <p
-        id="loading_text"
-        style="margin-left: 18px; font-family: 'Short Stack', serif"
+          id="loading_text"
+          class="middle-of-screen"
+          style="font-size: 2em; font-family: 'Short Stack', serif"
+          hidden
       >
         Loading Witchazzan, please stand by . . .
+      </p>
+      <p
+          id="reconnect_text"
+          class="middle-of-screen"
+          style="font-size: 2em; font-family: 'Short Stack', serif"
+          hidden
+      >
+        Small Hadron Cooperator connection lost, attempting to reconnect . . .
+      </p>
+      <p
+          id="paused_text"
+          class="middle-of-screen"
+          style="font-size: 2em; font-family: 'Short Stack', serif"
+          hidden
+      >
+        Game paused due to being in the background, restarting . . .
       </p>
       <!-- End Initial Loading Text -->
       <!-- Intro Screen -->
