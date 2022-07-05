@@ -27,12 +27,11 @@ function overlayTilemapTilesWithAnimatedSprites(
               const spriteData = getSpriteData(
                 animatedTileOverlayStrategy[layer.name][tile.index].sprite,
               );
-              const newThing = this.physics.add
-                .sprite(tile.pixelX, tile.pixelY, spriteData.name)
-                .setSize(tile.width, tile.height)
-                .setOrigin(0, 0);
-              newThing.displayHeight = tile.height;
-              newThing.displayWidth = tile.width;
+              const newThing = this.add.sprite(
+                tile.pixelX + tile.width / 2,
+                tile.pixelY + tile.width / 2,
+                spriteData.name,
+              );
               newThing.flipX = spriteData.faces === 'right';
 
               if (
@@ -51,13 +50,6 @@ function overlayTilemapTilesWithAnimatedSprites(
                   objectDepthSettings.tileMapSprites[layer.name],
                 );
               }
-
-              // There is no reason for these to have physics bodies,
-              // they are just for animation. In theory this will improve performance?
-              newThing.disableBody();
-              // Uncomment this section to see what tiles are not being overlaid.
-              // } else {
-              //   console.log(layer.name, tile.index);
             }
           },
           this,
