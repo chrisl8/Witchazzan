@@ -24,10 +24,11 @@ const objectDepthSettings = {
     'Stuff You Walk Under': 49,
   },
   spells: 10, // Can be overridden, but this is the default.
-  npc: 15, // Can be overridden, but this is the default.
-  otherPlayer: 20,
-  playerShadow: 21,
-  dotTrails: 22,
-  player: 25,
+  animatedObjects: 15, // Can be overridden, but this is the default.
+  npc: 20, // Can be overridden, but this is the default.
+  otherPlayer: 30,
+  playerShadow: 31,
+  dotTrails: 32,
+  player: 35,
 };
 export default objectDepthSettings;
