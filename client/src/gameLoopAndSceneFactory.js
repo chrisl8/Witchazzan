@@ -228,10 +228,6 @@ const gameLoopAndSceneFactory = ({
     //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     // });
 
-    // Set camera background to white for areas where no tiles were placed
-    // NOTE: If all tile maps had 100% coverage, this would not be needed.
-    this.cameras.main.setBackgroundColor('#ffffff');
-
     // Object layers in Tiled let you embed extra info into a map - like a spawn point or custom
     // collision shapes. In the .json file, there's an object layer with a point named "Spawn Point"
     let spawnPoint = map.findObject(
