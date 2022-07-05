@@ -673,10 +673,11 @@ io.on("connection", (socket) => {
               .to(connectedPlayerData.get(hadrons.get(key).ctrl).socketId)
               .emit("deleteHadron", key);
           }
-          flagSceneHasUpdated(hadrons.get(key).scn);
-          // Give clients a moment to animate the last moments of the sprite so it doesn't appear to disappear before hitting the moment when it should disappear on their screen
-          // Otherwise things seem to despawn before hitting walls, for instnce.
+          // Give other clients a moment to animate the last moments of the sprite
+          // so that it doesn't appear to disappear before hitting the location where it should disappear on their screen
+          // Otherwise things seem to de-spawn before hitting walls, for instance.
           await wait(100);
+          flagSceneHasUpdated(hadrons.get(key).scn);
           hadrons.delete(key);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
