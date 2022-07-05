@@ -22,6 +22,8 @@ function addSprites(hadron, key) {
         newClientSprite.spriteData.displayHeight,
       );
 
+    newClientSprite.sprite.setData('hadronId', key);
+
     // Phaser arcade physics supports rectangles and circles.
     if (newClientSprite.spriteData.physicsCircle) {
       newClientSprite.sprite.setCircle(
