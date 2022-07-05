@@ -15,8 +15,9 @@ import MountainWallSparkleOne from '../assets/spriteSheets/MountainWallSparkleOn
 import MountainWallSparkleTwo from '../assets/spriteSheets/MountainWallSparkleTwo.png';
 import GroundSparkleOne from '../assets/spriteSheets/GroundSparkleOne.png';
 import writtenPaper from '../assets/spriteSheets/written_paper_no_background.png';
-import redTankSingleFrame from '../assets/spriteSheets/redTankSingle.png';
+import redTankSingle from '../assets/spriteSheets/redTankSingle.png';
 import SkullWink from '../assets/spriteSheets/SkullWink.png';
+import LauncherBlob from '../assets/spriteSheets/LauncherBlob.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -194,8 +195,28 @@ const spriteSheetList = [
   },
   {
     type: 'other',
-    name: 'redTankSingleFrame',
-    file: redTankSingleFrame,
+    name: 'LauncherBlob',
+    file: LauncherBlob,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 5,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 0, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-casting', start: 1, end: 2, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'redTankSingle',
+    file: redTankSingle,
     frameWidth: 38,
     frameHeight: 46,
     endFrame: -1,
