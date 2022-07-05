@@ -5,6 +5,7 @@
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import spells from './objects/spells.js';
+import getUUID from './utilities/getUUID.js';
 
 function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
   if (spell === 'writeMessage') {
@@ -23,7 +24,7 @@ function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
           const message = $('#new_message_text').val();
           if (message) {
             const newHadronData = {
-              id: crypto.randomUUID(),
+              id: getUUID(),
               own: owner,
               typ: 'message',
               sprt: 'writtenPaper',
@@ -67,7 +68,7 @@ function castSpell({ sceneName, spell, direction, initialX, initialY, owner }) {
     }
 
     const newHadronData = {
-      id: crypto.randomUUID(),
+      id: getUUID(),
       own: owner,
       typ: 'spell',
       sub: spell,

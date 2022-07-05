@@ -9,6 +9,7 @@
 
 import playerObject from '../objects/playerObject.js';
 import hadrons from '../objects/hadrons.js';
+import getUUID from '../utilities/getUUID.js';
 
 function specialPlayerActions(sceneName) {
   if (sceneName === 'EmptyCave') {
@@ -19,7 +20,7 @@ function specialPlayerActions(sceneName) {
     // Leave death marker - Death marker is essentially a special message with a different sprite.
     const today = new Date();
     const deathMaker = {
-      id: crypto.randomUUID(),
+      id: getUUID(),
       own: playerObject.playerId,
       typ: 'message',
       sprt: 'corpse',
