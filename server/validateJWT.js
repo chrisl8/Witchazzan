@@ -8,11 +8,7 @@ async function validateJWT(token, secret, db) {
   return new Promise((resolve, reject) => {
     jwt.verify(token, secret, async (err, decoded) => {
       if (err) {
-        console.log("Failed to authenticate token.");
-        // A somewhat random wait stalls brute force attacks and somewhat mitigates timing attacks used to guess names.
-        // It also prevents client side bugs from crippling the server with inadvertent DOS attacks.
-        await wait(makeRandomNumber.between(3, 5) * 1000);
-        reject();
+        reject(new Error("Failed to authenticate token."));
       } else {
         // We also must ensure the user exists in the database. Their account could have been deleted.
         try {

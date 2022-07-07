@@ -819,13 +819,11 @@ io.on("connection", (socket) => {
         console.log(`${PlayerName} disconnected`);
       });
     } catch (e) {
-      console.log("Failed to authenticate token.");
       if (e) {
-        console.log(e);
+        console.log(e.message);
+      } else {
+        console.log("Failed to handle token receipt.");
       }
-      // A somewhat random wait stalls brute force attacks and somewhat mitigates timing attacks used to guess names.
-      // It also prevents client side bugs from crippling the server with inadvertent DOS attacks.
-      await wait(makeRandomNumber.between(3, 5) * 1000);
       socket.emit("unauthorized");
       await wait(500); // I think the client needs a moment to receive the message and deal with it.
       socket.disconnect();
