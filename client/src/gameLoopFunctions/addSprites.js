@@ -22,6 +22,7 @@ function addSprites(hadron, key) {
         newClientSprite.spriteData.displayHeight,
       );
 
+    // https://newdocs.phaser.io/docs/3.55.1/Phaser.Data.DataManager
     newClientSprite.sprite.setData('hadronId', key);
 
     // Phaser arcade physics supports rectangles and circles.
