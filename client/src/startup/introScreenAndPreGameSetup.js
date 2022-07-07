@@ -5,7 +5,7 @@
 import playerObject from '../objects/playerObject.js';
 import spellAssignments from '../objects/spellAssignments.js';
 
-let apiURL = `${window.location.href}api`;
+let apiURL = `${window.location.origin}/api`;
 if (window.location.port === '3001') {
   apiURL = `http://${window.location.hostname}:8080/api`;
 }
