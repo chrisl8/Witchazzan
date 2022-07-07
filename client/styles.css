@@ -1,14 +1,8 @@
+html,
 body {
   margin: 0;
   padding: 0;
   font-family: 'Short Stack', serif;
-}
-
-/*Allow body to fill browser window, so that joystick can be used BELOW game canvas.*/
-html,
-body {
-  margin: 0;
-  height: 100%;
 }
 
 h1,
@@ -223,8 +217,21 @@ img.emoji {
   /*border: 5px solid #635d5d42;*/
   /*border-bottom-style: none;*/
   /*border-left-style: none;*/
-  height: 33%;
-  width: 25%;
+  height: 50%;
+  width: 50%;
+  touch-action: none;
+}
+
+#second_stick_container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 0 119px 0 0;
+  /*border: 5px solid #635d5d42;*/
+  /*border-bottom-style: none;*/
+  /*border-left-style: none;*/
+  height: 50%;
+  width: 50%;
   touch-action: none;
 }
 
@@ -250,6 +257,7 @@ img.emoji {
   background-color: #607d8b !important;
 }
 
+/*https://stackoverflow.com/a/19461564/4982408*/
 .middle-of-screen {
   position: absolute;
   top: 50%;
@@ -257,4 +265,16 @@ img.emoji {
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+}
+
+/*https://github.com/yoannmoinet/nipplejs/issues/185#issuecomment-1162933831*/
+/*This doesn't work on iOS, but we tried.*/
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }

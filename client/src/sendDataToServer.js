@@ -7,6 +7,7 @@ import deletedHadronList from './objects/deletedHadronList.js';
 import validateHadron from '../../shared/validateHadron.mjs';
 import textObject from './objects/textObject.js';
 import clientSprites from './objects/clientSprites.js';
+import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
 
 const sendDataToServer = {};
 const sentData = new Map();
@@ -116,11 +117,16 @@ sendDataToServer.damageHadron = (data) => {
 
 sendDataToServer.token = () => {
   const token = localStorage.getItem('authToken');
-  if (communicationsObject.socket.connected) {
-    communicationsObject.socket.emit('token', {
-      token,
-      sprite: playerObject.spriteName,
-    });
+  if (token) {
+    if (communicationsObject.socket.connected) {
+      communicationsObject.socket.emit('token', {
+        token,
+        sprite: playerObject.spriteName,
+      });
+    }
+  } else {
+    // If we don't have a token, then we just need to sign in.
+    returnToIntroScreen();
   }
 };
 

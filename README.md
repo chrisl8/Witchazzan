@@ -354,7 +354,7 @@ Parcel is pretty nice, but it has quirks. Here are my notes.
   - You can see an example of this in `gameLoopAndSceneFactor.js` where the .ogg and .mp3 files are imported.
 - [@parcel/transformer-js: Browser scripts cannot have imports or exports.](https://github.com/fregante/browser-extension-template/issues/51#issuecomment-869420069)
   - You have to add `type="module"` to all script imports in your .html files
-  - Example at the bottom of the main `index.html` file where `index.js` is imported.
+  - Example at the bottom of the main `index.html` file where `startGame.js` is imported.
 - Other ways to do things
   - Of course there are a dozen other ways to do things and a dozen other package managers, but I have been aiming for simplicity in this build, even at the possible expense of build size. It is a game, so one should expect some load time when first visiting the site.
 

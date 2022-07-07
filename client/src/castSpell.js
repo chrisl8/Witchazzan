@@ -24,7 +24,7 @@ function castSpell({
     $('#message_visible_when_online').prop('checked', true);
     $('.checkbox_radio').checkboxradio({ icon: false });
     const dialog = $('#new_message_dialog_div').dialog({
-      width: '50%',
+      minWidth: 250,
       modal: true,
       buttons: {
         Ok() {

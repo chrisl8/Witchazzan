@@ -4,8 +4,6 @@
 /* globals $:true */
 import playerObject from '../objects/playerObject.js';
 import spellAssignments from '../objects/spellAssignments.js';
-import wait from '../../../shared/wait.mjs';
-import isMobileBrowser from '../utilities/isMobileBrowser.js';
 
 let apiURL = `${window.location.href}api`;
 if (window.location.port === '3001') {
@@ -18,8 +16,6 @@ let loginFailure = false;
 let loginErrorText = null;
 let loggedIn = false;
 let loginInProgress = false;
-let pleaseStartGameNow = false;
-let existingHelpTextVersion = null;
 let creatingNewAccount = false;
 let sendingAccountCreation = false;
 const token = localStorage.getItem('authToken');
@@ -210,12 +206,50 @@ async function createAccount() {
 }
 
 const startGameNow = () => {
-  // Show the loading text right away, so user knows it is happening,
-  // even though there is up to a 1 second delay due to the loop.
-  document.getElementById('loading_text').hidden = false;
-  document.getElementById('pre_game_div').hidden = true;
+  // Save the player name to local storage for use next time
+  // in the login box in case the token was wiped.
+  // In theory the browser could do this for me?
+  localStorage.setItem('playerName', playerName);
 
-  pleaseStartGameNow = true;
+  // Update the help text version so it does not force us here next time.
+  localStorage.setItem(
+    'helpTextVersion',
+    playerObject.helpTextVersion.toString(),
+  );
+
+  // Settle up disableCameraZoom and set local storage if need be
+  const disableCameraZoom = document.getElementById('camera_zoom_off').checked;
+  if (disableCameraZoom) {
+    localStorage.setItem('disableCameraZoom', 'true');
+  } else {
+    localStorage.removeItem('disableCameraZoom');
+  }
+
+  // Settle up disableSound and set local storage if need be
+  const disableSound = document.getElementById('disable_sound').checked;
+  if (disableSound) {
+    localStorage.setItem('disableSound', 'true');
+  } else {
+    localStorage.removeItem('disableSound');
+  }
+
+  // Settle up enableDebug and set local storage if need be
+  const enableDebug = document.getElementById('phaser_debug').checked;
+  if (enableDebug) {
+    localStorage.setItem('enableDebug', 'true');
+  } else {
+    localStorage.removeItem('enableDebug');
+  }
+
+  // Add all spell selections to local storage for later retrieval
+  for (const [, value] of Object.entries(playerObject.spellKeys)) {
+    const spellSettingFromDOM = document.getElementById(
+      `spell_${value}_selector`,
+    ).value;
+    localStorage.setItem(`key${value}SpellAssignment`, spellSettingFromDOM);
+  }
+
+  window.location.href = '/';
 };
 
 /*
@@ -224,34 +258,30 @@ const startGameNow = () => {
  * and deals with input from that screen,
  * including putting it into local storage.
  *
- * The TEXT ITSELF for the Intro Screen is in ../index.html
+ * The TEXT ITSELF for the Intro Screen is in ../sign-in.html
  *
- * NOTE: That this function has a wait loop at the end,
- * to stall the user at the help screen if they
- * need to input information.
  */
 
-// eslint-disable-next-line func-names
-async function introScreenAndPreGameSetup() {
+(async () => {
   // Check local storage for disableCameraZoom
-  let disableCameraZoom = localStorage.getItem('disableCameraZoom');
+  const disableCameraZoom = localStorage.getItem('disableCameraZoom');
   if (disableCameraZoom === 'true') {
     document.getElementById('camera_zoom_off').checked = true;
   }
 
   // Check local storage for disableSound
-  let disableSound = localStorage.getItem('disableSound');
+  const disableSound = localStorage.getItem('disableSound');
   if (disableSound === 'true') {
     document.getElementById('disable_sound').checked = true;
   }
 
   // Check local storage for enableDebug
-  let enableDebug = localStorage.getItem('enableDebug');
+  const enableDebug = localStorage.getItem('enableDebug');
   if (enableDebug === 'true') {
     document.getElementById('phaser_debug').checked = true;
   }
 
-  // Handle spell settings:
+  // HANDLE SPELL SETTINGS
   for (const [key, value] of Object.entries(playerObject.spellKeys)) {
     // Check local storage to see if there is a stored value
     const spellSettingFromLocalStorage = localStorage.getItem(
@@ -285,14 +315,16 @@ async function introScreenAndPreGameSetup() {
     }
     spellAssignmentInnerHTML += `</select><br />`;
   }
-  // Push new HTML code into DOM
+  // Push new spell settings HTML code into DOM
   document.getElementById('spell-assignment').innerHTML =
     spellAssignmentInnerHTML;
 
   // The helpTextVersion is a way to force all users
   // back to the intro screen on next connection.
   // It is also the method that the 'p' key uses to get users here.
-  existingHelpTextVersion = Number(localStorage.getItem('helpTextVersion'));
+  const existingHelpTextVersion = Number(
+    localStorage.getItem('helpTextVersion'),
+  );
 
   if (
     !token ||
@@ -302,7 +334,6 @@ async function introScreenAndPreGameSetup() {
     // Find out if we are logged in already
     await checkLoggedInStatus();
 
-    document.getElementById('loading_text').hidden = true;
     document.getElementById('pre_game_div').hidden = false;
 
     // Check local storage to see if we already have a name.
@@ -341,83 +372,8 @@ async function introScreenAndPreGameSetup() {
     if (playerName) {
       domElements.playerNameInputBox.value = playerName;
     }
-
     updateDOMElements();
-
-    while (!pleaseStartGameNow) {
-      // eslint-disable-next-line no-await-in-loop
-      await wait(250);
-    }
-
-    // Clean up event listeners
-    domElements.startGameButton.removeEventListener('click', startGameNow);
-    domElements.loginSubmitButton.removeEventListener('click', login);
-    domElements.logOutButton.removeEventListener('click', logOut);
-    domElements.createNewAccountButton.removeEventListener(
-      'click',
-      createNewAccount,
-    );
-    domElements.createAccountButton.removeEventListener('click', createAccount);
-  }
-
-  // Save the player name to local storage for use next time
-  // in the login box in case the token was wiped.
-  // In theory the browser could do this for me?
-  localStorage.setItem('playerName', playerName);
-
-  // Update the help text version so it does not force us here next time.
-  localStorage.setItem(
-    'helpTextVersion',
-    playerObject.helpTextVersion.toString(),
-  );
-
-  // Settle up disableCameraZoom and set local storage if need be
-  disableCameraZoom = document.getElementById('camera_zoom_off').checked;
-  if (disableCameraZoom) {
-    localStorage.setItem('disableCameraZoom', 'true');
   } else {
-    localStorage.removeItem('disableCameraZoom');
+    startGameNow();
   }
-  playerObject.disableCameraZoom = disableCameraZoom;
-
-  // Settle up disableSound and set local storage if need be
-  disableSound = document.getElementById('disable_sound').checked;
-  if (disableSound) {
-    localStorage.setItem('disableSound', 'true');
-  } else {
-    localStorage.removeItem('disableSound');
-  }
-  playerObject.disableSound = disableSound;
-
-  // Settle up enableDebug and set local storage if need be
-  enableDebug = document.getElementById('phaser_debug').checked;
-  if (enableDebug) {
-    localStorage.setItem('enableDebug', 'true');
-  } else {
-    localStorage.removeItem('enableDebug');
-  }
-  playerObject.enableDebug = enableDebug;
-
-  // Add all spell selections to local storage for later retrieval
-  for (const [, value] of Object.entries(playerObject.spellKeys)) {
-    const spellSettingFromDOM = document.getElementById(
-      `spell_${value}_selector`,
-    ).value;
-    spellAssignments.set(value, spellSettingFromDOM);
-    localStorage.setItem(`key${value}SpellAssignment`, spellSettingFromDOM);
-  }
-
-  if (localStorage.getItem('activeSpell')) {
-    playerObject.activeSpell = localStorage.getItem('activeSpell');
-  } else {
-    // Set active spell to first spell key's assignment.
-    playerObject.activeSpell = spellAssignments.get(playerObject.spellKeys[0]);
-  }
-
-  // Un-hide joystick input box
-  if (isMobileBrowser) {
-    document.getElementById('joystick_container').hidden = false;
-  }
-}
-
-export default introScreenAndPreGameSetup;
+})();

@@ -6,6 +6,7 @@ import sendDataToServer from './sendDataToServer.js';
 import playerObject from './objects/playerObject.js';
 import parseHadronsFromServer from './parseHadronsFromServer.js';
 import hadrons from './objects/hadrons.js';
+import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -33,7 +34,8 @@ function receiveDataFromServer() {
 
   communicationsObject.socket.on('unauthorized', () => {
     localStorage.removeItem('authToken');
-    window.location.reload();
+    // We just need to sign in again.
+    returnToIntroScreen();
   });
 
   // The local client won't start the game until this is received and parsed.
@@ -75,7 +77,6 @@ function receiveDataFromServer() {
   // Handle disconnect
   communicationsObject.socket.on('disconnect', () => {
     localStorage.setItem('lostConnection', '1');
-    console.log('disconnect');
     // If we were disconnected, there is no point in continuing to display the scene, so we refresh
     window.location.reload();
   });

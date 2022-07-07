@@ -4,10 +4,13 @@
 import Phaser from 'phaser';
 import phaserConfigObject from '../objects/phaserConfigObject.js';
 import receiveDataFromServer from '../receiveDataFromServer.js';
-import touchInput from '../touchInput.js';
+import handleTouchInput from '../handleTouchInput.js';
 import playerObject from '../objects/playerObject.js';
 import wait from '../../../shared/wait.mjs';
 import ScrollingTextBox from '../ScrollingTextBox.js';
+import isMobileBrowser from '../utilities/isMobileBrowser.js';
+import returnToIntroScreen from '../gameLoopFunctions/returnToIntroScreen.js';
+import spellAssignments from '../objects/spellAssignments.js';
 
 async function waitForBrowserWindowToBeVisible() {
   // Don't start if the browser window is not visible.
@@ -34,8 +37,14 @@ async function waitForConnectionAndInitialPlayerPosition() {
  * and the help screen, if shown, is dismissed.
  */
 
-async function startGame({ phaserDebug }) {
-  document.getElementById('pre_game_div').hidden = true;
+(async () => {
+  // First make sure that we have a token, because otherwise this is pointless
+  const token = localStorage.getItem('authToken');
+  if (!token) {
+    returnToIntroScreen();
+  }
+
+  // Show/hide correct loading text
   const lostConnection = localStorage.getItem('lostConnection');
   localStorage.removeItem('lostConnection');
   const paused = localStorage.getItem('paused');
@@ -44,7 +53,68 @@ async function startGame({ phaserDebug }) {
     Boolean(lostConnection) || Boolean(paused);
   document.getElementById('reconnect_text').hidden = !lostConnection;
   document.getElementById('paused_text').hidden = !paused;
-  phaserConfigObject.physics.arcade.debug = phaserDebug;
+
+  // Set viewport requirements for game, such as no scrolling
+  // const metaTag = document.createElement('meta');
+  // metaTag.name = 'viewport';
+  // metaTag.content =
+  //   'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+  // document.getElementsByTagName('head')[0].appendChild(metaTag);
+  // document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+  //
+  // // Reset zoom?
+  // // $('meta[name=viewport]').remove();
+  // // $('head').append(
+  // //   '<meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=yes">',
+  // // );
+  // setTimeout(() => {
+  //   $('meta[name=viewport]').remove();
+  //   $('head').append(
+  //     '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">',
+  //   );
+  // }, 100);
+  // // document.body.style.zoom = window.innerWidth / window.outerWidth;
+  // // document.body.style.zoom = 1.0;
+  // // const scale = 'scale(1)';
+  // // document.body.style.webkitTransform = scale; // Chrome, Opera, Safari
+  // // document.body.style.msTransform = scale; // IE 9
+  // // document.body.style.transform = scale; // General
+
+  // Set up some initial DOM element settings.
+  playerObject.domElements.chatInputDiv.style.display = 'none';
+  playerObject.domElements.chatInputDiv.style.display = 'none';
+  playerObject.domElements.chatInputCaret.innerHTML = '&#x1F4AC;';
+  playerObject.domElements.Scrolling.hidden = true;
+
+  // Retrieve data from local storage
+  playerObject.disableCameraZoom =
+    localStorage.getItem('disableCameraZoom') === 'true';
+  playerObject.disableSound = localStorage.getItem('disableSound') === 'true';
+  playerObject.enableDebug = localStorage.getItem('enableDebug') === 'true';
+  // Spell Assignments
+  for (const [key, value] of Object.entries(playerObject.spellKeys)) {
+    // Check local storage to see if there is a stored value
+    const spellSettingFromLocalStorage = localStorage.getItem(
+      `key${value}SpellAssignment`,
+    );
+    if (
+      spellSettingFromLocalStorage !== null &&
+      playerObject.spellOptions.indexOf(spellSettingFromLocalStorage) !== -1
+    ) {
+      spellAssignments.set(value, spellSettingFromLocalStorage);
+    } else if (playerObject.spellOptions[key]) {
+      // Otherwise fill them in with the default value,
+      // but only assign defaults as if they exist.
+      spellAssignments.set(value, playerObject.spellOptions[key]);
+    }
+  }
+  // Active Spell
+  if (localStorage.getItem('activeSpell')) {
+    playerObject.activeSpell = localStorage.getItem('activeSpell');
+  } else {
+    // Set active spell to first spell key's assignment.
+    playerObject.activeSpell = spellAssignments.get(playerObject.spellKeys[0]);
+  }
 
   await waitForBrowserWindowToBeVisible();
 
@@ -52,15 +122,23 @@ async function startGame({ phaserDebug }) {
 
   await waitForConnectionAndInitialPlayerPosition();
 
-  // Set last DOM updates before game starts.
+  // Hide the loading text before starting the game.
   document.getElementById('pre_load_info').hidden = true;
+
+  // Set the background to black so that parts of the browser window that are not the game are obvious
   document.getElementsByTagName('body')[0].style.background = 'black';
 
-  touchInput();
+  // Un-hide joystick input boxes and enable touch input on mobile
+  if (isMobileBrowser) {
+    document.getElementById('joystick_container').hidden = false;
+    document.getElementById('second_stick_container').hidden = false;
+    handleTouchInput();
+  }
 
   playerObject.scrollingTextBox = new ScrollingTextBox();
 
   // Start Phaser
+  phaserConfigObject.physics.arcade.debug = playerObject.enableDebug;
   phaserConfigObject.game = new Phaser.Game(phaserConfigObject);
 
   // grab handle to canvas element
@@ -85,6 +163,4 @@ async function startGame({ phaserDebug }) {
       }, 1000);
     }
   });
-}
-
-export default startGame;
+})();

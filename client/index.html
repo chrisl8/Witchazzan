@@ -1,588 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <!-- Favicons -->
-    <!-- https://www.favicon-generator.org/ -->
-    <link
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- Favicons -->
+  <!-- https://www.favicon-generator.org/ -->
+  <link
       rel="apple-touch-icon"
       sizes="57x57"
       href="./src/favicon/apple-icon-57x57.png"
-    />
-    <link
+  />
+  <link
       rel="apple-touch-icon"
       sizes="60x60"
       href="./src/favicon/apple-icon-60x60.png"
-    />
-    <link
+  />
+  <link
       rel="apple-touch-icon"
       sizes="72x72"
       href="./src/favicon/apple-icon-72x72.png"
-    />
-    <link
+  />
+  <link
       rel="apple-touch-icon"
       sizes="76x76"
       href="./src/favicon/apple-icon-76x76.png"
-    />
-    <link
+  />
+  <link
       rel="apple-touch-icon"
       sizes="114x114"
       href="./src/favicon/apple-icon-114x114.png"
-    />
-    <link
+  />
+  <link
       rel="apple-touch-icon"
       sizes="120x120"
       href="./src/favicon/apple-icon-120x120.png"
-    />
-    <link
+  />
+  <link
       rel="apple-touch-icon"
       sizes="144x144"
       href="./src/favicon/apple-icon-144x144.png"
-    />
-    <link
+  />
+  <link
       rel="apple-touch-icon"
       sizes="152x152"
       href="./src/favicon/apple-icon-152x152.png"
-    />
-    <link
+  />
+  <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="./src/favicon/apple-icon-180x180.png"
-    />
-    <link
+  />
+  <link
       rel="icon"
       type="image/png"
       sizes="192x192"
       href="./src/favicon/android-icon-192x192.png"
-    />
-    <link
+  />
+  <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="./src/favicon/favicon-32x32.png"
-    />
-    <link
+  />
+  <link
       rel="icon"
       type="image/png"
       sizes="96x96"
       href="./src/favicon/favicon-96x96.png"
-    />
-    <link
+  />
+  <link
       rel="icon"
       type="image/png"
       sizes="16x16"
       href="./src/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- End Favicons -->
-    <!-- Fonts -->
-    <!-- https://fonts.google.com/?category=Monospace&selection.family=Roboto+Mono -->
-    <link
+  />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+  <!-- End Favicons -->
+  <!-- Fonts -->
+  <!-- https://fonts.google.com/?category=Monospace&selection.family=Roboto+Mono -->
+  <link
       href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto+Mono&display=swap"
       rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Stalemate&display=swap"
-      rel="stylesheet"
-    />
-    <link
+  />
+  <link
       href="https://fonts.googleapis.com/css?family=Short+Stack&display=swap"
       rel="stylesheet"
-    />
-    <!-- End Fonts -->
-    <!-- Twemoji Load -->
-    <!-- Emoji from Twitter https://github.com/twitter/twemoji -->
-    <!-- See all Emoji codes and examples here: http://www.unicode.org/emoji/charts/full-emoji-list.html -->
-    <!-- Note that we are using the Twitter version, although since we are embedding codes, a switch would not be difficult -->
-    <script
+  />
+  <!-- End Fonts -->
+  <!-- Twemoji Load -->
+  <!-- Emoji from Twitter https://github.com/twitter/twemoji -->
+  <!-- See all Emoji codes and examples here: http://www.unicode.org/emoji/charts/full-emoji-list.html -->
+  <!-- Note that we are using the Twitter version, although since we are embedding codes, a switch would not be difficult -->
+  <script
       src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"
       crossorigin="anonymous"
-    ></script>
-    <!-- End Twemoji Load -->
-    <!-- jQuery Load -->
-    <link
+  ></script>
+  <!-- End Twemoji Load -->
+  <!-- jQuery Load -->
+  <link
       href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
       rel="stylesheet"
-    />
-    <link
+  />
+  <link
       href="https://code.jquery.com/ui/1.13.1/themes/ui-darkness/jquery-ui.css"
       rel="stylesheet"
-    />
-    <script
+  />
+  <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
-    ></script>
-    <script
+  ></script>
+  <script
       src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
       integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
       crossorigin="anonymous"
-    ></script>
-    <!-- End jQuery Load -->
-    <link rel="stylesheet" href="styles.css" />
-    <title>Witchazzan</title>
-  </head>
-  <!--  Body Background is black, so that it is clear that it is "off the map" regardless of whether we have borders on the side or bottom due to screen/scene ratio mismatch.-->
-  <body>
-    <div id="joystick_container" hidden></div>
-    <div id="pre_load_info">
-      <!-- Initial Loading Text -->
-      <!--This is used after the help/startup screen before the server connects.-->
-      <!--Inline Style is here to make it match up when flipping between a fresh load,-->
-      <!--and loading from the intro screen.-->
-      <p
-          id="loading_text"
-          class="middle-of-screen"
-          style="font-size: 2em; font-family: 'Short Stack', serif"
-          hidden
-      >
-        Loading Witchazzan, please stand by . . .
-      </p>
-      <p
-          id="reconnect_text"
-          class="middle-of-screen"
-          style="font-size: 2em; font-family: 'Short Stack', serif"
-          hidden
-      >
-        Small Hadron Cooperator connection lost, attempting to reconnect . . .
-      </p>
-      <p
-          id="paused_text"
-          class="middle-of-screen"
-          style="font-size: 2em; font-family: 'Short Stack', serif"
-          hidden
-      >
-        Game paused due to being in the background, restarting . . .
-      </p>
-      <!-- End Initial Loading Text -->
-      <!-- Intro Screen -->
-      <div id="pre_game_div" hidden>
-        <h1 class="logo-text">Witchazzan</h1>
-        <div class="logo-rainbow-bar">
-          <img alt="horizontal bar" src="src/assets/rainbowbar.gif" />
-        </div>
-        <br />
-        <div id="login-section" hidden>
-          <h1>Login</h1>
-          <div class="intro-screen-subsection">
-            <label for="player_name_input_box">Name</label>
-            <input id="player_name_input_box" />
-            <br />
-            <label for="password_input_box">Password</label>
-            <input
-              id="password_input_box"
-              autocomplete="current-password"
-              type="password"
-              required
-            />
-            <br />
-            <div id="repeat_password_input" hidden>
-              <label for="repeat_password_input_box">Repeat Password</label>
-              <input
-                id="repeat_password_input_box"
-                autocomplete="new-password"
-                type="password"
-                required
-              />
-              <p style="color: blue">
-                Password must at least 8 characters, but not more than 72.
-              </p>
-            </div>
-            <div id="login_failure" hidden>
-              <span style="color: red">Login Failed. :'(</span>
-            </div>
-            <div id="login_in_progress">
-              <span style="color: blue">Logging in...</span>
-            </div>
-            <div id="account_creation_in_progress">
-              <span style="color: blue">Creating account...</span>
-            </div>
-            <div id="login_error_text_box" hidden>
-              <span style="color: red">Error: </span>
-              <span style="color: red" id="login_error_text"></span>
-            </div>
-            <div id="login_buttons">
-              <br />
-              <button
-                id="login_button"
-                style="margin-left: 5px; margin-top: 5px"
-              >
-                Login
-              </button>
-              or
-              <button
-                id="create_new_account_button"
-                style="margin-left: 5px; margin-top: 5px"
-              >
-                Create New Account
-              </button>
-            </div>
-            <button
-              id="create_account_button"
-              style="margin-left: 5px; margin-top: 5px"
-              hidden
-            >
-              Create Account
-            </button>
-          </div>
-        </div>
-        <div id="start-game-section" hidden>
-          <h1>Start Game</h1>
-          <div class="intro-screen-subsection">
-            Player Name: <span id="player_name_text"></span>
-            <br />
-            <button
-              id="start_game_button"
-              style="margin-left: 5px; margin-top: 5px"
-            >
-              Start Game
-            </button>
-            <button
-              id="logout_button"
-              style="margin-left: 5px; margin-top: 5px"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-        <h1>Setup</h1>
-        <div class="intro-screen-subsection">
-          <h3>Spells</h3>
-          <div class="intro-screen-subsection" id="spell-assignment"></div>
-          <h3>Sound</h3>
-          <div class="intro-screen-subsection">
-            <input type="checkbox" id="disable_sound" name="disable_sound" />
-            <label for="disable_sound">Disable sound</label>
-          </div>
-        </div>
-        <div id="game_debuging">
-          <h2>Debugging</h2>
-          <div class="intro-screen-subsection">
-            <input type="checkbox" id="phaser_debug" name="phaser_debug" />
-            <label for="phaser_debug">Enable Phaser Debugging</label>
-            <br />
-            <input
-              type="checkbox"
-              id="camera_zoom_off"
-              name="camera_zoom_off"
-            />
-            <label for="camera_zoom_off"
-              >Disable Camera Zoom for Debugging</label
-            >
-          </div>
-        </div>
-        <h1>Key Map</h1>
-        <!--  https://codepen.io/Mickel07/pen/YdONYK-->
-        <div class="intro-screen-subsection keyboard">
-          <div class="row">
-            <div class="key key__symbols">~<span>`</span></div>
-            <div class="key">
-              1
-              <span class="description">Spell 1</span>
-            </div>
-            <div class="key">
-              2
-              <span class="description">Spell 2</span>
-            </div>
-            <div class="key">
-              3
-              <span class="description">Spell 3</span>
-            </div>
-            <div class="key">4</div>
-            <div class="key">5</div>
-            <div class="key">6</div>
-            <div class="key">7</div>
-            <div class="key">8</div>
-            <div class="key">9</div>
-            <div class="key">0</div>
-            <div class="key key__symbols">_<span>-</span></div>
-            <div class="key key__symbols">+<span>=</span></div>
-            <div class="key key__backspace">Backspace</div>
-          </div>
-
-          <div class="row">
-            <div class="key key__oneandhalf">Tab</div>
-            <div class="key">Q</div>
-            <div class="key">
-              W<br />
-              <span class="description">Up</span>
-            </div>
-            <div class="key">E</div>
-            <div class="key">R</div>
-            <div class="key">
-              T
-              <span class="description" id="dot_trails">dot Trails</span>
-            </div>
-            <div class="key">Y</div>
-            <div class="key">U</div>
-            <div class="key">I</div>
-            <div class="key">O</div>
-            <div class="key">
-              P
-              <span class="description">"Pause"</span>
-            </div>
-            <div class="key key__symbols">{<span>[</span></div>
-            <div class="key key__symbols">}<span>]</span></div>
-            <div class="key key__symbols key__oneandhalf">|<span>\</span></div>
-          </div>
-
-          <div class="row">
-            <div class="key key__caps">Caps Lock</div>
-            <div class="key">
-              A
-              <span class="description">Left</span>
-            </div>
-            <div class="key">
-              S
-              <span class="description">Down</span>
-            </div>
-            <div class="key">
-              D
-              <span class="description">Right</span>
-            </div>
-            <div class="key">F</div>
-            <div class="key">G</div>
-            <div class="key">
-              H
-              <span class="description" id="home_key">Home</span>
-            </div>
-            <div class="key">J</div>
-            <div class="key">K</div>
-            <div class="key">
-              L
-              <span class="description">chat Log</span>
-            </div>
-            <div class="key key__symbols">:<span>;</span></div>
-            <div class="key key__symbols">"<span>'</span></div>
-            <div class="key key__enter">Enter</div>
-          </div>
-
-          <div class="row">
-            <div class="key key__shift-left">
-              Shift
-              <span class="description">Run</span>
-            </div>
-            <div class="key">Z</div>
-            <div class="key">X</div>
-            <div class="key">
-              C
-              <span class="description">Chat</span>
-            </div>
-            <div class="key">V</div>
-            <div class="key">B</div>
-            <div class="key">N</div>
-            <div class="key">M</div>
-            <div class="key key__symbols">&gt;<span>.</span></div>
-            <div class="key key__symbols">&lt;<span>.</span></div>
-            <div class="key key__symbols">?<span>/</span></div>
-            <div class="key">
-              Shift
-              <span class="description">Run</span>
-            </div>
-            <div class="key key__arrow">
-              <img alt="up" src="src/assets/arrow-up.svg" />
-              <span class="description">Up</span>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="key key__bottom-funct">Ctrl</div>
-            <div class="key key__bottom-funct">Super</div>
-            <div class="key key__bottom-funct">Alt</div>
-            <div class="key key__spacebar">
-              <span class="description">Fire Spell</span>
-            </div>
-            <div class="key">Alt</div>
-            <div class="key">Super</div>
-            <div class="key key__arrow">
-              <img alt="left" src="src/assets/arrow-left.svg" />
-              <span class="description">Left</span>
-            </div>
-            <div class="key key__arrow">
-              <img alt="down" src="src/assets/arrow-down.svg" />
-              <span class="description">Down</span>
-            </div>
-            <div class="key key__arrow">
-              <img alt="right" src="src/assets/arrow-right.svg" />
-              <span class="description">Right</span>
-            </div>
-          </div>
-        </div>
-        <h1>Instructions</h1>
-        <div class="intro-screen-subsection">
-          <h3>Premise</h3>
-          <ul>
-            <li>
-              This is an online Multi-player game. When you click "Start Game"
-              the game will load and connect to the server. Without the server,
-              the game will not function.
-            </li>
-            <li>
-              For
-              <a
-                href="https://github.com/chrisl8/Witchazzan/blob/main/lore/backStory.md"
-                target="_blank"
-                >reasons</a
-              >, the server is called the Small Hadron Cooperator.
-            </li>
-          </ul>
-          <h3>Remote Shadow</h3>
-          <ul>
-            <li>
-              You will quickly notice a darkened instance of your sprite that
-              follows you. This is not another player, it is
-              <strong>you</strong> as seen by the server and other players. It
-              provides a visual indication of the lag between you and the remote
-              world.
-            </li>
-          </ul>
-          <h3>Directional Controls</h3>
-          <ul>
-            <li>
-              wasd or Arrow Keys
-              <ul>
-                <li>
-                  Hold down Shift to "Sprint" which bypasses acceleration. Max
-                  speed is still the same.
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <h3>Spells</h3>
-          <ul>
-            <li>
-              The number keys, 1-2 at the moment, pick which spell is active.
-            </li>
-            <li>
-              You pick which spell to assign to which key in the "Setup" section
-              above.
-            </li>
-            <li>The space bar fires the currently active spell.</li>
-          </ul>
-          <h3>Keys</h3>
-          <ul>
-            <li>Space Bar - Fire</li>
-            <li>c - open the Chat/Command input box</li>
-            <li>l - open/close the chat Log when chat input is not open</li>
-            <li>h - return to Home scene</li>
-            <li>t - turn dot Trails on/off for debugging</li>
-            <li>
-              p - "Pause" returns you to this screen
-              <ul>
-                <li>
-                  This will also reload and pause your game, but rememeber the
-                  game is online multi-player, so it goes on without you.
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <h3>Chat/Command Input</h3>
-          <ul>
-            <li>
-              Any text entered is broadcast as chat text to other players.
-            </li>
-            <li>Esc - Close Chat/Command input box</li>
-            <li>/ - send commands instead of chat</li>
-            <li>Send /help to get a list of available commands.</li>
-          </ul>
-          <h3>Touch Controls</h3>
-          <ul>
-            <li>
-              Use Finger or Mouse pointer like a finger to move
-              <ul>
-                <li>Distance from center of starting point determines speed</li>
-              </ul>
-            </li>
-            <li>
-              Tap with TWO fingers to fire
-              <ul>
-                <li>
-                  The spell you set for key 1 will be the spell used on mobile
-                </li>
-              </ul>
-            </li>
-
-            <li>Tap with THREE fingers to open/close the chat/command input</li>
-          </ul>
-          <h3>Back Story</h3>
-          <ul>
-            <li>
-              <a
-                href="https://github.com/chrisl8/Witchazzan/blob/main/lore/backStory.md"
-                target="_blank"
-                >Back Story</a
-              >
-            </li>
-          </ul>
-        </div>
-        <p style="padding-bottom: 25px; text-align: center">
-          <a href="https://github.com/chrisl8/Witchazzan"
-            >https://github.com/chrisl8/Witchazzan</a
-          >
-        </p>
-      </div>
-      <!-- End Intro Screen -->
-    </div>
-    <!-- Game Container -->
-    <div id="game_container">
-      <div id="canvas_overlay_elements" style="display: none">
-        <div id="command_input_div" style="display: none">
-          <span id="command_input_caret"></span><input id="command_input" />
-        </div>
-        <div id="upper_left_text_overlay_div">
-          <p id="upper_left_text_overlay_input"></p>
-        </div>
-        <div id="scrolling_text_overlay_div">
-          <p id="scrolling_text_overlay_input"></p>
-        </div>
-        <div id="center_text_overlay_div">
-          <p id="center_text_overlay_input"></p>
-        </div>
-        <div id="fading_text_overlay_div">
-          <p id="fading_text_overlay_input"></p>
-        </div>
-        <div id="player_tag"></div>
-        <div id="other_player_tags"></div>
-      </div>
-    </div>
-    <!-- End Game Container -->
-    <!-- Modal Dialogs -->
-    <div id="new_message_dialog_div" title="New Message" style="display: none">
-      <p id="dialog_text_overlay_input">What do you want to say?</p>
-      <form onSubmit="return false;">
-        <input
+  ></script>
+  <!-- End jQuery Load -->
+  <link rel="stylesheet" href="styles.css" />
+  <title>Witchazzan</title>
+</head>
+<body class="no-select">
+<div id="pre_load_info">
+  <!-- Initial Loading Text -->
+  <!--This is used after the help/startup screen before the server connects.-->
+  <!--Inline Style is here to make it match up when flipping between a fresh load,-->
+  <!--and loading from the intro screen.-->
+  <p
+      id="loading_text"
+      class="middle-of-screen"
+      style="font-size: 2em; font-family: 'Short Stack', serif"
+      hidden
+  >
+    Loading Witchazzan, please stand by . . .
+  </p>
+  <p
+      id="reconnect_text"
+      class="middle-of-screen"
+      style="font-size: 2em; font-family: 'Short Stack', serif"
+      hidden
+  >
+    Small Hadron Cooperator connection lost, attempting to reconnect . . .
+  </p>
+  <p
+      id="paused_text"
+      class="middle-of-screen"
+      style="font-size: 2em; font-family: 'Short Stack', serif"
+      hidden
+  >
+    Game paused due to being in the background, restarting . . .
+  </p>
+</div>
+<div id="game_container" style="position: absolute; width: 100%; height: 100%"></div>
+<div id="canvas_overlay_elements" class="no-select" style="display: flex">
+  <div id="command_input_div" style="display: none">
+    <span id="command_input_caret"></span><input id="command_input" />
+  </div>
+  <div id="upper_left_text_overlay_div">
+    <p id="upper_left_text_overlay_input"></p>
+  </div>
+  <div id="scrolling_text_overlay_div">
+    <p id="scrolling_text_overlay_input"></p>
+  </div>
+  <div id="center_text_overlay_div">
+    <p id="center_text_overlay_input"></p>
+  </div>
+  <div id="fading_text_overlay_div">
+    <p id="fading_text_overlay_input"></p>
+  </div>
+  <div id="player_tag"></div>
+  <div id="other_player_tags"></div>
+</div>
+<!-- Modal Dialogs -->
+<div id="new_message_dialog_div" title="New Message" style="display: none">
+  <p id="dialog_text_overlay_input">What do you want to say?</p>
+  <form onSubmit="return false;">
+    <div style="text-align: center;">
+      <input
+          autofocus
           type="text"
           name="message"
           id="new_message_text"
           class="text ui-widget-content ui-corner-all"
-          style="width: 100%"
-        />
-        <fieldset style="text-align: center">
-          <legend>Display</legend>
-          <label for="message_visible_when_online">Only When I am Online</label>
-          <input
-            class="checkbox_radio"
-            type="radio"
-            name="message_visibility_group"
-            id="message_visible_when_online"
-          />
-          <br /><br />
-          <label for="message_always_visible">Always</label>
-          <input
-            class="checkbox_radio"
-            type="radio"
-            name="message_visibility_group"
-            id="message_always_visible"
-          />
-        </fieldset>
-      </form>
+          style="width: 90%; margin: auto;"
+      />
     </div>
-  </body>
+    <fieldset style="text-align: center">
+      <legend>Display</legend>
+      <label for="message_visible_when_online">Only When I am Online</label>
+      <input
+          class="checkbox_radio"
+          type="radio"
+          name="message_visibility_group"
+          id="message_visible_when_online"
+      />
+      <br /><br />
+      <label for="message_always_visible">Always</label>
+      <input
+          class="checkbox_radio"
+          type="radio"
+          name="message_visibility_group"
+          id="message_always_visible"
+      />
+    </fieldset>
+  </form>
+</div>
+<!--The joystick containers have to be last in order to catch touch requests into them.-->
+<div id="joystick_container" class="no-select" hidden></div>
+<div id="second_stick_container" class="no-select" hidden></div>
+</body>
 </html>
 <!-- Twemoji Run -->
 <script>
   twemoji.parse(document.body);
 </script>
 <!-- End Twemoji Run -->
-<script src="./src/index.js" type="module"></script>
+<script src="./src/startup/startGame.js" type="module"></script>
