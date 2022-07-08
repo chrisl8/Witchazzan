@@ -96,13 +96,22 @@
   <link rel="stylesheet" href="styles.css" />
   <title>Witchazzan Sign-In</title>
 </head>
-<body>
+<body style="background-color: white;">
 <div id="pre_game_div">
   <h1 class="logo-text">Witchazzan</h1>
   <div class="logo-rainbow-bar">
     <img alt="horizontal bar" src="src/assets/rainbowbar.gif" />
   </div>
   <br />
+  <div id="ios_please_use_safari" hidden><p></p><strong>NOTICE: On iPhones and iPads this game works much better in Safari than
+    in Chrome, Edge or Firefox.</strong><br />
+    Further, in Safari, if you Add this site to your Home Screen it will be easier to control without the browser boxes
+    around it and without it accidentally zooming in and out while playing the game.</p>In Safari:<br />
+    <ul>
+      <li>Tap Share.</li>
+      <li>Add to Home Screen</li>
+    </ul>
+  </div>
   <div id="login-section" hidden>
     <h1>Login</h1>
     <div class="intro-screen-subsection">
@@ -165,6 +174,32 @@
       >
         Create Account
       </button>
+    </div>
+  </div>
+  <div id="mobile_controls" hidden>
+    <h1>Mobile Controls</h1>
+    <div style="display: flex;">
+      <img alt="up" src="src/assets/images/blue-stick.png" />
+      Tap on the left side of the screen to activate the blue stick. Use this to move your character.
+    </div>
+    <div style="display: flex;">
+      <div>
+        Tap on the right side of the screen to activate the red stick. Use this to change settings and perform actions.
+      </div>
+      <img alt="up" src="src/assets/images/red-stick.png" />
+    </div>
+    <div>
+      For the Red stick:
+      <ul>
+        <li>Tap briefly to fire spell.</li>
+        <li>Drag in a direction to change spells or perform actions.</li>
+        <li>The action will display in the upper left.</li>
+        <li>Release to perform action, or return to center to cancel.</li>
+      </ul>
+      <p>In a mobile browser the sticks can be activated anywhere in the <strong>bottom half of the browser
+        window</strong>. If you add the game to your Home Screen as an "App" then they can be activated anywhere on the
+        screen.<br />The sticks will follow your finger, so you can drag and use them anywhere on the screen once you
+        activate them.</p>
     </div>
   </div>
   <div id="start-game-section" hidden>

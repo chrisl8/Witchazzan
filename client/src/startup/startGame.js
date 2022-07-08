@@ -1,6 +1,7 @@
 /* globals window:true */
 /* globals document:true */
 /* globals localStorage:true */
+/* globals $:true */
 import Phaser from 'phaser';
 import phaserConfigObject from '../objects/phaserConfigObject.js';
 import receiveDataFromServer from '../receiveDataFromServer.js';
@@ -11,6 +12,7 @@ import ScrollingTextBox from '../ScrollingTextBox.js';
 import isMobileBrowser from '../utilities/isMobileBrowser.js';
 import returnToIntroScreen from '../gameLoopFunctions/returnToIntroScreen.js';
 import spellAssignments from '../objects/spellAssignments.js';
+import textObject from '../objects/textObject.js';
 
 async function waitForBrowserWindowToBeVisible() {
   // Don't start if the browser window is not visible.
@@ -53,32 +55,6 @@ async function waitForConnectionAndInitialPlayerPosition() {
     Boolean(lostConnection) || Boolean(paused);
   document.getElementById('reconnect_text').hidden = !lostConnection;
   document.getElementById('paused_text').hidden = !paused;
-
-  // Set viewport requirements for game, such as no scrolling
-  // const metaTag = document.createElement('meta');
-  // metaTag.name = 'viewport';
-  // metaTag.content =
-  //   'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-  // document.getElementsByTagName('head')[0].appendChild(metaTag);
-  // document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-  //
-  // // Reset zoom?
-  // // $('meta[name=viewport]').remove();
-  // // $('head').append(
-  // //   '<meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=yes">',
-  // // );
-  // setTimeout(() => {
-  //   $('meta[name=viewport]').remove();
-  //   $('head').append(
-  //     '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">',
-  //   );
-  // }, 100);
-  // // document.body.style.zoom = window.innerWidth / window.outerWidth;
-  // // document.body.style.zoom = 1.0;
-  // // const scale = 'scale(1)';
-  // // document.body.style.webkitTransform = scale; // Chrome, Opera, Safari
-  // // document.body.style.msTransform = scale; // IE 9
-  // // document.body.style.transform = scale; // General
 
   // Set up some initial DOM element settings.
   playerObject.domElements.chatInputDiv.style.display = 'none';
@@ -125,13 +101,30 @@ async function waitForConnectionAndInitialPlayerPosition() {
   // Hide the loading text before starting the game.
   document.getElementById('pre_load_info').hidden = true;
 
-  // Set the background to black so that parts of the browser window that are not the game are obvious
-  document.getElementsByTagName('body')[0].style.background = 'black';
-
   // Un-hide joystick input boxes and enable touch input on mobile
   if (isMobileBrowser) {
+    textObject.escapeToLeaveChat.text = `Tap either joystick to return to game, use / to send commands.`;
     document.getElementById('joystick_container').hidden = false;
     document.getElementById('second_stick_container').hidden = false;
+    if (window.navigator.standalone === false) {
+      const warnedAboutAppMode = localStorage.getItem('warnedAboutAppMode');
+      if (warnedAboutAppMode !== 'done') {
+        window.alert(
+          'This game works better in App Mode. Tap Share, then Add to Home Screen. Then it will run Fullscreen and be easier to control.',
+        );
+        localStorage.setItem('warnedAboutAppMode', 'done');
+      }
+    } else if (window.navigator.standalone === true) {
+      // Improve experience in iOS standalone mode.
+      // No need for scroll bars.
+      $('body').css('overflow', 'hidden');
+      // Joysticks can cover entire screen!
+      $('#joystick_container').css('height', '100%');
+      $('#second_stick_container').css('height', '100%');
+      // The chat window falls into the rounded corner of the phone though.
+      $('#command_input_div').css('margin-left', '30px');
+      $('#upper_left_text_overlay_div').css('top', '8%');
+    }
     handleTouchInput();
   }
 

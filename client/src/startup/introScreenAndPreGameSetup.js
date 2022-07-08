@@ -4,6 +4,8 @@
 /* globals $:true */
 import playerObject from '../objects/playerObject.js';
 import spellAssignments from '../objects/spellAssignments.js';
+import isAppleDevice from '../utilities/isAppleDevice.js';
+import isMobileBrowser from '../utilities/isMobileBrowser.js';
 
 let apiURL = `${window.location.origin}/api`;
 if (window.location.port === '3001') {
@@ -64,6 +66,11 @@ function updateDOMElements() {
   if (loggedIn) {
     document.getElementById('start_game_button').focus();
   }
+
+  document.getElementById('mobile_controls').hidden = !isMobileBrowser;
+
+  document.getElementById('ios_please_use_safari').hidden =
+    !isAppleDevice || window.navigator.standalone === true;
 }
 
 async function checkLoggedInStatus() {

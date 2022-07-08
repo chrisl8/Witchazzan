@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!--  viewport-fit=cover - https://stephenradford.me/removing-the-white-bars-in-safari-on-iphone-x/-->
+  <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+  />
   <!-- Favicons -->
   <!-- https://www.favicon-generator.org/ -->
   <link
@@ -120,8 +124,8 @@
   <link rel="stylesheet" href="styles.css" />
   <title>Witchazzan</title>
 </head>
-<body class="no-select">
-<div id="pre_load_info">
+<body class="no-select" style="background-color: black;">
+<div id="pre_load_info" style="color: white;">
   <!-- Initial Loading Text -->
   <!--This is used after the help/startup screen before the server connects.-->
   <!--Inline Style is here to make it match up when flipping between a fresh load,-->
@@ -151,7 +155,11 @@
     Game paused due to being in the background, restarting . . .
   </p>
 </div>
-<div id="game_container" style="position: absolute; width: 100%; height: 100%"></div>
+<!--mobile_zoom_helper exists purely to allow zooming to still work in mobile browsers.-->
+<!--The canvas window itself does not, but inside of mobile browsers it is very easy to accidentally get zoomed-->
+<!--in and without this box there is no way to zoom out.-->
+<!--It isn't required on desktop or if the game is running in "App" or "WebApp" mode.-->
+<div id="mobile_zoom_helper" style="position: absolute; width: 100%; height: 100%"></div>
 <div id="canvas_overlay_elements" class="no-select" style="display: flex">
   <div id="command_input_div" style="display: none">
     <span id="command_input_caret"></span><input id="command_input" />
