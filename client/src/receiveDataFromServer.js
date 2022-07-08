@@ -7,7 +7,7 @@ import playerObject from './objects/playerObject.js';
 import parseHadronsFromServer from './parseHadronsFromServer.js';
 import hadrons from './objects/hadrons.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
-import clientVersion from '../../persistentData/version.mjs';
+import clientVersion from '../../shared/version.mjs';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {

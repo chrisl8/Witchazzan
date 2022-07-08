@@ -19,7 +19,7 @@ import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 // eslint-disable-next-line
 import validateHadron from "../shared/validateHadron.mjs";
 // eslint-disable-next-line
-import serverVersion from "../persistentData/version.mjs";
+import serverVersion from "../shared/version.mjs";
 
 const hadronBroadcastThrottleTime = 50;
 

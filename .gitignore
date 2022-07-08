@@ -15,6 +15,7 @@ dist/
 
 # Configuration
 persistentData/
+shared/version.mjs
 
 # Tiled
 *.tiled-project
