@@ -103,15 +103,10 @@ async function waitForConnectionAndInitialPlayerPosition() {
     textObject.escapeToLeaveChat.text = `Tap either joystick to return to game, use / to send commands.`;
     document.getElementById('joystick_container').hidden = false;
     document.getElementById('second_stick_container').hidden = false;
-    if (window.navigator.standalone === false) {
-      const warnedAboutAppMode = localStorage.getItem('warnedAboutAppMode');
-      if (warnedAboutAppMode !== 'done') {
-        window.alert(
-          'This game works better in App Mode. Tap Share, then Add to Home Screen. Then it will run Fullscreen and be easier to control.',
-        );
-        localStorage.setItem('warnedAboutAppMode', 'done');
-      }
-    } else if (window.navigator.standalone === true) {
+    if (
+      window.navigator.standalone === true ||
+      window.matchMedia('(display-mode: standalone)').matches
+    ) {
       // Improve experience in iOS standalone mode.
       // No need for scroll bars.
       $('body').css('overflow', 'hidden');
@@ -121,6 +116,21 @@ async function waitForConnectionAndInitialPlayerPosition() {
       // The chat window falls into the rounded corner of the iPhone.
       $('#command_input_div').css('margin-left', '30px');
       $('#upper_left_text_overlay_div').css('top', '8%');
+    } else {
+      const warnedAboutAppMode = localStorage.getItem('warnedAboutAppMode');
+      if (warnedAboutAppMode !== 'done') {
+        if (window.navigator.standalone === false) {
+          window.alert(
+            'This game works better in App Mode. Tap Share, then Add to Home Screen. Then it will run Fullscreen and be easier to control.',
+          );
+          localStorage.setItem('warnedAboutAppMode', 'done');
+        } else if (window.matchMedia('(display-mode: browser)').matches) {
+          window.alert(
+            'This game works better in App Mode. Open menu, then Add to Home screen. Then it will run Fullscreen and be easier to control.',
+          );
+          localStorage.setItem('warnedAboutAppMode', 'done');
+        }
+      }
     }
     handleTouchInput();
   }

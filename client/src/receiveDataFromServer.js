@@ -61,6 +61,8 @@ function receiveDataFromServer() {
 
   communicationsObject.socket.on('init', (inputData) => {
     // Check whether we need to force a client refresh.
+    // This will only happen if the client happens to be open,
+    // but in the background during an update deployment.
     if (inputData.serverVersion !== clientVersion) {
       localStorage.setItem(
         'disconnectReason',

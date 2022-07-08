@@ -67,10 +67,20 @@ function updateDOMElements() {
     document.getElementById('start_game_button').focus();
   }
 
-  document.getElementById('mobile_controls').hidden = !isMobileBrowser;
+  if (isMobileBrowser) {
+    document.getElementById('mobile_controls').hidden = false;
 
-  document.getElementById('ios_please_use_safari').hidden =
-    !isAppleDevice || window.navigator.standalone === true;
+    if (isAppleDevice && window.navigator.standalone !== true) {
+      document.getElementById('ios_please_use_safari').hidden = false;
+    }
+
+    if (
+      !isAppleDevice &&
+      !window.matchMedia('(display-mode: standalone)').matches
+    ) {
+      document.getElementById('android_add_to_home_screen').hidden = false;
+    }
+  }
 }
 
 async function checkLoggedInStatus() {
