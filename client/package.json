@@ -5,10 +5,15 @@
   "description": "Witchazzan Client",
   "type": "module",
   "source": ["index.html", "sign-in.html"],
+  "targets": {
+    "default": {
+      "distDir": "./stage"
+    }
+  },
   "scripts": {
     "start": "rm -rf .parcel-cache;parcel --port 3001 --open",
-    "prebuild": "rm -rf dist;rm -rf .parcel-cache",
-    "build": "parcel build"
+    "prebuild": "rm -rf stage;rm -rf .parcel-cache",
+    "build": "parcel build && rm -rf dist && mv stage dist"
   },
   "repository": {
     "type": "git",
