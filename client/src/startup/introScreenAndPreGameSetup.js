@@ -223,6 +223,10 @@ async function createAccount() {
 }
 
 const startGameNow = () => {
+  // Immediately make it clear that the button was pushed
+  $('body').css('background-color', 'black');
+  document.getElementById('pre_game_div').hidden = true;
+
   // Save the player name to local storage for use next time
   // in the login box in case the token was wiped.
   // In theory the browser could do this for me?
