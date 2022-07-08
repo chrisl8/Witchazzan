@@ -355,8 +355,6 @@ const startGameNow = () => {
     // Find out if we are logged in already
     await checkLoggedInStatus();
 
-    document.getElementById('pre_game_div').hidden = false;
-
     // Check local storage to see if we already have a name.
     playerName = localStorage.getItem('playerName');
 
