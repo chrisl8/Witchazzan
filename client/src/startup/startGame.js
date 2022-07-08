@@ -47,14 +47,11 @@ async function waitForConnectionAndInitialPlayerPosition() {
   }
 
   // Show/hide correct loading text
-  const lostConnection = localStorage.getItem('lostConnection');
-  localStorage.removeItem('lostConnection');
-  const paused = localStorage.getItem('paused');
-  localStorage.removeItem('paused');
-  document.getElementById('loading_text').hidden =
-    Boolean(lostConnection) || Boolean(paused);
-  document.getElementById('reconnect_text').hidden = !lostConnection;
-  document.getElementById('paused_text').hidden = !paused;
+  const disconnectReason = localStorage.getItem('disconnectReason');
+  if (disconnectReason) {
+    document.getElementById('loading_text').innerHTML = disconnectReason;
+  }
+  document.getElementById('loading_text').hidden = false;
 
   // Set up some initial DOM element settings.
   playerObject.domElements.chatInputDiv.style.display = 'none';
@@ -98,7 +95,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
 
   await waitForConnectionAndInitialPlayerPosition();
 
-  // Hide the loading text before starting the game.
+  // Hide the loading text and its container before starting the game.
   document.getElementById('pre_load_info').hidden = true;
 
   // Un-hide joystick input boxes and enable touch input on mobile
@@ -121,7 +118,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
       // Joysticks can cover entire screen!
       $('#joystick_container').css('height', '100%');
       $('#second_stick_container').css('height', '100%');
-      // The chat window falls into the rounded corner of the phone though.
+      // The chat window falls into the rounded corner of the iPhone.
       $('#command_input_div').css('margin-left', '30px');
       $('#upper_left_text_overlay_div').css('top', '8%');
     }
@@ -144,13 +141,18 @@ async function waitForConnectionAndInitialPlayerPosition() {
       // If the user's browser window becomes hidden, we need to kick them out,
       // because their Phaser instance will NOT be running, causing their hadrons to appear frozen and not operate.
       // Because this is a "game",users should stay focused on it when playing, and be OK with it having to reload
-      // when they leave and come back.
+      // when they leave and come back. AFK only exists if your screen is focused on the window and hasn't gone to sleep.
       // This keeps the game snappy for everyone else in the game.
       setTimeout(() => {
         // Giving it a second to make sure it stayed that way.
-        // This also prevents page refreshes from setting this.
+        // This also prevents page refreshes from setting this,
+        // because visibilityState is 'hidden' for a brief moment
+        // when a page starts rendering.
         if (document.visibilityState === 'hidden') {
-          localStorage.setItem('paused', '1');
+          localStorage.setItem(
+            'disconnectReason',
+            'Your game was paused due to being in the background, reconnecting...',
+          );
           window.location.reload();
         }
       }, 1000);

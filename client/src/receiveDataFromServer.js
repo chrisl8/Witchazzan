@@ -7,6 +7,7 @@ import playerObject from './objects/playerObject.js';
 import parseHadronsFromServer from './parseHadronsFromServer.js';
 import hadrons from './objects/hadrons.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
+import clientVersion from '../../persistentData/version.mjs';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -29,6 +30,7 @@ function receiveDataFromServer() {
   }
 
   communicationsObject.socket.on('sendToken', () => {
+    localStorage.removeItem('disconnectReason');
     sendDataToServer.token();
   });
 
@@ -59,11 +61,11 @@ function receiveDataFromServer() {
 
   communicationsObject.socket.on('init', (inputData) => {
     // Check whether we need to force a client refresh.
-    // A client refresh is forced on every server restart.
-    // I'm not sure that this is required, since a client refresh also happens on disconnect.
-    const serverVersion = localStorage.getItem('serverVersion');
-    localStorage.setItem('serverVersion', inputData.serverVersion);
-    if (!serverVersion || inputData.serverVersion !== serverVersion) {
+    if (inputData.serverVersion !== clientVersion) {
+      localStorage.setItem(
+        'disconnectReason',
+        'Client and Server versions did not match. An update was forced. Attempting to reconnect now...',
+      );
       window.location.reload();
     }
 
@@ -76,15 +78,19 @@ function receiveDataFromServer() {
 
   // Handle graceful server shutdown by restarting before it goes away.
   communicationsObject.socket.on('shutdown', () => {
-    localStorage.setItem('lostConnection', '1');
-    // If we were disconnected, there is no point in continuing to display the scene, so we refresh
+    localStorage.setItem(
+      'disconnectReason',
+      'Small Hadron Cooperator was shut down. Attempting to reconnect...',
+    );
     window.location.reload();
   });
 
   // Handle disconnect
   communicationsObject.socket.on('disconnect', () => {
-    localStorage.setItem('lostConnection', '1');
-    // If we were disconnected, there is no point in continuing to display the scene, so we refresh
+    localStorage.setItem(
+      'disconnectReason',
+      'Small Hadron Cooperator connection lost. Attempting to reconnect...',
+    );
     window.location.reload();
   });
 

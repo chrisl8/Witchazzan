@@ -18,12 +18,8 @@ import wait from "../shared/wait.mjs";
 import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 // eslint-disable-next-line
 import validateHadron from "../shared/validateHadron.mjs";
-
-// Every time the server starts it creates a unique GUID,
-// this forces the clients to reload if the server reloaded,
-// which avoids all kinds of weird problems,
-// as well as ensuring client code updates when an update is pushed to the server.
-const serverVersion = randomUUID();
+// eslint-disable-next-line
+import serverVersion from "../persistentData/version.mjs";
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -216,6 +212,12 @@ app.options("*", cors()); // include before other routes
 const webserverPort = process.env.PORT || 8080;
 
 // All web content is housed in the website folder
+// On MY server these files are actually served directly by NGINX,
+// so that when the server.js is restarted the user doesn't fall into a 302 error,
+// and instead can geta a nice "please wait" message.
+// In theory it is also faster for NGINX to just serve the files.
+// So this could be removed, but it seems nice for the server to "just work" if
+// you want it to.
 app.use(express.static(`${__dirname}/../client/dist`));
 
 // parse application/json
@@ -848,7 +850,7 @@ async function closeServer() {
   console.log("Disconnecting users and giving them a mo...");
   io.sockets.emit("shutdown");
   io.close();
-  await wait(1000);
+  await wait(500);
   console.log("Saving game state (hadrons) to disk...");
   // Flush would only run it if it was requested, so we cancel and force it,
   // although in theory if flush didn't call it, no changes were made.
