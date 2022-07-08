@@ -446,7 +446,12 @@ function validatePlayer(id, socket, PlayerName) {
   // sometimes think they are connected and start sending data
   // when the server has lost track of them.
   // Forcing them to disconnect will fix the issue and prevent crashes.
-  if (!id || !connectedPlayerData.get(id)) {
+  // This also checks for multiple connections from the same client.
+  if (
+    !id ||
+    !connectedPlayerData.get(id) ||
+    connectedPlayerData.get(id)?.socketId !== socket.id
+  ) {
     console.log(`${PlayerName} validation failed`);
     socket.disconnect();
     return false;
@@ -476,6 +481,15 @@ io.on("connection", (socket) => {
       const PlayerId = decoded.id;
       const isAdmin = decoded.admin;
       console.log(`${PlayerName} connected`);
+
+      if (connectedPlayerData.get(PlayerId)) {
+        console.log(`${PlayerName} is already connected!`);
+        socket
+          .to(connectedPlayerData.get(PlayerId).socketId)
+          .emit("multiple_logins");
+        await wait(100);
+        connectedPlayerData.delete(PlayerId);
+      }
 
       // Send player their ID, because there is no other easy way for them to know it.
       // This also servers as the "game is ready" "init" message to the client.

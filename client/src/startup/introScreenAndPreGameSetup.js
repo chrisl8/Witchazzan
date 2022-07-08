@@ -81,6 +81,11 @@ function updateDOMElements() {
       document.getElementById('android_add_to_home_screen').hidden = false;
     }
   }
+
+  if (localStorage.getItem('multiple_logins')) {
+    localStorage.removeItem('multiple_logins');
+    document.getElementById('multiple_logins').hidden = false;
+  }
 }
 
 async function checkLoggedInStatus() {

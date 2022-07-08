@@ -87,6 +87,12 @@ function receiveDataFromServer() {
     window.location.reload();
   });
 
+  // Handle being kicked off due to being logged on somewhere else.
+  communicationsObject.socket.on('multiple_logins', () => {
+    localStorage.setItem('multiple_logins', true);
+    returnToIntroScreen();
+  });
+
   // Handle disconnect
   communicationsObject.socket.on('disconnect', () => {
     localStorage.setItem(
