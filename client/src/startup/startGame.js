@@ -147,6 +147,16 @@ async function waitForConnectionAndInitialPlayerPosition() {
   // grab handle to canvas element
   playerObject.domElements.canvas = document.getElementsByTagName('canvas')[0];
 
+  // If they aren't in fullscreen, tell them to try it.
+  if (!isMobileBrowser) {
+    setTimeout(() => {
+      if (!window.matchMedia('(display-mode: fullscreen)').matches) {
+        textObject.enterSceneText.text = 'Use F11 to play in full screen!';
+        textObject.enterSceneText.display();
+      }
+    }, 10000);
+  }
+
   // Watch for browser window visibility changes.
   // https://doc.photonengine.com/en-us/pun/current/demos-and-tutorials/webgl-tabsinbackground
   document.addEventListener('visibilitychange', () => {
