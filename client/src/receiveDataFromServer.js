@@ -74,6 +74,13 @@ function receiveDataFromServer() {
     localStorage.setItem('playerName', playerObject.name);
   });
 
+  // Handle graceful server shutdown by restarting before it goes away.
+  communicationsObject.socket.on('shutdown', () => {
+    localStorage.setItem('lostConnection', '1');
+    // If we were disconnected, there is no point in continuing to display the scene, so we refresh
+    window.location.reload();
+  });
+
   // Handle disconnect
   communicationsObject.socket.on('disconnect', () => {
     localStorage.setItem('lostConnection', '1');

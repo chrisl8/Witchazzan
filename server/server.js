@@ -846,6 +846,7 @@ async function closeServer() {
     content: "The Small Hadron Cooperator is shutting down.",
   });
   console.log("Disconnecting users and giving them a mo...");
+  io.sockets.emit("shutdown");
   io.close();
   await wait(1000);
   console.log("Saving game state (hadrons) to disk...");
