@@ -133,6 +133,9 @@ async function waitForConnectionAndInitialPlayerPosition() {
       }
     }
     handleTouchInput();
+  } else {
+    // We never need scroll bars on desktop
+    $('body').css('overflow', 'hidden');
   }
 
   playerObject.scrollingTextBox = new ScrollingTextBox();
