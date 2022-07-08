@@ -207,7 +207,46 @@ which should automatically run at startup.
 
 You will also need to set up a Web server to serve the built code, as Node.js is not fit to perform SSL and other important functions of a front end web server.
 
-TODO: Add nginx instructions too.
+### Web server configuration.
+I serve the project using Nginx as a proxy to the Node.js server.  
+I suggest looking up how to set up Nginx. I use the documentatin from Digital Ocean on setting up Nginx on Ubuntu.
+
+Here is a partial of my config file for this site.  
+The important bits are that it will directly serve files, by name, only forwarding non-files to the Node.js server.  
+The benefit of this is that when the server is down or restarts, you don't get a 302 error, but instead the site works normally and lets you know that the server is down.  
+Note that means new file extensions must be added to it by hand.  
+```
+server {
+    server_name witchazzan.space;
+    root /home/chrisl8/Witchazzan/client/dist;
+
+    location = / {
+        index index.html;
+    }
+
+    location ~* .(png|ico|gif|jpg|jpeg|css|js|html|webmanifest|map|mp3|ogg|svg)$ {
+        try_files $uri =404;
+    }
+
+    location / {
+        proxy_pass http://localhost:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_ssl_session_reuse off;
+        proxy_cache_bypass $http_upgrade;
+        proxy_redirect off;
+    }
+
+    listen 80;
+    listen [::]:80;
+}
+```
+Note that this is **not** set up for SSL. I leave that exercise to better guides than this.
 
 ### Updating installed code
 Run `updateProduction.sh` or here is the manual process:
