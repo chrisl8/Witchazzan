@@ -192,6 +192,9 @@ Pull down and build the code:
 
 ```
 git clone https://github.com/chrisl8/Witchazzan.git
+cd Witchazzan
+# Create and set up the required version number file.
+./versionNumberUpdate.sh
 cd Witchazzan/server
 npm ci
 cd Witchazzan/client
@@ -254,6 +257,7 @@ Run `updateProduction.sh` or here is the manual process:
 ```
 cd Witchazzan
 git pull
+./versionNumberUpdate.sh
 cd server
 npm ci
 cd Witchazzan/client
