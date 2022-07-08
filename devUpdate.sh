@@ -80,6 +80,8 @@ if [[ -d .parcel-cache ]]; then
 fi
 npm ci
 
+"${SCRIPT_DIR}/versionNumberUpdate.sh"
+
 printf "\n"
 printf "${BRIGHT_WHITE}=======================================================================${NC}\n"
 printf "For development open two terminals windows:\n"

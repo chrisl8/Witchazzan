@@ -14,24 +14,6 @@ SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
 
 cd "${SCRIPT_DIR}" || exit
-echo "Pulling latest changes from the GitHub repo:"
-git pull
 echo ""
-cd "${SCRIPT_DIR}/server" || exit
-echo ""
-echo "Installing dependencies for server..."
-npm ci
-echo ""
-cd "${SCRIPT_DIR}/client" || exit
-echo "Installing dependencies for client..."
-npm ci
-"${SCRIPT_DIR}/versionNumberUpdate.sh"
-echo ""
-echo "Building client (this is the slow part)..."
-if [[ -d .parcel-cache ]]; then
-  rm -rf .parcel-cache
-fi
-npm run build
-echo ""
-echo "Restarting server:"
-pm2 restart Witchazzan
+echo "Updating version number for client and server"
+node -e 'console.log(`export default "${crypto.randomUUID()}"`)' > "${SCRIPT_DIR}/persistentData/version.mjs"
