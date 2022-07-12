@@ -104,6 +104,9 @@ async function waitForConnectionAndInitialPlayerPosition() {
     document.getElementById('joystick_container').hidden = false;
     document.getElementById('second_stick_container').hidden = false;
     if (
+      // https://stackoverflow.com/a/34516083/4982408
+      // window.navigator.standalone is for iPhone/iPad running the app from a home screen shortcut
+      // display-mode: standalone is for Android doing the same.
       window.navigator.standalone === true ||
       window.matchMedia('(display-mode: standalone)').matches
     ) {

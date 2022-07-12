@@ -5,7 +5,7 @@ import objectDepthSettings from '../objects/objectDepthSettings.js';
 function renderDebugDotTrails(hadron, key, scene) {
   if (playerObject.dotTrailsOn) {
     // Use this to track the server location of objects on the screen across time.
-    // It is activated with 't'
+    // It is activated with 'o'
     // Render Texture
     // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.RenderTexture.html
     // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/rendertexture/

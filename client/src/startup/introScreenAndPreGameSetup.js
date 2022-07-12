@@ -71,12 +71,15 @@ function updateDOMElements() {
     document.getElementById('mobile_controls').hidden = false;
 
     if (isAppleDevice && window.navigator.standalone !== true) {
+      // https://stackoverflow.com/a/34516083/4982408
       document.getElementById('ios_please_use_safari').hidden = false;
     }
 
     if (
       !isAppleDevice &&
+      // standalone
       !window.matchMedia('(display-mode: standalone)').matches
+      // https://stackoverflow.com/a/34516083/4982408
     ) {
       document.getElementById('android_add_to_home_screen').hidden = false;
     }
@@ -352,6 +355,9 @@ const startGameNow = () => {
     localStorage.getItem('helpTextVersion'),
   );
 
+  // TODO: Because this actual page/html file is different from the main game page, there is no real reason to whisk them away if they have a token.
+  //       Presumably they got here because they wanted to be here. Although I supposed they could have bookmarked it?
+  //       Disabling the auto-forward feature would also simplify code around saving the "I wanted to be here" status in local storage when returning here.
   if (
     !token ||
     !existingHelpTextVersion ||
