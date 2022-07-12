@@ -459,6 +459,26 @@ function validatePlayer(id, socket, PlayerName) {
   return true;
 }
 
+async function closeServer() {
+  console.log("Shutdown requested. PLEASE BE PATIENT! Working on it...");
+  io.sockets.emit("chat", {
+    content: "The Small Hadron Cooperator is shutting down.",
+  });
+  console.log("Disconnecting users and giving them a mo...");
+  io.sockets.emit("shutdown");
+  io.close();
+  await wait(500);
+  console.log("Saving game state (hadrons) to disk...");
+  // Flush would only run it if it was requested, so we cancel and force it,
+  // although in theory if flush didn't call it, no changes were made.
+  await throttledSaveGameStateToDisk.cancel();
+  await saveGameStateToDisk();
+  console.log("Closing Database...");
+  await db.close();
+  console.log("Small Hadron Cooperator is going poof! Bye.\n\n");
+  process.exit();
+}
+
 // Socket listeners
 io.on("connection", (socket) => {
   // User cannot do anything until we have their token and have validated it.
@@ -887,26 +907,6 @@ setTimeout(() => {
 }, 2000); // Hopefully enough delay for the clients to all be ready.
 
 console.log(`Small Hadron Cooperator is running`);
-
-async function closeServer() {
-  console.log("Shutdown requested. PLEASE BE PATIENT! Working on it...");
-  io.sockets.emit("chat", {
-    content: "The Small Hadron Cooperator is shutting down.",
-  });
-  console.log("Disconnecting users and giving them a mo...");
-  io.sockets.emit("shutdown");
-  io.close();
-  await wait(500);
-  console.log("Saving game state (hadrons) to disk...");
-  // Flush would only run it if it was requested, so we cancel and force it,
-  // although in theory if flush didn't call it, no changes were made.
-  await throttledSaveGameStateToDisk.cancel();
-  await saveGameStateToDisk();
-  console.log("Closing Database...");
-  await db.close();
-  console.log("Small Hadron Cooperator is going poof! Bye.\n\n");
-  process.exit();
-}
 
 process.on("SIGINT", () => {
   closeServer();
