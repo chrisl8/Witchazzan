@@ -27,6 +27,7 @@ const commandListArray = [
   {
     name: "teleportToScene <scene name>",
     description: "Teleport to a scene.",
+    adminOnly: true,
   },
   {
     name: "who",
@@ -37,21 +38,20 @@ const commandListArray = [
   {
     name: "dumpPlayerObject",
     description: "Log player object to console for debugging.",
+    adminOnly: true,
   },
   {
     name: "dumpClientSprites",
     description: "Log clientSprites Map() to console for debugging.",
+    adminOnly: true,
   },
   {
     name: "deleteAllNPC",
     description:
       "Delete all NPC data from the server so that they must respawn from Tilemap data.",
+    adminOnly: true,
   },
 ];
-let commandHelpOutput = "The following commands are available:";
-commandListArray.forEach((command) => {
-  commandHelpOutput += `<br/>${command.name} - ${command.description}`;
-});
 
 console.log("------------------------------");
 console.log("Witchazzan server is starting...");
@@ -556,6 +556,7 @@ io.on("connection", (socket) => {
         name: PlayerName,
         scene: newPlayerHadron.scn,
         socketId: socket.id,
+        isAdmin,
       });
 
       // Join player to the room for the scene that they are in.
@@ -740,36 +741,67 @@ io.on("connection", (socket) => {
 
       socket.on("command", (data) => {
         if (validatePlayer(PlayerId, socket, PlayerName)) {
-          if (data.command === "help") {
-            socket.emit("chat", {
-              content: commandHelpOutput,
-            });
-          } else if (data.command === "who") {
-            let whoResponse = "";
-            connectedPlayerData.forEach((entry) => {
-              whoResponse += `${entry.name} is in ${entry.scene}<br/>`;
-            });
-            socket.emit("chat", {
-              content: whoResponse,
-            });
-          } else if (
-            data.command === "deleteallnpc" ||
-            data.command === "deleteallnpcs"
-          ) {
-            hadrons.forEach((hadron, key) => {
-              if (hadron.typ === "npc") {
-                hadrons.delete(key);
+          const command = data.command.split(" ");
+          if (command.length > 0) {
+            if (command[0] === "help") {
+              let commandHelpOutput = "The following commands are available:";
+              commandListArray.forEach((entry) => {
+                if (
+                  connectedPlayerData.get(PlayerId)?.isAdmin ||
+                  !entry.adminOnly
+                ) {
+                  commandHelpOutput += `<br/>${entry.name} - ${entry.description}`;
+                }
+              });
+              socket.emit("chat", {
+                content: commandHelpOutput,
+              });
+            } else if (command[0] === "who") {
+              let whoResponse = "";
+              connectedPlayerData.forEach((entry) => {
+                whoResponse += `${entry.name} is in ${entry.scene}<br/>`;
+              });
+              socket.emit("chat", {
+                content: whoResponse,
+              });
+            } else if (connectedPlayerData.get(PlayerId)?.isAdmin) {
+              // Admin only commands.
+              if (
+                command[0] === "deleteallnpc" ||
+                command[0] === "deleteallnpcs"
+              ) {
+                hadrons.forEach((hadron, key) => {
+                  if (hadron.typ === "npc") {
+                    hadrons.delete(key);
+                  }
+                });
+                inactiveHadrons.forEach((hadron, key) => {
+                  if (hadron.typ === "npc") {
+                    inactiveHadrons.delete(key);
+                  }
+                });
+                closeServer();
+              } else if (
+                (command.length > 2 && command[0] === "delete") ||
+                command[0] === "del"
+              ) {
+                console.log(command);
+                hadrons.forEach((hadron, key) => {
+                  if (hadron[command[1]] === command[2]) {
+                    hadrons.delete(key);
+                  }
+                });
+                inactiveHadrons.forEach((hadron, key) => {
+                  if (hadron[command[1]] === command[2]) {
+                    inactiveHadrons.delete(key);
+                  }
+                });
+                closeServer();
               }
-            });
-            inactiveHadrons.forEach((hadron, key) => {
-              if (hadron.typ === "npc") {
-                inactiveHadrons.delete(key);
-              }
-            });
-            closeServer();
-          } else {
-            console.log("command");
-            console.log(data);
+            } else {
+              console.log("command");
+              console.log(command);
+            }
           }
         }
       });
