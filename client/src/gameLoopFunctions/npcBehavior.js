@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import hadrons from '../objects/hadrons.js';
 import playerObject from '../objects/playerObject.js';
 import castSpell from '../castSpell.js';
@@ -54,9 +55,13 @@ function npcBehavior(delta, sceneName) {
           } else {
             ray.setCollisionRange(1000); // TODO: Maybe tie this to game size?
           }
+          // eslint-disable-next-line no-restricted-globals
+          if (hadron.dir && !isNaN(hadron.dir)) {
+            ray.setAngleDeg(hadron.dir);
+          }
           if (hadron.rtp === 'cone') {
             if (hadron.rcd) {
-              ray.setConeDeg(hadron.rcd);
+              ray.setConeDeg(120); // hadron.rcd
             }
             ray.castCone();
           } else if (hadron.rtp === 'circle') {
@@ -64,8 +69,6 @@ function npcBehavior(delta, sceneName) {
             ray.castCircle();
           } else {
             // Line is default.
-            // TODO: Set to direction NPC is facing.
-            ray.setAngleDeg(0);
             ray.cast();
           }
 
@@ -75,11 +78,40 @@ function npcBehavior(delta, sceneName) {
             if (entry.data) {
               const id = entry.getData('hadronId');
               if (
-                id !== key &&
-                hadrons.get(id)?.typ !== 'spell' &&
-                hadrons.get(id)?.typ !== 'message'
+                hadrons.get(id)?.typ && // Can be undefined momentarily during initial creation
+                id !== key && // Not NPC itself
+                hadrons.get(id)?.typ !== 'spell' && // Not a spell
+                hadrons.get(id)?.typ !== 'message' && // not a message
+                hadrons.get(id)?.typ !== 'npc' // Don't shoot each other
               ) {
-                rayCastFoundTarget = true;
+                // We found a target
+                rayCastFoundTarget = true; // TODO: Uncomment
+
+                // Rotate toward it
+                // TODO: Only rotate if the NPC has this feature.
+                // TODO: Deal with multiples players in view
+                //       Any method of picking is fine, but it should be sticky, not easily distracted
+                const newAngleRad = Phaser.Math.Angle.Between(
+                  hadron.x,
+                  hadron.y,
+                  entry.x,
+                  entry.y,
+                );
+                // Deal with angles that are physically close to each other but cross boundaries,
+                // making them numerically distant
+                // This should work regardless of where that boundary is.
+                // https://stackoverflow.com/a/28037434/4982408
+                const newAngleDeg = newAngleRad * Phaser.Math.RAD_TO_DEG;
+                let difference = ((newAngleDeg - hadron.dir + 180) % 360) - 180;
+                difference = difference < -180 ? difference + 360 : difference;
+
+                const t = 0.05;
+                const newDirection = hadron.dir + t * difference;
+                newHadronData.dir = newDirection;
+                // Let Achilles go ahead and catch the Tortoise
+                if (Math.abs(difference) < 1) {
+                  newHadronData.dir = newAngleDeg;
+                }
               }
             }
           });

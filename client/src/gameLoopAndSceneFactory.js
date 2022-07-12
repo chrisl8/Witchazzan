@@ -420,8 +420,8 @@ const gameLoopAndSceneFactory = ({
             ris: objectProperties.respawnInSeconds,
             anim: 'stationary',
           };
-          if (objectProperties.hasOwnProperty('initialSpriteRotation')) {
-            newHadron.dir = objectProperties.initialSpriteRotation;
+          if (objectProperties.hasOwnProperty('initialSpriteDirection')) {
+            newHadron.dir = objectProperties.initialSpriteDirection;
           }
           if (objectProperties.hasOwnProperty('initialAnimationState')) {
             newHadron.anim = objectProperties.initialAnimationState;

@@ -358,60 +358,474 @@
          "name":"Objects",
          "objects":[
                 {
+                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":208
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Left",
                  "point":true,
                  "properties":[
                         {
-                         "name":"allowCustomY",
-                         "type":"bool",
-                         "value":true
-                        },{
                          "name":"Type",
                          "type":"string",
                          "value":"Entrance"
+                        }, 
+                        {
+                         "name":"allowCustomY",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":60,
                  "name":"Right",
                  "point":true,
                  "properties":[
                         {
-                         "name":"allowCustomY",
-                         "type":"bool",
-                         "value":true
-                        },{
                          "name":"Type",
                          "type":"string",
                          "value":"Entrance"
+                        }, 
+                        {
+                         "name":"allowCustomY",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":664,
                  "y":208
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":34,
+                 "name":"StationaryTankOne",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"dod",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"dps",
+                         "type":"int",
+                         "value":100
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"ef41dbdf-2e5a-45cd-9933-2f8fe95f2355"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rateOfFire",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCast",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rayCastDegrees",
+                         "type":"int",
+                         "value":180
+                        }, 
+                        {
+                         "name":"rayCastDistance",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCastType",
+                         "type":"string",
+                         "value":"cone"
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":300
+                        }, 
+                        {
+                         "name":"spell",
+                         "type":"string",
+                         "value":"laserArrow"
+                        }, 
+                        {
+                         "name":"spellVelocity",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"redTankSingle"
+                        }, 
+                        {
+                         "name":"subType",
+                         "type":"string",
+                         "value":"stationaryTank"
+                        }, 
+                        {
+                         "name":"tcwls",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":319.577101382392,
+                 "y":119.915252459566
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":35,
+                 "name":"StationaryTankOne",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"dod",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"dps",
+                         "type":"int",
+                         "value":100
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"a66378bc-0cc7-4987-83c4-80218195221d"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":270
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rateOfFire",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCast",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rayCastDegrees",
+                         "type":"int",
+                         "value":180
+                        }, 
+                        {
+                         "name":"rayCastDistance",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCastType",
+                         "type":"string",
+                         "value":"cone"
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":300
+                        }, 
+                        {
+                         "name":"spell",
+                         "type":"string",
+                         "value":"laserArrow"
+                        }, 
+                        {
+                         "name":"spellVelocity",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"redTankSingle"
+                        }, 
+                        {
+                         "name":"subType",
+                         "type":"string",
+                         "value":"stationaryTank"
+                        }, 
+                        {
+                         "name":"tcwls",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":320.758532441106,
+                 "y":295.653122443414
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":36,
+                 "name":"StationaryTankOne",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"dod",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"dps",
+                         "type":"int",
+                         "value":100
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"2c2b6594-eea8-42b6-a599-159afb46a2a7"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rateOfFire",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCast",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rayCastDegrees",
+                         "type":"int",
+                         "value":180
+                        }, 
+                        {
+                         "name":"rayCastDistance",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCastType",
+                         "type":"string",
+                         "value":"cone"
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":300
+                        }, 
+                        {
+                         "name":"spell",
+                         "type":"string",
+                         "value":"laserArrow"
+                        }, 
+                        {
+                         "name":"spellVelocity",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"redTankSingle"
+                        }, 
+                        {
+                         "name":"subType",
+                         "type":"string",
+                         "value":"stationaryTank"
+                        }, 
+                        {
+                         "name":"tcwls",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":416.159090432338,
+                 "y":88.311971638942
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":37,
+                 "name":"StationaryTankOne",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"dod",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"dps",
+                         "type":"int",
+                         "value":100
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"3ea79507-f3eb-475d-9c38-7dde5dc88b0a"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":270
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rateOfFire",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCast",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rayCastDegrees",
+                         "type":"int",
+                         "value":180
+                        }, 
+                        {
+                         "name":"rayCastDistance",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCastType",
+                         "type":"string",
+                         "value":"cone"
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":300
+                        }, 
+                        {
+                         "name":"spell",
+                         "type":"string",
+                         "value":"laserArrow"
+                        }, 
+                        {
+                         "name":"spellVelocity",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"redTankSingle"
+                        }, 
+                        {
+                         "name":"subType",
+                         "type":"string",
+                         "value":"stationaryTank"
+                        }, 
+                        {
+                         "name":"tcwls",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":416.749805961696,
+                 "y":327.551761028718
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -420,7 +834,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":34,
+ "nextobjectid":38,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -429,7 +843,7 @@
          "value":"an intriguing cave"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.5",
+ "tiledversion":"1.9.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -447,6 +861,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.9",
  "width":44
 }

@@ -24,7 +24,7 @@ function updateSprite(hadron, key, gameSizeData) {
         } else if (hadron.dir === 'right' || hadron.dir === 'east') {
           clientSprite.sprite.setAngle(0);
         } else if (hadron.dir === 'up' || hadron.dir === 'north') {
-          clientSprite.sprite.setAngle(-90);
+          clientSprite.sprite.setAngle(270);
         } else if (hadron.dir === 'down' || hadron.dir === 'south') {
           clientSprite.sprite.setAngle(90);
         }

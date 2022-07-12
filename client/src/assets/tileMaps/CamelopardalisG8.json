@@ -471,9 +471,9 @@
                          "value":"438a4ff3-04b3-4839-9931-9f91b50dd2a0"
                         }, 
                         {
-                         "name":"initialSpriteRotation",
+                         "name":"initialSpriteDirection",
                          "type":"int",
-                         "value":-90
+                         "value":0
                         }, 
                         {
                          "name":"pod",
@@ -508,7 +508,7 @@
                         {
                          "name":"respawnInSeconds",
                          "type":"int",
-                         "value":10
+                         "value":60
                         }, 
                         {
                          "name":"spell",

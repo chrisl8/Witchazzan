@@ -15,6 +15,7 @@ function castSpell({
   owner,
   dps = 1,
 }) {
+  /* eslint-disable no-param-reassign */
   if (spell === 'writeMessage') {
     playerObject.externalDialogOpen = true;
     // Clear any data left from last time the dialog was opened,
@@ -58,20 +59,15 @@ function castSpell({
       },
     });
   } else {
-    if (direction === -90) {
-      // eslint-disable-next-line no-param-reassign
-      direction = 'right';
-    }
-    let velocityX = 0;
-    let velocityY = 0;
+    // Convert text directions to numbers.
     if (direction === 'left') {
-      velocityX = -spells[spell].velocity;
+      direction = 180;
     } else if (direction === 'right') {
-      velocityX = spells[spell].velocity;
+      direction = 0;
     } else if (direction === 'up') {
-      velocityY = -spells[spell].velocity;
+      direction = 270;
     } else if (direction === 'down') {
-      velocityY = spells[spell].velocity;
+      direction = 90;
     }
 
     const newHadronData = {
@@ -84,8 +80,17 @@ function castSpell({
       y: initialY,
       dir: direction,
       scn: sceneName,
-      velX: velocityX,
-      velY: velocityY,
+      // Absolute Unit Circle
+      // 0 is right
+      // Except the Y is inverted in screen coordinates from Unit Circle,
+      // but it still works, so don't ask too many questions.
+      // cosine is the X component
+      // sine is the y component
+      // Also Math.sin and cos require angles in Radians!
+      // 150 * Math.cos(90 * Math.PI / 180)
+      // 150 * Math.cos(90 * Math.PI / 180)
+      velX: spells[spell].velocity * Math.cos((direction * Math.PI) / 180),
+      velY: spells[spell].velocity * Math.sin((direction * Math.PI) / 180),
       tcwls: true,
       dps,
     };

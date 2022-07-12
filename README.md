@@ -133,7 +133,7 @@ Some important things:
      - `id` **REQUIRED** (String) - This is a GUID. Open your browser, open dev tools, and run `crypto.randomUUID()` then copy the long string, withOUT quotes, but WITH the dashes into the value for the `id`
      - `subType` **REQUIRED** (String) - This is the NPC Type to help identify it and group it with similar NPC functionalities.
      - `sprite` **REQUIRED** (String) - The name of the sprite to use for this NPC.
-     - `initialSpriteRotation` Optional - Direction to start the sprite facing.
+     - `initialSpriteDirection` Optional - Direction to start the sprite facing.
        - It can be left/right/up/down string or east/west/north/shouth string, or an intenger for rotation from 0.
      - `health` Optional (Integer) - Initial health of this NPC. Use this to make it more or less squishy. 100 is the default if nothing is set.
      - `respawnInSeconds` Optional (Integer) - How many seconds after it is destroyed before it respawns. Otherwise it only comes back if the NPC data is somehow removed from the server.
