@@ -23,8 +23,8 @@ function hotKeyHandler(sceneName) {
   }
 
   // Hot key to turn dot trails on/off
-  if (playerObject.keyState.t === 'keydown') {
-    playerObject.keyState.t = null;
+  if (playerObject.keyState.o === 'keydown') {
+    playerObject.keyState.o = null;
     if (playerObject.isAdmin) {
       playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
     }

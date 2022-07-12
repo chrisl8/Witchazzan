@@ -141,9 +141,9 @@ function handleTouchInput() {
           playerObject.sendSpell = true;
         }
         if (keyboardInput) {
-          if (keyboardInput === 'c') {
+          if (keyboardInput === 't') {
             // NOTE: 'c' needs a keyup, the rest work with down.
-            handleKeyboardInput({ key: 'c', type: 'keyup' });
+            handleKeyboardInput({ key: 't', type: 'keyup' });
           } else {
             handleKeyboardInput({ key: keyboardInput, type: 'keydown' });
           }
@@ -215,7 +215,7 @@ function handleTouchInput() {
             lookForSpellNumber(0);
             break;
           case 6:
-            keyboardInput = 'c';
+            keyboardInput = 't';
             textObject.spellSetText.text = 'Chat?';
             textObject.spellSetText.shouldBeActiveNow = true;
             break;

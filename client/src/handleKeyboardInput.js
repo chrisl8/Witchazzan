@@ -11,11 +11,15 @@ function handleKeyboardInput(event) {
     // We literally use the visibility of the chatInputDiv to determine this,
     // because that is empirically the most literal reality for the user.
     if (playerObject.domElements.chatInputDiv.style.display === 'none') {
-      if ((event.key === 'c' || event.key === 'C') && event.type === 'keyup') {
-        // If we do this on 'keydown', we end up with a 'c'
+      if (
+        ((event.key === 't' || event.key === 'T' || event.key === 'Enter') &&
+          event.type === 'keyup') ||
+        (event.key === '/' && event.type === 'keydown')
+      ) {
+        // If we do this on 'keydown', we end up with a 't'
         // stuck in the input box.
 
-        // Go into chat/command mode if 'c' is pressed.
+        // Go into chat/command mode if 't' is pressed.
         // This works even if we are not connected,
         // and this is NOT sent to the server at this time.
         // (If the server needs to know that we are in "chat/command input mode" we can find
