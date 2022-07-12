@@ -63,7 +63,7 @@ function processCommandInput(event) {
         playerObject.keyState.p = 'keydown';
       } else {
         // Any 'command' that does not exist on the client is just sent directly to the server.
-        sendDataToServer.command(command.toLowerCase());
+        sendDataToServer.command(command);
         addEntryToCommandHistory(command);
       }
     } else {
