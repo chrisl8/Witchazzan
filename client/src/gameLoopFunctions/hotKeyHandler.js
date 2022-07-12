@@ -6,8 +6,10 @@ function hotKeyHandler(sceneName) {
   // Teleport back to home scene
   if (playerObject.keyState.h === 'keydown') {
     playerObject.keyState.h = null;
-    playerObject.teleportToSceneNow = playerObject.defaultOpeningScene;
-    playerObject.teleportToSceneNowEntrance = null;
+    if (playerObject.isAdmin) {
+      playerObject.teleportToSceneNow = playerObject.defaultOpeningScene;
+      playerObject.teleportToSceneNowEntrance = null;
+    }
   }
 
   // Return to intro text

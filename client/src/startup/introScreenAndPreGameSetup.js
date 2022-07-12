@@ -55,7 +55,6 @@ function updateDOMElements() {
     $('#dot_trails').hide();
     $('#home_key').hide();
   }
-  document.getElementById('dot_trails').hidden = !isAdmin;
 
   if (playerName) {
     document.getElementById('password_input_box').focus();
