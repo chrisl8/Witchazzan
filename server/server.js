@@ -474,6 +474,7 @@ async function closeServer() {
   io.sockets.emit("chat", {
     content: "The Small Hadron Cooperator is shutting down.",
   });
+  await wait(1000);
   console.log("Disconnecting users and giving them a mo...");
   io.sockets.emit("shutdown");
   io.close();
@@ -991,9 +992,9 @@ io.on("connection", (socket) => {
 setTimeout(() => {
   // A welcome message for clients already waiting to connect when the server starts.
   io.sockets.emit("chat", {
-    content: "Welcome. The Small Hadron Cooperator has recently started.",
+    content: "The Small Hadron Cooperator has recently restarted.",
   });
-}, 2000); // Hopefully enough delay for the clients to all be ready.
+}, 30000); // Hopefully enough delay for the clients to all be ready.
 
 console.log(`Small Hadron Cooperator is running`);
 
