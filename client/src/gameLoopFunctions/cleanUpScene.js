@@ -10,6 +10,12 @@ function cleanUpScene() {
 
   // Reset cameraScaleFactor for next scene.
   playerObject.cameraScaleFactor = 0;
+
+  // Reset player offset for next s scene.
+  playerObject.cameraOffset = {
+    x: 0,
+    y: 0,
+  };
 }
 
 export default cleanUpScene;

@@ -554,16 +554,20 @@ const gameLoopAndSceneFactory = ({
       return;
     }
 
-    // TODO: I'm not sure if we need this or not? Check if and how it is used.
-    //       If I set it in create(), it is just always 0,0, but here it is ALWAYS 32,32.
-    //       Maybe it never changes? Not sure where it even comes from.
-    playerObject.cameraOffset = {
-      x: this.cameras.main.worldView.x,
-      y: this.cameras.main.worldView.y,
-    };
-
     // Used for placing DOM elements in the correct location relevant to the game elements.
-    playerObject.cameraScaleFactor = this.scale.displayScale.x;
+    // Does not work to set it in create()
+    if (playerObject.cameraScaleFactor === 0) {
+      playerObject.cameraScaleFactor = this.scale.displayScale.x;
+    }
+
+    // This is used for the thought bubble on the player and such.
+    // Does not work to set it in create()
+    if (playerObject.cameraOffset.x === 0) {
+      playerObject.cameraOffset = {
+        x: this.cameras.main.worldView.x,
+        y: this.cameras.main.worldView.y,
+      };
+    }
 
     /* SPECIAL PLAYER ACTIONS */
     // This function handles stuff like
