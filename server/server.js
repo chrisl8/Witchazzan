@@ -51,6 +51,16 @@ const commandListArray = [
       "Delete all NPC data from the server so that they must respawn from Tilemap data.",
     adminOnly: true,
   },
+  {
+    name: "del [key] [value]",
+    description: "Delete hadrons where [key] is equal to [value].",
+    adminOnly: true,
+  },
+  {
+    name: "op [player name]",
+    description: "Upgrade [player name] to admin.",
+    adminOnly: true,
+  },
 ];
 
 console.log("------------------------------");
@@ -759,11 +769,11 @@ io.on("connection", (socket) => {
         }
       });
 
-      socket.on("command", (data) => {
+      socket.on("command", async (data) => {
         if (validatePlayer(PlayerId, socket, PlayerName)) {
           const command = data.command.split(" ");
           if (command.length > 0) {
-            if (command[0] === "help") {
+            if (command[0].toLowerCase() === "help") {
               let commandHelpOutput = "The following commands are available:";
               commandListArray.forEach((entry) => {
                 if (
@@ -776,7 +786,7 @@ io.on("connection", (socket) => {
               socket.emit("chat", {
                 content: commandHelpOutput,
               });
-            } else if (command[0] === "who") {
+            } else if (command[0].toLowerCase() === "who") {
               let whoResponse = "";
               connectedPlayerData.forEach((entry) => {
                 whoResponse += `${entry.name} is in ${entry.scene}<br/>`;
@@ -785,10 +795,11 @@ io.on("connection", (socket) => {
                 content: whoResponse,
               });
             } else if (connectedPlayerData.get(PlayerId)?.isAdmin) {
+              console.log(`Admin command from ${PlayerName}:`, command);
               // Admin only commands.
               if (
-                command[0] === "deleteallnpc" ||
-                command[0] === "deleteallnpcs"
+                command[0].toLowerCase() === "deleteallnpc" ||
+                command[0].toLowerCase() === "deleteallnpcs"
               ) {
                 hadrons.forEach((hadron, key) => {
                   if (hadron.typ === "npc") {
@@ -802,10 +813,9 @@ io.on("connection", (socket) => {
                 });
                 closeServer();
               } else if (
-                (command.length > 2 && command[0] === "delete") ||
-                command[0] === "del"
+                (command.length > 2 && command[0].toLowerCase() === "delete") ||
+                command[0].toLowerCase() === "del"
               ) {
-                console.log(command);
                 hadrons.forEach((hadron, key) => {
                   if (hadron[command[1]] === command[2]) {
                     hadrons.delete(key);
@@ -817,10 +827,89 @@ io.on("connection", (socket) => {
                   }
                 });
                 closeServer();
+              } else if (
+                command[0].toLowerCase() === "op" &&
+                command.length === 2
+              ) {
+                const playerNameToOp = command[1];
+                let playeIdToOp;
+                let playerIsAlreadyAdmin;
+                let error;
+                try {
+                  // LIKE allows for case insensitive name comparison.
+                  // User names shouldn't be case sensitive.
+                  const sql = "SELECT id, admin FROM Users WHERE name LIKE ?";
+                  const result = await db.query(sql, [playerNameToOp]);
+                  if (result.rows.length > 0) {
+                    playeIdToOp = result.rows[0].id;
+                    playerIsAlreadyAdmin = result.rows[0].admin === 1;
+                  }
+                } catch (e) {
+                  error = true;
+                  console.error("Error retrieving user:");
+                  console.error(e.message);
+                  socket.emit("chat", {
+                    content: `Error retrieving ${playerNameToOp} from the database`,
+                  });
+                }
+                if (!playeIdToOp) {
+                  socket.emit("chat", {
+                    content: `Player '${playerNameToOp}' does not exist.`,
+                  });
+                }
+                if (playerIsAlreadyAdmin) {
+                  socket.emit("chat", {
+                    content: `Player '${playerNameToOp}' is already an Admin.`,
+                  });
+                }
+                if (
+                  !error &&
+                  playeIdToOp &&
+                  playeIdToOp &&
+                  !playerIsAlreadyAdmin
+                ) {
+                  try {
+                    // LIKE allows for case insensitive name comparison.
+                    // User names shouldn't be case sensitive.
+                    const sql = "UPDATE Users SET admin = 1 WHERE id = ?";
+                    await db.query(sql, [playeIdToOp]);
+                  } catch (e) {
+                    error = true;
+                    console.error("Error updating user:");
+                    console.error(e.message);
+                    socket.emit("chat", {
+                      content: `Error updating '${playerNameToOp}' database entry.`,
+                    });
+                  }
+                  if (!error) {
+                    socket.emit("chat", {
+                      content: `Player '${playerNameToOp}' has been made Admin.`,
+                    });
+                    if (connectedPlayerData.get(playeIdToOp)?.socketId) {
+                      socket
+                        .to(connectedPlayerData.get(playeIdToOp)?.socketId)
+                        .emit("chat", {
+                          content: `You have been made an admin! You must sign in again to apply the update. Your game will now restart to apply it...`,
+                        });
+                      await wait(3000);
+                      socket
+                        .to(connectedPlayerData.get(playeIdToOp)?.socketId)
+                        .emit("unauthorized", {
+                          content: `You have been made an admin! You must sign in again to apply the update. Your game will now restart to apply it...`,
+                        });
+                    }
+                  }
+                }
+              } else {
+                console.error("Unable to parse this command.");
+                socket.emit("chat", {
+                  content: `Unable to parse admin command.`,
+                });
               }
             } else {
-              console.log("command");
-              console.log(command);
+              socket.emit("chat", {
+                content: `Unknown command.`,
+              });
             }
           }
         }
