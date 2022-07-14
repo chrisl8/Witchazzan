@@ -50,6 +50,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
   const disconnectReason = localStorage.getItem('disconnectReason');
   if (disconnectReason) {
     document.getElementById('loading_text').innerHTML = disconnectReason;
+    playerObject.disconnectReason = disconnectReason;
   }
   document.getElementById('loading_text').hidden = false;
 

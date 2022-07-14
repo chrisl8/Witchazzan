@@ -108,6 +108,8 @@ const playerObject = {
     x: 0,
     y: 0,
   },
+  loadTesting: null,
+  disconnectReason: null,
 };
 
 export default playerObject;
