@@ -49,6 +49,8 @@ import updateHadrons from './gameLoopFunctions/updateHadrons.js';
 import npcBehavior from './gameLoopFunctions/npcBehavior.js';
 import specialPlayerActions from './gameLoopFunctions/specialPlayerActions.js';
 import overlayTilemapTilesWithAnimatedSprites from './overlayTilemapTilesWithAnimatedSprites.js';
+import loadTesting from './gameLoopFunctions/loadTesting.js';
+import loadingInfo from './gameLoopFunctions/loadingInfo.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -83,6 +85,11 @@ const gameLoopAndSceneFactory = ({
   scene.preload = function () {
     // Runs once, loads up assets like images and audio
     // ** This should ONLY BE USED TO LOAD ASSETS! **
+
+    if (sceneName === 'Loading') {
+      loadingInfo.call(this);
+    }
+
     // All of these text based "keys" are basically global variables in Phaser.
     // You can reuse the same name, but phaser will just reuse the first thing you
     // assigned to it.
@@ -629,6 +636,10 @@ const gameLoopAndSceneFactory = ({
     cleanUpClientSprites.call(this);
 
     updateInGameDomElements(htmlElementParameters);
+
+    if (playerObject.loadTesting) {
+      loadTesting(delta);
+    }
   };
 
   return scene;

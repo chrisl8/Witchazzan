@@ -268,6 +268,14 @@ const startGameNow = () => {
     localStorage.removeItem('enableDebug');
   }
 
+  // Settle up loadTesting and set local storage if need be
+  const loadTesting = document.getElementById('load_testing').checked;
+  if (loadTesting) {
+    localStorage.setItem('loadTesting', 'true');
+  } else {
+    localStorage.removeItem('loadTesting');
+  }
+
   // Add all spell selections to local storage for later retrieval
   for (const [, value] of Object.entries(playerObject.spellKeys)) {
     const spellSettingFromDOM = document.getElementById(
@@ -306,6 +314,12 @@ const startGameNow = () => {
   const enableDebug = localStorage.getItem('enableDebug');
   if (enableDebug === 'true') {
     document.getElementById('phaser_debug').checked = true;
+  }
+
+  // Check local storage for loadTesting
+  const loadTesting = localStorage.getItem('loadTesting');
+  if (loadTesting === 'true') {
+    document.getElementById('load_testing').checked = true;
   }
 
   // HANDLE SPELL SETTINGS

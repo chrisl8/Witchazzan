@@ -22,6 +22,8 @@
  */
 import gameLoopAndSceneFactory from './gameLoopAndSceneFactory.js';
 
+import Loading from './assets/tileMaps/Loading.json';
+
 // Camelopardalis Scenes
 import CamelopardalisA1 from './assets/tileMaps/CamelopardalisA1.json';
 import CamelopardalisA2 from './assets/tileMaps/CamelopardalisA2.json';
@@ -218,6 +220,11 @@ const tileSets = {
 // accounting for the "hidden" teleport tiles on the outside of every scene.
 // TODO: If we are happy with always viewing the full scene, should this data just come from the tile map itself?
 const gameSizes = {
+  Loading: {
+    width: 16 * 19,
+    height: 16 * 11,
+    teleportLayerWidth: 0, // In pixels
+  },
   CamelopardalisColor16x16: {
     width: 40 * 16, // In Pixels
     height: 32 * 11, // Tile pixel count * tile count
@@ -323,6 +330,14 @@ const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
 
 // Scenes
 const scenes = [
+  {
+    sceneName: 'Loading',
+    tileMap: Loading,
+    tileSet: tileSets.CamelopardalisColor16x16,
+    gameSize: gameSizes.Loading,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    // animatedTileOverlayStrategy: libraryTileOverlayStrategy,
+  },
   {
     sceneName: 'CamelopardalisH8',
     tileMap: CamelopardalisH8,
