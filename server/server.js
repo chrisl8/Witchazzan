@@ -724,7 +724,7 @@ io.on("connection", (socket) => {
           // so that it doesn't appear to disappear before hitting the location where it should disappear on their screen
           // Otherwise things seem to de-spawn before hitting walls, for instance.
           await wait(100);
-          flagSceneHasUpdated(hadrons.get(key).scn);
+          flagSceneHasUpdated(hadrons.get(key)?.scn);
           hadrons.delete(key);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
