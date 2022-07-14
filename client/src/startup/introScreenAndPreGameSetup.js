@@ -50,11 +50,9 @@ function updateDOMElements() {
   document.getElementById('login_error_text_box').hidden = !loginErrorText;
   document.getElementById('login_error_text').innerText = loginErrorText;
 
-  if (!isAdmin) {
-    $('#game_debuging').hide();
-    $('#dot_trails').hide();
-    $('#home_key').hide();
-  }
+  document.getElementById('game_debuging').hidden = !isAdmin;
+  document.getElementById('dot_trails').hidden = !isAdmin;
+  document.getElementById('home_key').hidden = !isAdmin;
 
   if (playerName) {
     document.getElementById('password_input_box').focus();
@@ -179,6 +177,7 @@ async function login() {
 async function logOut() {
   localStorage.removeItem('authToken');
   loggedIn = false;
+  isAdmin = false;
   updateDOMElements();
 }
 
