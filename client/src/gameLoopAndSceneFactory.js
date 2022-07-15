@@ -72,9 +72,9 @@ const gameLoopAndSceneFactory = ({
   let collisionLayer;
   const teleportLayersColliders = new Map();
   const gameSizeData = { ...gameSize };
-  gameSizeData.fullWidth = gameSize.width + gameSize.teleportLayerWidth * 2;
+  gameSizeData.fullWidth = gameSize.width + gameSize.teleportLayerSize * 2;
   gameSizeData.widthPadding = gameSizeData.fullWidth * 0.1;
-  gameSizeData.fullHeight = gameSize.height + gameSize.teleportLayerWidth * 2;
+  gameSizeData.fullHeight = gameSize.height + gameSize.teleportLayerSize * 2;
   gameSizeData.heightPadding = gameSizeData.fullHeight * 0.1;
 
   // SCENE PRE-LOAD SETUP
@@ -525,8 +525,8 @@ const gameLoopAndSceneFactory = ({
     // Move the teleport area off camera
     this.cameras.main
       .setBounds(
-        gameSize.teleportLayerWidth,
-        gameSize.teleportLayerWidth,
+        gameSize.teleportLayerSize,
+        gameSize.teleportLayerSize,
         gameSize.width,
         gameSize.height,
       )
@@ -541,8 +541,8 @@ const gameLoopAndSceneFactory = ({
       collisionTiles: collisionLayer.layer.collideIndexes,
     });
     this.raycaster.setBoundingBox(
-      gameSize.teleportLayerWidth,
-      gameSize.teleportLayerWidth,
+      gameSize.teleportLayerSize,
+      gameSize.teleportLayerSize,
       gameSize.width,
       gameSize.height,
     );

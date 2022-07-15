@@ -223,27 +223,27 @@ const gameSizes = {
   Loading: {
     width: 16 * 19,
     height: 16 * 11,
-    teleportLayerWidth: 0, // In pixels
+    teleportLayerSize: 0, // In pixels
   },
   CamelopardalisColor16x16: {
     width: 40 * 16, // In Pixels
     height: 32 * 11, // Tile pixel count * tile count
-    teleportLayerWidth: 16 * 2, // In pixels
+    teleportLayerSize: 16 * 2, // In pixels
   },
   cave: {
     width: 16 * 18,
     height: 16 * 13,
-    teleportLayerWidth: 16, // In pixels
+    teleportLayerSize: 16, // In pixels
   },
   arena: {
     width: 16 * 40,
     height: 16 * 22,
-    teleportLayerWidth: 16, // In pixels
+    teleportLayerSize: 16, // In pixels
   },
   backYard: {
     width: 16 * 19,
     height: 16 * 11,
-    teleportLayerWidth: 16, // In pixels
+    teleportLayerSize: 16, // In pixels
   },
 };
 
