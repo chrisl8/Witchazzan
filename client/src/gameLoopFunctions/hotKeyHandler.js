@@ -24,6 +24,16 @@ function hotKeyHandler(sceneName) {
     playerObject.scrollingTextBox.display(false);
   }
 
+  // IF the chat log is open, then Escape will close it.
+  // if (playerObject.keyState.Escape === 'keydown' && )
+  if (
+    playerObject.keyState.Escape === 'keydown' &&
+    !playerObject.domElements.Scrolling.hidden
+  ) {
+    playerObject.keyState.Escape = null;
+    playerObject.scrollingTextBox.display(false);
+  }
+
   // Hot key to turn dot trails on/off
   if (playerObject.keyState.o === 'keydown') {
     playerObject.keyState.o = null;
