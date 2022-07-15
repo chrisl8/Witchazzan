@@ -240,18 +240,22 @@ img.emoji {
 .w3-round-small {
   border-radius: 2px;
 }
+
 .w3-round {
   border-radius: 4px;
 }
+
 .w3-light-grey,
 .w3-light-gray {
   color: #000 !important;
   background-color: #000000 !important;
 }
+
 .w3-blue {
   color: #fff !important;
   /*background-color: #2196f3 !important;*/
 }
+
 .w3-blue-grey,
 .w3-blue-gray {
   color: #fff !important;
@@ -276,6 +280,7 @@ img.emoji {
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
 }
