@@ -36,7 +36,7 @@ div .intro-screen-subsection {
 }
 
 #command_input_div {
-  left: 2%;
+  margin-left: 15px;
   background: white;
   color: black;
   z-index: 1;

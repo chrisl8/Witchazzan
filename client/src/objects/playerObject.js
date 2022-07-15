@@ -110,6 +110,7 @@ const playerObject = {
   },
   loadTesting: null,
   disconnectReason: null,
+  isMobileBrowser: null,
 };
 
 export default playerObject;

@@ -30,10 +30,20 @@ function handleKeyboardInput(event) {
         playerObject.domElements.chatInputDiv.style.display = 'flex';
         playerObject.domElements.chatInput.focus();
         textObject.escapeToLeaveChat.shouldBeActiveNow = true;
-        playerObject.domElements.chatInputDiv.style.width = `${
-          playerObject.canvasDomElement.item(0).offsetWidth
-        }px`;
-        playerObject.scrollingTextBox.display(false);
+        if (!playerObject.isMobileBrowser) {
+          // Normally the left margin is 15px, so we split that to make it comfortable
+          playerObject.domElements.chatInputDiv.style.width = `${
+            playerObject.canvasDomElement.item(0).offsetWidth - 30
+          }px`;
+        } else {
+          // but for mobile it is 30px to account for curved cornered screens, so we split that.
+          playerObject.domElements.chatInputDiv.style.width = `${
+            playerObject.canvasDomElement.item(0).offsetWidth - 60
+          }px`; // This is shifted to the right 30 px on mobile to account for curved screen corners.
+        }
+        if (playerObject.domElements.Scrolling.hidden) {
+          playerObject.scrollingTextBox.display(false);
+        }
       } else if (
         playerObject.spellKeys.indexOf(event.key) > -1 ||
         playerObject.shiftedSpellKeys.indexOf(event.key) > -1

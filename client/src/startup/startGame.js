@@ -102,6 +102,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
 
   // Un-hide joystick input boxes and enable touch input on mobile
   if (isMobileBrowser) {
+    playerObject.isMobileBrowser = true;
     textObject.escapeToLeaveChat.text = `Tap either joystick to return to game, use / to send commands.`;
     document.getElementById('joystick_container').hidden = false;
     document.getElementById('second_stick_container').hidden = false;
