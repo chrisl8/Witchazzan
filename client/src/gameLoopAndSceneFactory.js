@@ -44,8 +44,6 @@ import checkIfLayerExists from './gameLoopFunctions/checkIfLayerExists.js';
 import updatePlayerSpriteAnimation from './gameLoopFunctions/updatePlayerSpriteAnimation.js';
 import updateHadrons from './gameLoopFunctions/updateHadrons.js';
 
-// Example of adding sound.
-
 import npcBehavior from './gameLoopFunctions/npcBehavior.js';
 import specialPlayerActions from './gameLoopFunctions/specialPlayerActions.js';
 import overlayTilemapTilesWithAnimatedSprites from './overlayTilemapTilesWithAnimatedSprites.js';
@@ -563,9 +561,8 @@ const gameLoopAndSceneFactory = ({
 
     // Used for placing DOM elements in the correct location relevant to the game elements.
     // Does not work to set it in create()
-    if (playerObject.cameraScaleFactor === 0) {
-      playerObject.cameraScaleFactor = this.scale.displayScale.x;
-    }
+    // Must be updated every frame, in case user changes the browser window size.
+    playerObject.cameraScaleFactor = this.scale.displayScale.x;
 
     // This is used for the thought bubble on the player and such.
     // Does not work to set it in create()
