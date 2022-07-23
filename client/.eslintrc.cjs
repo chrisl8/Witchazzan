@@ -21,10 +21,8 @@ module.exports = {
     sourceType: 'module',
     requireConfigFile: false, // Required to allow files outside of client folder
   },
-  plugins: ['prettier'],
   extends: ['airbnb', 'prettier'],
   rules: {
-    'prettier/prettier': 'warn',
     'class-methods-use-this': 0,
     'no-console': 'off', // Sometimes we want to, okay?
     'no-prototype-builtins': 'off', // This seems like overkill

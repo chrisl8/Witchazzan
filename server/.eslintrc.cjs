@@ -20,10 +20,8 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: ['prettier'],
   extends: ['airbnb', 'prettier'],
   rules: {
-    'prettier/prettier': 'warn',
     'class-methods-use-this': 0,
     'no-console': 'off', // Sometimes we want to, okay?
     'no-prototype-builtins': 'off', // This seems like overkill
