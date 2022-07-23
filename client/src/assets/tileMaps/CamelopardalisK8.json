@@ -445,7 +445,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":100
                         }, 
                         {
                          "name":"id",
@@ -553,7 +553,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":100
                         }, 
                         {
                          "name":"id",
@@ -661,7 +661,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":100
                         }, 
                         {
                          "name":"id",
@@ -769,7 +769,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":100
                         }, 
                         {
                          "name":"id",
