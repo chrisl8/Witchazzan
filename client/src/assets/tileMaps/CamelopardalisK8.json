@@ -423,6 +423,11 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
                          "name":"Type",
                          "type":"string",
                          "value":"NPC"
@@ -435,7 +440,7 @@
                         {
                          "name":"dps",
                          "type":"int",
-                         "value":100
+                         "value":10
                         }, 
                         {
                          "name":"health",
@@ -526,6 +531,11 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
                          "name":"Type",
                          "type":"string",
                          "value":"NPC"
@@ -538,7 +548,7 @@
                         {
                          "name":"dps",
                          "type":"int",
-                         "value":100
+                         "value":10
                         }, 
                         {
                          "name":"health",
@@ -629,6 +639,11 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
                          "name":"Type",
                          "type":"string",
                          "value":"NPC"
@@ -641,7 +656,7 @@
                         {
                          "name":"dps",
                          "type":"int",
-                         "value":100
+                         "value":10
                         }, 
                         {
                          "name":"health",
@@ -732,6 +747,11 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
                          "name":"Type",
                          "type":"string",
                          "value":"NPC"
@@ -744,7 +764,7 @@
                         {
                          "name":"dps",
                          "type":"int",
-                         "value":100
+                         "value":10
                         }, 
                         {
                          "name":"health",
