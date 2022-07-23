@@ -58,8 +58,7 @@ function addSpriteColliders(
     // Other sprites come and go, so we need to check and update colliders with them on every update, or at least when we get new hadrons.
     // Note that we use overlap, not collide here. This does a couple of things:
     // 1. A collide will have a physics affect that we don't actually want (the player object, for instance, is controlled directly so bumping it around just causes visual glitches).
-    // 2. By waiting for a full overlap before registering, it looks better to other players, who tend to see
-    //    the sprite deleted before they see it overlap the obstacle (We could add some sort of "animate one more frame" logic, but for now ths is it.)
+    // 2. By waiting for a full overlap before registering, it looks better to other players.
     // In the future we could perhaps have a key on the hadron that determines whether we use overlap or collide
     // for a given object.
     clientSprites.forEach((otherSprite, otherSpriteKey) => {
