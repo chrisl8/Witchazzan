@@ -18,6 +18,7 @@ import writtenPaper from '../assets/spriteSheets/written_paper_no_background.png
 import redTankSingle from '../assets/spriteSheets/redTankSingle.png';
 import SkullWink from '../assets/spriteSheets/SkullWink.png';
 import Fountain from '../assets/spriteSheets/Fountain.png';
+import PurpleRunningRunes from '../assets/spriteSheets/purpleRunningRunes.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -209,6 +210,21 @@ const spriteSheetList = [
       x: 16,
       y: 16,
     },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'PurpleRunningRunes',
+    file: PurpleRunningRunes,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 5,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
     displayWidth: 16,
     displayHeight: 16,
   },

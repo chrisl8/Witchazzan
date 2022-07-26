@@ -192,12 +192,15 @@ import CaveO6 from './assets/tileMaps/CaveO6.json';
 import CaveP2 from './assets/tileMaps/CaveP2.json';
 import CaveP7 from './assets/tileMaps/CaveP7.json';
 
+import Library from './assets/tileMaps/Library.json';
+
 // NOTE: You must also add any new scenes to witchazzan-server/config/default-config.edn
 
 // Tile Sets
 import camelopardalisColor16x16 from './assets/tileSets/CamelopardalisColor16x16.png';
 import tilesetZoriaOverworld from './assets/tileSets/zoria_overworld.png';
 import dungeonTileset from './assets/tileSets/Dungeon_Tileset.png';
+import roguelikeSheetTransparent from './assets/tileSets/roguelikeSheet_transparent.png';
 
 // Each entry consists of an image and a name.
 // The name is used for tagging the imported tile set image,
@@ -210,6 +213,10 @@ const tileSets = {
   },
   dungeonTileset: { image: dungeonTileset, name: 'Dungeon_Tileset' },
   ZoriaOverworld: { image: tilesetZoriaOverworld, name: 'Zoria Overworld' },
+  roguelikeSheetTransparent: {
+    image: roguelikeSheetTransparent,
+    name: 'roguelikeSheet_transparent',
+  },
 };
 
 // Game Sizes
@@ -328,6 +335,12 @@ const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
   },
 };
 
+const libraryTileOverlayStrategy = {
+  Ground: {
+    286: { sprite: 'PurpleRunningRunes' },
+  },
+};
+
 // Scenes
 const scenes = [
   {
@@ -336,7 +349,6 @@ const scenes = [
     tileSet: tileSets.CamelopardalisColor16x16,
     gameSize: gameSizes.Loading,
     htmlElementParameters: camelopardalisHtmlElementParameters,
-    // animatedTileOverlayStrategy: libraryTileOverlayStrategy,
   },
   {
     sceneName: 'CamelopardalisH8',
@@ -1661,6 +1673,14 @@ const scenes = [
     tileSet: tileSets.dungeonTileset,
     gameSize: gameSizes.cave,
     htmlElementParameters: caveHtmlElementParameters,
+  },
+  {
+    sceneName: 'Library',
+    tileMap: Library,
+    tileSet: tileSets.roguelikeSheetTransparent,
+    gameSize: gameSizes.CamelopardalisColor16x16,
+    htmlElementParameters: camelopardalisHtmlElementParameters,
+    animatedTileOverlayStrategy: libraryTileOverlayStrategy,
   },
 ];
 
