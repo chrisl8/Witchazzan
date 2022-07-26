@@ -24,7 +24,6 @@ import sunriseOgg from 'url:./assets/sounds/sunrise.ogg';
 
 import playerObject from './objects/playerObject.js';
 import textObject from './objects/textObject.js';
-import currentSceneNPCs from './objects/currentSceneNPCs.js';
 import sendDataToServer from './sendDataToServer.js';
 import spriteSheetList from './objects/spriteSheetList.js';
 import handleKeyboardInput from './handleKeyboardInput.js';
