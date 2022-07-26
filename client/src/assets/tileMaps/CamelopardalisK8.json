@@ -513,7 +513,7 @@
                          "value":"stationaryTank"
                         }, 
                         {
-                         "name":"tcwls",
+                         "name":"tcw",
                          "type":"bool",
                          "value":true
                         }],
@@ -621,7 +621,7 @@
                          "value":"stationaryTank"
                         }, 
                         {
-                         "name":"tcwls",
+                         "name":"tcw",
                          "type":"bool",
                          "value":true
                         }],
@@ -729,7 +729,7 @@
                          "value":"stationaryTank"
                         }, 
                         {
-                         "name":"tcwls",
+                         "name":"tcw",
                          "type":"bool",
                          "value":true
                         }],
@@ -837,7 +837,7 @@
                          "value":"stationaryTank"
                         }, 
                         {
-                         "name":"tcwls",
+                         "name":"tcw",
                          "type":"bool",
                          "value":true
                         }],

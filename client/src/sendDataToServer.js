@@ -34,20 +34,20 @@ sendDataToServer.chat = ({ text, targetPlayerId, fromPlayerId, room }) => {
 sendDataToServer.playerData = ({ sceneName }) => {
   if (communicationsObject.socket.connected) {
     const objectToSend = {
-      name: playerObject.name,
+      nam: playerObject.name,
       x: playerObject.player.x,
       y: playerObject.player.y,
       typ: 'player',
       scn: sceneName,
       id: playerObject.playerId,
       own: playerObject.playerId,
-      ctrl: playerObject.playerId,
+      ctr: playerObject.playerId,
       dir: playerObject.playerDirection,
-      sprt: playerObject.spriteName,
+      spr: playerObject.spriteName,
       mov: !playerObject.playerStopped,
-      chtO: playerObject.chatOpen,
-      hlth: playerObject.health,
-      maxhlth: playerObject.maxHealth,
+      cho: playerObject.chatOpen,
+      hlt: playerObject.health,
+      mxh: playerObject.maxHealth,
       dph: 4,
     };
     if (

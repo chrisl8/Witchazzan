@@ -9,7 +9,7 @@ function parseHadronsFromServer(serverHadrons) {
   // from our own list, so that old ones disappear,
   // and new data for these hadrons takes precedence over our data.
   hadrons.forEach((clientHadron, key) => {
-    if (clientHadron.ctrl !== playerObject.playerId) {
+    if (clientHadron.ctr !== playerObject.playerId) {
       hadrons.delete(key);
     }
   });
@@ -17,7 +17,7 @@ function parseHadronsFromServer(serverHadrons) {
   // Then add all hadrons that we do not control from the server list to our list.
   serverHadrons.forEach((serverHadron, key) => {
     if (validateHadron.server(serverHadron)) {
-      if (serverHadron.ctrl !== playerObject.playerId) {
+      if (serverHadron.ctr !== playerObject.playerId) {
         hadrons.set(key, serverHadron);
       }
 
@@ -25,7 +25,7 @@ function parseHadronsFromServer(serverHadrons) {
       // because our local copy is authoritative for controlled hadrons,
       // UNLESS we don't know about the hadron (we forgot about it).
       if (
-        serverHadron.ctrl === playerObject.playerId &&
+        serverHadron.ctr === playerObject.playerId &&
         !hadrons.has(key) &&
         // The deletedHadronList is to prevent the race condition of us deleting a hadron,
         // but then immediately adding it again because we get an incoming packet that includes it,
@@ -54,8 +54,8 @@ function parseHadronsFromServer(serverHadrons) {
       };
       playerObject.initialScene = playerHadron.scn;
       // On connect, get health from server, because disconnecting doesn't automatically heal you!
-      if (playerHadron.hasOwnProperty('hlth')) {
-        playerObject.health = playerHadron.hlth;
+      if (playerHadron.hasOwnProperty('hlt')) {
+        playerObject.health = playerHadron.hlt;
       }
     }
   }

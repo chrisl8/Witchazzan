@@ -35,15 +35,15 @@ function castSpell({
               id: getUUID(),
               own: owner,
               typ: 'message',
-              sprt: 'writtenPaper',
+              spr: 'writtenPaper',
               x: initialX,
               y: initialY,
               dir: 'up',
               scn: sceneName,
-              velX: 0,
-              velY: 0,
+              vlx: 0,
+              vly: 0,
               txt: message,
-              tcwls: true,
+              tcw: true,
               pod: $('#message_always_visible').is(':checked'),
             };
             hadrons.set(newHadronData.id, newHadronData);
@@ -75,7 +75,7 @@ function castSpell({
       own: owner,
       typ: 'spell',
       sub: spell,
-      sprt: spells[spell].sprite,
+      spr: spells[spell].sprite,
       x: initialX,
       y: initialY,
       dir: direction,
@@ -89,9 +89,9 @@ function castSpell({
       // Also Math.sin and cos require angles in Radians!
       // 150 * Math.cos(90 * Math.PI / 180)
       // 150 * Math.cos(90 * Math.PI / 180)
-      velX: spells[spell].velocity * Math.cos((direction * Math.PI) / 180),
-      velY: spells[spell].velocity * Math.sin((direction * Math.PI) / 180),
-      tcwls: true,
+      vlx: spells[spell].velocity * Math.cos((direction * Math.PI) / 180),
+      vly: spells[spell].velocity * Math.sin((direction * Math.PI) / 180),
+      tcw: true,
       dps,
     };
     hadrons.set(newHadronData.id, newHadronData);

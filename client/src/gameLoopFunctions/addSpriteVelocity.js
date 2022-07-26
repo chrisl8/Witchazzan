@@ -6,18 +6,18 @@ function addSpriteVelocity(hadron, key) {
     // It should exist now, even if it didn't before.
     clientSprites.has(key) &&
     // We control it.
-    hadron.ctrl === playerObject.playerId &&
+    hadron.ctr === playerObject.playerId &&
     // But it isn't our shadow.
     key !== playerObject.playerId
   ) {
     /* SET VELOCITY ON SPRITES WE CONTROL */
     if (!clientSprites.get(key).velocitySet) {
       clientSprites.get(key).velocitySet = true;
-      if (hadron.velX !== undefined) {
-        clientSprites.get(key).sprite.body.setVelocityX(hadron.velX);
+      if (hadron.vlx !== undefined) {
+        clientSprites.get(key).sprite.body.setVelocityX(hadron.vlx);
       }
-      if (hadron.velY !== undefined) {
-        clientSprites.get(key).sprite.body.setVelocityY(hadron.velY);
+      if (hadron.vly !== undefined) {
+        clientSprites.get(key).sprite.body.setVelocityY(hadron.vly);
       }
     }
   }

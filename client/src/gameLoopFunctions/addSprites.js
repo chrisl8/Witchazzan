@@ -9,7 +9,7 @@ function addSprites(hadron, key) {
     // Add new sprites to the scene
     const newClientSprite = {};
 
-    newClientSprite.spriteData = getSpriteData(hadron.sprt);
+    newClientSprite.spriteData = getSpriteData(hadron.spr);
 
     newClientSprite.sprite = this.physics.add
       .sprite(hadron.x, hadron.y, newClientSprite.spriteData.name)

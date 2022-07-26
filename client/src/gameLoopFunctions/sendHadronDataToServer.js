@@ -7,7 +7,7 @@ function sendHadronDataToServer(hadron, key) {
   // We skip our own player, because it has special requirements.
   if (
     // New hadrons that we create have no ctrl yet, only the server assigns that.
-    (hadron.ctrl === undefined || hadron.ctrl === playerObject.playerId) &&
+    (hadron.ctr === undefined || hadron.ctr === playerObject.playerId) &&
     key !== playerObject.playerId
   ) {
     sendDataToServer.hadronData(key);

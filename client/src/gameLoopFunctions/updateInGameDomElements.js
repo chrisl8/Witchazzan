@@ -151,7 +151,7 @@ const updateInGameDomElements = (htmlElementParameters) => {
 
           // Text
           let newInnerHTML = '';
-          if (hadron.chtO) {
+          if (hadron.cho) {
             // Chat bubble takes precedence over health bar.
             newInnerHTML = '&#x1F4AD;';
             // Font size
@@ -179,13 +179,13 @@ const updateInGameDomElements = (htmlElementParameters) => {
                 playerObject.cameraScaleFactor +
               4
             }px`;
-          } else if (hadron.hlth < hadron.maxhlth) {
+          } else if (hadron.hlt < hadron.mxh) {
             const healthBarWidth = Math.trunc(
               (clientSprite.sprite.displayWidth /
                 playerObject.cameraScaleFactor) *
                 1.75,
             );
-            const healthPercentage = hadron.hlth / hadron.maxhlth;
+            const healthPercentage = hadron.hlt / hadron.mxh;
             const healthBarHeight =
               (clientSprite.sprite.displayHeight /
                 playerObject.cameraScaleFactor) *

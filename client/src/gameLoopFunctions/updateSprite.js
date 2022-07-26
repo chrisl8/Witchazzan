@@ -89,7 +89,7 @@ function updateSprite(hadron, key, gameSizeData) {
       );
     } else if (
       hadron.hasOwnProperty('anim') &&
-      hadron.anim &&
+      hadron.ani &&
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-${hadron.anim}`,
       )
@@ -115,10 +115,7 @@ function updateSprite(hadron, key, gameSizeData) {
     // but if we are just updating x/y positions, we need this to make it smooth.
     // Easing demonstrations:
     // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
-    if (
-      hadron.ctrl !== playerObject.playerId ||
-      key === playerObject.playerId
-    ) {
+    if (hadron.ctr !== playerObject.playerId || key === playerObject.playerId) {
       this.tweens.add({
         targets: clientSprite.sprite,
         x: hadron.x,
@@ -131,10 +128,10 @@ function updateSprite(hadron, key, gameSizeData) {
     // ADD BRIEF RED TINT TO PLAYERS AND NPCs THAT HAVE TAKEN DAMAGE
     if (
       hadron.id !== playerObject.playerId && // Do not tint or worse, clear tint from shadow
-      hadron.hlth &&
-      hadron.hlth < hadron.maxhlth &&
+      hadron.hlt &&
+      hadron.hlt < hadron.mxh &&
       clientSprite.previousHealth !== undefined &&
-      hadron.hlth < clientSprite.previousHealth
+      hadron.hlt < clientSprite.previousHealth
     ) {
       // Make player red briefly to indicate damage was taken.
       // https://www.phaser.io/examples/v3/view/display/tint/tint-and-alpha
@@ -143,13 +140,13 @@ function updateSprite(hadron, key, gameSizeData) {
         clientSprite.sprite.clearTint();
       }, 100);
     }
-    clientSprite.previousHealth = hadron.hlth;
+    clientSprite.previousHealth = hadron.hlt;
 
     // UPDATE HADRON X/Y POSITION DATA FOR HADRONS WE ARE CONTROLLING
     // We skip our own player, because it has special requirements.
     if (
       // New hadrons that we create have no ctrl yet, only the server assigns that.
-      (hadron.ctrl === undefined || hadron.ctrl === playerObject.playerId) &&
+      (hadron.ctr === undefined || hadron.ctr === playerObject.playerId) &&
       key !== playerObject.playerId
     ) {
       const newHadronData = { ...hadron };

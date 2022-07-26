@@ -10,7 +10,7 @@ function addSpriteColliders(
 ) {
   if (
     clientSprites.has(key) && // If it actually has a sprite,
-    hadron.ctrl === playerObject.playerId && // We control it.
+    hadron.ctr === playerObject.playerId && // We control it.
     key !== playerObject.playerId // But it isn't our shadow.
   ) {
     // If we had a sprite before, but we didn't own it,

@@ -414,15 +414,15 @@ function sendHadrons() {
   hadrons.forEach((hadron, key) => {
     if (perSceneHadronList[hadron.scn]) {
       // Check to see if the controller of this hadron is in this scene
-      if (connectedPlayerData.get(hadron.ctrl)?.scene !== hadron.scn) {
-        if (hadron.tcwls) {
+      if (connectedPlayerData.get(hadron.ctr)?.scene !== hadron.scn) {
+        if (hadron.tcw) {
           // Find a new controller for the hadron.
           let newControllerFound = false;
           connectedPlayerData.forEach((player, playerKey) => {
             if (!newControllerFound && player.scene === hadron.scn) {
               newControllerFound = true;
               // eslint-disable-next-line no-param-reassign
-              hadron.ctrl = playerKey;
+              hadron.ctr = playerKey;
             }
           });
         }
@@ -572,10 +572,10 @@ io.on("connection", (socket) => {
       }
 
       // Always update their name and sprite.
-      newPlayerHadron.name = PlayerName; // Names can be changed, with the UUID staying the same, so we update the client.
-      newPlayerHadron.sprt = playerData.sprite; // Client should always be sending the requested sprite.
+      newPlayerHadron.nam = PlayerName; // Names can be changed, with the UUID staying the same, so we update the client.
+      newPlayerHadron.spr = playerData.sprite; // Client should always be sending the requested sprite.
       newPlayerHadron.own = PlayerId; // Player always belongs to and is controlled by player themselves.
-      newPlayerHadron.ctrl = PlayerId; // Player always belongs to and is controlled by player themselves.
+      newPlayerHadron.ctr = PlayerId; // Player always belongs to and is controlled by player themselves.
 
       validateHadron.server(newPlayerHadron);
 
@@ -641,13 +641,13 @@ io.on("connection", (socket) => {
       socket.on("damageHadron", (data) => {
         if (
           hadrons.has(data.id) &&
-          connectedPlayerData.has(hadrons.get(data.id).ctrl)
+          connectedPlayerData.has(hadrons.get(data.id).ctr)
         ) {
-          if (hadrons.get(data.id).ctrl === PlayerId) {
+          if (hadrons.get(data.id).ctr === PlayerId) {
             socket.emit("damageHadron", data);
           } else {
             socket
-              .to(connectedPlayerData.get(hadrons.get(data.id).ctrl).socketId)
+              .to(connectedPlayerData.get(hadrons.get(data.id).ctr).socketId)
               .emit("damageHadron", data);
           }
         }
@@ -666,7 +666,7 @@ io.on("connection", (socket) => {
           }
 
           // You cannot update hadrons that you are not in control of.
-          if (!existingHadron || existingHadron.ctrl === PlayerId) {
+          if (!existingHadron || existingHadron.ctr === PlayerId) {
             const newHadronData = { ...data };
 
             if (!existingHadron) {
@@ -676,7 +676,7 @@ io.on("connection", (socket) => {
               if (!data.own) {
                 newHadronData.own = PlayerId;
               }
-              newHadronData.ctrl = PlayerId;
+              newHadronData.ctr = PlayerId;
             }
 
             validateHadron.server(newPlayerHadron);
@@ -714,11 +714,11 @@ io.on("connection", (socket) => {
           // the controller won't delete the hadron from their own list,
           // so we have to force it to delete the hadron.
           if (
-            hadrons.get(key).ctrl !== PlayerId &&
-            connectedPlayerData.has(hadrons.get(key).ctrl)
+            hadrons.get(key).ctr !== PlayerId &&
+            connectedPlayerData.has(hadrons.get(key).ctr)
           ) {
             socket
-              .to(connectedPlayerData.get(hadrons.get(key).ctrl).socketId)
+              .to(connectedPlayerData.get(hadrons.get(key).ctr).socketId)
               .emit("deleteHadron", key);
           }
           // Give other clients a moment to animate the last moments of the sprite
@@ -749,7 +749,7 @@ io.on("connection", (socket) => {
                 newHadronData.own = PlayerId;
               }
               console.log(data.own, PlayerId);
-              newHadronData.ctrl = PlayerId;
+              newHadronData.ctr = PlayerId;
               if (validateHadron.server(newHadronData)) {
                 hadrons.set(data.id, newHadronData);
               }
@@ -949,7 +949,7 @@ io.on("connection", (socket) => {
             if (archiveHadron) {
               inactiveHadrons.set(key, { ...hadron });
               // Set the owner back to being the controller.
-              inactiveHadrons.get(key).ctrl = PlayerId;
+              inactiveHadrons.get(key).ctr = PlayerId;
             }
 
             // Hadron Delete code.
@@ -958,11 +958,11 @@ io.on("connection", (socket) => {
               // the controller won't delete the hadron from their own list,
               // so we have to force it to delete the hadron.
               if (
-                hadron.ctrl !== PlayerId &&
-                connectedPlayerData.has(hadron.ctrl)
+                hadron.ctr !== PlayerId &&
+                connectedPlayerData.has(hadron.ctr)
               ) {
                 socket
-                  .to(connectedPlayerData.get(hadron.ctrl).socketId)
+                  .to(connectedPlayerData.get(hadron.ctr).socketId)
                   .emit("deleteHadron", key);
               }
 

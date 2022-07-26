@@ -10,7 +10,7 @@ function npcBehavior(delta, sceneName) {
     // Only perform behavior operations on hadrons under our control.
     if (
       hadron.typ === 'npc' &&
-      hadron.ctrl === playerObject.playerId &&
+      hadron.ctr === playerObject.playerId &&
       hadron.scn === sceneName
     ) {
       // This is all of the "base NPC" behavior.
@@ -20,19 +20,19 @@ function npcBehavior(delta, sceneName) {
 
       let rayCastFoundTarget = false;
 
-      if (hadron.hlth <= 0 && !hadron.off) {
+      if (hadron.hlt <= 0 && !hadron.off) {
         // Turn the NPC "off" if the health falls to 0 or below.
         hadrons.get(key).off = true;
-        hadrons.get(key).tmoff = Math.floor(Date.now() / 1000);
+        hadrons.get(key).tmo = Math.floor(Date.now() / 1000);
         // TODO: A massive explosion would be appreciated.
       } else if (
         hadron.off &&
-        hadron.tmoff &&
+        hadron.tmo &&
         hadron.ris &&
-        Math.floor(Date.now() / 1000) - hadron.tmoff > hadron.ris
+        Math.floor(Date.now() / 1000) - hadron.tmo > hadron.ris
       ) {
         // Resurrect the hadron on a timer if it exists.
-        hadrons.get(key).hlth = hadrons.get(key).maxhlth;
+        hadrons.get(key).hlt = hadrons.get(key).mxh;
         hadrons.get(key).off = false;
       } else if (!hadron.off) {
         // If the hadron is active, then...
@@ -143,9 +143,9 @@ function npcBehavior(delta, sceneName) {
             }
             spellCastTimer = 0;
           }
-          newHadronData.anim = 'stationary';
+          newHadronData.ani = 'stationary';
           if (rayCastFoundTarget) {
-            newHadronData.anim = 'casting';
+            newHadronData.ani = 'casting';
           }
         }
         if (clientSprites.has(key)) {

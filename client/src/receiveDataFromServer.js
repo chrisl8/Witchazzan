@@ -116,19 +116,17 @@ function receiveDataFromServer() {
       playerObject.health = newHealth;
     } else if (
       hadrons.has(data.id) &&
-      hadrons.get(data.id)?.ctrl === playerObject.playerId
+      hadrons.get(data.id)?.ctr === playerObject.playerId
     ) {
-      let newHealth = hadrons.get(data.id)?.hlth;
+      let newHealth = hadrons.get(data.id)?.hlt;
       if (newHealth === undefined) {
-        newHealth = hadrons.get(data.id)?.maxhlth
-          ? hadrons.get(data.id)?.maxhlth
-          : 100;
+        newHealth = hadrons.get(data.id)?.mxh ? hadrons.get(data.id)?.mxh : 100;
       }
       newHealth -= data.amount;
       if (newHealth < 0) {
         newHealth = 0;
       }
-      hadrons.get(data.id).hlth = newHealth;
+      hadrons.get(data.id).hlt = newHealth;
     }
   });
 }
