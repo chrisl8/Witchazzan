@@ -99,7 +99,7 @@ if (!serverConfiguration.jwtSecret) {
   serverConfiguration.jwtSecret = randomBytes(64).toString("hex");
 }
 if (!serverConfiguration.jwtExpiresInSeconds) {
-  serverConfiguration.jwtExpiresInSeconds = 60 * 60 * 24 * 7; // 1 week
+  serverConfiguration.jwtExpiresInSeconds = 60 * 60 * 24 * 30; // 30 days
 }
 if (!serverConfiguration.gameStateSaveInterval) {
   serverConfiguration.gameStateSaveInterval = 60 * 1000; // 1 minute
