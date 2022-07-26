@@ -121,6 +121,17 @@ const gameLoopAndSceneFactory = ({
   scene.create = function () {
     // Runs once, after all assets in preload are loaded
 
+    // Use scene from server. Switch to different scene if this is not it
+    // NOTE: Remember to do this BEFORE setting the position from the server.
+    if (!playerObject.initialSceneFromServerAlreadyUsed) {
+      playerObject.initialSceneFromServerAlreadyUsed = true;
+      if (playerObject.initialScene !== sceneName) {
+        cleanUpScene(playerObject.initialScene);
+        this.scene.start(playerObject.initialScene);
+        return; // We left this scene, we do not need to continue creating it now.
+      }
+    }
+
     sendDataToServer.enterScene(sceneName);
     console.log(`Entering scene ${sceneName}`);
 
@@ -278,19 +289,6 @@ const gameLoopAndSceneFactory = ({
         playerObject.player?.y
       ) {
         spawnPoint.y = playerObject.player.y;
-      }
-    }
-
-    // Use scene from server. Switch to different scene if this is not it
-    // NOTE: Remember to do this BEFORE setting the position from the server.
-    // HOWEVER: This MUST be done after setCameraZoom, or the scene
-    // will load un-zoomed. I'm not sure why.
-    if (!playerObject.initialSceneFromServerAlreadyUsed) {
-      playerObject.initialSceneFromServerAlreadyUsed = true;
-      if (playerObject.initialScene !== sceneName) {
-        cleanUpScene(playerObject.initialScene);
-        this.scene.start(playerObject.initialScene);
-        return; // We left this scene, we do not need to continue creating it now.
       }
     }
 
