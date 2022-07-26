@@ -149,7 +149,17 @@ try {
   // So an actual error is something worse, like the file being corrupted.
   process.exit(1);
 }
-// TODO: On load wipe any hadrons that are owned by users no longer in the database so that deleting a user doesn't leave orphaned hadrons.
+// TODO: On load wipe any hadrons that are owned by users no longer in the database so that deleting a user doesn't leave orphaned hadrons. Note that hadrons can be owned by NPCs, and themselves, so it may be difficult to tell which hadrons belong to removed players. I might have to build a "removed player UUID" list for this to work.
+
+// Validate all saved hadrons before starting server
+inactiveHadrons.forEach((hadron) => {
+  if (!validateHadron.server(hadron)) {
+    console.error(
+      `Aborting server start due to invalid data in ${persistentDataFolder}/hadrons.json5`
+    );
+    process.exit(1);
+  }
+});
 
 // Resurrect any "Persist On Disconnect (pod)" hadrons immediately.
 inactiveHadrons.forEach((hadron, key) => {
