@@ -170,7 +170,9 @@ function updateSprite(hadron, key, gameSizeData) {
       if (
         newHadronData.x > gameSizeData.fullWidth + gameSizeData.widthPadding ||
         newHadronData.x < -gameSizeData.widthPadding ||
-        newHadronData.y > gameSizeData.fullHeight + gameSizeData.heightPadding
+        newHadronData.y >
+          gameSizeData.fullHeight + gameSizeData.heightPadding ||
+        newHadronData.y < -gameSizeData.widthPadding
       ) {
         console.error(`Destroying off-map sprite`);
         console.error(newHadronData);
