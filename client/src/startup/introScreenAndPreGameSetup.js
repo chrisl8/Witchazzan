@@ -50,9 +50,11 @@ function updateDOMElements() {
   document.getElementById('login_error_text_box').hidden = !loginErrorText;
   document.getElementById('login_error_text').innerText = loginErrorText;
 
-  document.getElementById('game_debugging').hidden = !isAdmin;
-  document.getElementById('dot_trails').hidden = !isAdmin;
-  document.getElementById('home_key').hidden = !isAdmin;
+  if (!isAdmin) {
+    $('.admin_only_visible').hide();
+  } else {
+    $('.admin_only_visible').show();
+  }
 
   if (playerName) {
     document.getElementById('password_input_box').focus();

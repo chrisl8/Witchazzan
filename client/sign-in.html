@@ -245,7 +245,7 @@
       <label for="disable_sound">Disable sound</label>
     </div>
   </div>
-  <div id="game_debugging">
+  <div class="admin_only_visible" id="game_debugging">
     <h2>Debugging</h2>
     <div class="intro-screen-subsection">
       <input type="checkbox" id="phaser_debug" name="phaser_debug" />
@@ -310,7 +310,7 @@
       <div class="key">Y</div>
       <div class="key">U</div>
       <div class="key">I<span class="description">Inventory</span></div>
-      <div class="key">O<span class="description" id="dot_trails">dotTrails</span></div>
+      <div class="key">O<span class="description admin_only_visible">dotTrails</span></div>
       <div class="key">
         P
         <span class="description">"Pause"</span>
@@ -338,7 +338,7 @@
       <div class="key">G</div>
       <div class="key">
         H
-        <span class="description" id="home_key">Home</span>
+        <span class="description admin_only_visible">Home</span>
       </div>
       <div class="key">J</div>
       <div class="key">K</div>
@@ -456,12 +456,35 @@
     <h3>Keys</h3>
     <ul>
       <li>Space Bar - Fire</li>
-      <li>t - open the Chat/Command input box</li>
-      <li>Enter - open the Chat/Command input box</li>
-      <li>/ - open the Chat/Command input box (with slash)</li>
-      <li>l - open/close the chat Log when chat input is not open</li>
-      <li>h - return to Home scene</li>
-      <li>o - turn dot Trails on/off for debugging</li>
+      <li>Chat/Command Input
+        <ul>
+          <li>There are three ways to open the Chat input box, which also doubles as the Command input box:
+            <ul>
+              <li>t</li>
+              <li>Enter</li>
+              <li>/ - starts you out with a slash already in the input for sending commands.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Chat Log
+        <ul>
+          <li>The Chat Log opens and closes automatically when you open or close the Chat/Command Input box.</li>
+          <li>The Chat Log also opens when you receive a message from someone or something.</li>
+          <li>You can also Close the Chat Log with the Escape key, or by pressing 'l' if it opened by itself.</li>
+          <li>l - Will also open (and close) the Chat Log at any time without opening the Chat Input box.</li>
+        </ul>
+      </li>
+      <li>i - teleport out to your Inventory
+        <ul>
+          <li>
+            When you do this you leave the scene you are in. Upon exiting your inventory you return to the same location
+            in the same scene that you left from.
+          </li>
+        </ul>
+      </li>
+      <li class="admin_only_visible">h - return to the default initial scene</li>
+      <li class="admin_only_visible">o - turn dot Trails on/off for debugging</li>
       <li>
         p - "Pause" returns you to this screen
         <ul>
