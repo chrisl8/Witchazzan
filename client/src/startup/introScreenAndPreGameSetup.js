@@ -50,7 +50,7 @@ function updateDOMElements() {
   document.getElementById('login_error_text_box').hidden = !loginErrorText;
   document.getElementById('login_error_text').innerText = loginErrorText;
 
-  document.getElementById('game_debuging').hidden = !isAdmin;
+  document.getElementById('game_debugging').hidden = !isAdmin;
   document.getElementById('dot_trails').hidden = !isAdmin;
   document.getElementById('home_key').hidden = !isAdmin;
 
