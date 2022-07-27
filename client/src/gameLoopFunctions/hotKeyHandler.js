@@ -45,9 +45,7 @@ function hotKeyHandler(sceneName) {
   // Inventory
   if (playerObject.keyState.i === 'keydown') {
     playerObject.keyState.i = null;
-    if (playerObject.isAdmin) {
-      playerObject.teleportToSceneNow = 'Library';
-    }
+    playerObject.teleportToSceneNow = 'Library';
   }
 
   // Send currently active Spell with space bar,
