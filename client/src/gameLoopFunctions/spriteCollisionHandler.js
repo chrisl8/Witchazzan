@@ -15,7 +15,7 @@ const throttleSendMessageRead = _.debounce(chatForThrottle, 1000, {
 /*
   REMEMBER!
   You have to act on collisions of your sprites, even if they are with sprites other players control,
-  because often you are the only one who will see it,
+  because you are the only one who will see it,
   so you may have to send out messages saying, "do this" with your sprite!
   Otherwise we get into a problem of who is in 'control' when two sprites collide that are controlled
   by different clients.
@@ -31,6 +31,7 @@ function spriteCollisionHandler({
   teleportLayerName,
   teleportLayer,
 }) {
+  // Uncomment this if you think something is getting "eaten up" to find it.
   // console.log(
   //   '--------------',
   //   '\nspriteKey',

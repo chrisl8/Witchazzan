@@ -898,8 +898,6 @@ io.on("connection", (socket) => {
                   !playerIsAlreadyAdmin
                 ) {
                   try {
-                    // LIKE allows for case insensitive name comparison.
-                    // User names shouldn't be case sensitive.
                     const sql = "UPDATE Users SET admin = 1 WHERE id = ?";
                     await db.query(sql, [playeIdToOp]);
                   } catch (e) {
