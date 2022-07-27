@@ -424,7 +424,11 @@ function sendHadrons() {
   hadrons.forEach((hadron, key) => {
     if (perSceneHadronList[hadron.scn]) {
       // Check to see if the controller of this hadron is in this scene
-      if (connectedPlayerData.get(hadron.ctr)?.scene !== hadron.scn) {
+      // Except in the Library, where we don't transfer control.
+      if (
+        connectedPlayerData.get(hadron.ctr)?.scene !== hadron.scn &&
+        hadron.scn !== "Library"
+      ) {
         if (hadron.tcw) {
           // Find a new controller for the hadron.
           let newControllerFound = false;
@@ -444,9 +448,23 @@ function sendHadrons() {
   });
 
   // Loop through each scene's hadrons
-  for (const [key, value] of Object.entries(perSceneHadronList)) {
-    // Send all of these hadrons to every player who is in the room with the same name as the scene
-    io.sockets.to(key).emit("hadrons", Array.from(value.entries()));
+  for (const [scene, sceneHadrons] of Object.entries(perSceneHadronList)) {
+    if (scene !== "Library") {
+      // Send all of these hadrons to every player who is in the room with the same name as the scene
+      io.sockets.to(scene).emit("hadrons", Array.from(sceneHadrons.entries()));
+    } else {
+      // The Library is not a shared room, but instead each player sees their own instance.
+      sceneHadrons.forEach((hadron) => {
+        if (connectedPlayerData.get(hadron.ctr)?.socketId) {
+          io.sockets
+            .to(connectedPlayerData.get(hadron.ctr)?.socketId)
+            .emit("hadrons", [[hadron.id, hadron]]);
+        } else {
+          console.error("Unclaimed Library Hadron:");
+          console.error(hadron);
+        }
+      });
+    }
   }
 }
 
