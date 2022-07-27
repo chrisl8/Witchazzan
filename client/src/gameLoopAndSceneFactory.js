@@ -385,9 +385,6 @@ const gameLoopAndSceneFactory = ({
     this.input.keyboard.on('keydown', handleKeyboardInput);
     this.input.keyboard.on('keyup', handleKeyboardInput);
 
-    // Phaser controlled mouse input
-    this.input.mouse.disableContextMenu();
-
     // Tell phaser what the size of the game is,
     // because not every scene is the same size, nor needs to be.
     this.scale.setGameSize(gameSize.width, gameSize.height);
