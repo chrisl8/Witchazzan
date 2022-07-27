@@ -255,7 +255,10 @@ const gameLoopAndSceneFactory = ({
       'Objects',
       (obj) => obj.name === 'Default Spawn Point',
     );
-    if (playerObject.destinationEntrance) {
+    if (playerObject.destinationX && playerObject.destinationY) {
+      spawnPoint.x = playerObject.destinationX;
+      spawnPoint.y = playerObject.destinationY;
+    } else if (playerObject.destinationEntrance) {
       const entranceList = map.filterObjects(
         'Objects',
         (obj) => convertTileMapPropertyArrayToObject(obj).Type === 'Entrance',
@@ -352,7 +355,7 @@ const gameLoopAndSceneFactory = ({
         playerObject.player,
         layer,
         (sprite, tile) => {
-          playerTeleportOverlapHandler.call(this, sprite, tile, sceneName);
+          playerTeleportOverlapHandler.call(this, sprite, tile, sceneName, map);
         },
         (player, tile) =>
           tile.index !== -1 &&

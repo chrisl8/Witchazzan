@@ -104,6 +104,8 @@ const playerObject = {
   teleportToSceneNow: null,
   teleportToSceneNowEntrance: null,
   destinationEntrance: null,
+  destinationX: null,
+  destinationY: null,
   cameraOffset: {
     x: 0,
     y: 0,
@@ -111,6 +113,11 @@ const playerObject = {
   loadTesting: null,
   disconnectReason: null,
   isMobileBrowser: null,
+  previousScene: {
+    name: null,
+    x: null,
+    y: null,
+  },
 };
 
 export default playerObject;

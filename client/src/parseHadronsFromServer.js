@@ -46,13 +46,18 @@ function parseHadronsFromServer(serverHadrons) {
   if (playerHadron) {
     hadrons.set(playerObject.playerId, playerHadron);
     if (!playerObject.initialPositionReceived) {
-      // Grab initial position for player from server.
+      // Grab initial position for player from server,
+      // along with other data we might not know yet.
       playerObject.initialPositionReceived = true;
       playerObject.initialPosition = {
         x: playerHadron.x,
         y: playerHadron.y,
       };
       playerObject.initialScene = playerHadron.scn;
+      playerObject.previousScene.name = playerHadron.psc;
+      playerObject.previousScene.x = playerHadron.px;
+      playerObject.previousScene.y = playerHadron.py;
+
       // On connect, get health from server, because disconnecting doesn't automatically heal you!
       if (playerHadron.hasOwnProperty('hlt')) {
         playerObject.health = playerHadron.hlt;

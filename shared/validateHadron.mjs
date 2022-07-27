@@ -34,6 +34,10 @@ const optionalKeys = [
   "vly", // Y Velocity f the sprite.
   "rot", // Rotation of sprite.
   "mov", // Moving - Communicates to other clients whether the client is "in motion" or not, triggering motion animations.
+  // Previous scene info. Used for instance when returning from Library
+  "psc", // Previous Scene
+  "px", // x position in previous scene
+  "py", // y Previous in previous scene
   // Specific to certain kinds of hadrons
   "txt", // For message type hadrons.
   // Character and NPC Information
