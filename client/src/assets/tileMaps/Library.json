@@ -40,7 +40,7 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CamelopardalisF8"
+                         "value":"Local"
                         }, 
                         {
                          "name":"Entrance",
@@ -88,7 +88,7 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CamelopardalisH8"
+                         "value":"Local"
                         }, 
                         {
                          "name":"Entrance",
@@ -136,12 +136,12 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CamelopardalisG7"
+                         "value":"Previous"
                         }, 
                         {
                          "name":"Entrance",
                          "type":"string",
-                         "value":"Lower"
+                         "value":"PreviousPosition"
                         }],
                  "type":"tilelayer",
                  "visible":true,
@@ -366,44 +366,6 @@
                  "width":0,
                  "x":600,
                  "y":207
-                }, 
-                {
-                 "class":"",
-                 "height":0,
-                 "id":37,
-                 "name":"Test",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"Flavor",
-                         "type":"string",
-                         "value":"Item"
-                        }, 
-                        {
-                         "name":"Type",
-                         "type":"string",
-                         "value":"NPC"
-                        }, 
-                        {
-                         "name":"allowCustomX",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"id",
-                         "type":"string",
-                         "value":"1156c8bc-f1e2-4ec7-80d7-790e120dccf6"
-                        }, 
-                        {
-                         "name":"sprite",
-                         "type":"string",
-                         "value":"unknown"
-                        }],
-                 "rotation":0,
-                 "visible":true,
-                 "width":0,
-                 "x":452.5,
-                 "y":165.5
                 }],
          "opacity":1,
          "type":"objectgroup",
