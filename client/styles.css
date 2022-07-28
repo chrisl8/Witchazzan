@@ -21,8 +21,7 @@ div .intro-screen-subsection {
 }
 
 #pre_game_div {
-  margin-left: 10px;
-  margin-bottom: 25px;
+  margin: 10px;
 }
 
 #command_input_div,
@@ -101,8 +100,19 @@ img.emoji {
   font-family: 'Stalemate', cursive;
 }
 
+@media (max-width: 600px) {
+  .logo-text {
+    margin-bottom: 0;
+    font-size: 30vw;
+  }
+}
+
 .logo-rainbow-bar {
   text-align: center;
+}
+
+.logo-rainbow-bar img {
+  max-width: 100%;
 }
 
 #player_tag {
@@ -135,6 +145,12 @@ img.emoji {
   border: 3px solid #000000;
   border-radius: 10px;
   background: #000000;
+}
+
+@media (max-width: 830px) {
+  .key_map {
+    display: none;
+  }
 }
 
 .keyboard span {
@@ -267,8 +283,6 @@ img.emoji {
   position: absolute;
   top: 50%;
   left: 50%;
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 }
 
@@ -277,7 +291,6 @@ img.emoji {
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;

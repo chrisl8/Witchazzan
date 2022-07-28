@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="A multiplayer game!">
   <!-- Favicons -->
   <!-- https://www.favicon-generator.org/ -->
   <link
@@ -100,7 +102,7 @@
 <div id="pre_game_div">
   <h1 class="logo-text">Witchazzan</h1>
   <div class="logo-rainbow-bar">
-    <img alt="horizontal bar" src="src/assets/rainbowbar.gif" />
+    <img alt="horizontal bar" src="src/assets/rainbowbar.gif" width="600" height="1" />
   </div>
   <br />
   <div id="multiple_logins" hidden><strong>You were disconnected because you signed in from another browser or
@@ -129,8 +131,10 @@
   <div id="login-section" hidden>
     <h1>Login</h1>
     <div class="intro-screen-subsection">
-      <label for="player_name_input_box">Name</label>
-      <input id="player_name_input_box" />
+      <div style="margin-top: 10px;">
+        <label for="player_name_input_box">Name</label>
+        <input id="player_name_input_box" />
+      </div>
       <br />
       <label for="password_input_box">Password</label>
       <input
@@ -193,14 +197,14 @@
   <div id="mobile_controls" hidden>
     <h1>Mobile Controls</h1>
     <div style="display: flex;">
-      <img alt="up" src="src/assets/images/blue-stick.png" />
+      <img src="src/assets/images/blue-stick.png" width="117" height="117" alt="Blue Touch Joystick" />
       Tap on the left side of the screen to activate the blue stick. Use this to move your character.
     </div>
     <div style="display: flex;">
       <div>
         Tap on the right side of the screen to activate the red stick. Use this to change settings and perform actions.
       </div>
-      <img alt="up" src="src/assets/images/red-stick.png" />
+      <img src="src/assets/images/red-stick.png" width="117" height="117" alt="Red Touch Joystick" />
     </div>
     <div>
       For the Red stick:
@@ -237,9 +241,9 @@
   </div>
   <h1>Setup</h1>
   <div class="intro-screen-subsection">
-    <h3>Spells</h3>
+    <h2>Spells</h2>
     <div class="intro-screen-subsection" id="spell-assignment"></div>
-    <h3>Sound</h3>
+    <h2>Sound</h2>
     <div class="intro-screen-subsection">
       <input type="checkbox" id="disable_sound" name="disable_sound" />
       <label for="disable_sound">Disable sound</label>
@@ -265,146 +269,148 @@
       <label for="load_testing">Start load testing session</label>
     </div>
   </div>
-  <h1>Key Map</h1>
-  <!--  https://codepen.io/Mickel07/pen/YdONYK-->
-  <div class="intro-screen-subsection keyboard">
-    <div class="row">
-      <div class="key key__symbols">~<span>`</span></div>
-      <div class="key">
-        1
-        <span class="description">Spell 1</span>
+  <div class="key_map">
+    <h1>Key Map</h1>
+    <!--  https://codepen.io/Mickel07/pen/YdONYK-->
+    <div class="intro-screen-subsection keyboard">
+      <div class="row">
+        <div class="key key__symbols">~<span>`</span></div>
+        <div class="key">
+          1
+          <span class="description">Spell 1</span>
+        </div>
+        <div class="key">
+          2
+          <span class="description">Spell 2</span>
+        </div>
+        <div class="key">
+          3
+          <span class="description">Spell 3</span>
+        </div>
+        <div class="key">4</div>
+        <div class="key">5</div>
+        <div class="key">6</div>
+        <div class="key">7</div>
+        <div class="key">8</div>
+        <div class="key">9</div>
+        <div class="key">0</div>
+        <div class="key key__symbols">_<span>-</span></div>
+        <div class="key key__symbols">+<span>=</span></div>
+        <div class="key key__backspace">Backspace</div>
       </div>
-      <div class="key">
-        2
-        <span class="description">Spell 2</span>
-      </div>
-      <div class="key">
-        3
-        <span class="description">Spell 3</span>
-      </div>
-      <div class="key">4</div>
-      <div class="key">5</div>
-      <div class="key">6</div>
-      <div class="key">7</div>
-      <div class="key">8</div>
-      <div class="key">9</div>
-      <div class="key">0</div>
-      <div class="key key__symbols">_<span>-</span></div>
-      <div class="key key__symbols">+<span>=</span></div>
-      <div class="key key__backspace">Backspace</div>
-    </div>
 
-    <div class="row">
-      <div class="key key__oneandhalf">Tab</div>
-      <div class="key">Q</div>
-      <div class="key">
-        W<br />
-        <span class="description">Up</span>
+      <div class="row">
+        <div class="key key__oneandhalf">Tab</div>
+        <div class="key">Q</div>
+        <div class="key">
+          W<br />
+          <span class="description">Up</span>
+        </div>
+        <div class="key">E</div>
+        <div class="key">R</div>
+        <div class="key">
+          T
+          <span class="description">Chat</span>
+        </div>
+        <div class="key">Y</div>
+        <div class="key">U</div>
+        <div class="key">I<span class="description">Inventory</span></div>
+        <div class="key">O<span class="description admin_only_visible">dotTrails</span></div>
+        <div class="key">
+          P
+          <span class="description">"Pause"</span>
+        </div>
+        <div class="key key__symbols">{<span>[</span></div>
+        <div class="key key__symbols">}<span>]</span></div>
+        <div class="key key__symbols key__oneandhalf">|<span>\</span></div>
       </div>
-      <div class="key">E</div>
-      <div class="key">R</div>
-      <div class="key">
-        T
-        <span class="description">Chat</span>
-      </div>
-      <div class="key">Y</div>
-      <div class="key">U</div>
-      <div class="key">I<span class="description">Inventory</span></div>
-      <div class="key">O<span class="description admin_only_visible">dotTrails</span></div>
-      <div class="key">
-        P
-        <span class="description">"Pause"</span>
-      </div>
-      <div class="key key__symbols">{<span>[</span></div>
-      <div class="key key__symbols">}<span>]</span></div>
-      <div class="key key__symbols key__oneandhalf">|<span>\</span></div>
-    </div>
 
-    <div class="row">
-      <div class="key key__caps">Caps Lock</div>
-      <div class="key">
-        A
-        <span class="description">Left</span>
+      <div class="row">
+        <div class="key key__caps">Caps Lock</div>
+        <div class="key">
+          A
+          <span class="description">Left</span>
+        </div>
+        <div class="key">
+          S
+          <span class="description">Down</span>
+        </div>
+        <div class="key">
+          D
+          <span class="description">Right</span>
+        </div>
+        <div class="key">F</div>
+        <div class="key">G</div>
+        <div class="key">
+          H
+          <span class="description admin_only_visible">Home</span>
+        </div>
+        <div class="key">J</div>
+        <div class="key">K</div>
+        <div class="key">
+          L
+          <span class="description">chat Log</span>
+        </div>
+        <div class="key key__symbols">:<span>;</span></div>
+        <div class="key key__symbols">"<span>'</span></div>
+        <div class="key key__enter">Enter<span class="description">Chat</span>
+        </div>
       </div>
-      <div class="key">
-        S
-        <span class="description">Down</span>
-      </div>
-      <div class="key">
-        D
-        <span class="description">Right</span>
-      </div>
-      <div class="key">F</div>
-      <div class="key">G</div>
-      <div class="key">
-        H
-        <span class="description admin_only_visible">Home</span>
-      </div>
-      <div class="key">J</div>
-      <div class="key">K</div>
-      <div class="key">
-        L
-        <span class="description">chat Log</span>
-      </div>
-      <div class="key key__symbols">:<span>;</span></div>
-      <div class="key key__symbols">"<span>'</span></div>
-      <div class="key key__enter">Enter<span class="description">Chat</span>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="key key__shift-left">
-        Shift
-        <span class="description">Run</span>
+      <div class="row">
+        <div class="key key__shift-left">
+          Shift
+          <span class="description">Run</span>
+        </div>
+        <div class="key">Z</div>
+        <div class="key">X</div>
+        <div class="key">
+          C
+        </div>
+        <div class="key">V</div>
+        <div class="key">B</div>
+        <div class="key">N</div>
+        <div class="key">M</div>
+        <div class="key key__symbols">&gt;<span>.</span></div>
+        <div class="key key__symbols">&lt;<span>.</span></div>
+        <div class="key key__symbols"><span>/</span><span class="description">Chat</span></div>
+        <div class="key">
+          Shift
+          <span class="description">Run</span>
+        </div>
+        <div class="key key__arrow">
+          <img alt="up" src="src/assets/arrow-up.svg" />
+          <span class="description">Up</span>
+        </div>
       </div>
-      <div class="key">Z</div>
-      <div class="key">X</div>
-      <div class="key">
-        C
-      </div>
-      <div class="key">V</div>
-      <div class="key">B</div>
-      <div class="key">N</div>
-      <div class="key">M</div>
-      <div class="key key__symbols">&gt;<span>.</span></div>
-      <div class="key key__symbols">&lt;<span>.</span></div>
-      <div class="key key__symbols"><span>/</span><span class="description">Chat</span></div>
-      <div class="key">
-        Shift
-        <span class="description">Run</span>
-      </div>
-      <div class="key key__arrow">
-        <img alt="up" src="src/assets/arrow-up.svg" />
-        <span class="description">Up</span>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="key key__bottom-funct">Ctrl</div>
-      <div class="key key__bottom-funct">Super</div>
-      <div class="key key__bottom-funct">Alt</div>
-      <div class="key key__spacebar">
-        <span class="description">Fire Spell</span>
-      </div>
-      <div class="key">Alt</div>
-      <div class="key">Super</div>
-      <div class="key key__arrow">
-        <img alt="left" src="src/assets/arrow-left.svg" />
-        <span class="description">Left</span>
-      </div>
-      <div class="key key__arrow">
-        <img alt="down" src="src/assets/arrow-down.svg" />
-        <span class="description">Down</span>
-      </div>
-      <div class="key key__arrow">
-        <img alt="right" src="src/assets/arrow-right.svg" />
-        <span class="description">Right</span>
+      <div class="row">
+        <div class="key key__bottom-funct">Ctrl</div>
+        <div class="key key__bottom-funct">Super</div>
+        <div class="key key__bottom-funct">Alt</div>
+        <div class="key key__spacebar">
+          <span class="description">Fire Spell</span>
+        </div>
+        <div class="key">Alt</div>
+        <div class="key">Super</div>
+        <div class="key key__arrow">
+          <img alt="left" src="src/assets/arrow-left.svg" />
+          <span class="description">Left</span>
+        </div>
+        <div class="key key__arrow">
+          <img alt="down" src="src/assets/arrow-down.svg" />
+          <span class="description">Down</span>
+        </div>
+        <div class="key key__arrow">
+          <img alt="right" src="src/assets/arrow-right.svg" />
+          <span class="description">Right</span>
+        </div>
       </div>
     </div>
   </div>
   <h1>Instructions</h1>
   <div class="intro-screen-subsection">
-    <h3>Premise</h3>
+    <h2>Premise</h2>
     <ul>
       <li>
         This is an online Multi-player game. When you click "Start Game"
@@ -420,7 +426,7 @@
         >, the server is called the Small Hadron Cooperator.
       </li>
     </ul>
-    <h3>Remote Shadow</h3>
+    <h2>Remote Shadow</h2>
     <ul>
       <li>
         You will quickly notice a darkened instance of your sprite that
@@ -430,7 +436,7 @@
         world.
       </li>
     </ul>
-    <h3>Directional Controls</h3>
+    <h2>Directional Controls</h2>
     <ul>
       <li>
         wasd or Arrow Keys
@@ -442,7 +448,7 @@
         </ul>
       </li>
     </ul>
-    <h3>Spells</h3>
+    <h2>Spells</h2>
     <ul>
       <li>
         The number keys, 1-2 at the moment, pick which spell is active.
@@ -453,7 +459,7 @@
       </li>
       <li>The space bar fires the currently active spell.</li>
     </ul>
-    <h3>Keys</h3>
+    <h2>Other Controls</h2>
     <ul>
       <li>Space Bar - Fire</li>
       <li>Chat/Command Input
@@ -483,7 +489,9 @@
           </li>
         </ul>
       </li>
-      <li class="admin_only_visible">h - return to the default initial scene NOTE: Only Admins have access to this command. Everybody else has to walk!</li>
+      <li class="admin_only_visible">h - return to the default initial scene NOTE: Only Admins have access to this
+        command. Everybody else has to walk!
+      </li>
       <li class="admin_only_visible">o - turn dot Trails on/off for debugging</li>
       <li>
         p - "Pause" returns you to this screen
