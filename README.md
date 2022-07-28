@@ -423,32 +423,28 @@ Emoji are from the [Twemoji](https://twemoji.twitter.com/) project.
 I will keep track of the Image sources here for attribution.
 
 - [Kenney Assets](https://kenney.nl/assets)  
-I have purchased a lot of Kenney assets over teh years, and a few of them can be found in this game.
-
+I always start with Kenney's Assets when looking for inspiration!    
+License [Public Domain CC0](https://creativecommons.org/publicdomain/zero/1.0/)  
+File Names: `roguelikeSheet_transparent.png`, `redTankSingle.png`  
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
-Author: [DragonDePlatino](https://openga    // https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-meart.org/users/dragondeplatino)  
+Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
-FileNames: zoria_overworld.png, zoria_underworld.png  
+File Names: `zoria_overworld.png`, `zoria_underworld.png`  
 See also: [Mockups](https://opengameart.org/sites/default/files/mockups_1.png)
 - [Exterior 32x32 Town tileset](https://opengameart.org/content/exterior-32x32-town-tileset)  
 Author: [n2liquid](https://opengameart.org/users/n2liquid)  
-License [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-FileName: tileset_town-32x32.png  
-- [Solarus Full Hyrule](http://absolute-hyrule-tutorials.solarus-games.org/)  
-See Also: [Forum Post](http://forum.solarus-games.org/index.php/topic,881.0.html)  
-Author: [ffomega](http://forum.solarus-games.org/index.php?action=profile;u=423)  
-License: Unknown, see [Solaris Game License](https://www.solarus-games.org/en/about/faq)  
-FileNames: solarus_full_hyrule.png  
+License [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)  
+File Name: `tileset_town-32x32.png`  
 - [Written Paper](https://opengameart.org/content/written-paper)  
 Author: [Harry Tzioukas](https://opengameart.org/users/harrytzioukas)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
-Filename: `written_paper_no_background.png`  
-Note: Converted from static image to sprite sheet by me.
+File Name: `written_paper_no_background.png`  
+Note: Converted from static image to sprite sheet by me.  
+- Unsure  
+I'm not sure where these images came from. I didn't make them, but I lost track of the sources. If I find the source, I will add it here.  
+File Names: `Dungeon_Tileset.png`, `bones.png`
 
-#### These images were created by our own team!
-- bloomby
-- chest
+#### Other images were created by our own team!
 
 ### 8-bit NES Legend of Zelda Map Information
 
