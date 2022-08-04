@@ -118,6 +118,7 @@ const playerObject = {
     x: null,
     y: null,
   },
+  dotTrails: null,
 };
 
 export default playerObject;

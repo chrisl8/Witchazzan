@@ -40,10 +40,6 @@ function cleanUpSceneAndTeleport(
         `Switching to scene: ${destinationSceneName} at default spawn point.`,
       );
     }
-    if (playerObject.dotTrailRenderTexture) {
-      playerObject.dotTrailRenderTexture.destroy();
-      playerObject.dotTrailRenderTexture = null;
-    }
 
     if (playerObject.pixelHighlightTexture) {
       playerObject.pixelHighlightTexture.destroy();
