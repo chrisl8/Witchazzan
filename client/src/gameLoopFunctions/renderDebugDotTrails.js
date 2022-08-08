@@ -1,4 +1,5 @@
 import playerObject from '../objects/playerObject.js';
+import objectDepthSettings from '../objects/objectDepthSettings.js';
 
 function renderDebugDotTrails(hadron, key) {
   if (playerObject.dotTrailsOn) {
@@ -27,13 +28,9 @@ function renderDebugDotTrails(hadron, key) {
     if (!playerObject.dotTrails) {
       playerObject.dotTrails = [];
     }
-    const dot = this.add.rectangle(
-      hadron.x,
-      hadron.y,
-      width,
-      height,
-      fillColor,
-    );
+    const dot = this.add
+      .rectangle(hadron.x, hadron.y, width, height, fillColor)
+      .setDepth(objectDepthSettings.dotTrails);
     playerObject.dotTrails.push(dot);
   } else if (playerObject.dotTrails && playerObject.dotTrails.length > 0) {
     playerObject.dotTrails.forEach((dot) => {

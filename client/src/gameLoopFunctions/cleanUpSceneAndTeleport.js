@@ -2,6 +2,7 @@ import playerObject from '../objects/playerObject.js';
 import closeChatInputBox from '../closeChatInputBox.js';
 import cleanUpScene from './cleanUpScene.js';
 import deletedHadronList from '../objects/deletedHadronList.js';
+import seenItemCollisions from '../objects/seenItemCollisions.js';
 import currentSceneNPCs from '../objects/currentSceneNPCs.js';
 
 function cleanUpSceneAndTeleport(
@@ -41,13 +42,11 @@ function cleanUpSceneAndTeleport(
       );
     }
 
-    if (playerObject.pixelHighlightTexture) {
-      playerObject.pixelHighlightTexture.destroy();
-      playerObject.pixelHighlightTexture = null;
-    }
-
     // Prevent memory leak of an infinitely growing lists.
     deletedHadronList.length = 0;
+
+    // Prevent memory leak of an infinitely growing lists.
+    seenItemCollisions.length = 0;
 
     // Empty out the local NPC list, as we are no longer in charge of them.
     currentSceneNPCs.clear();
@@ -56,10 +55,19 @@ function cleanUpSceneAndTeleport(
     // Note: The .destroy() methods cause Phaser to crash, so I'm not using them.
     // If we do not remove the old raycaster,
     // it will stick around and crash the game if you reenter the same scene again.
+    // It has not been necessary to remove individual sprite raycasters, but if it becomes so,
+    // it could be done here also.
     if (this.raycaster) {
       this.raycaster.debugOptions.enabled = false;
       this.raycaster = null;
     }
+
+    // Clean up target objects
+    if (playerObject.nearbyTargetObject.rectangle) {
+      playerObject.nearbyTargetObject.rectangle.destroy();
+    }
+    playerObject.nearbyTargetObject.rectangle = null;
+    playerObject.nearbyTargetObject.id = null;
 
     // Track previous location in case we want to come back to it.
     // Specifically this is used when returning from the Library, but you could use it for anything.
@@ -68,6 +76,7 @@ function cleanUpSceneAndTeleport(
       x: playerObject.player.x,
       y: playerObject.player.y,
     };
+    playerObject.ray = null;
 
     this.scene.start(destinationSceneName);
   }

@@ -42,9 +42,16 @@ function addQuarksFromMap(map, sceneName) {
         newThing.anims.play(`${spriteData.name}-move-stationary`, true);
       }
     } else if (objectProperties.Type === 'NPC') {
+      // TODO: Change to "quark" naming convention with "flv" for Item vs NPC
+      // TODO: Items should "spawn" an instance, not display "themselves", so that they can spawn more.
+      // TODO: Some items should be infinitely pick up able (you can have 10)
+      // TODO: Some method to generate more Items after they are taken, much like an NPC an flip from off to on.
+      // TODO: Some items should be one per person (you can only have one), but you can still see them.
+      // TODO: If an item is only to ever exist ONCE in the world, it should be a drop, not a map based item. There isn't any point in adding something to the map to only ever be seen once in eternity in the game.
+      // TODO: Method to "drop" items based on conditions.
+      // TODO: NOTE: This item "behavior" probably needs to be in npcBehavior() or adda  new itemBehavior? quarkBehavior? hadronBehavior?
       // Type "NPC" will be used for actual NPCs.
       if (objectProperties.id && !currentSceneNPCs.has(objectProperties.id)) {
-        console.log(objectProperties);
         const newHadron = {
           id: objectProperties.id,
           own: objectProperties.id, // NPC's own themselves just as players do.
@@ -58,7 +65,7 @@ function addQuarksFromMap(map, sceneName) {
           scn: sceneName,
           dod: objectProperties.dod,
           pod: objectProperties.pod,
-          tcw: objectProperties.tcw,
+          tcw: true, // TODO: Does this EVER need to be set false from the map?
           hlt: 100,
           mxh: 100,
           dps: 1,
@@ -132,7 +139,7 @@ function addQuarksFromMap(map, sceneName) {
         }
         // Items
         if (objectProperties.hasOwnProperty('HideAfterTaken')) {
-          newHadron.hid = objectProperties.HideAfterTaken;
+          newHadron.hat = objectProperties.HideAfterTaken;
         }
         if (objectProperties.hasOwnProperty('Perpetual')) {
           newHadron.pep = objectProperties.Perpetual;

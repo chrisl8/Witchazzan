@@ -19,7 +19,7 @@ function updateHadrons(
     // The server will ony send us such hadrons, but we double check anyway.
     if (hadron.scn === sceneName) {
       // This is used for debugging
-      renderDebugDotTrails(hadron, key, scene);
+      renderDebugDotTrails.call(this, hadron, key, scene, gameSizeData);
 
       // This will add the sprite if it doesn't exist
       addSprites.call(this, hadron, key);
@@ -30,6 +30,7 @@ function updateHadrons(
         key,
         collisionLayer,
         teleportLayersColliders,
+        sceneName,
       );
 
       addSpriteVelocity.call(this, hadron, key);

@@ -2,6 +2,7 @@ import clientSprites from '../objects/clientSprites.js';
 import playerObject from '../objects/playerObject.js';
 import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
+import objectDepthSettings from '../objects/objectDepthSettings.js';
 
 function updateSprite(hadron, key, gameSizeData) {
   if (clientSprites.has(key)) {
@@ -19,19 +20,11 @@ function updateSprite(hadron, key, gameSizeData) {
         // eslint-disable-next-line no-restricted-globals
         if (!isNaN(hadron.dir)) {
           clientSprite.sprite.setAngle(Number(hadron.dir));
-        } else if (hadron.dir === 'left' || hadron.dir === 'west') {
-          clientSprite.sprite.setAngle(180);
-        } else if (hadron.dir === 'right' || hadron.dir === 'east') {
-          clientSprite.sprite.setAngle(0);
-        } else if (hadron.dir === 'up' || hadron.dir === 'north') {
-          clientSprite.sprite.setAngle(270);
-        } else if (hadron.dir === 'down' || hadron.dir === 'south') {
-          clientSprite.sprite.setAngle(90);
         }
-      } else if (hadron.dir === 'left' || hadron.dir === 'west') {
+      } else if (hadron.dir === 180) {
         // For non rotatable sprites, only flip them for left/right
         clientSprite.sprite.setFlipX(clientSprite.spriteData.faces === 'right');
-      } else if (hadron.dir === 'right' || hadron.dir === 'east') {
+      } else if (hadron.dir === 0) {
         clientSprite.sprite.setFlipX(clientSprite.spriteData.faces === 'left');
       }
     }
@@ -51,7 +44,7 @@ function updateSprite(hadron, key, gameSizeData) {
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-left`,
       ) &&
-      (hadron.dir === 'left' || hadron.dir === 'west')
+      Number(hadron.dir) === 180
     ) {
       clientSprite.sprite.anims.play(
         `${clientSprite.spriteData.name}-move-left`,
@@ -61,7 +54,7 @@ function updateSprite(hadron, key, gameSizeData) {
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-right`,
       ) &&
-      (hadron.dir === 'right' || hadron.dir === 'east')
+      Number(hadron.dir) === 0
     ) {
       clientSprite.sprite.anims.play(
         `${clientSprite.spriteData.name}-move-right`,
@@ -71,7 +64,7 @@ function updateSprite(hadron, key, gameSizeData) {
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-back`,
       ) &&
-      (hadron.dir === 'up' || hadron.dir === 'north')
+      Number(hadron.dir) === 270
     ) {
       clientSprite.sprite.anims.play(
         `${clientSprite.spriteData.name}-move-back`,
@@ -81,7 +74,7 @@ function updateSprite(hadron, key, gameSizeData) {
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-front`,
       ) &&
-      (hadron.dir === 'down' || hadron.dir === 'south')
+      Number(hadron.dir) === 90
     ) {
       clientSprite.sprite.anims.play(
         `${clientSprite.spriteData.name}-move-front`,
@@ -142,13 +135,41 @@ function updateSprite(hadron, key, gameSizeData) {
     }
     clientSprite.previousHealth = hadron.hlt;
 
-    // UPDATE HADRON X/Y POSITION DATA FOR HADRONS WE ARE CONTROLLING
-    // We skip our own player, because it has special requirements.
+    // TODO: Is this still a thing?
+    // MAKE SPRITES INVISIBLE IF PLAYER IS NOT SUPPOSED TO SEE IT
+    // We cannot just remove the sprite, as we may be tracking other player collisions with it
+    if (
+      hadron.flv === 'Item' &&
+      hadron.hat && // "hat" Hide After Taken
+      playerObject.inventory.get(key)
+    ) {
+      // If a player already possesses the item, don't show it on the screen.
+      clientSprites.get(key).sprite.alpha = 0;
+    }
+
+    // Update sprite position of items we are holding
+    if (
+      hadron.flv === 'Item' &&
+      hadron.hld === playerObject.playerId &&
+      hadron.ctr === playerObject.playerId
+    ) {
+      this.tweens.add({
+        targets: clientSprite.sprite,
+        x: playerObject.player.x,
+        y: playerObject.player.y,
+        duration: 1, // Adjust this to be smooth without being too slow.
+        ease: 'Linear', // Anything else is wonky when tracking server updates.
+      });
+      clientSprite.sprite.setDepth(objectDepthSettings.heldObject);
+    }
     if (
       // New hadrons that we create have no ctrl yet, only the server assigns that.
       (hadron.ctr === undefined || hadron.ctr === playerObject.playerId) &&
       key !== playerObject.playerId
     ) {
+      // OPERATIONS SPECIFIC TO HADRONS THAT WE ARE CONTROLLING
+      // We skip our own player, because it has special requirements.
+      // UPDATE HADRON X/Y POSITION DATA FOR HADRONS WE ARE CONTROLLING
       const newHadronData = { ...hadron };
       newHadronData.x = clientSprites.get(key).sprite.x;
       newHadronData.y = clientSprites.get(key).sprite.y;

@@ -445,7 +445,12 @@
                  "name":"StationaryTankOne",
                  "point":true,
                  "properties":[
-                        {
+                   {
+                     "name":"Flavor",
+                     "type":"string",
+                     "value":"NPC"
+                   },
+                   {
                          "name":"Type",
                          "type":"string",
                          "value":"NPC"

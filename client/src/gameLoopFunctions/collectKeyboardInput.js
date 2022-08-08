@@ -2,7 +2,7 @@ import playerObject from '../objects/playerObject.js';
 import castSpell from '../castSpell.js';
 import returnToIntroScreen from './returnToIntroScreen.js';
 
-function hotKeyHandler(sceneName) {
+function collectKeyboardInput(sceneName) {
   // Teleport back to home scene
   if (playerObject.keyState.h === 'keydown') {
     playerObject.keyState.h = null;
@@ -18,7 +18,7 @@ function hotKeyHandler(sceneName) {
     returnToIntroScreen();
   }
 
-  // Hot key to display/hide chat log
+  // Key to display/hide chat log
   if (playerObject.keyState.l === 'keydown') {
     playerObject.keyState.l = null;
     playerObject.scrollingTextBox.display(false);
@@ -34,12 +34,18 @@ function hotKeyHandler(sceneName) {
     playerObject.scrollingTextBox.display(false);
   }
 
-  // Hot key to turn dot trails on/off
+  // Key to turn dot trails on/off
   if (playerObject.keyState.o === 'keydown') {
     playerObject.keyState.o = null;
     if (playerObject.isAdmin) {
       playerObject.dotTrailsOn = !playerObject.dotTrailsOn;
     }
+  }
+
+  // Key to interact with nearby items
+  if (playerObject.keyState.f === 'keydown') {
+    playerObject.keyState.f = null;
+    playerObject.interactNow = true;
   }
 
   // Inventory
@@ -67,4 +73,4 @@ function hotKeyHandler(sceneName) {
   }
 }
 
-export default hotKeyHandler;
+export default collectKeyboardInput;

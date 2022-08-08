@@ -37,11 +37,12 @@ import cleanUpSceneAndTeleport from './gameLoopFunctions/cleanUpSceneAndTeleport
 import playerTeleportOverlapHandler from './gameLoopFunctions/playerTeleportOverlapHandler.js';
 import cleanUpClientSprites from './gameLoopFunctions/cleanUpClientSprites.js';
 import updateInGameDomElements from './gameLoopFunctions/updateInGameDomElements.js';
-import hotKeyHandler from './gameLoopFunctions/hotKeyHandler.js';
+import collectKeyboardInput from './gameLoopFunctions/collectKeyboardInput.js';
 import handlePlayerMovement from './gameLoopFunctions/handlePlayerMovement.js';
 import checkIfLayerExists from './gameLoopFunctions/checkIfLayerExists.js';
 import updatePlayerSpriteAnimation from './gameLoopFunctions/updatePlayerSpriteAnimation.js';
 import updateHadrons from './gameLoopFunctions/updateHadrons.js';
+import handleLibrary from './gameLoopFunctions/handleLibrary.js';
 
 import npcBehavior from './gameLoopFunctions/npcBehavior.js';
 import specialPlayerActions from './gameLoopFunctions/specialPlayerActions.js';
@@ -49,6 +50,8 @@ import overlayTilemapTilesWithAnimatedSprites from './overlayTilemapTilesWithAni
 import loadTesting from './gameLoopFunctions/loadTesting.js';
 import loadingInfo from './gameLoopFunctions/loadingInfo.js';
 import addQuarksFromMap from './gameLoopFunctions/addQuarksFromMap.js';
+import handlePlayerRaycast from './gameLoopFunctions/handlePlayerRaycast.js';
+import handleItemInteraction from './gameLoopFunctions/handleItemInteraction.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -273,6 +276,15 @@ const gameLoopAndSceneFactory = ({
       }
     }
 
+    // TODO: Library scenes
+    //       - All player's Items should be there.
+    //       - Save x/y coordinate for each Item, if it doesn't have one, just dump it/them on the screen to be "scattered"
+    //       - Should be able to "grab" an Item and move it around.
+    //       - Need method to get an item and "drop" it back in the scene
+    //       - Need option for deleting deletable Items (trash can)
+    //       - Should have slots for spells
+    //       - Should have "equip-able" slot(s)
+
     // Allow a scene entrance to specify to carry over the X or Y value from the previous scene so that you can enter at any point along the edge in a wide doorway.
     if (
       spawnPoint &&
@@ -471,13 +483,17 @@ const gameLoopAndSceneFactory = ({
     // playerObject.player.body.velocity.clone();
 
     // Handles all keyboard input other than player movement.
-    hotKeyHandler.call(this, sceneName);
+    collectKeyboardInput.call(this, sceneName);
 
     playerObject.scrollingTextBox.sceneUpdate(delta);
 
     handlePlayerMovement();
 
     updatePlayerSpriteAnimation();
+
+    handleItemInteraction();
+
+    handlePlayerRaycast.call(this, sceneName);
 
     // WARNING: npcBehavior must be above updateHadrons,
     // otherwise fired spells are very erratic.
@@ -492,6 +508,10 @@ const gameLoopAndSceneFactory = ({
       teleportLayersColliders,
       gameSizeData,
     );
+
+    if (sceneName === 'Library') {
+      handleLibrary(sceneName);
+    }
 
     // Send Player data, which is unique from all hadrons, to the server.
     sendDataToServer.playerData({

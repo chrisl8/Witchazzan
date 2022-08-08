@@ -61,6 +61,13 @@ const optionalKeys = [
   "rcd", // "Raycast Degree (rcd)" (Integer) The range in degrees for a raycast Cone (Not used for other types at the moment)
   "rdt", // "Raycast Distance (rdt)" (Integer) Distance to raycast out to.
   "spv", // "Spell Velocity (spv)" (Integer) - Velocity set on spells.
+  // For items
+  "hid", // Hadron ID that represents this item
+  "hat", // Hide from player after it is taken by that player.
+  "pep", // Item remains on map forever, even if players take it. If the Item is placed via a tilemap, it only makes sense to set this True, otherwise it reloads when anyone reloads their browser window.
+  "cdp", // Item can be dropped on the map for other players to pick up.
+  "cdl", // Item can be deleted from player's inventory.
+  "hld", // Held BY ID. This is the ID of the player that is currently holding this item.
 ];
 
 const allKeys = alwaysRequiredKeys.concat(

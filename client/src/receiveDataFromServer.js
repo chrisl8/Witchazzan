@@ -8,6 +8,7 @@ import parseHadronsFromServer from './parseHadronsFromServer.js';
 import hadrons from './objects/hadrons.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
 import clientVersion from '../../shared/version.mjs';
+import jsonMapStringify from '../../shared/jsonMapStringify.mjs';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -49,6 +50,7 @@ function receiveDataFromServer() {
   // typically one that we own that was deleted by outside forces,
   // despite our code being sure we are the on currently in control of it.
   communicationsObject.socket.on('deleteHadron', (key) => {
+    console.log(key);
     hadrons.delete(key);
   });
 
@@ -83,6 +85,15 @@ function receiveDataFromServer() {
     localStorage.setItem(
       'disconnectReason',
       'Small Hadron Cooperator was shut down. Attempting to reconnect...',
+    );
+    window.location.reload();
+  });
+
+  // Handle graceful server shutdown by restarting before it goes away.
+  communicationsObject.socket.on('restart', () => {
+    localStorage.setItem(
+      'disconnectReason',
+      'Small Hadron Cooperator asked us to restart. Attempting to reconnect...',
     );
     window.location.reload();
   });
@@ -128,6 +139,12 @@ function receiveDataFromServer() {
       }
       hadrons.get(data.id).hlt = newHealth;
     }
+  });
+
+  communicationsObject.socket.on('inventory', (data) => {
+    playerObject.inventory = JSON.parse(data, jsonMapStringify.reviver);
+    console.log('Player Inventory received:');
+    console.log(playerObject.inventory);
   });
 }
 

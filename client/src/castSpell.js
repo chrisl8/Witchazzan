@@ -59,17 +59,6 @@ function castSpell({
       },
     });
   } else {
-    // Convert text directions to numbers.
-    if (direction === 'left') {
-      direction = 180;
-    } else if (direction === 'right') {
-      direction = 0;
-    } else if (direction === 'up') {
-      direction = 270;
-    } else if (direction === 'down') {
-      direction = 90;
-    }
-
     const newHadronData = {
       id: getUUID(),
       own: owner,

@@ -25,7 +25,7 @@ const playerObject = {
   maxJoystickDistance: 50,
   player: null,
   keyState: {}, // keep track of the keyboard state. Send only when it changes
-
+  inventory: new Map(),
   // NOTE: This assumes that there is only the one Phaser canvas.
   canvasDomElement: document.getElementsByTagName('canvas'),
   cameraScaleFactor: 0,
@@ -61,7 +61,7 @@ const playerObject = {
   maxHealth: 100,
   previousHealth: null,
   playerId: null,
-  playerDirection: 'left',
+  playerDirection: 270,
   playerStopped: true,
   sceneObjectList: [],
   spriteData: {},
@@ -118,7 +118,14 @@ const playerObject = {
     x: null,
     y: null,
   },
+  ray: null,
   dotTrails: null,
+  nearbyTargetObject: {
+    rectangle: null,
+    id: null,
+  },
+  interactNow: false,
+  heldItemList: [],
 };
 
 export default playerObject;

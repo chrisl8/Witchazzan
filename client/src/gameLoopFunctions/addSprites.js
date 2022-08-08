@@ -52,6 +52,8 @@ function addSprites(hadron, key) {
       newClientSprite.sprite.setDepth(objectDepthSettings.otherPlayer);
     } else if (hadron.typ === 'spell') {
       newClientSprite.sprite.setDepth(objectDepthSettings.spells);
+    } else if (hadron.typ === 'message') {
+      newClientSprite.sprite.setDepth(objectDepthSettings.message);
     }
 
     // Set the "shadow" of my own player to black.

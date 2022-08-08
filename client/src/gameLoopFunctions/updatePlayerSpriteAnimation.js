@@ -12,7 +12,7 @@ function updatePlayerSpriteAnimation() {
       `${playerObject.spriteData.name}-move-left`,
       true,
     );
-    playerObject.playerDirection = 'left';
+    playerObject.playerDirection = 180;
     playerObject.playerStopped = false;
   } else if (
     playerObject.keyState.ArrowRight === 'keydown' ||
@@ -24,7 +24,7 @@ function updatePlayerSpriteAnimation() {
       `${playerObject.spriteData.name}-move-right`,
       true,
     );
-    playerObject.playerDirection = 'right';
+    playerObject.playerDirection = 0;
     playerObject.playerStopped = false;
   } else if (
     playerObject.keyState.ArrowUp === 'keydown' ||
@@ -35,7 +35,7 @@ function updatePlayerSpriteAnimation() {
       `${playerObject.spriteData.name}-move-back`,
       true,
     );
-    playerObject.playerDirection = 'up';
+    playerObject.playerDirection = 270;
     playerObject.playerStopped = false;
   } else if (
     playerObject.keyState.ArrowDown === 'keydown' ||
@@ -46,7 +46,7 @@ function updatePlayerSpriteAnimation() {
       `${playerObject.spriteData.name}-move-front`,
       true,
     );
-    playerObject.playerDirection = 'down';
+    playerObject.playerDirection = 90;
     playerObject.playerStopped = false;
   } else {
     playerObject.player.anims.stop();

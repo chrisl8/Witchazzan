@@ -20,6 +20,8 @@ import makeRandomNumber from "../shared/makeRandomNumber.mjs";
 import validateHadron from "../shared/validateHadron.mjs";
 // eslint-disable-next-line
 import serverVersion from "../shared/version.mjs";
+// eslint-disable-next-line
+import jsonMapStringify from "../shared/jsonMapStringify.mjs";
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -59,6 +61,11 @@ const commandListArray = [
   {
     name: "op [player name]",
     description: "Upgrade [player name] to admin.",
+    adminOnly: true,
+  },
+  {
+    name: "clear [player name]",
+    description: "Clear the inventory for [player name].",
     adminOnly: true,
   },
 ];
@@ -169,6 +176,9 @@ inactiveHadrons.forEach((hadron, key) => {
   }
 });
 
+// Player inventory for loaded players is tracked in memory and the database is updated when it changes.
+const loadedPlayerIventories = new Map();
+
 async function saveGameStateToDisk() {
   // Combine active and inactive hadrons into one list Map for saving.
   const hadronsToSave = new Map();
@@ -200,7 +210,8 @@ try {
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
       password TEXT NOT NULL,
-      admin INTEGER DEFAULT 0
+      admin INTEGER DEFAULT 0,
+      inventory TEXT
     );`;
   await db.query(sqlCreateUserTable, []);
   // Displaying the user table count for fun and debugging.
@@ -217,6 +228,14 @@ try {
 } catch (e) {
   console.error(e.message);
   process.exit(1);
+}
+
+// Attempt to add any columns that may have been added since the first deployment.
+try {
+  await db.query("ALTER TABLE users ADD COLUMN inventory TEXT");
+  console.log("Added inventory column to users table.");
+} catch (e) {
+  console.log("Inventory column already exists.");
 }
 
 const app = express();
@@ -518,6 +537,54 @@ async function closeServer() {
   process.exit();
 }
 
+function generateHadronForItem(ownerId, item) {
+  // Every item needs a hadron to represent it, mostly in the library,
+  // but the player could drop it somewhere,
+  // and that hadron must have a unique ID.
+  const newItemHadron = { ...item };
+  newItemHadron.id = randomUUID();
+  newItemHadron.own = ownerId;
+  newItemHadron.ctr = ownerId;
+  newItemHadron.scn = "Library";
+  newItemHadron.x = 352; // Center of Library scene
+  newItemHadron.y = 208; // Center of Library scene
+  delete newItemHadron.hid;
+
+  hadrons.set(newItemHadron.id, newItemHadron);
+
+  return newItemHadron.id;
+}
+
+async function updatePlayersInventoryInTheDatabase(playerId) {
+  try {
+    const sql = "UPDATE Users SET inventory = ? WHERE id = ?";
+    await db.query(sql, [
+      JSON.stringify(
+        loadedPlayerIventories.get(playerId),
+        jsonMapStringify.replacer
+      ),
+      playerId,
+    ]);
+  } catch (e) {
+    console.error("Error updating Player Inventory:");
+    console.error(e.message);
+  }
+}
+
+function socketEmitToId({ emitToId, socketEvent, data }) {
+  // emit.to doesn't work to send back to the sender, so we need this special function
+  // using io instead of just the socket.
+  // per https://socket.io/docs/v3/emit-cheatsheet/
+  // WARNING: `socket.to(socket.id).emit()` will NOT work, as it will send to everyone in the room
+  // named `socket.id` but the sender. Please use the classic `socket.emit()` instead.
+  io.sockets.to(emitToId).emit(socketEvent, data);
+}
+
+function socketEmitToAll({ socketEvent, data }) {
+  // A socket.broadcast all sends to "everyone else", not the originating player, hence this function
+  io.sockets.emit(socketEvent, data);
+}
+
 // Socket listeners
 io.on("connection", (socket) => {
   // User cannot do anything until we have their token and have validated it.
@@ -560,6 +627,60 @@ io.on("connection", (socket) => {
         serverVersion,
       });
 
+      // TODO: Get and/or build player's inventory and send it to them.
+      // TODO: "Send player's inventory" should be a function, because we need to call it anytime it is updated.
+
+      // Resurrect all inactive hadrons owned by this user.
+      inactiveHadrons.forEach((hadron, key) => {
+        if (hadron.own === PlayerId) {
+          hadrons.set(key, hadron);
+          inactiveHadrons.delete(key);
+          flagSceneHasUpdated(hadron.scn);
+        }
+      });
+
+      let PlayerInventory = null;
+      try {
+        const sql = "SELECT inventory FROM Users WHERE id = ?";
+        const result = await db.query(sql, [PlayerId]);
+        if (result.rows.length > 0) {
+          PlayerInventory = JSON.parse(
+            result.rows[0].inventory,
+            jsonMapStringify.reviver
+          );
+        }
+      } catch (e) {
+        console.error(`Error retrieving inventory for ${PlayerName}`);
+        console.error(e.message);
+      }
+      if (!PlayerInventory) {
+        PlayerInventory = new Map();
+      }
+
+      // Make sure that a hadron exists for each of their inventory items
+      let updateRequired = false;
+      PlayerInventory.forEach((item) => {
+        if (!item.hid || !hadrons.get(item.hid)) {
+          updateRequired = true;
+          const newItem = { ...item };
+          newItem.hid = generateHadronForItem(PlayerId, item);
+          PlayerInventory.set(item.id, newItem);
+          console.log(item.hid, newItem.hid);
+        }
+      });
+
+      loadedPlayerIventories.set(PlayerId, PlayerInventory);
+
+      if (updateRequired) {
+        await updatePlayersInventoryInTheDatabase(PlayerId);
+      }
+
+      // Send Player their inventory
+      socket.emit(
+        "inventory",
+        JSON.stringify(PlayerInventory, jsonMapStringify.replacer)
+      );
+
       // Announce to the player who else is currently online.
       const connectedPlayerList = [];
       connectedPlayerData.forEach((player) => {
@@ -575,15 +696,6 @@ io.on("connection", (socket) => {
           });
         }, 1000);
       }
-
-      // Resurrect all inactive hadrons owned by this user.
-      inactiveHadrons.forEach((hadron, key) => {
-        if (hadron.own === PlayerId) {
-          hadrons.set(key, hadron);
-          inactiveHadrons.delete(key);
-          flagSceneHasUpdated(hadron.scn);
-        }
-      });
 
       // Create or update the player's hadron
       let newPlayerHadron;
@@ -654,14 +766,12 @@ io.on("connection", (socket) => {
               console.error(e.message);
             }
           }
-          socket.broadcast.emit("chat", {
-            name,
-            content: data.text,
-          });
-          // Send back to user also so their chat windows makes sense.
-          socket.emit("chat", {
-            name,
-            content: data.text,
+          socketEmitToAll({
+            socketEvent: "chat",
+            data: {
+              name,
+              content: data.text,
+            },
           });
         }
       });
@@ -738,6 +848,7 @@ io.on("connection", (socket) => {
 
       socket.on("destroyHadron", async (key) => {
         if (validatePlayer(PlayerId, socket, PlayerName) && hadrons.has(key)) {
+          console.log(key);
           // If the hadron was transferred,
           // the controller won't delete the hadron from their own list,
           // so we have to force it to delete the hadron.
@@ -927,6 +1038,74 @@ io.on("connection", (socket) => {
                     }
                   }
                 }
+              } else if (
+                command[0].toLowerCase() === "clear" &&
+                command.length === 2
+              ) {
+                const targetPlayerName = command[1];
+                let targetPlayerId;
+                let error;
+                try {
+                  // LIKE allows for case insensitive name comparison.
+                  // User names shouldn't be case sensitive.
+                  const sql = "SELECT id FROM Users WHERE name LIKE ?";
+                  const result = await db.query(sql, [targetPlayerName]);
+                  if (result.rows.length > 0) {
+                    targetPlayerId = result.rows[0].id;
+                  }
+                } catch (e) {
+                  error = true;
+                  console.error("Error retrieving user:");
+                  console.error(e.message);
+                  socket.emit("chat", {
+                    content: `Error retrieving ${targetPlayerName} from the database`,
+                  });
+                }
+                if (!targetPlayerId) {
+                  socket.emit("chat", {
+                    content: `Player '${targetPlayerName}' does not exist.`,
+                  });
+                }
+                if (!error && targetPlayerId && targetPlayerId) {
+                  try {
+                    const sql =
+                      "UPDATE Users SET inventory = NULL WHERE id = ?";
+                    await db.query(sql, [targetPlayerId]);
+                  } catch (e) {
+                    error = true;
+                    console.error("Error updating user:");
+                    console.error(e.message);
+                    socket.emit("chat", {
+                      content: `Error updating '${targetPlayerName}' database entry.`,
+                    });
+                  }
+                  if (!error) {
+                    socket.emit("chat", {
+                      content: `Player '${targetPlayerName}' inventory has been cleared.`,
+                    });
+                    // It is possible that the inventory being cleared is for a player that is not online.
+                    if (connectedPlayerData.get(targetPlayerId)?.socketId) {
+                      socketEmitToId({
+                        emitToId:
+                          connectedPlayerData.get(targetPlayerId)?.socketId,
+                        socketEvent: "chat",
+                        data: {
+                          content: `Your inventory was cleared. Your game will now restart to apply it...`,
+                        },
+                      });
+
+                      // socket
+                      //   .to(connectedPlayerData.get(targetPlayerId)?.socketId)
+                      //   .emit("chat", );
+                      await wait(3000);
+                      socketEmitToId({
+                        emitToId:
+                          connectedPlayerData.get(targetPlayerId)?.socketId,
+                        socketEvent: "restart",
+                      });
+                    }
+                  }
+                }
               } else {
                 console.error("Unable to parse this command.");
                 socket.emit("chat", {
@@ -939,6 +1118,89 @@ io.on("connection", (socket) => {
               });
             }
           }
+        }
+      });
+
+      // TODO: This entire function may need to be deleted?
+      socket.on("itemCollision", async (data) => {
+        if (
+          validatePlayer(PlayerId, socket, PlayerName) &&
+          Array.isArray(data) &&
+          data.length === 2
+        ) {
+          const itemKey = data[0];
+          // Making a copy of it because we might delete it.
+          const item = { ...hadrons.get(itemKey) };
+          const otherKey = data[1];
+
+          console.log(hadrons.get(otherKey));
+          console.log(item);
+          console.log(loadedPlayerIventories);
+
+          // If Player encountered the item
+          if (hadrons.get(otherKey)?.typ === "player") {
+            console.log(loadedPlayerIventories.get(otherKey)?.get(itemKey));
+            if (!loadedPlayerIventories.get(otherKey)?.get(itemKey)) {
+              // Player doesn't have item
+              // Note that no player can EVER have two items with the same UUID.
+              // The same item can exist with many UUIDs if you want to give out piles of
+              // something, but each must spawn with a unique UUID.
+              // First, if it isn't "Perpetual", meaning multiple people can pick it up,
+              // then it needs to be removed from the game ASAP to avoid multiple hits on it from other players
+
+              // If item is not "Perpetual" delete it for everyone as soon as someone encounters it.
+              if (!item?.pep) {
+                // This should ensure that only the first person to announce a collision attempts to get it.
+                socketEmitToAll({ socketEvent: "deleteHadron", data: itemKey });
+                hadrons.delete(itemKey);
+                flagSceneHasUpdated(item.scn);
+                throttledSendHadrons();
+                throttledSaveGameStateToDisk();
+              }
+
+              // Clean up item - Items don't need some of the data that their generating hadron had
+              delete item.x;
+              delete item.y;
+              delete item.own;
+              delete item.scn;
+              delete item.hlt;
+              delete item.mxh;
+              delete item.dps;
+
+              // Generate a hadron for this new item.
+              item.hid = generateHadronForItem(otherKey, item);
+
+              // Add it to the player's inventory
+              loadedPlayerIventories.get(otherKey)?.set(itemKey, item);
+
+              await updatePlayersInventoryInTheDatabase(otherKey);
+
+              // Send player their inventory
+              console.log(otherKey, PlayerId);
+              socketEmitToId({
+                emitToId: connectedPlayerData.get(otherKey)?.socketId,
+                socketEvent: "inventory",
+                data: JSON.stringify(
+                  loadedPlayerIventories.get(otherKey),
+                  jsonMapStringify.replacer
+                ),
+              });
+            }
+          }
+        }
+      });
+
+      socket.on("grab", (id) => {
+        if (validatePlayer(PlayerId, socket, PlayerName) && hadrons.get(id)) {
+          console.log(id);
+          // TODO: Check to ensure nobody else is already holding it.
+          // TODO: Check that this player is controlling it, and if not transfer it, because you cannot hold something you don't control.
+          // TODO: Mark it as held by sending player.
+          // TODO: Help the player build a list of held items,
+          // TODO: and maintain that list for them if they go offline and return.
+          // TODO: Transfer items WITH a player if they switch scenes.
+          // TODO: If/when a player is offline, their held items stay "with them", meaning nobody else can see or grab them.
+          // TODO: How to check if a player has an item in their library when, for instance, attempting to enter a "door" (teleport zone to a locked scene).
         }
       });
 
@@ -987,6 +1249,7 @@ io.on("connection", (socket) => {
                 hadron.ctr !== PlayerId &&
                 connectedPlayerData.has(hadron.ctr)
               ) {
+                console.log(connectedPlayerData.get(hadron.ctr).socketId, key);
                 socket
                   .to(connectedPlayerData.get(hadron.ctr).socketId)
                   .emit("deleteHadron", key);

@@ -324,7 +324,7 @@ const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
     363: { probability: 0.08, sprite: 'SkullWink' },
   },
   Ground: {
-    163: { probability: 0.2, sprite: 'GroundSparkleOne' },
+    163: { probability: 1.0, sprite: 'GroundSparkleOne' },
   },
   Water: {
     110: { sprite: 'BlueWater' },

@@ -9,6 +9,8 @@ function npcBehavior(delta, sceneName) {
     const newHadronData = { ...hadron };
     // Only perform behavior operations on hadrons under our control.
     if (
+      // TODO: typ will be quark and flv will be npc
+      // TODO: Should we add items "spawning" from map items here or make a new function?
       hadron.typ === 'npc' &&
       hadron.ctr === playerObject.playerId &&
       hadron.scn === sceneName
