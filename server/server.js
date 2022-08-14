@@ -806,7 +806,6 @@ io.on("connection", (socket) => {
               if (!data.own) {
                 newHadronData.own = PlayerId;
               }
-              console.log(data.own, PlayerId);
               newHadronData.ctr = PlayerId;
               if (validateHadron.server(newHadronData)) {
                 hadrons.set(data.id, newHadronData);
