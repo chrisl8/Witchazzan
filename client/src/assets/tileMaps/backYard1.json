@@ -289,75 +289,88 @@
          "name":"Objects",
          "objects":[
                 {
+                 "class":"",
                  "height":0,
                  "id":1,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":168,
                  "y":120
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":8,
                  "name":"Upper",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
+                        }],
                  "rotation":0,
-                 "type":"","properties":[{"name":"Type","type":"string","value":"Entrance"}],
                  "visible":true,
                  "width":0,
                  "x":208,
                  "y":24
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":10,
                  "name":"Left",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
+                        }],
                  "rotation":0,
-                 "type":"","properties":[{"name":"Type","type":"string","value":"Entrance"}],
                  "visible":true,
                  "width":0,
                  "x":24,
                  "y":144
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":11,
                  "name":"Corner",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
+                        }],
                  "rotation":0,
-                 "type":"","properties":[{"name":"Type","type":"string","value":"Entrance"}],
                  "visible":true,
                  "width":0,
                  "x":24,
                  "y":24
                 }, 
                 {
+                 "class":"Quark",
                  "height":0,
                  "id":12,
                  "name":"chestFront",
                  "point":true,
                  "properties":[
                         {
-                         "name":"id",
+                         "name":"Type",
                          "type":"string",
-                         "value":"2d7c2786-5af2-46f6-aeab-28bc1f26fad6"
-                        }, 
-                        {
-                         "name":"sprite",
-                         "type":"string",
-                         "value":"chestFront"
+                         "value":"AnimationOnly"
                         }],
                  "rotation":0,
-                 "type":"NPC",
                  "visible":true,
                  "width":0,
-                 "x":120,
-                 "y":40
+                 "x":107.502324716385,
+                 "y":37.5004649432769
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -369,7 +382,7 @@
  "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.5",
+ "tiledversion":"1.9.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -387,6 +400,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.9",
  "width":21
 }

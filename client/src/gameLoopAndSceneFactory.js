@@ -42,8 +42,6 @@ import handlePlayerMovement from './gameLoopFunctions/handlePlayerMovement.js';
 import checkIfLayerExists from './gameLoopFunctions/checkIfLayerExists.js';
 import updatePlayerSpriteAnimation from './gameLoopFunctions/updatePlayerSpriteAnimation.js';
 import updateHadrons from './gameLoopFunctions/updateHadrons.js';
-import handleLibrary from './gameLoopFunctions/handleLibrary.js';
-
 import npcBehavior from './gameLoopFunctions/npcBehavior.js';
 import specialPlayerActions from './gameLoopFunctions/specialPlayerActions.js';
 import overlayTilemapTilesWithAnimatedSprites from './overlayTilemapTilesWithAnimatedSprites.js';
@@ -493,7 +491,7 @@ const gameLoopAndSceneFactory = ({
 
     handleItemInteraction();
 
-    handlePlayerRaycast.call(this, sceneName);
+    handlePlayerRaycast.call(this);
 
     // WARNING: npcBehavior must be above updateHadrons,
     // otherwise fired spells are very erratic.
@@ -508,10 +506,6 @@ const gameLoopAndSceneFactory = ({
       teleportLayersColliders,
       gameSizeData,
     );
-
-    if (sceneName === 'Library') {
-      handleLibrary(sceneName);
-    }
 
     // Send Player data, which is unique from all hadrons, to the server.
     sendDataToServer.playerData({

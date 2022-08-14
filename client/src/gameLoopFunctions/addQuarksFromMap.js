@@ -1,7 +1,7 @@
 import convertTileMapPropertyArrayToObject from '../utilities/convertTileMapPropertyArrayToObject.js';
 import getSpriteData from '../utilities/getSpriteData.js';
 import objectDepthSettings from '../objects/objectDepthSettings.js';
-import currentSceneNPCs from '../objects/currentSceneNPCs.js';
+import currentSceneQuarks from '../objects/currentSceneQuarks.js';
 import sendDataToServer from '../sendDataToServer.js';
 
 function addQuarksFromMap(map, sceneName) {
@@ -41,26 +41,17 @@ function addQuarksFromMap(map, sceneName) {
       ) {
         newThing.anims.play(`${spriteData.name}-move-stationary`, true);
       }
-    } else if (objectProperties.Type === 'NPC') {
-      // TODO: Change to "quark" naming convention with "flv" for Item vs NPC
-      // TODO: Items should "spawn" an instance, not display "themselves", so that they can spawn more.
-      // TODO: Some items should be infinitely pick up able (you can have 10)
-      // TODO: Some method to generate more Items after they are taken, much like an NPC an flip from off to on.
-      // TODO: Some items should be one per person (you can only have one), but you can still see them.
-      // TODO: If an item is only to ever exist ONCE in the world, it should be a drop, not a map based item. There isn't any point in adding something to the map to only ever be seen once in eternity in the game.
-      // TODO: Method to "drop" items based on conditions.
-      // TODO: NOTE: This item "behavior" probably needs to be in npcBehavior() or adda  new itemBehavior? quarkBehavior? hadronBehavior?
-      // Type "NPC" will be used for actual NPCs.
-      if (objectProperties.id && !currentSceneNPCs.has(objectProperties.id)) {
+    } else if (objectProperties.Type === 'Quark') {
+      // "Quarks" are objects in the tilemap that generate hadrons.
+      if (objectProperties.id && !currentSceneQuarks.has(objectProperties.id)) {
         const newHadron = {
           id: objectProperties.id,
           own: objectProperties.id, // NPC's own themselves just as players do.
           x: object.x,
           y: object.y,
           spr: objectProperties.sprite,
-          typ: 'npc',
+          typ: 'quark',
           flv: objectProperties.Flavor,
-          cat: objectProperties.category,
           sub: objectProperties.subType,
           scn: sceneName,
           dod: objectProperties.dod,
@@ -150,7 +141,7 @@ function addQuarksFromMap(map, sceneName) {
         if (objectProperties.hasOwnProperty('canDelete')) {
           newHadron.cdl = objectProperties.canDelete;
         }
-        currentSceneNPCs.set(objectProperties.id, newHadron);
+        currentSceneQuarks.set(objectProperties.id, newHadron);
         // All we do here is tell the server that the scene we entered has NPC hadrons in it.
         // The server will decide if they already exist or not,
         // and add them, and assign a controller if needed.

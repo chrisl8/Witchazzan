@@ -62,6 +62,7 @@ const optionalKeys = [
   "rdt", // "Raycast Distance (rdt)" (Integer) Distance to raycast out to.
   "spv", // "Spell Velocity (spv)" (Integer) - Velocity set on spells.
   // For items
+  // TODO: The logic here is wrong. Update which fields to use when a new item logic is built.
   "hid", // Hadron ID that represents this item
   "hat", // Hide from player after it is taken by that player.
   "pep", // Item remains on map forever, even if players take it. If the Item is placed via a tilemap, it only makes sense to set this True, otherwise it reloads when anyone reloads their browser window.

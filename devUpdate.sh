@@ -68,6 +68,10 @@ SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 cd "${SCRIPT_DIR}" || exit
 printf "\n${YELLOW}[Pulling latest changes from the GitHub repo]${NC}\n"
 git pull
+cd "${SCRIPT_DIR}/shared" || exit
+echo ""
+printf "\n${YELLOW}[Installing dependencies for shared code]${NC}\n"
+npm ci
 cd "${SCRIPT_DIR}/server" || exit
 echo ""
 printf "\n${YELLOW}[Installing dependencies for server]${NC}\n"

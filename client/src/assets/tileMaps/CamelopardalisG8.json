@@ -445,15 +445,15 @@
                  "name":"StationaryTankOne",
                  "point":true,
                  "properties":[
-                   {
-                     "name":"Flavor",
-                     "type":"string",
-                     "value":"NPC"
-                   },
-                   {
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"npc"
+                        }, 
+                        {
                          "name":"Type",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"Quark"
                         }, 
                         {
                          "name":"dod",
@@ -556,7 +556,7 @@
  "nextobjectid":37,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.9.0",
+ "tiledversion":"1.9.1",
  "tileheight":16,
  "tilesets":[
         {

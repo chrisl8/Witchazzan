@@ -102,20 +102,32 @@ function updateSprite(hadron, key, gameSizeData) {
       );
     }
 
-    // PERFORM EASING ON HADRONS BEING CONTROLLED BY OTHER PLAYERS
+    // UPDATE SPRITE LOCATION FOR HADRONS BEING CONTROLLED BY OTHER PLAYERS
     // , and my own shadow.
     // If the hadron is ours, we set velocities, and that does this for us,
-    // but if we are just updating x/y positions, we need this to make it smooth.
-    // Easing demonstrations:
-    // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
     if (hadron.ctr !== playerObject.playerId || key === playerObject.playerId) {
-      this.tweens.add({
-        targets: clientSprite.sprite,
-        x: hadron.x,
-        y: hadron.y,
-        duration: 1, // Adjust this to be smooth without being too slow.
-        ease: 'Linear', // Anything else is wonky when tracking server updates.
-      });
+      if (hadron.flv === 'Item' && (hadron.vlx || hadron.vly)) {
+        // Items transfer velocity in order to have collisions with other things in the world.
+        // Set the position first, because otherwise they drift badly
+        clientSprite.sprite.setPosition(hadron.x, hadron.y);
+        // Then add the velocity to essentially "predict" the movement and allow for collisions
+        clientSprite.sprite.body.setVelocityX(hadron.vlx);
+        clientSprite.sprite.body.setVelocityY(hadron.vly);
+        // This model could be used for other things, but be careful as the results can be weird.
+      } else {
+        // Everything else just teleports to the new position.
+        clientSprite.sprite.setPosition(hadron.x, hadron.y);
+        // If this feels jittery, you can try tweening, but so far I find it just adds delay.
+        // Easing demonstrations:
+        // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
+        // this.tweens.add({
+        //   targets: clientSprite.sprite,
+        //   x: hadron.x,
+        //   y: hadron.y,
+        //   duration: 250, // Adjust this to be smooth without being too slow.
+        //   ease: 'Back.easeOut', // Anything else is wonky when tracking server updates.
+        // });
+      }
     }
 
     // ADD BRIEF RED TINT TO PLAYERS AND NPCs THAT HAVE TAKEN DAMAGE
@@ -135,33 +147,26 @@ function updateSprite(hadron, key, gameSizeData) {
     }
     clientSprite.previousHealth = hadron.hlt;
 
-    // TODO: Is this still a thing?
-    // MAKE SPRITES INVISIBLE IF PLAYER IS NOT SUPPOSED TO SEE IT
-    // We cannot just remove the sprite, as we may be tracking other player collisions with it
-    if (
-      hadron.flv === 'Item' &&
-      hadron.hat && // "hat" Hide After Taken
-      playerObject.inventory.get(key)
-    ) {
-      // If a player already possesses the item, don't show it on the screen.
-      clientSprites.get(key).sprite.alpha = 0;
-    }
-
     // Update sprite position of items we are holding
     if (
       hadron.flv === 'Item' &&
       hadron.hld === playerObject.playerId &&
       hadron.ctr === playerObject.playerId
     ) {
-      this.tweens.add({
-        targets: clientSprite.sprite,
-        x: playerObject.player.x,
-        y: playerObject.player.y,
-        duration: 1, // Adjust this to be smooth without being too slow.
-        ease: 'Linear', // Anything else is wonky when tracking server updates.
-      });
+      // Zero out any residual velocity when we grab it.
+      clientSprite.sprite.body.setVelocityX(0);
+      clientSprite.sprite.body.setVelocityY(0);
+      // Just tag it to our position
+      clientSprite.sprite.setPosition(
+        playerObject.player.x,
+        playerObject.player.y,
+      );
+      clientSprite.sprite.setDepth(objectDepthSettings.heldObject);
+    } else if (hadron.flv === 'Item' && hadron.hld) {
+      // Update depth for held items that other players are holding
       clientSprite.sprite.setDepth(objectDepthSettings.heldObject);
     }
+
     if (
       // New hadrons that we create have no ctrl yet, only the server assigns that.
       (hadron.ctr === undefined || hadron.ctr === playerObject.playerId) &&
@@ -173,6 +178,11 @@ function updateSprite(hadron, key, gameSizeData) {
       const newHadronData = { ...hadron };
       newHadronData.x = clientSprites.get(key).sprite.x;
       newHadronData.y = clientSprites.get(key).sprite.y;
+      // Warning, this can overwrite velocity on our own objects if we aren't careful, such as spells.
+      if (hadron.flv === 'Item') {
+        newHadronData.vlx = clientSprites.get(key).sprite.body.velocity.x;
+        newHadronData.vly = clientSprites.get(key).sprite.body.velocity.y;
+      }
       hadrons.set(key, newHadronData);
 
       // SET UP RAY CASTER FOR SPRITE IF NPC SHOULD HAVE ONE

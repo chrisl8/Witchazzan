@@ -19,6 +19,7 @@ import redTankSingle from '../assets/spriteSheets/redTankSingle.png';
 import SkullWink from '../assets/spriteSheets/SkullWink.png';
 import Fountain from '../assets/spriteSheets/Fountain.png';
 import PurpleRunningRunes from '../assets/spriteSheets/purpleRunningRunes.png';
+import ChairTwo from '../assets/spriteSheets/chair2.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -67,6 +68,28 @@ const spriteSheetList = [
     // },
     displayWidth: 16,
     displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'ChairTwo',
+    file: ChairTwo,
+    faces: 'right',
+    frameWidth: 10,
+    frameHeight: 12,
+    endFrame: -1, // How many frames to extract from the sheet. -1 means all
+    animationFrameRate: 0,
+    animations: [
+      { keyName: 'move-left', start: 2, end: 2, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 2, end: 2, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 1, end: 1, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 0, end: 0, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 10,
+      y: 12,
+    },
+    displayWidth: 10,
+    displayHeight: 12,
   },
   {
     type: 'other',

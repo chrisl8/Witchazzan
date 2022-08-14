@@ -17,6 +17,11 @@ cd "${SCRIPT_DIR}" || exit
 echo "Pulling latest changes from the GitHub repo:"
 git pull
 echo ""
+cd "${SCRIPT_DIR}/shared" || exit
+echo ""
+echo "Installing dependencies for shared code..."
+npm ci
+echo ""
 cd "${SCRIPT_DIR}/server" || exit
 echo ""
 echo "Installing dependencies for server..."

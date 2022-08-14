@@ -1,6 +1,8 @@
 /* globals window:true */
 /* globals localStorage:true */
 import socket from 'socket.io-client';
+import msgpackParser from 'socket.io-msgpack-parser';
+import * as fflate from 'fflate';
 import communicationsObject from './objects/communicationsObject.js';
 import sendDataToServer from './sendDataToServer.js';
 import playerObject from './objects/playerObject.js';
@@ -8,7 +10,7 @@ import parseHadronsFromServer from './parseHadronsFromServer.js';
 import hadrons from './objects/hadrons.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
 import clientVersion from '../../shared/version.mjs';
-import jsonMapStringify from '../../shared/jsonMapStringify.mjs';
+import mapUtils from '../../shared/mapUtils.mjs';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -21,12 +23,14 @@ function receiveDataFromServer() {
       {
         transports: ['websocket'],
         timeout: 5000,
+        parser: msgpackParser,
       },
     );
   } else {
     communicationsObject.socket = socket.connect({
       transports: ['websocket'],
       timeout: 5000,
+      parser: msgpackParser,
     });
   }
 
@@ -43,7 +47,16 @@ function receiveDataFromServer() {
 
   // The local client won't start the game until this is received and parsed.
   communicationsObject.socket.on('hadrons', (inputData) => {
-    parseHadronsFromServer(new Map(inputData));
+    const uint8Array = new Uint8Array(inputData[1]);
+    // console.log(uint8Array)
+    const decompressed = fflate.decompressSync(uint8Array);
+    const origText = fflate.strFromU8(decompressed);
+    // console.log(origText)
+    // const decompressedOutput = unishox2_decompress_simple(
+    //   inputData[0], // The compressed data to extract.
+    //   inputData[1] // How much memory to allocate for decompression. If it is too short it crashes.
+    // ); // Returns the decompressed data.
+    parseHadronsFromServer(mapUtils.parse(origText));
   });
 
   // Sometimes the server has to force us to delete a hadron,
@@ -52,6 +65,19 @@ function receiveDataFromServer() {
   communicationsObject.socket.on('deleteHadron', (key) => {
     console.log(key);
     hadrons.delete(key);
+  });
+
+  // The server cannot update hadrons that we control,
+  // so it asks us to do so on its behalf.
+  communicationsObject.socket.on('updateHadron', (data) => {
+    if (hadrons.get(data.id)?.ctr === playerObject.playerId) {
+      const newHadronData = hadrons.get(data.id);
+      data.updates.forEach((entry) => {
+        newHadronData[entry.key] = entry.value;
+      });
+      hadrons.set(data.id, newHadronData);
+      sendDataToServer.hadronData(data.id);
+    }
   });
 
   communicationsObject.socket.on('chat', (inputData) => {
@@ -74,6 +100,7 @@ function receiveDataFromServer() {
     }
 
     playerObject.playerId = inputData.id;
+    // console.log('Player ID:', playerObject.playerId); // For debugging
     playerObject.name = inputData.name;
     playerObject.isAdmin = inputData.admin;
     playerObject.defaultOpeningScene = inputData.defaultOpeningScene;
@@ -139,12 +166,6 @@ function receiveDataFromServer() {
       }
       hadrons.get(data.id).hlt = newHealth;
     }
-  });
-
-  communicationsObject.socket.on('inventory', (data) => {
-    playerObject.inventory = JSON.parse(data, jsonMapStringify.reviver);
-    console.log('Player Inventory received:');
-    console.log(playerObject.inventory);
   });
 }
 

@@ -425,12 +425,12 @@
                         {
                          "name":"Flavor",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"npc"
                         }, 
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"Quark"
                         }, 
                         {
                          "name":"dod",
@@ -533,12 +533,12 @@
                         {
                          "name":"Flavor",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"npc"
                         }, 
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"Quark"
                         }, 
                         {
                          "name":"dod",
@@ -641,12 +641,12 @@
                         {
                          "name":"Flavor",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"npc"
                         }, 
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"Quark"
                         }, 
                         {
                          "name":"dod",
@@ -749,12 +749,12 @@
                         {
                          "name":"Flavor",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"npc"
                         }, 
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"NPC"
+                         "value":"Quark"
                         }, 
                         {
                          "name":"dod",

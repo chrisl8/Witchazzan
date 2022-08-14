@@ -38,6 +38,8 @@ function spriteCollisionHandler({
   //   spriteKey,
   //   '\nsprite',
   //   sprite,
+  //   '\ntype',
+  //   hadrons.get(spriteKey)?.typ,
   //   '\nobstacleLayerName',
   //   obstacleLayerName,
   //   '\nobstacleLayer',
@@ -46,6 +48,8 @@ function spriteCollisionHandler({
   //   obstacleSpriteKey,
   //   '\nobstacleSprite',
   //   obstacleSprite,
+  //   '\ntype',
+  //   hadrons.get(obstacleSpriteKey)?.typ,
   //   '\nteleportLayerName',
   //   teleportLayerName,
   //   '\nteleportLayer',
@@ -58,13 +62,12 @@ function spriteCollisionHandler({
       // for now de-spawning silently if we hit a "teleport layer"
       // as only Players teleport,
       // but this is intended to be expanded in the future.
-      if (hadrons.get(spriteKey)?.flv !== 'Test') {
-        sendDataToServer.destroyHadron(spriteKey);
-      }
+      sendDataToServer.destroyHadron(spriteKey);
     } else if (obstacleLayer) {
       // Obstacle Layers interactions.
       // for now de-spawning silently if we hit any Obstacle Layer
-      if (hadrons.get(spriteKey)?.flv !== 'Test') {
+      if (hadrons.get(spriteKey)?.flv !== 'Item') {
+        // Items do not despawn when hitting walls.
         sendDataToServer.destroyHadron(spriteKey);
       }
     } else if (obstacleSprite) {
@@ -136,12 +139,12 @@ function spriteCollisionHandler({
           // A player's spells hitting themselves is entirely ignored.
         } else if (
           hadrons.get(spriteKey)?.typ === 'spell' &&
-          hadrons.get(obstacleSpriteKey)?.typ === 'npc'
+          hadrons.get(obstacleSpriteKey)?.typ === 'quark'
         ) {
           if (
             hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
           ) {
-            if (hadrons.get(obstacleSpriteKey)?.flv === 'NPC') {
+            if (hadrons.get(obstacleSpriteKey)?.flv === 'npc') {
               // If a spell hits an NPC...
               // Destroy the spell hadron
               sendDataToServer.destroyHadron(
@@ -155,6 +158,16 @@ function spriteCollisionHandler({
                 id: obstacleSpriteKey,
                 amount: 1,
               });
+            } else if (hadrons.get(obstacleSpriteKey)?.flv === 'Item') {
+              // Shooting someone else's items currently has no affect either,
+              // but eventually we may make them have health.
+              // but the spells go away.
+              // Destroy the spell hadron
+              sendDataToServer.destroyHadron(
+                spriteKey,
+                obstacleSpriteKey,
+                this,
+              );
             }
             // Spells hitting Non-NPC Quarks are ignored
           } else if (hadrons.get(obstacleSpriteKey)?.flv === 'Item') {
@@ -165,30 +178,26 @@ function spriteCollisionHandler({
           }
           // An NPC's spell hitting itself is ignored.
         } else if (
-          hadrons.get(spriteKey)?.typ === 'npc' &&
+          hadrons.get(spriteKey)?.typ === 'quark' &&
           hadrons.get(obstacleSpriteKey)?.typ === 'spell'
         ) {
           // NPC hitting a spell is ignored.
           // Spells hit NPCs, but if an NPC hits a spell, we don't actually care, as the Spell->NPC already covered the action.
         } else {
-          // // Anything else just passes through
-          if (!hadrons.get(spriteKey)?.typ) {
-            // console.log(hadrons.get(spriteKey));
-          } else {
-            // console.log(
-            //   hadrons.get(spriteKey)?.typ,
-            //   hadrons.get(obstacleSpriteKey)?.typ,
-            //   hadrons.get(obstacleSpriteKey)?.flv,
-            //   spriteKey,
-            //   sprite,
-            //   obstacleLayerName,
-            //   obstacleLayer,
-            //   obstacleSpriteKey,
-            //   obstacleSprite,
-            //   teleportLayerName,
-            //   teleportLayer,
-            // );
-          }
+          // Anything else just passes through
+          // console.log(
+          //   hadrons.get(spriteKey)?.typ,
+          //   hadrons.get(obstacleSpriteKey)?.typ,
+          //   hadrons.get(obstacleSpriteKey)?.flv,
+          //   spriteKey,
+          //   sprite,
+          //   obstacleLayerName,
+          //   obstacleLayer,
+          //   obstacleSpriteKey,
+          //   obstacleSprite,
+          //   teleportLayerName,
+          //   teleportLayer,
+          // );
         }
       }
     } else {

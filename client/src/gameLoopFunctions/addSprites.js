@@ -42,9 +42,9 @@ function addSprites(hadron, key) {
     }
 
     // Set the depth for the sprite.
-    if (hadron.typ === 'npc' && hadron.hasOwnProperty('dph')) {
+    if (hadron.typ === 'quark' && hadron.hasOwnProperty('dph')) {
       newClientSprite.sprite.setDepth(hadron.dph);
-    } else if (hadron.typ === 'npc') {
+    } else if (hadron.typ === 'quark' && hadron.flv === 'npc') {
       newClientSprite.sprite.setDepth(objectDepthSettings.npc);
     } else if (key === playerObject.playerId) {
       newClientSprite.sprite.setDepth(objectDepthSettings.playerShadow);

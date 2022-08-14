@@ -7,11 +7,10 @@ function addSpriteColliders(
   key,
   collisionLayer,
   teleportLayersColliders,
-  sceneName,
 ) {
   if (
     clientSprites.has(key) && // If it actually has a sprite,
-    hadron.ctr === playerObject.playerId && // We control it.
+    (hadron.ctr === playerObject.playerId || hadron.flv === 'Item') && // We control it or it is an item
     key !== playerObject.playerId // But it isn't our shadow.
   ) {
     // If we had a sprite before, but we didn't own it,
@@ -55,19 +54,13 @@ function addSpriteColliders(
       });
 
       // For Items in Library, add a collider with player
-      if (sceneName === 'Library' && hadron.flv === 'Item') {
+      if (hadron.flv === 'Item') {
         this.physics.add.collider(
-          playerObject.player,
           clientSprites.get(key).sprite,
-          () => {
-            spriteCollisionHandler.call(this, {
-              spriteKey: playerObject.playerId,
-              sprite: playerObject.player,
-              obstacleSpriteKey: key,
-              obstacleSprite: clientSprites.get(key).sprite,
-            });
-          },
+          playerObject.player,
         );
+        // A lower number slows it down faster when using "damping"
+        clientSprites.get(key).sprite.setDamping(true).setDrag(0.25);
       }
     }
 
@@ -87,23 +80,17 @@ function addSpriteColliders(
         }
         // Add new ones
         if (otherSprite.sprite && !otherSprite.colliders[key]) {
-          if (sceneName === 'Library' && hadron.flv === 'Item') {
-            // Items in the Library are able to be pushed around by the local player.
+          if (hadron.flv === 'Item') {
+            // Items are able to be pushed around
             // eslint-disable-next-line no-param-reassign
             otherSprite.colliders[key] = this.physics.add.collider(
               clientSprites.get(key).sprite,
               otherSprite.sprite,
-              (sprite, obstacle) => {
-                spriteCollisionHandler.call(this, {
-                  spriteKey: key,
-                  sprite,
-                  obstacleSpriteKey: otherSpriteKey,
-                  obstacleSprite: obstacle,
-                });
-              },
             );
             clientSprites.get(key).sprite.setDamping(true);
-            clientSprites.get(key).sprite.setDrag(0.5);
+            // A lower number slows it down faster when using "damping"
+            clientSprites.get(key).sprite.setDrag(0.25);
+            // TODO: Set bounce too?!
           } else {
             // eslint-disable-next-line no-param-reassign
             otherSprite.colliders[key] = this.physics.add.overlap(

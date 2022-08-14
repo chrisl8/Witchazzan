@@ -2,7 +2,7 @@ import fs from "fs";
 import JSON5 from "json5";
 import prettier from "prettier";
 // eslint-disable-next-line
-import jsonMapStringify from "../shared/jsonMapStringify.mjs";
+import mapUtils from '../shared/mapUtils.mjs';
 
 const writeObject = (path, objectLiteral) =>
   new Promise((resolve, reject) => {
@@ -25,7 +25,7 @@ const readObject = (path) =>
   new Promise((resolve, reject) => {
     fs.readFile(path, "utf8", (err, data) => {
       if (err) {
-        console.log("Error reading config file. Starting from scratch.");
+        console.log(`Error reading ${path} file. Starting from scratch.`);
         // Return an empty object if the file doesn't exist.
         resolve({});
       } else {
@@ -34,7 +34,7 @@ const readObject = (path) =>
           resolve(parsed);
         } catch (e) {
           console.error(
-            "Config file exists, but is not valid JSON5. This is a fatal error. Please fix the file and try again."
+            `File ${path} exists, but is not valid JSON5. This is a fatal error. Please fix the file and try again.`
           );
           console.error("Filename:", path);
           console.error(e);
@@ -47,7 +47,7 @@ const readObject = (path) =>
 const writeMap = (path, map) =>
   new Promise((resolve, reject) => {
     const formatted = prettier.format(
-      JSON.stringify(map, jsonMapStringify.replacer),
+      mapUtils.stringify(map),
       {
         parser: "json5",
         singleQuote: true,
@@ -73,11 +73,11 @@ const readMap = (path) =>
         resolve(new Map());
       } else {
         try {
-          const parsed = JSON5.parse(data, jsonMapStringify.reviver);
+          const parsed = JSON5.parse(data, mapUtils.reviver);
           resolve(parsed);
         } catch (e) {
           console.error(
-            "Config file exists, but is not valid JSON5. This is a fatal error. Please fix the file and try again."
+            `File ${path} exists, but is not valid JSON5. This is a fatal error. Please fix the file and try again.`
           );
           console.error("Filename:", path);
           console.error(e);

@@ -4,7 +4,10 @@
   "version": "0.0.1",
   "description": "Witchazzan Client",
   "type": "module",
-  "source": ["index.html", "sign-in.html"],
+  "source": [
+    "index.html",
+    "sign-in.html"
+  ],
   "targets": {
     "default": {
       "distDir": "./stage"
@@ -12,6 +15,7 @@
   },
   "scripts": {
     "start": "rm -rf .parcel-cache;parcel --port 3001 --open",
+    "gitpod-start": "rm -rf .parcel-cache;parcel --port 3001",
     "prebuild": "rm -rf stage;rm -rf .parcel-cache",
     "build": "parcel build && rm -rf dist && mv stage dist"
   },
@@ -50,11 +54,13 @@
     "not dead"
   ],
   "dependencies": {
+    "fflate": "^0.7.3",
     "lodash": "^4.17.21",
     "nipplejs": "^0.9.1",
     "phaser": "photonstorm/phaser",
     "phaser-raycaster": "^0.10.4",
-    "socket.io-client": ">=4.5.0",
+    "socket.io-client": "^4.5.1",
+    "socket.io-msgpack-parser": "^3.0.1",
     "uuid": "^8.3.2"
   }
 }

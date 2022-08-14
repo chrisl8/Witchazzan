@@ -4,7 +4,6 @@ import communicationsObject from './objects/communicationsObject.js';
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import deletedHadronList from './objects/deletedHadronList.js';
-import seenItemCollisions from './objects/seenItemCollisions.js';
 import validateHadron from '../../shared/validateHadron.mjs';
 import textObject from './objects/textObject.js';
 import clientSprites from './objects/clientSprites.js';
@@ -112,15 +111,6 @@ sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
     hadrons.delete(key);
     // Once the hadron is deleted then cleanUpClientSprites() will remove the sprite itself.
     communicationsObject.socket.emit('destroyHadron', key);
-  }
-};
-
-// TODO: This entire function may need to be deleted?
-sendDataToServer.itemCollision = (itemKey, otherKey) => {
-  // Only send each collision once. Just smash the item and other key together to create the tracking data.
-  if (seenItemCollisions.indexOf(itemKey + otherKey) === -1) {
-    seenItemCollisions.push(itemKey + otherKey);
-    communicationsObject.socket.emit('itemCollision', [itemKey, otherKey]);
   }
 };
 

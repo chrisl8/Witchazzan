@@ -2,7 +2,7 @@ import playerObject from '../objects/playerObject.js';
 import hadrons from '../objects/hadrons.js';
 import objectDepthSettings from '../objects/objectDepthSettings.js';
 
-function handlePlayerRaycast(sceneName) {
+function handlePlayerRaycast() {
   // Currently a player raycast is ONLY used in the library.
   let rayCastFoundTarget = false;
   if (!playerObject.ray) {
@@ -31,7 +31,6 @@ function handlePlayerRaycast(sceneName) {
     ray.setConeDeg(10); // hadron.rcd
     ray.castCone();
 
-    // TODO: This also relates to grabbing multiple items. Is that even allowed?
     // get all game objects in field of view (which bodies overlap ray's field of view)
     const visibleObjects = ray.overlap();
     visibleObjects.forEach((entry) => {
@@ -47,7 +46,7 @@ function handlePlayerRaycast(sceneName) {
           // We found a target
           rayCastFoundTarget = true;
           if (!playerObject.nearbyTargetObject.rectangle) {
-            // TODO: Handle situation of an item you can target, but you cannot take. i.e. A "you can only have one" instance. Maybe use a differnet color and shape?
+            // TODO: Handle situation of an item you can target, but you cannot take. i.e. A "you can only have one" instance. Maybe use a different color and shape?
             // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/shape-rectangle/#create-shape-object
             playerObject.nearbyTargetObject.rectangle = this.add
               .rectangle(0, 0, 15, 15, 0x000000, 0)
@@ -59,7 +58,6 @@ function handlePlayerRaycast(sceneName) {
             hadrons.get(id)?.y,
           );
           playerObject.nearbyTargetObject.id = id;
-          // TODO: Grab it.
         }
       }
     });

@@ -133,7 +133,7 @@ const updateInGameDomElements = (htmlElementParameters) => {
     hadrons.forEach((hadron, key) => {
       if (clientSprites.has(key)) {
         let clientSprite = clientSprites.get(key);
-        if (hadron.typ === 'player' || hadron.typ === 'npc') {
+        if (hadron.typ === 'player' || hadron.typ === 'quark') {
           if (key === playerObject.playerId) {
             // Act on the local player, not the shadow.
             clientSprite = { sprite: playerObject.player };

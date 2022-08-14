@@ -342,28 +342,52 @@
          "name":"Objects",
          "objects":[
                 {
+                 "class":"",
                  "height":0,
                  "id":1,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":328,
                  "y":196
                 }, 
                 {
+                 "class":"",
                  "height":0,
                  "id":11,
                  "name":"Right",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Entrance"
+                        }],
                  "rotation":0,
-                 "type":"","properties":[{"name":"Type","type":"string","value":"Entrance"}],
                  "visible":true,
                  "width":0,
                  "x":648,
                  "y":200
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":12,
+                 "name":"ChairTwo",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":40,
+                 "y":40
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -372,10 +396,10 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":12,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.5",
+ "tiledversion":"1.9.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -393,6 +417,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.9",
  "width":42
 }

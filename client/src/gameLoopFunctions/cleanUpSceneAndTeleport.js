@@ -2,8 +2,7 @@ import playerObject from '../objects/playerObject.js';
 import closeChatInputBox from '../closeChatInputBox.js';
 import cleanUpScene from './cleanUpScene.js';
 import deletedHadronList from '../objects/deletedHadronList.js';
-import seenItemCollisions from '../objects/seenItemCollisions.js';
-import currentSceneNPCs from '../objects/currentSceneNPCs.js';
+import currentSceneQuarks from '../objects/currentSceneQuarks.js';
 
 function cleanUpSceneAndTeleport(
   destinationSceneName,
@@ -45,11 +44,8 @@ function cleanUpSceneAndTeleport(
     // Prevent memory leak of an infinitely growing lists.
     deletedHadronList.length = 0;
 
-    // Prevent memory leak of an infinitely growing lists.
-    seenItemCollisions.length = 0;
-
-    // Empty out the local NPC list, as we are no longer in charge of them.
-    currentSceneNPCs.clear();
+    // Empty out the local Quark list, as we are no longer in charge of them.
+    currentSceneQuarks.clear();
 
     // Clean up raycasters
     // Note: The .destroy() methods cause Phaser to crash, so I'm not using them.

@@ -4,6 +4,7 @@ import addSprites from './addSprites.js';
 import addSpriteColliders from './addSpriteColliders.js';
 import addSpriteVelocity from './addSpriteVelocity.js';
 import updateSprite from './updateSprite.js';
+import handleHeldItems from './handleHeldItems.js';
 import sendHadronDataToServer from './sendHadronDataToServer.js';
 
 function updateHadrons(
@@ -36,6 +37,8 @@ function updateHadrons(
       addSpriteVelocity.call(this, hadron, key);
 
       updateSprite.call(this, hadron, key, gameSizeData);
+
+      handleHeldItems(hadron, key);
 
       sendHadronDataToServer(hadron, key);
     } else {

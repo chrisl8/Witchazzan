@@ -9,9 +9,8 @@ function npcBehavior(delta, sceneName) {
     const newHadronData = { ...hadron };
     // Only perform behavior operations on hadrons under our control.
     if (
-      // TODO: typ will be quark and flv will be npc
-      // TODO: Should we add items "spawning" from map items here or make a new function?
-      hadron.typ === 'npc' &&
+      hadron.typ === 'quark' &&
+      hadron.flv === 'npc' &&
       hadron.ctr === playerObject.playerId &&
       hadron.scn === sceneName
     ) {
@@ -84,7 +83,7 @@ function npcBehavior(delta, sceneName) {
                 id !== key && // Not NPC itself
                 hadrons.get(id)?.typ !== 'spell' && // Not a spell
                 hadrons.get(id)?.typ !== 'message' && // not a message
-                hadrons.get(id)?.typ !== 'npc' // Don't shoot each other
+                hadrons.get(id)?.flv !== 'npc' // Don't shoot each other
               ) {
                 // We found a target
                 rayCastFoundTarget = true; // TODO: Uncomment
@@ -108,8 +107,7 @@ function npcBehavior(delta, sceneName) {
                 difference = difference < -180 ? difference + 360 : difference;
 
                 const t = 0.05;
-                const newDirection = hadron.dir + t * difference;
-                newHadronData.dir = newDirection;
+                newHadronData.dir = hadron.dir + t * difference;
                 // Let Achilles go ahead and catch the Tortoise
                 if (Math.abs(difference) < 1) {
                   newHadronData.dir = newAngleDeg;

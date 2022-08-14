@@ -25,7 +25,6 @@ const playerObject = {
   maxJoystickDistance: 50,
   player: null,
   keyState: {}, // keep track of the keyboard state. Send only when it changes
-  inventory: new Map(),
   // NOTE: This assumes that there is only the one Phaser canvas.
   canvasDomElement: document.getElementsByTagName('canvas'),
   cameraScaleFactor: 0,
