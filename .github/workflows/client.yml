@@ -33,6 +33,8 @@ jobs:
           cache-dependency-path: ./client/package-lock.json
       - run: ./versionNumberUpdate.sh
       - run: npm ci
+        working-directory: shared
+      - run: npm ci
         working-directory: client
       - run: npm run build
         working-directory: client
