@@ -27,6 +27,7 @@ const objectDepthSettings = {
   message: 10, // Can be overridden, but this is the default.
   animatedObjects: 15, // Can be overridden, but this is the default.
   npc: 20, // Can be overridden, but this is the default.
+  item: 20, // Can be overridden, but this is the default.
   otherPlayer: 30,
   playerShadow: 31,
   dotTrails: 32,

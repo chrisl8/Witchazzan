@@ -17,7 +17,7 @@ function updateHadrons(
   // Deal with game pieces from server.
   hadrons.forEach((hadron, key) => {
     // Only render hadrons for THIS scene
-    // The server will ony send us such hadrons, but we double check anyway.
+    // The server will ony send us such hadrons, but we double-check anyway.
     if (hadron.scn === sceneName) {
       // This is used for debugging
       renderDebugDotTrails.call(this, hadron, key, scene, gameSizeData);

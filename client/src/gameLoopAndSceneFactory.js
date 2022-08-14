@@ -49,7 +49,8 @@ import loadTesting from './gameLoopFunctions/loadTesting.js';
 import loadingInfo from './gameLoopFunctions/loadingInfo.js';
 import addQuarksFromMap from './gameLoopFunctions/addQuarksFromMap.js';
 import handlePlayerRaycast from './gameLoopFunctions/handlePlayerRaycast.js';
-import handleItemInteraction from './gameLoopFunctions/handleItemInteraction.js';
+import handlePlayerInteraction from './gameLoopFunctions/handlePlayerInteraction.js';
+import itemBehavior from './gameLoopFunctions/itemBehavior.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -489,13 +490,15 @@ const gameLoopAndSceneFactory = ({
 
     updatePlayerSpriteAnimation();
 
-    handleItemInteraction();
+    handlePlayerInteraction();
 
     handlePlayerRaycast.call(this);
 
     // WARNING: npcBehavior must be above updateHadrons,
     // otherwise fired spells are very erratic.
     npcBehavior(delta, sceneName);
+
+    itemBehavior(delta, sceneName);
 
     // Iterate over ALL of the hadrons and do what needs to be done.
     updateHadrons.call(

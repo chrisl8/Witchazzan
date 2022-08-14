@@ -448,7 +448,7 @@
                         {
                          "name":"Flavor",
                          "type":"string",
-                         "value":"npc"
+                         "value":"NPC"
                         }, 
                         {
                          "name":"Type",

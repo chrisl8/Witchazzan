@@ -129,17 +129,15 @@ function addQuarksFromMap(map, sceneName) {
           newHadron.spl = objectProperties.spell;
         }
         // Items
-        if (objectProperties.hasOwnProperty('HideAfterTaken')) {
-          newHadron.hat = objectProperties.HideAfterTaken;
+        if (objectProperties.hasOwnProperty('Function')) {
+          newHadron.fnc = objectProperties.Function;
         }
-        if (objectProperties.hasOwnProperty('Perpetual')) {
-          newHadron.pep = objectProperties.Perpetual;
-        }
-        if (objectProperties.hasOwnProperty('canDrop')) {
-          newHadron.cdp = objectProperties.canDrop;
-        }
-        if (objectProperties.hasOwnProperty('canDelete')) {
-          newHadron.cdl = objectProperties.canDelete;
+        if (
+          objectProperties.hasOwnProperty('Flavor') &&
+          objectProperties.Flavor === 'Item'
+        ) {
+          // Item quarks creat invisible "spawner" hadrons that spawn items based on functions.
+          newHadron.off = true;
         }
         currentSceneQuarks.set(objectProperties.id, newHadron);
         // All we do here is tell the server that the scene we entered has NPC hadrons in it.

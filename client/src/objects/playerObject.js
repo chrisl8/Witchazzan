@@ -60,6 +60,7 @@ const playerObject = {
   maxHealth: 100,
   previousHealth: null,
   playerId: null,
+  newPlayerDirection: 270,
   playerDirection: 270,
   playerStopped: true,
   sceneObjectList: [],
@@ -124,6 +125,7 @@ const playerObject = {
     id: null,
   },
   interactNow: false,
+  rotateNow: false,
   heldItemList: [],
 };
 

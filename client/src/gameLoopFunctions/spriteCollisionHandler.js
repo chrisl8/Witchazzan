@@ -144,7 +144,7 @@ function spriteCollisionHandler({
           if (
             hadrons.get(spriteKey)?.own !== hadrons.get(obstacleSpriteKey)?.own
           ) {
-            if (hadrons.get(obstacleSpriteKey)?.flv === 'npc') {
+            if (hadrons.get(obstacleSpriteKey)?.flv === 'NPC') {
               // If a spell hits an NPC...
               // Destroy the spell hadron
               sendDataToServer.destroyHadron(

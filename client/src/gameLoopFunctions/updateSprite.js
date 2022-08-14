@@ -38,13 +38,14 @@ function updateSprite(hadron, key, gameSizeData) {
     if (hadron.mov === false) {
       objectInMotion = false;
     }
-    if (!objectInMotion) {
-      clientSprite.sprite.anims.stop();
-    } else if (
+    if (
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-left`,
       ) &&
-      Number(hadron.dir) === 180
+      Number(hadron.dir) === 180 &&
+      (clientSprite.sprite.anims.currentAnim?.key !==
+        `${clientSprite.spriteData.name}-move-left` ||
+        objectInMotion)
     ) {
       clientSprite.sprite.anims.play(
         `${clientSprite.spriteData.name}-move-left`,
@@ -54,7 +55,10 @@ function updateSprite(hadron, key, gameSizeData) {
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-right`,
       ) &&
-      Number(hadron.dir) === 0
+      Number(hadron.dir) === 0 &&
+      (clientSprite.sprite.anims.currentAnim?.key !==
+        `${clientSprite.spriteData.name}-move-right` ||
+        objectInMotion)
     ) {
       clientSprite.sprite.anims.play(
         `${clientSprite.spriteData.name}-move-right`,
@@ -64,7 +68,10 @@ function updateSprite(hadron, key, gameSizeData) {
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-back`,
       ) &&
-      Number(hadron.dir) === 270
+      Number(hadron.dir) === 270 &&
+      (clientSprite.sprite.anims.currentAnim?.key !==
+        `${clientSprite.spriteData.name}-move-back` ||
+        objectInMotion)
     ) {
       clientSprite.sprite.anims.play(
         `${clientSprite.spriteData.name}-move-back`,
@@ -74,13 +81,17 @@ function updateSprite(hadron, key, gameSizeData) {
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-front`,
       ) &&
-      Number(hadron.dir) === 90
+      Number(hadron.dir) === 90 &&
+      (clientSprite.sprite.anims.currentAnim?.key !==
+        `${clientSprite.spriteData.name}-move-front` ||
+        objectInMotion)
     ) {
       clientSprite.sprite.anims.play(
         `${clientSprite.spriteData.name}-move-front`,
         true,
       );
     } else if (
+      objectInMotion &&
       hadron.hasOwnProperty('anim') &&
       hadron.ani &&
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
@@ -92,6 +103,7 @@ function updateSprite(hadron, key, gameSizeData) {
         true,
       );
     } else if (
+      objectInMotion &&
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-stationary`,
       )
@@ -100,6 +112,8 @@ function updateSprite(hadron, key, gameSizeData) {
         `${clientSprite.spriteData.name}-move-stationary`,
         true,
       );
+    } else {
+      clientSprite.sprite.anims.stop();
     }
 
     // UPDATE SPRITE LOCATION FOR HADRONS BEING CONTROLLED BY OTHER PLAYERS

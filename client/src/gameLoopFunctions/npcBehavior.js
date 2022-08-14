@@ -6,11 +6,10 @@ import clientSprites from '../objects/clientSprites.js';
 
 function npcBehavior(delta, sceneName) {
   hadrons.forEach((hadron, key) => {
-    const newHadronData = { ...hadron };
     // Only perform behavior operations on hadrons under our control.
     if (
       hadron.typ === 'quark' &&
-      hadron.flv === 'npc' &&
+      hadron.flv === 'NPC' &&
       hadron.ctr === playerObject.playerId &&
       hadron.scn === sceneName
     ) {
@@ -18,6 +17,8 @@ function npcBehavior(delta, sceneName) {
       // Remember that you can further control or limit the behavior for specific NPCs
       // by checking the hadron.sub field in your if/else statements below.
       // Feel free to exclude a given hadron.sub from these more generic checks at the top.
+
+      const newHadronData = { ...hadron };
 
       let rayCastFoundTarget = false;
 
@@ -83,7 +84,7 @@ function npcBehavior(delta, sceneName) {
                 id !== key && // Not NPC itself
                 hadrons.get(id)?.typ !== 'spell' && // Not a spell
                 hadrons.get(id)?.typ !== 'message' && // not a message
-                hadrons.get(id)?.flv !== 'npc' // Don't shoot each other
+                hadrons.get(id)?.flv !== 'NPC' // Don't shoot each other
               ) {
                 // We found a target
                 rayCastFoundTarget = true; // TODO: Uncomment

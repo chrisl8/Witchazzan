@@ -1043,9 +1043,9 @@ io.on("connection", (socket) => {
       });
     } catch (e) {
       if (e) {
-        console.log(e.message);
+        console.error(e.message);
       } else {
-        console.log("Failed to handle token receipt.");
+        console.error("Failed to handle token receipt.");
       }
       socket.emit("unauthorized");
       await wait(500); // I think the client needs a moment to receive the message and deal with it.

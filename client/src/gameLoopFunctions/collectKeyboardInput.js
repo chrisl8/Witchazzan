@@ -48,6 +48,12 @@ function collectKeyboardInput(sceneName) {
     playerObject.interactNow = true;
   }
 
+  // Key to rotate yourself or items in your hand
+  if (playerObject.keyState.r === 'keydown') {
+    playerObject.keyState.r = null;
+    playerObject.rotateNow = true;
+  }
+
   // Inventory
   if (playerObject.keyState.i === 'keydown') {
     playerObject.keyState.i = null;

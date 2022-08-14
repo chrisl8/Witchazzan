@@ -2,7 +2,7 @@ import playerObject from '../objects/playerObject.js';
 import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
 
-function handleItemInteraction() {
+function handlePlayerInteraction() {
   // TODO: Is there a way to track and keep held item order?
   // TODO: Should there be some visual indication of dropping an item?
   if (playerObject.interactNow) {
@@ -22,7 +22,6 @@ function handleItemInteraction() {
       }
     } else if (playerObject.heldItemList.length > 0) {
       // If the key is pressed with no object targeted, then it is used to drop items in hand
-      console.log(playerObject.heldItemList);
       const itemToDrop = playerObject.heldItemList.pop();
       const newHadronData = hadrons.get(itemToDrop);
       delete newHadronData.hld;
@@ -33,9 +32,29 @@ function handleItemInteraction() {
     }
     playerObject.interactNow = false; // Always reset this after processing it.
   }
+
+  if (playerObject.rotateNow) {
+    // Rotate objects in hand
+    playerObject.rotateNow = false;
+    if (playerObject.heldItemList.length > 0) {
+      playerObject.heldItemList.forEach((entry) => {
+        const newHadronData = { ...hadrons.get(entry) };
+        newHadronData.dir += 90;
+        if (newHadronData.dir >= 360) {
+          newHadronData.dir = 0;
+        }
+        hadrons.set(entry, newHadronData);
+      });
+    } else {
+      playerObject.newPlayerDirection += 90;
+      if (playerObject.newPlayerDirection >= 360) {
+        playerObject.newPlayerDirection = 0;
+      }
+    }
+  }
 }
 
-export default handleItemInteraction;
+export default handlePlayerInteraction;
 
 /*
  TODO:
@@ -44,7 +63,6 @@ export default handleItemInteraction;
    - Randomized slightly so they aren't all quite together.
    - Increase their distance from you as your item count increases ("lower" in the stack is further out), to a point.
    - Changes (re-randomize) when you move, but not when you are still.
- - Items that are meant to be repeatedly taken will just respawn after a period of time if someone takes them, somewhat like how tanks respawn after you kill them.
  - There should be some method of saying, "No player can have more than 1 of these, so if you have it, you cannot pick it up."
    - Perhaps some sort of "uid" on an item that says, "If you have an item in your library with this UUID in this key, you cannot pick up another one.
  - Pressing 'spacebar' with an item launches it like a spell.

@@ -5,7 +5,9 @@ function updatePlayerSpriteAnimation() {
   if (
     playerObject.keyState.ArrowLeft === 'keydown' ||
     playerObject.keyState.a === 'keydown' ||
-    playerObject.joystickDirection.left
+    playerObject.joystickDirection.left ||
+    (playerObject.playerDirection !== playerObject.newPlayerDirection &&
+      playerObject.newPlayerDirection === 180)
   ) {
     playerObject.player.setFlipX(playerObject.spriteData.faces === 'right');
     playerObject.player.anims.play(
@@ -17,7 +19,9 @@ function updatePlayerSpriteAnimation() {
   } else if (
     playerObject.keyState.ArrowRight === 'keydown' ||
     playerObject.keyState.d === 'keydown' ||
-    playerObject.joystickDirection.right
+    playerObject.joystickDirection.right ||
+    (playerObject.playerDirection !== playerObject.newPlayerDirection &&
+      playerObject.newPlayerDirection === 0)
   ) {
     playerObject.player.setFlipX(playerObject.spriteData.faces === 'left');
     playerObject.player.anims.play(
@@ -29,7 +33,9 @@ function updatePlayerSpriteAnimation() {
   } else if (
     playerObject.keyState.ArrowUp === 'keydown' ||
     playerObject.keyState.w === 'keydown' ||
-    playerObject.joystickDirection.up
+    playerObject.joystickDirection.up ||
+    (playerObject.playerDirection !== playerObject.newPlayerDirection &&
+      playerObject.newPlayerDirection === 270)
   ) {
     playerObject.player.anims.play(
       `${playerObject.spriteData.name}-move-back`,
@@ -40,7 +46,9 @@ function updatePlayerSpriteAnimation() {
   } else if (
     playerObject.keyState.ArrowDown === 'keydown' ||
     playerObject.keyState.s === 'keydown' ||
-    playerObject.joystickDirection.down
+    playerObject.joystickDirection.down ||
+    (playerObject.playerDirection !== playerObject.newPlayerDirection &&
+      playerObject.newPlayerDirection === 90)
   ) {
     playerObject.player.anims.play(
       `${playerObject.spriteData.name}-move-front`,
@@ -52,6 +60,8 @@ function updatePlayerSpriteAnimation() {
     playerObject.player.anims.stop();
     playerObject.playerStopped = true;
   }
+  // Always reset after reading this.
+  playerObject.newPlayerDirection = playerObject.playerDirection;
 }
 
 export default updatePlayerSpriteAnimation;

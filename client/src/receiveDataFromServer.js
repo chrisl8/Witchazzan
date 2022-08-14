@@ -63,7 +63,6 @@ function receiveDataFromServer() {
   // typically one that we own that was deleted by outside forces,
   // despite our code being sure we are the on currently in control of it.
   communicationsObject.socket.on('deleteHadron', (key) => {
-    console.log(key);
     hadrons.delete(key);
   });
 

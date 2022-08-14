@@ -20,6 +20,7 @@ import SkullWink from '../assets/spriteSheets/SkullWink.png';
 import Fountain from '../assets/spriteSheets/Fountain.png';
 import PurpleRunningRunes from '../assets/spriteSheets/purpleRunningRunes.png';
 import ChairTwo from '../assets/spriteSheets/chair2.png';
+import TableOne from '../assets/spriteSheets/table1.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -90,6 +91,20 @@ const spriteSheetList = [
     },
     displayWidth: 10,
     displayHeight: 12,
+  },
+  {
+    type: 'other',
+    name: 'TableOne',
+    file: TableOne,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 10,
+    physicsSize: {
+      x: 16,
+      y: 10,
+    },
+    displayWidth: 16,
+    displayHeight: 10,
   },
   {
     type: 'other',
