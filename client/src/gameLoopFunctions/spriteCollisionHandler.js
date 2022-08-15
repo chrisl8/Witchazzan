@@ -2,12 +2,14 @@ import _ from 'lodash';
 import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
 import spells from '../objects/spells.js';
+import textObject from '../objects/textObject.js';
 
-let broadCastMessage;
-const chatForThrottle = () => {
-  sendDataToServer.chat(broadCastMessage);
+let message;
+const displayMessage = () => {
+  textObject.enterSceneText.text = message;
+  textObject.enterSceneText.display();
 };
-const throttleSendMessageRead = _.debounce(chatForThrottle, 1000, {
+const throttleDisplayMessage = _.debounce(displayMessage, 1000, {
   leading: true,
   trailing: false,
 });
@@ -85,12 +87,9 @@ function spriteCollisionHandler({
         ) {
           // Messages - A message sprite that we are tracking has collided with something.
           if (hadrons.get(obstacleSpriteKey)?.typ === 'player') {
-            // If it is a player, broadcast the message within to everyone, "from" the owner.
-            broadCastMessage = {
-              text: hadrons.get(spriteKey).txt,
-              fromPlayerId: hadrons.get(spriteKey).own,
-            };
-            throttleSendMessageRead();
+            // If it is a player, display the message on the screen.
+            message = hadrons.get(spriteKey).txt;
+            throttleDisplayMessage();
           }
         } else if (hadrons.get(obstacleSpriteKey)?.typ === 'message') {
           // Message was hit by something that I control.

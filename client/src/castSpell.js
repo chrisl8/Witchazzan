@@ -42,7 +42,7 @@ function castSpell({
               scn: sceneName,
               vlx: 0,
               vly: 0,
-              txt: message,
+              txt: `${playerObject.name} says, ${message}`,
               tcw: true,
               pod: $('#message_always_visible').is(':checked'),
             };
