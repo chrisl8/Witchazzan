@@ -159,8 +159,9 @@ inactiveHadrons.forEach((hadron) => {
 });
 
 // Resurrect any "Persist On Disconnect (pod)" hadrons immediately.
+// Except for Library hadrons.
 inactiveHadrons.forEach((hadron, key) => {
-  if (hadron.pod) {
+  if (hadron.pod && hadron.scn !== "Library") {
     hadrons.set(key, hadron);
     inactiveHadrons.delete(key);
   }
