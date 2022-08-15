@@ -3,22 +3,9 @@
  * It is literally just copy/paste of the import lines,
  * and scenes array with the names of the tile maps.
  *
- * TODO: Write a script to generate this file based on the names
- *  of the files in the tile map folder,
- *  which would run before the Parcel build.
- *
- * For now, to add a scene:
+ * To add a scene:
  * 1. Add an import line for it.
  * 2. Add an entry to the scenes array for it.
- *
- * Good advice on Pixel Art:
- * https://weareludicrous.com/blog/2018/baby-steps-in-pixel-art/
- *
- * The Zoom level is the size of the map on screen.
- * Anything beyond that
- * will scroll about to follow the user.
- * Typically this wil be a 20 x 11 32 pixel map with a 16:9 aspect ratio.
- * Although for the old school maps it can be 16 x 11 16 pixel maps for 4:3.
  */
 import gameLoopAndSceneFactory from './gameLoopAndSceneFactory.js';
 

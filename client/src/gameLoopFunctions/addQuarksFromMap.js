@@ -56,7 +56,7 @@ function addQuarksFromMap(map, sceneName) {
           scn: sceneName,
           dod: objectProperties.dod,
           pod: objectProperties.pod,
-          tcw: true, // TODO: Does this EVER need to be set false from the map?
+          tcw: true,
           hlt: 100,
           mxh: 100,
           dps: 1,

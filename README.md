@@ -425,7 +425,7 @@ I will keep track of the Image sources here for attribution.
 - [Kenney Assets](https://kenney.nl/assets)  
 I always start with Kenney's Assets when looking for inspiration!    
 License [Public Domain CC0](https://creativecommons.org/publicdomain/zero/1.0/)  
-File Names: `roguelikeSheet_transparent.png`, `redTankSingle.png`  
+File Names: `roguelikeSheet_transparent.png`, `redTankSingle.png`, `table1.png`, `chair2.png`  
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
 Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
@@ -439,7 +439,7 @@ File Name: `tileset_town-32x32.png`
 Author: [Harry Tzioukas](https://opengameart.org/users/harrytzioukas)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
 File Name: `written_paper_no_background.png`  
-Note: Converted from static image to sprite sheet by me.  
+Note: Converted from static image to sprite sheet by ChrisL8.  
 - Unsure  
 I'm not sure where these images came from. I didn't make them, but I lost track of the sources. If I find the source, I will add it here.  
 File Names: `Dungeon_Tileset.png`, `bones.png`
@@ -456,10 +456,13 @@ My assets and the map are not an exact copy, but they are derived from and heavi
 
 [NES Zelda Map Data](https://github.com/asweigart/nes_zelda_map_data)
 
-Another copy of the Hyrule map can be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
+Another copy of the Hyrule map can also be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
 
 ### Good Tutorials for learning Phaser
 - [Modular Game Worlds in Phaser 3](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)
 - [How to Make a Mario-style Platformer with Phaser 3](https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3/)
 - [Create A Basic Multiplayer Game In Phaser 3 With Socket.io](https://gamedevacademy.org/create-a-basic-multiplayer-game-in-phaser-3-with-socket-io-part-2/)
 
+### Good advice on Pixel Art:
+- [Baby Steps in Pixel Art](https://weareludicrous.com/blog/2018/baby-steps-in-pixel-art/)
+- [Thoughts on Very Low Resolution](https://kano.me/blog/my-thoughts-on-very-low-resolution/)

@@ -369,9 +369,6 @@ const startGameNow = () => {
     localStorage.getItem('helpTextVersion'),
   );
 
-  // TODO: Because this actual page/html file is different from the main game page, there is no real reason to whisk them away if they have a token.
-  //       Presumably they got here because they wanted to be here. Although I supposed they could have bookmarked it?
-  //       Disabling the auto-forward feature would also simplify code around saving the "I wanted to be here" status in local storage when returning here.
   if (
     !token ||
     !existingHelpTextVersion ||

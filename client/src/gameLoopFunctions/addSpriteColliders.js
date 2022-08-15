@@ -53,7 +53,7 @@ function addSpriteColliders(
         );
       });
 
-      // For Items in Library, add a collider with player
+      // For Items, add a collider with player
       if (hadron.flv === 'Item') {
         this.physics.add.collider(
           clientSprites.get(key).sprite,

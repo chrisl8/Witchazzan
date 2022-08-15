@@ -21,7 +21,7 @@ function itemBehavior(delta, sceneName) {
       let hadronUpdated = false;
       const newHadronData = { ...hadron };
       // TODO: Some items should be one per person (you can only have one), but you can still see them.
-      // TODO: New fucntion to spawn item when all enemies in the room are dead, and then not again until they respawn.
+      // TODO: Add function to spawn item when all enemies in the room are dead, and then not again until they respawn.
 
       // The "last ID" .lid is the last ID that was spawned for this item
       // If there is no.lid, then no hadron has ever been created, and one should be now.

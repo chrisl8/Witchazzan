@@ -276,10 +276,6 @@ const gameLoopAndSceneFactory = ({
     }
 
     // TODO: Library scenes
-    //       - All player's Items should be there.
-    //       - Save x/y coordinate for each Item, if it doesn't have one, just dump it/them on the screen to be "scattered"
-    //       - Should be able to "grab" an Item and move it around.
-    //       - Need method to get an item and "drop" it back in the scene
     //       - Need option for deleting deletable Items (trash can)
     //       - Should have slots for spells
     //       - Should have "equip-able" slot(s)
