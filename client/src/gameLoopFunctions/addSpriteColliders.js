@@ -90,7 +90,7 @@ function addSpriteColliders(
             clientSprites.get(key).sprite.setDamping(true);
             // A lower number slows it down faster when using "damping"
             clientSprites.get(key).sprite.setDrag(0.25);
-            // TODO: Set bounce too?!
+            clientSprites.get(key).sprite.setBounce(0.25);
           } else {
             // eslint-disable-next-line no-param-reassign
             otherSprite.colliders[key] = this.physics.add.overlap(
