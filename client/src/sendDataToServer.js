@@ -119,7 +119,6 @@ sendDataToServer.grabHadron = (id) => {
 };
 
 sendDataToServer.damageHadron = (data) => {
-  console.log('damageHadron');
   communicationsObject.socket.emit('damageHadron', data);
 };
 
