@@ -8,6 +8,7 @@ import validateHadron from '../../shared/validateHadron.mjs';
 import textObject from './objects/textObject.js';
 import clientSprites from './objects/clientSprites.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
+import debugLog from './utilities/debugLog.js';
 
 const sendDataToServer = {};
 const sentData = new Map();
@@ -140,7 +141,7 @@ sendDataToServer.token = () => {
 sendDataToServer.command = (command) => {
   if (communicationsObject.socket.connected) {
     communicationsObject.socket.emit('command', { command });
-    console.log(`Sent ${command} command to server.`);
+    debugLog(`Sent ${command} command to server.`);
   }
 };
 

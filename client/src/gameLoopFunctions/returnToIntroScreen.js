@@ -2,7 +2,6 @@
 /* globals window:true */
 
 async function returnToIntroScreen() {
-  console.log('Display intro screen.');
   let existingHelpTextVersion = Number(localStorage.getItem('helpTextVersion'));
   existingHelpTextVersion--;
   localStorage.setItem('helpTextVersion', existingHelpTextVersion.toString());

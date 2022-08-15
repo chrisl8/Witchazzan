@@ -3,6 +3,7 @@ import playerObject from './objects/playerObject.js';
 import clientSprites from './objects/clientSprites.js';
 import sendDataToServer from './sendDataToServer.js';
 import closeChatInputBox from './closeChatInputBox.js';
+import debugLog from './utilities/debugLog.js';
 
 if (!Array.isArray(JSON.parse(localStorage.getItem('commandHistory')))) {
   localStorage.setItem('commandHistory', JSON.stringify([]));
@@ -102,7 +103,7 @@ function processCommandInput(event) {
     }
   } else if (!(event.key.length === 1 && !/[^ -~]+/.test(event.key))) {
     // Log non-ASCII characters input while chat window is open for debugging
-    console.log(event.key); // TODO: Remove this for production.
+    debugLog(event.key);
   }
 }
 

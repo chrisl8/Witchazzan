@@ -3,6 +3,7 @@ import closeChatInputBox from '../closeChatInputBox.js';
 import cleanUpScene from './cleanUpScene.js';
 import deletedHadronList from '../objects/deletedHadronList.js';
 import currentSceneQuarks from '../objects/currentSceneQuarks.js';
+import debugLog from '../utilities/debugLog.js';
 
 function cleanUpSceneAndTeleport(
   destinationSceneName,
@@ -25,18 +26,18 @@ function cleanUpSceneAndTeleport(
     playerObject.destinationEntrance = destinationSceneEntrance;
     if (playerObject.destinationEntrance) {
       if (destinationSceneEntrance === 'PreviousPosition') {
-        console.log(
+        debugLog(
           `Switching to scene: ${destinationSceneName} position ${playerObject.previousScene.x},${playerObject.previousScene.y}.`,
         );
         playerObject.destinationX = playerObject.previousScene.x;
         playerObject.destinationY = playerObject.previousScene.y;
       } else {
-        console.log(
+        debugLog(
           `Switching to scene: ${destinationSceneName} entrance ${playerObject.destinationEntrance}.`,
         );
       }
     } else {
-      console.log(
+      debugLog(
         `Switching to scene: ${destinationSceneName} at default spawn point.`,
       );
     }

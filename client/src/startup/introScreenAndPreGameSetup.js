@@ -113,10 +113,10 @@ async function checkLoggedInStatus() {
       } else {
         loggedIn = false;
         console.error('Unexpected response from server.');
-        console.log(res);
-        console.log(res.status);
-        console.log(await res.text());
-        console.log(await res.json());
+        console.error(res);
+        console.error(res.status);
+        console.error(await res.text());
+        console.error(await res.json());
       }
     } catch (error) {
       loggedIn = false;
@@ -161,10 +161,10 @@ async function login() {
       loggedIn = false;
       loginFailure = true;
       console.error('Unexpected response from server.');
-      console.log(res);
-      console.log(res.status);
-      console.log(await res.text());
-      console.log(await res.json());
+      console.error(res);
+      console.error(res.status);
+      console.error(await res.text());
+      console.error(await res.json());
     }
   } catch (error) {
     loggedIn = false;

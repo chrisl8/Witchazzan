@@ -3,6 +3,7 @@ import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
 import spells from '../objects/spells.js';
 import textObject from '../objects/textObject.js';
+import debugLog from '../utilities/debugLog.js';
 
 let message;
 const displayMessage = () => {
@@ -207,7 +208,7 @@ function spriteCollisionHandler({
     } else {
       // You should never get here unless you are testing out new things.
       // NOTE: IF in doubt, copy this to BEFORE the if/else chain to see what is happening.
-      console.log(
+      debugLog(
         spriteKey,
         sprite,
         obstacleLayerName,

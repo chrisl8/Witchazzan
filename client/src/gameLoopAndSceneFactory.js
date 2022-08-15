@@ -30,6 +30,7 @@ import handleKeyboardInput from './handleKeyboardInput.js';
 import getSpriteData from './utilities/getSpriteData.js';
 import convertTileMapPropertyArrayToObject from './utilities/convertTileMapPropertyArrayToObject.js';
 import objectDepthSettings from './objects/objectDepthSettings.js';
+import debugLog from './utilities/debugLog.js';
 
 // Game Loop Functions
 import cleanUpScene from './gameLoopFunctions/cleanUpScene.js';
@@ -135,7 +136,7 @@ const gameLoopAndSceneFactory = ({
     }
 
     sendDataToServer.enterScene(sceneName);
-    console.log(`Entering scene ${sceneName}`);
+    debugLog(`Entering scene ${sceneName}`);
 
     // Display Tile Map's welcome message
     if (
@@ -326,7 +327,7 @@ const gameLoopAndSceneFactory = ({
         };
       } else {
         // Presumably this is a new user.
-        console.log(
+        debugLog(
           'Using scene spawn point, as initial position from server was 0,0.',
         );
       }
