@@ -68,6 +68,10 @@ function itemBehavior(delta, sceneName) {
               // Ask server to create new item hadron with this ID.
               sendDataToServer.createHadron(newHadron);
             }
+          } else if (hadron.tmo) {
+            // Always reset the timeout if it exists when a hadron exists.
+            hadronUpdated = true;
+            delete newHadronData.tmo;
           }
           break;
         default:
