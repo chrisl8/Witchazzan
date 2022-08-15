@@ -63,6 +63,10 @@ function addQuarksFromMap(map, sceneName) {
           ris: objectProperties.respawnInSeconds,
           ani: 'stationary',
         };
+        if (objectProperties.Flavor === 'NPC') {
+          newHadron.stx = object.x;
+          newHadron.sty = object.y;
+        }
         if (objectProperties.hasOwnProperty('initialSpriteDirection')) {
           newHadron.dir = objectProperties.initialSpriteDirection;
         }

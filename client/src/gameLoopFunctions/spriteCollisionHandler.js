@@ -62,12 +62,17 @@ function spriteCollisionHandler({
       // for now de-spawning silently if we hit a "teleport layer"
       // as only Players teleport,
       // but this is intended to be expanded in the future.
-      sendDataToServer.destroyHadron(spriteKey);
+      if (hadrons.get(spriteKey)?.flv !== 'NPC') {
+        sendDataToServer.destroyHadron(spriteKey);
+      }
     } else if (obstacleLayer) {
       // Obstacle Layers interactions.
       // for now de-spawning silently if we hit any Obstacle Layer
-      if (hadrons.get(spriteKey)?.flv !== 'Item') {
-        // Items do not despawn when hitting walls.
+      if (
+        hadrons.get(spriteKey)?.flv !== 'Item' &&
+        hadrons.get(spriteKey)?.flv !== 'NPC'
+      ) {
+        // Except items and NPCs do not de-spawn when hitting walls.
         sendDataToServer.destroyHadron(spriteKey);
       }
     } else if (obstacleSprite) {

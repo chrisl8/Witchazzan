@@ -18,14 +18,16 @@ function npcBehavior(delta, sceneName) {
       // by checking the hadron.sub field in your if/else statements below.
       // Feel free to exclude a given hadron.sub from these more generic checks at the top.
 
+      let hadronUpdated = false;
       const newHadronData = { ...hadron };
 
       let rayCastFoundTarget = false;
 
       if (hadron.hlt <= 0 && !hadron.off) {
         // Turn the NPC "off" if the health falls to 0 or below.
-        hadrons.get(key).off = true;
-        hadrons.get(key).tmo = Math.floor(Date.now() / 1000);
+        hadronUpdated = true;
+        newHadronData.off = true;
+        newHadronData.tmo = Math.floor(Date.now() / 1000);
         // TODO: A massive explosion would be appreciated.
       } else if (
         hadron.off &&
@@ -33,9 +35,18 @@ function npcBehavior(delta, sceneName) {
         hadron.ris &&
         Math.floor(Date.now() / 1000) - hadron.tmo > hadron.ris
       ) {
+        hadronUpdated = true;
+
         // Resurrect the hadron on a timer if it exists.
-        hadrons.get(key).hlt = hadrons.get(key).mxh;
-        hadrons.get(key).off = false;
+        newHadronData.hlt = newHadronData.mxh;
+        newHadronData.off = false;
+        // Always respawn at your "home" location
+        if (hadron.stx) {
+          newHadronData.x = hadron.stx;
+        }
+        if (hadron.sty) {
+          newHadronData.y = hadron.sty;
+        }
       } else if (!hadron.off) {
         // If the hadron is active, then...
 
@@ -108,10 +119,15 @@ function npcBehavior(delta, sceneName) {
                 difference = difference < -180 ? difference + 360 : difference;
 
                 const t = 0.05;
-                newHadronData.dir = hadron.dir + t * difference;
+
+                let newHadronDir = hadron.dir + t * difference;
                 // Let Achilles go ahead and catch the Tortoise
                 if (Math.abs(difference) < 1) {
-                  newHadronData.dir = newAngleDeg;
+                  newHadronDir = newAngleDeg;
+                }
+                if (newHadronData.dir !== newHadronDir) {
+                  hadronUpdated = true;
+                  newHadronData.dir = newHadronDir;
                 }
               }
             }
@@ -144,15 +160,22 @@ function npcBehavior(delta, sceneName) {
             }
             spellCastTimer = 0;
           }
-          newHadronData.ani = 'stationary';
+          let newAni = 'stationary';
           if (rayCastFoundTarget) {
-            newHadronData.ani = 'casting';
+            newAni = 'casting';
+          }
+          if (newHadronData.ani !== newAni) {
+            newHadronData.ani = newAni;
+            hadronUpdated = true;
           }
         }
         if (clientSprites.has(key)) {
           // There is a moment before the client sprite exists.
           clientSprites.get(key).spellCastTimer = spellCastTimer;
         }
+      }
+
+      if (hadronUpdated === true) {
         hadrons.set(key, newHadronData);
       }
     }

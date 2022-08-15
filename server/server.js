@@ -1007,7 +1007,7 @@ io.on("connection", (socket) => {
 
             // "Persist On Disconnect (pod)
             // Unless in the library, don't persist anyone's hadrons there
-            if (hadron.pod && !hadron.scn === "Library") {
+            if (hadron.pod && hadron.scn !== "Library") {
               archiveHadron = false;
               deleteHadron = false;
             }
