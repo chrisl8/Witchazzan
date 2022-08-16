@@ -55,7 +55,8 @@ function processCommandInput(event) {
         const text = inputTextSpaceDelimitedArray.join(' ');
         sendDataToServer.chat({ text, targetPlayerId });
       } else if (
-        inputTextSpaceDelimitedArray[0].toLowerCase() === 'teleporttoscene'
+        inputTextSpaceDelimitedArray[0].toLowerCase() === 'teleporttoscene' ||
+        inputTextSpaceDelimitedArray[0].toLowerCase() === 'tp'
       ) {
         playerObject.teleportToSceneNow = inputTextSpaceDelimitedArray[1];
         addEntryToCommandHistory(command);

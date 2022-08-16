@@ -28,7 +28,7 @@ const hadronBroadcastThrottleTime = 50;
 
 const commandListArray = [
   {
-    name: "teleportToScene <scene name>",
+    name: "tp [scene name]",
     description: "Teleport to a scene.",
     adminOnly: true,
   },
