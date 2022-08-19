@@ -21,6 +21,8 @@ import Fountain from '../assets/spriteSheets/Fountain.png';
 import PurpleRunningRunes from '../assets/spriteSheets/purpleRunningRunes.png';
 import ChairTwo from '../assets/spriteSheets/chair2.png';
 import TableOne from '../assets/spriteSheets/table1.png';
+import WickedSnailOne from '../assets/spriteSheets/WickedSnail1.png';
+import Whirl from '../assets/spriteSheets/Whirl.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -105,6 +107,39 @@ const spriteSheetList = [
     },
     displayWidth: 16,
     displayHeight: 10,
+  },
+  {
+    type: 'other',
+    name: 'WickedSnailOne',
+    file: WickedSnailOne,
+    faces: 'right',
+    frameWidth: 32,
+    frameHeight: 32,
+    physicsSize: {
+      x: 32,
+      y: 32,
+    },
+    displayWidth: 32,
+    displayHeight: 32,
+  },
+  {
+    type: 'other',
+    name: 'Whirl',
+    file: Whirl,
+    faces: 'right',
+    frameWidth: 45,
+    frameHeight: 45,
+    physicsSize: {
+      x: 45,
+      y: 45,
+    },
+    displayWidth: 45,
+    displayHeight: 45,
+    endFrame: -1,
+    animationFrameRate: 10,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
   },
   {
     type: 'other',
