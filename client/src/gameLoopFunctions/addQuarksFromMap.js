@@ -41,6 +41,11 @@ function addQuarksFromMap(map, sceneName) {
       ) {
         newThing.anims.play(`${spriteData.name}-move-stationary`, true);
       }
+
+      // Flip
+      if (objectProperties.flipX) {
+        newThing.setFlipX(true);
+      }
     } else if (objectProperties.Type === 'Quark') {
       // "Quarks" are objects in the tilemap that generate hadrons.
       if (objectProperties.id && !currentSceneQuarks.has(objectProperties.id)) {
