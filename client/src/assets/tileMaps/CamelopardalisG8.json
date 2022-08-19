@@ -555,6 +555,12 @@
  "nextlayerid":11,
  "nextobjectid":37,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"EntranceMessage",
+         "type":"string",
+         "value":"That tank is no joke!"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
  "tileheight":16,

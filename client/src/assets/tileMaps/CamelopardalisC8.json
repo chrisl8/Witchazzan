@@ -447,6 +447,12 @@
  "nextlayerid":11,
  "nextobjectid":34,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"EntranceMessage",
+         "type":"string",
+         "value":"Our journey divides"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
  "tileheight":16,

@@ -381,6 +381,12 @@
  "nextlayerid":8,
  "nextobjectid":13,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"EntranceMessage",
+         "type":"string",
+         "value":"Can I interest you in some luggage?"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
  "tileheight":16,

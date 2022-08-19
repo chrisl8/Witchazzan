@@ -447,6 +447,12 @@
  "nextlayerid":13,
  "nextobjectid":37,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"EntranceMessage",
+         "type":"string",
+         "value":"I don't even want to know what happend here."
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
  "tileheight":16,

@@ -564,6 +564,12 @@
  "nextlayerid":11,
  "nextobjectid":40,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"EntranceMessage",
+         "type":"string",
+         "value":"Have you seen Star Wars nine times?"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
  "tileheight":16,
