@@ -46,7 +46,7 @@ const optionalKeys = [
   "mxh", // Max Health - Health when Player or NPC is fully healed.
   "dps", // "Damage Per Shot (dps)" (Float) - For an NPC or anything that fires spells, this will be multiplied against the spell's default damage level. Use this to make a given NPC's shots more or less powerful relative to players and other NPCs.
   "stx", // Starting X location, to return to when respawning.
-  "sty", // Starting Y location, to return to when respawdning.
+  "sty", // Starting Y location, to return to when respawning.
   // What to do when an owner disconnects or changes scenes:
   "dod", // "Destroy On Disconnect (dod)" (Bool) - Destroy this hadron if the owner disconnects.
   "tcw", // "Transfer Control When Leaving Scene (tcw)" (Bool) - Set to true if you want the sprite to be transferred to a new controller when the current controller leaves the scene. Otherwise the sprite is archived until the owner returns.
@@ -67,6 +67,8 @@ const optionalKeys = [
   "hld", // Held BY ID. This is the ID of the player that is currently holding this item.
   "fnc", // itemBehavior function that is called on this hadron each update
   "lid", // Last spawned unique ID. This is used to tell if a new instance should be spawned.
+  "iin", // Important Item Name. Important items have special properties and are tracked.
+  "dap", // Did Already Spawn. Used to track if an item already spawned after an event, so we don't do it twice before the event resets after someone takes the item.
 ];
 
 const allKeys = alwaysRequiredKeys.concat(

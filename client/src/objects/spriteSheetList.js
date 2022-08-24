@@ -9,13 +9,19 @@ import BlackWater from '../assets/spriteSheets/BlackWater.png';
 import BlueWater from '../assets/spriteSheets/BlueWater.png';
 import BlueWaterFlowingDown from '../assets/spriteSheets/BlueWaterFlowingDown.png';
 import BlueWaterNorthShore from '../assets/spriteSheets/BlueWaterNorthShore.png';
+import BlueWaterSouthShore from '../assets/spriteSheets/BlueWaterSouthShore.png';
 import BlueWaterNorthWestShore from '../assets/spriteSheets/BlueWaterNorthWestShore.png';
+import BlueWaterNorthEastShore from '../assets/spriteSheets/BlueWaterNorthEastShore.png';
+import BlueWaterSouthWestShore from '../assets/spriteSheets/BlueWaterSouthWestShore.png';
+import BlueWaterSouthEastShore from '../assets/spriteSheets/BlueWaterSouthEastShore.png';
 import BlueWaterWestShore from '../assets/spriteSheets/BlueWaterWestShore.png';
+import BlueWaterEastShore from '../assets/spriteSheets/BlueWaterEastShore.png';
 import MountainWallSparkleOne from '../assets/spriteSheets/MountainWallSparkleOne.png';
 import MountainWallSparkleTwo from '../assets/spriteSheets/MountainWallSparkleTwo.png';
 import GroundSparkleOne from '../assets/spriteSheets/GroundSparkleOne.png';
 import writtenPaper from '../assets/spriteSheets/written_paper_no_background.png';
 import redTankSingle from '../assets/spriteSheets/redTankSingle.png';
+import yellowTankSingle from '../assets/spriteSheets/yellowTankSingle.png';
 import SkullWink from '../assets/spriteSheets/SkullWink.png';
 import Fountain from '../assets/spriteSheets/Fountain.png';
 import PurpleRunningRunes from '../assets/spriteSheets/purpleRunningRunes.png';
@@ -23,6 +29,10 @@ import ChairTwo from '../assets/spriteSheets/chair2.png';
 import TableOne from '../assets/spriteSheets/table1.png';
 import WickedSnailOne from '../assets/spriteSheets/WickedSnail1.png';
 import Whirl from '../assets/spriteSheets/Whirl.png';
+import YellowKey from '../assets/spriteSheets/YellowKey.png';
+import RedKey from '../assets/spriteSheets/RedKey.png';
+import BarricadeYellowKey from '../assets/spriteSheets/Barricade-YellowKey.png';
+import BarricadeRedKey from '../assets/spriteSheets/Barricade-RedKey.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -121,6 +131,34 @@ const spriteSheetList = [
     },
     displayWidth: 32,
     displayHeight: 32,
+  },
+  {
+    type: 'other',
+    name: 'YellowKey',
+    file: YellowKey,
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'RedKey',
+    file: RedKey,
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
   },
   {
     type: 'other',
@@ -288,6 +326,34 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'Barricade-RedKey',
+    file: BarricadeRedKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-YellowKey',
+    file: BarricadeYellowKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
     name: 'PurpleRunningRunes',
     file: PurpleRunningRunes,
     frameWidth: 16,
@@ -305,6 +371,26 @@ const spriteSheetList = [
     type: 'other',
     name: 'redTankSingle',
     file: redTankSingle,
+    frameWidth: 46,
+    frameHeight: 38,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 0,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 0, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 24,
+      y: 24,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true,
+  },
+  {
+    type: 'other',
+    name: 'yellowTankSingle',
+    file: yellowTankSingle,
     frameWidth: 46,
     frameHeight: 38,
     endFrame: -1,
@@ -413,6 +499,21 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'BlueWaterSouthShore',
+    file: BlueWaterSouthShore,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
     name: 'BlueWaterNorthWestShore',
     file: BlueWaterNorthWestShore,
     frameWidth: 16,
@@ -428,8 +529,68 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'BlueWaterNorthEastShore',
+    file: BlueWaterNorthEastShore,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterSouthWestShore',
+    file: BlueWaterSouthWestShore,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterSouthEastShore',
+    file: BlueWaterSouthEastShore,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
     name: 'BlueWaterWestShore',
     file: BlueWaterWestShore,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterEastShore',
+    file: BlueWaterEastShore,
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,

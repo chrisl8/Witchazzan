@@ -98,7 +98,7 @@ function npcBehavior(delta, sceneName) {
                 hadrons.get(id)?.flv !== 'NPC' // Don't shoot each other
               ) {
                 // We found a target
-                rayCastFoundTarget = true; // TODO: Uncomment
+                rayCastFoundTarget = true;
 
                 // Rotate toward it
                 // TODO: Only rotate if the NPC has this feature.

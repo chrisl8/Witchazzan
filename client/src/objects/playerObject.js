@@ -127,6 +127,9 @@ const playerObject = {
   interactNow: false,
   rotateNow: false,
   heldItemList: [],
+  importantItems: [],
+  importantItemsUpdated: false,
+  testNow: null,
 };
 
 export default playerObject;

@@ -97,13 +97,17 @@ function receiveDataFromServer() {
       );
       window.location.reload();
     }
-
     playerObject.playerId = inputData.id;
     // console.log('Player ID:', playerObject.playerId); // For debugging
     playerObject.name = inputData.name;
     playerObject.isAdmin = inputData.admin;
     playerObject.defaultOpeningScene = inputData.defaultOpeningScene;
     localStorage.setItem('playerName', playerObject.name);
+  });
+
+  communicationsObject.socket.on('importantItems', (inputData) => {
+    playerObject.importantItems = inputData;
+    playerObject.importantItemsUpdated = true;
   });
 
   // Handle graceful server shutdown by restarting before it goes away.

@@ -59,7 +59,7 @@ function handleKeyboardInput(event) {
         if (spellAssignments.has(spellKey)) {
           playerObject.activeSpell = spellAssignments.get(spellKey);
         } else {
-          // Catch keys that are outside of currently assigned list.
+          // Catch keys that are outside currently assigned list.
           playerObject.activeSpell = spellAssignments.get(
             playerObject.spellKeys[0],
           );

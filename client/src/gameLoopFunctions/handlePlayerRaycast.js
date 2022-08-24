@@ -1,6 +1,7 @@
 import playerObject from '../objects/playerObject.js';
 import hadrons from '../objects/hadrons.js';
 import objectDepthSettings from '../objects/objectDepthSettings.js';
+import { displayMessage, setMessage } from '../utilities/displayMessage.js';
 
 function handlePlayerRaycast() {
   // Currently a player raycast is ONLY used in the library.
@@ -46,18 +47,35 @@ function handlePlayerRaycast() {
           // We found a target
           rayCastFoundTarget = true;
           if (!playerObject.nearbyTargetObject.rectangle) {
-            // TODO: Handle situation of an item you can target, but you cannot take. i.e. A "you can only have one" instance. Maybe use a different color and shape?
             // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/shape-rectangle/#create-shape-object
             playerObject.nearbyTargetObject.rectangle = this.add
               .rectangle(0, 0, 15, 15, 0x000000, 0)
               .setDepth(objectDepthSettings.targetObjectHighlight)
               .setStrokeStyle(1, 0x00ff00, 1);
+
+            if (
+              hadrons.get(id)?.scn !== 'Library' &&
+              hadrons.get(id)?.iin &&
+              (playerObject.importantItems.indexOf(hadrons.get(id)?.iin) > -1 ||
+                playerObject.heldItemList
+                  .map((heldItem) => hadrons.get(heldItem)?.iin)
+                  .indexOf(hadrons.get(id)?.iin) > -1)
+            ) {
+              playerObject.nearbyTargetObject.rectangle.setStrokeStyle(
+                1,
+                0xff0000,
+                1,
+              );
+              setMessage('You already have one of these. Nobody can have two.');
+              displayMessage();
+            } else {
+              playerObject.nearbyTargetObject.id = id;
+            }
           }
           playerObject.nearbyTargetObject.rectangle.setPosition(
             hadrons.get(id)?.x,
             hadrons.get(id)?.y,
           );
-          playerObject.nearbyTargetObject.id = id;
         }
       }
     });
@@ -67,8 +85,6 @@ function handlePlayerRaycast() {
       playerObject.nearbyTargetObject.id = null;
     }
   }
-
-  // Highlight targeted objects
 }
 
 export default handlePlayerRaycast;

@@ -52,6 +52,7 @@ import addQuarksFromMap from './gameLoopFunctions/addQuarksFromMap.js';
 import handlePlayerRaycast from './gameLoopFunctions/handlePlayerRaycast.js';
 import handlePlayerInteraction from './gameLoopFunctions/handlePlayerInteraction.js';
 import itemBehavior from './gameLoopFunctions/itemBehavior.js';
+import barricades from './gameLoopFunctions/barricades.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -63,7 +64,7 @@ const gameLoopAndSceneFactory = ({
   sceneName, // Every scene needs a name
   tileMap, // The tileMap is the layout of the tiles as set in Tiled.
   tileSet, // An object containing the actual image and the name to reference it by
-  gameSize, // In theory we could make a map that is bigger than the screen, although that would need testing.
+  gameSize, // In theory, we could make a map that is bigger than the screen, although that would need testing.
   htmlElementParameters = {},
   animatedTileOverlayStrategy,
 }) => {
@@ -422,6 +423,8 @@ const gameLoopAndSceneFactory = ({
       gameSize.height,
     );
 
+    barricades.call(this, map, gameSize);
+
     // Essentially announce that the scene is ready.
     playerObject.teleportInProgress = false;
   };
@@ -434,6 +437,16 @@ const gameLoopAndSceneFactory = ({
     // ALREADY TELEPORTING? - Do not do ANYTHING while a player is potentially leaving this scene.
     if (playerObject.teleportInProgress) {
       return;
+    }
+
+    if (playerObject.testNow) {
+      playerObject.testNow = false;
+      // Used for testing stuff.
+    }
+
+    if (playerObject.importantItemsUpdated) {
+      playerObject.importantItemsUpdated = false;
+      barricades.call(this, map, gameSize);
     }
 
     // Used for placing DOM elements in the correct location relevant to the game elements.
@@ -473,10 +486,6 @@ const gameLoopAndSceneFactory = ({
       );
       return;
     }
-
-    // TODO: Delete this line once we are sure it is not needed.
-    //       It was used to set a variable ages ago, but then the variable was removed, so it seems to do nothing.
-    // playerObject.player.body.velocity.clone();
 
     // Handles all keyboard input other than player movement.
     collectKeyboardInput.call(this, sceneName);

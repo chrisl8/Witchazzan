@@ -48,7 +48,7 @@
                          "value":"Right"
                         }],
                  "type":"tilelayer",
-                 "visible":false,
+                 "visible":true,
                  "width":44,
                  "x":0,
                  "y":0
@@ -96,7 +96,7 @@
                          "value":"Left"
                         }],
                  "type":"tilelayer",
-                 "visible":false,
+                 "visible":true,
                  "width":44,
                  "x":0,
                  "y":0
@@ -144,7 +144,7 @@
                          "value":"Lower"
                         }],
                  "type":"tilelayer",
-                 "visible":false,
+                 "visible":true,
                  "width":44,
                  "x":0,
                  "y":0
@@ -192,7 +192,7 @@
                          "value":"Upper"
                         }],
                  "type":"tilelayer",
-                 "visible":false,
+                 "visible":true,
                  "width":44,
                  "x":0,
                  "y":0
@@ -284,7 +284,7 @@
          "name":"Ground",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":44,
          "x":0,
          "y":0
@@ -321,7 +321,7 @@
          "name":"Stuff on the Ground You Can Walk On",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":44,
          "x":0,
          "y":0

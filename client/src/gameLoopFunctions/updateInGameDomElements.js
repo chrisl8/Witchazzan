@@ -38,11 +38,11 @@ const updateInGameDomElements = (htmlElementParameters) => {
 
   // Update element styles and insert text if needed.
 
-  // Set HTML element options based on the new canvas properties
-  // TODO: Oddly this is using the browser window size, NOT the canvas,
-  //       Is that on purpose?
-  const canvasWidth = window.innerWidth;
-  const canvasHeight = window.innerHeight;
+  // Set HTML element options based on the window properties
+  // NOTE: This is based on the Window, not the Canvas so that text can take advantage of the entire browser window,
+  // even if the canvas is smaller.
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
 
   ['Center', 'UpperLeft', 'Scrolling', 'Fading'].forEach((textLocation) => {
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
@@ -58,7 +58,7 @@ const updateInGameDomElements = (htmlElementParameters) => {
         htmlElementParameters[textLocation].color || 'red';
       newValueObject.style.fontSize = htmlElementParameters[textLocation]
         .fontSize
-        ? `${canvasHeight * htmlElementParameters[textLocation].fontSize}px`
+        ? `${windowHeight * htmlElementParameters[textLocation].fontSize}px`
         : '1em';
       newValueObject.style.background = htmlElementParameters[textLocation]
         .background
@@ -73,10 +73,10 @@ const updateInGameDomElements = (htmlElementParameters) => {
     // Location for Center Text
     if (textLocation === 'Center') {
       newValueObject.style.left = `${
-        canvasWidth / 2 - playerObject.domElements[textLocation].offsetWidth / 2
+        windowWidth / 2 - playerObject.domElements[textLocation].offsetWidth / 2
       }px`;
       newValueObject.style.top = `${
-        canvasHeight / 2 -
+        windowHeight / 2 -
         playerObject.domElements[textLocation].offsetHeight / 2
       }px`;
     }
@@ -84,10 +84,10 @@ const updateInGameDomElements = (htmlElementParameters) => {
     // Location for Fading Text
     if (textLocation === 'Fading') {
       newValueObject.style.left = `${
-        canvasWidth / 2 - playerObject.domElements[textLocation].offsetWidth / 2
+        windowWidth / 2 - playerObject.domElements[textLocation].offsetWidth / 2
       }px`;
       newValueObject.style.top = `${
-        canvasHeight * 0.8 -
+        windowHeight * 0.8 -
         playerObject.domElements[textLocation].offsetHeight / 2
       }px`;
     }

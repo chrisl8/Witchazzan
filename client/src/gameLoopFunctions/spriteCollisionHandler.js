@@ -1,19 +1,8 @@
-import _ from 'lodash';
 import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
 import spells from '../objects/spells.js';
-import textObject from '../objects/textObject.js';
 import debugLog from '../utilities/debugLog.js';
-
-let message;
-const displayMessage = () => {
-  textObject.enterSceneText.text = message;
-  textObject.enterSceneText.display();
-};
-const throttleDisplayMessage = _.debounce(displayMessage, 1000, {
-  leading: true,
-  trailing: false,
-});
+import { setMessage, displayMessage } from '../utilities/displayMessage.js';
 
 /*
   REMEMBER!
@@ -89,8 +78,8 @@ function spriteCollisionHandler({
           // Messages - A message sprite that we are tracking has collided with something.
           if (hadrons.get(obstacleSpriteKey)?.typ === 'player') {
             // If it is a player, display the message on the screen.
-            message = hadrons.get(spriteKey).txt;
-            throttleDisplayMessage();
+            setMessage(hadrons.get(spriteKey).txt);
+            displayMessage();
           }
         } else if (hadrons.get(obstacleSpriteKey)?.typ === 'message') {
           // Message was hit by something that I control.

@@ -505,7 +505,7 @@
                         {
                          "name":"sprite",
                          "type":"string",
-                         "value":"redTankSingle"
+                         "value":"yellowTankSingle"
                         }, 
                         {
                          "name":"subType",
@@ -613,7 +613,7 @@
                         {
                          "name":"sprite",
                          "type":"string",
-                         "value":"redTankSingle"
+                         "value":"yellowTankSingle"
                         }, 
                         {
                          "name":"subType",
@@ -721,7 +721,7 @@
                         {
                          "name":"sprite",
                          "type":"string",
-                         "value":"redTankSingle"
+                         "value":"yellowTankSingle"
                         }, 
                         {
                          "name":"subType",
@@ -829,7 +829,7 @@
                         {
                          "name":"sprite",
                          "type":"string",
-                         "value":"redTankSingle"
+                         "value":"yellowTankSingle"
                         }, 
                         {
                          "name":"subType",
@@ -846,6 +846,64 @@
                  "width":0,
                  "x":416.749805961696,
                  "y":327.551761028718
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":38,
+                 "name":"YellowKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"allNPCsOff"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"b722e3db-918f-4b40-97ca-c73a8163d9fb"
+                        }, 
+                        {
+                         "name":"iin",
+                         "type":"string",
+                         "value":"Yellow Key"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":270
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"YellowKey"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":367.875,
+                 "y":207.625
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -854,7 +912,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":38,
+ "nextobjectid":39,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -863,7 +921,7 @@
          "value":"an intriguing cave"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.0",
+ "tiledversion":"1.9.1",
  "tileheight":16,
  "tilesets":[
         {

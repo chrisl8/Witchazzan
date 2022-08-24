@@ -317,8 +317,13 @@ const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
     110: { sprite: 'BlueWater' },
     98: { sprite: 'BlueWaterNorthShore' },
     97: { sprite: 'BlueWaterNorthWestShore' },
+    99: { sprite: 'BlueWaterNorthEastShore' },
+    121: { sprite: 'BlueWaterSouthWestShore' },
+    123: { sprite: 'BlueWaterSouthEastShore' },
     109: { sprite: 'BlueWaterWestShore' },
+    111: { sprite: 'BlueWaterEastShore' },
     134: { sprite: 'BlueWaterFlowingDown' },
+    122: { sprite: 'BlueWaterSouthShore' },
   },
 };
 
@@ -1503,44 +1508,14 @@ const scenes = [
     tileMap: backYard1,
     tileSet: tileSets.ZoriaOverworld,
     gameSize: gameSizes.backYard,
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: camelopardalisUpperLeftFontSize, // percent of scene height.
-        color: 'black',
-        background: '255,255,255,0.8', // rgba
-      },
-      Scrolling: {
-        fontSize: camelopardalisScrollingFontSize, // percent of scene height.
-        color: 'black',
-        background: '255,255,255,0.8', // rgba
-      },
-    },
+    htmlElementParameters: camelopardalisHtmlElementParameters,
   },
   {
     sceneName: 'arena1',
     tileMap: arena1,
     tileSet: tileSets.ZoriaOverworld,
     gameSize: gameSizes.arena,
-    htmlElementParameters: {
-      Center: {
-        fontSize: '.1', // percent of scene height.
-        color: 'red',
-      },
-      UpperLeft: {
-        fontSize: camelopardalisUpperLeftFontSize, // percent of scene height.
-        color: 'black',
-        background: '255,255,255,0.8', // rgba
-      },
-      Scrolling: {
-        fontSize: camelopardalisScrollingFontSize, // percent of scene height.
-        color: 'black',
-        background: '255,255,255,0.8', // rgba
-      },
-    },
+    htmlElementParameters: camelopardalisHtmlElementParameters,
   },
   {
     sceneName: 'EmptyCave',

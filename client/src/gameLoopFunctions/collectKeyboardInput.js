@@ -60,6 +60,12 @@ function collectKeyboardInput(sceneName) {
     playerObject.teleportToSceneNow = 'Library';
   }
 
+  // Testing Stuff
+  if (playerObject.keyState.b === 'keydown') {
+    playerObject.keyState.b = null;
+    playerObject.testNow = true;
+  }
+
   // Send currently active Spell with space bar,
   // or touch input set by "sendSpell" on playerObject.
   if (

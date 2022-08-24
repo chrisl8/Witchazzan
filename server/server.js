@@ -543,6 +543,43 @@ function socketEmitToAll({ socketEvent, data }) {
   io.sockets.emit(socketEvent, data);
 }
 
+function updatePlayerImportantItemList({
+  PlayerId,
+  socketId,
+  previousImportantItemList,
+}) {
+  // Generate a list of important items held in player's library, and send it to them.
+  const importantItemList = [];
+  inactiveHadrons.forEach((hadron) => {
+    if (
+      hadron.own === PlayerId &&
+      hadron.scn === "Library" &&
+      hadron.iin &&
+      importantItemList.indexOf(hadron.iin) === -1
+    ) {
+      importantItemList.push(hadron.iin);
+    }
+  });
+  hadrons.forEach((hadron) => {
+    if (
+      hadron.own === PlayerId &&
+      hadron.scn === "Library" &&
+      hadron.iin &&
+      importantItemList.indexOf(hadron.iin) === -1
+    ) {
+      importantItemList.push(hadron.iin);
+    }
+  });
+  if (!_.isEqual(importantItemList, previousImportantItemList)) {
+    socketEmitToId({
+      emitToId: socketId,
+      socketEvent: "importantItems",
+      data: importantItemList,
+    });
+  }
+  return importantItemList;
+}
+
 // Socket listeners
 io.on("connection", (socket) => {
   // User cannot do anything until we have their token and have validated it.
@@ -600,6 +637,13 @@ io.on("connection", (socket) => {
           });
         }, 1000);
       }
+
+      let importantItemList = [];
+      importantItemList = updatePlayerImportantItemList({
+        PlayerId,
+        socketId: socket.id,
+        previousImportantItemList: importantItemList,
+      });
 
       // Resurrect all inactive hadrons owned by this user.
       inactiveHadrons.forEach((hadron, key) => {
@@ -760,6 +804,14 @@ io.on("connection", (socket) => {
               hadrons.set(key, newHadronData);
             }
           });
+
+          // Update the Important Item List every time they change scenes.
+          importantItemList = updatePlayerImportantItemList({
+            PlayerId,
+            socketId: socket.id,
+            previousImportantItemList: importantItemList,
+          });
+
           // Make sure they get an update and that it includes this room's data
           flagSceneHasUpdated(sceneName);
           throttledSendHadrons();

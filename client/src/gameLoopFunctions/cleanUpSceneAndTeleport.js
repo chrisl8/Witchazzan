@@ -4,6 +4,7 @@ import cleanUpScene from './cleanUpScene.js';
 import deletedHadronList from '../objects/deletedHadronList.js';
 import currentSceneQuarks from '../objects/currentSceneQuarks.js';
 import debugLog from '../utilities/debugLog.js';
+import barricadeSprites from '../objects/barricadeSprites.js';
 
 function cleanUpSceneAndTeleport(
   destinationSceneName,
@@ -65,6 +66,9 @@ function cleanUpSceneAndTeleport(
     }
     playerObject.nearbyTargetObject.rectangle = null;
     playerObject.nearbyTargetObject.id = null;
+
+    // Clean up barricade tracking
+    barricadeSprites.clear();
 
     // Track previous location in case we want to come back to it.
     // Specifically this is used when returning from the Library, but you could use it for anything.
