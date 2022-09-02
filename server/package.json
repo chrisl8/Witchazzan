@@ -13,8 +13,8 @@
     "url": "git+https://github.com/chrisl8/Witchazzan.git"
   },
   "author": "Christen Lofland <christen@lofland.net> (https://www.ekpyroticfrood.net)",
-  "license": "MIT",
-  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+  "license": "AGPL-3.0-or-later",
+  "licenseUrl": "https://opensource.org/licenses/AGPL-3.0",
   "bugs": {
     "url": "https://github.com/chrisl8/Witchazzan/issues"
   },
@@ -22,7 +22,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-syntax-top-level-await": "^7.14.5",
-    "eslint": "^8.12.0",
+    "eslint": "8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",

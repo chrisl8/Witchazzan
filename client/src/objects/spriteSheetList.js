@@ -1,38 +1,43 @@
-import flamingGoose from '../assets/spriteSheets/flamingGoose.png';
-import laserArrow from '../assets/spriteSheets/LaserArrow2.png';
-import quasar from '../assets/spriteSheets/Quasar.png';
-import bloomby from '../assets/spriteSheets/bloomby16.png';
-import chest from '../assets/spriteSheets/chest.png';
-import bones from '../assets/spriteSheets/bones.png';
-import RainbowTileOne from '../assets/spriteSheets/RainbowTileOne.png';
-import BlackWater from '../assets/spriteSheets/BlackWater.png';
-import BlueWater from '../assets/spriteSheets/BlueWater.png';
-import BlueWaterFlowingDown from '../assets/spriteSheets/BlueWaterFlowingDown.png';
-import BlueWaterNorthShore from '../assets/spriteSheets/BlueWaterNorthShore.png';
-import BlueWaterSouthShore from '../assets/spriteSheets/BlueWaterSouthShore.png';
-import BlueWaterNorthWestShore from '../assets/spriteSheets/BlueWaterNorthWestShore.png';
-import BlueWaterNorthEastShore from '../assets/spriteSheets/BlueWaterNorthEastShore.png';
-import BlueWaterSouthWestShore from '../assets/spriteSheets/BlueWaterSouthWestShore.png';
-import BlueWaterSouthEastShore from '../assets/spriteSheets/BlueWaterSouthEastShore.png';
-import BlueWaterWestShore from '../assets/spriteSheets/BlueWaterWestShore.png';
-import BlueWaterEastShore from '../assets/spriteSheets/BlueWaterEastShore.png';
-import MountainWallSparkleOne from '../assets/spriteSheets/MountainWallSparkleOne.png';
-import MountainWallSparkleTwo from '../assets/spriteSheets/MountainWallSparkleTwo.png';
-import GroundSparkleOne from '../assets/spriteSheets/GroundSparkleOne.png';
-import writtenPaper from '../assets/spriteSheets/written_paper_no_background.png';
-import redTankSingle from '../assets/spriteSheets/redTankSingle.png';
-import yellowTankSingle from '../assets/spriteSheets/yellowTankSingle.png';
-import SkullWink from '../assets/spriteSheets/SkullWink.png';
-import Fountain from '../assets/spriteSheets/Fountain.png';
-import PurpleRunningRunes from '../assets/spriteSheets/purpleRunningRunes.png';
-import ChairTwo from '../assets/spriteSheets/chair2.png';
-import TableOne from '../assets/spriteSheets/table1.png';
-import WickedSnailOne from '../assets/spriteSheets/WickedSnail1.png';
-import Whirl from '../assets/spriteSheets/Whirl.png';
-import YellowKey from '../assets/spriteSheets/YellowKey.png';
-import RedKey from '../assets/spriteSheets/RedKey.png';
-import BarricadeYellowKey from '../assets/spriteSheets/Barricade-YellowKey.png';
-import BarricadeRedKey from '../assets/spriteSheets/Barricade-RedKey.png';
+import flamingGoose from '../../assets/spriteSheets/flamingGoose.png';
+import laserArrow from '../../assets/spriteSheets/LaserArrow2.png';
+import quasar from '../../assets/spriteSheets/Quasar.png';
+import bloomby from '../../assets/spriteSheets/bloomby16.png';
+import chest from '../../assets/spriteSheets/chest.png';
+import bones from '../../assets/spriteSheets/bones.png';
+import RainbowTileOne from '../../assets/spriteSheets/RainbowTileOne.png';
+import BlackWater from '../../assets/spriteSheets/BlackWater.png';
+import BlueWater from '../../assets/spriteSheets/BlueWater.png';
+import BlueWaterFlowingDown from '../../assets/spriteSheets/BlueWaterFlowingDown.png';
+import BlueWaterNorthShore from '../../assets/spriteSheets/BlueWaterNorthShore.png';
+import BlueWaterSouthShore from '../../assets/spriteSheets/BlueWaterSouthShore.png';
+import BlueWaterNorthWestShore from '../../assets/spriteSheets/BlueWaterNorthWestShore.png';
+import BlueWaterNorthEastShore from '../../assets/spriteSheets/BlueWaterNorthEastShore.png';
+import BlueWaterSouthWestShore from '../../assets/spriteSheets/BlueWaterSouthWestShore.png';
+import BlueWaterSouthWestShoreCorner from '../../assets/spriteSheets/BlueWaterSouthWestShoreCorner.png';
+import BlueWaterSouthEastShoreCorner from '../../assets/spriteSheets/BlueWaterSouthEastShoreCorner.png';
+import BlueWaterNorthWestShoreCorner from '../../assets/spriteSheets/BlueWaterNorthWestShoreCorner.png';
+import BlueWaterSouthEastShore from '../../assets/spriteSheets/BlueWaterSouthEastShore.png';
+import BlueWaterWestShore from '../../assets/spriteSheets/BlueWaterWestShore.png';
+import BlueWaterEastShore from '../../assets/spriteSheets/BlueWaterEastShore.png';
+import MountainWallSparkleOne from '../../assets/spriteSheets/MountainWallSparkleOne.png';
+import MountainWallSparkleTwo from '../../assets/spriteSheets/MountainWallSparkleTwo.png';
+import SilverSparkleForTree from '../../assets/spriteSheets/SilverSparkleForTree.png';
+import GroundSparkleOne from '../../assets/spriteSheets/GroundSparkleOne.png';
+import GroundSparkleTwo from '../../assets/spriteSheets/GroundSparkleTwo.png';
+import writtenPaper from '../../assets/spriteSheets/written_paper_no_background.png';
+import redTankSingle from '../../assets/spriteSheets/redTankSingle.png';
+import yellowTankSingle from '../../assets/spriteSheets/yellowTankSingle.png';
+import SkullWink from '../../assets/spriteSheets/SkullWink.png';
+import Fountain from '../../assets/spriteSheets/Fountain.png';
+import PurpleRunningRunes from '../../assets/spriteSheets/purpleRunningRunes.png';
+import ChairTwo from '../../assets/spriteSheets/chair2.png';
+import TableOne from '../../assets/spriteSheets/table1.png';
+import WickedSnailOne from '../../assets/spriteSheets/WickedSnail1.png';
+import Whirl from '../../assets/spriteSheets/Whirl.png';
+import YellowKey from '../../assets/spriteSheets/YellowKey.png';
+import RedKey from '../../assets/spriteSheets/RedKey.png';
+import BarricadeYellowKey from '../../assets/spriteSheets/Barricade-YellowKey.png';
+import BarricadeRedKey from '../../assets/spriteSheets/Barricade-RedKey.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -544,6 +549,51 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'BlueWaterSouthEastShoreCorner',
+    file: BlueWaterSouthEastShoreCorner,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterSouthWestShoreCorner',
+    file: BlueWaterSouthWestShoreCorner,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlueWaterNorthWestShoreCorner',
+    file: BlueWaterNorthWestShoreCorner,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 15, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
     name: 'BlueWaterSouthWestShore',
     file: BlueWaterSouthWestShore,
     frameWidth: 16,
@@ -648,8 +698,45 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'SilverSparkleForTree',
+    file: SilverSparkleForTree,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 8,
+    animations: [
+      {
+        keyName: 'move-stationary',
+        start: 0,
+        end: 8,
+        zeroPad: 3,
+        repeat: -1,
+        repeatDelay: 10000,
+      },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
     name: 'GroundSparkleOne',
     file: GroundSparkleOne,
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 1,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 5, zeroPad: 3, repeat: -1 },
+    ],
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'GroundSparkleTwo',
+    file: GroundSparkleTwo,
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,

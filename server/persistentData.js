@@ -2,7 +2,7 @@ import fs from "fs";
 import JSON5 from "json5";
 import prettier from "prettier";
 // eslint-disable-next-line
-import mapUtils from '../shared/mapUtils.mjs';
+import mapUtils from "../shared/mapUtils.mjs";
 
 const writeObject = (path, objectLiteral) =>
   new Promise((resolve, reject) => {
@@ -46,15 +46,12 @@ const readObject = (path) =>
 
 const writeMap = (path, map) =>
   new Promise((resolve, reject) => {
-    const formatted = prettier.format(
-      mapUtils.stringify(map),
-      {
-        parser: "json5",
-        singleQuote: true,
-        trailingComma: "es5",
-        printWidth: 80,
-      }
-    );
+    const formatted = prettier.format(mapUtils.stringify(map), {
+      parser: "json5",
+      singleQuote: true,
+      trailingComma: "es5",
+      printWidth: 80,
+    });
     fs.writeFile(path, formatted, (err, fsData) => {
       if (err) {
         reject(err);

@@ -25,7 +25,7 @@ Both parts are required for the game to function.
 ## How to Run a Local Copy for DEVELOPMENT!
 
 1. Clone the repository.
-2. Run `devUpdate.sh`
+2. Run `./scripts/devSetup.sh`
 
 That should get you going and provide some guidance if you are missing anything, along with how to run it.
 
@@ -194,7 +194,7 @@ Pull down and build the code:
 git clone https://github.com/chrisl8/Witchazzan.git
 cd Witchazzan
 # Create and set up the required version number file.
-./versionNumberUpdate.sh
+./scripts/versionNumberUpdate.sh
 cd Witchazzan/server
 npm ci
 cd Witchazzan/client
@@ -205,7 +205,7 @@ npm run build
 Add to crontab:  
 `crontab -e`  
 Add this line:  
-`@reboot /home/<userID>/Witchazzan/startpm2.sh`  
+`@reboot /home/<userID>/Witchazzan/scripts/startpm2.sh`  
 which should automatically run at startup.
 
 You will also need to set up a Web server to serve the built code, as Node.js is not fit to perform SSL and other important functions of a front end web server.
@@ -252,12 +252,12 @@ server {
 Note that this is **not** set up for SSL. I leave that exercise to better guides than this.
 
 ### Updating installed code
-Run `updateProduction.sh` or here is the manual process:
+Run `./scripts/updateProduction.sh` or here is the manual process:
 
 ```
 cd Witchazzan
 git pull
-./versionNumberUpdate.sh
+./scripts/versionNumberUpdate.sh
 cd server
 npm ci
 cd Witchazzan/client
@@ -414,18 +414,20 @@ Parcel is pretty nice, but it has quirks. Here are my notes.
      - Technically if you replace the icon images, the file names will stay the same, so you may not have to update `index.html` anyway.
  - Parcel bundling will ensure that browser caching sees that the files have changed.
 
-## Attribution
+## License
 
-Emoji are from the [Twemoji](https://twemoji.twitter.com/) project.
+Please see the LICENSE.md file in the same folder as this file.
+
+## Attribution
 
 ### Image Sources
 
-I will keep track of the Image sources here for attribution.
+I will keep track of third party image sources here for attribution.
 
 - [Kenney Assets](https://kenney.nl/assets)  
 I always start with Kenney's Assets when looking for inspiration!    
 License [Public Domain CC0](https://creativecommons.org/publicdomain/zero/1.0/)  
-File Names: `roguelikeSheet_transparent.png`, `redTankSingle.png`, `table1.png`, `chair2.png`  
+File Names: Many, as they are Public Domain CC0, I do not track each one, but instead freely mix them with my own artwork.  
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
 Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
@@ -450,7 +452,7 @@ File Names: `Dungeon_Tileset.png`, `bones.png`
 
 The main map is heavily inspired by the beloved 8-bit NES Legend of Zelda game, which I played as a child.
 
-My assets and the map are not an exact copy, but they are derived from and heavily inspired by these materials.
+These are the resources I used for inspirationa and initial testing:
 
 [Python Zelda Walking Tour program](http://inventwithpython.com/blog/2012/12/10/8-bit-nes-legend-of-zelda-map-data/)
 

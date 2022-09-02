@@ -16,7 +16,7 @@ const textObject = {
     location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
   },
   incomingChatText: {
-    text: '<span style="color: black;">Chat/Command Log</span>',
+    text: '<span style="color: black;">Chat/Command Log &#x1F600;</span>',
     shouldBeActiveNow: false,
     location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
   },

@@ -16,3 +16,5 @@ This created a way to "project" ourselves to each other, and to project tings in
 In order to recreate a semblance of our former vast society, we used our power to create a system for simulating a shared experience. In one place, we built the Small Hadron Cooperator.
 
 This system was able to receive, sort, filter, transmit, broadcast and even archive Hadrons. By all joining this system, we could once gain live our lives together, even though we always knew that in reality, we were apart.
+
+COPYRIGHT 2002 Christen Lofland

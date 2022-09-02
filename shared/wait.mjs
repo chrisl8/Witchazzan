@@ -6,6 +6,7 @@
 async function wait(milliseconds) {
   return new Promise((resolve) => {
     setTimeout(() => {
+      console.log("1");
       resolve();
     }, milliseconds);
   });

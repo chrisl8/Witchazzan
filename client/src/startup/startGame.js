@@ -17,9 +17,18 @@ import textObject from '../objects/textObject.js';
 async function waitForBrowserWindowToBeVisible() {
   // Don't start if the browser window is not visible.
 
+  let backgrounded = false;
   while (document.visibilityState === 'hidden') {
+    backgrounded = true;
     // eslint-disable-next-line no-await-in-loop
     await wait(100);
+  }
+  if (backgrounded) {
+    // Reload site in case client code has changed while we were waiting.
+    if (playerObject.enableDebug) {
+      console.log('Reloading after being backgrounded.');
+    }
+    window.location.reload();
   }
 }
 
@@ -126,11 +135,13 @@ async function waitForConnectionAndInitialPlayerPosition() {
       const warnedAboutAppMode = localStorage.getItem('warnedAboutAppMode');
       if (warnedAboutAppMode !== 'done') {
         if (window.navigator.standalone === false) {
+          // eslint-disable-next-line no-alert
           window.alert(
             'This game works better in App Mode. Tap Share, then Add to Home Screen. Then it will run Fullscreen and be easier to control.',
           );
           localStorage.setItem('warnedAboutAppMode', 'done');
         } else if (window.matchMedia('(display-mode: browser)').matches) {
+          // eslint-disable-next-line no-alert
           window.alert(
             'This game works better in App Mode. Open menu, then Add to Home screen. Then it will run Fullscreen and be easier to control.',
           );
