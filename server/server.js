@@ -219,13 +219,18 @@ try {
 
 const app = express();
 
-// TODO: Perhaps lock cors down for production, but open it up for local dev somehow?
-const options = {
-  origin: true,
-  credentials: true,
-};
-app.use(cors(options));
-app.options('*', cors()); // include before other routes
+// In production everything is same origin, so there is no need for this.
+const environment = process.env.NODE_ENV;
+// Assume production if you don't recognise the value
+const isDevelopment = environment === 'dev';
+if (isDevelopment) {
+  const options = {
+    origin: true,
+    credentials: true,
+  };
+  app.use(cors(options));
+  app.options('*', cors()); // include before other routes
+}
 
 const webserverPort = process.env.PORT || 8080;
 
@@ -242,11 +247,8 @@ app.use(express.static(`${__dirname}/../client/dist`));
 app.use(bodyParser.json());
 
 const webServer = app.listen(webserverPort);
+// NOTE: As best I can tell, CORS has no affect either way on websocket, so just not messing with it.
 const io = new Server(webServer, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST'],
-  },
   parser: msgPackParser,
 });
 
