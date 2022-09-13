@@ -433,7 +433,7 @@ File Name: `written_paper_no_background.png`
 Note: Converted from static image to sprite sheet by ChrisL8.  
 - Unsure  
 I'm not sure where these images came from. I didn't make them, but I lost track of the sources. If I find the source, I will add it here.  
-File Names: `Dungeon_Tileset.png`, `bones.png`
+File Names: `Dungeon_Tileset.png`
 
 #### Other images were created by our own team.
 

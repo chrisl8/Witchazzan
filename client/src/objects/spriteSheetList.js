@@ -3,7 +3,7 @@ import laserArrow from '../../../assets/spriteSheets/LaserArrow2.png';
 import quasar from '../../../assets/spriteSheets/Quasar.png';
 import bloomby from '../../../assets/spriteSheets/bloomby16.png';
 import chest from '../../../assets/spriteSheets/chest.png';
-import bones from '../../../assets/spriteSheets/bones.png';
+import BrokenHeart from '../../../assets/spriteSheets/BrokenHeart.png';
 import RainbowTileOne from '../../../assets/spriteSheets/RainbowTileOne.png';
 import BlackWater from '../../../assets/spriteSheets/BlackWater.png';
 import BlackFlowingDown from '../../../assets/spriteSheets/BlackFlowingDown.png';
@@ -272,16 +272,16 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'corpse',
-    file: bones,
-    frameWidth: 53,
-    frameHeight: 33,
+    file: BrokenHeart,
+    frameWidth: 16,
+    frameHeight: 16,
     endFrame: 1,
     physicsSize: {
-      x: 53,
-      y: 33,
+      x: 16,
+      y: 16,
     },
-    displayWidth: 53 * 0.3,
-    displayHeight: 33 * 0.3,
+    displayWidth: 16,
+    displayHeight: 16,
   },
   {
     type: 'other',
