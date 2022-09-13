@@ -1,43 +1,54 @@
-import flamingGoose from '../../assets/spriteSheets/flamingGoose.png';
-import laserArrow from '../../assets/spriteSheets/LaserArrow2.png';
-import quasar from '../../assets/spriteSheets/Quasar.png';
-import bloomby from '../../assets/spriteSheets/bloomby16.png';
-import chest from '../../assets/spriteSheets/chest.png';
-import bones from '../../assets/spriteSheets/bones.png';
-import RainbowTileOne from '../../assets/spriteSheets/RainbowTileOne.png';
-import BlackWater from '../../assets/spriteSheets/BlackWater.png';
-import BlueWater from '../../assets/spriteSheets/BlueWater.png';
-import BlueWaterFlowingDown from '../../assets/spriteSheets/BlueWaterFlowingDown.png';
-import BlueWaterNorthShore from '../../assets/spriteSheets/BlueWaterNorthShore.png';
-import BlueWaterSouthShore from '../../assets/spriteSheets/BlueWaterSouthShore.png';
-import BlueWaterNorthWestShore from '../../assets/spriteSheets/BlueWaterNorthWestShore.png';
-import BlueWaterNorthEastShore from '../../assets/spriteSheets/BlueWaterNorthEastShore.png';
-import BlueWaterSouthWestShore from '../../assets/spriteSheets/BlueWaterSouthWestShore.png';
-import BlueWaterSouthWestShoreCorner from '../../assets/spriteSheets/BlueWaterSouthWestShoreCorner.png';
-import BlueWaterSouthEastShoreCorner from '../../assets/spriteSheets/BlueWaterSouthEastShoreCorner.png';
-import BlueWaterNorthWestShoreCorner from '../../assets/spriteSheets/BlueWaterNorthWestShoreCorner.png';
-import BlueWaterSouthEastShore from '../../assets/spriteSheets/BlueWaterSouthEastShore.png';
-import BlueWaterWestShore from '../../assets/spriteSheets/BlueWaterWestShore.png';
-import BlueWaterEastShore from '../../assets/spriteSheets/BlueWaterEastShore.png';
-import MountainWallSparkleOne from '../../assets/spriteSheets/MountainWallSparkleOne.png';
-import MountainWallSparkleTwo from '../../assets/spriteSheets/MountainWallSparkleTwo.png';
-import SilverSparkleForTree from '../../assets/spriteSheets/SilverSparkleForTree.png';
-import GroundSparkleOne from '../../assets/spriteSheets/GroundSparkleOne.png';
-import GroundSparkleTwo from '../../assets/spriteSheets/GroundSparkleTwo.png';
-import writtenPaper from '../../assets/spriteSheets/written_paper_no_background.png';
-import redTankSingle from '../../assets/spriteSheets/redTankSingle.png';
-import yellowTankSingle from '../../assets/spriteSheets/yellowTankSingle.png';
-import SkullWink from '../../assets/spriteSheets/SkullWink.png';
-import Fountain from '../../assets/spriteSheets/Fountain.png';
-import PurpleRunningRunes from '../../assets/spriteSheets/purpleRunningRunes.png';
-import ChairTwo from '../../assets/spriteSheets/chair2.png';
-import TableOne from '../../assets/spriteSheets/table1.png';
-import WickedSnailOne from '../../assets/spriteSheets/WickedSnail1.png';
-import Whirl from '../../assets/spriteSheets/Whirl.png';
-import YellowKey from '../../assets/spriteSheets/YellowKey.png';
-import RedKey from '../../assets/spriteSheets/RedKey.png';
-import BarricadeYellowKey from '../../assets/spriteSheets/Barricade-YellowKey.png';
-import BarricadeRedKey from '../../assets/spriteSheets/Barricade-RedKey.png';
+import flamingGoose from '../../../assets/spriteSheets/flamingGoose.png';
+import laserArrow from '../../../assets/spriteSheets/LaserArrow2.png';
+import quasar from '../../../assets/spriteSheets/Quasar.png';
+import bloomby from '../../../assets/spriteSheets/bloomby16.png';
+import chest from '../../../assets/spriteSheets/chest.png';
+import bones from '../../../assets/spriteSheets/bones.png';
+import RainbowTileOne from '../../../assets/spriteSheets/RainbowTileOne.png';
+import BlackWater from '../../../assets/spriteSheets/BlackWater.png';
+import BlackFlowingDown from '../../../assets/spriteSheets/BlackFlowingDown.png';
+import TestText from '../../../assets/spriteSheets/TestText.png';
+import BlueWater from '../../../assets/spriteSheets/BlueWater.png';
+import BlueWaterFlowingDown from '../../../assets/spriteSheets/BlueWaterFlowingDown.png';
+import BlueWaterNorthShore from '../../../assets/spriteSheets/BlueWaterNorthShore.png';
+import BlueWaterSouthShore from '../../../assets/spriteSheets/BlueWaterSouthShore.png';
+import BlueWaterNorthWestShore from '../../../assets/spriteSheets/BlueWaterNorthWestShore.png';
+import BlueWaterNorthEastShore from '../../../assets/spriteSheets/BlueWaterNorthEastShore.png';
+import BlueWaterSouthWestShore from '../../../assets/spriteSheets/BlueWaterSouthWestShore.png';
+import BlueWaterSouthWestShoreCorner from '../../../assets/spriteSheets/BlueWaterSouthWestShoreCorner.png';
+import BlueWaterSouthEastShoreCorner from '../../../assets/spriteSheets/BlueWaterSouthEastShoreCorner.png';
+import BlueWaterNorthWestShoreCorner from '../../../assets/spriteSheets/BlueWaterNorthWestShoreCorner.png';
+import BlueWaterSouthEastShore from '../../../assets/spriteSheets/BlueWaterSouthEastShore.png';
+import BlueWaterWestShore from '../../../assets/spriteSheets/BlueWaterWestShore.png';
+import BlueWaterEastShore from '../../../assets/spriteSheets/BlueWaterEastShore.png';
+import MountainWallSparkleOne from '../../../assets/spriteSheets/MountainWallSparkleOne.png';
+import MountainWallSparkleTwo from '../../../assets/spriteSheets/MountainWallSparkleTwo.png';
+import SilverSparkleForTree from '../../../assets/spriteSheets/SilverSparkleForTree.png';
+import GroundSparkleOne from '../../../assets/spriteSheets/GroundSparkleOne.png';
+import GroundSparkleTwo from '../../../assets/spriteSheets/GroundSparkleTwo.png';
+import writtenPaper from '../../../assets/spriteSheets/written_paper_no_background.png';
+import redTankSingle from '../../../assets/spriteSheets/redTankSingle.png';
+import yellowTankSingle from '../../../assets/spriteSheets/yellowTankSingle.png';
+import SkullWink from '../../../assets/spriteSheets/SkullWink.png';
+import Fountain from '../../../assets/spriteSheets/Fountain.png';
+import PurpleRunningRunes from '../../../assets/spriteSheets/purpleRunningRunes.png';
+import ChairTwo from '../../../assets/spriteSheets/chair2.png';
+import TableOne from '../../../assets/spriteSheets/table1.png';
+import WickedSnailOne from '../../../assets/spriteSheets/WickedSnail1.png';
+import Whirl from '../../../assets/spriteSheets/Whirl.png';
+import YellowKey from '../../../assets/spriteSheets/YellowKey.png';
+import RedKey from '../../../assets/spriteSheets/RedKey.png';
+import BarricadeYellowKey from '../../../assets/spriteSheets/Barricade-YellowKey.png';
+import BarricadeRedKey from '../../../assets/spriteSheets/Barricade-RedKey.png';
+import BarricadeOrangeKey from '../../../assets/spriteSheets/Barricade-OrangeKey.png';
+import BarricadeGreyKey from '../../../assets/spriteSheets/Barricade-GreyKey.png';
+import BarricadeBlueKey from '../../../assets/spriteSheets/Barricade-BlueKey.png';
+import BarricadeBlackKey from '../../../assets/spriteSheets/Barricade-BlackKey.png';
+import BarricadePurpleKey from '../../../assets/spriteSheets/Barricade-PurpleKey.png';
+import BarricadeDarkBlueKey from '../../../assets/spriteSheets/Barricade-DarkBlueKey.png';
+import BarricadeLightBlueKey from '../../../assets/spriteSheets/Barricade-LightBlueKey.png';
+import BarricadePinkKey from '../../../assets/spriteSheets/Barricade-PinkKey.png';
+import BarricadeTurquoiseKey from '../../../assets/spriteSheets/Barricade-TurquoiseKey.png';
 
 // Player bloomby has the comments in it, see it for help and examples.
 // Note that you if you have a -move-stationary animation on a sprite,
@@ -359,6 +370,132 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'Barricade-OrangeKey',
+    file: BarricadeOrangeKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-GreyKey',
+    file: BarricadeGreyKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-BlueKey',
+    file: BarricadeBlueKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-BlackKey',
+    file: BarricadeBlackKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-PurpleKey',
+    file: BarricadePurpleKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-DarkBlueKey',
+    file: BarricadeDarkBlueKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-LightBlueKey',
+    file: BarricadeLightBlueKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-PinkKey',
+    file: BarricadePinkKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'Barricade-TurquoiseKey',
+    file: BarricadeTurquoiseKey,
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
     name: 'PurpleRunningRunes',
     file: PurpleRunningRunes,
     frameWidth: 16,
@@ -434,6 +571,43 @@ const spriteSheetList = [
     },
     displayWidth: 16,
     displayHeight: 16,
+  },
+  {
+    type: 'other',
+    name: 'BlackFlowingDown',
+    file: BlackFlowingDown,
+    frameWidth: 32,
+    frameHeight: 32,
+    endFrame: -1,
+    faces: 'left',
+    animationFrameRate: 10,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 14, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 50,
+      y: 50,
+    },
+    physicsOffset: {
+      x: 22,
+      y: 35,
+    },
+    displayWidth: 32,
+    displayHeight: 32,
+  },
+  {
+    type: 'other',
+    name: 'TestText',
+    file: TestText,
+    frameWidth: 640,
+    frameHeight: 352,
+    faces: 'left',
+    physicsSize: {
+      x: 640,
+      y: 352,
+    },
+    displayWidth: 640,
+    displayHeight: 352,
   },
   {
     type: 'other',

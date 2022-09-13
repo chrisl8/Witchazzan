@@ -23,14 +23,6 @@ done
 PARENT_DIR="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
 
-cd "${PARENT_DIR}/shared" || exit
-printf "\n${YELLOW}[Checking dependencies for shared code]${NC}\n"
-npm outdated
-cd "${PARENT_DIR}/server" || exit
-echo ""
-printf "\n${YELLOW}[Checking dependencies for server]${NC}\n"
-npm outdated
-cd "${PARENT_DIR}/client" || exit
-echo ""
-printf "\n${YELLOW}[Checking dependencies for client]${NC}\n"
+cd "${PARENT_DIR}" || exit
+printf "\n${YELLOW}[Checking for outdated dependencies]${NC}\n"
 npm outdated

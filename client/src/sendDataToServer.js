@@ -1,10 +1,10 @@
 /* globals localStorage:true */
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual.js';
 import communicationsObject from './objects/communicationsObject.js';
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import deletedHadronList from './objects/deletedHadronList.js';
-import validateHadron from '../../shared/validateHadron.mjs';
+import validateHadron from '../../server/utilities/validateHadron.js';
 import textObject from './objects/textObject.js';
 import clientSprites from './objects/clientSprites.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
@@ -13,6 +13,7 @@ import debugLog from './utilities/debugLog.js';
 const sendDataToServer = {};
 const sentData = new Map();
 let lastSentPlayerDataObject;
+let lastSentTxtObjectList = []; // No spamming
 
 sendDataToServer.enterScene = (sceneName) => {
   sentData.clear(); // Avoid memory leaks.
@@ -21,14 +22,55 @@ sendDataToServer.enterScene = (sceneName) => {
   }
 };
 
-sendDataToServer.chat = ({ text, targetPlayerId, fromPlayerId, room }) => {
-  if (communicationsObject.socket.connected) {
-    communicationsObject.socket.emit('chat', {
+sendDataToServer.txt = ({
+  text,
+  targetPlayerId,
+  fromPlayerId,
+  room,
+  typ = 'chat',
+}) => {
+  if (text !== undefined && communicationsObject.socket.connected) {
+    const objectToSend = {
       text,
-      targetPlayerId,
-      fromPlayerId,
-      room,
-    });
+      typ,
+    };
+    // Only add optional keys if they are populated.
+    if (targetPlayerId) {
+      objectToSend.targetPlayerId = targetPlayerId;
+    }
+    if (fromPlayerId) {
+      objectToSend.fromPlayerId = fromPlayerId;
+    }
+    if (room) {
+      objectToSend.room = room;
+    }
+
+    // Avoid spamming
+    let send = true;
+    // Remove entries that are older than X seconds.
+    lastSentTxtObjectList = lastSentTxtObjectList.filter(
+      (entry) => Math.abs((new Date().getTime() - entry.timeStamp) / 1000) < 5,
+    );
+    // Then do not send if this exact entry has been sent recently
+    for (const entry of lastSentTxtObjectList) {
+      if (
+        entry.text === objectToSend.text &&
+        entry.targetPlayerId === objectToSend.targetPlayerId &&
+        entry.fromPlayerId === objectToSend.fromPlayerId &&
+        entry.room === objectToSend.room &&
+        entry.typ === objectToSend.typ
+      ) {
+        send = false;
+      }
+    }
+
+    if (send) {
+      lastSentTxtObjectList.push({
+        ...objectToSend,
+        timeStamp: new Date().getTime(),
+      });
+      communicationsObject.socket.emit('txt', objectToSend);
+    }
   }
 };
 
@@ -56,7 +98,7 @@ sendDataToServer.playerData = ({ sceneName }) => {
     };
     if (
       validateHadron.client(objectToSend) &&
-      !_.isEqual(objectToSend, lastSentPlayerDataObject)
+      !isEqual(objectToSend, lastSentPlayerDataObject)
     ) {
       lastSentPlayerDataObject = { ...objectToSend };
       communicationsObject.socket.emit('hadronData', objectToSend);
@@ -71,7 +113,7 @@ sendDataToServer.hadronData = (key) => {
   if (validateHadron.client(hadronData)) {
     if (
       communicationsObject.socket.connected &&
-      (!sentData.has(key) || !_.isEqual(sentData.get(key), hadronData))
+      (!sentData.has(key) || !isEqual(sentData.get(key), hadronData))
     ) {
       communicationsObject.socket.emit('hadronData', hadronData);
       sentData.set(key, hadronData);

@@ -65,7 +65,7 @@ They are basically just JavaScript Object Literals, but are often encoded.
 
 Because their contents are sent over the network constantly, their keys are kept short (abreviated).
 
-You can add **any** key/value pair to a hadaron, **but** they do get valiated at various points, so if you want to use a new key, edit `shared/validateHadron.mjs` and add your new key along with a descriptoin of what it does. Remember to keep it short.
+You can add **any** key/value pair to a hadaron, **but** they do get valiated at various points, so if you want to use a new key, edit `shared/validateHadron.js` and add your new key along with a descriptoin of what it does. Remember to keep it short.
 
 In the browser you can watch the actual data:
  - Open Developer Tools
@@ -144,7 +144,7 @@ Some important things:
      - `spriteLayerDepth` Optional (Integer) = "Sprite Layer Depth" - This is the depth used when adding the sprite to the scene. This will determine if it appears on top of or underneath other objects, based on their depth.
      - `rateOfFire` Optional (Integer) - "Rate of Fire" - If this is set, then the given spell is fired every time the last spell cast was X milliseconds ago based on the frame to frame delta. **This means the lower this number is, the faster it fires.** If this is left out, then no spell will be cast at all. You must also set the "spell" name.
      - `spell` Optional (String) - Name of the spell to cast. If you aren't sure, use 'quasar'. The spell is only cast if rateOfFire is also set.
-     - **You may add other things here as well and use them in your code, but if you do, you must update the code in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {` to copy these key/value pairs into the hadron, and you must alo update `shared/validateHadron.mjs` to add your additional hadron keys as valid keys.**
+     - **You may add other things here as well and use them in your code, but if you do, you must update the code in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {` to copy these key/value pairs into the hadron, and you must alo update `shared/validateHadron.js` to add your additional hadron keys as valid keys.**
    - NOTE: If you update sprite properties or add new ones, existing sprites won't get updated. use the `/deleteAllNPCs` command to clear them and make new ones. Also note that you need to not be in a scene with the sprite for the delete to work.
  - **Informational:** These sprites are imported by the client in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {`
    - You should **not need** to update any code there, but it is important to understand the flow and where to go if you do find that you need to enhance the import process.
@@ -195,9 +195,6 @@ git clone https://github.com/chrisl8/Witchazzan.git
 cd Witchazzan
 # Create and set up the required version number file.
 ./scripts/versionNumberUpdate.sh
-cd Witchazzan/server
-npm ci
-cd Witchazzan/client
 npm ci
 npm run build
 ```
@@ -212,7 +209,7 @@ You will also need to set up a Web server to serve the built code, as Node.js is
 
 ### Web server configuration.
 I serve the project using Nginx as a proxy to the Node.js server.  
-I suggest looking up how to set up Nginx. I use the documentatin from Digital Ocean on setting up Nginx on Ubuntu.
+I suggest looking up how to set up Nginx. I use the documentation from Digital Ocean on setting up Nginx on Ubuntu.
 
 Here is a partial of my config file for this site.  
 The important bits are that it will directly serve files, by name, only forwarding non-files to the Node.js server.  
@@ -221,7 +218,7 @@ Note that means new file extensions must be added to it by hand.
 ```
 server {
     server_name witchazzan.space;
-    root /home/chrisl8/Witchazzan/client/dist;
+    root /home/chrisl8/Witchazzan/web-dist;
 
     location = / {
         index index.html;
@@ -258,9 +255,6 @@ Run `./scripts/updateProduction.sh` or here is the manual process:
 cd Witchazzan
 git pull
 ./scripts/versionNumberUpdate.sh
-cd server
-npm ci
-cd Witchazzan/client
 npm ci
 npm run build
 pm2 restart Witchazzan
@@ -268,10 +262,10 @@ pm2 restart Witchazzan
 
 ## Updating dependencies
 
-Running `npm ci` uses the exact stack of dependencies that were set by the developer who commited the `package-lock.json` file. If you want to update dependencies:  
+Running `npm ci` uses the exact stack of dependencies that were set by the developer who committed the `package-lock.json` file. If you want to update dependencies:  
 1. Run `npm outdated` to see what dependencies are out of date.
 2. Anything in red will automatically update, so ignore it.
-3. Anything in yellow will **not** be updated **unless* you incremeent the version number in `package.json`.
+3. Anything in yellow will **not** be updated **unless* you increment the version number in `package.json`.
 4. Update the `package.json` file with new version numbers for the ones you want to update.
 5. Run `rm package-lock.json;rm -rf node_modules;npm install;npm outdated`.
 6. If you are happy with the results, then TEST the client and server to make sure that your new upgrades didn't break anything!
@@ -326,10 +320,10 @@ Optionally you can also create:
   - So you can put things "on" the ground that are still walked on.
 - Water
   - The intention is that water collisions will be special,
-    - i.e. Spells normally pass over them, but you cannot walk on it!
+    - i.e. Spells normally pass over water, but you cannot walk on it!
 
 In addition, add an Objects layer.
-- Every Scene must have an Object named "Default Spawn Point" where new characters arrive by default.
+- Every Scene must have an Object named "Default Spawn Point" where incoming entities arrive by default.
 - Further, you can make points of Type "Entrance" with a name of our choosing for directing players to when entering this scene from other scenes.
 
 #### Default Camelopardalis Map dimensions
@@ -348,8 +342,6 @@ In addition, add an Objects layer.
   - Right (x): 672
   - Top (y): 32
   - Bottom (y): 384
-
-Overall Width: 
 
 #### Entrance Default Locations
 If there isn't any obstructions in the map itself,  
@@ -371,16 +363,16 @@ and exactly half a tile (8 pixels) in from the edge.
   - x: 352
   - y: 376
 
-NOTE: For wide open entrances, add the custom properties to the entrance:  
+NOTE: For most entrances, add the custom properties to the entrance:  
 allowCustomX: true  
   or  
 allowCustomY: true  
 to allow the exact x or y position to be carried over from the previous scene.  
-In some cases, like a narrow hall, or a transiton from  wide to narrow area, this is not a good idea. Use your judgement.  
+In some cases, like a narrow hall, or a transition from  wide to narrow area, this is may not be a good idea. Use your judgement.  
 
 ### Adding Scenes to the Program
 1. Create a new Tilemap with Tiled.
-2. Save it in .json format to `src/assets/tileMaps`
+2. Save it in .json format to `assets/tileMaps`
 3. Edit `src/scenes/sceneList.js` to add the scene to the game.
 
 ### Tilemap Exits
@@ -408,9 +400,9 @@ Parcel is pretty nice, but it has quirks. Here are my notes.
    - I deleted the `ms-icon-*.` files as I'm not using them.
    - I also deleted `browserconfig.xml`
  - I put `manifest.json` directly in `client` next to the `index.html` file.
-   - I had to edit it to point to the correct folders, so please compare to the existing one. 
+   - I had to edit it to point to the correct folders, so please compare to the existing one if you update it. 
  - I put the generated html into `client/index.html`
-   - Again, I had to edit some parts of it and remove references to things I deleted, so compare the new lines to the existing ones.
+   - Again, I had to edit some parts of it and remove references to things I deleted, so compare the new lines to the existing ones if you update the favicon.
      - Technically if you replace the icon images, the file names will stay the same, so you may not have to update `index.html` anyway.
  - Parcel bundling will ensure that browser caching sees that the files have changed.
 
@@ -427,16 +419,13 @@ I will keep track of third party image sources here for attribution.
 - [Kenney Assets](https://kenney.nl/assets)  
 I always start with Kenney's Assets when looking for inspiration!    
 License [Public Domain CC0](https://creativecommons.org/publicdomain/zero/1.0/)  
-File Names: Many, as they are Public Domain CC0, I do not track each one, but instead freely mix them with my own artwork.  
+File Names:  `redTankSingle.png`, `rougelikeSheet_transparent.png`  
+... and many others, as they are Public Domain CC0, I do not track each one, but instead freely mix them with my own artwork.  
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
 Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
-File Names: `zoria_overworld.png`, `zoria_underworld.png`  
+File Names: `zoria_overworld.png`  
 See also: [Mockups](https://opengameart.org/sites/default/files/mockups_1.png)
-- [Exterior 32x32 Town tileset](https://opengameart.org/content/exterior-32x32-town-tileset)  
-Author: [n2liquid](https://opengameart.org/users/n2liquid)  
-License [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)  
-File Name: `tileset_town-32x32.png`  
 - [Written Paper](https://opengameart.org/content/written-paper)  
 Author: [Harry Tzioukas](https://opengameart.org/users/harrytzioukas)  
 License: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
@@ -446,13 +435,13 @@ Note: Converted from static image to sprite sheet by ChrisL8.
 I'm not sure where these images came from. I didn't make them, but I lost track of the sources. If I find the source, I will add it here.  
 File Names: `Dungeon_Tileset.png`, `bones.png`
 
-#### Other images were created by our own team!
+#### Other images were created by our own team.
 
 ### 8-bit NES Legend of Zelda Map Information
 
 The main map is heavily inspired by the beloved 8-bit NES Legend of Zelda game, which I played as a child.
 
-These are the resources I used for inspirationa and initial testing:
+These are the resources I used for inspiration and initial testing:
 
 [Python Zelda Walking Tour program](http://inventwithpython.com/blog/2012/12/10/8-bit-nes-legend-of-zelda-map-data/)
 

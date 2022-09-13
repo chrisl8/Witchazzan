@@ -5,7 +5,7 @@ import playerObject from './objects/playerObject.js';
 import handleKeyboardInput from './handleKeyboardInput.js';
 import spellAssignments from './objects/spellAssignments.js';
 import textObject from './objects/textObject.js';
-import fancyNames from '../../shared/fancyNames.mjs';
+import fancyNames from '../../server/utilities/fancyNames.js';
 
 function handleTouchInput() {
   // Absorb touch events in areas we don't want the mobile device to start selecting/highlighting everything

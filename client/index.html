@@ -78,7 +78,7 @@
       sizes="16x16"
       href="./src/favicon/favicon-16x16.png"
   />
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#ffffff" />
   <!-- End Favicons -->
   <!-- Fonts -->
@@ -92,26 +92,6 @@
       rel="stylesheet"
   />
   <!-- End Fonts -->
-  <!-- jQuery Load -->
-  <link
-      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
-      rel="stylesheet"
-  />
-  <link
-      href="https://code.jquery.com/ui/1.13.2/themes/ui-darkness/jquery-ui.css"
-      rel="stylesheet"
-  />
-  <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-  ></script>
-  <script
-      src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
-      integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
-      crossorigin="anonymous"
-  ></script>
-  <!-- End jQuery Load -->
   <link rel="stylesheet" href="styles.css" />
   <title>Witchazzan</title>
 </head>
@@ -153,10 +133,12 @@
   <div id="player_tag"></div>
   <div id="other_player_tags"></div>
 </div>
-<!-- Modal Dialogs -->
-<div id="new_message_dialog_div" title="New Message" style="display: none">
-  <p id="dialog_text_overlay_input">What do you want to say?</p>
-  <form onSubmit="return false;">
+<!-- Simple modal dialog used for message entry -->
+<!--https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog-->
+<dialog id="messageDialog">
+  <h1 style="text-align: center">What do you want to say?</h1>
+  <br />
+  <form method="dialog">
     <div style="text-align: center;">
       <input
           autofocus
@@ -164,9 +146,10 @@
           name="message"
           id="new_message_text"
           class="text ui-widget-content ui-corner-all"
-          style="width: 90%; margin: auto;"
+          style="width: 90%; margin: auto; height: 2em"
       />
     </div>
+    <br />
     <fieldset style="text-align: center">
       <legend>Display</legend>
       <label for="message_visible_when_online">Only When I am Online</label>
@@ -176,7 +159,7 @@
           name="message_visibility_group"
           id="message_visible_when_online"
       />
-      <br /><br />
+      <br />
       <label for="message_always_visible">Always</label>
       <input
           class="checkbox_radio"
@@ -185,8 +168,13 @@
           id="message_always_visible"
       />
     </fieldset>
+    <br />
+    <div style="text-align: center">
+      <button value="OK">OK</button>
+      <button value="Cancel">Cancel</button>
+    </div>
   </form>
-</div>
+</dialog>
 <!--The joystick containers have to be last in order to catch touch requests into them.-->
 <div id="joystick_container" class="no-select" hidden></div>
 <div id="second_stick_container" class="no-select" hidden></div>

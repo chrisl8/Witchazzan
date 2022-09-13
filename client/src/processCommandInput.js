@@ -53,7 +53,7 @@ function processCommandInput(event) {
         inputTextSpaceDelimitedArray.shift();
         const targetPlayerId = Number(inputTextSpaceDelimitedArray.shift());
         const text = inputTextSpaceDelimitedArray.join(' ');
-        sendDataToServer.chat({ text, targetPlayerId });
+        sendDataToServer.txt({ text, targetPlayerId });
       } else if (
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'teleporttoscene' ||
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'tp'
@@ -70,7 +70,7 @@ function processCommandInput(event) {
       }
     } else {
       if (playerObject.chatInputTextArray.length > 0) {
-        sendDataToServer.chat({
+        sendDataToServer.txt({
           text: playerObject.chatInputTextArray.join(''),
         });
       }

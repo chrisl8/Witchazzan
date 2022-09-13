@@ -2,7 +2,7 @@ import fs from "fs";
 import JSON5 from "json5";
 import prettier from "prettier";
 // eslint-disable-next-line
-import mapUtils from "../shared/mapUtils.mjs";
+import mapUtils from "./utilities/mapUtils.js";
 
 const writeObject = (path, objectLiteral) =>
   new Promise((resolve, reject) => {

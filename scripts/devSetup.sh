@@ -68,20 +68,8 @@ PARENT_DIR="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
 cd "${PARENT_DIR}" || exit
 printf "\n${YELLOW}[Pulling latest changes from the GitHub repo]${NC}\n"
 git pull
-cd "${PARENT_DIR}/shared" || exit
 echo ""
-printf "\n${YELLOW}[Installing dependencies for shared code]${NC}\n"
-npm ci
-cd "${PARENT_DIR}/server" || exit
-echo ""
-printf "\n${YELLOW}[Installing dependencies for server]${NC}\n"
-npm ci
-cd "${PARENT_DIR}/client" || exit
-echo ""
-printf "\n${YELLOW}[Installing dependencies for client]${NC}\n"
-if [[ -d .parcel-cache ]]; then
-  rm -rf .parcel-cache
-fi
+printf "\n${YELLOW}[Installing dependencies]${NC}\n"
 npm ci
 
 "${SCRIPT_DIR}/versionNumberUpdate.sh"
@@ -92,8 +80,8 @@ printf "For development open two terminals windows:\n"
 printf "\n"
 printf "${BRIGHT_WHITE}-------------------------${NC}\n"
 printf "${YELLOW}SERVER:${NC} In the first run:\n"
-printf "${LIGHTCYAN}cd ${PARENT_DIR}/server${NC}\n"
-printf "${LIGHTCYAN}npm start${NC}\n"
+printf "${LIGHTCYAN}cd ${PARENT_DIR}${NC}\n"
+printf "${LIGHTCYAN}npm run server${NC}\n"
 printf "\n"
 printf "This will start the server, and restart it when file changes are made.\n"
 printf "It is the same as running 'node server.js', except that it will\n"
@@ -102,8 +90,8 @@ printf "\n"
 printf "\n"
 printf "${BRIGHT_WHITE}--------------------------${NC}\n"
 printf "${YELLOW}CLIENT:${NC} In the second run:\n"
-printf "${LIGHTCYAN}cd ${PARENT_DIR}/client${NC}\n"
-printf "${LIGHTCYAN}npm start${NC}\n"
+printf "${LIGHTCYAN}cd ${PARENT_DIR}${NC}\n"
+printf "${LIGHTCYAN}npm run client${NC}\n"
 printf "\n"
 printf "This will build the client as well as rebuild and cause a browser refresh\n"
 printf "when file changes are made.\n"

@@ -80,6 +80,13 @@ div .intro-screen-subsection {
   padding-right: 25px;
   padding-left: 25px;
   text-align: center;
+  transition: 1.5s opacity, 1.5s visibility;
+  opacity: 1;
+}
+
+#fading_text_overlay_div.fade {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .logo-text {

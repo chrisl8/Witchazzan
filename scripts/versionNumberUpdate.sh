@@ -17,4 +17,4 @@ PARENT_DIR="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
 cd "${SCRIPT_DIR}" || exit
 echo ""
 echo "Updating version number for client and server"
-node -e 'console.log(`export default "${crypto.randomUUID()}"`)' > "${PARENT_DIR}/shared/version.mjs"
+node -e 'console.log(`export default "${crypto.randomUUID()}"`)' > "${PARENT_DIR}/server/utilities/version.js"

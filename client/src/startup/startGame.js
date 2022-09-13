@@ -1,13 +1,12 @@
 /* globals window:true */
 /* globals document:true */
 /* globals localStorage:true */
-/* globals $:true */
 import Phaser from 'phaser';
 import phaserConfigObject from '../objects/phaserConfigObject.js';
 import receiveDataFromServer from '../receiveDataFromServer.js';
 import handleTouchInput from '../handleTouchInput.js';
 import playerObject from '../objects/playerObject.js';
-import wait from '../../../shared/wait.mjs';
+import wait from '../../../server/utilities/wait.js';
 import ScrollingTextBox from '../ScrollingTextBox.js';
 import isMobileBrowser from '../utilities/isMobileBrowser.js';
 import returnToIntroScreen from '../gameLoopFunctions/returnToIntroScreen.js';
@@ -124,13 +123,14 @@ async function waitForConnectionAndInitialPlayerPosition() {
     ) {
       // Improve experience in iOS standalone mode.
       // No need for scroll bars.
-      $('body').css('overflow', 'hidden');
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden';
       // Joysticks can cover entire screen!
-      $('#joystick_container').css('height', '100%');
-      $('#second_stick_container').css('height', '100%');
+      document.getElementById('joystick_container').style.height = '100%';
+      document.getElementById('second_stick_container').style.height = '100%';
       // The chat window falls into the rounded corner of the iPhone.
-      $('#command_input_div').css('margin-left', '30px');
-      $('#upper_left_text_overlay_div').css('top', '8%');
+      document.getElementById('command_input_div').style['margin-left'] =
+        '30px';
+      document.getElementById('upper_left_text_overlay_div').style.top = '8%';
     } else {
       const warnedAboutAppMode = localStorage.getItem('warnedAboutAppMode');
       if (warnedAboutAppMode !== 'done') {
@@ -152,7 +152,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
     handleTouchInput();
   } else {
     // We never need scroll bars on desktop
-    $('body').css('overflow', 'hidden');
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
   }
 
   playerObject.scrollingTextBox = new ScrollingTextBox();

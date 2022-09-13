@@ -17,7 +17,7 @@ on:
         default: 'warning'
       tags:
         required: false
-        description: 'Manually run test client build'
+        description: 'Manually test run client build'
 jobs:
   build:
 
@@ -30,11 +30,7 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'npm'
-          cache-dependency-path: ./client/package-lock.json
-      - run: ./versionNumberUpdate.sh
+          cache-dependency-path: ./package-lock.json
+      - run: ./scripts/versionNumberUpdate.sh
       - run: npm ci
-        working-directory: shared
-      - run: npm ci
-        working-directory: client
       - run: npm run build
-        working-directory: client

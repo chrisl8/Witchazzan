@@ -1,0 +1,83 @@
+{
+  "name": "witchazzan",
+  "short_name": "Witchazzan",
+  "version": "0.0.1",
+  "description": "Witchazzan Game",
+  "type": "module",
+  "source": [
+    "client/index.html",
+    "client/sign-in.html"
+  ],
+  "reporters": [
+    "@parcel/reporter-bundle-analyzer"
+  ],
+  "targets": {
+    "default": {
+      "distDir": "./stage"
+    }
+  },
+  "scripts": {
+    "client": "rm -rf .parcel-cache;parcel --port 3001 --open",
+    "client-no-browser": "rm -rf .parcel-cache;parcel --port 3001",
+    "prebuild": "rm -rf stage;rm -rf .parcel-cache",
+    "build": "parcel build && rm -rf web-dist && mv stage web-dist",
+    "server": "pm2-dev scripts/pm2DevConfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisl8/Witchazzan.git"
+  },
+  "author": "Christen Lofland <christen@lofland.net> (https://www.ekpyroticfrood.net)",
+  "license": "AGPL-3.0-or-later",
+  "licenseUrl": "https://opensource.org/licenses/AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/chrisl8/Witchazzan/issues"
+  },
+  "homepage": "https://witchazzan.space/",
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/plugin-syntax-top-level-await": "^7.14.5",
+    "@parcel/packager-raw-url": "^2.6.0",
+    "@parcel/reporter-bundle-analyzer": "^2.7.0",
+    "@parcel/transformer-webmanifest": "^2.5.0",
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "eslint": "8.22.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "parcel": "^2.5.0",
+    "path-browserify": "^1.0.1",
+    "pm2": "^5.2.0",
+    "prettier": "^2.0.2",
+    "process": "^0.11.10"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "dependencies": {
+    "@swc/helpers": "^0.4.11",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "fflate": "^0.7.3",
+    "json5": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "nipplejs": "^0.9.1",
+    "phaser": "^3.55.2",
+    "phaser-raycaster": "^0.10.4",
+    "prettier": "^2.6.1",
+    "socket.io": ">=4.5.0",
+    "socket.io-client": "^4.5.1",
+    "socket.io-msgpack-parser": "^3.0.1",
+    "sqlite3": "^5.0.2",
+    "uuid": "^9.0.0"
+  }
+}

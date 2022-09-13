@@ -1,67 +1,67 @@
-import fs from "fs";
-import cors from "cors";
-import express from "express";
-import bodyParser from "body-parser";
-import sqlite3 from "sqlite3";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import { Server } from "socket.io";
-import msgPackParser from "socket.io-msgpack-parser";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-import { randomUUID, randomBytes } from "crypto";
-import _ from "lodash";
-import persistentData from "./persistentData.js";
-import validateJWT from "./validateJWT.js";
+import fs from 'fs';
+import cors from 'cors';
+import express from 'express';
+import bodyParser from 'body-parser';
+import sqlite3 from 'sqlite3';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { Server } from 'socket.io';
+import msgPackParser from 'socket.io-msgpack-parser';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { randomUUID, randomBytes } from 'crypto';
+import _ from 'lodash';
+import persistentData from './persistentData.js';
+import validateJWT from './validateJWT.js';
 // eslint-disable-next-line
-import wait from "../shared/wait.mjs";
+import wait from './utilities/wait.js';
 // eslint-disable-next-line
-import makeRandomNumber from "../shared/makeRandomNumber.mjs";
+import makeRandomNumber from './utilities/makeRandomNumber.js';
 // eslint-disable-next-line
-import validateHadron from "../shared/validateHadron.mjs";
+import validateHadron from './utilities/validateHadron.js';
 // eslint-disable-next-line
-import serverVersion from "../shared/version.mjs";
+import serverVersion from './utilities/version.js';
 // eslint-disable-next-line
-import mapUtils from "../shared/mapUtils.mjs";
+import mapUtils from './utilities/mapUtils.js';
 
 const hadronBroadcastThrottleTime = 50;
 
 const commandListArray = [
   {
-    name: "tp [scene name]",
-    description: "Teleport to a scene.",
+    name: 'tp [scene name]',
+    description: 'Teleport to a scene.',
     adminOnly: true,
   },
   {
-    name: "who",
-    description: "List currently online players.",
+    name: 'who',
+    description: 'List currently online players.',
   },
-  { name: "exit", description: "Exit to intro screen." },
-  { name: "help", description: "Displays this message." },
+  { name: 'exit', description: 'Exit to intro screen.' },
+  { name: 'help', description: 'Displays this message.' },
   {
-    name: "dumpPlayerObject",
-    description: "Log player object to console for debugging.",
+    name: 'dumpPlayerObject',
+    description: 'Log player object to console for debugging.',
     adminOnly: true,
   },
   {
-    name: "dumpClientSprites",
-    description: "Log clientSprites Map() to console for debugging.",
+    name: 'dumpClientSprites',
+    description: 'Log clientSprites Map() to console for debugging.',
     adminOnly: true,
   },
   {
-    name: "del [key] [value]",
-    description: "Delete hadrons where [key] is equal to [value].",
+    name: 'del [key] [value]',
+    description: 'Delete hadrons where [key] is equal to [value].',
     adminOnly: true,
   },
   {
-    name: "op [player name]",
-    description: "Upgrade [player name] to admin.",
+    name: 'op [player name]',
+    description: 'Upgrade [player name] to admin.',
     adminOnly: true,
   },
 ];
 
-console.log("------------------------------");
-console.log("Witchazzan server is starting...");
+console.log('------------------------------');
+console.log('Witchazzan server is starting...');
 
 // https://stackoverflow.com/a/64383997/4982408
 // eslint-disable-next-line no-underscore-dangle
@@ -81,7 +81,7 @@ if (!fs.existsSync(persistentDataFolder)) {
 let serverConfiguration;
 try {
   serverConfiguration = await persistentData.readObject(
-    `${persistentDataFolder}/serverConfiguration.json5`
+    `${persistentDataFolder}/serverConfiguration.json5`,
   );
 } catch (error) {
   // File not existing will just return an empty object.
@@ -93,7 +93,7 @@ if (!serverConfiguration.saltRounds) {
   serverConfiguration.saltRounds = 10;
 }
 if (!serverConfiguration.jwtSecret) {
-  serverConfiguration.jwtSecret = randomBytes(64).toString("hex");
+  serverConfiguration.jwtSecret = randomBytes(64).toString('hex');
 }
 if (!serverConfiguration.jwtExpiresInSeconds) {
   serverConfiguration.jwtExpiresInSeconds = 60 * 60 * 24 * 30; // 30 days
@@ -102,12 +102,12 @@ if (!serverConfiguration.gameStateSaveInterval) {
   serverConfiguration.gameStateSaveInterval = 60 * 1000; // 1 minute
 }
 if (!serverConfiguration.defaultOpeningScene) {
-  serverConfiguration.defaultOpeningScene = "CamelopardalisH8";
+  serverConfiguration.defaultOpeningScene = 'CamelopardalisH8';
 }
 // The file is always rewritten, so the formatting will get fixed if it is bad.
 await persistentData.writeObject(
   `${persistentDataFolder}/serverConfiguration.json5`,
-  serverConfiguration
+  serverConfiguration,
 );
 
 // Persistent user data in SQLite database.
@@ -117,7 +117,7 @@ const db = new sqlite3.Database(dbName, (err) => {
   if (err) {
     console.error(err.message);
   }
-  console.log("Connected to the database.");
+  console.log('Connected to the database.');
 });
 
 // eslint-disable-next-line func-names
@@ -139,7 +139,7 @@ const connectedPlayerData = new Map();
 let inactiveHadrons;
 try {
   inactiveHadrons = await persistentData.readMap(
-    `${persistentDataFolder}/hadrons.json5`
+    `${persistentDataFolder}/hadrons.json5`,
   );
 } catch (error) {
   // File not existing will just return an empty Map to start using.
@@ -152,7 +152,7 @@ try {
 inactiveHadrons.forEach((hadron) => {
   if (!validateHadron.server(hadron)) {
     console.error(
-      `Aborting server start due to invalid data in ${persistentDataFolder}/hadrons.json5`
+      `Aborting server start due to invalid data in ${persistentDataFolder}/hadrons.json5`,
     );
     process.exit(1);
   }
@@ -161,7 +161,7 @@ inactiveHadrons.forEach((hadron) => {
 // Resurrect any "Persist On Disconnect (pod)" hadrons immediately.
 // Except for Library hadrons.
 inactiveHadrons.forEach((hadron, key) => {
-  if (hadron.pod && hadron.scn !== "Library") {
+  if (hadron.pod && hadron.scn !== 'Library') {
     hadrons.set(key, hadron);
     inactiveHadrons.delete(key);
   }
@@ -178,13 +178,13 @@ async function saveGameStateToDisk() {
   });
   await persistentData.writeMap(
     `${persistentDataFolder}/hadrons.json5`,
-    hadronsToSave
+    hadronsToSave,
   );
-  console.log("Game state saved to disk.");
+  console.log('Game state saved to disk.');
 }
 const throttledSaveGameStateToDisk = _.throttle(
   saveGameStateToDisk,
-  serverConfiguration.gameStateSaveInterval
+  serverConfiguration.gameStateSaveInterval,
 );
 
 // Invoke immediately to ensure data is saved and formatted correctly,
@@ -202,9 +202,9 @@ try {
     );`;
   await db.query(sqlCreateUserTable, []);
   // Displaying the user table count for fun and debugging.
-  const result = await db.query("SELECT COUNT(*) AS count FROM Users", []);
+  const result = await db.query('SELECT COUNT(*) AS count FROM Users', []);
   const count = result.rows[0].count;
-  console.log("Registered user count from database:", count);
+  console.log('Registered user count from database:', count);
 
   // Creating the users table if it does not exist.
   const sqlCreateConnectionsTable = `CREATE TABLE IF NOT EXISTS Connections (
@@ -225,7 +225,7 @@ const options = {
   credentials: true,
 };
 app.use(cors(options));
-app.options("*", cors()); // include before other routes
+app.options('*', cors()); // include before other routes
 
 const webserverPort = process.env.PORT || 8080;
 
@@ -244,28 +244,28 @@ app.use(bodyParser.json());
 const webServer = app.listen(webserverPort);
 const io = new Server(webServer, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+    origin: '*',
+    methods: ['GET', 'POST'],
   },
   parser: msgPackParser,
 });
 
-app.post("/api/sign-up", async (req, res) => {
+app.post('/api/sign-up', async (req, res) => {
   const name = req.body.name;
   const password = req.body.password;
   let error;
   if (name === password) {
-    error = "Name and password cannot be the same.";
+    error = 'Name and password cannot be the same.';
   }
   if (!name || name.length < 2) {
-    error = "Names must be at least 2 characters long";
+    error = 'Names must be at least 2 characters long';
   } else if (name.length > 72) {
-    error = "Names must be a maximum of 72 characters long";
+    error = 'Names must be a maximum of 72 characters long';
   }
   if (!password || password.length < 8) {
-    error = "Password must be at least 8 characters long";
+    error = 'Password must be at least 8 characters long';
   } else if (password.length > 72) {
-    error = "Password must be a maximum of 72 characters long";
+    error = 'Password must be a maximum of 72 characters long';
   }
   if (error) {
     res.status(400).send(error);
@@ -275,16 +275,16 @@ app.post("/api/sign-up", async (req, res) => {
   try {
     // LIKE allows for case insensitive name comparison.
     // User names shouldn't be case sensitive.
-    const sql = "SELECT * FROM Users WHERE name LIKE ?";
+    const sql = 'SELECT * FROM Users WHERE name LIKE ?';
     const result = await db.query(sql, [name]);
     if (result.rows.length > 0) {
-      res.status(400).send("Name already exists");
+      res.status(400).send('Name already exists');
       return;
     }
   } catch (e) {
-    console.error("Error creating user:");
+    console.error('Error creating user:');
     console.error(e.message);
-    res.status(500).send("Unknown error creating user.");
+    res.status(500).send('Unknown error creating user.');
     return;
   }
 
@@ -293,18 +293,18 @@ app.post("/api/sign-up", async (req, res) => {
   try {
     bcrypt.hash(password, serverConfiguration.saltRounds, async (err, hash) => {
       const sqlInsert =
-        "INSERT INTO Users (id, name, password) VALUES ($1, $2, $3);";
+        'INSERT INTO Users (id, name, password) VALUES ($1, $2, $3);';
       await db.query(sqlInsert, [userId, name, hash]);
     });
     res.sendStatus(200);
   } catch (e) {
-    console.error("Error creating user:");
+    console.error('Error creating user:');
     console.error(e.message);
-    res.status(500).send("Unknown error creating user.");
+    res.status(500).send('Unknown error creating user.');
   }
 });
 
-app.post("/api/login", async (req, res) => {
+app.post('/api/login', async (req, res) => {
   async function rejectUnauthorized(innerRes, name) {
     console.log(`Failed login attempt from ${name}.`);
     // A somewhat random wait stalls brute force attacks and somewhat mitigates timing attacks used to guess names.
@@ -320,7 +320,7 @@ app.post("/api/login", async (req, res) => {
   try {
     // LIKE allows for case insensitive name comparison.
     // User names shouldn't be case sensitive.
-    const sql = "SELECT id, name, password, admin FROM Users WHERE name LIKE ?";
+    const sql = 'SELECT id, name, password, admin FROM Users WHERE name LIKE ?';
     const result = await db.query(sql, [name]);
     if (result.rows.length > 0) {
       // We do not confirm or deny that the user exists.
@@ -329,9 +329,9 @@ app.post("/api/login", async (req, res) => {
       admin = result.rows[0].admin;
     }
   } catch (e) {
-    console.error("Error retrieving user:");
+    console.error('Error retrieving user:');
     console.error(e.message);
-    res.status(500).send("Unknown error.");
+    res.status(500).send('Unknown error.');
     return;
   }
   if (hash) {
@@ -350,7 +350,7 @@ app.post("/api/login", async (req, res) => {
           (innerErr, token) => {
             console.log(`${name} successfully logged in`);
             res.json({ token });
-          }
+          },
         );
       } else {
         rejectUnauthorized(res, name);
@@ -364,7 +364,7 @@ app.post("/api/login", async (req, res) => {
 // This allows the client to check if it has a valid token BEFORE
 // starting the socket connection, in order to show a "logged in" status on
 // the startup page.
-app.post("/api/auth", async (req, res) => {
+app.post('/api/auth', async (req, res) => {
   try {
     await validateJWT(req.body.token, serverConfiguration.jwtSecret, db);
     res.sendStatus(200);
@@ -373,15 +373,14 @@ app.post("/api/auth", async (req, res) => {
   }
 });
 
-app.get("/api/connections", async (req, res) => {
+app.get('/api/connections', async (req, res) => {
   try {
     const sql =
-      "SELECT name, timestamp FROM Connections LEFT JOIN Users ON Connections.id = Users.id ORDER BY timestamp DESC";
+      'SELECT name, timestamp FROM Connections LEFT JOIN Users ON Connections.id = Users.id ORDER BY timestamp DESC';
     const result = await db.query(sql);
     let prettyOutput = `<html lang="en-US"><head><title>Connections</title></head><body><table><thead><tr><th>User</th><th>Login Time</th></thead></tbody>`;
     let previousEntry = {};
     result.rows.forEach((entry) => {
-      console.log();
       if (
         entry.name !== previousEntry.name ||
         previousEntry.timestamp - entry.timestamp > 600
@@ -392,12 +391,12 @@ app.get("/api/connections", async (req, res) => {
         previousEntry = entry;
       }
     });
-    prettyOutput += "</tbody></table></body></html>";
+    prettyOutput += '</tbody></table></body></html>';
     res.send(prettyOutput);
   } catch (e) {
-    console.error("Error retrieving connections:");
+    console.error('Error retrieving connections:');
     console.error(e.message);
-    res.status(500).send("Unknown error.");
+    res.status(500).send('Unknown error.');
   }
 });
 
@@ -426,7 +425,7 @@ function sendHadrons() {
       // Except in the Library, where we don't transfer control.
       if (
         connectedPlayerData.get(hadron.ctr)?.scene !== hadron.scn &&
-        hadron.scn !== "Library"
+        hadron.scn !== 'Library'
       ) {
         if (hadron.tcw) {
           // Find a new controller for the hadron.
@@ -448,9 +447,9 @@ function sendHadrons() {
 
   // Loop through each scene's hadrons
   for (const [scene, sceneHadrons] of Object.entries(perSceneHadronList)) {
-    if (scene !== "Library") {
+    if (scene !== 'Library') {
       // Send all of these hadrons to every player who is in the room with the same name as the scene
-      io.sockets.to(scene).emit("hadrons", mapUtils.compress(sceneHadrons));
+      io.sockets.to(scene).emit('hadrons', mapUtils.compress(sceneHadrons));
       // io.sockets.to(scene).emit("hadrons", Array.from(sceneHadrons.entries()));
     } else {
       // The Library is not a shared room, but instead each player sees their own instance.
@@ -469,9 +468,9 @@ function sendHadrons() {
         if (connectedPlayerData.get(playerId)?.socketId) {
           io.sockets
             .to(connectedPlayerData.get(playerId)?.socketId)
-            .emit("hadrons", mapUtils.compress(playerHadronMap));
+            .emit('hadrons', mapUtils.compress(playerHadronMap));
         } else {
-          console.error("Unclaimed Library Hadrons:");
+          console.error('Unclaimed Library Hadrons:');
           console.error(playerId, playerHadronMap);
         }
       });
@@ -481,7 +480,7 @@ function sendHadrons() {
 
 const throttledSendHadrons = _.throttle(
   sendHadrons,
-  hadronBroadcastThrottleTime
+  hadronBroadcastThrottleTime,
 );
 
 function flagSceneHasUpdated(sceneName) {
@@ -509,23 +508,24 @@ function validatePlayer(id, socket, PlayerName) {
 }
 
 async function closeServer() {
-  console.log("Shutdown requested. PLEASE BE PATIENT! Working on it...");
-  io.sockets.emit("chat", {
-    content: "The Small Hadron Cooperator is shutting down.",
+  console.log('Shutdown requested. PLEASE BE PATIENT! Working on it...');
+  io.sockets.emit('txt', {
+    typ: 'chat',
+    content: 'The Small Hadron Cooperator is shutting down.',
   });
   await wait(1000);
-  console.log("Disconnecting users and giving them a mo...");
-  io.sockets.emit("shutdown");
+  console.log('Disconnecting users and giving them a mo...');
+  io.sockets.emit('shutdown');
   io.close();
   await wait(500);
-  console.log("Saving game state (hadrons) to disk...");
+  console.log('Saving game state (hadrons) to disk...');
   // Flush would only run it if it was requested, so we cancel and force it,
   // although in theory if flush didn't call it, no changes were made.
   await throttledSaveGameStateToDisk.cancel();
   await saveGameStateToDisk();
-  console.log("Closing Database...");
+  console.log('Closing Database...');
   await db.close();
-  console.log("Small Hadron Cooperator is going poof! Bye.\n\n");
+  console.log('Small Hadron Cooperator is going poof! Bye.\n\n');
   process.exit();
 }
 
@@ -553,7 +553,7 @@ function updatePlayerImportantItemList({
   inactiveHadrons.forEach((hadron) => {
     if (
       hadron.own === PlayerId &&
-      hadron.scn === "Library" &&
+      hadron.scn === 'Library' &&
       hadron.iin &&
       importantItemList.indexOf(hadron.iin) === -1
     ) {
@@ -563,7 +563,7 @@ function updatePlayerImportantItemList({
   hadrons.forEach((hadron) => {
     if (
       hadron.own === PlayerId &&
-      hadron.scn === "Library" &&
+      hadron.scn === 'Library' &&
       hadron.iin &&
       importantItemList.indexOf(hadron.iin) === -1
     ) {
@@ -573,7 +573,7 @@ function updatePlayerImportantItemList({
   if (!_.isEqual(importantItemList, previousImportantItemList)) {
     socketEmitToId({
       emitToId: socketId,
-      socketEvent: "importantItems",
+      socketEvent: 'importantItems',
       data: importantItemList,
     });
   }
@@ -581,21 +581,21 @@ function updatePlayerImportantItemList({
 }
 
 // Socket listeners
-io.on("connection", (socket) => {
+io.on('connection', (socket) => {
   // User cannot do anything until we have their token and have validated it.
   // The socket connection is entirely unrelated to any get/post requests, so we
   // have to validate the token again even if they used the /auth POST endpoint before.
-  socket.emit("sendToken");
+  socket.emit('sendToken');
 
   // Nothing else is available until they have authenticated.
-  socket.on("token", async (playerData) => {
+  socket.on('token', async (playerData) => {
     // This code runs every time a player joins.
     // Look down below for the list of "events" that the client can send us and will be responded to.
     try {
       const decoded = await validateJWT(
         playerData.token,
         serverConfiguration.jwtSecret,
-        db
+        db,
       );
       // We now know that we have a valid authenticated user!
       const PlayerName = decoded.name;
@@ -607,14 +607,14 @@ io.on("connection", (socket) => {
         console.log(`${PlayerName} is already connected!`);
         socket
           .to(connectedPlayerData.get(PlayerId).socketId)
-          .emit("multiple_logins");
+          .emit('multiple_logins');
         await wait(100);
         connectedPlayerData.delete(PlayerId);
       }
 
       // Send player their ID, because there is no other easy way for them to know it.
       // This also servers as the "game is ready" "init" message to the client.
-      socket.emit("init", {
+      socket.emit('init', {
         id: PlayerId,
         name: PlayerName,
         admin: isAdmin,
@@ -630,9 +630,10 @@ io.on("connection", (socket) => {
       if (connectedPlayerList.length > 0) {
         // The client scroll text box takes a moment to initialize.
         setTimeout(() => {
-          socket.emit("chat", {
-            content: `${connectedPlayerList.join(", ")} ${
-              connectedPlayerList.length === 1 ? "is" : "are"
+          socket.emit('txt', {
+            typ: 'chat',
+            content: `${connectedPlayerList.join(', ')} ${
+              connectedPlayerList.length === 1 ? 'is' : 'are'
             } currently online.`,
           });
         }, 1000);
@@ -661,7 +662,7 @@ io.on("connection", (socket) => {
       } else {
         newPlayerHadron = {
           id: PlayerId, // The player's own hadron is a unique instance of a hadron with the same ID as the owner.
-          typ: "player",
+          typ: 'player',
           x: 0,
           y: 0,
           scn: serverConfiguration.defaultOpeningScene,
@@ -699,7 +700,8 @@ io.on("connection", (socket) => {
       // their first set of hadrons that includes one to track themselves.
 
       // Announce new players.
-      socket.broadcast.emit("chat", {
+      socket.broadcast.emit('txt', {
+        typ: 'chat',
         content: `${PlayerName} has joined the game in ${newPlayerHadron.scn}!`,
       });
 
@@ -707,48 +709,60 @@ io.on("connection", (socket) => {
       // -------------------------------------------------
       // Start list of "when client sends this to us" code.
 
-      socket.on("chat", async (data) => {
+      socket.on('txt', async (data) => {
         if (validatePlayer(PlayerId, socket, PlayerName)) {
           let name = PlayerName;
           if (data.fromPlayerId) {
             try {
               // User could be offline, so get from database
-              const sql = "SELECT name FROM Users WHERE id = ?";
+              const sql = 'SELECT name FROM Users WHERE id = ?';
               const result = await db.query(sql, [data.fromPlayerId]);
               if (result.rows.length > 0) {
                 name = result.rows[0].name;
               }
             } catch (e) {
-              console.error("Error retrieving user:", data.fromPlayerId);
+              console.error('Error retrieving user:', data.fromPlayerId);
               console.error(e.message);
             }
           }
-          socketEmitToAll({
-            socketEvent: "chat",
-            data: {
-              name,
-              content: data.text,
-            },
-          });
+          const dataToSend = {
+            name,
+            typ: data.typ ? data.typ : 'chat',
+            content: data.text,
+          };
+          if (data.targetPlayerId) {
+            if (connectedPlayerData.has(data.targetPlayerId)) {
+              socketEmitToId({
+                emitToId: connectedPlayerData.get(data.targetPlayerId).socketId,
+                socketEvent: 'txt',
+                data: dataToSend,
+              });
+            }
+          } else {
+            socketEmitToAll({
+              socketEvent: 'txt',
+              data: dataToSend,
+            });
+          }
         }
       });
 
-      socket.on("damageHadron", (data) => {
+      socket.on('damageHadron', (data) => {
         if (
           hadrons.has(data.id) &&
           connectedPlayerData.has(hadrons.get(data.id).ctr)
         ) {
           if (hadrons.get(data.id).ctr === PlayerId) {
-            socket.emit("damageHadron", data);
+            socket.emit('damageHadron', data);
           } else {
             socket
               .to(connectedPlayerData.get(hadrons.get(data.id).ctr).socketId)
-              .emit("damageHadron", data);
+              .emit('damageHadron', data);
           }
         }
       });
 
-      socket.on("hadronData", (data) => {
+      socket.on('hadronData', (data) => {
         if (validatePlayer(PlayerId, socket, PlayerName)) {
           // Look for an existing hadron already in our data that matches the incoming hadron ID,
           // and has the owner's id on it.
@@ -788,7 +802,7 @@ io.on("connection", (socket) => {
         }
       });
 
-      socket.on("enterScene", (sceneName) => {
+      socket.on('enterScene', (sceneName) => {
         if (validatePlayer(PlayerId, socket, PlayerName)) {
           // Leave the old room
           socket.leave(connectedPlayerData.get(PlayerId).scene);
@@ -819,7 +833,7 @@ io.on("connection", (socket) => {
         }
       });
 
-      socket.on("destroyHadron", async (key) => {
+      socket.on('destroyHadron', async (key) => {
         if (validatePlayer(PlayerId, socket, PlayerName) && hadrons.has(key)) {
           // If the hadron was transferred,
           // the controller won't delete the hadron from their own list,
@@ -830,7 +844,7 @@ io.on("connection", (socket) => {
           ) {
             socket
               .to(connectedPlayerData.get(hadrons.get(key).ctr).socketId)
-              .emit("deleteHadron", key);
+              .emit('deleteHadron', key);
           }
           // Give other clients a moment to animate the last moments of the sprite
           // so that it doesn't appear to disappear before hitting the location where it should disappear on their screen
@@ -843,7 +857,7 @@ io.on("connection", (socket) => {
         }
       });
 
-      socket.on("createHadron", (data) => {
+      socket.on('createHadron', (data) => {
         if (validatePlayer(PlayerId, socket, PlayerName)) {
           // Typically this is used to create NPCs from data in the tilemap,
           // although a client could also spawn one of these using internal logic.
@@ -880,12 +894,12 @@ io.on("connection", (socket) => {
         }
       });
 
-      socket.on("command", async (data) => {
+      socket.on('command', async (data) => {
         if (validatePlayer(PlayerId, socket, PlayerName)) {
-          const command = data.command.split(" ");
+          const command = data.command.split(' ');
           if (command.length > 0) {
-            if (command[0].toLowerCase() === "help") {
-              let commandHelpOutput = "The following commands are available:";
+            if (command[0].toLowerCase() === 'help') {
+              let commandHelpOutput = 'The following commands are available:';
               commandListArray.forEach((entry) => {
                 if (
                   connectedPlayerData.get(PlayerId)?.isAdmin ||
@@ -894,23 +908,25 @@ io.on("connection", (socket) => {
                   commandHelpOutput += `<br/>${entry.name} - ${entry.description}`;
                 }
               });
-              socket.emit("chat", {
+              socket.emit('txt', {
+                typ: 'chat',
                 content: commandHelpOutput,
               });
-            } else if (command[0].toLowerCase() === "who") {
-              let whoResponse = "";
+            } else if (command[0].toLowerCase() === 'who') {
+              let whoResponse = '';
               connectedPlayerData.forEach((entry) => {
                 whoResponse += `${entry.name} is in ${entry.scene}<br/>`;
               });
-              socket.emit("chat", {
+              socket.emit('txt', {
+                typ: 'chat',
                 content: whoResponse,
               });
             } else if (connectedPlayerData.get(PlayerId)?.isAdmin) {
               console.log(`Admin command from ${PlayerName}:`, command);
               // Admin only commands.
               if (
-                (command.length > 2 && command[0].toLowerCase() === "delete") ||
-                command[0].toLowerCase() === "del"
+                (command.length > 2 && command[0].toLowerCase() === 'delete') ||
+                command[0].toLowerCase() === 'del'
               ) {
                 hadrons.forEach((hadron, key) => {
                   if (hadron[command[1]] === command[2]) {
@@ -924,7 +940,7 @@ io.on("connection", (socket) => {
                 });
                 closeServer();
               } else if (
-                command[0].toLowerCase() === "op" &&
+                command[0].toLowerCase() === 'op' &&
                 command.length === 2
               ) {
                 const playerNameToOp = command[1];
@@ -934,7 +950,7 @@ io.on("connection", (socket) => {
                 try {
                   // LIKE allows for case insensitive name comparison.
                   // User names shouldn't be case sensitive.
-                  const sql = "SELECT id, admin FROM Users WHERE name LIKE ?";
+                  const sql = 'SELECT id, admin FROM Users WHERE name LIKE ?';
                   const result = await db.query(sql, [playerNameToOp]);
                   if (result.rows.length > 0) {
                     playeIdToOp = result.rows[0].id;
@@ -942,19 +958,22 @@ io.on("connection", (socket) => {
                   }
                 } catch (e) {
                   error = true;
-                  console.error("Error retrieving user:");
+                  console.error('Error retrieving user:');
                   console.error(e.message);
-                  socket.emit("chat", {
+                  socket.emit('txt', {
+                    typ: 'chat',
                     content: `Error retrieving ${playerNameToOp} from the database`,
                   });
                 }
                 if (!playeIdToOp) {
-                  socket.emit("chat", {
+                  socket.emit('txt', {
+                    typ: 'chat',
                     content: `Player '${playerNameToOp}' does not exist.`,
                   });
                 }
                 if (playerIsAlreadyAdmin) {
-                  socket.emit("chat", {
+                  socket.emit('txt', {
+                    typ: 'chat',
                     content: `Player '${playerNameToOp}' is already an Admin.`,
                   });
                 }
@@ -965,43 +984,48 @@ io.on("connection", (socket) => {
                   !playerIsAlreadyAdmin
                 ) {
                   try {
-                    const sql = "UPDATE Users SET admin = 1 WHERE id = ?";
+                    const sql = 'UPDATE Users SET admin = 1 WHERE id = ?';
                     await db.query(sql, [playeIdToOp]);
                   } catch (e) {
                     error = true;
-                    console.error("Error updating user:");
+                    console.error('Error updating user:');
                     console.error(e.message);
-                    socket.emit("chat", {
+                    socket.emit('txt', {
+                      typ: 'chat',
                       content: `Error updating '${playerNameToOp}' database entry.`,
                     });
                   }
                   if (!error) {
-                    socket.emit("chat", {
+                    socket.emit('txt', {
+                      typ: 'chat',
                       content: `Player '${playerNameToOp}' has been made Admin.`,
                     });
                     if (connectedPlayerData.get(playeIdToOp)?.socketId) {
                       socket
                         .to(connectedPlayerData.get(playeIdToOp)?.socketId)
-                        .emit("chat", {
+                        .emit('txt', {
+                          typ: 'chat',
                           content: `You have been made an admin! You must sign in again to apply the update. Your game will now restart to apply it...`,
                         });
                       await wait(3000);
                       socket
                         .to(connectedPlayerData.get(playeIdToOp)?.socketId)
-                        .emit("unauthorized", {
+                        .emit('unauthorized', {
                           content: `You have been made an admin! You must sign in again to apply the update. Your game will now restart to apply it...`,
                         });
                     }
                   }
                 }
               } else {
-                console.error("Unable to parse this command.");
-                socket.emit("chat", {
+                console.error('Unable to parse this command.');
+                socket.emit('txt', {
+                  typ: 'chat',
                   content: `Unable to parse admin command.`,
                 });
               }
             } else {
-              socket.emit("chat", {
+              socket.emit('txt', {
+                typ: 'chat',
                 content: `Unknown command.`,
               });
             }
@@ -1009,22 +1033,22 @@ io.on("connection", (socket) => {
         }
       });
 
-      socket.on("grab", (id) => {
+      socket.on('grab', (id) => {
         if (validatePlayer(PlayerId, socket, PlayerName) && hadrons.get(id)) {
           const newHadronData = { ...hadrons.get(id) };
           if (!newHadronData.hld) {
             // Ask controlling client to update hadron.
             socketEmitToId({
               emitToId: connectedPlayerData.get(hadrons.get(id).ctr)?.socketId,
-              socketEvent: "updateHadron",
+              socketEvent: 'updateHadron',
               data: {
                 id,
                 updates: [
-                  { key: "own", value: PlayerId }, // Once you grab it, you own it.
-                  { key: "ctr", value: PlayerId }, // You must control it to hol dit.
-                  { key: "hld", value: PlayerId }, // You are holding it.
-                  { key: "pod", value: false }, // Held items should NOT persist in the world if you leave.
-                  { key: "tcw", value: false }, // Held items should NOT transfer ownership on scene changes.
+                  { key: 'own', value: PlayerId }, // Once you grab it, you own it.
+                  { key: 'ctr', value: PlayerId }, // You must control it to hol dit.
+                  { key: 'hld', value: PlayerId }, // You are holding it.
+                  { key: 'pod', value: false }, // Held items should NOT persist in the world if you leave.
+                  { key: 'tcw', value: false }, // Held items should NOT transfer ownership on scene changes.
                 ],
               },
             });
@@ -1033,14 +1057,15 @@ io.on("connection", (socket) => {
         }
       });
 
-      socket.on("disconnect", () => {
+      socket.on('disconnect', () => {
         if (connectedPlayerData.has(PlayerId)) {
           flagSceneHasUpdated(connectedPlayerData.get(PlayerId).scene);
         }
         connectedPlayerData.delete(PlayerId);
 
         // Announce player's leaving.
-        socket.broadcast.emit("chat", {
+        socket.broadcast.emit('txt', {
+          typ: 'chat',
           content: `${PlayerName} has left the game. :'(`,
         });
 
@@ -1059,7 +1084,7 @@ io.on("connection", (socket) => {
 
             // "Persist On Disconnect (pod)
             // Unless in the library, don't persist anyone's hadrons there
-            if (hadron.pod && hadron.scn !== "Library") {
+            if (hadron.pod && hadron.scn !== 'Library') {
               archiveHadron = false;
               deleteHadron = false;
             }
@@ -1081,7 +1106,7 @@ io.on("connection", (socket) => {
               ) {
                 socket
                   .to(connectedPlayerData.get(hadron.ctr).socketId)
-                  .emit("deleteHadron", key);
+                  .emit('deleteHadron', key);
               }
 
               // Delete it.
@@ -1098,9 +1123,9 @@ io.on("connection", (socket) => {
       if (e) {
         console.error(e.message);
       } else {
-        console.error("Failed to handle token receipt.");
+        console.error('Failed to handle token receipt.');
       }
-      socket.emit("unauthorized");
+      socket.emit('unauthorized');
       await wait(500); // I think the client needs a moment to receive the message and deal with it.
       socket.disconnect();
     }
@@ -1109,23 +1134,24 @@ io.on("connection", (socket) => {
 
 setTimeout(() => {
   // A welcome message for clients already waiting to connect when the server starts.
-  io.sockets.emit("chat", {
-    content: "The Small Hadron Cooperator has recently restarted.",
+  io.sockets.emit('txt', {
+    typ: 'chat',
+    content: 'The Small Hadron Cooperator has recently restarted.',
   });
 }, 30000); // Hopefully enough delay for the clients to all be ready.
 
 console.log(`Small Hadron Cooperator is running`);
 
-process.on("SIGINT", () => {
+process.on('SIGINT', () => {
   closeServer();
 });
 
-if (process.env.CI === "true") {
-  console.log("===========================================");
-  console.log("CI Test environment detected,");
-  console.log("Server will self-terminate in 45 seconds...");
+if (process.env.CI === 'true') {
+  console.log('===========================================');
+  console.log('CI Test environment detected,');
+  console.log('Server will self-terminate in 45 seconds...');
   setTimeout(() => {
-    console.log("===========================================");
+    console.log('===========================================');
     closeServer();
   }, 45000);
 }

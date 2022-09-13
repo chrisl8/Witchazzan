@@ -29,12 +29,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 'lts/*'
-      - run: ./versionNumberUpdate.sh
+          cache: 'npm'
+          cache-dependency-path: ./package-lock.json
+      - run: ./scripts/versionNumberUpdate.sh
       - run: npm ci
-        working-directory: shared
-      - run: npm ci
-        working-directory: client
-      - run: npm ci
-        working-directory: server
-      - run: node server.js
-        working-directory: server
+      - run: node server/server.js

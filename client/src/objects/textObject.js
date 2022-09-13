@@ -1,4 +1,3 @@
-/* globals $:true */
 /*
  * This is an object for declaring and sharing Text data.
  *
@@ -7,7 +6,11 @@
  *
  */
 
-import _ from 'lodash';
+/* globals document:true */
+import debounce from 'lodash/debounce.js';
+
+const fadingTextOverlayDiv = document.getElementById('fading_text_overlay_div');
+let fadeOutTimer;
 
 const textObject = {
   escapeToLeaveChat: {
@@ -24,7 +27,7 @@ const textObject = {
     text: '',
     shouldBeActiveNow: false,
     location: 'UpperLeft', // UpperLeft, 'Scrolling', or 'Center'
-    disappearMessageLater: _.debounce(() => {
+    disappearMessageLater: debounce(() => {
       textObject.spellSetText.shouldBeActiveNow = false;
     }, 1000),
   },
@@ -33,18 +36,11 @@ const textObject = {
     location: 'Fading', // UpperLeft, 'Scrolling', or 'Center'
     shouldBeActiveNow: true,
     display: () => {
-      $('#fading_text_overlay_div')
-        .stop(true, true)
-        .hide()
-        .delay(100)
-        .fadeIn({
-          duration: 1000,
-          complete: () => {
-            $('#fading_text_overlay_div').delay(5000).fadeOut({
-              duration: 1000,
-            });
-          },
-        });
+      clearTimeout(fadeOutTimer);
+      fadingTextOverlayDiv.classList.remove('fade');
+      fadeOutTimer = setTimeout(() => {
+        fadingTextOverlayDiv.classList.add('fade');
+      }, 4000);
     },
   },
 };

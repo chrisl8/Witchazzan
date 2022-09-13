@@ -10,12 +10,14 @@ Thumbs.db
 node_modules/
 
 # Build
+stage/
 dist/
+web-dist/
 /npm-debug.log
 
 # Configuration
 persistentData/
-shared/version.mjs
+server/utilities/version.js
 
 # Tiled
 *.tiled-project

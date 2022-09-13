@@ -18,19 +18,9 @@ cd "${PARENT_DIR}" || exit
 echo "Pulling latest changes from the GitHub repo:"
 git pull
 echo ""
-cd "${PARENT_DIR}/shared" || exit
-echo ""
-echo "Installing dependencies for shared code..."
+echo "Installing dependencies..."
 npm ci
 echo ""
-cd "${PARENT_DIR}/server" || exit
-echo ""
-echo "Installing dependencies for server..."
-npm ci
-echo ""
-cd "${PARENT_DIR}/client" || exit
-echo "Installing dependencies for client..."
-npm ci
 "${PARENT_DIR}/versionNumberUpdate.sh"
 echo ""
 echo "Building client (this is the slow part)..."

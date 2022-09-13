@@ -1,0 +1,26 @@
+{
+  "apps": [
+    {
+      "name": "Witchazzan",
+      "script": "server/server.js",
+      "max_memory_restart": "500M",
+      "ignore_watch": [
+        ".idea",
+        ".git",
+        ".parcel-cache",
+        "assets",
+        "dist",
+        "persistentData",
+        "client",
+        "web-dist",
+        "stage"
+      ],
+      "merge_logs": true,
+      "exec_interpreter": "node",
+      "env": {
+        "NODE_ENV": "dev",
+        "PORT": "8080"
+      }
+    }
+  ]
+}

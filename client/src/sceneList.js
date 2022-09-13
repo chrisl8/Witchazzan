@@ -7,187 +7,185 @@
  * 1. Add an import line for it.
  * 2. Add an entry to the scenes array for it.
  */
-import gameLoopAndSceneFactory from './gameLoopAndSceneFactory.js';
-
-import Loading from '../assets/tileMaps/Loading.json';
 
 // Camelopardalis Scenes
-import CamelopardalisA1 from '../assets/tileMaps/CamelopardalisA1.json';
-import CamelopardalisA2 from '../assets/tileMaps/CamelopardalisA2.json';
-import CamelopardalisA3 from '../assets/tileMaps/CamelopardalisA3.json';
-import CamelopardalisA4 from '../assets/tileMaps/CamelopardalisA4.json';
-import CamelopardalisA5 from '../assets/tileMaps/CamelopardalisA5.json';
-import CamelopardalisA6 from '../assets/tileMaps/CamelopardalisA6.json';
-import CamelopardalisA7 from '../assets/tileMaps/CamelopardalisA7.json';
-import CamelopardalisA8 from '../assets/tileMaps/CamelopardalisA8.json';
-import CamelopardalisA9 from '../assets/tileMaps/CamelopardalisA9.json';
+import CamelopardalisA1 from '../../assets/tileMaps/CamelopardalisA1.json';
+import CamelopardalisA2 from '../../assets/tileMaps/CamelopardalisA2.json';
+import CamelopardalisA3 from '../../assets/tileMaps/CamelopardalisA3.json';
+import CamelopardalisA4 from '../../assets/tileMaps/CamelopardalisA4.json';
+import CamelopardalisA5 from '../../assets/tileMaps/CamelopardalisA5.json';
+import CamelopardalisA6 from '../../assets/tileMaps/CamelopardalisA6.json';
+import CamelopardalisA7 from '../../assets/tileMaps/CamelopardalisA7.json';
+import CamelopardalisA8 from '../../assets/tileMaps/CamelopardalisA8.json';
+import CamelopardalisA9 from '../../assets/tileMaps/CamelopardalisA9.json';
 
-import CamelopardalisB1 from '../assets/tileMaps/CamelopardalisB1.json';
-import CamelopardalisB2 from '../assets/tileMaps/CamelopardalisB2.json';
-import CamelopardalisB3 from '../assets/tileMaps/CamelopardalisB3.json';
-import CamelopardalisB4 from '../assets/tileMaps/CamelopardalisB4.json';
-import CamelopardalisB5 from '../assets/tileMaps/CamelopardalisB5.json';
-import CamelopardalisB6 from '../assets/tileMaps/CamelopardalisB6.json';
-import CamelopardalisB7 from '../assets/tileMaps/CamelopardalisB7.json';
-import CamelopardalisB8 from '../assets/tileMaps/CamelopardalisB8.json';
+import CamelopardalisB1 from '../../assets/tileMaps/CamelopardalisB1.json';
+import CamelopardalisB2 from '../../assets/tileMaps/CamelopardalisB2.json';
+import CamelopardalisB3 from '../../assets/tileMaps/CamelopardalisB3.json';
+import CamelopardalisB4 from '../../assets/tileMaps/CamelopardalisB4.json';
+import CamelopardalisB5 from '../../assets/tileMaps/CamelopardalisB5.json';
+import CamelopardalisB6 from '../../assets/tileMaps/CamelopardalisB6.json';
+import CamelopardalisB7 from '../../assets/tileMaps/CamelopardalisB7.json';
+import CamelopardalisB8 from '../../assets/tileMaps/CamelopardalisB8.json';
 
-import CamelopardalisC1 from '../assets/tileMaps/CamelopardalisC1.json';
-import CamelopardalisC2 from '../assets/tileMaps/CamelopardalisC2.json';
-import CamelopardalisC3 from '../assets/tileMaps/CamelopardalisC3.json';
-import CamelopardalisC4 from '../assets/tileMaps/CamelopardalisC4.json';
-import CamelopardalisC5 from '../assets/tileMaps/CamelopardalisC5.json';
-import CamelopardalisC6 from '../assets/tileMaps/CamelopardalisC6.json';
-import CamelopardalisC7 from '../assets/tileMaps/CamelopardalisC7.json';
-import CamelopardalisC8 from '../assets/tileMaps/CamelopardalisC8.json';
+import CamelopardalisC1 from '../../assets/tileMaps/CamelopardalisC1.json';
+import CamelopardalisC2 from '../../assets/tileMaps/CamelopardalisC2.json';
+import CamelopardalisC3 from '../../assets/tileMaps/CamelopardalisC3.json';
+import CamelopardalisC4 from '../../assets/tileMaps/CamelopardalisC4.json';
+import CamelopardalisC5 from '../../assets/tileMaps/CamelopardalisC5.json';
+import CamelopardalisC6 from '../../assets/tileMaps/CamelopardalisC6.json';
+import CamelopardalisC7 from '../../assets/tileMaps/CamelopardalisC7.json';
+import CamelopardalisC8 from '../../assets/tileMaps/CamelopardalisC8.json';
 
-import CamelopardalisD1 from '../assets/tileMaps/CamelopardalisD1.json';
-import CamelopardalisD2 from '../assets/tileMaps/CamelopardalisD2.json';
-import CamelopardalisD3 from '../assets/tileMaps/CamelopardalisD3.json';
-import CamelopardalisD4 from '../assets/tileMaps/CamelopardalisD4.json';
-import CamelopardalisD5 from '../assets/tileMaps/CamelopardalisD5.json';
-import CamelopardalisD6 from '../assets/tileMaps/CamelopardalisD6.json';
-import CamelopardalisD7 from '../assets/tileMaps/CamelopardalisD7.json';
-import CamelopardalisD8 from '../assets/tileMaps/CamelopardalisD8.json';
+import CamelopardalisD1 from '../../assets/tileMaps/CamelopardalisD1.json';
+import CamelopardalisD2 from '../../assets/tileMaps/CamelopardalisD2.json';
+import CamelopardalisD3 from '../../assets/tileMaps/CamelopardalisD3.json';
+import CamelopardalisD4 from '../../assets/tileMaps/CamelopardalisD4.json';
+import CamelopardalisD5 from '../../assets/tileMaps/CamelopardalisD5.json';
+import CamelopardalisD6 from '../../assets/tileMaps/CamelopardalisD6.json';
+import CamelopardalisD7 from '../../assets/tileMaps/CamelopardalisD7.json';
+import CamelopardalisD8 from '../../assets/tileMaps/CamelopardalisD8.json';
 
-import CamelopardalisE1 from '../assets/tileMaps/CamelopardalisE1.json';
-import CamelopardalisE2 from '../assets/tileMaps/CamelopardalisE2.json';
-import CamelopardalisE3 from '../assets/tileMaps/CamelopardalisE3.json';
-import CamelopardalisE4 from '../assets/tileMaps/CamelopardalisE4.json';
-import CamelopardalisE5 from '../assets/tileMaps/CamelopardalisE5.json';
-import CamelopardalisE6 from '../assets/tileMaps/CamelopardalisE6.json';
-import CamelopardalisE7 from '../assets/tileMaps/CamelopardalisE7.json';
-import CamelopardalisE8 from '../assets/tileMaps/CamelopardalisE8.json';
+import CamelopardalisE1 from '../../assets/tileMaps/CamelopardalisE1.json';
+import CamelopardalisE2 from '../../assets/tileMaps/CamelopardalisE2.json';
+import CamelopardalisE3 from '../../assets/tileMaps/CamelopardalisE3.json';
+import CamelopardalisE4 from '../../assets/tileMaps/CamelopardalisE4.json';
+import CamelopardalisE5 from '../../assets/tileMaps/CamelopardalisE5.json';
+import CamelopardalisE6 from '../../assets/tileMaps/CamelopardalisE6.json';
+import CamelopardalisE7 from '../../assets/tileMaps/CamelopardalisE7.json';
+import CamelopardalisE8 from '../../assets/tileMaps/CamelopardalisE8.json';
 
-import CamelopardalisF1 from '../assets/tileMaps/CamelopardalisF1.json';
-import CamelopardalisF2 from '../assets/tileMaps/CamelopardalisF2.json';
-import CamelopardalisF3 from '../assets/tileMaps/CamelopardalisF3.json';
-import CamelopardalisF4 from '../assets/tileMaps/CamelopardalisF4.json';
-import CamelopardalisF5 from '../assets/tileMaps/CamelopardalisF5.json';
-import CamelopardalisF6 from '../assets/tileMaps/CamelopardalisF6.json';
-import CamelopardalisF7 from '../assets/tileMaps/CamelopardalisF7.json';
-import CamelopardalisF8 from '../assets/tileMaps/CamelopardalisF8.json';
+import CamelopardalisF1 from '../../assets/tileMaps/CamelopardalisF1.json';
+import CamelopardalisF2 from '../../assets/tileMaps/CamelopardalisF2.json';
+import CamelopardalisF3 from '../../assets/tileMaps/CamelopardalisF3.json';
+import CamelopardalisF4 from '../../assets/tileMaps/CamelopardalisF4.json';
+import CamelopardalisF5 from '../../assets/tileMaps/CamelopardalisF5.json';
+import CamelopardalisF6 from '../../assets/tileMaps/CamelopardalisF6.json';
+import CamelopardalisF7 from '../../assets/tileMaps/CamelopardalisF7.json';
+import CamelopardalisF8 from '../../assets/tileMaps/CamelopardalisF8.json';
 
-import CamelopardalisG1 from '../assets/tileMaps/CamelopardalisG1.json';
-import CamelopardalisG2 from '../assets/tileMaps/CamelopardalisG2.json';
-import CamelopardalisG3 from '../assets/tileMaps/CamelopardalisG3.json';
-import CamelopardalisG4 from '../assets/tileMaps/CamelopardalisG4.json';
-import CamelopardalisG5 from '../assets/tileMaps/CamelopardalisG5.json';
-import CamelopardalisG6 from '../assets/tileMaps/CamelopardalisG6.json';
-import CamelopardalisG7 from '../assets/tileMaps/CamelopardalisG7.json';
-import CamelopardalisG8 from '../assets/tileMaps/CamelopardalisG8.json';
+import CamelopardalisG1 from '../../assets/tileMaps/CamelopardalisG1.json';
+import CamelopardalisG2 from '../../assets/tileMaps/CamelopardalisG2.json';
+import CamelopardalisG3 from '../../assets/tileMaps/CamelopardalisG3.json';
+import CamelopardalisG4 from '../../assets/tileMaps/CamelopardalisG4.json';
+import CamelopardalisG5 from '../../assets/tileMaps/CamelopardalisG5.json';
+import CamelopardalisG6 from '../../assets/tileMaps/CamelopardalisG6.json';
+import CamelopardalisG7 from '../../assets/tileMaps/CamelopardalisG7.json';
+import CamelopardalisG8 from '../../assets/tileMaps/CamelopardalisG8.json';
 
-import CamelopardalisH1 from '../assets/tileMaps/CamelopardalisH1.json';
-import CamelopardalisH2 from '../assets/tileMaps/CamelopardalisH2.json';
-import CamelopardalisH3 from '../assets/tileMaps/CamelopardalisH3.json';
-import CamelopardalisH4 from '../assets/tileMaps/CamelopardalisH4.json';
-import CamelopardalisH5 from '../assets/tileMaps/CamelopardalisH5.json';
-import CamelopardalisH6 from '../assets/tileMaps/CamelopardalisH6.json';
-import CamelopardalisH7 from '../assets/tileMaps/CamelopardalisH7.json';
-import CamelopardalisH8 from '../assets/tileMaps/CamelopardalisH8.json';
+import CamelopardalisH1 from '../../assets/tileMaps/CamelopardalisH1.json';
+import CamelopardalisH2 from '../../assets/tileMaps/CamelopardalisH2.json';
+import CamelopardalisH3 from '../../assets/tileMaps/CamelopardalisH3.json';
+import CamelopardalisH4 from '../../assets/tileMaps/CamelopardalisH4.json';
+import CamelopardalisH5 from '../../assets/tileMaps/CamelopardalisH5.json';
+import CamelopardalisH6 from '../../assets/tileMaps/CamelopardalisH6.json';
+import CamelopardalisH7 from '../../assets/tileMaps/CamelopardalisH7.json';
+import CamelopardalisH8 from '../../assets/tileMaps/CamelopardalisH8.json';
 
-import CamelopardalisI1 from '../assets/tileMaps/CamelopardalisI1.json';
-import CamelopardalisI2 from '../assets/tileMaps/CamelopardalisI2.json';
-import CamelopardalisI3 from '../assets/tileMaps/CamelopardalisI3.json';
-import CamelopardalisI4 from '../assets/tileMaps/CamelopardalisI4.json';
-import CamelopardalisI5 from '../assets/tileMaps/CamelopardalisI5.json';
-import CamelopardalisI6 from '../assets/tileMaps/CamelopardalisI6.json';
-import CamelopardalisI7 from '../assets/tileMaps/CamelopardalisI7.json';
-import CamelopardalisI8 from '../assets/tileMaps/CamelopardalisI8.json';
+import CamelopardalisI1 from '../../assets/tileMaps/CamelopardalisI1.json';
+import CamelopardalisI2 from '../../assets/tileMaps/CamelopardalisI2.json';
+import CamelopardalisI3 from '../../assets/tileMaps/CamelopardalisI3.json';
+import CamelopardalisI4 from '../../assets/tileMaps/CamelopardalisI4.json';
+import CamelopardalisI5 from '../../assets/tileMaps/CamelopardalisI5.json';
+import CamelopardalisI6 from '../../assets/tileMaps/CamelopardalisI6.json';
+import CamelopardalisI7 from '../../assets/tileMaps/CamelopardalisI7.json';
+import CamelopardalisI8 from '../../assets/tileMaps/CamelopardalisI8.json';
 
-import CamelopardalisJ1 from '../assets/tileMaps/CamelopardalisJ1.json';
-import CamelopardalisJ2 from '../assets/tileMaps/CamelopardalisJ2.json';
-import CamelopardalisJ3 from '../assets/tileMaps/CamelopardalisJ3.json';
-import CamelopardalisJ4 from '../assets/tileMaps/CamelopardalisJ4.json';
-import CamelopardalisJ5 from '../assets/tileMaps/CamelopardalisJ5.json';
-import CamelopardalisJ6 from '../assets/tileMaps/CamelopardalisJ6.json';
-import CamelopardalisJ7 from '../assets/tileMaps/CamelopardalisJ7.json';
-import CamelopardalisJ8 from '../assets/tileMaps/CamelopardalisJ8.json';
+import CamelopardalisJ1 from '../../assets/tileMaps/CamelopardalisJ1.json';
+import CamelopardalisJ2 from '../../assets/tileMaps/CamelopardalisJ2.json';
+import CamelopardalisJ3 from '../../assets/tileMaps/CamelopardalisJ3.json';
+import CamelopardalisJ4 from '../../assets/tileMaps/CamelopardalisJ4.json';
+import CamelopardalisJ5 from '../../assets/tileMaps/CamelopardalisJ5.json';
+import CamelopardalisJ6 from '../../assets/tileMaps/CamelopardalisJ6.json';
+import CamelopardalisJ7 from '../../assets/tileMaps/CamelopardalisJ7.json';
+import CamelopardalisJ8 from '../../assets/tileMaps/CamelopardalisJ8.json';
 
-import CamelopardalisK1 from '../assets/tileMaps/CamelopardalisK1.json';
-import CamelopardalisK2 from '../assets/tileMaps/CamelopardalisK2.json';
-import CamelopardalisK3 from '../assets/tileMaps/CamelopardalisK3.json';
-import CamelopardalisK4 from '../assets/tileMaps/CamelopardalisK4.json';
-import CamelopardalisK5 from '../assets/tileMaps/CamelopardalisK5.json';
-import CamelopardalisK6 from '../assets/tileMaps/CamelopardalisK6.json';
-import CamelopardalisK7 from '../assets/tileMaps/CamelopardalisK7.json';
-import CamelopardalisK8 from '../assets/tileMaps/CamelopardalisK8.json';
+import CamelopardalisK1 from '../../assets/tileMaps/CamelopardalisK1.json';
+import CamelopardalisK2 from '../../assets/tileMaps/CamelopardalisK2.json';
+import CamelopardalisK3 from '../../assets/tileMaps/CamelopardalisK3.json';
+import CamelopardalisK4 from '../../assets/tileMaps/CamelopardalisK4.json';
+import CamelopardalisK5 from '../../assets/tileMaps/CamelopardalisK5.json';
+import CamelopardalisK6 from '../../assets/tileMaps/CamelopardalisK6.json';
+import CamelopardalisK7 from '../../assets/tileMaps/CamelopardalisK7.json';
+import CamelopardalisK8 from '../../assets/tileMaps/CamelopardalisK8.json';
 
-import CamelopardalisL1 from '../assets/tileMaps/CamelopardalisL1.json';
-import CamelopardalisL2 from '../assets/tileMaps/CamelopardalisL2.json';
-import CamelopardalisL3 from '../assets/tileMaps/CamelopardalisL3.json';
-import CamelopardalisL4 from '../assets/tileMaps/CamelopardalisL4.json';
-import CamelopardalisL5 from '../assets/tileMaps/CamelopardalisL5.json';
-import CamelopardalisL6 from '../assets/tileMaps/CamelopardalisL6.json';
-import CamelopardalisL7 from '../assets/tileMaps/CamelopardalisL7.json';
-import CamelopardalisL8 from '../assets/tileMaps/CamelopardalisL8.json';
+import CamelopardalisL1 from '../../assets/tileMaps/CamelopardalisL1.json';
+import CamelopardalisL2 from '../../assets/tileMaps/CamelopardalisL2.json';
+import CamelopardalisL3 from '../../assets/tileMaps/CamelopardalisL3.json';
+import CamelopardalisL4 from '../../assets/tileMaps/CamelopardalisL4.json';
+import CamelopardalisL5 from '../../assets/tileMaps/CamelopardalisL5.json';
+import CamelopardalisL6 from '../../assets/tileMaps/CamelopardalisL6.json';
+import CamelopardalisL7 from '../../assets/tileMaps/CamelopardalisL7.json';
+import CamelopardalisL8 from '../../assets/tileMaps/CamelopardalisL8.json';
 
-import CamelopardalisM1 from '../assets/tileMaps/CamelopardalisM1.json';
-import CamelopardalisM2 from '../assets/tileMaps/CamelopardalisM2.json';
-import CamelopardalisM3 from '../assets/tileMaps/CamelopardalisM3.json';
-import CamelopardalisM4 from '../assets/tileMaps/CamelopardalisM4.json';
-import CamelopardalisM5 from '../assets/tileMaps/CamelopardalisM5.json';
-import CamelopardalisM6 from '../assets/tileMaps/CamelopardalisM6.json';
-import CamelopardalisM7 from '../assets/tileMaps/CamelopardalisM7.json';
-import CamelopardalisM8 from '../assets/tileMaps/CamelopardalisM8.json';
+import CamelopardalisM1 from '../../assets/tileMaps/CamelopardalisM1.json';
+import CamelopardalisM2 from '../../assets/tileMaps/CamelopardalisM2.json';
+import CamelopardalisM3 from '../../assets/tileMaps/CamelopardalisM3.json';
+import CamelopardalisM4 from '../../assets/tileMaps/CamelopardalisM4.json';
+import CamelopardalisM5 from '../../assets/tileMaps/CamelopardalisM5.json';
+import CamelopardalisM6 from '../../assets/tileMaps/CamelopardalisM6.json';
+import CamelopardalisM7 from '../../assets/tileMaps/CamelopardalisM7.json';
+import CamelopardalisM8 from '../../assets/tileMaps/CamelopardalisM8.json';
 
-import CamelopardalisN1 from '../assets/tileMaps/CamelopardalisN1.json';
-import CamelopardalisN2 from '../assets/tileMaps/CamelopardalisN2.json';
-import CamelopardalisN3 from '../assets/tileMaps/CamelopardalisN3.json';
-import CamelopardalisN4 from '../assets/tileMaps/CamelopardalisN4.json';
-import CamelopardalisN5 from '../assets/tileMaps/CamelopardalisN5.json';
-import CamelopardalisN6 from '../assets/tileMaps/CamelopardalisN6.json';
-import CamelopardalisN7 from '../assets/tileMaps/CamelopardalisN7.json';
-import CamelopardalisN8 from '../assets/tileMaps/CamelopardalisN8.json';
+import CamelopardalisN1 from '../../assets/tileMaps/CamelopardalisN1.json';
+import CamelopardalisN2 from '../../assets/tileMaps/CamelopardalisN2.json';
+import CamelopardalisN3 from '../../assets/tileMaps/CamelopardalisN3.json';
+import CamelopardalisN4 from '../../assets/tileMaps/CamelopardalisN4.json';
+import CamelopardalisN5 from '../../assets/tileMaps/CamelopardalisN5.json';
+import CamelopardalisN6 from '../../assets/tileMaps/CamelopardalisN6.json';
+import CamelopardalisN7 from '../../assets/tileMaps/CamelopardalisN7.json';
+import CamelopardalisN8 from '../../assets/tileMaps/CamelopardalisN8.json';
 
-import CamelopardalisO1 from '../assets/tileMaps/CamelopardalisO1.json';
-import CamelopardalisO2 from '../assets/tileMaps/CamelopardalisO2.json';
-import CamelopardalisO3 from '../assets/tileMaps/CamelopardalisO3.json';
-import CamelopardalisO4 from '../assets/tileMaps/CamelopardalisO4.json';
-import CamelopardalisO5 from '../assets/tileMaps/CamelopardalisO5.json';
-import CamelopardalisO6 from '../assets/tileMaps/CamelopardalisO6.json';
-import CamelopardalisO7 from '../assets/tileMaps/CamelopardalisO7.json';
-import CamelopardalisO8 from '../assets/tileMaps/CamelopardalisO8.json';
+import CamelopardalisO1 from '../../assets/tileMaps/CamelopardalisO1.json';
+import CamelopardalisO2 from '../../assets/tileMaps/CamelopardalisO2.json';
+import CamelopardalisO3 from '../../assets/tileMaps/CamelopardalisO3.json';
+import CamelopardalisO4 from '../../assets/tileMaps/CamelopardalisO4.json';
+import CamelopardalisO5 from '../../assets/tileMaps/CamelopardalisO5.json';
+import CamelopardalisO6 from '../../assets/tileMaps/CamelopardalisO6.json';
+import CamelopardalisO7 from '../../assets/tileMaps/CamelopardalisO7.json';
+import CamelopardalisO8 from '../../assets/tileMaps/CamelopardalisO8.json';
 
-import CamelopardalisP1 from '../assets/tileMaps/CamelopardalisP1.json';
-import CamelopardalisP2 from '../assets/tileMaps/CamelopardalisP2.json';
-import CamelopardalisP3 from '../assets/tileMaps/CamelopardalisP3.json';
-import CamelopardalisP4 from '../assets/tileMaps/CamelopardalisP4.json';
-import CamelopardalisP5 from '../assets/tileMaps/CamelopardalisP5.json';
-import CamelopardalisP6 from '../assets/tileMaps/CamelopardalisP6.json';
-import CamelopardalisP7 from '../assets/tileMaps/CamelopardalisP7.json';
-import CamelopardalisP8 from '../assets/tileMaps/CamelopardalisP8.json';
+import CamelopardalisP1 from '../../assets/tileMaps/CamelopardalisP1.json';
+import CamelopardalisP2 from '../../assets/tileMaps/CamelopardalisP2.json';
+import CamelopardalisP3 from '../../assets/tileMaps/CamelopardalisP3.json';
+import CamelopardalisP4 from '../../assets/tileMaps/CamelopardalisP4.json';
+import CamelopardalisP5 from '../../assets/tileMaps/CamelopardalisP5.json';
+import CamelopardalisP6 from '../../assets/tileMaps/CamelopardalisP6.json';
+import CamelopardalisP7 from '../../assets/tileMaps/CamelopardalisP7.json';
+import CamelopardalisP8 from '../../assets/tileMaps/CamelopardalisP8.json';
 
-import backYard1 from '../assets/tileMaps/backYard1.json';
-import arena1 from '../assets/tileMaps/arena1.json';
+import backYard1 from '../../assets/tileMaps/backYard1.json';
+import arena1 from '../../assets/tileMaps/arena1.json';
 
-import EmptyCave from '../assets/tileMaps/EmptyCave.json';
-import SlimeCave from '../assets/tileMaps/SlimeCave.json';
-import EmptySpace from '../assets/tileMaps/EmptySpace.json';
+import EmptyCave from '../../assets/tileMaps/EmptyCave.json';
+import SlimeCave from '../../assets/tileMaps/SlimeCave.json';
 
-import CaveA8 from '../assets/tileMaps/CaveA8.json';
-import CaveC3 from '../assets/tileMaps/CaveC3.json';
-import CaveE1 from '../assets/tileMaps/CaveE1.json';
-import CaveE5 from '../assets/tileMaps/CaveE5.json';
-import CaveE7 from '../assets/tileMaps/CaveE7.json';
-import CaveF3 from '../assets/tileMaps/CaveF3.json';
-import CaveK1 from '../assets/tileMaps/CaveK1.json';
-import CaveK5 from '../assets/tileMaps/CaveK5.json';
-import CaveL1 from '../assets/tileMaps/CaveL1.json';
-import CaveM1 from '../assets/tileMaps/CaveM1.json';
-import CaveM4 from '../assets/tileMaps/CaveM4.json';
-import CaveO6 from '../assets/tileMaps/CaveO6.json';
-import CaveP2 from '../assets/tileMaps/CaveP2.json';
-import CaveP7 from '../assets/tileMaps/CaveP7.json';
+import CaveA8 from '../../assets/tileMaps/CaveA8.json';
+import CaveC3 from '../../assets/tileMaps/CaveC3.json';
+import CaveE1 from '../../assets/tileMaps/CaveE1.json';
+import CaveE5 from '../../assets/tileMaps/CaveE5.json';
+import CaveE7 from '../../assets/tileMaps/CaveE7.json';
+import CaveF3 from '../../assets/tileMaps/CaveF3.json';
+import CaveK1 from '../../assets/tileMaps/CaveK1.json';
+import CaveK5 from '../../assets/tileMaps/CaveK5.json';
+import CaveM1 from '../../assets/tileMaps/CaveM1.json';
+import CaveM4 from '../../assets/tileMaps/CaveM4.json';
+import CaveO6 from '../../assets/tileMaps/CaveO6.json';
+import CaveP2 from '../../assets/tileMaps/CaveP2.json';
+import CaveP7 from '../../assets/tileMaps/CaveP7.json';
 
-import Library from '../assets/tileMaps/Library.json';
+import Library from '../../assets/tileMaps/Library.json';
 
 // NOTE: You must also add any new scenes to witchazzan-server/config/default-config.edn
 
 // Tile Sets
-import camelopardalisColor16x16 from '../assets/tileSets/CamelopardalisColor16x16.png';
-import tilesetZoriaOverworld from '../assets/tileSets/zoria_overworld.png';
-import dungeonTileset from '../assets/tileSets/Dungeon_Tileset.png';
-import roguelikeSheetTransparent from '../assets/tileSets/roguelikeSheet_transparent.png';
+import camelopardalisColor16x16 from '../../assets/tileSets/CamelopardalisColor16x16.png';
+import tilesetZoriaOverworld from '../../assets/tileSets/zoria_overworld.png';
+import dungeonTileset from '../../assets/tileSets/Dungeon_Tileset.png';
+import roguelikeSheetTransparent from '../../assets/tileSets/roguelikeSheet_transparent.png';
+import Loading from '../../assets/tileMaps/Loading.json';
+import CaveL1 from '../../assets/tileMaps/CaveL1.json';
+import gameLoopAndSceneFactory from './gameLoopAndSceneFactory.js';
 
 // Each entry consists of an image and a name.
 // The name is used for tagging the imported tile set image,
@@ -320,6 +318,7 @@ const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
     38: { probability: 0.2, sprite: 'GroundSparkleTwo' },
     110: { sprite: 'BlueWater' },
     111: { sprite: 'BlueWaterEastShore' },
+    49: { sprite: 'BlackFlowingDown' },
   },
   Water: {
     110: { sprite: 'BlueWater' },
@@ -1531,13 +1530,6 @@ const scenes = [
   {
     sceneName: 'EmptyCave',
     tileMap: EmptyCave,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'EmptySpace',
-    tileMap: EmptySpace,
     tileSet: tileSets.dungeonTileset,
     gameSize: gameSizes.cave,
     htmlElementParameters: caveHtmlElementParameters,

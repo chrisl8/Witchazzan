@@ -9,8 +9,9 @@ import playerObject from './objects/playerObject.js';
 import parseHadronsFromServer from './parseHadronsFromServer.js';
 import hadrons from './objects/hadrons.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
-import clientVersion from '../../shared/version.mjs';
-import mapUtils from '../../shared/mapUtils.mjs';
+import clientVersion from '../../server/utilities/version.js';
+import mapUtils from '../../server/utilities/mapUtils.js';
+import textObject from './objects/textObject.js';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -79,10 +80,15 @@ function receiveDataFromServer() {
     }
   });
 
-  communicationsObject.socket.on('chat', (inputData) => {
-    if (playerObject.scrollingTextBox) {
-      // Sometimes we get a chat message before scrollingTextBox is initialized
-      playerObject.scrollingTextBox.chat(inputData);
+  communicationsObject.socket.on('txt', (inputData) => {
+    if (inputData.typ === 'chat') {
+      if (playerObject.scrollingTextBox) {
+        // Sometimes we get a chat message before scrollingTextBox is initialized
+        playerObject.scrollingTextBox.chat(inputData);
+      }
+    } else if (inputData.typ === 'fad') {
+      textObject.enterSceneText.text = inputData.content;
+      textObject.enterSceneText.display();
     }
   });
 

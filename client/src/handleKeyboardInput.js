@@ -3,7 +3,7 @@ import playerObject from './objects/playerObject.js';
 import spellAssignments from './objects/spellAssignments.js';
 import textObject from './objects/textObject.js';
 import processCommandInput from './processCommandInput.js';
-import fancyNames from '../../shared/fancyNames.mjs';
+import fancyNames from '../../server/utilities/fancyNames.js';
 
 function handleKeyboardInput(event) {
   if (!playerObject.externalDialogOpen) {
@@ -12,12 +12,14 @@ function handleKeyboardInput(event) {
     // because that is empirically the most literal reality for the user.
     if (playerObject.domElements.chatInputDiv.style.display === 'none') {
       if (
-        ((event.key === 't' || event.key === 'T' || event.key === 'Enter') &&
+        ((event.key === 't' || event.key === 'T') &&
           event.type === 'keyup') ||
-        (event.key === '/' && event.type === 'keydown')
+        ((event.key === 'Enter' || event.key === '/') && event.type === 'keydown')
       ) {
         // If we do this on 'keydown', we end up with a 't'
-        // stuck in the input box.
+        // stuck in the input box,
+        // But for '/' we WANT that / in the window,
+        // AND for 'Enter' OTHER things use keydown, so we end up with the same enter closing one thing and opening this.
 
         // Go into chat/command mode if 't' is pressed.
         // This works even if we are not connected,

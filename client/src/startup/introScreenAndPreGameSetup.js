@@ -1,7 +1,6 @@
 /* globals localStorage:true */
 /* globals document:true */
 /* globals window:true */
-/* globals $:true */
 import playerObject from '../objects/playerObject.js';
 import spellAssignments from '../objects/spellAssignments.js';
 import isAppleDevice from '../utilities/isAppleDevice.js';
@@ -50,11 +49,8 @@ function updateDOMElements() {
   document.getElementById('login_error_text_box').hidden = !loginErrorText;
   document.getElementById('login_error_text').innerText = loginErrorText;
 
-  if (!isAdmin) {
-    $('.admin_only_visible').hide();
-  } else {
-    $('.admin_only_visible').show();
-  }
+  for (const el of document.querySelectorAll('.admin_only_visible'))
+    el.style.display = isAdmin ? 'block' : 'none';
 
   if (playerName) {
     document.getElementById('password_input_box').focus();
@@ -232,8 +228,9 @@ async function createAccount() {
 
 const startGameNow = () => {
   // Immediately make it clear that the button was pushed
-  $('body').css('background-color', 'black');
-  document.getElementById('pre_game_div').hidden = true;
+  // TODO: Does this have any visible affect?
+  // $('body').css('background-color', 'black');
+  // document.getElementById('pre_game_div').hidden = true;
 
   // Save the player name to local storage for use next time
   // in the login box in case the token was wiped.
