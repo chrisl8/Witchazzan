@@ -10,7 +10,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   SOURCE="$(readlink "$SOURCE")"
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
-#SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 PARENT_DIR="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
 
@@ -21,7 +21,7 @@ echo ""
 echo "Installing dependencies..."
 npm ci
 echo ""
-"${PARENT_DIR}/versionNumberUpdate.sh"
+"${SCRIPT_DIR}/versionNumberUpdate.sh"
 echo ""
 echo "Building client (this is the slow part)..."
 if [[ -d .parcel-cache ]]; then
