@@ -7,9 +7,13 @@
 
 ## Artwork and Story
 - All images and text files are Copyright 2002 - Christen Lofland, and may not be redistributed nor included in your own applications for distribution.
-    - This specifically pertains to the contents of the `/lore` folder and the `/client/assets` folder and their sub-folders.
+    - This specifically pertains to the contents of the `/lore` folder and the `/assets` folder and their sub-folders.
     - This does **not** apply to incidental text within source code files that are under AGPLv3 license.
     - You are, of course, free to fork this repository and all of its content, and to clone it to your computer systems, but you may not redistribute the parts that are not under the AGPLv3 license.
+
+## License Files
+
+- To make this clear, each top level folder has a `LICENSE.md` file in int. If in doubt, look for that file in the top level of the folder structure that you are in. That file determins the license for the file(s) in question.
 
 ## Redistribution
 

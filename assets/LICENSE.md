@@ -7,5 +7,3 @@ You may, of course, fork this content on Github, and you may clone it to your co
 See the LICENSE.md file at the root of this project for more details.
 
 Note that within this folder and its sub-folders, there do exist files which are not mine. These files may be licensed under different terms. Each of these files is called out in or referenced in the README.md file in the root of this repository. I do not claim to own those specific files, however their respective licenses do allow me to redistribute them. However, I suggest that you obtain them for their original source if you want to redistribute them.
-
-Note that this assets folder is contained WITHIN the client folder for technical and convenience reasons. In a perfect world it would reside elsewhere, making it more obvious that its contents are not licensed in the same way as the rest of the contents of the client folder. However, the fact that the parent folder, and its contents, are licensed under a different license does not affect this folder's license.
