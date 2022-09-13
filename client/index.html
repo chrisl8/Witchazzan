@@ -83,16 +83,24 @@
   <!-- End Favicons -->
   <!-- Fonts -->
   <!-- https://fonts.google.com/?category=Monospace&selection.family=Roboto+Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!--  https://metabox.io/load-google-fonts-faster-wordpress/#:~:text=Render%2Dblocking%20CSS,-When%20Google%20Fonts&text=That%20means%20your%20whole%20page,might%20get%20a%20lower%20ranking.-->
   <link
-      href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto+Mono&display=swap"
-      rel="stylesheet"
-  />
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="preload"
+      as="style"
+      onload="this.rel='stylesheet'"
+  >
   <link
       href="https://fonts.googleapis.com/css?family=Short+Stack&display=swap"
-      rel="stylesheet"
-  />
+      rel="preload"
+      as="style"
+      onload="this.rel='stylesheet'"
+  >
   <!-- End Fonts -->
-  <link rel="stylesheet" href="styles.css" />
+  <!--  https://web.dev/defer-non-critical-css/-->
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <title>Witchazzan</title>
 </head>
 <body class="no-select" style="background-color: black;">
