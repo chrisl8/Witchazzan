@@ -43,7 +43,7 @@
     "@parcel/transformer-webmanifest": "^2.5.0",
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
-    "eslint": "8.22.0",
+    "eslint": "^8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.20.2",
