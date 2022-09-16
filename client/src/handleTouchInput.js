@@ -25,6 +25,8 @@ function handleTouchInput() {
   absorbEventsFor(document.querySelector('#second_stick_container'));
 
   // Create twin sticks
+  let joystickMoved;
+
   const joystick = NippleJs.create({
     zone: document.getElementById('joystick_container'),
     mode: 'semi',
@@ -35,6 +37,7 @@ function handleTouchInput() {
   });
   joystick
     .on('start', () => {
+      joystickMoved = false;
       // Always close the chat box when joystick starts
       if (playerObject.domElements.chatInputDiv.style.display !== 'none') {
         handleKeyboardInput({ key: 'Escape', type: 'keydown' });
@@ -55,6 +58,10 @@ function handleTouchInput() {
         down: false,
       };
       playerObject.joystickDistance = 0;
+      if (!joystickMoved) {
+        // Tap joystick to "grab" items
+        handleKeyboardInput({ key: 'f', type: 'keydown' });
+      }
     })
     .on('move', (evt, data) => {
       const angle = data.angle.degree;
@@ -71,6 +78,7 @@ function handleTouchInput() {
       let down = false;
       if (data.distance > 10) {
         // "deadzone"
+        joystickMoved = true;
         distance = data.distance;
         if ((angle >= 0 && angle < 22) || angle >= 335) {
           right = true;
@@ -142,7 +150,7 @@ function handleTouchInput() {
         }
         if (keyboardInput) {
           if (keyboardInput === 't') {
-            // NOTE: 'c' needs a keyup, the rest work with down.
+            // NOTE: 't' needs a keyup, the rest work with down.
             handleKeyboardInput({ key: 't', type: 'keyup' });
           } else {
             handleKeyboardInput({ key: keyboardInput, type: 'keydown' });
@@ -217,6 +225,11 @@ function handleTouchInput() {
           case 6:
             keyboardInput = 't';
             textObject.spellSetText.text = 'Chat?';
+            textObject.spellSetText.shouldBeActiveNow = true;
+            break;
+          case 7:
+            keyboardInput = 'i';
+            textObject.spellSetText.text = 'Library?';
             textObject.spellSetText.shouldBeActiveNow = true;
             break;
           default:
