@@ -22,6 +22,12 @@ import sunriseMp3 from 'url:../../assets/sounds/sunrise.mp3';
 // eslint-disable-next-line import/no-unresolved
 import sunriseOgg from 'url:../../assets/sounds/sunrise.ogg';
 
+// Bitmap fonts
+// NOTE that the 'url:' text in front tells Parcel to assign the URL of this asset to the variable instead of the contents.
+// eslint-disable-next-line import/no-unresolved
+import atariSunsetXml from 'url:../../assets/fonts/atari-sunset.xml';
+import atariSunsetPng from '../../assets/fonts/atari-sunset.png';
+
 import playerObject from './objects/playerObject.js';
 import textObject from './objects/textObject.js';
 import sendDataToServer from './sendDataToServer.js';
@@ -115,7 +121,15 @@ const gameLoopAndSceneFactory = ({
       });
     });
 
-    this.load.audio('sunrise', [sunriseOgg, sunriseMp3]);
+    // Load Sounds
+    if (!scene.cache.audio.has('sunrise')) {
+      this.load.audio('sunrise', [sunriseOgg, sunriseMp3]);
+    }
+
+    // Load Bitmap Fonts
+    if (!scene.cache.bitmapFont.has('atariSunset')) {
+      this.load.bitmapFont('atariSunset', atariSunsetPng, atariSunsetXml);
+    }
   };
 
   // INITIAL SCENE SETUP

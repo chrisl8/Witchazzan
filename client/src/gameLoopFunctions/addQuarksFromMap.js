@@ -3,6 +3,7 @@ import getSpriteData from '../utilities/getSpriteData.js';
 import objectDepthSettings from '../objects/objectDepthSettings.js';
 import currentSceneQuarks from '../objects/currentSceneQuarks.js';
 import sendDataToServer from '../sendDataToServer.js';
+import playerObject from '../objects/playerObject.js';
 
 function addQuarksFromMap(map, sceneName) {
   // This section finds the Objects in the Tilemap that trigger features
@@ -156,6 +157,32 @@ function addQuarksFromMap(map, sceneName) {
         // The server will decide if they already exist or not,
         // and add them, and assign a controller if needed.
         sendDataToServer.createHadron(newHadron);
+      }
+    } else if (
+      objectProperties.Type === 'Text' &&
+      objectProperties.hasOwnProperty('Text')
+    ) {
+      let font = playerObject.defaultTextOptions.font;
+      if (
+        objectProperties.hasOwnProperty('Font') &&
+        this.cache.bitmapFont.has(objectProperties.Font)
+      ) {
+        font = objectProperties.Font;
+      }
+      const text = this.add
+        .bitmapText(object.x, object.y, font, objectProperties.Text.split('\n'))
+        .setFontSize(
+          objectProperties.Size || playerObject.defaultTextOptions.fontSize,
+        )
+        .setOrigin(
+          objectProperties.Origin || playerObject.defaultTextOptions.origin,
+        )
+        .setDepth(objectProperties.Depth || objectDepthSettings.sceneText);
+      if (
+        objectProperties.hasOwnProperty('Center') &&
+        objectProperties.Center
+      ) {
+        text.setCenterAlign();
       }
     }
   });
