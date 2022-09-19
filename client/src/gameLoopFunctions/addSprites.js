@@ -11,16 +11,34 @@ function addSprites(hadron, key) {
 
     newClientSprite.spriteData = getSpriteData(hadron.spr);
 
-    newClientSprite.sprite = this.physics.add
-      .sprite(hadron.x, hadron.y, newClientSprite.spriteData.name)
-      .setSize(
-        newClientSprite.spriteData.physicsSize.x,
-        newClientSprite.spriteData.physicsSize.y,
-      )
-      .setDisplaySize(
-        newClientSprite.spriteData.displayWidth,
-        newClientSprite.spriteData.displayHeight,
-      );
+    if (this.textures.exists(newClientSprite.spriteData.name)) {
+      newClientSprite.sprite = this.physics.add
+        .sprite(hadron.x, hadron.y, newClientSprite.spriteData.name)
+        .setSize(
+          newClientSprite.spriteData.physicsSize.x,
+          newClientSprite.spriteData.physicsSize.y,
+        )
+        .setDisplaySize(
+          newClientSprite.spriteData.displayWidth,
+          newClientSprite.spriteData.displayHeight,
+        );
+    } else {
+      newClientSprite.sprite = this.physics.add
+        .sprite(
+          hadron.x,
+          hadron.y,
+          'atlasOne',
+          newClientSprite.spriteData.fileName,
+        )
+        .setSize(
+          newClientSprite.spriteData.physicsSize.x,
+          newClientSprite.spriteData.physicsSize.y,
+        )
+        .setDisplaySize(
+          newClientSprite.spriteData.displayWidth,
+          newClientSprite.spriteData.displayHeight,
+        );
+    }
 
     // https://newdocs.phaser.io/docs/3.55.1/Phaser.Data.DataManager
     newClientSprite.sprite.setData('hadronId', key);

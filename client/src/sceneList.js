@@ -296,11 +296,11 @@ const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
       probability: 0.4,
       sprite: 'MountainWallSparkleOne',
     },
-    244: {
+    82: {
       probability: 0.4,
       sprite: 'MountainWallSparkleOne',
     },
-    255: {
+    93: {
       probability: 0.1,
       sprite: 'MountainWallSparkleTwo',
     },
@@ -311,7 +311,7 @@ const camelopardalisColor16x16AnimatedTileOverlayStrategy = {
     //
   },
   'Stuff You Walk Under': {
-    363: { probability: 0.08, sprite: 'SkullWink' },
+    148: { probability: 0.08, sprite: 'SkullWink' },
   },
   Ground: {
     14: { probability: 0.2, sprite: 'GroundSparkleOne' },

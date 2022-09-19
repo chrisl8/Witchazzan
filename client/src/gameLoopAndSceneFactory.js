@@ -15,8 +15,7 @@
 import Phaser from 'phaser';
 
 // Music and sounds
-// Notice that Parcel, our bundler, requires this goofy url: format
-// and eslint cannot comprehend it either.
+// NOTE that the 'url:' text in front tells Parcel to assign the URL of this asset to the variable instead of the contents.
 // eslint-disable-next-line import/no-unresolved
 import sunriseMp3 from 'url:../../assets/sounds/sunrise.mp3';
 // eslint-disable-next-line import/no-unresolved
@@ -59,6 +58,10 @@ import handlePlayerRaycast from './gameLoopFunctions/handlePlayerRaycast.js';
 import handlePlayerInteraction from './gameLoopFunctions/handlePlayerInteraction.js';
 import itemBehavior from './gameLoopFunctions/itemBehavior.js';
 import barricades from './gameLoopFunctions/barricades.js';
+
+// Texture atlases
+import textureAtlasOneJson from '../../assets/textureAtlasOne.json';
+import textureAtlasOnePng from '../../assets/textureAtlasOne.png';
 
 let didThisOnce = false; // For the sound example.
 
@@ -103,23 +106,21 @@ const gameLoopAndSceneFactory = ({
     // assigned to it.
     // NOTE: This also means we are not wasting memory by loading the same tileSet over and over,
     // because phaser just overwrites them.
-    this.load.image(`${tileSet.name}-tiles`, tileSet.image);
+    if (!scene.textures.exists(`${tileSet.name}-tiles`)) {
+      this.load.image(`${tileSet.name}-tiles`, tileSet.image);
+    }
     // NOTE: The key must be different for each tilemap,
     // otherwise Phaser will get confused and reuse the same tilemap
     // even though you think you loaded another one.
     // https://www.html5gamedevs.com/topic/40710-how-do-i-load-a-new-scene-with-phaser-3-and-webpack/
-    this.load.tilemapTiledJSON(`${sceneName}-map`, tileMap);
+    if (!scene.cache.tilemap.has(`${sceneName}-map`)) {
+      this.load.tilemapTiledJSON(`${sceneName}-map`, tileMap);
+    }
 
-    // Spritesheet example: https://labs.phaser.io/view.html?src=src/animation/single%20sprite%20sheet.js
-    // The sprites can be added in this preload phase,
-    // but the animations have to be added in the create phase later.
-    spriteSheetList.forEach((spriteSheet) => {
-      this.load.spritesheet(spriteSheet.name, spriteSheet.file, {
-        frameWidth: spriteSheet.frameWidth,
-        frameHeight: spriteSheet.frameHeight,
-        endFrame: spriteSheet.endFrame,
-      });
-    });
+    // Load Texture Atlases
+    if (!this.textures.exists('atlasOne')) {
+      this.load.atlas('atlasOne', textureAtlasOnePng, textureAtlasOneJson);
+    }
 
     // Load Sounds
     if (!scene.cache.audio.has('sunrise')) {
@@ -184,19 +185,30 @@ const gameLoopAndSceneFactory = ({
     // but the animations have to be added in the create phase.
     spriteSheetList.forEach((spriteSheet) => {
       if (spriteSheet.animations) {
-        spriteSheet.animations.forEach((animation) => {
-          this.anims.create({
-            key: `${spriteSheet.name}-${animation.keyName}`,
-            frames: this.anims.generateFrameNumbers(spriteSheet.name, {
-              start: animation.start,
-              end: animation.end,
-              zeroPad: animation.zeroPad,
-              frames: animation.frames,
-            }),
-            frameRate: spriteSheet.animationFrameRate,
-            repeat: animation.repeat,
-            repeatDelay: animation.repeatDelay,
+        if (!this.textures.exists(spriteSheet.name)) {
+          this.textures.addSpriteSheetFromAtlas(spriteSheet.name, {
+            atlas: 'atlasOne',
+            frame: spriteSheet.fileName,
+            frameWidth: spriteSheet.frameWidth,
+            frameHeight: spriteSheet.frameHeight,
+            // endFrame: animation.end,
           });
+        }
+        spriteSheet.animations.forEach((animation) => {
+          if (!this.anims.exists(`${spriteSheet.name}-${animation.keyName}`)) {
+            this.anims.create({
+              key: `${spriteSheet.name}-${animation.keyName}`,
+              frames: this.anims.generateFrameNumbers(spriteSheet.name, {
+                start: animation.start,
+                end: animation.end,
+                zeroPad: animation.zeroPad,
+                frames: animation.frames,
+              }),
+              frameRate: spriteSheet.animationFrameRate,
+              repeat: animation.repeat,
+              repeatDelay: animation.repeatDelay,
+            });
+          }
         });
       }
     });

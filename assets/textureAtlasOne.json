@@ -1,0 +1,1070 @@
+{
+	"textures": [
+		{
+			"image": "textureAtlasOne.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 128
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Whirl.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 720,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 720,
+						"h": 45
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 720,
+						"h": 45
+					}
+				},
+				{
+					"filename": "flamingGoose.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 328,
+						"h": 79
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 328,
+						"h": 79
+					},
+					"frame": {
+						"x": 1,
+						"y": 48,
+						"w": 328,
+						"h": 79
+					}
+				},
+				{
+					"filename": "BlackFlowingDown.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 480,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 480,
+						"h": 32
+					},
+					"frame": {
+						"x": 723,
+						"y": 1,
+						"w": 480,
+						"h": 32
+					}
+				},
+				{
+					"filename": "chest.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 368,
+						"h": 43
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 368,
+						"h": 43
+					},
+					"frame": {
+						"x": 331,
+						"y": 48,
+						"w": 368,
+						"h": 43
+					}
+				},
+				{
+					"filename": "Quasar.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 288,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 288,
+						"h": 16
+					},
+					"frame": {
+						"x": 1205,
+						"y": 1,
+						"w": 288,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterEastShore.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 331,
+						"y": 93,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterNorthEastShore.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 331,
+						"y": 111,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterNorthShore.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 1205,
+						"y": 19,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterNorthWestShore.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 723,
+						"y": 35,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterNorthWestShoreCorner.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 701,
+						"y": 53,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterSouthEastShore.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 701,
+						"y": 71,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterSouthEastShoreCorner.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 701,
+						"y": 89,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Fountain.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 176,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 176,
+						"h": 16
+					},
+					"frame": {
+						"x": 981,
+						"y": 35,
+						"w": 176,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterSouthShore.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 1159,
+						"y": 37,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "LaserArrow2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 160,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 160,
+						"h": 16
+					},
+					"frame": {
+						"x": 959,
+						"y": 53,
+						"w": 160,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterSouthWestShore.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 1121,
+						"y": 55,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "writtenPaper.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 154,
+						"h": 14
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 154,
+						"h": 14
+					},
+					"frame": {
+						"x": 959,
+						"y": 71,
+						"w": 154,
+						"h": 14
+					}
+				},
+				{
+					"filename": "BlueWaterSouthWestShoreCorner.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 1115,
+						"y": 73,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterWestShore.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 589,
+						"y": 107,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "MountainWallSparkleTwo.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 144,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 144,
+						"h": 16
+					},
+					"frame": {
+						"x": 959,
+						"y": 87,
+						"w": 144,
+						"h": 16
+					}
+				},
+				{
+					"filename": "purpleRunningRunes.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 16
+					},
+					"frame": {
+						"x": 1105,
+						"y": 91,
+						"w": 256,
+						"h": 16
+					}
+				},
+				{
+					"filename": "SilverSparkleForTree.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 144,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 144,
+						"h": 16
+					},
+					"frame": {
+						"x": 959,
+						"y": 105,
+						"w": 144,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bloomby16.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 240,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 240,
+						"h": 16
+					},
+					"frame": {
+						"x": 1105,
+						"y": 109,
+						"w": 240,
+						"h": 16
+					}
+				},
+				{
+					"filename": "GroundSparkleOne.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 16
+					},
+					"frame": {
+						"x": 1495,
+						"y": 1,
+						"w": 96,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlackWater.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 16
+					},
+					"frame": {
+						"x": 1463,
+						"y": 19,
+						"w": 128,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWater.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 16
+					},
+					"frame": {
+						"x": 1417,
+						"y": 37,
+						"w": 128,
+						"h": 16
+					}
+				},
+				{
+					"filename": "BlueWaterFlowingDown.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 16
+					},
+					"frame": {
+						"x": 1379,
+						"y": 55,
+						"w": 128,
+						"h": 16
+					}
+				},
+				{
+					"filename": "RainbowTileOne.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 16
+					},
+					"frame": {
+						"x": 1373,
+						"y": 73,
+						"w": 128,
+						"h": 16
+					}
+				},
+				{
+					"filename": "GroundSparkleTwo.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 16
+					},
+					"frame": {
+						"x": 1363,
+						"y": 91,
+						"w": 96,
+						"h": 16
+					}
+				},
+				{
+					"filename": "MountainWallSparkleOne.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 16
+					},
+					"frame": {
+						"x": 847,
+						"y": 107,
+						"w": 80,
+						"h": 16
+					}
+				},
+				{
+					"filename": "SkullWink.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 16
+					},
+					"frame": {
+						"x": 1347,
+						"y": 109,
+						"w": 64,
+						"h": 16
+					}
+				},
+				{
+					"filename": "chair2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 12
+					},
+					"frame": {
+						"x": 589,
+						"y": 93,
+						"w": 30,
+						"h": 12
+					}
+				},
+				{
+					"filename": "redTankSingle.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 46,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 46,
+						"h": 38
+					},
+					"frame": {
+						"x": 1547,
+						"y": 37,
+						"w": 46,
+						"h": 38
+					}
+				},
+				{
+					"filename": "WickedSnail1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 1461,
+						"y": 91,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "Barricade-BlackKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 929,
+						"y": 107,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-BlueKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1509,
+						"y": 55,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-DarkBlueKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1503,
+						"y": 73,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-GreyKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1495,
+						"y": 91,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-LightBlueKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1413,
+						"y": 109,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-OrangeKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1527,
+						"y": 55,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-PinkKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1521,
+						"y": 73,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "yellowTankSingle.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 46,
+						"h": 38
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 46,
+						"h": 38
+					},
+					"frame": {
+						"x": 1539,
+						"y": 77,
+						"w": 46,
+						"h": 38
+					}
+				},
+				{
+					"filename": "Barricade-PurpleKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1431,
+						"y": 109,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-RedKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1513,
+						"y": 91,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-TurquoiseKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1495,
+						"y": 109,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Barricade-YellowKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1513,
+						"y": 109,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "table1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 10
+					},
+					"frame": {
+						"x": 1531,
+						"y": 117,
+						"w": 16,
+						"h": 10
+					}
+				},
+				{
+					"filename": "BrokenHeart.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 1587,
+						"y": 77,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "RedKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 9,
+						"h": 6
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 9,
+						"h": 6
+					},
+					"frame": {
+						"x": 621,
+						"y": 93,
+						"w": 9,
+						"h": 6
+					}
+				},
+				{
+					"filename": "YellowKey.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 9,
+						"h": 6
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 9,
+						"h": 6
+					},
+					"frame": {
+						"x": 1593,
+						"y": 1,
+						"w": 9,
+						"h": 6
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:ff56201211b2d214afd2b1161a9bd5e8:cb33a402dca0ce230eb0b9879e337f89:01bd61073ce0ee21c5bb2be67683edc1$"
+	}
+}

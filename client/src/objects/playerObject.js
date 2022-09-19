@@ -129,6 +129,7 @@ const playerObject = {
   heldItemList: [],
   importantItems: [],
   importantItemsUpdated: false,
+  defaultTextOptions: { font: 'atariSunset', fontSize: 16, origin: 0.5 },
   testNow: null,
 };
 

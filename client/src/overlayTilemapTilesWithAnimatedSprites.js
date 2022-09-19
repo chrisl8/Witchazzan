@@ -30,7 +30,6 @@ function overlayTilemapTilesWithAnimatedSprites(
               const newThing = this.add.sprite(
                 tile.pixelX + tile.width / 2,
                 tile.pixelY + tile.width / 2,
-                spriteData.name,
               );
               newThing.flipX = spriteData.faces === 'right';
 

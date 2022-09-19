@@ -34,5 +34,6 @@ const objectDepthSettings = {
   targetObjectHighlight: 32,
   player: 35,
   heldObject: 37,
+  sceneText: 100,
 };
 export default objectDepthSettings;
