@@ -2,6 +2,8 @@ import hadrons from '../objects/hadrons.js';
 import playerObject from '../objects/playerObject.js';
 import getUUID from '../utilities/getUUID.js';
 import sendDataToServer from '../sendDataToServer.js';
+import getSpawnPointFromMap from '../utilities/getSpawnPointFromMap.js';
+import clientSprites from '../objects/clientSprites.js';
 
 function generateNewHadron(hadron, sceneName) {
   // Generate an ID for this new hadron
@@ -27,7 +29,7 @@ function generateNewHadron(hadron, sceneName) {
   return newHadron;
 }
 
-function itemBehavior(delta, sceneName) {
+function itemBehavior(delta, sceneName, map) {
   hadrons.forEach((hadron, key) => {
     // Only perform behavior operations on hadrons under our control.
     if (
@@ -120,6 +122,53 @@ function itemBehavior(delta, sceneName) {
       if (hadronUpdated) {
         hadrons.set(key, newHadronData);
       }
+    } else if (
+      hadron.hasOwnProperty('de') && // Only "spawner" items with functions are evaluated, not their children.
+      hadron.typ === 'quark' &&
+      hadron.flv === 'Item' &&
+      hadron.ctr === playerObject.playerId && // Only items WE are controlling.
+      hadron.scn === sceneName // This should always be the case, but just in case.
+    ) {
+      // console.log(hadron);
+      // Items pushed from one room to another have the 'de' property on them,
+      // and need to be updated
+      const spawnPoint = getSpawnPointFromMap(map, hadron.de);
+
+      // Allow a scene entrance to specify to carry over the X or Y value from the previous scene so that you can enter at any point along the edge in a wide doorway.
+      if (
+        spawnPoint &&
+        spawnPoint.hasOwnProperty('properties') &&
+        Array.isArray(spawnPoint.properties)
+      ) {
+        if (
+          spawnPoint.properties.find((x) => x.name === 'allowCustomX')?.value &&
+          hadron?.px
+        ) {
+          spawnPoint.x = hadron.px;
+        }
+
+        if (
+          spawnPoint.properties.find((x) => x.name === 'allowCustomY')?.value &&
+          hadron?.py
+        ) {
+          spawnPoint.y = hadron.py;
+        }
+      }
+
+      const newHadronData = { ...hadron };
+      newHadronData.x = spawnPoint.x;
+      newHadronData.y = spawnPoint.y;
+      delete newHadronData.px;
+      delete newHadronData.py;
+      delete newHadronData.de;
+      const clientSprite = clientSprites.get(key);
+      if (clientSprite) {
+        // If the sprite exists, we need to update it now, lest it get overwritten.
+        clientSprite.sprite.setPosition(newHadronData.x, newHadronData.y);
+        clientSprite.sprite.body.setVelocityX(newHadronData.vlx);
+        clientSprite.sprite.body.setVelocityY(newHadronData.vly);
+      }
+      hadrons.set(key, newHadronData);
     }
   });
 }

@@ -12,9 +12,9 @@ function handleKeyboardInput(event) {
     // because that is empirically the most literal reality for the user.
     if (playerObject.domElements.chatInputDiv.style.display === 'none') {
       if (
-        ((event.key === 't' || event.key === 'T') &&
-          event.type === 'keyup') ||
-        ((event.key === 'Enter' || event.key === '/') && event.type === 'keydown')
+        ((event.key === 't' || event.key === 'T') && event.type === 'keyup') ||
+        ((event.key === 'Enter' || event.key === '/') &&
+          event.type === 'keydown')
       ) {
         // If we do this on 'keydown', we end up with a 't'
         // stuck in the input box,

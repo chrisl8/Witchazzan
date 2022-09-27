@@ -35,7 +35,8 @@ function handlePlayerRaycast() {
     // get all game objects in field of view (which bodies overlap ray's field of view)
     const visibleObjects = ray.overlap();
     visibleObjects.forEach((entry) => {
-      if (entry.data) {
+      if (!rayCastFoundTarget && entry.data) {
+        // Always target the first thing, not the last.
         const id = entry.getData('hadronId');
         if (
           hadrons.get(id)?.typ && // Can be undefined momentarily during initial creation
@@ -52,7 +53,9 @@ function handlePlayerRaycast() {
               .rectangle(0, 0, 15, 15, 0x000000, 0)
               .setDepth(objectDepthSettings.targetObjectHighlight)
               .setStrokeStyle(1, 0x00ff00, 1);
+          }
 
+          if (playerObject.nearbyTargetObject.id !== id) {
             if (
               hadrons.get(id)?.scn !== 'Library' &&
               hadrons.get(id)?.iin &&

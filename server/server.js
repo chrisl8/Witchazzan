@@ -1055,7 +1055,6 @@ io.on('connection', (socket) => {
               },
             });
           }
-          // TODO: How to check if a player has an item in their library when, for instance, attempting to enter a "door" (teleport zone to a locked scene).
         }
       });
 

@@ -33,7 +33,6 @@ import sendDataToServer from './sendDataToServer.js';
 import spriteSheetList from './objects/spriteSheetList.js';
 import handleKeyboardInput from './handleKeyboardInput.js';
 import getSpriteData from './utilities/getSpriteData.js';
-import convertTileMapPropertyArrayToObject from './utilities/convertTileMapPropertyArrayToObject.js';
 import objectDepthSettings from './objects/objectDepthSettings.js';
 import debugLog from './utilities/debugLog.js';
 
@@ -62,6 +61,7 @@ import barricades from './gameLoopFunctions/barricades.js';
 // Texture atlases
 import textureAtlasOneJson from '../../assets/textureAtlasOne.json';
 import textureAtlasOnePng from '../../assets/textureAtlasOne.png';
+import getSpawnPointFromMap from './utilities/getSpawnPointFromMap.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -279,28 +279,14 @@ const gameLoopAndSceneFactory = ({
     //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     // });
 
-    // Object layers in Tiled let you embed extra info into a map - like a spawn point or custom
-    // collision shapes. In the .json file, there's an object layer with a point named "Default Spawn Point"
-    let spawnPoint = map.findObject(
-      'Objects',
-      (obj) => obj.name === 'Default Spawn Point',
-    );
-    if (playerObject.destinationX && playerObject.destinationY) {
-      spawnPoint.x = playerObject.destinationX;
-      spawnPoint.y = playerObject.destinationY;
-    } else if (playerObject.destinationEntrance) {
-      const entranceList = map.filterObjects(
-        'Objects',
-        (obj) => convertTileMapPropertyArrayToObject(obj).Type === 'Entrance',
-      );
-      if (entranceList && entranceList.length > 0) {
-        const requestedEntranceIndex = entranceList.findIndex(
-          (x) => x.name === playerObject.destinationEntrance,
-        );
-        if (requestedEntranceIndex > -1) {
-          spawnPoint = entranceList[requestedEntranceIndex];
-        }
-      }
+    let spawnPoint;
+    if (playerObject.destinationEntrance === 'PreviousPosition') {
+      spawnPoint = {
+        x: playerObject.destinationX,
+        y: playerObject.destinationY,
+      };
+    } else {
+      spawnPoint = getSpawnPointFromMap(map, playerObject.destinationEntrance);
     }
 
     // TODO: Library scenes
@@ -530,7 +516,7 @@ const gameLoopAndSceneFactory = ({
     // otherwise fired spells are very erratic.
     npcBehavior(delta, sceneName);
 
-    itemBehavior(delta, sceneName);
+    itemBehavior(delta, sceneName, map);
 
     // Iterate over ALL of the hadrons and do what needs to be done.
     updateHadrons.call(

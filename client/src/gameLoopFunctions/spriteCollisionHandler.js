@@ -2,6 +2,9 @@ import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
 import spells from '../objects/spells.js';
 import debugLog from '../utilities/debugLog.js';
+import playerObject from '../objects/playerObject.js';
+import getDestinationFromTile from '../utilities/getDestinationFromTile.js';
+import sendHadronDataToServer from './sendHadronDataToServer.js';
 
 /*
   REMEMBER!
@@ -19,8 +22,7 @@ function spriteCollisionHandler({
   obstacleLayer,
   obstacleSpriteKey,
   obstacleSprite,
-  teleportLayerName,
-  teleportLayer,
+  tile,
 }) {
   // Uncomment this if you think something is getting "eaten up" to find it.
   // console.log(
@@ -41,19 +43,47 @@ function spriteCollisionHandler({
   //   obstacleSprite,
   //   '\ntype',
   //   hadrons.get(obstacleSpriteKey)?.typ,
-  //   '\nteleportLayerName',
-  //   teleportLayerName,
-  //   '\nteleportLayer',
-  //   teleportLayer,
+  //   '\ntile',
+  //   tile,
   // );
   if (hadrons.get(spriteKey)) {
     // Sprites can linger, and collide, after there hadron is destroyed, but we do not need to act on them anymore.
-    if (teleportLayer) {
+    if (tile) {
       // Teleport Layer interactions.
       // for now de-spawning silently if we hit a "teleport layer"
       // as only Players teleport,
       // but this is intended to be expanded in the future.
-      if (hadrons.get(spriteKey)?.flv !== 'NPC') {
+      if (
+        hadrons.get(spriteKey)?.flv === 'Item' ||
+        hadrons.get(spriteKey)?.flv === 'NPC'
+      ) {
+        const { destinationSceneName, destinationSceneEntrance } =
+          getDestinationFromTile(tile);
+        if (destinationSceneEntrance === 'PreviousPosition') {
+          // In the rare case that this is just supposed to go to our last known position in the previous scene,
+          // which currently ONLY happens in the Library, this is easy.
+          const hadron = hadrons.get(spriteKey);
+          const newHadronData = { ...hadron };
+          newHadronData.scn = destinationSceneName;
+          newHadronData.x = playerObject.previousScene.x;
+          newHadronData.y = playerObject.previousScene.y;
+          hadrons.set(spriteKey, newHadronData);
+          sendHadronDataToServer(newHadronData, spriteKey);
+        } else {
+          const hadron = hadrons.get(spriteKey);
+          const newHadronData = { ...hadron };
+          if (destinationSceneName !== 'Local') {
+            newHadronData.scn = destinationSceneName;
+          }
+          newHadronData.px = newHadronData.x;
+          newHadronData.py = newHadronData.y;
+          newHadronData.de = destinationSceneEntrance;
+          hadrons.set(spriteKey, newHadronData);
+          if (destinationSceneName !== 'Local') {
+            sendHadronDataToServer(newHadronData, spriteKey);
+          }
+        }
+      } else {
         sendDataToServer.destroyHadron(spriteKey);
       }
     } else if (obstacleLayer) {
@@ -191,8 +221,7 @@ function spriteCollisionHandler({
           //   obstacleLayer,
           //   obstacleSpriteKey,
           //   obstacleSprite,
-          //   teleportLayerName,
-          //   teleportLayer,
+          //   tile,
           // );
         }
       }
@@ -206,8 +235,7 @@ function spriteCollisionHandler({
         obstacleLayer,
         obstacleSpriteKey,
         obstacleSprite,
-        teleportLayerName,
-        teleportLayer,
+        tile,
       );
     }
   }
