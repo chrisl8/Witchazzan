@@ -997,7 +997,7 @@
 					}
 				},
 				{
-					"filename": "table1",
+					"filename": "TableOne",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1018,7 +1018,7 @@
 					}
 				},
 				{
-					"filename": "BrokenHeart",
+					"filename": "corpse",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1086,6 +1086,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:a1e747ebae02f33aa80f0b8f036ec36d:90752dfab99cc0ddb9cae6d6dccef1c8:01bd61073ce0ee21c5bb2be67683edc1$"
+		"smartupdate": "$TexturePacker:SmartUpdate:0c65d07d0ee6ed248cbbc38a31b7ead6:e05c27add4c6d899c69b63a53089f1c8:01bd61073ce0ee21c5bb2be67683edc1$"
 	}
 }
