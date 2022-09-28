@@ -87,6 +87,7 @@ function npcBehavior(delta, sceneName) {
 
           // get all game objects in field of view (which bodies overlap ray's field of view)
           const visibleObjects = ray.overlap();
+          let currentTargetDistance;
           visibleObjects.forEach((entry) => {
             if (entry.data) {
               const id = entry.getData('hadronId');
@@ -100,34 +101,48 @@ function npcBehavior(delta, sceneName) {
                 // We found a target
                 rayCastFoundTarget = true;
 
-                // Rotate toward it
-                // TODO: Only rotate if the NPC has this feature.
-                // TODO: Deal with multiples players in view
-                //       Any method of picking is fine, but it should be sticky, not easily distracted
-                const newAngleRad = Phaser.Math.Angle.Between(
+                const distance = Phaser.Math.Distance.Between(
                   hadron.x,
                   hadron.y,
                   entry.x,
                   entry.y,
                 );
-                // Deal with angles that are physically close to each other but cross boundaries,
-                // making them numerically distant
-                // This should work regardless of where that boundary is.
-                // https://stackoverflow.com/a/28037434/4982408
-                const newAngleDeg = newAngleRad * Phaser.Math.RAD_TO_DEG;
-                let difference = ((newAngleDeg - hadron.dir + 180) % 360) - 180;
-                difference = difference < -180 ? difference + 360 : difference;
+                if (
+                  !currentTargetDistance ||
+                  distance < currentTargetDistance
+                ) {
+                  // Always focus on the nearest target.
+                  currentTargetDistance = distance;
+
+                  // Rotate toward it
+                  // TODO: Only rotate if the NPC has this feature.
+                  const newAngleRad = Phaser.Math.Angle.Between(
+                    hadron.x,
+                    hadron.y,
+                    entry.x,
+                    entry.y,
+                  );
+                  // Deal with angles that are physically close to each other but cross boundaries,
+                  // making them numerically distant
+                  // This should work regardless of where that boundary is.
+                  // https://stackoverflow.com/a/28037434/4982408
+                  const newAngleDeg = newAngleRad * Phaser.Math.RAD_TO_DEG;
+                  let difference =
+                    ((newAngleDeg - hadron.dir + 180) % 360) - 180;
+                  difference =
+                    difference < -180 ? difference + 360 : difference;
 
                 const t = 0.05;
 
-                let newHadronDir = hadron.dir + t * difference;
-                // Let Achilles go ahead and catch the Tortoise
-                if (Math.abs(difference) < 1) {
-                  newHadronDir = newAngleDeg;
-                }
-                if (newHadronData.dir !== newHadronDir) {
-                  hadronUpdated = true;
-                  newHadronData.dir = newHadronDir;
+                  let newHadronDir = hadron.dir + t * difference;
+                  // Let Achilles go ahead and catch the Tortoise
+                  if (Math.abs(difference) < 1) {
+                    newHadronDir = newAngleDeg;
+                  }
+                  if (newHadronData.dir !== newHadronDir) {
+                    hadronUpdated = true;
+                    newHadronData.dir = newHadronDir;
+                  }
                 }
               }
             }
