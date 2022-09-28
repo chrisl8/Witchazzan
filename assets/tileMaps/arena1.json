@@ -648,7 +648,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":1000
                         }, 
                         {
                          "name":"id",
@@ -963,7 +963,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":1000
                         }, 
                         {
                          "name":"id",
@@ -1215,7 +1215,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":1000
                         }, 
                         {
                          "name":"id",
@@ -1278,7 +1278,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":1000
                         }, 
                         {
                          "name":"id",
@@ -1578,7 +1578,7 @@
  "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {

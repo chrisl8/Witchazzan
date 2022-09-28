@@ -179,21 +179,26 @@ function spriteCollisionHandler({
                 this,
               );
               // Render damage to the NPC
-              // TODO: Amount should probably be stored in the sprite data and gotten from the spell?
               sendDataToServer.damageHadron({
                 id: obstacleSpriteKey,
+                // TODO: Amount should probably be stored in the sprite data and gotten from the spell?
                 amount: 1,
               });
             } else if (hadrons.get(obstacleSpriteKey)?.flv === 'Item') {
-              // Shooting someone else's items currently has no affect either,
-              // but eventually we may make them have health.
-              // but the spells go away.
               // Destroy the spell hadron
               sendDataToServer.destroyHadron(
                 spriteKey,
                 obstacleSpriteKey,
                 this,
               );
+              // Render damage to the Item if it has health (not all do)
+              if (hadrons.get(obstacleSpriteKey)?.hlt) {
+                sendDataToServer.damageHadron({
+                  id: obstacleSpriteKey,
+                  // TODO: Amount should probably be stored in the sprite data and gotten from the spell?
+                  amount: 1,
+                });
+              }
             }
             // Spells hitting Non-NPC Quarks are ignored
           } else if (hadrons.get(obstacleSpriteKey)?.flv === 'Item') {
