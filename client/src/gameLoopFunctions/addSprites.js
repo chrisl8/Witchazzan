@@ -24,12 +24,7 @@ function addSprites(hadron, key) {
         );
     } else {
       newClientSprite.sprite = this.physics.add
-        .sprite(
-          hadron.x,
-          hadron.y,
-          'atlasOne',
-          newClientSprite.spriteData.fileName,
-        )
+        .sprite(hadron.x, hadron.y, 'atlasOne', newClientSprite.spriteData.name)
         .setSize(
           newClientSprite.spriteData.physicsSize.x,
           newClientSprite.spriteData.physicsSize.y,

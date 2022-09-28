@@ -8,7 +8,6 @@ const spriteSheetList = [
   {
     type: 'player',
     name: 'bloomby',
-    fileName: 'bloomby16.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -49,7 +48,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'ChairTwo',
-    fileName: 'chair2.png',
     faces: 'right',
     frameWidth: 10,
     frameHeight: 12,
@@ -71,7 +69,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'TableOne',
-    fileName: 'table1.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 10,
@@ -85,7 +82,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'WickedSnailOne',
-    fileName: 'WickedSnail1.png',
     faces: 'right',
     frameWidth: 32,
     frameHeight: 32,
@@ -102,7 +98,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'YellowKey',
-    fileName: 'YellowKey.png',
     faces: 'right',
     frameWidth: 9,
     frameHeight: 6,
@@ -116,7 +111,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'RedKey',
-    fileName: 'RedKey.png',
     faces: 'right',
     frameWidth: 9,
     frameHeight: 6,
@@ -130,7 +124,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Whirl',
-    fileName: 'Whirl.png',
     faces: 'right',
     frameWidth: 45,
     frameHeight: 45,
@@ -149,7 +142,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'quasar',
-    fileName: 'Quasar.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -177,7 +169,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'laserArrow',
-    fileName: 'LaserArrow2.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -203,8 +194,7 @@ const spriteSheetList = [
   },
   {
     type: 'other',
-    name: 'chestFront',
-    fileName: 'chest.png',
+    name: 'chest',
     frameWidth: 46,
     frameHeight: 43,
     endFrame: 3,
@@ -223,7 +213,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'corpse',
-    fileName: 'BrokenHeart.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: 1,
@@ -237,7 +226,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'RainbowTileOne',
-    fileName: 'RainbowTileOne.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -256,7 +244,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'writtenPaper',
-    fileName: 'writtenPaper.png',
     frameWidth: 14,
     frameHeight: 14,
     endFrame: -1,
@@ -275,7 +262,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Fountain',
-    fileName: 'Fountain.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -294,7 +280,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-RedKey',
-    fileName: 'Barricade-RedKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -308,7 +293,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-YellowKey',
-    fileName: 'Barricade-YellowKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -322,7 +306,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-OrangeKey',
-    fileName: 'Barricade-OrangeKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -336,7 +319,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-GreyKey',
-    fileName: 'Barricade-GreyKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -350,7 +332,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-BlueKey',
-    fileName: 'Barricade-BlueKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -364,7 +345,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-BlackKey',
-    fileName: 'Barricade-BlackKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -378,7 +358,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-PurpleKey',
-    fileName: 'Barricade-PurpleKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -392,7 +371,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-DarkBlueKey',
-    fileName: 'Barricade-DarkBlueKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -406,7 +384,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-LightBlueKey',
-    fileName: 'Barricade-LightBlueKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -420,7 +397,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-PinkKey',
-    fileName: 'Barricade-PinkKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -434,7 +410,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'Barricade-TurquoiseKey',
-    fileName: 'Barricade-TurquoiseKey.png',
     faces: 'right',
     frameWidth: 16,
     frameHeight: 16,
@@ -448,7 +423,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'PurpleRunningRunes',
-    fileName: 'purpleRunningRunes.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -463,7 +437,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'redTankSingle',
-    fileName: 'redTankSingle.png',
     frameWidth: 46,
     frameHeight: 38,
     endFrame: -1,
@@ -479,7 +452,21 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'yellowTankSingle',
-    fileName: 'yellowTankSingle.png',
+    frameWidth: 46,
+    frameHeight: 38,
+    endFrame: -1,
+    faces: 'left',
+    physicsSize: {
+      x: 46,
+      y: 24,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true,
+  },
+  {
+    type: 'other',
+    name: 'turquoiseTankSingle',
     frameWidth: 46,
     frameHeight: 38,
     endFrame: -1,
@@ -495,7 +482,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlackWater',
-    fileName: 'BlackWater.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -518,7 +504,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlackFlowingDown',
-    fileName: 'BlackFlowingDown.png',
     frameWidth: 32,
     frameHeight: 32,
     endFrame: -1,
@@ -541,7 +526,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'SkullWink',
-    fileName: 'SkullWink.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -563,7 +547,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWater',
-    fileName: 'BlueWater.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -578,7 +561,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterFlowingDown',
-    fileName: 'BlueWaterFlowingDown.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -593,7 +575,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterNorthShore',
-    fileName: 'BlueWaterNorthShore.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -608,7 +589,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterSouthShore',
-    fileName: 'BlueWaterSouthShore.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -623,7 +603,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterNorthWestShore',
-    fileName: 'BlueWaterNorthWestShore.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -638,7 +617,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterNorthEastShore',
-    fileName: 'BlueWaterNorthEastShore.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -653,7 +631,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterSouthEastShoreCorner',
-    fileName: 'BlueWaterSouthEastShoreCorner.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -668,7 +645,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterSouthWestShoreCorner',
-    fileName: 'BlueWaterSouthWestShoreCorner.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -683,7 +659,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterNorthWestShoreCorner',
-    fileName: 'BlueWaterNorthWestShoreCorner.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -698,7 +673,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterSouthWestShore',
-    fileName: 'BlueWaterSouthWestShore.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -713,7 +687,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterSouthEastShore',
-    fileName: 'BlueWaterSouthEastShore.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -728,7 +701,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterWestShore',
-    fileName: 'BlueWaterWestShore.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -743,7 +715,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'BlueWaterEastShore',
-    fileName: 'BlueWaterEastShore.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -758,7 +729,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'MountainWallSparkleOne',
-    fileName: 'MountainWallSparkleOne.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -780,7 +750,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'MountainWallSparkleTwo',
-    fileName: 'MountainWallSparkleTwo.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -802,7 +771,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'SilverSparkleForTree',
-    fileName: 'SilverSparkleForTree.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -824,7 +792,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'GroundSparkleOne',
-    fileName: 'GroundSparkleOne.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -839,7 +806,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'GroundSparkleTwo',
-    fileName: 'GroundSparkleTwo.png',
     frameWidth: 16,
     frameHeight: 16,
     endFrame: -1,
@@ -856,7 +822,6 @@ const spriteSheetList = [
     // so it is set up to fill a lot of roles, but also expected to never look great.
     type: 'other',
     name: 'flamingGoose',
-    fileName: 'flamingGoose.png',
     frameWidth: 82,
     frameHeight: 79,
     endFrame: 4,

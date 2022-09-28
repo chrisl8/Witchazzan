@@ -20,7 +20,7 @@ function barricades(map, gameSize) {
                   tile.pixelX + tile.width / 2,
                   tile.pixelY + tile.width / 2,
                   'atlasOne',
-                  `${splitLayerName[0]}-${keyName.replace(/\s+/g, '')}.png`,
+                  `${splitLayerName[0]}-${keyName.replace(/\s+/g, '')}`,
                 )
                 .setImmovable(true)
                 .setDepth(300);

@@ -188,7 +188,7 @@ const gameLoopAndSceneFactory = ({
         if (!this.textures.exists(spriteSheet.name)) {
           this.textures.addSpriteSheetFromAtlas(spriteSheet.name, {
             atlas: 'atlasOne',
-            frame: spriteSheet.fileName,
+            frame: spriteSheet.name,
             frameWidth: spriteSheet.frameWidth,
             frameHeight: spriteSheet.frameHeight,
             // endFrame: animation.end,
