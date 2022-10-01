@@ -7,20 +7,17 @@ You can play the game at [https://witchazzan.com](https://witchazzan.com)
 
 ## How to Play the Game
 
-Just navigate to [https://witchazzan.com](https://witchazzan.com) where the game is up and live.
+Just navigate to [https://witchazzan.com](https://witchazzan.com) where the game is up and running live now.
 
 ## About the Code
 
-**IT LIVES!** After a break of almost two years, we are working on this project again!  
-The back end server is now built in Node.js, and is included in this repository.  
-
-This is the start of a game that [doby162](https://github.com/doby162) and [chrisl8](https://github.com/chrisl8) are building.  
+This is a multiplayer game with a back end server and front end game that runs in a web browser.
 
 The game exists in two parts:  
 1. A Phaser 3 based JavaScript web front end.  
 2. A Node.js JavaScript server.  
 
-Both parts are required for the game to function.
+Both parts are required for the game to function. Both parts are contained together in this repository.
 
 ## How to Run a Local Copy for DEVELOPMENT!
 
@@ -63,11 +60,12 @@ Hadrons are the silly name for the "game objects" that are used to track and con
 
 They are basically just JavaScript Object Literals, but are often encoded.
 
-Because their contents are sent over the network constantly, their keys are kept short (abreviated).
+Because their contents are sent over the network constantly, their keys are kept short (abbreviated) to always be at most three (3) characters long.
 
-You can add **any** key/value pair to a hadaron, **but** they do get valiated at various points, so if you want to use a new key, edit `shared/validateHadron.js` and add your new key along with a descriptoin of what it does. Remember to keep it short.
+You can add **any** key/value pair to a hadron, **but** they do get validated at various points, so if you want to use a new key, edit `shared/validateHadron.js` and add your new key along with a description of what it does. Remember to keep it three (3) characters or less.
 
-In the browser you can watch the actual data:
+~~In the browser you can watch the actual data~~:
+In the browser you can see that data is being passed, but **it is compressed now** so it will look like garbage:
  - Open Developer Tools
  - Go to the Network tab
  - Click on "WS" to juts see websocket data
@@ -77,7 +75,7 @@ In the browser you can watch the actual data:
 
 You will see a lot of single integer messages, which are just Socket.io's heart beats, which you can ignore.
 
-The others messages will be either single hadrons sent from the client to the server, or big chunks of them sent from server to client. Because they are sent over the network in plain JSON, they are easy to read and check what is happening.
+The others messages will be either single hadrons sent from the client to the server, or big chunks of them sent from server to client. However, because they are sent over the network as binary and sometimes compressed, to save bandwidth, they are **not** readable, but at least you can know stuff is happening.
 
 The server also dumps all of its data to the file `persistentData/hadrons.json5` periodically.
  - You can open and read this file anytime to see what the data in the game looks like.
@@ -112,6 +110,9 @@ sceneList.js
 updateInGameDomElements.js
 
 ### Add a Sprite to the Game
+
+TODO: The game now uses "packed" sprite "atlases" made with [TexturePacker](https://www.codeandweb.com/texturepacker) which I should document here.
+
 Sprites are in "sheets" meaning a single image containing a series of "frames". I find [aseprite](https://www.aseprite.org/) to be the easiest program to use for making these.
 
 Once you have your sprite image file put it in `client/src/assets/spriteSheets/`.
@@ -224,7 +225,7 @@ server {
         index index.html;
     }
 
-    location ~* .(png|ico|gif|jpg|jpeg|css|js|html|webmanifest|map|mp3|ogg|svg)$ {
+    location ~* .(png|ico|gif|jpg|jpeg|css|js|html|webmanifest|map|mp3|ogg|svg|xml)$ {
         try_files $uri =404;
     }
 
