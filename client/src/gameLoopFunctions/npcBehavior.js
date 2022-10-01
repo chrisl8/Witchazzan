@@ -3,8 +3,10 @@ import hadrons from '../objects/hadrons.js';
 import playerObject from '../objects/playerObject.js';
 import castSpell from '../castSpell.js';
 import clientSprites from '../objects/clientSprites.js';
+import calculateVelocityFromDirection from '../utilities/calculateVelocityFromDirection.js';
+import getSpawnPointFromMap from '../utilities/getSpawnPointFromMap.js';
 
-function npcBehavior(delta, sceneName) {
+function npcBehavior(delta, sceneName, map) {
   hadrons.forEach((hadron, key) => {
     // Only perform behavior operations on hadrons under our control.
     if (
@@ -22,6 +24,51 @@ function npcBehavior(delta, sceneName) {
       const newHadronData = { ...hadron };
 
       let rayCastFoundTarget = false;
+
+      // NPC TELEPORTATION
+      // TODO: After an NPC is murdled, it needs to respawn in the original scene, not where it was killed at.
+      if (hadron.hasOwnProperty('de')) {
+        // NPCs that hit a teleport layer have the 'de' property on them,
+        // and need to be updated
+        const spawnPoint = getSpawnPointFromMap(map, hadron.de);
+
+        // Allow a scene entrance to specify to carry over the X or Y value from the previous scene so that you can enter at any point along the edge in a wide doorway.
+        if (
+          spawnPoint &&
+          spawnPoint.hasOwnProperty('properties') &&
+          Array.isArray(spawnPoint.properties)
+        ) {
+          if (
+            spawnPoint.properties.find((x) => x.name === 'allowCustomX')
+              ?.value &&
+            hadron?.px
+          ) {
+            spawnPoint.x = hadron.px;
+          }
+
+          if (
+            spawnPoint.properties.find((x) => x.name === 'allowCustomY')
+              ?.value &&
+            hadron?.py
+          ) {
+            spawnPoint.y = hadron.py;
+          }
+        }
+
+        newHadronData.x = spawnPoint.x;
+        newHadronData.y = spawnPoint.y;
+        delete newHadronData.px;
+        delete newHadronData.py;
+        delete newHadronData.de;
+        const clientSprite = clientSprites.get(key);
+        if (clientSprite) {
+          // If the sprite exists, we need to update it now, lest it get overwritten.
+          clientSprite.sprite.setPosition(newHadronData.x, newHadronData.y);
+          clientSprite.sprite.body.setVelocityX(newHadronData.vlx);
+          clientSprite.sprite.body.setVelocityY(newHadronData.vly);
+        }
+        hadronUpdated = true;
+      }
 
       if (hadron.hlt <= 0 && !hadron.off) {
         // Turn the NPC "off" if the health falls to 0 or below.

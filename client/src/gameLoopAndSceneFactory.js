@@ -514,7 +514,7 @@ const gameLoopAndSceneFactory = ({
 
     // WARNING: npcBehavior must be above updateHadrons,
     // otherwise fired spells are very erratic.
-    npcBehavior(delta, sceneName);
+    npcBehavior(delta, sceneName, map);
 
     itemBehavior(delta, sceneName, map);
 

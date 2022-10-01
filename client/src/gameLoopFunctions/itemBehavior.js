@@ -130,7 +130,6 @@ function itemBehavior(delta, sceneName, map) {
       } else if (
         hadron.hasOwnProperty('de') // This section is for "child" items that have been teleported
       ) {
-        // console.log(hadron);
         // Items pushed from one room to another have the 'de' property on them,
         // and need to be updated
         const spawnPoint = getSpawnPointFromMap(map, hadron.de);
