@@ -143,7 +143,8 @@ function npcBehavior(delta, sceneName, map) {
                 id !== key && // Not NPC itself
                 hadrons.get(id)?.typ !== 'spell' && // Not a spell
                 hadrons.get(id)?.typ !== 'message' && // not a message
-                hadrons.get(id)?.flv !== 'NPC' // Don't shoot each other
+                hadrons.get(id)?.flv !== 'NPC' && // Don't shoot each other
+                (!hadrons.get(id)?.iin || !hadrons.get(id)?.iin.includes('Key')) // Don't shoot the keys
               ) {
                 // We found a target
                 rayCastFoundTarget = true;
