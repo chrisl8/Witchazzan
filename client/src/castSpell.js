@@ -3,6 +3,7 @@ import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import spells from './objects/spells.js';
 import getUUID from './utilities/getUUID.js';
+import calculateVelocityFromDirection from './utilities/calculateVelocityFromDirection.js';
 
 const messageDialog = document.getElementById('messageDialog');
 const newMessageText = document.getElementById('new_message_text');
@@ -85,17 +86,8 @@ function castSpell({
       y: initialY,
       dir: direction,
       scn: sceneName,
-      // Absolute Unit Circle
-      // 0 is right
-      // Except the Y is inverted in screen coordinates from Unit Circle,
-      // but it still works, so don't ask too many questions.
-      // cosine is the X component
-      // sine is the y component
-      // Also Math.sin and cos require angles in Radians!
-      // 150 * Math.cos(90 * Math.PI / 180)
-      // 150 * Math.cos(90 * Math.PI / 180)
-      vlx: spells[spell].velocity * Math.cos((direction * Math.PI) / 180),
-      vly: spells[spell].velocity * Math.sin((direction * Math.PI) / 180),
+      vlx: calculateVelocityFromDirection.x(spells[spell].velocity, direction),
+      vly: calculateVelocityFromDirection.y(spells[spell].velocity, direction),
       tcw: true,
       dps,
     };
