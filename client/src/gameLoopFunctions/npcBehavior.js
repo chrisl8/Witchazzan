@@ -132,7 +132,7 @@ function npcBehavior(delta, sceneName) {
                   difference =
                     difference < -180 ? difference + 360 : difference;
 
-                const t = 0.05;
+                  const t = 0.05;
 
                   let newHadronDir = hadron.dir + t * difference;
                   // Let Achilles go ahead and catch the Tortoise
@@ -147,6 +147,20 @@ function npcBehavior(delta, sceneName) {
               }
             }
           });
+
+          // TODO: Probably some other thing should specify this, like the raycasting and spell shooting.
+          if (hadron.sub === 'mobileTankTestOne') {
+            const clientSprite = clientSprites.get(key);
+            if (clientSprite) {
+              if (rayCastFoundTarget) {
+                clientSprite.sprite.body.setVelocityX(10);
+                clientSprite.sprite.body.setVelocityY(10);
+              } else {
+                clientSprite.sprite.body.setVelocityX(0);
+                clientSprite.sprite.body.setVelocityY(0);
+              }
+            }
+          }
         }
 
         let spellCastTimer = clientSprites.get(key)?.spellCastTimer;

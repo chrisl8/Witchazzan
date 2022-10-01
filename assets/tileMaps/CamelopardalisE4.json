@@ -6,7 +6,7 @@
          "id":13,
          "layers":[
                 {
-                 "data": [12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 "data":[12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -428,6 +428,114 @@
                  "width":0,
                  "x":352,
                  "y":376
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":34,
+                 "name":"StationaryTankOne",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"dod",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"dps",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"72238215-b871-4d5c-b06e-c5e266306010"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rateOfFire",
+                         "type":"int",
+                         "value":250
+                        }, 
+                        {
+                         "name":"rayCast",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"rayCastDegrees",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"rayCastDistance",
+                         "type":"int",
+                         "value":190
+                        }, 
+                        {
+                         "name":"rayCastType",
+                         "type":"string",
+                         "value":"cone"
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":60
+                        }, 
+                        {
+                         "name":"spell",
+                         "type":"string",
+                         "value":"laserArrow"
+                        }, 
+                        {
+                         "name":"spellVelocity",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"turquoiseTankSingle"
+                        }, 
+                        {
+                         "name":"subType",
+                         "type":"string",
+                         "value":"mobileTankTestOne"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":192.073019495015,
+                 "y":175.310283248177
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -436,7 +544,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":34,
+ "nextobjectid":35,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -445,19 +553,19 @@
          "value":"skulls are always so cheerful"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {
          "columns":12,
          "firstgid":1,
          "image":"..\/tileSets\/CamelopardalisColor16x16.png",
-         "imageheight":715,
+         "imageheight":256,
          "imagewidth":205,
          "margin":1,
          "name":"CamelopardalisColor16x16",
          "spacing":1,
-         "tilecount":504,
+         "tilecount":180,
          "tileheight":16,
          "tilewidth":16
         }],
