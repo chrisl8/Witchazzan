@@ -201,8 +201,12 @@ function npcBehavior(delta, sceneName, map) {
             const clientSprite = clientSprites.get(key);
             if (clientSprite) {
               if (rayCastFoundTarget) {
-                clientSprite.sprite.body.setVelocityX(10);
-                clientSprite.sprite.body.setVelocityY(10);
+                clientSprite.sprite.body.setVelocityX(
+                  calculateVelocityFromDirection.x(50, hadron.dir),
+                );
+                clientSprite.sprite.body.setVelocityY(
+                  calculateVelocityFromDirection.y(50, hadron.dir),
+                );
               } else {
                 clientSprite.sprite.body.setVelocityX(0);
                 clientSprite.sprite.body.setVelocityY(0);
