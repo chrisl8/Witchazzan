@@ -121,7 +121,7 @@ function npcBehavior(delta, sceneName, map) {
           }
           if (hadron.rtp === 'cone') {
             if (hadron.rcd) {
-              ray.setConeDeg(120); // hadron.rcd
+              ray.setConeDeg(hadron.rcd);
             }
             ray.castCone();
           } else if (hadron.rtp === 'circle') {
