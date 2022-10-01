@@ -49,14 +49,12 @@ function spriteCollisionHandler({
   if (hadrons.get(spriteKey)) {
     // Sprites can linger, and collide, after there hadron is destroyed, but we do not need to act on them anymore.
     if (tile) {
-      // Teleport Layer interactions.
-      // for now de-spawning silently if we hit a "teleport layer"
-      // as only Players teleport,
-      // but this is intended to be expanded in the future.
       if (
         hadrons.get(spriteKey)?.flv === 'Item' ||
         hadrons.get(spriteKey)?.flv === 'NPC'
       ) {
+        // Currently only Items and NPCs can teleport,
+        // other hadrons, like spells, just despawn.
         const { destinationSceneName, destinationSceneEntrance } =
           getDestinationFromTile(tile);
         if (destinationSceneEntrance === 'PreviousPosition') {
