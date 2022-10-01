@@ -550,7 +550,7 @@
                         {
                          "name":"rayCastDistance",
                          "type":"int",
-                         "value":190
+                         "value":200
                         }, 
                         {
                          "name":"rayCastType",
