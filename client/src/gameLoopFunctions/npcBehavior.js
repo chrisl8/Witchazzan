@@ -112,8 +112,6 @@ function npcBehavior(delta, sceneName, map) {
             !isNaN(hadron.rdt)
           ) {
             ray.setCollisionRange(hadron.rdt);
-          } else {
-            ray.setCollisionRange(1000); // TODO: Maybe tie this to game size?
           }
           // eslint-disable-next-line no-restricted-globals
           if (hadron.dir && !isNaN(hadron.dir)) {
