@@ -11,19 +11,20 @@ function cleanUpSceneAndTeleport(
   destinationSceneEntrance,
   sceneName,
 ) {
+  if (this.scene.getIndex(destinationSceneName) === -1) {
+    console.error(
+      `Switching to scene: ${destinationSceneName} does not exist.`,
+    );
+    // eslint-disable-next-line no-param-reassign
+    destinationSceneName = playerObject.defaultOpeningScene;
+  }
+
   if (!playerObject.teleportInProgress && destinationSceneName !== sceneName) {
     playerObject.teleportInProgress = true;
     closeChatInputBox();
     cleanUpScene();
     playerObject.destinationX = null;
     playerObject.destinationY = null;
-    if (this.scene.getIndex(destinationSceneName) === -1) {
-      console.error(
-        `Switching to scene: ${destinationSceneName} does not exist.`,
-      );
-      // eslint-disable-next-line no-param-reassign
-      destinationSceneName = playerObject.defaultOpeningScene;
-    }
     playerObject.destinationEntrance = destinationSceneEntrance;
     if (playerObject.destinationEntrance) {
       if (destinationSceneEntrance === 'PreviousPosition') {
