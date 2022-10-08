@@ -1,7 +1,6 @@
 import fs from 'fs';
 import cors from 'cors';
 import express from 'express';
-import bodyParser from 'body-parser';
 import sqlite3 from 'sqlite3';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -244,7 +243,7 @@ const webserverPort = process.env.PORT || 8080;
 app.use(express.static(`${__dirname}/../client/dist`));
 
 // parse application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 const webServer = app.listen(webserverPort);
 // NOTE: As best I can tell, CORS has no affect either way on websocket, so just not messing with it.
