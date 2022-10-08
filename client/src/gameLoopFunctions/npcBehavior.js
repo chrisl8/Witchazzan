@@ -26,7 +26,6 @@ function npcBehavior(delta, sceneName, map) {
       let rayCastFoundTarget = false;
 
       // NPC TELEPORTATION
-      // TODO: After an NPC is murdled, it needs to respawn in the original scene, not where it was killed at.
       if (hadron.hasOwnProperty('de')) {
         // NPCs that hit a teleport layer have the 'de' property on them,
         // and need to be updated
