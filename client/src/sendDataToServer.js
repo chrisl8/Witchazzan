@@ -106,10 +106,11 @@ sendDataToServer.playerData = ({ sceneName }) => {
   }
 };
 
-sendDataToServer.hadronData = (key) => {
-  // Using a copy of the data to avoid race conditions with
-  // the sentData test, and failing to send all updates.
-  const hadronData = { ...hadrons.get(key) };
+// This should be called almost exclusively from updateHadrons.js
+// With some exceptions, the primary one being that updateHadrons.js will NOT send
+// data for hadrons from other scenes, so you must call this manually
+// if you "push" a hadron to another scene.
+sendDataToServer.hadronData = (hadronData, key) => {
   if (validateHadron.client(hadronData)) {
     if (
       communicationsObject.socket.connected &&

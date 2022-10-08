@@ -5,6 +5,7 @@ import castSpell from '../castSpell.js';
 import clientSprites from '../objects/clientSprites.js';
 import calculateVelocityFromDirection from '../utilities/calculateVelocityFromDirection.js';
 import getSpawnPointFromMap from '../utilities/getSpawnPointFromMap.js';
+import sendDataToServer from '../sendDataToServer.js';
 
 function npcBehavior(delta, sceneName, map) {
   hadrons.forEach((hadron, key) => {

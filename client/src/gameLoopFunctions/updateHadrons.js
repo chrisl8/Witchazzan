@@ -5,7 +5,8 @@ import addSpriteColliders from './addSpriteColliders.js';
 import addSpriteVelocity from './addSpriteVelocity.js';
 import updateSprite from './updateSprite.js';
 import handleHeldItems from './handleHeldItems.js';
-import sendHadronDataToServer from './sendHadronDataToServer.js';
+import playerObject from '../objects/playerObject.js';
+import sendDataToServer from '../sendDataToServer.js';
 
 function updateHadrons(
   sceneName,
@@ -40,7 +41,16 @@ function updateHadrons(
 
       handleHeldItems(hadron, key);
 
-      sendHadronDataToServer(hadron, key);
+      if (
+        // New hadrons that we create have no ctrl yet, only the server assigns that.
+        (hadron.ctr === undefined || hadron.ctr === playerObject.playerId) &&
+        key !== playerObject.playerId
+      ) {
+        // Using a copy of the data to avoid race conditions with
+        // the sentData test, and failing to send all updates.
+        const hadronData = { ...hadrons.get(key) };
+        sendDataToServer.hadronData(hadronData, key);
+      }
     } else {
       // We need to wipe our local copy of hadrons that are not in our scene.
       hadrons.delete(key);

@@ -66,7 +66,8 @@ function spriteCollisionHandler({
           newHadronData.x = playerObject.previousScene.x;
           newHadronData.y = playerObject.previousScene.y;
           hadrons.set(spriteKey, newHadronData);
-          sendHadronDataToServer(newHadronData, spriteKey);
+          // We must manually send hadron data when we set a scene other than the current one on it.
+          sendDataToServer.hadronData(newHadronData, spriteKey);
         } else {
           const hadron = hadrons.get(spriteKey);
           const newHadronData = { ...hadron };
@@ -78,7 +79,8 @@ function spriteCollisionHandler({
           newHadronData.de = destinationSceneEntrance;
           hadrons.set(spriteKey, newHadronData);
           if (destinationSceneName !== 'Local') {
-            sendHadronDataToServer(newHadronData, spriteKey);
+            // We must manually send hadron data when we set a scene other than the current one on it.
+            sendDataToServer.hadronData(newHadronData, spriteKey);
           }
         }
       } else {

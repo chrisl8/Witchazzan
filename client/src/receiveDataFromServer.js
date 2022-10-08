@@ -76,7 +76,10 @@ function receiveDataFromServer() {
         newHadronData[entry.key] = entry.value;
       });
       hadrons.set(data.id, newHadronData);
-      sendDataToServer.hadronData(data.id);
+      // We must immediately send the data back, as the normal update cycle won't send data for
+      // hadrons we don't control, and typically what we have been asked to do
+      // is relinquish control.
+      sendDataToServer.hadronData(newHadronData);
     }
   });
 
