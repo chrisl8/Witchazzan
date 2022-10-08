@@ -75,6 +75,13 @@ function npcBehavior(delta, sceneName, map) {
         hadronUpdated = true;
         newHadronData.off = true;
         newHadronData.tmo = Math.floor(Date.now() / 1000);
+        if (hadron.stc && hadron.stc !== sceneName) {
+          // Send de-spawned NPCs back to their original scene
+          newHadronData.scn = hadron.stc;
+          // X/Y position will be dealt with when it is resurrected.
+          // We must manually send hadron data when we set a scene other than the current one on it.
+          sendDataToServer.hadronData(newHadronData, key);
+        }
         // TODO: A massive explosion would be appreciated.
       } else if (
         hadron.off &&

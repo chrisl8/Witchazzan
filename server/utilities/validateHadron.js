@@ -46,6 +46,7 @@ const optionalKeys = [
   'hlt', // Health - Health level for Player or NPC, etc.
   'mxh', // Max Health - Health when Player or NPC is fully healed.
   'dps', // "Damage Per Shot (dps)" (Float) - For an NPC or anything that fires spells, this will be multiplied against the spell's default damage level. Use this to make a given NPC's shots more or less powerful relative to players and other NPCs.
+  'stc', // Starting Scene, to return to when respawning.
   'stx', // Starting X location, to return to when respawning.
   'sty', // Starting Y location, to return to when respawning.
   // What to do when an owner disconnects or changes scenes:

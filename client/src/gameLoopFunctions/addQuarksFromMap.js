@@ -70,6 +70,7 @@ function addQuarksFromMap(map, sceneName) {
           ani: 'stationary',
         };
         if (objectProperties.Flavor === 'NPC') {
+          newHadron.stc = sceneName;
           newHadron.stx = object.x;
           newHadron.sty = object.y;
         }
