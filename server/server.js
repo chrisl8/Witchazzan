@@ -945,7 +945,7 @@ io.on('connection', (socket) => {
                 command.length === 2
               ) {
                 const playerNameToOp = command[1];
-                let playeIdToOp;
+                let playerIdToOp;
                 let playerIsAlreadyAdmin;
                 let error;
                 try {
@@ -954,7 +954,7 @@ io.on('connection', (socket) => {
                   const sql = 'SELECT id, admin FROM Users WHERE name LIKE ?';
                   const result = await db.query(sql, [playerNameToOp]);
                   if (result.rows.length > 0) {
-                    playeIdToOp = result.rows[0].id;
+                    playerIdToOp = result.rows[0].id;
                     playerIsAlreadyAdmin = result.rows[0].admin === 1;
                   }
                 } catch (e) {
@@ -966,7 +966,7 @@ io.on('connection', (socket) => {
                     content: `Error retrieving ${playerNameToOp} from the database`,
                   });
                 }
-                if (!playeIdToOp) {
+                if (!playerIdToOp) {
                   socket.emit('txt', {
                     typ: 'chat',
                     content: `Player '${playerNameToOp}' does not exist.`,
@@ -980,13 +980,13 @@ io.on('connection', (socket) => {
                 }
                 if (
                   !error &&
-                  playeIdToOp &&
-                  playeIdToOp &&
+                  playerIdToOp &&
+                  playerIdToOp &&
                   !playerIsAlreadyAdmin
                 ) {
                   try {
                     const sql = 'UPDATE Users SET admin = 1 WHERE id = ?';
-                    await db.query(sql, [playeIdToOp]);
+                    await db.query(sql, [playerIdToOp]);
                   } catch (e) {
                     error = true;
                     console.error('Error updating user:');
@@ -1001,16 +1001,16 @@ io.on('connection', (socket) => {
                       typ: 'chat',
                       content: `Player '${playerNameToOp}' has been made Admin.`,
                     });
-                    if (connectedPlayerData.get(playeIdToOp)?.socketId) {
+                    if (connectedPlayerData.get(playerIdToOp)?.socketId) {
                       socket
-                        .to(connectedPlayerData.get(playeIdToOp)?.socketId)
+                        .to(connectedPlayerData.get(playerIdToOp)?.socketId)
                         .emit('txt', {
                           typ: 'chat',
                           content: `You have been made an admin! You must sign in again to apply the update. Your game will now restart to apply it...`,
                         });
                       await wait(3000);
                       socket
-                        .to(connectedPlayerData.get(playeIdToOp)?.socketId)
+                        .to(connectedPlayerData.get(playerIdToOp)?.socketId)
                         .emit('unauthorized', {
                           content: `You have been made an admin! You must sign in again to apply the update. Your game will now restart to apply it...`,
                         });
@@ -1046,7 +1046,7 @@ io.on('connection', (socket) => {
                 id,
                 updates: [
                   { key: 'own', value: PlayerId }, // Once you grab it, you own it.
-                  { key: 'ctr', value: PlayerId }, // You must control it to hol dit.
+                  { key: 'ctr', value: PlayerId }, // You must control it to hold it.
                   { key: 'hld', value: PlayerId }, // You are holding it.
                   { key: 'pod', value: false }, // Held items should NOT persist in the world if you leave.
                   { key: 'tcw', value: false }, // Held items should NOT transfer ownership on scene changes.
