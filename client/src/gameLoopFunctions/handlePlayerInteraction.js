@@ -28,7 +28,6 @@ function handlePlayerInteraction() {
       newHadronData.pod = true; // Items on the ground should persist when you leave the room.
       newHadronData.tcw = true; // Items on the ground should change ownership when you leave the room.
       hadrons.set(itemToDrop, newHadronData);
-      sendDataToServer.hadronData(itemToDrop);
     }
     playerObject.interactNow = false; // Always reset this after processing it.
   }
