@@ -4,7 +4,6 @@ import spells from '../objects/spells.js';
 import debugLog from '../utilities/debugLog.js';
 import playerObject from '../objects/playerObject.js';
 import getDestinationFromTile from '../utilities/getDestinationFromTile.js';
-import sendHadronDataToServer from './sendHadronDataToServer.js';
 
 /*
   REMEMBER!
