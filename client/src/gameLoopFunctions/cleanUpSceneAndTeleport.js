@@ -5,6 +5,7 @@ import deletedHadronList from '../objects/deletedHadronList.js';
 import currentSceneQuarks from '../objects/currentSceneQuarks.js';
 import debugLog from '../utilities/debugLog.js';
 import barricadeSprites from '../objects/barricadeSprites.js';
+import clientSprites from '../objects/clientSprites.js';
 
 function cleanUpSceneAndTeleport(
   destinationSceneName,
@@ -79,6 +80,11 @@ function cleanUpSceneAndTeleport(
       y: playerObject.player.y,
     };
     playerObject.ray = null;
+
+    // Clean up all sprites
+    clientSprites.forEach((clientSprite, key) => {
+      clientSprites.delete(key);
+    });
 
     this.scene.start(destinationSceneName);
   }
