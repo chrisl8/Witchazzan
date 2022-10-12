@@ -21,7 +21,7 @@ function spriteCollisionHandler({
   obstacleLayer,
   obstacleSpriteKey,
   obstacleSprite,
-  tile,
+  teleportLayer,
 }) {
   // Uncomment this if you think something is getting "eaten up" to find it.
   // console.log(
@@ -42,44 +42,46 @@ function spriteCollisionHandler({
   //   obstacleSprite,
   //   '\ntype',
   //   hadrons.get(obstacleSpriteKey)?.typ,
-  //   '\ntile',
-  //   tile,
+  //   '\nteleportLayer',
+  //   teleportLayer,
   // );
   if (hadrons.get(spriteKey)) {
     // Sprites can linger, and collide, after there hadron is destroyed, but we do not need to act on them anymore.
-    if (tile) {
+    if (teleportLayer) {
       if (
         hadrons.get(spriteKey)?.flv === 'Item' ||
         hadrons.get(spriteKey)?.flv === 'NPC'
       ) {
-        // Currently only Items and NPCs can teleport,
-        // other hadrons, like spells, just despawn.
-        const { destinationSceneName, destinationSceneEntrance } =
-          getDestinationFromTile(tile);
-        if (destinationSceneEntrance === 'PreviousPosition') {
-          // In the rare case that this is just supposed to go to our last known position in the previous scene,
-          // which currently ONLY happens in the Library, this is easy.
-          const hadron = hadrons.get(spriteKey);
-          const newHadronData = { ...hadron };
-          newHadronData.scn = destinationSceneName;
-          newHadronData.x = playerObject.previousScene.x;
-          newHadronData.y = playerObject.previousScene.y;
-          hadrons.set(spriteKey, newHadronData);
-          // We must manually send hadron data when we set a scene other than the current one on it.
-          sendDataToServer.hadronData(newHadronData, spriteKey);
-        } else {
-          const hadron = hadrons.get(spriteKey);
-          const newHadronData = { ...hadron };
-          if (destinationSceneName !== 'Local') {
+        if (hadrons.get(spriteKey)?.tvl) {
+          // Currently only Items and NPCs can teleport,
+          // other hadrons, like spells, just de-spawn.
+          const { destinationSceneName, destinationSceneEntrance } =
+            getDestinationFromTile(teleportLayer);
+          if (destinationSceneEntrance === 'PreviousPosition') {
+            // In the rare case that this is just supposed to go to our last known position in the previous scene,
+            // which currently ONLY happens in the Library, this is easy.
+            const hadron = hadrons.get(spriteKey);
+            const newHadronData = { ...hadron };
             newHadronData.scn = destinationSceneName;
-          }
-          newHadronData.px = newHadronData.x;
-          newHadronData.py = newHadronData.y;
-          newHadronData.de = destinationSceneEntrance;
-          hadrons.set(spriteKey, newHadronData);
-          if (destinationSceneName !== 'Local') {
+            newHadronData.x = playerObject.previousScene.x;
+            newHadronData.y = playerObject.previousScene.y;
+            hadrons.set(spriteKey, newHadronData);
             // We must manually send hadron data when we set a scene other than the current one on it.
             sendDataToServer.hadronData(newHadronData, spriteKey);
+          } else {
+            const hadron = hadrons.get(spriteKey);
+            const newHadronData = { ...hadron };
+            if (destinationSceneName !== 'Local') {
+              newHadronData.scn = destinationSceneName;
+            }
+            newHadronData.px = newHadronData.x;
+            newHadronData.py = newHadronData.y;
+            newHadronData.de = destinationSceneEntrance;
+            hadrons.set(spriteKey, newHadronData);
+            if (destinationSceneName !== 'Local') {
+              // We must manually send hadron data when we set a scene other than the current one on it.
+              sendDataToServer.hadronData(newHadronData, spriteKey);
+            }
           }
         }
       } else {
@@ -225,7 +227,7 @@ function spriteCollisionHandler({
           //   obstacleLayer,
           //   obstacleSpriteKey,
           //   obstacleSprite,
-          //   tile,
+          //   teleportLayer,
           // );
         }
       }
@@ -239,7 +241,7 @@ function spriteCollisionHandler({
         obstacleLayer,
         obstacleSpriteKey,
         obstacleSprite,
-        tile,
+        teleportLayer,
       );
     }
   }

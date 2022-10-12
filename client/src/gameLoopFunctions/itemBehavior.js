@@ -30,6 +30,9 @@ function generateNewHadron(hadron, sceneName) {
     newHadron.hlt = hadron.hlt;
     newHadron.mxh = hadron.mxh;
   }
+  if (hadron.hasOwnProperty('tvl')) {
+    newHadron.tvl = hadron.tvl;
+  }
   return newHadron;
 }
 

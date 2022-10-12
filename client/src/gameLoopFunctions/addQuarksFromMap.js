@@ -153,6 +153,12 @@ function addQuarksFromMap(map, sceneName) {
         if (objectProperties.hasOwnProperty('iin')) {
           newHadron.iin = objectProperties.iin;
         }
+        if (
+          objectProperties.hasOwnProperty('travel') &&
+          objectProperties.travel
+        ) {
+          newHadron.tvl = true;
+        }
         currentSceneQuarks.set(objectProperties.id, newHadron);
         // All we do here is tell the server that the scene we entered has NPC hadrons in it.
         // The server will decide if they already exist or not,

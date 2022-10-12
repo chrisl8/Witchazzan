@@ -46,7 +46,7 @@ function addSpriteColliders(
             spriteCollisionHandler({
               spriteKey: key,
               sprite,
-              tile: obstacle,
+              teleportLayer: obstacle,
             });
           },
         );

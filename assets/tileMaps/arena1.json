@@ -382,8 +382,13 @@
                          "name":"Flavor",
                          "type":"string",
                          "value":"Item"
-                        }, 
-                        {
+                        },
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
+                   {
                          "name":"Function",
                          "type":"string",
                          "value":"respawn"
@@ -446,6 +451,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -509,6 +519,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -572,6 +587,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -634,7 +654,12 @@
                          "name":"Flavor",
                          "type":"string",
                          "value":"Item"
-                        }, 
+                        },
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -698,6 +723,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -761,6 +791,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -824,6 +859,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -887,6 +927,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -949,7 +994,12 @@
                          "name":"Flavor",
                          "type":"string",
                          "value":"Item"
-                        }, 
+                        },
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1013,6 +1063,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1076,6 +1131,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1139,6 +1199,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1202,6 +1267,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1264,7 +1334,12 @@
                          "name":"Flavor",
                          "type":"string",
                          "value":"Item"
-                        }, 
+                        },
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1328,6 +1403,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1391,6 +1471,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1454,6 +1539,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
@@ -1517,6 +1607,11 @@
                          "type":"string",
                          "value":"Item"
                         }, 
+                   {
+                     "name":"travel",
+                     "type":"bool",
+                     "value":true
+                   },
                         {
                          "name":"Function",
                          "type":"string",
