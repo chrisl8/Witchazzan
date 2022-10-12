@@ -81,6 +81,7 @@ const gameLoopAndSceneFactory = ({
   let map;
   let sceneTileSet;
   let collisionLayer;
+  let waterLayer;
   const teleportLayersColliders = new Map();
   const gameSizeData = { ...gameSize };
   gameSizeData.fullWidth = gameSize.width + gameSize.teleportLayerSize * 2;
@@ -241,7 +242,6 @@ const gameLoopAndSceneFactory = ({
       .createLayer('Stuff You Run Into', sceneTileSet, 0, 0)
       .setCollisionByExclusion([-1])
       .setDepth(objectDepthSettings.tileMapLayers['Stuff You Run Into']);
-    let waterLayer;
     if (checkIfLayerExists('Water', map)) {
       waterLayer = map
         .createLayer('Water', sceneTileSet, 0, 0)
@@ -524,6 +524,7 @@ const gameLoopAndSceneFactory = ({
       sceneName,
       scene,
       collisionLayer,
+      waterLayer,
       teleportLayersColliders,
       gameSizeData,
     );

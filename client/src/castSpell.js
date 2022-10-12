@@ -90,6 +90,7 @@ function castSpell({
       vly: calculateVelocityFromDirection.y(spells[spell].velocity, direction),
       tcw: true,
       dps,
+      fly: spells[spell].fly,
     };
     hadrons.set(newHadronData.id, newHadronData);
   }

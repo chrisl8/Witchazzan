@@ -6,6 +6,7 @@ function addSpriteColliders(
   hadron,
   key,
   collisionLayer,
+  waterLayer,
   teleportLayersColliders,
 ) {
   if (
@@ -36,6 +37,23 @@ function addSpriteColliders(
           });
         },
       );
+
+      // Collisions with water for hydrophobic sprites
+      if (!hadron.swm && !hadron.fly) {
+        console.log('.');
+        this.physics.add.collider(
+          clientSprites.get(key).sprite,
+          waterLayer,
+          (sprite, obstacle) => {
+            spriteCollisionHandler({
+              spriteKey: key,
+              sprite,
+              obstacleLayerName: 'waterLayer',
+              obstacleLayer: obstacle,
+            });
+          },
+        );
+      }
 
       // Collisions with tilemap teleport layers
       teleportLayersColliders.forEach((layer) => {

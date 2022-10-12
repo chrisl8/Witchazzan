@@ -12,6 +12,7 @@ function updateHadrons(
   sceneName,
   scene,
   collisionLayer,
+  waterLayer,
   teleportLayersColliders,
   gameSizeData,
 ) {
@@ -31,6 +32,7 @@ function updateHadrons(
         hadron,
         key,
         collisionLayer,
+        waterLayer,
         teleportLayersColliders,
         sceneName,
       );

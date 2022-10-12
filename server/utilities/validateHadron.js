@@ -53,6 +53,9 @@ const optionalKeys = [
   'dod', // "Destroy On Disconnect (dod)" (Bool) - Destroy this hadron if the owner disconnects.
   'tcw', // "Transfer Control When Leaving Scene (tcw)" (Bool) - Set to true if you want the sprite to be transferred to a new controller when the current controller leaves the scene. Otherwise the sprite is archived until the owner returns.
   'pod', // "Persist On Disconnect (pod)" (Bool) - Normally any hadrons owned by a player are removed from the game and 'archived' when a player disconnects, even if they aren't controlling them. This causes them to persist even if the player disconnects, and to be brought online even when the player isn't online.
+  'fly', // "Fly (fly)" (Bool) - Items that fly can travel over water.
+  'swm', // "Swim (swm)" (Bool) - Items that swim can travel over water.
+  // For NPCs
   'off', // "Off" (Bool) - If set to true, indicates that a hadron is "off", that is "dormant", and should have no sprite attached it and not register colliders. The purpose of this is to "hold" hadrons for things like NPCs that may need to be "killed", but still hold their place so that when a client enters the room it won't immediately respawn.
   'tmo', // "Time Off" - The time that a hadron was turned off. For use in respawning NPCs based on this time.
   'ris', // "Respawn In Seconds (ris)" (Integer) - How many seconds after it is shut "off" before it respawns.
@@ -64,7 +67,10 @@ const optionalKeys = [
   'rtp', // "Raycast Type (rtp)" (String) What kind of raycast to perform: Cone, Circle, or Line (Line is default is this isn't specified, so you don't need to specify line)
   'rcd', // "Raycast Degree (rcd)" (Integer) The range in degrees for a raycast Cone (Not used for other types at the moment)
   'rdt', // "Raycast Distance (rdt)" (Integer) Distance to raycast out to.
-  'spv', // "Spell Velocity (spv)" (Integer) - Velocity set on spells.
+  'nbc', // "Nearby Raycast (nbc)" (Integer) If this exists, and a raycaster is on the NPC, then ALSO scan a circle of this diameter to notice very close entities from any direction.
+  'fol', // "Follow (fol)" (Bool) If there is a raycaster on the NPC it will move to follow the nearest target.
+  'vel', // "Velocity (vel)" (Int) Velocity to set on NPCs if they have movement, such as Follow.
+  'tvl', // "Travel (tvl)" (Bool) True if you want NPCs and/or Items to be able to use teleport layers.
   // For items
   'hld', // Held BY ID. This is the ID of the player that is currently holding this item.
   'fnc', // itemBehavior function that is called on this hadron each update
