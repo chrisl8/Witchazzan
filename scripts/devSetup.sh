@@ -39,7 +39,7 @@ if ! (command -v node >/dev/null 2>&1); then
   printf "I recommend that you use nvm:\n"
   printf "https://github.com/nvm-sh/nvm\n"
   printf "\n"
-  printf "${LIGHTCYAN}wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash${NC}\n"
+  printf "${LIGHTCYAN}wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash${NC}\n"
   printf "${LIGHTCYAN}nvm install --lts${NC}\n"
   exit 1
 fi
