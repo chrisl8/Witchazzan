@@ -76,10 +76,16 @@ function handleTouchInput() {
       let right = false;
       let up = false;
       let down = false;
-      if (data.distance > 10) {
-        // "deadzone"
+      let joystickDeadzone = 5;
+      if (
+        playerObject.nearbyTargetObject.id ||
+        playerObject.heldItemList.length > 0
+      ) {
+        joystickDeadzone = 15;
+      }
+      if (data.distance > joystickDeadzone) {
         joystickMoved = true;
-        distance = data.distance;
+        distance = data.distance - joystickDeadzone;
         if ((angle >= 0 && angle < 22) || angle >= 335) {
           right = true;
         } else if (angle >= 22 && angle < 66) {
