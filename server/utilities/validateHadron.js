@@ -90,14 +90,14 @@ function validate(data) {
       console.error(
         `Attempt to create new hadron without required key: ${key}`,
       );
-      throw `Invalid hadron`;
+      throw new Error(`Invalid hadron`);
     }
   });
 
   for (const [key] of Object.entries(data)) {
     if (allKeys.indexOf(key) === -1) {
       console.error(`Attempt to create new hadron with unknown key: ${key}`);
-      throw `Invalid hadron`;
+      throw new Error(`Invalid hadron`);
     }
   }
 }
@@ -120,7 +120,7 @@ function server(data) {
         console.error(
           `Attempt to create new hadron on server without required key: ${key}`,
         );
-        throw `Invalid hadron`;
+        throw new Error(`Invalid hadron`);
       }
     });
     validate(data);
