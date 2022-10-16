@@ -111,17 +111,27 @@ updateInGameDomElements.js
 
 ### Add a Sprite to the Game
 
-TODO: The game now uses "packed" sprite "atlases" made with [TexturePacker](https://www.codeandweb.com/texturepacker) which I should document here.
+**NOTE: The game now uses "packed" sprite "atlases" made with [TexturePacker](https://www.codeandweb.com/texturepacker).** However, if you want to just add a single sprite, you can still do that, and load it directly, which is what I suggest doing. It will have no negative consequences and is the easiest way. If you decide to make a PR to add your sprite into my repository, then I will accept it as is, and then I will eventually move it into the packed atlas later when I get to it.
 
-Sprites are in "sheets" meaning a single image containing a series of "frames". I find [aseprite](https://www.aseprite.org/) to be the easiest program to use for making these.
+#### Adding an individual Sprite to the game
 
-Once you have your sprite image file put it in `client/src/assets/spriteSheets/`.
+Animated sprites are in "sheets" meaning a single image containing a series of "frames". I find [aseprite](https://www.aseprite.org/) to be the easiest program to use for making these.
+
+Once you have your sprite image file put it in `assets/`.
 
 Then add the data about it to the file `client/src/objects/spriteSheetList.js`:
- - First add an `import` statement for it at the top.
- - Then add metadata about it in the big oject below.
+ - First add an `import` statement for it at the top. There should be an example in the file, but it will look something like:  
+`import myAmazingSpriteSheet from '../../../assets/myAmazingSpriteSheet.png';`
+ - Then add metadata about it in the big object below. Just add it to the very top. Use the existing data as an example, **but also add a `filename` key** where you use the variable imported as the `filename`, i.e.  
+```
+{
+  type: 'other',
+  name: 'myAmazingSpriteSheet',
+  filename: myAmazingSpriteSheet,
+  ...
+```
 
-Use the existing data as an example.
+Use the existing data as an example for the rest of the data.
 
 Some important things:
  - `rotatable` is indicating to the game if the sprite can be rotated. Think about a humanoid character vs. a tank. A humanoid would look dumb rotated 180 degrees to walk backwards. It should clearly be flipped. However, a tank would work perfectly to rotate.
@@ -130,23 +140,36 @@ Some important things:
  - First add a Sprite, see "Add a Sprite to the Game", or pick one that is already in the game.
  - Edit the Tilemap: Currently all NPCs are flagged in the tilemaps, so open the Tilemap for the scene that you want to add an NPC to in Tiled, and add an Object in the location where you want the NPC to be.
    - The Object's "Type" should be "NPC".
-   - Under "Custom Properties" there are some required and some optional things to add:
+   - Under "Custom Properties" there are some required and some optional things to add. These are mapped to 3 (or fewer) character codes from `validateHadrons.js` when adding  them to the game in `addQuarksFromMap.js`
      - `id` **REQUIRED** (String) - This is a GUID. Open your browser, open dev tools, and run `crypto.randomUUID()` then copy the long string, withOUT quotes, but WITH the dashes into the value for the `id`
      - `subType` **REQUIRED** (String) - This is the NPC Type to help identify it and group it with similar NPC functionalities.
      - `sprite` **REQUIRED** (String) - The name of the sprite to use for this NPC.
      - `initialSpriteDirection` Optional - Direction to start the sprite facing.
        - It can be left/right/up/down string or east/west/north/shouth string, or an intenger for rotation from 0.
+     - `initialAnimationState` Optional (String) - Initial animation state to apply to sprite. 
      - `health` Optional (Integer) - Initial health of this NPC. Use this to make it more or less squishy. 100 is the default if nothing is set.
      - `respawnInSeconds` Optional (Integer) - How many seconds after it is destroyed before it respawns. Otherwise it only comes back if the NPC data is somehow removed from the server.
-     - `dps` Optional Float - "Damage Per Shot" - This value is multiplied against any damage done by a "shot" or "spell cast" from this NPC. Use it to make this NPC's shots more or less powerful. Remember that you can also increase and decrease this in "real time" in the code later. A default of 1 is assumed, meaning no modification to default "damage".
-     - `tcw` Optional Bool = "Transfer Control When Leaving Scene" - This instructs the server to transfer control of this NPC to another client when you leave the scene. **You probably want to set this to true.** Otherwise the NPC will stop working when the first client to enter the scene leaves.
-     - `pod` Optional Bool - "Persist on Disconnect" - If a player disconnects, by default their hadrons are archived. This prevents that behavior. **You probably want this set to true.** Otherwise, the NPC will disappear when the first client who enters the room leaves.
-     - `dod` Optional Bool - "Destroy on Disconnect" - If this is true, the NPC will be destroyed when the owner disconnects. This is probably not normally what you want for an NPC in a multi-player game, **but it is helpful during initial testing to set it true** so that your NPC is wiped and built from scratch when you refresh your browser.
+     - `dps` Optional (Float) - "Damage Per Shot" - This value is multiplied against any damage done by a "shot" or "spell cast" from this NPC. Use it to make this NPC's shots more or less powerful. Remember that you can also increase and decrease this in "real time" in the code later. A default of 1 is assumed, meaning no modification to default "damage".
+     - `tcw` Optional (Bool) = "Transfer Control When Leaving Scene" - This instructs the server to transfer control of this NPC to another client when you leave the scene. **You probably want to set this to true.** Otherwise the NPC will stop working when the first client to enter the scene leaves.
+     - `pod` Optional (Bool) - "Persist on Disconnect" - If a player disconnects, by default their hadrons are archived. This prevents that behavior. **You probably want this set to true.** Otherwise, the NPC will disappear when the first client who enters the room leaves.
+     - `dod` Optional (Bool) - "Destroy on Disconnect" - If this is true, the NPC will be destroyed when the owner disconnects. This is probably not normally what you want for an NPC in a multi-player game, **but it is helpful during initial testing to set it true** so that your NPC is wiped and built from scratch when you refresh your browser.
      - `spriteLayerDepth` Optional (Integer) = "Sprite Layer Depth" - This is the depth used when adding the sprite to the scene. This will determine if it appears on top of or underneath other objects, based on their depth.
      - `rateOfFire` Optional (Integer) - "Rate of Fire" - If this is set, then the given spell is fired every time the last spell cast was X milliseconds ago based on the frame to frame delta. **This means the lower this number is, the faster it fires.** If this is left out, then no spell will be cast at all. You must also set the "spell" name.
      - `spell` Optional (String) - Name of the spell to cast. If you aren't sure, use 'quasar'. The spell is only cast if rateOfFire is also set.
-     - **You may add other things here as well and use them in your code, but if you do, you must update the code in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {` to copy these key/value pairs into the hadron, and you must alo update `shared/validateHadron.js` to add your additional hadron keys as valid keys.**
-   - NOTE: If you update sprite properties or add new ones, existing sprites won't get updated. use the `/deleteAllNPCs` command to clear them and make new ones. Also note that you need to not be in a scene with the sprite for the delete to work.
+     - `rayCast` Optional (Bool) - The NPC will have a raycaster added to it for finding other entities in the scene, and it will only fire when a target is seen.
+     - `rayCastType` Optional (String) "Raycast Type (rtp)" What kind of ray cast to perform: Cone, Circle, or Line (Line is default if this isn't specified, so you don't need to specify line)
+     - `rayCastDegrees` Optional (Integer) "Raycast Degree (rcd)" The range in degrees for a raycast Cone (Not used for other types at the moment)
+     - `rayCastDistance` Optional (Integer) "Raycast Distance (rdt)" Distance to raycast out to.
+     - `nearbyObjectDetection` Optional (Integer) "Nearby Raycast (nbc)" If this exists, and a raycaster is on the NPC, then ALSO scan a circle of this diameter to notice very close entities from any direction.
+     - `followTarget` Optional (Bool) "Follow (fol)" If there is a raycaster on the NPC it will move to follow the nearest target.
+     - `velocity` Optional (Int) "Velocity (vel)" Velocity to set on NPC if it has movement, such as followTarget.
+     - `randomizeVelocity` Optional (Int) "Randomize Velocity (rvl)" Randomize velocity by given integer.
+     - `travel` Optional (Bool) "Travel (tvl)" Allow Item or NPC to travel through teleport layers.
+     - `particle` Optional (String) "Particle (pcl)" Name of a particle to emit from the quark.
+     - `damageOnContact` Optional (Int) "Damage Per Contact (dpc)" Indicates that contact with a player will damage them. The number will be used as a basis for how badly to damage how quickly.
+     - **There may be additional options that were not documented yet. You can check `validateHadron.js` for any not listed here and also check `addQuarksFromMap.js` to find out what the Tilemap string is for them. Just be aware that some of the keys in `validateHadron.js` are meant to be used internally by the game, not to be set in the Quark.** 
+     - **You may add other things here as well and use them in your code, but if you do, you must update the code in `addQuarksFromMap.js` to copy these key/value pairs into the hadron, and you must alo update `validateHadron.js` to add your additional hadron keys as valid keys.**
+   - NOTE: If you update sprite properties or add new ones, existing sprites won't get updated. Use the command `/del flv NPC` to clear them and make new ones. **You need to NOT be in the same scene with the NPCs that you delete, otherwise it doesn't always work.**
  - **Informational:** These sprites are imported by the client in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {`
    - You should **not need** to update any code there, but it is important to understand the flow and where to go if you do find that you need to enhance the import process.
  - Set up Collisions: Each NPC type's collisions are custom coded in the file `client/src/gameLoopFunctions/spriteCollisionHandler.js`.
