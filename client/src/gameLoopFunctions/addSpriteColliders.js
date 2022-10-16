@@ -40,7 +40,6 @@ function addSpriteColliders(
 
       // Collisions with water for hydrophobic sprites
       if (!hadron.swm && !hadron.fly) {
-        console.log('.');
         this.physics.add.collider(
           clientSprites.get(key).sprite,
           waterLayer,
