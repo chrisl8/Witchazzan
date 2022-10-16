@@ -61,7 +61,7 @@ function npcBehavior(delta, sceneName, map) {
         delete newHadronData.py;
         delete newHadronData.de;
         const clientSprite = clientSprites.get(key);
-        if (clientSprite) {
+        if (clientSprite?.sprite?.body) {
           // If the sprite exists, we need to update it now, lest it get overwritten.
           clientSprite.sprite.setPosition(newHadronData.x, newHadronData.y);
           clientSprite.sprite.body.setVelocityX(newHadronData.vlx);

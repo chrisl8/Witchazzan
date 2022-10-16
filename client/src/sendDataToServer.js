@@ -140,12 +140,15 @@ sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
     deletedHadronList.push(key);
     // Set velocity to 0 so that it doesn't appear to move past target,
     // or hit other things
-    clientSprites.get(key).sprite.body.setVelocityX(0);
-    clientSprites.get(key).sprite.body.setVelocityY(0);
+    if (clientSprites.has(key)) {
+      clientSprites.get(key).sprite.body.setVelocityX(0);
+      clientSprites.get(key).sprite.body.setVelocityY(0);
+    }
     // Remove MY collider so that it doesn't keep triggering
     if (
       obstacleSpriteKey &&
       scene &&
+      clientSprites.has(obstacleSpriteKey) &&
       clientSprites.get(obstacleSpriteKey)?.colliders[key]
     ) {
       scene.physics.world.removeCollider(

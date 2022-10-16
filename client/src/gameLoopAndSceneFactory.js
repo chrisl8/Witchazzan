@@ -183,7 +183,7 @@ const gameLoopAndSceneFactory = ({
     }
 
     // The sprites can be added in the preload phase above,
-    // but the animations have to be added in the create phase.
+    // but any animations have to be added in the create phase.
     spriteSheetList.forEach((spriteSheet) => {
       if (spriteSheet.animations) {
         if (!this.textures.exists(spriteSheet.name)) {
