@@ -215,19 +215,28 @@ function spriteCollisionHandler({
         ) {
           // NPC hitting a spell is ignored.
           // Spells hit NPCs, but if an NPC hits a spell, we don't actually care, as the Spell->NPC already covered the action.
+        } else if (
+          hadrons.get(obstacleSpriteKey)?.typ === 'player' &&
+          hadrons.get(spriteKey)?.flv === 'NPC' &&
+          hadrons.get(spriteKey)?.dpc
+        ) {
+          // If an NPC or Item is set to damage players on contact, do so.
+          const amount = hadrons.get(spriteKey)?.dpc;
+          // console.log(amount / 100);
+          sendDataToServer.damageHadron({ id: obstacleSpriteKey, amount });
         } else {
           // Anything else just passes through
           // console.log(
           //   hadrons.get(spriteKey)?.typ,
-          //   hadrons.get(obstacleSpriteKey)?.typ,
-          //   hadrons.get(obstacleSpriteKey)?.flv,
-          //   spriteKey,
-          //   sprite,
-          //   obstacleLayerName,
-          //   obstacleLayer,
-          //   obstacleSpriteKey,
-          //   obstacleSprite,
-          //   teleportLayer,
+          // hadrons.get(obstacleSpriteKey)?.typ,
+          // hadrons.get(obstacleSpriteKey)?.flv,
+          // spriteKey,
+          // sprite,
+          // obstacleLayerName,
+          // obstacleLayer,
+          // obstacleSpriteKey,
+          // obstacleSprite,
+          // teleportLayer,
           // );
         }
       }

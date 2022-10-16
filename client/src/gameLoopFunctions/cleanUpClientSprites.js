@@ -6,6 +6,9 @@ function cleanUpClientSprites() {
   clientSprites.forEach((clientSprite, key) => {
     // Delete orphaned sprites with no hadron.
     if (!hadrons.has(key) || hadrons.get(key)?.off) {
+      if (clientSprite.emitter) {
+        clientSprite.emitter.stop();
+      }
       if (clientSprite.sprite) {
         clientSprite.sprite.destroy();
       }

@@ -49,6 +49,7 @@ const optionalKeys = [
   'stc', // Starting Scene, to return to when respawning.
   'stx', // Starting X location, to return to when respawning.
   'sty', // Starting Y location, to return to when respawning.
+  'sdi', // Starting Direction, to return to when respawning.
   // What to do when an owner disconnects or changes scenes:
   'dod', // "Destroy On Disconnect (dod)" (Bool) - Destroy this hadron if the owner disconnects.
   'tcw', // "Transfer Control When Leaving Scene (tcw)" (Bool) - Set to true if you want the sprite to be transferred to a new controller when the current controller leaves the scene. Otherwise the sprite is archived until the owner returns.
@@ -63,14 +64,17 @@ const optionalKeys = [
   'rof', // "Rate of Fire (rof)" (Integer) - For NPC's, a spell is cast when this many milliseconds has past since the last one, based on the frame to frame delta. This means the lower the number, the faster it fires.
   'spl', // "Spell (spl)" (String) - Name of the spell to cast for an NPC.
   'ani', // Animation to set on hadron's sprite at the moment.
-  'rac', // "Ray Casat (rac)" (Bool) Whether or not to set up a Raycast for this sprite.
-  'rtp', // "Raycast Type (rtp)" (String) What kind of raycast to perform: Cone, Circle, or Line (Line is default is this isn't specified, so you don't need to specify line)
+  'rac', // "Raycast (rac)" (Bool) Whether or not to set up a Raycast for this sprite.
+  'rtp', // "Raycast Type (rtp)" (String) What kind of ray cast to perform: Cone, Circle, or Line (Line is default if this isn't specified, so you don't need to specify line)
   'rcd', // "Raycast Degree (rcd)" (Integer) The range in degrees for a raycast Cone (Not used for other types at the moment)
   'rdt', // "Raycast Distance (rdt)" (Integer) Distance to raycast out to.
   'nbc', // "Nearby Raycast (nbc)" (Integer) If this exists, and a raycaster is on the NPC, then ALSO scan a circle of this diameter to notice very close entities from any direction.
   'fol', // "Follow (fol)" (Bool) If there is a raycaster on the NPC it will move to follow the nearest target.
   'vel', // "Velocity (vel)" (Int) Velocity to set on NPCs if they have movement, such as Follow.
+  'rvl', // "Randomize Velocity (rvl)" (Int) Randomize velocity by given integer.
   'tvl', // "Travel (tvl)" (Bool) True if you want NPCs and/or Items to be able to use teleport layers.
+  'pcl', // "Particle (pcl)" (String) Name of a particle to emit from the quark.
+  'dpc', // "Damage Per Contact (dpc)" (Int) Indicates that contact with a player will damage them. The number will be used as a basis for how badly to damage how quickly.
   // For items
   'hld', // Held BY ID. This is the ID of the player that is currently holding this item.
   'fnc', // itemBehavior function that is called on this hadron each update

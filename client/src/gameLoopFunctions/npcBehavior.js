@@ -6,6 +6,7 @@ import clientSprites from '../objects/clientSprites.js';
 import calculateVelocityFromDirection from '../utilities/calculateVelocityFromDirection.js';
 import getSpawnPointFromMap from '../utilities/getSpawnPointFromMap.js';
 import sendDataToServer from '../sendDataToServer.js';
+import makeRandomNumber from '../../../server/utilities/makeRandomNumber.js';
 
 function npcBehavior(delta, sceneName, map) {
   hadrons.forEach((hadron, key) => {
@@ -101,6 +102,9 @@ function npcBehavior(delta, sceneName, map) {
         if (hadron.sty) {
           newHadronData.y = hadron.sty;
         }
+        if (hadron.sdi) {
+          newHadronData.dir = hadron.sdi;
+        }
       } else if (!hadron.off) {
         // If the hadron is active, then...
 
@@ -113,6 +117,16 @@ function npcBehavior(delta, sceneName, map) {
           ray.enablePhysics();
           // Update ray origin
           ray.setOrigin(hadron.x, hadron.y);
+
+          // If "nearby detection" is enabled, first make a small circle and look at it.
+          let nearbyObjects = [];
+          if (hadron.nbc) {
+            ray.castCircle();
+            ray.setCollisionRange(hadron.nbc);
+            ray.cast();
+            nearbyObjects = [...ray.overlap()];
+          }
+
           if (
             hadron.rdt &&
             // eslint-disable-next-line no-restricted-globals
@@ -138,7 +152,7 @@ function npcBehavior(delta, sceneName, map) {
           }
 
           // get all game objects in field of view (which bodies overlap ray's field of view)
-          const visibleObjects = ray.overlap();
+          const visibleObjects = nearbyObjects.concat(ray.overlap());
           let currentTargetDistance;
           visibleObjects.forEach((entry) => {
             if (entry.data) {
@@ -201,16 +215,24 @@ function npcBehavior(delta, sceneName, map) {
             }
           });
 
-          // TODO: Probably some other thing should specify this, like the raycasting and spell shooting.
-          if (hadron.sub === 'mobileTankTestOne') {
+          if (hadron.hasOwnProperty('fol') && hadron.fol) {
             const clientSprite = clientSprites.get(key);
             if (clientSprite) {
               if (rayCastFoundTarget) {
+                const defaultNpcVelocity = 50;
                 clientSprite.sprite.body.setVelocityX(
-                  calculateVelocityFromDirection.x(50, hadron.dir),
+                  calculateVelocityFromDirection.x(
+                    hadron.vel || defaultNpcVelocity,
+                    hadron.dir +
+                      (hadron.rvl ? makeRandomNumber.between(-100, 100) : 0),
+                  ),
                 );
                 clientSprite.sprite.body.setVelocityY(
-                  calculateVelocityFromDirection.y(50, hadron.dir),
+                  calculateVelocityFromDirection.y(
+                    hadron.vel || defaultNpcVelocity,
+                    hadron.dir +
+                      (hadron.rvl ? makeRandomNumber.between(-100, 100) : 0),
+                  ),
                 );
               } else {
                 clientSprite.sprite.body.setVelocityX(0);

@@ -71,6 +71,25 @@ function addSprites(hadron, key) {
       newClientSprite.sprite.setDepth(objectDepthSettings.message);
     }
 
+    // Emit particles if so directed
+    if (hadron.pcl) {
+      if (this.textures.exists(hadron.pcl)) {
+        const particles = this.add.particles(hadron.pcl);
+        newClientSprite.emitter = particles.createEmitter({
+          speed: 100,
+          scale: { start: 0.1, end: 0 },
+        });
+      } else {
+        const particles = this.add.particles('atlasOne');
+        newClientSprite.emitter = particles.createEmitter({
+          frame: [hadron.pcl],
+          speed: 100,
+          scale: { start: 0.1, end: 0 },
+        });
+      }
+      newClientSprite.emitter.startFollow(newClientSprite.sprite);
+    }
+
     // Set the "shadow" of my own player to black.
     if (key === playerObject.playerId) {
       // https://www.phaser.io/examples/v3/view/display/tint/tint-and-alpha

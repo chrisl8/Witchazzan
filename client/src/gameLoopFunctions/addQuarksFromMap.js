@@ -76,9 +76,15 @@ function addQuarksFromMap(map, sceneName) {
         }
         if (objectProperties.hasOwnProperty('initialSpriteDirection')) {
           newHadron.dir = objectProperties.initialSpriteDirection;
+          if (objectProperties.Flavor === 'NPC') {
+            newHadron.sdi = objectProperties.initialSpriteDirection;
+          }
         }
         if (objectProperties.hasOwnProperty('initialAnimationState')) {
           newHadron.ani = objectProperties.initialAnimationState;
+        }
+        if (objectProperties.hasOwnProperty('particle')) {
+          newHadron.pcl = objectProperties.particle;
         }
         if (
           objectProperties.hasOwnProperty('health') &&
@@ -87,6 +93,20 @@ function addQuarksFromMap(map, sceneName) {
         ) {
           newHadron.hlt = Number(objectProperties.health);
           newHadron.mxh = Number(objectProperties.health);
+        }
+        if (
+          objectProperties.hasOwnProperty('damageOnContact') &&
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(objectProperties.damageOnContact)
+        ) {
+          newHadron.dpc = Number(objectProperties.damageOnContact);
+        }
+        if (
+          objectProperties.hasOwnProperty('randomizeVelocity') &&
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(objectProperties.randomizeVelocity)
+        ) {
+          newHadron.rvl = Number(objectProperties.randomizeVelocity);
         }
         if (
           objectProperties.hasOwnProperty('dps') &&
@@ -134,6 +154,23 @@ function addQuarksFromMap(map, sceneName) {
           !isNaN(objectProperties.rayCastDistance)
         ) {
           newHadron.rdt = objectProperties.rayCastDistance;
+        }
+        if (
+          objectProperties.hasOwnProperty('nearbyObjectDetection') &&
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(objectProperties.nearbyObjectDetection)
+        ) {
+          newHadron.nbc = objectProperties.nearbyObjectDetection;
+        }
+        if (objectProperties.hasOwnProperty('followTarget')) {
+          newHadron.fol = objectProperties.followTarget;
+        }
+        if (
+          objectProperties.hasOwnProperty('velocity') &&
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(objectProperties.velocity)
+        ) {
+          newHadron.vel = objectProperties.velocity;
         }
         // spells
         if (objectProperties.hasOwnProperty('spell')) {
