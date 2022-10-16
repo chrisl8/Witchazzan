@@ -458,6 +458,11 @@
                          "value":90
                         }, 
                         {
+                         "name":"nearbyObjectDetection",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"pod",
                          "type":"bool",
                          "value":true
@@ -496,11 +501,6 @@
                          "name":"spell",
                          "type":"string",
                          "value":"laserArrow"
-                        }, 
-                        {
-                         "name":"spellVelocity",
-                         "type":"int",
-                         "value":200
                         }, 
                         {
                          "name":"sprite",
@@ -566,6 +566,11 @@
                          "value":270
                         }, 
                         {
+                         "name":"nearbyObjectDetection",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"pod",
                          "type":"bool",
                          "value":true
@@ -604,11 +609,6 @@
                          "name":"spell",
                          "type":"string",
                          "value":"laserArrow"
-                        }, 
-                        {
-                         "name":"spellVelocity",
-                         "type":"int",
-                         "value":200
                         }, 
                         {
                          "name":"sprite",
@@ -674,6 +674,11 @@
                          "value":90
                         }, 
                         {
+                         "name":"nearbyObjectDetection",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"pod",
                          "type":"bool",
                          "value":true
@@ -712,11 +717,6 @@
                          "name":"spell",
                          "type":"string",
                          "value":"laserArrow"
-                        }, 
-                        {
-                         "name":"spellVelocity",
-                         "type":"int",
-                         "value":200
                         }, 
                         {
                          "name":"sprite",
@@ -782,6 +782,11 @@
                          "value":270
                         }, 
                         {
+                         "name":"nearbyObjectDetection",
+                         "type":"int",
+                         "value":25
+                        }, 
+                        {
                          "name":"pod",
                          "type":"bool",
                          "value":true
@@ -820,11 +825,6 @@
                          "name":"spell",
                          "type":"string",
                          "value":"laserArrow"
-                        }, 
-                        {
-                         "name":"spellVelocity",
-                         "type":"int",
-                         "value":200
                         }, 
                         {
                          "name":"sprite",
