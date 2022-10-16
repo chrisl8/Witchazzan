@@ -4,6 +4,22 @@
 // fallback default.
 // You'd only want all 5 if your sprite really has 4 directions AND a separate stationary animation.
 
+// I use texture atlases now, so there are typically no import statements here and no 'filename' keys on the sprite sheet list,
+// HOWEVER, you can still add individual sprites directly here if you want to.
+// Here is an example import statement:
+// import myAmazingSpriteSheet from '../../../assets/myAmazingSpriteSheet.png';
+
+// Then you need to add an object to the spriteSheetList array describing your sprite-sheet so we can use it.
+// Just use the other entries as examples, but ALSO ADD a key called 'filename' where you use the import name that
+// you used like this:
+// {
+//    type: 'other',
+//    name: 'myAmazingSpriteSheet',
+//    filename: myAmazingSpriteSheet,
+//  ...
+// Typically the 'name' and 'fileName' will be the same, but the 'fileName' key
+// tells the code that this sprite needs to be loaded directly from the file.
+
 const spriteSheetList = [
   {
     type: 'player',
@@ -45,6 +61,7 @@ const spriteSheetList = [
     displayWidth: 16,
     displayHeight: 16,
   },
+  { type: 'other', name: 'litSmoke' },
   {
     type: 'other',
     name: 'ChairTwo',
@@ -111,6 +128,123 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'RedKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'TurquoiseKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'PurpleKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'PinkKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'OrangeKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'LightBlueKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'GreyKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'DarkBlueKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'BlueKey',
+    faces: 'right',
+    frameWidth: 9,
+    frameHeight: 6,
+    physicsSize: {
+      x: 9,
+      y: 6,
+    },
+    displayWidth: 9,
+    displayHeight: 6,
+  },
+  {
+    type: 'other',
+    name: 'BlackKey',
     faces: 'right',
     frameWidth: 9,
     frameHeight: 6,

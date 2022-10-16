@@ -107,9 +107,11 @@ const gameLoopAndSceneFactory = ({
     // assigned to it.
     // NOTE: This also means we are not wasting memory by loading the same tileSet over and over,
     // because phaser just overwrites them.
+
     if (!scene.textures.exists(`${tileSet.name}-tiles`)) {
       this.load.image(`${tileSet.name}-tiles`, tileSet.image);
     }
+
     // NOTE: The key must be different for each tilemap,
     // otherwise Phaser will get confused and reuse the same tilemap
     // even though you think you loaded another one.
@@ -132,6 +134,28 @@ const gameLoopAndSceneFactory = ({
     if (!scene.cache.bitmapFont.has('atariSunset')) {
       this.load.bitmapFont('atariSunset', atariSunsetPng, atariSunsetXml);
     }
+
+    // Load any individual files listed in spriteSheetList.js
+    // These won't typically exist, but I'm keeping this here to allow
+    // testing of new images easily without having to update the atlas constantly,
+    // as well as to make it easier for others to add sprites either
+    // to contribute or just for fun.
+    spriteSheetList.forEach((spriteSheet) => {
+      if (spriteSheet.hasOwnProperty('filename')) {
+        if (
+          spriteSheet.type === 'image' &&
+          !this.textures.exists(spriteSheet.name)
+        ) {
+          this.load.image(spriteSheet.name, spriteSheet.filename);
+        } else {
+          this.load.spritesheet(spriteSheet.name, spriteSheet.filename, {
+            frameWidth: spriteSheet.frameWidth,
+            frameHeight: spriteSheet.frameHeight,
+            endFrame: spriteSheet.endFrame,
+          });
+        }
+      }
+    });
   };
 
   // INITIAL SCENE SETUP
