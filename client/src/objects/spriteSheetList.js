@@ -265,8 +265,8 @@ const spriteSheetList = [
       x: 45,
       y: 45,
     },
-    displayWidth: 90,
-    displayHeight: 90,
+    displayWidth: 45,
+    displayHeight: 45,
     endFrame: -1,
     animationFrameRate: 10,
     animations: [
