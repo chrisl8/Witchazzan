@@ -6,7 +6,7 @@
          "id":13,
          "layers":[
                 {
-                 "data": [12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 "data":[12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -275,8 +275,8 @@
             0, 0, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 0, 0,
             0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0, 0,
             0, 0, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 0, 0,
-            0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0, 0,
-            0, 0, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 0, 0,
+            0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 110, 110, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0, 0,
+            0, 0, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 110, 110, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":26,
@@ -312,8 +312,8 @@
             0, 0, 110, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 110, 0, 0,
             0, 0, 110, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 110, 0, 0,
             0, 0, 110, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 110, 0, 0,
-            0, 0, 110, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 110, 0, 0,
-            0, 0, 110, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 110, 0, 0,
+            0, 0, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 0, 0, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 0, 0,
+            0, 0, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 0, 0, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":26,
@@ -338,6 +338,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 146, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 158, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -346,11 +347,10 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 117, 118, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 117, 118, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":26,
@@ -374,20 +374,20 @@
             0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
             0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
             0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
-            0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 133, 134, 135, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
-            0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 145, 0, 147, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
-            0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 0, 159, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
-            0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
+            0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
+            0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 133, 134, 135, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
+            0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 145, 0, 147, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
+            0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 0, 159, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
             0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
             0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
             0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
-            0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
-            0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
-            0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
+            0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 31, 31, 31, 31, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
+            0, 0, 0, 0, 81, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 31, 0, 0, 0, 0, 31, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 0, 0, 0, 0,
+            0, 0, 0, 0, 93, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 31, 0, 0, 0, 0, 0, 0, 31, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 94, 0, 0, 0, 0,
             0, 0, 0, 0, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 0, 0, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 81, 82, 0, 0, 0, 0,
             0, 0, 0, 0, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 0, 0, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 93, 94, 0, 0, 0, 0,
-            0, 0, 0, 0, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 0, 0, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 82, 81, 81, 82, 0, 0, 0, 0,
-            0, 0, 0, 0, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 0, 0, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 94, 93, 93, 94, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":26,
@@ -451,8 +451,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":360,
-                 "y":218
+                 "x":359.75,
+                 "y":233.25
                 }, 
                 {
                  "class":"",
@@ -465,11 +465,6 @@
                          "name":"Type",
                          "type":"string",
                          "value":"Entrance"
-                        }, 
-                        {
-                         "name":"allowCustomX",
-                         "type":"bool",
-                         "value":true
                         }],
                  "rotation":0,
                  "visible":true,
@@ -493,7 +488,7 @@
                  "visible":true,
                  "width":0,
                  "x":360,
-                 "y":218
+                 "y":232
                 }, 
                 {
                  "class":"",
@@ -516,7 +511,751 @@
                  "visible":true,
                  "width":0,
                  "x":360,
-                 "y":184
+                 "y":200
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":36,
+                 "name":"purpleTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":432,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":37,
+                 "name":"lightBlueTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":464,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":38,
+                 "name":"pinkTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":400,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":39,
+                 "name":"redTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":40,
+                 "name":"greyTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":367.909,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":41,
+                 "name":"yellowTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":240,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":42,
+                 "name":"turquoiseTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":272,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":43,
+                 "name":"orangeTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":44,
+                 "name":"blueTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":336,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":45,
+                 "name":"darkBlueTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":496,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":46,
+                 "name":"blackTankSingle",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":528,
+                 "y":128
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":47,
+                 "name":"RedKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":48,
+                 "name":"YellowKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":240,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":49,
+                 "name":"TurquoiseKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":272,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":50,
+                 "name":"OrangeKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":51,
+                 "name":"BlueKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":336,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":52,
+                 "name":"GreyKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":367.818,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":53,
+                 "name":"PinkKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":400,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":54,
+                 "name":"PurpleKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":432,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":55,
+                 "name":"LightBlueKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":464,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":56,
+                 "name":"DarkBlueKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":496,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":57,
+                 "name":"BlackKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":528,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":69,
+                 "name":"Barricade-RedKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":70,
+                 "name":"Barricade-YellowKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":240,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":71,
+                 "name":"Barricade-TurquoiseKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":272,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":72,
+                 "name":"Barricade-OrangeKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":73,
+                 "name":"Barricade-BlueKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":336,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":74,
+                 "name":"Barricade-GreyKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":367.818,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":76,
+                 "name":"Barricade-PurpleKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":432,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":77,
+                 "name":"Barricade-LightBlueKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":464,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":78,
+                 "name":"Barricade-DarkBlueKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":496,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":79,
+                 "name":"Barricade-BlackKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":528,
+                 "y":160
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":80,
+                 "name":"Barricade-PinkKey",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"AnimationOnly"
+                        }, 
+                        {
+                         "name":"spriteLayerDepth",
+                         "type":"int",
+                         "value":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":400,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -525,22 +1264,22 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":36,
+ "nextobjectid":81,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {
          "columns":12,
          "firstgid":1,
          "image":"..\/tileSets\/CamelopardalisColor16x16.png",
-         "imageheight":715,
+         "imageheight":256,
          "imagewidth":205,
          "margin":1,
          "name":"CamelopardalisColor16x16",
          "spacing":1,
-         "tilecount":504,
+         "tilecount":180,
          "tileheight":16,
          "tilewidth":16
         }],

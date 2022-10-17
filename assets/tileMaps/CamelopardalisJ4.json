@@ -6,7 +6,7 @@
          "id":13,
          "layers":[
                 {
-                 "data": [12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 "data":[12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -436,7 +436,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":35,
+ "nextobjectid":59,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -445,19 +445,19 @@
          "value":"definitely something missing here"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {
          "columns":12,
          "firstgid":1,
          "image":"..\/tileSets\/CamelopardalisColor16x16.png",
-         "imageheight":715,
+         "imageheight":256,
          "imagewidth":205,
          "margin":1,
          "name":"CamelopardalisColor16x16",
          "spacing":1,
-         "tilecount":504,
+         "tilecount":180,
          "tileheight":16,
          "tilewidth":16
         }],
