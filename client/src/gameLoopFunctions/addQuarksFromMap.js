@@ -29,10 +29,20 @@ function addQuarksFromMap(map, sceneName) {
         depth = Number(objectProperties.spriteLayerDepth);
       }
 
-      const newThing = this.add
-        .sprite(object.x, object.y, spriteData.name)
-        .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y)
-        .setDepth(depth);
+      let newThing;
+      if (this.textures.exists(spriteData.name)) {
+        newThing = this.add
+          .sprite(object.x, object.y, spriteData.name)
+          .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y)
+          .setDisplaySize(spriteData.displayWidth, spriteData.displayHeight)
+          .setDepth(depth);
+      } else {
+        newThing = this.add
+          .sprite(object.x, object.y, 'atlasOne', spriteData.name)
+          .setSize(spriteData.physicsSize.x, spriteData.physicsSize.y)
+          .setDisplaySize(spriteData.displayWidth, spriteData.displayHeight)
+          .setDepth(depth);
+      }
 
       // Animation
       if (
