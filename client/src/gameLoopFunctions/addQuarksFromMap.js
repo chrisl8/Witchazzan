@@ -17,6 +17,7 @@ function addQuarksFromMap(map, sceneName) {
       // "AnimationOnly" is for plopping non-physics sprites into a tilemap for aesthetic reasons.
       // They won't have colliders, but they will animate.
       // Importantly, the do NOT create Hadrons.
+      // Note that they do not actually need to "animate".
       const spriteData = getSpriteData(object.name);
 
       // Depth
