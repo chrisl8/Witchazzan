@@ -15,6 +15,12 @@ PARENT_DIR="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
 
 cd "${PARENT_DIR}" || exit
+
+echo "Backing up persistent hadrons..."
+ls -lah persistentData/hadrons.json5
+mkdir -p persistentData/backups
+cp persistentData/hadrons.json5 persistentData/backups
+
 echo "Pulling latest changes from the GitHub repo:"
 git pull
 echo ""
@@ -30,4 +36,7 @@ fi
 npm run build
 echo ""
 echo "Restarting server:"
+
+ls -lah persistentData/hadrons.json5
 pm2 restart Witchazzan
+ls -lah persistentData/hadrons.json5
