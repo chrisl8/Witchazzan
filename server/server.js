@@ -930,12 +930,18 @@ io.on('connection', (socket) => {
                 command[0].toLowerCase() === 'del'
               ) {
                 hadrons.forEach((hadron, key) => {
-                  if (hadron[command[1]] === command[2]) {
+                  if (
+                    hadron.scn !== 'Library' &&
+                    hadron[command[1]] === command[2]
+                  ) {
                     hadrons.delete(key);
                   }
                 });
                 inactiveHadrons.forEach((hadron, key) => {
-                  if (hadron[command[1]] === command[2]) {
+                  if (
+                    hadron.scn !== 'Library' &&
+                    hadron[command[1]] === command[2]
+                  ) {
                     inactiveHadrons.delete(key);
                   }
                 });
