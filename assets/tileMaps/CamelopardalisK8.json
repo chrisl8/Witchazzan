@@ -904,6 +904,59 @@
                  "width":0,
                  "x":367.875,
                  "y":207.625
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":39,
+                 "name":"Press P",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"dropMessage"
+                        }, 
+                        {
+                         "name":"Text",
+                         "type":"string",
+                         "value":"Luke, use the furniture!"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"4a8f47e2-9aa6-44db-8a2f-3a6aaee6c291"
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"writtenPaper"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":600.333333333333,
+                 "y":230
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -912,7 +965,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":39,
+ "nextobjectid":40,
  "orientation":"orthogonal",
  "properties":[
         {

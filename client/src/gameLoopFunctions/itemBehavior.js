@@ -47,7 +47,7 @@ function itemBehavior(delta, sceneName, map) {
       if (
         hadron.hasOwnProperty('fnc') // This section is only for "spawner" items with functions, not their children.
       ) {
-        // This is all of the "base NPC" behavior.
+        // This is all of the "base Item" behavior.
         // Remember that you can further control or limit the behavior for specific NPCs
         // by checking the hadron.sub field in your if/else statements below.
         // Feel free to exclude a given hadron.sub from these more generic checks at the top.
@@ -63,6 +63,32 @@ function itemBehavior(delta, sceneName, map) {
         // This means that when you take an item and leave the room with it, a new one will later spawn.
 
         switch (hadron.fnc) {
+          case 'dropMessage':
+            // The purpose of this type is to use the Tilemap to always drop a message.
+            // In theory if the persistent data is never deleted, these will only get created once,
+            // but stuff happens.
+            if (!hadron.lid || !hadrons.get(hadron.lid)) {
+              const newHadron = {
+                id: getUUID(),
+                own: hadron.owner,
+                typ: 'message',
+                spr: hadron.spr,
+                x: hadron.x,
+                y: hadron.y,
+                dir: 'up',
+                scn: sceneName,
+                vlx: 0,
+                vly: 0,
+                txt: hadron.txt,
+                tcw: true,
+                pod: true,
+              };
+              hadronUpdated = true;
+              newHadronData.lid = newHadron.id;
+              // Ask server to create new item hadron with this ID.
+              sendDataToServer.createHadron(newHadron);
+            }
+            break;
           case 'respawn':
             // If no hadron exists in the scene with the last ID spawned for this item
             if (!hadron.lid || !hadrons.get(hadron.lid)) {

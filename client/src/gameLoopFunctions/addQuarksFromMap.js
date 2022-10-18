@@ -176,6 +176,9 @@ function addQuarksFromMap(map, sceneName) {
         if (objectProperties.hasOwnProperty('followTarget')) {
           newHadron.fol = objectProperties.followTarget;
         }
+        if (objectProperties.hasOwnProperty('Text')) {
+          newHadron.txt = objectProperties.Text;
+        }
         if (
           objectProperties.hasOwnProperty('velocity') &&
           // eslint-disable-next-line no-restricted-globals
