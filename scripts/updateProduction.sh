@@ -22,6 +22,7 @@ mkdir -p persistentData/backups
 cp persistentData/hadrons.json5 persistentData/backups
 ls -lah persistentData/backups/hadrons.json5
 
+echo ""
 echo "Pulling latest changes from the GitHub repo:"
 git pull
 echo ""

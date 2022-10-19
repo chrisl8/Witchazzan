@@ -4,6 +4,7 @@ import getUUID from '../utilities/getUUID.js';
 import sendDataToServer from '../sendDataToServer.js';
 import getSpawnPointFromMap from '../utilities/getSpawnPointFromMap.js';
 import clientSprites from '../objects/clientSprites.js';
+import deletedHadronList from '../objects/deletedHadronList.js';
 
 function generateNewHadron(hadron, sceneName) {
   // Generate an ID for this new hadron
@@ -67,26 +68,44 @@ function itemBehavior(delta, sceneName, map) {
             // The purpose of this type is to use the Tilemap to always drop a message.
             // In theory if the persistent data is never deleted, these will only get created once,
             // but stuff happens.
-            if (!hadron.lid || !hadrons.get(hadron.lid)) {
-              const newHadron = {
-                id: getUUID(),
-                own: hadron.owner,
-                typ: 'message',
-                spr: hadron.spr,
-                x: hadron.x,
-                y: hadron.y,
-                dir: 'up',
-                scn: sceneName,
-                vlx: 0,
-                vly: 0,
-                txt: hadron.txt,
-                tcw: true,
-                pod: true,
-              };
+            if (!hadrons.get(hadron.uid)) {
+              if (!hadron.tmo) {
+                // We start the timer from the moment that we see this condition
+                // A timer is always required to prevent loops and race conditions with the server.
+                newHadronData.tmo = Math.floor(Date.now() / 1000);
+                hadronUpdated = true;
+              } else if (
+                Math.floor(Date.now() / 1000) - hadron.tmo >
+                1 // second
+              ) {
+                const newHadron = {
+                  id: hadron.uid,
+                  own: hadron.owner,
+                  typ: 'message',
+                  spr: hadron.spr,
+                  x: hadron.x,
+                  y: hadron.y,
+                  dir: 'up',
+                  scn: sceneName,
+                  vlx: 0,
+                  vly: 0,
+                  txt: hadron.txt,
+                  tcw: true,
+                  pod: true,
+                };
+                hadronUpdated = true;
+                // In case WE asked to delete it, remove it from our deleted item list
+                deletedHadronList.splice(
+                  deletedHadronList.indexOf(key) === -1,
+                  1,
+                );
+                // Ask server to create new item hadron with this ID.
+                sendDataToServer.createHadron(newHadron);
+              }
+            } else if (hadron.tmo) {
+              // Always reset the timeout if it exists when a hadron exists.
               hadronUpdated = true;
-              newHadronData.lid = newHadron.id;
-              // Ask server to create new item hadron with this ID.
-              sendDataToServer.createHadron(newHadron);
+              delete newHadronData.tmo;
             }
             break;
           case 'respawn':

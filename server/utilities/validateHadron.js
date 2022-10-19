@@ -81,6 +81,7 @@ const optionalKeys = [
   'lid', // Last spawned unique ID. This is used to tell if a new instance should be spawned.
   'iin', // Important Item Name. Important items have special properties and are tracked.
   'dap', // Did Already Spawn. Used to track if an item already spawned after an event, so we don't do it twice before the event resets after someone takes the item.
+  'uid', // "Unique ID (uid)" (String) When making a hadron from a Quark, this ID will be used, and hence only one will ever be created.
 ];
 
 const allKeys = alwaysRequiredKeys.concat(

@@ -843,9 +843,11 @@ io.on('connection', (socket) => {
             hadrons.get(key).ctr !== PlayerId &&
             connectedPlayerData.has(hadrons.get(key).ctr)
           ) {
-            socket
-              .to(connectedPlayerData.get(hadrons.get(key).ctr).socketId)
-              .emit('deleteHadron', key);
+            socketEmitToId({
+              emitToId: connectedPlayerData.get(hadrons.get(key).ctr).socketId,
+              socketEvent: 'deleteHadron',
+              data: key,
+            });
           }
           // Give other clients a moment to animate the last moments of the sprite
           // so that it doesn't appear to disappear before hitting the location where it should disappear on their screen
