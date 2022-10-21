@@ -68,7 +68,7 @@ function itemBehavior(delta, sceneName, map) {
             // The purpose of this type is to use the Tilemap to always drop a message.
             // In theory if the persistent data is never deleted, these will only get created once,
             // but stuff happens.
-            if (!hadrons.get(hadron.uid)) {
+            if (!hadrons.has(hadron.uid)) {
               if (!hadron.tmo) {
                 // We start the timer from the moment that we see this condition
                 // A timer is always required to prevent loops and race conditions with the server.
@@ -110,7 +110,7 @@ function itemBehavior(delta, sceneName, map) {
             break;
           case 'respawn':
             // If no hadron exists in the scene with the last ID spawned for this item
-            if (!hadron.lid || !hadrons.get(hadron.lid)) {
+            if (!hadron.lid || !hadrons.has(hadron.lid)) {
               if (!hadron.tmo) {
                 // We start the timer from the moment that we see this condition
                 newHadronData.tmo = Math.floor(Date.now() / 1000);
@@ -140,7 +140,7 @@ function itemBehavior(delta, sceneName, map) {
             break;
           case 'allNPCsOff':
             // If no hadron exists in the scene with the last ID spawned for this item,
-            if (!hadron.lid || !hadrons.get(hadron.lid)) {
+            if (!hadron.lid || !hadrons.has(hadron.lid)) {
               // Check if all NPCs are off in this scene.
               let allNPCsOff = true;
               hadrons.forEach((sceneHadron) => {

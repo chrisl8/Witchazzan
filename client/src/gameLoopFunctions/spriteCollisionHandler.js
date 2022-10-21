@@ -45,7 +45,7 @@ function spriteCollisionHandler({
   //   '\nteleportLayer',
   //   teleportLayer,
   // );
-  if (hadrons.get(spriteKey)) {
+  if (hadrons.has(spriteKey)) {
     // Sprites can linger, and collide, after there hadron is destroyed, but we do not need to act on them anymore.
     if (teleportLayer) {
       if (
@@ -60,8 +60,7 @@ function spriteCollisionHandler({
           if (destinationSceneEntrance === 'PreviousPosition') {
             // In the rare case that this is just supposed to go to our last known position in the previous scene,
             // which currently ONLY happens in the Library, this is easy.
-            const hadron = hadrons.get(spriteKey);
-            const newHadronData = { ...hadron };
+            const newHadronData = { ...hadrons.get(spriteKey) };
             newHadronData.scn = destinationSceneName;
             newHadronData.x = playerObject.previousScene.x;
             newHadronData.y = playerObject.previousScene.y;
@@ -69,8 +68,7 @@ function spriteCollisionHandler({
             // We must manually send hadron data when we set a scene other than the current one on it.
             sendDataToServer.hadronData(newHadronData, spriteKey);
           } else {
-            const hadron = hadrons.get(spriteKey);
-            const newHadronData = { ...hadron };
+            const newHadronData = { ...hadrons.get(spriteKey) };
             if (destinationSceneName !== 'Local') {
               newHadronData.scn = destinationSceneName;
             }
@@ -99,7 +97,7 @@ function spriteCollisionHandler({
       }
     } else if (obstacleSprite) {
       // Obstacle can linger, and collide, after there hadron is destroyed, but we do not need to act on them anymore.
-      if (hadrons.get(obstacleSpriteKey)) {
+      if (hadrons.has(obstacleSpriteKey)) {
         // Sprite to Sprite interactions
         if (
           hadrons.get(spriteKey)?.typ === 'message' &&

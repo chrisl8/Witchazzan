@@ -10,7 +10,7 @@ function handlePlayerInteraction() {
     if (playerObject.nearbyTargetObject.id) {
       // An object is "targeted" by the player raycast code
       if (
-        hadrons.get(playerObject.nearbyTargetObject.id) &&
+        hadrons.has(playerObject.nearbyTargetObject.id) &&
         !hadrons.get(playerObject.nearbyTargetObject.id).hld
       ) {
         // The target object exists (don't crash game in case of shenanigans)
