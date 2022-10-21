@@ -48,6 +48,16 @@ const commandListArray = [
     adminOnly: true,
   },
   {
+    name: 'dumpHadrons',
+    description: 'Log hadrons Map() to console for debugging.',
+    adminOnly: true,
+  },
+  {
+    name: 'dumpDeletedHadronList',
+    description: 'Log deletedHadronList Array to console for debugging.',
+    adminOnly: true,
+  },
+  {
     name: 'del [key] [value]',
     description: 'Delete hadrons where [key] is equal to [value].',
     adminOnly: true,

@@ -4,6 +4,8 @@ import clientSprites from './objects/clientSprites.js';
 import sendDataToServer from './sendDataToServer.js';
 import closeChatInputBox from './closeChatInputBox.js';
 import debugLog from './utilities/debugLog.js';
+import deletedHadronList from './objects/deletedHadronList.js';
+import hadrons from './objects/hadrons.js';
 
 if (!Array.isArray(JSON.parse(localStorage.getItem('commandHistory')))) {
   localStorage.setItem('commandHistory', JSON.stringify([]));
@@ -47,6 +49,17 @@ function processCommandInput(event) {
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'dumpclientsprites'
       ) {
         console.log(clientSprites);
+        addEntryToCommandHistory(command);
+      } else if (
+        inputTextSpaceDelimitedArray[0].toLowerCase() ===
+        'dumpdeletedhadronlist'
+      ) {
+        console.log(deletedHadronList);
+        addEntryToCommandHistory(command);
+      } else if (
+        inputTextSpaceDelimitedArray[0].toLowerCase() === 'dumphadrons'
+      ) {
+        console.log(hadrons);
         addEntryToCommandHistory(command);
       } else if (inputTextSpaceDelimitedArray[0].toLowerCase() === 'whisper') {
         // Sends chat to specific user
