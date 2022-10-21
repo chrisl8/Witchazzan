@@ -640,7 +640,7 @@
                 {
                  "class":"",
                  "height":0,
-                 "id":61,
+                 "id":62,
                  "name":"Press P",
                  "point":true,
                  "properties":[
@@ -667,12 +667,22 @@
                         {
                          "name":"id",
                          "type":"string",
-                         "value":"7bbe5fc3-0892-43ee-b18f-db2126ca171d"
+                         "value":"5b30dfc6-1b62-441f-8454-e5e07c32f9a4"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"string",
+                         "value":"up"
                         }, 
                         {
                          "name":"pod",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":1
                         }, 
                         {
                          "name":"sprite",
@@ -687,13 +697,13 @@
                         {
                          "name":"uniqueId",
                          "type":"string",
-                         "value":"29834b6e-1ca8-453d-9383-ee4aa184f789"
+                         "value":"c3662be3-835c-4574-8f3c-67d1dd42ff20"
                         }],
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":158.666666666667,
-                 "y":158.666666666667
+                 "x":159.818181818182,
+                 "y":160.181818181818
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -702,7 +712,7 @@
          "y":0
         }],
  "nextlayerid":21,
- "nextobjectid":62,
+ "nextobjectid":63,
  "orientation":"orthogonal",
  "properties":[
         {

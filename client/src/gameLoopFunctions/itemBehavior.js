@@ -4,7 +4,6 @@ import getUUID from '../utilities/getUUID.js';
 import sendDataToServer from '../sendDataToServer.js';
 import getSpawnPointFromMap from '../utilities/getSpawnPointFromMap.js';
 import clientSprites from '../objects/clientSprites.js';
-import deletedHadronList from '../objects/deletedHadronList.js';
 
 function generateNewHadron(hadron, sceneName) {
   // Generate an ID for this new hadron
@@ -76,29 +75,26 @@ function itemBehavior(delta, sceneName, map) {
                 hadronUpdated = true;
               } else if (
                 Math.floor(Date.now() / 1000) - hadron.tmo >
-                1 // second
+                hadron.ris
               ) {
-                const newHadron = {
-                  id: hadron.uid,
-                  own: hadron.owner,
-                  typ: 'message',
-                  spr: hadron.spr,
-                  x: hadron.x,
-                  y: hadron.y,
-                  dir: 'up',
-                  scn: sceneName,
-                  vlx: 0,
-                  vly: 0,
-                  txt: hadron.txt,
-                  tcw: true,
-                  pod: true,
-                };
+                // If the timer has run out, then spawn a new one.
+                // Wipe the tmo field of the spawner
+                delete newHadronData.tmo;
                 hadronUpdated = true;
-                // In case WE asked to delete it, remove it from our deleted item list
-                deletedHadronList.splice(
-                  deletedHadronList.indexOf(key) === -1,
-                  1,
-                );
+
+                const newHadron = generateNewHadron(hadron, sceneName);
+
+                // Messages are different:
+                newHadron.id = hadron.uid;
+                newHadron.typ = 'message';
+                newHadron.txt = hadron.txt;
+                delete newHadron.ani;
+                delete newHadron.flv;
+                delete newHadron.hlt;
+                delete newHadron.mxh;
+                delete newHadron.vlx;
+                delete newHadron.vly;
+
                 // Ask server to create new item hadron with this ID.
                 sendDataToServer.createHadron(newHadron);
               }

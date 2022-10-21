@@ -955,8 +955,76 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":600.333333333333,
-                 "y":230
+                 "x":637.424242424242,
+                 "y":214.454545454545
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":40,
+                 "name":"furniture",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"dropMessage"
+                        }, 
+                        {
+                         "name":"Text",
+                         "type":"string",
+                         "value":"Luke, use the furniture!"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"a5abfca5-4004-49d7-9722-27ecbb92ac0a"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"string",
+                         "value":"up"
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"writtenPaper"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"uniqueId",
+                         "type":"string",
+                         "value":"d08cf21c-4bee-4b01-844e-09b4aa275877"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":599.909090909091,
+                 "y":231.545454545455
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -965,7 +1033,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":40,
+ "nextobjectid":41,
  "orientation":"orthogonal",
  "properties":[
         {
