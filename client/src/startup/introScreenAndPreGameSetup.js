@@ -243,12 +243,12 @@ const startGameNow = () => {
     playerObject.helpTextVersion.toString(),
   );
 
-  // Settle up disableCameraZoom and set local storage if need be
-  const disableCameraZoom = document.getElementById('camera_zoom_off').checked;
-  if (disableCameraZoom) {
-    localStorage.setItem('disableCameraZoom', 'true');
+  // Settle up logLatency and set local storage if need be
+  const logLatency = document.getElementById('log_latency').checked;
+  if (logLatency) {
+    localStorage.setItem('logLatency', 'true');
   } else {
-    localStorage.removeItem('disableCameraZoom');
+    localStorage.removeItem('logLatency');
   }
 
   // Settle up disableSound and set local storage if need be
@@ -297,10 +297,10 @@ const startGameNow = () => {
  */
 
 (async () => {
-  // Check local storage for disableCameraZoom
-  const disableCameraZoom = localStorage.getItem('disableCameraZoom');
-  if (disableCameraZoom === 'true') {
-    document.getElementById('camera_zoom_off').checked = true;
+  // Check local storage for logLatency
+  const logLatency = localStorage.getItem('logLatency');
+  if (logLatency === 'true') {
+    document.getElementById('log_latency').checked = true;
   }
 
   // Check local storage for disableSound

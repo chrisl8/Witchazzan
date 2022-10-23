@@ -282,14 +282,7 @@ const gameLoopAndSceneFactory = ({
       if (splitLayerName.length > 1 && splitLayerName[0] === 'Teleport') {
         teleportLayersColliders.set(
           layer.name,
-          map
-            .createLayer(
-              layer.name,
-              playerObject.disableCameraZoom ? sceneTileSet : null,
-              0,
-              0,
-            )
-            .setCollisionByExclusion([-1]),
+          map.createLayer(layer.name, null, 0, 0).setCollisionByExclusion([-1]),
         );
       }
     });

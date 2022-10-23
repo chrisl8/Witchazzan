@@ -69,8 +69,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
   playerObject.domElements.Scrolling.hidden = true;
 
   // Retrieve data from local storage
-  playerObject.disableCameraZoom =
-    localStorage.getItem('disableCameraZoom') === 'true';
+  playerObject.logLatency = localStorage.getItem('logLatency') === 'true';
   playerObject.disableSound = localStorage.getItem('disableSound') === 'true';
   playerObject.enableDebug = localStorage.getItem('enableDebug') === 'true';
   playerObject.loadTesting = localStorage.getItem('loadTesting') === 'true';

@@ -10,7 +10,7 @@
 const playerObject = {
   name: null,
   isAdmin: false,
-  disableCameraZoom: false,
+  logLatency: false,
   initialPositionReceived: false,
   teleportInProgress: false,
   enableDebug: false,

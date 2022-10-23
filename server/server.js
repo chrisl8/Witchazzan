@@ -1075,6 +1075,11 @@ io.on('connection', (socket) => {
         }
       });
 
+      // Acknowledge pings for latency checking
+      socket.on('ping', (callback) => {
+        callback();
+      });
+
       socket.on('disconnect', () => {
         if (connectedPlayerData.has(PlayerId)) {
           flagSceneHasUpdated(connectedPlayerData.get(PlayerId).scene);

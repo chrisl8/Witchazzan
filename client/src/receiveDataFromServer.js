@@ -179,6 +179,18 @@ function receiveDataFromServer() {
       hadrons.get(data.id).hlt = newHealth;
     }
   });
+
+  // Logging latency
+  if (playerObject.logLatency) {
+    setInterval(() => {
+      const start = Date.now();
+
+      communicationsObject.socket.emit('ping', () => {
+        const duration = Date.now() - start;
+        console.log(`Latency: ${duration}ms`);
+      });
+    }, 1000);
+  }
 }
 
 export default receiveDataFromServer;
