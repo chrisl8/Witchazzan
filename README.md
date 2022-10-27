@@ -199,8 +199,10 @@ The production server must have a recent LTS version of Node.js installed.
 
 If it is not, I suggest using [nvm](https://github.com/nvm-sh/nvm) to install node.js:
 ```
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-nvm install --lts
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+nvm install node --latest-npm
+nvm use node
+nvm alias default node
 node -v
 ```
 

@@ -215,7 +215,7 @@ try {
   const count = result.rows[0].count;
   console.log('Registered user count from database:', count);
 
-  // Creating the users table if it does not exist.
+  // Creating the Connections table if it does not exist.
   const sqlCreateConnectionsTable = `CREATE TABLE IF NOT EXISTS Connections (
       id TEXT,
       timestamp INTEGER

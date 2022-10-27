@@ -71,7 +71,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "nipplejs": "^0.10.0",
-    "phaser": "3.60.0-beta.12",
+    "phaser": "3.60.0-beta.13",
     "phaser-raycaster": "^0.10.4",
     "prettier": "^2.6.1",
     "socket.io": ">=4.5.0",
