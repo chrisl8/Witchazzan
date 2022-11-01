@@ -561,7 +561,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
                  "visible":true,

@@ -468,7 +468,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",

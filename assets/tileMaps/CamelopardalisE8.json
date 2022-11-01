@@ -450,7 +450,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"flipX",
@@ -473,7 +473,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"flipX",
@@ -496,7 +496,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -519,7 +519,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"flipX",
@@ -542,7 +542,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"flipX",

@@ -500,7 +500,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -523,7 +523,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -546,7 +546,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -569,7 +569,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -587,7 +587,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -605,7 +605,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -623,7 +623,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -646,7 +646,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -669,7 +669,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -692,7 +692,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -715,7 +715,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -738,7 +738,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -761,7 +761,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -784,7 +784,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -807,7 +807,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -830,7 +830,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -853,7 +853,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -876,7 +876,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -899,7 +899,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -922,7 +922,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -945,7 +945,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -968,7 +968,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -991,7 +991,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1014,7 +1014,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1037,7 +1037,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1060,7 +1060,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1083,7 +1083,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1106,7 +1106,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1129,7 +1129,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1152,7 +1152,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1175,7 +1175,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1198,7 +1198,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1221,7 +1221,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -1244,7 +1244,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"AnimationOnly"
+                         "value":"NonPhysicsSprite"
                         }, 
                         {
                          "name":"spriteLayerDepth",

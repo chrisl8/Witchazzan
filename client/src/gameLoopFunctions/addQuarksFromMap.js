@@ -13,8 +13,8 @@ function addQuarksFromMap(map, sceneName) {
   const objects = map.getObjectLayer('Objects');
   objects.objects.forEach((object) => {
     const objectProperties = convertTileMapPropertyArrayToObject(object);
-    if (objectProperties.Type === 'AnimationOnly') {
-      // "AnimationOnly" is for plopping non-physics sprites into a tilemap for aesthetic reasons.
+    if (objectProperties.Type === 'NonPhysicsSprite') {
+      // "NonPhysicsSprite" is for plopping non-physics sprites into a tilemap for aesthetic reasons.
       // They won't have colliders, but they will animate.
       // Importantly, the do NOT create Hadrons.
       // Note that they do not actually need to "animate".
