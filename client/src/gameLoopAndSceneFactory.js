@@ -62,6 +62,7 @@ import barricades from './gameLoopFunctions/barricades.js';
 import textureAtlasOneJson from '../../assets/textureAtlasOne.json';
 import textureAtlasOnePng from '../../assets/textureAtlasOne.png';
 import getSpawnPointFromMap from './utilities/getSpawnPointFromMap.js';
+import addLeptonsFromMap from './gameLoopFunctions/addLeptonsFromMap.js';
 
 let didThisOnce = false; // For the sound example.
 
@@ -408,6 +409,7 @@ const gameLoopAndSceneFactory = ({
       );
     });
 
+    addLeptonsFromMap.call(this, map);
     addQuarksFromMap.call(this, map, sceneName);
 
     if (animatedTileOverlayStrategy) {

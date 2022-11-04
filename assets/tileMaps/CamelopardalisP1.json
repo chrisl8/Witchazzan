@@ -390,6 +390,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Text"
+                        }, 
+                        {
                          "name":"Font",
                          "type":"string",
                          "value":"atariSunset"
@@ -407,7 +412,7 @@
                         {
                          "name":"Type",
                          "type":"string",
-                         "value":"Text"
+                         "value":"Lepton"
                         }],
                  "rotation":0,
                  "visible":true,

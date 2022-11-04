@@ -171,7 +171,17 @@
                  "y":208
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":57,
                  "name":"BlackWater",
@@ -183,7 +193,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":58,
                  "name":"BlackWater",
@@ -195,7 +215,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":59,
                  "name":"BlackWater",
@@ -207,7 +237,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":60,
                  "name":"BlackWater",
@@ -219,7 +259,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":61,
                  "name":"BlackWater",
@@ -231,7 +281,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":62,
                  "name":"BlackWater",
@@ -243,7 +303,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":63,
                  "name":"BlackWater",
@@ -255,7 +325,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":64,
                  "name":"BlackWater",
@@ -267,7 +347,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":65,
                  "name":"BlackWater",
@@ -279,7 +369,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":66,
                  "name":"BlackWater",
@@ -291,7 +391,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":67,
                  "name":"BlackWater",
@@ -303,7 +413,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":68,
                  "name":"BlackWater",
@@ -315,7 +435,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":79,
                  "name":"BlackWater",
@@ -327,7 +457,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":80,
                  "name":"BlackWater",
@@ -339,7 +479,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":81,
                  "name":"BlackWater",
@@ -351,7 +501,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":82,
                  "name":"BlackWater",
@@ -363,7 +523,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":83,
                  "name":"BlackWater",
@@ -375,7 +545,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":84,
                  "name":"BlackWater",
@@ -387,7 +567,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":85,
                  "name":"BlackWater",
@@ -400,7 +590,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":86,
                  "name":"BlackWater",
@@ -412,7 +612,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":87,
                  "name":"BlackWater",
@@ -424,7 +634,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":88,
                  "name":"BlackWater",
@@ -436,7 +656,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":89,
                  "name":"BlackWater",
@@ -448,7 +678,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":90,
                  "name":"BlackWater",
@@ -460,7 +700,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":91,
                  "name":"BlackWater",
@@ -472,7 +722,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":92,
                  "name":"BlackWater",
@@ -484,7 +744,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":93,
                  "name":"BlackWater",
@@ -496,7 +766,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":94,
                  "name":"BlackWater",
@@ -508,7 +788,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":95,
                  "name":"BlackWater",
@@ -520,7 +810,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":96,
                  "name":"BlackWater",
@@ -532,7 +832,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":97,
                  "name":"BlackWater",
@@ -544,7 +854,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":98,
                  "name":"BlackWater",
@@ -556,7 +876,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":99,
                  "name":"BlackWater",
@@ -568,7 +898,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":100,
                  "name":"BlackWater",
@@ -580,7 +920,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":101,
                  "name":"BlackWater",
@@ -592,7 +942,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":102,
                  "name":"BlackWater",
@@ -604,7 +964,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":115,
                  "name":"BlackWater",
@@ -616,7 +986,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":116,
                  "name":"BlackWater",
@@ -628,7 +1008,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":117,
                  "name":"BlackWater",
@@ -641,7 +1031,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":118,
                  "name":"BlackWater",
@@ -653,7 +1053,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":119,
                  "name":"BlackWater",
@@ -665,7 +1075,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":120,
                  "name":"BlackWater",
@@ -677,7 +1097,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":121,
                  "name":"BlackWater",
@@ -689,7 +1119,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":122,
                  "name":"BlackWater",
@@ -701,7 +1141,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":123,
                  "name":"BlackWater",
@@ -713,7 +1163,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":124,
                  "name":"BlackWater",
@@ -725,7 +1185,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":125,
                  "name":"BlackWater",
@@ -737,7 +1207,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":126,
                  "name":"BlackWater",
@@ -749,7 +1229,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":127,
                  "name":"BlackWater",
@@ -761,7 +1251,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":128,
                  "name":"BlackWater",
@@ -773,7 +1273,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":129,
                  "name":"BlackWater",
@@ -785,7 +1295,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":130,
                  "name":"BlackWater",
@@ -797,7 +1317,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":131,
                  "name":"BlackWater",
@@ -809,7 +1339,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":132,
                  "name":"BlackWater",
@@ -821,7 +1361,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":133,
                  "name":"BlackWater",
@@ -833,7 +1383,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":134,
                  "name":"BlackWater",
@@ -845,7 +1405,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":135,
                  "name":"BlackWater",
@@ -857,7 +1427,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":136,
                  "name":"BlackWater",
@@ -869,7 +1449,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":137,
                  "name":"BlackWater",
@@ -882,7 +1472,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":138,
                  "name":"BlackWater",
@@ -894,7 +1494,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":139,
                  "name":"BlackWater",
@@ -906,7 +1516,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":140,
                  "name":"BlackWater",
@@ -918,7 +1538,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":141,
                  "name":"BlackWater",
@@ -930,7 +1560,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":142,
                  "name":"BlackWater",
@@ -942,7 +1582,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":143,
                  "name":"BlackWater",
@@ -954,7 +1604,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":144,
                  "name":"BlackWater",
@@ -966,7 +1626,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":145,
                  "name":"BlackWater",
@@ -978,7 +1648,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":146,
                  "name":"BlackWater",
@@ -990,7 +1670,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":147,
                  "name":"BlackWater",
@@ -1002,7 +1692,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":148,
                  "name":"BlackWater",
@@ -1014,7 +1714,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":149,
                  "name":"BlackWater",
@@ -1026,7 +1736,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":150,
                  "name":"BlackWater",
@@ -1038,7 +1758,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":151,
                  "name":"BlackWater",
@@ -1050,7 +1780,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":152,
                  "name":"BlackWater",
@@ -1062,7 +1802,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":153,
                  "name":"BlackWater",
@@ -1074,7 +1824,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":154,
                  "name":"BlackWater",
@@ -1086,7 +1846,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":155,
                  "name":"BlackWater",
@@ -1098,7 +1868,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":156,
                  "name":"BlackWater",
@@ -1110,7 +1890,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":157,
                  "name":"BlackWater",
@@ -1123,7 +1913,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":158,
                  "name":"BlackWater",
@@ -1135,7 +1935,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":159,
                  "name":"BlackWater",
@@ -1147,7 +1957,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":160,
                  "name":"BlackWater",
@@ -1159,7 +1979,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":161,
                  "name":"BlackWater",
@@ -1171,7 +2001,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":162,
                  "name":"BlackWater",
@@ -1183,7 +2023,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":163,
                  "name":"BlackWater",
@@ -1195,7 +2045,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":164,
                  "name":"BlackWater",
@@ -1207,7 +2067,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":165,
                  "name":"BlackWater",
@@ -1219,7 +2089,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":166,
                  "name":"BlackWater",
@@ -1231,7 +2111,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":167,
                  "name":"BlackWater",
@@ -1243,7 +2133,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":168,
                  "name":"BlackWater",
@@ -1255,7 +2155,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":169,
                  "name":"BlackWater",
@@ -1267,7 +2177,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":170,
                  "name":"BlackWater",
@@ -1279,7 +2199,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":171,
                  "name":"BlackWater",
@@ -1291,7 +2221,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":172,
                  "name":"BlackWater",
@@ -1303,7 +2243,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":173,
                  "name":"BlackWater",
@@ -1315,7 +2265,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":174,
                  "name":"BlackWater",
@@ -1327,7 +2287,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":175,
                  "name":"BlackWater",
@@ -1339,7 +2309,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":176,
                  "name":"BlackWater",
@@ -1351,7 +2331,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":177,
                  "name":"BlackWater",
@@ -1364,7 +2354,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":178,
                  "name":"BlackWater",
@@ -1376,7 +2376,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":179,
                  "name":"BlackWater",
@@ -1388,7 +2398,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":180,
                  "name":"BlackWater",
@@ -1400,7 +2420,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":181,
                  "name":"BlackWater",
@@ -1412,7 +2442,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":182,
                  "name":"BlackWater",
@@ -1424,7 +2464,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":183,
                  "name":"BlackWater",
@@ -1436,7 +2486,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":184,
                  "name":"BlackWater",
@@ -1448,7 +2508,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":185,
                  "name":"BlackWater",
@@ -1460,7 +2530,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":186,
                  "name":"BlackWater",
@@ -1472,7 +2552,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":187,
                  "name":"BlackWater",
@@ -1484,7 +2574,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":188,
                  "name":"BlackWater",
@@ -1496,7 +2596,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":189,
                  "name":"BlackWater",
@@ -1508,7 +2618,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":190,
                  "name":"BlackWater",
@@ -1520,7 +2640,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":191,
                  "name":"BlackWater",
@@ -1532,7 +2662,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":192,
                  "name":"BlackWater",
@@ -1544,7 +2684,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":193,
                  "name":"BlackWater",
@@ -1556,7 +2706,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":194,
                  "name":"BlackWater",
@@ -1568,7 +2728,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":195,
                  "name":"BlackWater",
@@ -1580,7 +2750,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":196,
                  "name":"BlackWater",
@@ -1592,7 +2772,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":197,
                  "name":"BlackWater",
@@ -1605,7 +2795,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":198,
                  "name":"BlackWater",
@@ -1617,7 +2817,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":199,
                  "name":"BlackWater",
@@ -1629,7 +2839,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":200,
                  "name":"BlackWater",
@@ -1641,7 +2861,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":201,
                  "name":"BlackWater",
@@ -1653,7 +2883,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":202,
                  "name":"BlackWater",
@@ -1665,7 +2905,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":203,
                  "name":"BlackWater",
@@ -1677,7 +2927,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":204,
                  "name":"BlackWater",
@@ -1689,7 +2949,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":205,
                  "name":"BlackWater",
@@ -1701,7 +2971,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":206,
                  "name":"BlackWater",
@@ -1713,7 +2993,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":207,
                  "name":"BlackWater",
@@ -1725,7 +3015,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":208,
                  "name":"BlackWater",
@@ -1737,7 +3037,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":209,
                  "name":"BlackWater",
@@ -1749,7 +3059,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":210,
                  "name":"BlackWater",
@@ -1761,7 +3081,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":211,
                  "name":"BlackWater",
@@ -1773,7 +3103,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":212,
                  "name":"BlackWater",
@@ -1785,7 +3125,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":213,
                  "name":"BlackWater",
@@ -1797,7 +3147,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":214,
                  "name":"BlackWater",
@@ -1809,7 +3169,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":215,
                  "name":"BlackWater",
@@ -1821,7 +3191,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":216,
                  "name":"BlackWater",
@@ -1833,7 +3213,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":217,
                  "name":"BlackWater",
@@ -1846,7 +3236,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":218,
                  "name":"BlackWater",
@@ -1858,7 +3258,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":219,
                  "name":"BlackWater",
@@ -1870,7 +3280,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":220,
                  "name":"BlackWater",
@@ -1882,7 +3302,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":221,
                  "name":"BlackWater",
@@ -1894,7 +3324,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":222,
                  "name":"BlackWater",
@@ -1906,7 +3346,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":223,
                  "name":"BlackWater",
@@ -1918,7 +3368,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":224,
                  "name":"BlackWater",
@@ -1930,7 +3390,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":225,
                  "name":"BlackWater",
@@ -1942,7 +3412,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":226,
                  "name":"BlackWater",
@@ -1954,7 +3434,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":227,
                  "name":"BlackWater",
@@ -1966,7 +3456,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":228,
                  "name":"BlackWater",
@@ -1978,7 +3478,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":229,
                  "name":"BlackWater",
@@ -1990,7 +3500,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":230,
                  "name":"BlackWater",
@@ -2002,7 +3522,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":231,
                  "name":"BlackWater",
@@ -2014,7 +3544,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":232,
                  "name":"BlackWater",
@@ -2026,7 +3566,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":233,
                  "name":"BlackWater",
@@ -2038,7 +3588,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":234,
                  "name":"BlackWater",
@@ -2050,7 +3610,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":235,
                  "name":"BlackWater",
@@ -2062,7 +3632,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":236,
                  "name":"BlackWater",
@@ -2074,7 +3654,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":237,
                  "name":"BlackWater",
@@ -2087,7 +3677,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":238,
                  "name":"BlackWater",
@@ -2099,7 +3699,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":239,
                  "name":"BlackWater",
@@ -2111,7 +3721,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":240,
                  "name":"BlackWater",
@@ -2123,7 +3743,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":241,
                  "name":"BlackWater",
@@ -2135,7 +3765,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":242,
                  "name":"BlackWater",
@@ -2147,7 +3787,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":243,
                  "name":"BlackWater",
@@ -2159,7 +3809,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":244,
                  "name":"BlackWater",
@@ -2171,7 +3831,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":245,
                  "name":"BlackWater",
@@ -2183,7 +3853,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":246,
                  "name":"BlackWater",
@@ -2195,7 +3875,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":247,
                  "name":"BlackWater",
@@ -2207,7 +3897,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":248,
                  "name":"BlackWater",
@@ -2219,7 +3919,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":249,
                  "name":"BlackWater",
@@ -2231,7 +3941,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":250,
                  "name":"BlackWater",
@@ -2243,7 +3963,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":251,
                  "name":"BlackWater",
@@ -2255,7 +3985,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":252,
                  "name":"BlackWater",
@@ -2267,7 +4007,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":253,
                  "name":"BlackWater",
@@ -2279,7 +4029,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":254,
                  "name":"BlackWater",
@@ -2291,7 +4051,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":255,
                  "name":"BlackWater",
@@ -2303,7 +4073,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":256,
                  "name":"BlackWater",
@@ -2315,7 +4095,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":257,
                  "name":"BlackWater",
@@ -2328,7 +4118,17 @@
                 },
             
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":258,
                  "name":"BlackWater",
@@ -2340,7 +4140,17 @@
                  "y":204
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":259,
                  "name":"BlackWater",
@@ -2352,7 +4162,17 @@
                  "y":40
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":260,
                  "name":"BlackWater",
@@ -2364,7 +4184,17 @@
                  "y":68
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":261,
                  "name":"BlackWater",
@@ -2376,7 +4206,17 @@
                  "y":52
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":262,
                  "name":"BlackWater",
@@ -2388,7 +4228,17 @@
                  "y":84
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":263,
                  "name":"BlackWater",
@@ -2400,7 +4250,17 @@
                  "y":100
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":264,
                  "name":"BlackWater",
@@ -2412,7 +4272,17 @@
                  "y":128
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":265,
                  "name":"BlackWater",
@@ -2424,7 +4294,17 @@
                  "y":112
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":266,
                  "name":"BlackWater",
@@ -2436,7 +4316,17 @@
                  "y":144
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":267,
                  "name":"BlackWater",
@@ -2448,7 +4338,17 @@
                  "y":160
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":268,
                  "name":"BlackWater",
@@ -2460,7 +4360,17 @@
                  "y":188
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":269,
                  "name":"BlackWater",
@@ -2472,7 +4382,17 @@
                  "y":172
                 }, 
                 {
-                 "class":"NonPhysicsSprite",
+                 "Class":"","properties":[
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NonPhysicsSprite"
+                        }],
                  "height":0,
                  "id":270,
                  "name":"BlackWater",

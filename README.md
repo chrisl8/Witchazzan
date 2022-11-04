@@ -167,6 +167,7 @@ Some important things:
      - `travel` Optional (Bool) "Travel (tvl)" Allow Item or NPC to travel through teleport layers.
      - `particle` Optional (String) "Particle (pcl)" Name of a particle to emit from the quark.
      - `damageOnContact` Optional (Int) "Damage Per Contact (dpc)" Indicates that contact with a player will damage them. The number will be used as a basis for how badly to damage how quickly.
+     - `followPath` Optional (Int) "Follow Path (fph)" Indicates that this NPC should follow a path. The details of the path will be held in Waypoint entries in the Tilemap.
      - `uniqueId` Optional (String) "Unique ID (uid)" When making a hadron from a Quark, this ID will be used, and hence only one will ever be created.
      - **There may be additional options that were not documented yet. You can check `validateHadron.js` for any not listed here and also check `addQuarksFromMap.js` to find out what the Tilemap string is for them. Just be aware that some of the keys in `validateHadron.js` are meant to be used internally by the game, not to be set in the Quark.** 
      - **You may add other things here as well and use them in your code, but if you do, you must update the code in `addQuarksFromMap.js` to copy these key/value pairs into the hadron, and you must alo update `validateHadron.js` to add your additional hadron keys as valid keys.**
@@ -194,7 +195,7 @@ Prettier and Eslint are [easy to set up](https://imgs.xkcd.com/comics/will_it_wo
 **NOTE: Parcel does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. If you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to or less than 2GB, you may need to increase it or alternatively [create a swap file](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04) to reliably build (`npm run build`).**
 
 
-The production server must have a recent LTS version of Node.js installed.  
+The production server must have a recent version of Node.js installed.  
 `node -v`
 
 If it is not, I suggest using [nvm](https://github.com/nvm-sh/nvm) to install node.js:

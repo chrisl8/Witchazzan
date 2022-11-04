@@ -1,5 +1,6 @@
 /* globals navigator:true */
 // Most mobile devices, other than the newer iPads:
+// TODO: Should we detect Raspberry Pi and force mobile on the Phaser config?
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 const isMobileBrowser =
   isMobile ||

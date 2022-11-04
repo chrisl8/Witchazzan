@@ -505,6 +505,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }, 
                         {

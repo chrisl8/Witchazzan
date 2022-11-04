@@ -186,6 +186,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -203,6 +208,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -222,6 +232,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -239,6 +254,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -258,6 +278,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -275,6 +300,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -294,6 +324,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -311,6 +346,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -330,6 +370,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -347,6 +392,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -366,6 +416,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -383,6 +438,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -402,6 +462,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -419,6 +484,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -438,6 +508,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -455,6 +530,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -474,6 +554,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -492,6 +577,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -509,6 +599,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -529,6 +624,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -546,6 +646,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -565,6 +670,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -582,6 +692,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -601,6 +716,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -618,6 +738,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -637,6 +762,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -654,6 +784,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -673,6 +808,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -690,6 +830,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -709,6 +854,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -726,6 +876,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -745,6 +900,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -762,6 +922,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -781,6 +946,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -798,6 +968,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -817,6 +992,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -834,6 +1014,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -853,6 +1038,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -870,6 +1060,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -890,6 +1085,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -907,6 +1107,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -926,6 +1131,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -943,6 +1153,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -962,6 +1177,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -979,6 +1199,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -998,6 +1223,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1015,6 +1245,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1034,6 +1269,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1051,6 +1291,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1070,6 +1315,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1087,6 +1337,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1106,6 +1361,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1123,6 +1383,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1142,6 +1407,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1159,6 +1429,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1178,6 +1453,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1195,6 +1475,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1214,6 +1499,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1231,6 +1521,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1251,6 +1546,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1268,6 +1568,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1287,6 +1592,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1304,6 +1614,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1323,6 +1638,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1340,6 +1660,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1359,6 +1684,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1376,6 +1706,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1395,6 +1730,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1412,6 +1752,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1431,6 +1776,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1448,6 +1798,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1467,6 +1822,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1484,6 +1844,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1503,6 +1868,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1520,6 +1890,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1539,6 +1914,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1556,6 +1936,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1575,6 +1960,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1592,6 +1982,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1612,6 +2007,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1629,6 +2029,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1648,6 +2053,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1665,6 +2075,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1684,6 +2099,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1701,6 +2121,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1720,6 +2145,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1737,6 +2167,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1756,6 +2191,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1773,6 +2213,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1792,6 +2237,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1809,6 +2259,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1828,6 +2283,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1845,6 +2305,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1864,6 +2329,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1881,6 +2351,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1900,6 +2375,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1917,6 +2397,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1936,6 +2421,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1953,6 +2443,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -1973,6 +2468,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -1990,6 +2490,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2009,6 +2514,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2026,6 +2536,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2045,6 +2560,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2062,6 +2582,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2081,6 +2606,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2098,6 +2628,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2117,6 +2652,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2134,6 +2674,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2153,6 +2698,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2170,6 +2720,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2189,6 +2744,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2206,6 +2766,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2225,6 +2790,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2242,6 +2812,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2261,6 +2836,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2278,6 +2858,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2297,6 +2882,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2314,6 +2904,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2334,6 +2929,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2351,6 +2951,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2370,6 +2975,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2387,6 +2997,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2406,6 +3021,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2423,6 +3043,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2442,6 +3067,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2459,6 +3089,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2478,6 +3113,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2495,6 +3135,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2514,6 +3159,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2531,6 +3181,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2550,6 +3205,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2567,6 +3227,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2586,6 +3251,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2603,6 +3273,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2622,6 +3297,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2639,6 +3319,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2658,6 +3343,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2675,6 +3365,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2695,6 +3390,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2712,6 +3412,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2731,6 +3436,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2748,6 +3458,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2767,6 +3482,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2784,6 +3504,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2803,6 +3528,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2820,6 +3550,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2839,6 +3574,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2856,6 +3596,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2875,6 +3620,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2892,6 +3642,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2911,6 +3666,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2928,6 +3688,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2947,6 +3712,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -2964,6 +3734,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -2983,6 +3758,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3000,6 +3780,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3019,6 +3804,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3036,6 +3826,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3056,6 +3851,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3073,6 +3873,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3092,6 +3897,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3109,6 +3919,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3128,6 +3943,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3145,6 +3965,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3164,6 +3989,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3181,6 +4011,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3200,6 +4035,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3217,6 +4057,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3236,6 +4081,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3253,6 +4103,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3272,6 +4127,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3289,6 +4149,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3308,6 +4173,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3325,6 +4195,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3344,6 +4219,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3361,6 +4241,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3380,6 +4265,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3397,6 +4287,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3417,6 +4312,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3434,6 +4334,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3453,6 +4358,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3470,6 +4380,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3489,6 +4404,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3506,6 +4426,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3525,6 +4450,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3542,6 +4472,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3561,6 +4496,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3578,6 +4518,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
@@ -3597,6 +4542,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3615,6 +4565,11 @@
                         {
                          "name":"Type",
                          "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
+                         "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
                  "rotation":0,
@@ -3632,6 +4587,11 @@
                  "properties":[
                         {
                          "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        },
+{
+                         "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
                         }],
