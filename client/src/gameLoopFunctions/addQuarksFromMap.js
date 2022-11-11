@@ -140,6 +140,13 @@ function addQuarksFromMap(map, sceneName) {
         ) {
           newHadron.vel = objectProperties.velocity;
         }
+        if (
+          objectProperties.hasOwnProperty('rotationSpeed') &&
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(objectProperties.rotationSpeed)
+        ) {
+          newHadron.rsp = objectProperties.rotationSpeed;
+        }
         // spells
         if (objectProperties.hasOwnProperty('spell')) {
           newHadron.spl = objectProperties.spell;
