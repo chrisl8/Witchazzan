@@ -2,6 +2,7 @@ import convertTileMapPropertyArrayToObject from '../utilities/convertTileMapProp
 import getSpriteData from '../utilities/getSpriteData.js';
 import objectDepthSettings from '../objects/objectDepthSettings.js';
 import playerObject from '../objects/playerObject.js';
+import paths from '../objects/paths.js';
 
 // Leptons do not generate hadrons and do not interact via the Small Hadron Cooperator (Server).
 // Every client generates and sees their own instance of a Lepton.
@@ -90,6 +91,19 @@ function addQuarksFromMap(map) {
         ) {
           text.setCenterAlign();
         }
+      } else if (objectProperties.Flavor === 'Waypoint') {
+        let waypointList;
+        if (!paths.has(objectProperties.Path)) {
+          waypointList = new Map();
+        } else {
+          waypointList = paths.get(objectProperties.Path);
+        }
+        waypointList.set(objectProperties.Progression, {
+          ...objectProperties,
+          x: object.x,
+          y: object.y,
+        });
+        paths.set(objectProperties.Path, waypointList);
       }
     }
   });

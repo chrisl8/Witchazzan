@@ -17,7 +17,7 @@ function addQuarksFromMap(map, sceneName) {
       if (objectProperties.id && !currentSceneQuarks.has(objectProperties.id)) {
         const newHadron = {
           id: objectProperties.id,
-          own: objectProperties.id, // NPC's own themselves just as players do.
+          own: objectProperties.id, // NPCs own themselves just as players do.
           x: object.x,
           y: object.y,
           spr: objectProperties.sprite,
@@ -177,12 +177,15 @@ function addQuarksFromMap(map, sceneName) {
         ) {
           newHadron.uid = objectProperties.uniqueId;
         }
-        if (
-          objectProperties.hasOwnProperty('followPath') &&
-          objectProperties.followPath
-        ) {
+        if (objectProperties.hasOwnProperty('followPath')) {
           newHadron.fph = objectProperties.followPath;
-          console.log(newHadron);
+        }
+        if (
+          objectProperties.hasOwnProperty('initialPathWaypoint') &&
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(objectProperties.initialPathWaypoint)
+        ) {
+          newHadron.cpd = objectProperties.initialPathWaypoint;
         }
         currentSceneQuarks.set(objectProperties.id, newHadron);
         // All we do here is tell the server that the scene we entered has NPC hadrons in it.

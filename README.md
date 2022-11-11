@@ -163,11 +163,13 @@ Some important things:
      - `nearbyObjectDetection` Optional (Integer) "Nearby Raycast (nbc)" If this exists, and a raycaster is on the NPC, then ALSO scan a circle of this diameter to notice very close entities from any direction.
      - `followTarget` Optional (Bool) "Follow (fol)" If there is a raycaster on the NPC it will move to follow the nearest target.
      - `velocity` Optional (Int) "Velocity (vel)" Velocity to set on NPC if it has movement, such as followTarget.
+     - `rotationSpeed` Optional (Float) "Rotation Speed (rsp)" Rotation speed.
      - `randomizeVelocity` Optional (Int) "Randomize Velocity (rvl)" Randomize velocity by given integer.
      - `travel` Optional (Bool) "Travel (tvl)" Allow Item or NPC to travel through teleport layers.
      - `particle` Optional (String) "Particle (pcl)" Name of a particle to emit from the quark.
      - `damageOnContact` Optional (Int) "Damage Per Contact (dpc)" Indicates that contact with a player will damage them. The number will be used as a basis for how badly to damage how quickly.
-     - `followPath` Optional (Int) "Follow Path (fph)" Indicates that this NPC should follow a path. The details of the path will be held in Waypoint entries in the Tilemap.
+     - `followPath` Optional (String) "Follow Path (fph)" Indicates that this NPC should follow a path by naming the Path to follow. The details of the path will be held in Waypoint entries in the Tilemap.
+     - `initialPathWaypoint` Optional (Int) "Initial Path Waypoint (cpd)" (Int) By default an NPC will start with Waypoint Progression 0, but if you want to override that for the initial Waypoint, you can use this. 
      - `uniqueId` Optional (String) "Unique ID (uid)" When making a hadron from a Quark, this ID will be used, and hence only one will ever be created.
      - **There may be additional options that were not documented yet. You can check `validateHadron.js` for any not listed here and also check `addQuarksFromMap.js` to find out what the Tilemap string is for them. Just be aware that some of the keys in `validateHadron.js` are meant to be used internally by the game, not to be set in the Quark.** 
      - **You may add other things here as well and use them in your code, but if you do, you must update the code in `addQuarksFromMap.js` to copy these key/value pairs into the hadron, and you must alo update `validateHadron.js` to add your additional hadron keys as valid keys.**

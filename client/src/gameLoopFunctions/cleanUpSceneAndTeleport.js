@@ -5,6 +5,7 @@ import deletedHadronList from '../objects/deletedHadronList.js';
 import currentSceneQuarks from '../objects/currentSceneQuarks.js';
 import debugLog from '../utilities/debugLog.js';
 import barricadeSprites from '../objects/barricadeSprites.js';
+import paths from '../objects/paths.js';
 
 function cleanUpSceneAndTeleport(
   destinationSceneName,
@@ -49,6 +50,9 @@ function cleanUpSceneAndTeleport(
 
     // Empty out the local Quark list, as we are no longer in charge of them.
     currentSceneQuarks.clear();
+
+    // Empty out the local Path list for this scene.
+    paths.clear();
 
     // Clean up raycasters
     // Note: The .destroy() methods cause Phaser to crash, so I'm not using them.

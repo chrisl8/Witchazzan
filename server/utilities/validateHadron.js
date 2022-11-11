@@ -75,7 +75,9 @@ const optionalKeys = [
   'tvl', // "Travel (tvl)" (Bool) True if you want NPCs and/or Items to be able to use teleport layers.
   'pcl', // "Particle (pcl)" (String) Name of a particle to emit from the quark.
   'dpc', // "Damage Per Contact (dpc)" (Int) Indicates that contact with a player will damage them. The number will be used as a basis for how badly to damage how quickly.
-  'fph', // "Follow Path (fph)" (Bool) Indicates that this NPC should follow a path. The details of the path will be held in Waypoint entries in the Tilemap.
+  'fph', // "Follow Path (fph)" (String) Indicates that this NPC should follow a path by naming the Path to follow. The details of the path will be held in Waypoint entries in the Tilemap.
+  'cpd', // "Current Path Destination (cpd)" (Int) Indicates the current Progression point along a set of Waypoints in a Path that this NPC is headed toward. Default will always start with 0 if not set.
+  'rsp', // "Rotation Speed (rsp)" (Float) Rotation speed.
   // For items
   'hld', // Held BY ID. This is the ID of the player that is currently holding this item.
   'fnc', // itemBehavior function that is called on this hadron each update
