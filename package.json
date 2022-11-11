@@ -8,9 +8,6 @@
     "client/index.html",
     "client/sign-in.html"
   ],
-  "reporters": [
-    "@parcel/reporter-bundle-analyzer"
-  ],
   "targets": {
     "default": {
       "distDir": "./stage"
@@ -35,24 +32,15 @@
   },
   "homepage": "https://witchazzan.space/",
   "devDependencies": {
-    "@babel/core": "^7.17.10",
-    "@babel/eslint-parser": "^7.16.3",
-    "@babel/plugin-syntax-top-level-await": "^7.14.5",
-    "@parcel/packager-raw-url": "^2.6.0",
-    "@parcel/packager-xml": "^2.7.0",
-    "@parcel/reporter-bundle-analyzer": "^2.7.0",
-    "@parcel/transformer-webmanifest": "^2.5.0",
-    "@parcel/transformer-xml": "^2.7.0",
-    "assert": "^2.0.0",
-    "buffer": "^6.0.3",
+    "@parcel/packager-raw-url": "^2.8.0",
+    "@parcel/packager-xml": "^2.8.0",
+    "@parcel/transformer-webmanifest": "^2.8.0",
+    "@parcel/transformer-xml": "^2.8.0",
+    "buffer": "^5.7.1",
     "eslint": "^8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.29.4",
     "parcel": "^2.5.0",
-    "path-browserify": "^1.0.1",
     "pm2": "^5.2.0",
     "process": "^0.11.10"
   },
@@ -62,7 +50,6 @@
     "not dead"
   ],
   "dependencies": {
-    "@swc/helpers": "^0.4.11",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
@@ -71,7 +58,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "nipplejs": "^0.10.0",
-    "phaser": "3.60.0-beta.13",
+    "phaser": "3.60.0-beta.14",
     "phaser-raycaster": "^0.10.4",
     "prettier": "^2.6.1",
     "socket.io": ">=4.5.0",
