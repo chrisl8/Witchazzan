@@ -160,6 +160,14 @@ function updateSprite(hadron, key, gameSizeData) {
       }, 100);
     }
     clientSprite.previousHealth = hadron.hlt;
+    if (
+      hadron.id === playerObject.playerId &&
+      playerObject.infiniteHealth &&
+      playerObject.isAdmin
+    ) {
+      // Do this here so that we still get the red tint hit.
+      playerObject.health = playerObject.maxHealth;
+    }
 
     // Update sprite position of items we are holding
     if (

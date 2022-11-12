@@ -14,6 +14,7 @@ const playerObject = {
   initialPositionReceived: false,
   teleportInProgress: false,
   enableDebug: false,
+  infiniteHealth: false,
   helpTextVersion: 13, // Increment this to force players to see the Instructions again.
   // This is the scene you start the game in,
   // and go to if a non-existent scene is requested,

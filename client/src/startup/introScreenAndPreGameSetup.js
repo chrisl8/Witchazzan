@@ -275,6 +275,14 @@ const startGameNow = () => {
     localStorage.removeItem('loadTesting');
   }
 
+  // Settle up infiniteHealth and set local storage if need be
+  const infiniteHealth = document.getElementById('infinite_health').checked;
+  if (infiniteHealth) {
+    localStorage.setItem('infiniteHealth', 'true');
+  } else {
+    localStorage.removeItem('infiniteHealth');
+  }
+
   // Add all spell selections to local storage for later retrieval
   for (const [, value] of Object.entries(playerObject.spellKeys)) {
     const spellSettingFromDOM = document.getElementById(
@@ -319,6 +327,12 @@ const startGameNow = () => {
   const loadTesting = localStorage.getItem('loadTesting');
   if (loadTesting === 'true') {
     document.getElementById('load_testing').checked = true;
+  }
+
+  // Check local storage for infiniteHealth
+  const infiniteHealth = localStorage.getItem('infiniteHealth');
+  if (infiniteHealth === 'true') {
+    document.getElementById('infinite_health').checked = true;
   }
 
   // HANDLE SPELL SETTINGS

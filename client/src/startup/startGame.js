@@ -73,6 +73,9 @@ async function waitForConnectionAndInitialPlayerPosition() {
   playerObject.disableSound = localStorage.getItem('disableSound') === 'true';
   playerObject.enableDebug = localStorage.getItem('enableDebug') === 'true';
   playerObject.loadTesting = localStorage.getItem('loadTesting') === 'true';
+  playerObject.infiniteHealth =
+    localStorage.getItem('infiniteHealth') === 'true';
+
   // Spell Assignments
   for (const [key, value] of Object.entries(playerObject.spellKeys)) {
     // Check local storage to see if there is a stored value
