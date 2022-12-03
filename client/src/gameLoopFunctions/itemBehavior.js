@@ -168,7 +168,7 @@ function itemBehavior(delta, sceneName, map) {
           default:
             console.error(`Hadron ${key} has unknown Function ${hadron.fnc}.`);
         }
-        if (hadronUpdated) {
+        if (hadronUpdated === true) {
           hadrons.set(key, newHadronData);
         }
       } else if (

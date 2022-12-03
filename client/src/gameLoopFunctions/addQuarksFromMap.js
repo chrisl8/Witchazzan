@@ -127,8 +127,14 @@ function addQuarksFromMap(map, sceneName) {
         ) {
           newHadron.nbc = objectProperties.nearbyObjectDetection;
         }
+        if (objectProperties.hasOwnProperty('faceTarget')) {
+          newHadron.fac = objectProperties.faceTarget;
+        }
         if (objectProperties.hasOwnProperty('followTarget')) {
           newHadron.fol = objectProperties.followTarget;
+        }
+        if (objectProperties.hasOwnProperty('stopWhileRotating')) {
+          newHadron.swr = objectProperties.stopWhileRotating;
         }
         if (objectProperties.hasOwnProperty('Text')) {
           newHadron.txt = objectProperties.Text;

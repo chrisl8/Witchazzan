@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-function calculateDirectionToLocation({
+function calculateEventualDirectionTowardLocation({
   currentDirection,
   fromX,
   fromY,
@@ -17,10 +17,11 @@ function calculateDirectionToLocation({
   let difference = ((newAngleDeg - currentDirection + 180) % 360) - 180;
   difference = difference < -180 ? difference + 360 : difference;
 
-  const defaultRotationSpeed = 1; // 0.05
+  const defaultRotationSpeed = 0.05;
   const t = rotationSpeed || defaultRotationSpeed;
 
   let newDirection = currentDirection + t * difference;
+
   // Let Achilles go ahead and catch the Tortoise
   if (Math.abs(difference) < 1) {
     newDirection = newAngleDeg;
@@ -29,4 +30,4 @@ function calculateDirectionToLocation({
   return newDirection;
 }
 
-export default calculateDirectionToLocation;
+export default calculateEventualDirectionTowardLocation;

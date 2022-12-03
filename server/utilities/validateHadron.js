@@ -69,13 +69,16 @@ const optionalKeys = [
   'rcd', // "Raycast Degree (rcd)" (Integer) The range in degrees for a raycast Cone (Not used for other types at the moment)
   'rdt', // "Raycast Distance (rdt)" (Integer) Distance to raycast out to.
   'nbc', // "Nearby Raycast (nbc)" (Integer) If this exists, and a raycaster is on the NPC, then ALSO scan a circle of this diameter to notice very close entities from any direction.
+  'fac', // "Face (fac)" (Bool) If there is a raycaster on the NPC it will rotate to face the nearest target.
   'fol', // "Follow (fol)" (Bool) If there is a raycaster on the NPC it will move to follow the nearest target.
+  `swr`, // "Stop While Rotating (swr)" (Bool) Stop movement while rotating, otherwise the sprite will rotate and move at the same time.
   'vel', // "Velocity (vel)" (Int) Velocity to set on NPCs if they have movement, such as Follow.
   'rvl', // "Randomize Velocity (rvl)" (Int) Randomize velocity by given integer.
   'tvl', // "Travel (tvl)" (Bool) True if you want NPCs and/or Items to be able to use teleport layers.
   'pcl', // "Particle (pcl)" (String) Name of a particle to emit from the quark.
   'dpc', // "Damage Per Contact (dpc)" (Int) Indicates that contact with a player will damage them. The number will be used as a basis for how badly to damage how quickly.
   'fph', // "Follow Path (fph)" (String) Indicates that this NPC should follow a path by naming the Path to follow. The details of the path will be held in Waypoint entries in the Tilemap.
+  'ppd', // "Previous Path Destination (ppd)" (Int) Indicates the previous Progression point along a set of Waypoints in a Path that this NPC is following. This allows for "intelligent" navigation by knowing whether you are headeded "toward" or "have passed" the "Current Path Destination".
   'cpd', // "Current Path Destination (cpd)" (Int) Indicates the current Progression point along a set of Waypoints in a Path that this NPC is headed toward. Default will always start with 0 if not set.
   'rsp', // "Rotation Speed (rsp)" (Float) Rotation speed.
   // For items

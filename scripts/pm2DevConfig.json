@@ -13,7 +13,10 @@
         "persistentData",
         "client",
         "web-dist",
-        "stage"
+        "stage",
+        "playwright.config.js",
+        "tests",
+        "test-results"
       ],
       "merge_logs": true,
       "exec_interpreter": "node",

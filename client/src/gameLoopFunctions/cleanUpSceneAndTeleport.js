@@ -20,6 +20,13 @@ function cleanUpSceneAndTeleport(
     destinationSceneName = playerObject.defaultOpeningScene;
   }
 
+  // TODO: Allow local teleport by just setting X/Y
+  /*
+  i.e.
+    const spawnPoint = getSpawnPointFromMap(map, destinationSceneEntrance);
+    PlayerObject.player.setX(spawnPoint.x);
+    PlayerObject.player.setY(spawnPoint.y);
+   */
   if (!playerObject.teleportInProgress && destinationSceneName !== sceneName) {
     playerObject.teleportInProgress = true;
     closeChatInputBox();

@@ -150,8 +150,8 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 723,
-						"y": 19,
+						"x": 1,
+						"y": 226,
 						"w": 256,
 						"h": 16
 					}
@@ -171,8 +171,8 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 1,
-						"y": 226,
+						"x": 723,
+						"y": 19,
 						"w": 256,
 						"h": 16
 					}
@@ -934,6 +934,27 @@
 					}
 				},
 				{
+					"filename": "TableOne",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 10
+					},
+					"frame": {
+						"x": 519,
+						"y": 232,
+						"w": 16,
+						"h": 10
+					}
+				},
+				{
 					"filename": "ChairTwo",
 					"rotated": false,
 					"trimmed": false,
@@ -1186,7 +1207,7 @@
 					}
 				},
 				{
-					"filename": "corpse",
+					"filename": "CircleTank",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1207,24 +1228,87 @@
 					}
 				},
 				{
-					"filename": "TableOne",
+					"filename": "CircleTankOrange",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 16,
-						"h": 10
+						"h": 16
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 16,
-						"h": 10
+						"h": 16
 					},
 					"frame": {
-						"x": 519,
-						"y": 232,
+						"x": 841,
+						"y": 185,
 						"w": 16,
-						"h": 10
+						"h": 16
+					}
+				},
+				{
+					"filename": "CircleTankRed",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 841,
+						"y": 203,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "TankTurquoise",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 859,
+						"y": 185,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "corpse",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 859,
+						"y": 203,
+						"w": 16,
+						"h": 16
 					}
 				},
 				{
@@ -1284,27 +1368,6 @@
 						"h": 6
 					},
 					"frame": {
-						"x": 841,
-						"y": 185,
-						"w": 9,
-						"h": 6
-					}
-				},
-				{
-					"filename": "GreyKey",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 9,
-						"h": 6
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 9,
-						"h": 6
-					},
-					"frame": {
 						"x": 537,
 						"y": 232,
 						"w": 9,
@@ -1312,7 +1375,7 @@
 					}
 				},
 				{
-					"filename": "LightBlueKey",
+					"filename": "GreyKey",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1333,7 +1396,7 @@
 					}
 				},
 				{
-					"filename": "OrangeKey",
+					"filename": "LightBlueKey",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1354,49 +1417,7 @@
 					}
 				},
 				{
-					"filename": "PinkKey",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 9,
-						"h": 6
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 9,
-						"h": 6
-					},
-					"frame": {
-						"x": 841,
-						"y": 193,
-						"w": 9,
-						"h": 6
-					}
-				},
-				{
-					"filename": "PurpleKey",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 9,
-						"h": 6
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 9,
-						"h": 6
-					},
-					"frame": {
-						"x": 852,
-						"y": 185,
-						"w": 9,
-						"h": 6
-					}
-				},
-				{
-					"filename": "RedKey",
+					"filename": "OrangeKey",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1417,7 +1438,7 @@
 					}
 				},
 				{
-					"filename": "TurquoiseKey",
+					"filename": "PinkKey",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1438,6 +1459,69 @@
 					}
 				},
 				{
+					"filename": "PurpleKey",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 9,
+						"h": 6
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 9,
+						"h": 6
+					},
+					"frame": {
+						"x": 559,
+						"y": 232,
+						"w": 9,
+						"h": 6
+					}
+				},
+				{
+					"filename": "RedKey",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 9,
+						"h": 6
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 9,
+						"h": 6
+					},
+					"frame": {
+						"x": 769,
+						"y": 221,
+						"w": 9,
+						"h": 6
+					}
+				},
+				{
+					"filename": "TurquoiseKey",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 9,
+						"h": 6
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 9,
+						"h": 6
+					},
+					"frame": {
+						"x": 780,
+						"y": 221,
+						"w": 9,
+						"h": 6
+					}
+				},
+				{
 					"filename": "YellowKey",
 					"rotated": false,
 					"trimmed": false,
@@ -1452,8 +1536,8 @@
 						"h": 6
 					},
 					"frame": {
-						"x": 841,
-						"y": 201,
+						"x": 791,
+						"y": 221,
 						"w": 9,
 						"h": 6
 					}
@@ -1464,6 +1548,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:3aecbb572e98300b55cee6d2e8a733bc:3571f3a90fff92c4f91b73076e1e86ac:01bd61073ce0ee21c5bb2be67683edc1$"
+		"smartupdate": "$TexturePacker:SmartUpdate:c863dbe656c99f6913007a265a76346b:55461db903d92c4d3258e85e2af48019:01bd61073ce0ee21c5bb2be67683edc1$"
 	}
 }
