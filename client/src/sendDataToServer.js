@@ -144,7 +144,6 @@ sendDataToServer.createHadron = (data) => {
 };
 
 sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
-  sentData.delete(key); // Avoid memory leak.
   // Sometimes we get multiple delete requests for the same hadron.
   if (deletedHadronList.indexOf(key) === -1 && hadrons.has(key)) {
     // The deletedHadronList is to prevent the race condition of us deleting a hadron,
@@ -172,6 +171,7 @@ sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
     // Once the hadron is deleted then cleanUpClientSprites() will remove the sprite itself.
     communicationsObject.socket.emit('destroyHadron', key);
   }
+  sentData.delete(key); // Avoid memory leak.
 };
 
 sendDataToServer.grabHadron = (id) => {
