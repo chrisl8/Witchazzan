@@ -51,7 +51,10 @@ function updateHadrons(
         // Using a copy of the data to avoid race conditions with
         // the sentData test, and failing to send all updates.
         const hadronData = { ...hadrons.get(key) };
-        sendDataToServer.hadronData(hadronData, key);
+        if (hadronData.hasOwnProperty('id')) {
+          // "Copy" can generate an empty object if key doesn't exist
+          sendDataToServer.hadronData(hadronData, key);
+        }
       }
     } else {
       // We need to wipe our local copy of hadrons that are not in our scene.
