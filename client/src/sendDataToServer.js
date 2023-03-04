@@ -15,6 +15,17 @@ const sentData = new Map();
 let lastSentPlayerDataObject;
 let lastSentTxtObjectList = []; // No spamming
 
+function truncateAllFloats(object) {
+  // No need to waste bandwidth and processing power with infinite decimals
+  const returnObject = { ...object };
+  for (const [key, value] of Object.entries(returnObject)) {
+    if (typeof value === 'number' && !Number.isInteger(value)) {
+      returnObject[key] = Math.trunc(returnObject[key]);
+    }
+  }
+  return returnObject;
+}
+
 sendDataToServer.enterScene = (sceneName) => {
   sentData.clear(); // Avoid memory leaks.
   if (communicationsObject.socket.connected) {
@@ -76,7 +87,7 @@ sendDataToServer.txt = ({
 
 sendDataToServer.playerData = ({ sceneName }) => {
   if (communicationsObject.socket.connected) {
-    const objectToSend = {
+    const objectToSend = truncateAllFloats({
       nam: playerObject.name,
       x: playerObject.player.x,
       y: playerObject.player.y,
@@ -95,7 +106,7 @@ sendDataToServer.playerData = ({ sceneName }) => {
       hlt: playerObject.health,
       mxh: playerObject.maxHealth,
       dph: 4,
-    };
+    });
     if (
       validateHadron.client(objectToSend) &&
       !isEqual(objectToSend, lastSentPlayerDataObject)
@@ -112,12 +123,14 @@ sendDataToServer.playerData = ({ sceneName }) => {
 // if you "push" a hadron to another scene.
 sendDataToServer.hadronData = (hadronData, key) => {
   if (validateHadron.client(hadronData)) {
+    const dataToSend = truncateAllFloats(hadronData);
     if (
       communicationsObject.socket.connected &&
-      (!sentData.has(key) || !isEqual(sentData.get(key), hadronData))
+      (!sentData.has(key) || !isEqual(sentData.get(key), dataToSend))
     ) {
-      communicationsObject.socket.emit('hadronData', hadronData);
-      sentData.set(key, hadronData);
+      // Save sent data to avoid repeat sending
+      sentData.set(key, dataToSend);
+      communicationsObject.socket.emit('hadronData', dataToSend);
     }
   } else {
     console.error('Bad hadron key:', key);
