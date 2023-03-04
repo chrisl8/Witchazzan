@@ -44,13 +44,14 @@ if ! (command -v node >/dev/null 2>&1); then
   exit 1
 fi
 
-if ! (node -v | grep "v16" >/dev/null); then
-  printf "\n${LIGHT_PURPLE}Node 16 (LTS) is required${NC}\n"
+REQUIRED_NODE_VERSION=19
+if ! (node -v | grep "v${REQUIRED_NODE_VERSION}" >/dev/null); then
+  printf "\n${LIGHT_PURPLE}Node version ${REQUIRED_NODE_VERSION} is required${NC}\n"
   printf "Use node -v to check your version\n"
   printf "and update your node version.\n"
   printf "\n"
   printf "If you are already using nvm, then just run this to update node:\n"
-  printf "${LIGHTCYAN}nvm install --lts${NC}\n"
+  printf "${LIGHTCYAN}nvm install node ${REQUIRED_NODE_VERSION}${NC}\n"
   exit 1
 fi
 
