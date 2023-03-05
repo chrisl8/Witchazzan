@@ -73,6 +73,7 @@ echo ""
 printf "\n${YELLOW}[Installing dependencies]${NC}\n"
 npm ci
 
+# This is built into the web site, so it has to be done before the build, where the build happens.
 "${SCRIPT_DIR}/versionNumberUpdate.sh"
 
 printf "\n"

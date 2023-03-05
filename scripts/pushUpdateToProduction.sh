@@ -2,6 +2,9 @@
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
+YELLOW='\033[1;33m'
+NC='\033[0m' # NoColor
+
 # Grab and save the path to this script
 # http://stackoverflow.com/a/246128
 SOURCE="${BASH_SOURCE[0]}"
@@ -16,30 +19,28 @@ PARENT_DIR="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
 
 cd "${PARENT_DIR}" || exit
 
-echo "Backing up persistent hadrons..."
-ls -lah persistentData/hadrons.json5
-mkdir -p persistentData/backups
-cp persistentData/hadrons.json5 persistentData/backups
-ls -lah persistentData/backups/hadrons.json5
-
-echo ""
-echo "Pulling latest changes from the GitHub repo:"
+printf "\n${YELLOW}Pulling latest changes from the GitHub repo:${NC}\n"
 git pull
-echo ""
-echo "Installing dependencies..."
+
+printf "\n${YELLOW}Installing dependencies...${NC}\n"
 npm ci
+
 # This is built into the web site, so it has to be done before the build, where the build happens.
-echo ""
 "${SCRIPT_DIR}/versionNumberUpdate.sh"
-echo ""
-echo "Building client (this is the slow part)..."
+
+printf "\n${YELLOW}Building client locally...${NC}\n"
 if [[ -d .parcel-cache ]]; then
   rm -rf .parcel-cache
 fi
 npm run build
-echo ""
-echo "Restarting server:"
 
-ls -lah persistentData/hadrons.json5
-pm2 restart Witchazzan
-ls -lah persistentData/hadrons.json5
+printf "\n${YELLOW}Preparing remote side for update${NC}\n"
+ssh ekpyroticfrood.net 'cd ~/Witchazzan || exit && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && rm web-dist/*'
+
+printf "\n${YELLOW}Copying new built web files to server${NC}\n"
+scp web-dist/* ekpyroticfrood.net:./Witchazzan/web-dist
+# Copy the version we built into the web site to the server.
+scp server/utilities/version.js ekpyroticfrood.net:./Witchazzan/server/utilities/version.js
+
+printf "\n${YELLOW}Restarting server:${NC}\n"
+ssh ekpyroticfrood.net 'cd ~/Witchazzan || exit && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'
