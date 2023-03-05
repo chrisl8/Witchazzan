@@ -2,6 +2,9 @@
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
+YELLOW='\033[1;33m'
+NC='\033[0m' # NoColor
+
 # Grab and save the path to this script
 # http://stackoverflow.com/a/246128
 SOURCE="${BASH_SOURCE[0]}"
@@ -15,6 +18,5 @@ PARENT_DIR="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
 # echo "${SCRIPT_DIR}" # For debugging
 
 cd "${SCRIPT_DIR}" || exit
-echo ""
-echo "Updating version number for client and server"
+printf "\n${YELLOW}Updating version number for client and server${NC}\n"
 node -e 'console.log(`export default "${crypto.randomUUID()}"`)' > "${PARENT_DIR}/server/utilities/version.js"
