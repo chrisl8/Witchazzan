@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2059
+
+set -e
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -35,11 +38,11 @@ fi
 npm run build
 
 printf "\n${YELLOW}Preparing remote side for update${NC}\n"
-ssh ekpyroticfrood.net 'cd ~/Witchazzan || exit && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && rm web-dist/*'
+ssh ekpyroticfrood.net 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && rm web-dist/*'
 
 printf "\n${YELLOW}Copying new built web files to server${NC}\n"
 scp web-dist/* ekpyroticfrood.net:./Witchazzan/web-dist
-# Copy the version we built into the web site to the server.
+# Copy the version number we built into the web site to the server.
 scp server/utilities/version.js ekpyroticfrood.net:./Witchazzan/server/utilities/version.js
 
 printf "\n${YELLOW}Restarting server:${NC}\n"
