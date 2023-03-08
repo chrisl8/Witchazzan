@@ -74,14 +74,12 @@ function addSprites(hadron, key) {
     // Emit particles if so directed
     if (hadron.pcl) {
       if (this.textures.exists(hadron.pcl)) {
-        const particles = this.add.particles(hadron.pcl);
-        newClientSprite.emitter = particles.createEmitter({
+        newClientSprite.emitter = this.add.particles(0, 0, hadron.pcl, {
           speed: 100,
           scale: { start: 0.1, end: 0 },
         });
       } else {
-        const particles = this.add.particles('atlasOne');
-        newClientSprite.emitter = particles.createEmitter({
+        newClientSprite.emitter = this.add.particles(0, 0, 'atlasOne', {
           frame: [hadron.pcl],
           speed: 100,
           scale: { start: 0.1, end: 0 },
