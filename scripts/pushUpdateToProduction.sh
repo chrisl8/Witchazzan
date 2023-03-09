@@ -38,12 +38,12 @@ fi
 npm run build
 
 printf "\n${YELLOW}Preparing remote side for update${NC}\n"
-ssh ekpyroticfrood.net 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && rm web-dist/*'
+ssh witchazzan.space 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && mkdir stage'
 
 printf "\n${YELLOW}Copying new built web files to server${NC}\n"
-scp web-dist/* ekpyroticfrood.net:./Witchazzan/web-dist
+scp web-dist/* witchazzan.space:./Witchazzan/stage
 # Copy the version number we built into the web site to the server.
-scp server/utilities/version.js ekpyroticfrood.net:./Witchazzan/server/utilities/version.js
+scp server/utilities/version.js witchazzan.space:./Witchazzan/server/utilities/version.js
 
 printf "\n${YELLOW}Restarting server:${NC}\n"
-ssh ekpyroticfrood.net 'cd ~/Witchazzan || exit && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'
+ssh witchazzan.space 'cd ~/Witchazzan || exit && rm -rf web-dist && mv stage web-dist && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'
