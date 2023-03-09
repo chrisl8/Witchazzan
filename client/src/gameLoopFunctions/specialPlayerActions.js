@@ -19,7 +19,7 @@ function specialPlayerActions(sceneName) {
     playerObject.isDead = true;
     // Leave death marker - Death marker is essentially a special message with a different sprite.
     const today = new Date();
-    const deathMaker = {
+    const deathMarker = {
       id: getUUID(),
       own: playerObject.playerId,
       typ: 'message',
@@ -35,7 +35,7 @@ function specialPlayerActions(sceneName) {
       pod: false,
       dph: -1,
     };
-    hadrons.set(deathMaker.id, deathMaker);
+    hadrons.set(deathMarker.id, deathMarker);
     // playerObject.health = 100; // For testing uncomment this and comment the teleport.
     // If we don't wait a hot moment before teleporting, the death marker will not work.
     setTimeout(() => {
