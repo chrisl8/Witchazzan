@@ -64,7 +64,7 @@
     "socket.io": ">=4.5.0",
     "socket.io-client": "^4.5.1",
     "socket.io-msgpack-parser": "^3.0.1",
-    "sqlite3": "^5.0.2",
+    "sqlite3": "^5.1.5",
     "uuid": "^9.0.0"
   }
 }
