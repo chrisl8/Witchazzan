@@ -358,19 +358,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Left",
@@ -387,13 +386,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":60,
                  "name":"Right",
@@ -410,13 +409,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":664,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":34,
                  "name":"StationaryTankOne",
@@ -441,6 +440,11 @@
                          "name":"dps",
                          "type":"int",
                          "value":10
+                        }, 
+                        {
+                         "name":"faceTarget",
+                         "type":"bool",
+                         "value":true
                         }, 
                         {
                          "name":"health",
@@ -518,13 +522,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":319.577101382392,
                  "y":119.915252459566
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":35,
                  "name":"StationaryTankOne",
@@ -549,6 +553,11 @@
                          "name":"dps",
                          "type":"int",
                          "value":10
+                        }, 
+                        {
+                         "name":"faceTarget",
+                         "type":"bool",
+                         "value":true
                         }, 
                         {
                          "name":"health",
@@ -626,13 +635,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":320.758532441106,
                  "y":295.653122443414
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":36,
                  "name":"StationaryTankOne",
@@ -657,6 +666,11 @@
                          "name":"dps",
                          "type":"int",
                          "value":10
+                        }, 
+                        {
+                         "name":"faceTarget",
+                         "type":"bool",
+                         "value":true
                         }, 
                         {
                          "name":"health",
@@ -734,13 +748,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":416.159090432338,
                  "y":88.311971638942
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":37,
                  "name":"StationaryTankOne",
@@ -765,6 +779,11 @@
                          "name":"dps",
                          "type":"int",
                          "value":10
+                        }, 
+                        {
+                         "name":"faceTarget",
+                         "type":"bool",
+                         "value":true
                         }, 
                         {
                          "name":"health",
@@ -842,13 +861,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":416.749805961696,
                  "y":327.551761028718
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":38,
                  "name":"YellowKey",
@@ -900,13 +919,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":367.875,
                  "y":207.625
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":39,
                  "name":"Press P",
@@ -953,13 +972,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":637.424242424242,
                  "y":214.454545454545
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":40,
                  "name":"furniture",
@@ -1021,6 +1040,7 @@
                          "value":"d08cf21c-4bee-4b01-844e-09b4aa275877"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":599.909090909091,
@@ -1042,7 +1062,7 @@
          "value":"an intriguing cave"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -1060,6 +1080,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

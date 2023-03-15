@@ -1,8 +1,10 @@
+import Phaser from 'phaser';
 import clientSprites from '../objects/clientSprites.js';
 import playerObject from '../objects/playerObject.js';
 import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
 import objectDepthSettings from '../objects/objectDepthSettings.js';
+import calculateVelocityFromRotation from '../utilities/calculateVelocityFromRotation.js';
 
 function updateSprite(hadron, key, gameSizeData) {
   if (clientSprites.has(key)) {
@@ -120,27 +122,70 @@ function updateSprite(hadron, key, gameSizeData) {
     // , and my own shadow.
     // If the hadron is ours, we set velocities, and that does this for us,
     if (hadron.ctr !== playerObject.playerId || key === playerObject.playerId) {
-      if (hadron.flv === 'Item' && (hadron.vlx || hadron.vly)) {
+      if (
+        (hadron.flv === 'Item' || hadron.flv === 'NPC') &&
+        (hadron.vlx || hadron.vly)
+      ) {
         // Items transfer velocity in order to have collisions with other things in the world.
         // Set the position first, because otherwise they drift badly
-        clientSprite.sprite.setPosition(hadron.x, hadron.y);
+
+        // This is a failsafe in case things get WAY off, we just fix them.
+        // The finer velocity based sync code is below this.
+        const minimumCorrectionPixels = 50;
+        if (
+          Phaser.Math.Distance.Between(
+            clientSprite.sprite.x,
+            clientSprite.sprite.y,
+            hadron.x,
+            hadron.y,
+          ) > minimumCorrectionPixels
+        ) {
+          clientSprite.sprite.setX(hadron.x);
+          clientSprite.sprite.setY(hadron.y);
+        }
+
+        const direction = Phaser.Math.Angle.Between(
+          clientSprite.sprite.x,
+          clientSprite.sprite.y,
+          hadron.x,
+          hadron.y,
+        );
+        const distance = Phaser.Math.Distance.Between(
+          clientSprite.sprite.x,
+          clientSprite.sprite.y,
+          hadron.x,
+          hadron.y,
+        );
+        const newVelX = calculateVelocityFromRotation.x(distance, direction);
+        const newVelY = calculateVelocityFromRotation.y(distance, direction);
+
         // Then add the velocity to essentially "predict" the movement and allow for collisions
-        clientSprite.sprite.body.setVelocityX(hadron.vlx);
-        clientSprite.sprite.body.setVelocityY(hadron.vly);
+        clientSprite.sprite.body.setVelocityX(hadron.vlx + newVelX);
+        clientSprite.sprite.body.setVelocityY(hadron.vly + newVelY);
+
         // This model could be used for other things, but be careful as the results can be weird.
-      } else {
-        // Everything else just teleports to the new position.
+      } else if (
+        clientSprite.sprite.x !== hadron.x ||
+        clientSprite.sprite.y !== hadron.y
+      ) {
+        // Use this if you want to paint a "dot" on the "real" position to compare with tweening results.
+        // if (playerObject.dot) {
+        //   playerObject.dot.destroy();
+        // }
+        // playerObject.dot = this.add
+        //   .rectangle(hadron.x, hadron.y, 5, 5, 0xffa500)
+        //   .setDepth(objectDepthSettings.dotTrails);
+        // This would be a direct update without any tweening:
         clientSprite.sprite.setPosition(hadron.x, hadron.y);
-        // If this feels jittery, you can try tweening, but so far I find it just adds delay.
         // Easing demonstrations:
         // https://labs.phaser.io/edit.html?src=src\tweens\ease%20equations.js
-        // this.tweens.add({
-        //   targets: clientSprite.sprite,
-        //   x: hadron.x,
-        //   y: hadron.y,
-        //   duration: 250, // Adjust this to be smooth without being too slow.
-        //   ease: 'Back.easeOut', // Anything else is wonky when tracking server updates.
-        // });
+        this.tweens.add({
+          targets: clientSprite.sprite,
+          x: hadron.x,
+          y: hadron.y,
+          duration: 20, // Adjust this to be smooth without being too slow.
+          ease: 'Linear',
+        });
       }
     }
 
@@ -201,7 +246,7 @@ function updateSprite(hadron, key, gameSizeData) {
       newHadronData.x = clientSprites.get(key).sprite.x;
       newHadronData.y = clientSprites.get(key).sprite.y;
       // Warning, this can overwrite velocity on our own objects if we aren't careful, such as spells.
-      if (hadron.flv === 'Item') {
+      if (hadron.flv === 'Item' || hadron.flv === 'NPC') {
         newHadronData.vlx = clientSprites.get(key).sprite.body.velocity.x;
         newHadronData.vly = clientSprites.get(key).sprite.body.velocity.y;
       }

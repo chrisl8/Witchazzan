@@ -1,13 +1,14 @@
-import Phaser from 'phaser';
 import hadrons from '../objects/hadrons.js';
 import playerObject from '../objects/playerObject.js';
-import castSpell from '../castSpell.js';
 import clientSprites from '../objects/clientSprites.js';
-import getSpawnPointFromMap from '../utilities/getSpawnPointFromMap.js';
 import sendDataToServer from '../sendDataToServer.js';
 import paths from '../objects/paths.js';
-import calculateDirectionToLocation from '../utilities/calculateDirectionToLocation.js';
-import moveSpriteTowardLocation from '../utilities/moveSpriteTowardLocation.js';
+import npcTeleportation from '../npcBehaviors/npcTeleportation.js';
+import npcRaycastUpdate from '../npcBehaviors/npcRaycastUpdate.js';
+import npcSpellCaster from '../npcBehaviors/npcSpellCaster.js';
+import npcRotateToFaceTarget from '../npcBehaviors/npcRotateToFaceTarget.js';
+import npcFollowTarget from '../npcBehaviors/npcFollowTarget.js';
+import npcFollowPath from '../npcBehaviors/npcFollowPath.js';
 
 function npcBehavior(delta, sceneName, map) {
   hadrons.forEach((hadron, key) => {
@@ -35,6 +36,7 @@ function npcBehavior(delta, sceneName, map) {
           x: null,
           y: null,
         },
+        rotate: true,
       };
       movementPriority.set('followRaycastTarget', {
         ...movementBehaviorObject,
@@ -45,54 +47,18 @@ function npcBehavior(delta, sceneName, map) {
       movementPriority.set('stop', {
         ...movementBehaviorObject,
       });
+      movementPriority.get('stop').active = true;
+      movementPriority.get('stop').rotate = false;
 
-      const newHadronData = { ...hadron };
+      let newHadronData = { ...hadron };
 
-      let rayCastFoundTarget = false;
-
-      // NPC TELEPORTATION
-      if (hadron.hasOwnProperty('de')) {
-        // NPCs that hit a teleport layer have the 'de' property on them,
-        // and need to be updated
-        const spawnPoint = getSpawnPointFromMap(map, hadron.de);
-
-        // Allow a scene entrance to specify to carry over the X or Y value from the previous scene so that you can enter at any point along the edge in a wide doorway.
-        if (
-          spawnPoint &&
-          spawnPoint.hasOwnProperty('properties') &&
-          Array.isArray(spawnPoint.properties)
-        ) {
-          if (
-            spawnPoint.properties.find((x) => x.name === 'allowCustomX')
-              ?.value &&
-            hadron?.px
-          ) {
-            spawnPoint.x = hadron.px;
-          }
-
-          if (
-            spawnPoint.properties.find((x) => x.name === 'allowCustomY')
-              ?.value &&
-            hadron?.py
-          ) {
-            spawnPoint.y = hadron.py;
-          }
-        }
-
-        newHadronData.x = spawnPoint.x;
-        newHadronData.y = spawnPoint.y;
-        delete newHadronData.px;
-        delete newHadronData.py;
-        delete newHadronData.de;
-        const clientSprite = clientSprites.get(key);
-        if (clientSprite?.sprite?.body) {
-          // If the sprite exists, we need to update it now, lest it get overwritten.
-          clientSprite.sprite.setPosition(newHadronData.x, newHadronData.y);
-          clientSprite.sprite.body.setVelocityX(newHadronData.vlx);
-          clientSprite.sprite.body.setVelocityY(newHadronData.vly);
-        }
-        hadronUpdated = true;
-      }
+      [newHadronData, hadronUpdated] = npcTeleportation({
+        hadron,
+        map,
+        newHadronData,
+        hadronUpdated,
+        key,
+      });
 
       if (hadron.hlt <= 0 && !hadron.off) {
         // Turn the NPC "off" if the health falls to 0 or below.
@@ -128,222 +94,64 @@ function npcBehavior(delta, sceneName, map) {
         if (hadron.sdi) {
           newHadronData.dir = hadron.sdi;
         }
+        if (hadron.cpd) {
+          newHadronData.cpd = hadron.ipd;
+        }
       } else if (!hadron.off) {
         // If the hadron is active, then...
 
-        // RAYCAST UPDATE
-        const ray = clientSprites.get(key)?.ray;
-        if (ray) {
-          // enable auto slicing field of view
-          ray.autoSlice = true;
-          // enable arcade physics body
-          ray.enablePhysics();
-          // Update ray origin
-          ray.setOrigin(hadron.x, hadron.y);
+        const [rayCastFoundTarget, rayCastTargetPosition] = npcRaycastUpdate({
+          hadron,
+          key,
+        });
 
-          // If "nearby detection" is enabled, first make a small circle and look at it.
-          let nearbyObjects = [];
-          if (hadron.nbc) {
-            ray.castCircle();
-            ray.setCollisionRange(hadron.nbc);
-            ray.cast();
-            nearbyObjects = [...ray.overlap()];
-          }
-
-          if (
-            hadron.rdt &&
-            // eslint-disable-next-line no-restricted-globals
-            !isNaN(hadron.rdt)
-          ) {
-            ray.setCollisionRange(hadron.rdt);
-          }
-          // eslint-disable-next-line no-restricted-globals
-          if (hadron.dir && !isNaN(hadron.dir)) {
-            ray.setAngleDeg(hadron.dir);
-          }
-          if (hadron.rtp === 'cone') {
-            if (hadron.rcd) {
-              ray.setConeDeg(hadron.rcd);
-            }
-            ray.castCone();
-          } else if (hadron.rtp === 'circle') {
-            // Circle is default.
-            ray.castCircle();
-          } else {
-            // Line is default.
-            ray.cast();
-          }
-
-          // get all game objects in field of view (which bodies overlap ray's field of view)
-          const visibleObjects = nearbyObjects.concat(ray.overlap());
-          let currentTargetDistance;
-          visibleObjects.forEach((entry) => {
-            if (entry.data) {
-              const id = entry.getData('hadronId');
-              if (
-                hadrons.get(id)?.typ && // Can be undefined momentarily during initial creation
-                id !== key && // Not NPC itself
-                hadrons.get(id)?.typ !== 'spell' && // Not a spell
-                hadrons.get(id)?.typ !== 'message' && // not a message
-                hadrons.get(id)?.flv !== 'NPC' && // Don't shoot each other
-                (!hadrons.get(id)?.iin || !hadrons.get(id)?.iin.includes('Key')) // Don't shoot the keys
-              ) {
-                // We found a target
-                rayCastFoundTarget = true;
-
-                const distance = Phaser.Math.Distance.Between(
-                  hadron.x,
-                  hadron.y,
-                  entry.x,
-                  entry.y,
-                );
-                if (
-                  !currentTargetDistance ||
-                  distance < currentTargetDistance
-                ) {
-                  // Always focus on the nearest target.
-                  currentTargetDistance = distance;
-
-                  movementPriority.get('followRaycastTarget').active = true;
-                  movementPriority.get('followRaycastTarget').destination = {
-                    x: entry.x,
-                    y: entry.y,
-                  };
-                }
-              }
-            }
+        let isRotating = false;
+        if (rayCastFoundTarget && hadron.hasOwnProperty('fac') && hadron.fac) {
+          [newHadronData, hadronUpdated, isRotating] = npcRotateToFaceTarget({
+            newHadronData,
+            hadronUpdated,
+            rayCastTargetPosition,
+            isRotating,
           });
-
-          if (hadron.hasOwnProperty('fol') && hadron.fol) {
-            movementPriority.get('followRaycastTarget').move = true;
-          }
         }
 
-        let spellCastTimer = clientSprites.get(key)?.spellCastTimer;
-        if (hadron.hasOwnProperty('rof') && hadron.hasOwnProperty('spl')) {
-          // Store local rapidly updating data in clientSprites,
-          // to avoid clogging the network with hadron updates that other
-          // clients don't need to see.
-          // eslint-disable-next-line no-restricted-globals
-          if (!isNaN(spellCastTimer)) {
-            spellCastTimer += delta;
-          } else {
-            spellCastTimer = 0;
-          }
-
-          if (spellCastTimer > hadron.rof) {
-            if (rayCastFoundTarget || !hadron.rac) {
-              castSpell({
-                sceneName: hadron.scn,
-                spell: hadron.spl,
-                direction: hadron.dir,
-                initialX: hadron.x,
-                initialY: hadron.y,
-                owner: hadron.id,
-                dps: hadron.dps,
-              });
-            }
-            spellCastTimer = 0;
-          }
-          let newAni = 'stationary';
-          if (rayCastFoundTarget) {
-            newAni = 'casting';
-          }
-          if (newHadronData.ani !== newAni) {
-            newHadronData.ani = newAni;
-            hadronUpdated = true;
-          }
-        }
-        if (clientSprites.has(key)) {
-          // There is a moment before the client sprite exists.
-          clientSprites.get(key).spellCastTimer = spellCastTimer;
+        const clientSprite = clientSprites.get(key);
+        if (
+          rayCastFoundTarget &&
+          hadron.hasOwnProperty('fol') &&
+          hadron.fol &&
+          (!isRotating || !hadron.swr)
+        ) {
+          npcFollowTarget({
+            hadron,
+            rayCastTargetPosition,
+            clientSprite,
+          });
         }
 
-        // Path following
-        if (hadron.fph && paths.has(hadron.fph)) {
-          const path = paths.get(hadron.fph);
-          let nextWaypoint;
-          if (hadron.cpd === undefined) {
-            hadronUpdated = true;
-            newHadronData.cpd = 0;
-            nextWaypoint = path.get(0);
-          } else {
-            nextWaypoint = path.get(hadron.cpd);
-          }
-
-          if (nextWaypoint) {
-            movementPriority.get('proceedToWaypoint').active = true;
-            movementPriority.get('proceedToWaypoint').move = true;
-            movementPriority.get('proceedToWaypoint').stop = false;
-            movementPriority.get('proceedToWaypoint').destination = {
-              x: nextWaypoint.x,
-              y: nextWaypoint.y,
-            };
-
-            const closeEnoughProximity = 2;
-            const clientSprite = clientSprites.get(key);
-            if (clientSprite) {
-              if (
-                Math.abs(Math.trunc(hadron.x) - Math.trunc(nextWaypoint.x)) <
-                  closeEnoughProximity &&
-                Math.abs(Math.trunc(hadron.y) - Math.trunc(nextWaypoint.y)) <
-                  closeEnoughProximity
-              ) {
-                // If we are at the destination set next destination in path
-                movementPriority.get('proceedToWaypoint').move = false;
-                movementPriority.get('proceedToWaypoint').stop = true;
-                hadronUpdated = true;
-                newHadronData.cpd++;
-                if (!path.has(newHadronData.cpd)) {
-                  // Reset to 0 if we are at the end of the path.
-                  newHadronData.cpd = 0;
-                }
-              }
-            }
-          }
+        if (
+          !rayCastFoundTarget &&
+          hadron.hasOwnProperty('fph') &&
+          hadron.fph &&
+          paths.has(hadron.fph)
+        ) {
+          [newHadronData, hadronUpdated] = npcFollowPath({
+            hadron,
+            clientSprite,
+            newHadronData,
+            hadronUpdated,
+          });
         }
+
+        [newHadronData, hadronUpdated] = npcSpellCaster({
+          hadron,
+          key,
+          rayCastFoundTarget,
+          delta,
+          newHadronData,
+          hadronUpdated,
+        });
       }
-
-      // Movement
-      let done = false;
-      movementPriority.forEach((data) => {
-        if (!done && data.active) {
-          done = data.active;
-          // Rotate toward it
-          // TODO: Only rotate if the NPC has this feature.
-          const newHadronDirection = calculateDirectionToLocation({
-            currentDirection: hadron.dir,
-            fromX: hadron.x,
-            fromY: hadron.y,
-            toX: data.destination.x,
-            toY: data.destination.y,
-            rotationSpeed: hadron.rsp,
-          });
-
-          let rotating = false;
-          if (newHadronData.dir !== newHadronDirection) {
-            rotating = true;
-            hadronUpdated = true;
-            newHadronData.dir = newHadronDirection;
-          }
-
-          if (data.move && (!rotating || !data.stopWhileRotating)) {
-            const clientSprite = clientSprites.get(key);
-            moveSpriteTowardLocation({
-              sprite: clientSprite,
-              currentDirection: hadron.dir,
-              velocity: hadron.vel,
-              randomizeVelocity: hadron.rvl,
-            });
-          } else if (data.stop || (rotating && data.stopWhileRotating)) {
-            const clientSprite = clientSprites.get(key);
-            if (clientSprite) {
-              clientSprite.sprite.body.setVelocityX(0);
-              clientSprite.sprite.body.setVelocityY(0);
-            }
-          }
-        }
-      });
 
       if (hadronUpdated === true) {
         hadrons.set(key, newHadronData);

@@ -161,7 +161,9 @@ Some important things:
      - `rayCastDegrees` Optional (Integer) "Raycast Degree (rcd)" The range in degrees for a raycast Cone (Not used for other types at the moment)
      - `rayCastDistance` Optional (Integer) "Raycast Distance (rdt)" Distance to raycast out to.
      - `nearbyObjectDetection` Optional (Integer) "Nearby Raycast (nbc)" If this exists, and a raycaster is on the NPC, then ALSO scan a circle of this diameter to notice very close entities from any direction.
+     - `faceTarget` Optional (Bool) "Face (fac)" If there is a raycaster on the NPC it will rotate to face the nearest target.
      - `followTarget` Optional (Bool) "Follow (fol)" If there is a raycaster on the NPC it will move to follow the nearest target.
+     - `stopWhileRotating` Optional (Bool) "Stop While Rotating (swr)" Stop movement while rotating, otherwise the sprite will rotate and move at the same time.
      - `velocity` Optional (Int) "Velocity (vel)" Velocity to set on NPC if it has movement, such as followTarget.
      - `rotationSpeed` Optional (Float) "Rotation Speed (rsp)" Rotation speed.
      - `randomizeVelocity` Optional (Int) "Randomize Velocity (rvl)" Randomize velocity by given integer.
@@ -449,7 +451,7 @@ I will keep track of third party image sources here for attribution.
 - [Kenney Assets](https://kenney.nl/assets)  
 I always start with Kenney's Assets when looking for inspiration!    
 License [Public Domain CC0](https://creativecommons.org/publicdomain/zero/1.0/)  
-File Names:  `redTankSingle.png`, `rougelikeSheet_transparent.png`  
+File Names:  `rougelikeSheet_transparent.png`  
 ... and many others, as they are Public Domain CC0, I do not track each one, but instead freely mix them with my own artwork.  
 - [Zoria Tileset](https://opengameart.org/content/zoria-tileset)  
 Author: [DragonDePlatino](https://opengameart.org/users/dragondeplatino)  

@@ -510,7 +510,12 @@
                         {
                          "name":"dps",
                          "type":"int",
-                         "value":100
+                         "value":99
+                        }, 
+                        {
+                         "name":"faceTarget",
+                         "type":"bool",
+                         "value":true
                         }, 
                         {
                          "name":"health",
@@ -575,7 +580,7 @@
                         {
                          "name":"sprite",
                          "type":"string",
-                         "value":"redTankSingle"
+                         "value":"CircleTankRed"
                         }, 
                         {
                          "name":"subType",

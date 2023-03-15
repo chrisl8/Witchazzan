@@ -290,6 +290,43 @@
          "y":0
         }, 
         {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 97, 98, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 109, 110, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 121, 122, 123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":26,
+         "id":21,
+         "name":"Water",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":44,
+         "x":0,
+         "y":0
+        }, 
+        {
          "id":19,
          "layers":[
                 {
@@ -453,19 +490,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":1,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":208,
                  "y":143.997183594438
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":19,
                  "name":"Left",
@@ -482,13 +518,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":20,
                  "name":"Upper",
@@ -505,13 +541,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":288,
                  "y":40
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":21,
                  "name":"Right",
@@ -528,13 +564,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":664,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":57,
                  "name":"Cave",
@@ -546,36 +582,36 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":176.666666666666,
                  "y":92.666666666667
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":58,
                  "name":"Fountain",
                  "point":true,
                  "properties":[
                         {
-                         "name":"Type",
-                         "type":"string",
-                         "value":"Lepton"
-                        },
-{
                          "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":246.224125624554,
                  "y":227.975506217364
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":60,
                  "name":"ChairTwo",
@@ -637,13 +673,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":375.333333333333,
                  "y":120
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":62,
                  "name":"Press P",
@@ -705,10 +741,351 @@
                          "value":"c3662be3-835c-4574-8f3c-67d1dd42ff20"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":159.818181818182,
                  "y":160.181818181818
+                }, 
+                {
+                 "height":0,
+                 "id":63,
+                 "name":"TableOne",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"respawn"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":1000
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"80732631-60db-4482-8f3d-b8d7ea492a05"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":10
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"TableOne"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"travel",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":553.833333333333,
+                 "y":287.833333333333
+                }, 
+                {
+                 "height":0,
+                 "id":64,
+                 "name":"ChairTwo",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"respawn"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"18a008fb-60c1-4906-9547-b43c81f4bb04"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":10
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"ChairTwo"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"travel",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":534.833333333333,
+                 "y":286.833333333333
+                }, 
+                {
+                 "height":0,
+                 "id":65,
+                 "name":"ChairTwo",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"respawn"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"e6310869-f936-44ba-bfdc-ca6c0966d303"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":10
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"ChairTwo"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"travel",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":554.333333333333,
+                 "y":270.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":66,
+                 "name":"ChairTwo",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"respawn"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"ac66ab97-2c17-44b0-a07a-6f74493a8602"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":180
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":10
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"ChairTwo"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"travel",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":570.833333333333,
+                 "y":285.833333333333
+                }, 
+                {
+                 "height":0,
+                 "id":67,
+                 "name":"ChairTwo",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"respawn"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"b9c5cbd7-3f3c-40ae-af0f-48e75e5e8b01"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":270
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":10
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"ChairTwo"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"travel",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":553.333333333333,
+                 "y":302.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -716,8 +1093,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":21,
- "nextobjectid":63,
+ "nextlayerid":22,
+ "nextobjectid":70,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -726,7 +1103,7 @@
          "value":"welcome here"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -744,6 +1121,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

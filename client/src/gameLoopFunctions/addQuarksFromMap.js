@@ -127,8 +127,14 @@ function addQuarksFromMap(map, sceneName) {
         ) {
           newHadron.nbc = objectProperties.nearbyObjectDetection;
         }
+        if (objectProperties.hasOwnProperty('faceTarget')) {
+          newHadron.fac = objectProperties.faceTarget;
+        }
         if (objectProperties.hasOwnProperty('followTarget')) {
           newHadron.fol = objectProperties.followTarget;
+        }
+        if (objectProperties.hasOwnProperty('stopWhileRotating')) {
+          newHadron.swr = objectProperties.stopWhileRotating;
         }
         if (objectProperties.hasOwnProperty('Text')) {
           newHadron.txt = objectProperties.Text;
@@ -186,6 +192,7 @@ function addQuarksFromMap(map, sceneName) {
           !isNaN(objectProperties.initialPathWaypoint)
         ) {
           newHadron.cpd = objectProperties.initialPathWaypoint;
+          newHadron.ipd = objectProperties.initialPathWaypoint;
         }
         currentSceneQuarks.set(objectProperties.id, newHadron);
         // All we do here is tell the server that the scene we entered has NPC hadrons in it.
