@@ -12,15 +12,10 @@ import { randomUUID, randomBytes } from 'crypto';
 import _ from 'lodash';
 import persistentData from './persistentData.js';
 import validateJWT from './validateJWT.js';
-// eslint-disable-next-line
 import wait from './utilities/wait.js';
-// eslint-disable-next-line
 import makeRandomNumber from './utilities/makeRandomNumber.js';
-// eslint-disable-next-line
 import validateHadron from './utilities/validateHadron.js';
-// eslint-disable-next-line
 import serverVersion from './utilities/version.js';
-// eslint-disable-next-line
 import mapUtils from './utilities/mapUtils.js';
 
 const hadronBroadcastThrottleTime = 50;
