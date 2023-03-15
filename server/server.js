@@ -513,7 +513,7 @@ function validatePlayer(id, socket, PlayerName) {
   return true;
 }
 
-async function closeServer() {
+async function closeServer(callback) {
   console.log('Shutdown requested. PLEASE BE PATIENT! Working on it...');
   io.sockets.emit('txt', {
     typ: 'chat',
@@ -524,6 +524,13 @@ async function closeServer() {
   io.sockets.emit('shutdown');
   io.close();
   await wait(500);
+  if (callback) {
+    // This allows us to run something against the hadrons while the
+    // server is quiet, before saving and shutting down,
+    // and presumably restarting.
+    console.log('Running requested callback function before shutdown...');
+    callback();
+  }
   console.log('Saving game state (hadrons) to disk...');
   // Flush would only run it if it was requested, so we cancel and force it,
   // although in theory if flush didn't call it, no changes were made.
@@ -936,23 +943,28 @@ io.on('connection', (socket) => {
                 (command.length > 2 && command[0].toLowerCase() === 'delete') ||
                 command[0].toLowerCase() === 'del'
               ) {
-                hadrons.forEach((hadron, key) => {
-                  if (
-                    hadron.scn !== 'Library' &&
-                    hadron[command[1]] === command[2]
-                  ) {
-                    hadrons.delete(key);
-                  }
-                });
-                inactiveHadrons.forEach((hadron, key) => {
-                  if (
-                    hadron.scn !== 'Library' &&
-                    hadron[command[1]] === command[2]
-                  ) {
-                    inactiveHadrons.delete(key);
-                  }
-                });
-                closeServer();
+                // Deleting things while the clients are talking to the server
+                // often does not work, so we run the delete as part of a
+                // server restart.
+                const delRequestedHadrons = () => {
+                  hadrons.forEach((hadron, key) => {
+                    if (
+                      hadron.scn !== 'Library' &&
+                      hadron[command[1]] === command[2]
+                    ) {
+                      hadrons.delete(key);
+                    }
+                  });
+                  inactiveHadrons.forEach((hadron, key) => {
+                    if (
+                      hadron.scn !== 'Library' &&
+                      hadron[command[1]] === command[2]
+                    ) {
+                      inactiveHadrons.delete(key);
+                    }
+                  });
+                };
+                closeServer(delRequestedHadrons);
               } else if (
                 command[0].toLowerCase() === 'op' &&
                 command.length === 2
