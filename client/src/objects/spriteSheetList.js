@@ -608,6 +608,19 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'TriangleTankYellow',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 24,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true,
+  },
+  {
+    type: 'other',
     name: 'PurpleRunningRunes',
     frameWidth: 16,
     frameHeight: 16,
@@ -619,19 +632,6 @@ const spriteSheetList = [
     ],
     displayWidth: 16,
     displayHeight: 16,
-  },
-  {
-    type: 'other',
-    name: 'yellowTankSingle',
-    frameWidth: 46,
-    frameHeight: 38,
-    physicsSize: {
-      x: 46,
-      y: 24,
-    },
-    displayWidth: 16,
-    displayHeight: 16,
-    rotatable: true,
   },
   {
     type: 'other',
