@@ -329,19 +329,19 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'chest',
-    frameWidth: 46,
+    frameWidth: 40,
     frameHeight: 43,
     endFrame: 3,
     faces: 'left',
     animationFrameRate: 2,
     animations: [
-      { keyName: 'move-stationary', start: 0, end: 2, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-stationary', start: 0, end: 2, zeroPad: 0, repeat: -1 },
     ],
     physicsSize: {
-      x: 46 * 0.8,
+      x: 40 * 0.8,
       y: 43 * 0.8,
     },
-    displayWidth: 46 * 0.8,
+    displayWidth: 40 * 0.8,
     displayHeight: 43 * 0.8,
   },
   {
