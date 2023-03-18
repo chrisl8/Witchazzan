@@ -17,6 +17,7 @@ import makeRandomNumber from './utilities/makeRandomNumber.js';
 import validateHadron from './utilities/validateHadron.js';
 import serverVersion from './utilities/version.js';
 import mapUtils from './utilities/mapUtils.js';
+import generateRandomGuestUsername from './utilities/generateRandomGuestUsername.js';
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -303,6 +304,72 @@ app.post('/api/sign-up', async (req, res) => {
       await db.query(sqlInsert, [userId, name, hash]);
     });
     res.sendStatus(200);
+  } catch (e) {
+    console.error('Error creating user:');
+    console.error(e.message);
+    res.status(500).send('Unknown error creating user.');
+  }
+});
+
+app.post('/api/guest-play', async (req, res) => {
+  // Generate names until we find a valid one.
+  let name;
+  let tryCount = 0;
+  const maximumTries = 2000; // Prevent infinite loop if we are out of ideas.
+  while (!name && tryCount < maximumTries) {
+    tryCount++;
+    const newGuestUsername = generateRandomGuestUsername();
+    try {
+      // LIKE allows for case insensitive name comparison.
+      // User names shouldn't be case sensitive.
+      const sql = 'SELECT * FROM Users WHERE name LIKE ?';
+      // eslint-disable-next-line no-await-in-loop
+      const result = await db.query(sql, [newGuestUsername]);
+      if (result.rows.length === 0) {
+        name = newGuestUsername;
+      }
+    } catch (e) {
+      console.error('Error creating user:');
+      console.error(e.message);
+      res.status(500).send('Unknown error creating user.');
+      return;
+    }
+  }
+  if (!name) {
+    res
+      .status(400)
+      .send(
+        'Unable to generate a valid guest username, please report this issue.',
+      );
+    return;
+  }
+
+  const userId = randomUUID();
+  // Guests are full blown users, but their password is entirely unknown to anybody.
+  const password = randomBytes(64).toString('hex');
+
+  try {
+    bcrypt.hash(password, serverConfiguration.saltRounds, async (err, hash) => {
+      const sqlInsert =
+        'INSERT INTO Users (id, name, password) VALUES ($1, $2, $3);';
+      await db.query(sqlInsert, [userId, name, hash]);
+    });
+    // Guests are immediately signed in
+    jwt.sign(
+      {
+        id: userId,
+        name,
+        admin: false,
+      },
+      serverConfiguration.jwtSecret,
+      {
+        expiresIn: serverConfiguration.jwtExpiresInSeconds,
+      },
+      (innerErr, token) => {
+        console.log(`${name} successfully playing as guest`);
+        res.json({ token });
+      },
+    );
   } catch (e) {
     console.error('Error creating user:');
     console.error(e.message);

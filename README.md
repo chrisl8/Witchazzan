@@ -175,7 +175,7 @@ Some important things:
      - `uniqueId` Optional (String) "Unique ID (uid)" When making a hadron from a Quark, this ID will be used, and hence only one will ever be created.
      - **There may be additional options that were not documented yet. You can check `validateHadron.js` for any not listed here and also check `addQuarksFromMap.js` to find out what the Tilemap string is for them. Just be aware that some of the keys in `validateHadron.js` are meant to be used internally by the game, not to be set in the Quark.** 
      - **You may add other things here as well and use them in your code, but if you do, you must update the code in `addQuarksFromMap.js` to copy these key/value pairs into the hadron, and you must alo update `validateHadron.js` to add your additional hadron keys as valid keys.**
-   - NOTE: If you update sprite properties or add new ones, existing sprites won't get updated. Use the command `/del flv NPC` to clear them and make new ones. **You need to NOT be in the same scene with the NPCs that you delete, otherwise it doesn't always work.**
+   - NOTE: If you update sprite properties or add new ones, existing sprites won't get updated. Use the command `/del flv NPC` to clear them and make new ones. **NOTE that this will RESTART the server to ensure the deletes apply everywhere and override active data in flight!**
  - **Informational:** These sprites are imported by the client in `client/src/gameLoopAndSceneFactory.js` under `} else if (object.type === 'NPC') {`
    - You should **not need** to update any code there, but it is important to understand the flow and where to go if you do find that you need to enhance the import process.
  - Set up Collisions: Each NPC type's collisions are custom coded in the file `client/src/gameLoopFunctions/spriteCollisionHandler.js`.
@@ -480,6 +480,9 @@ These are the resources I used for inspiration and initial testing:
 [NES Zelda Map Data](https://github.com/asweigart/nes_zelda_map_data)
 
 Another copy of the Hyrule map can also be found [here](https://www.spriters-resource.com/resources/sheets/116/119176.png)
+
+### Word Lists
+Word list for guest user names are from [Word Lists](https://github.com/imsky/wordlists)
 
 ### Good Tutorials for learning Phaser
 - [Modular Game Worlds in Phaser 3](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)

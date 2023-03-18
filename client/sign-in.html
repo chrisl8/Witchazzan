@@ -131,6 +131,13 @@
     <div id="login-section" hidden>
         <h1>Login</h1>
         <div class="intro-screen-subsection">
+            <button
+                    id="guest_button"
+                    style="margin-left: 5px; margin-top: 5px"
+            >
+                Play as Guest
+            </button>
+            <hr/>
             <div style="margin-top: 10px;">
                 <label for="player_name_input_box">Name</label>
                 <input id="player_name_input_box"/>
@@ -170,14 +177,13 @@
                 <span style="color: red" id="login_error_text"></span>
             </div>
             <div id="login_buttons">
-                <br/>
                 <button
                         id="login_button"
                         style="margin-left: 5px; margin-top: 5px"
                 >
                     Login
                 </button>
-                or
+                <hr/>
                 <button
                         id="create_new_account_button"
                         style="margin-left: 5px; margin-top: 5px"
@@ -185,13 +191,21 @@
                     Create New Account
                 </button>
             </div>
-            <button
-                    id="create_account_button"
-                    style="margin-left: 5px; margin-top: 5px"
-                    hidden
-            >
-                Create Account
-            </button>
+            <div id="create_account_buttons">
+                <button
+                        id="create_account_button"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Create Account
+                </button>
+                or
+                <button
+                        id="cancel_create_account_button"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Cancel
+                </button>
+            </div>
         </div>
     </div>
     <div id="mobile_controls" hidden>

@@ -29,7 +29,11 @@ const domElements = {
   passwordInputBox: document.getElementById('password_input_box'),
   repeatPasswordInputBox: document.getElementById('repeat_password_input'),
   createNewAccountButton: document.getElementById('create_new_account_button'),
+  cancelCreateNewAccountButton: document.getElementById(
+    'cancel_create_account_button',
+  ),
   createAccountButton: document.getElementById('create_account_button'),
+  playAsGuestButton: document.getElementById('guest_button'),
 };
 
 function updateDOMElements() {
@@ -42,7 +46,8 @@ function updateDOMElements() {
   document.getElementById('login_buttons').hidden =
     creatingNewAccount || loginInProgress;
   document.getElementById('repeat_password_input').hidden = !creatingNewAccount;
-  document.getElementById('create_account_button').hidden = !creatingNewAccount;
+  document.getElementById('create_account_buttons').hidden =
+    !creatingNewAccount;
   document.getElementById('account_creation_in_progress').hidden =
     !sendingAccountCreation;
 
@@ -186,6 +191,13 @@ function createNewAccount() {
   updateDOMElements();
 }
 
+function cancelCreateNewAccount() {
+  loginFailure = false;
+  loginErrorText = null;
+  creatingNewAccount = false;
+  updateDOMElements();
+}
+
 async function createAccount() {
   loginErrorText = null;
   sendingAccountCreation = false;
@@ -227,11 +239,6 @@ async function createAccount() {
 }
 
 const startGameNow = () => {
-  // Immediately make it clear that the button was pushed
-  // TODO: Does this have any visible affect?
-  // $('body').css('background-color', 'black');
-  // document.getElementById('pre_game_div').hidden = true;
-
   // Save the player name to local storage for use next time
   // in the login box in case the token was wiped.
   // In theory the browser could do this for me?
@@ -292,6 +299,54 @@ const startGameNow = () => {
   }
 
   window.location.href = '/';
+};
+
+const playAsGuest = async () => {
+  loginErrorText = null;
+  sendingAccountCreation = true;
+  creatingNewAccount = false;
+  updateDOMElements();
+  try {
+    const res = await fetch(`${apiURL}/guest-play`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    if (res.status === 200) {
+      // Play as guest immediately logs you in.
+      loggedIn = true;
+      const resultObject = await res.json();
+      localStorage.setItem('authToken', resultObject.token);
+      // NOTE: atob is deprecated in NODE, but NOT in browsers.
+      playerName = JSON.parse(
+        window.atob(resultObject.token.split('.')[1]),
+      ).name;
+      isAdmin =
+        JSON.parse(window.atob(resultObject.token.split('.')[1])).admin === 1;
+      // TODO: Set some flag that this is a GUEST account and if they log out, remove the playername.
+      // TODO: Possibly change "Logout" to "Create New User" for guests at the "Start Game" screen?
+      // Play as guest immediately starts game
+      startGameNow();
+    } else if (res.status === 404) {
+      loginErrorText = `Server not found! We are lost! :'‑(`;
+    } else {
+      loggedIn = false;
+      loginFailure = true;
+      console.error('Unexpected response from server.');
+      console.error(res);
+      console.error(res.status);
+      console.error(await res.text());
+      console.error(await res.json());
+    }
+  } catch (error) {
+    loggedIn = false;
+    loginFailure = true;
+    console.error('Error contacting server:');
+    console.error(error);
+  }
+  sendingAccountCreation = false;
+  updateDOMElements();
 };
 
 /*
@@ -399,7 +454,12 @@ const startGameNow = () => {
       'click',
       createNewAccount,
     );
+    domElements.cancelCreateNewAccountButton.addEventListener(
+      'click',
+      cancelCreateNewAccount,
+    );
     domElements.createAccountButton.addEventListener('click', createAccount);
+    domElements.playAsGuestButton.addEventListener('click', playAsGuest);
 
     // Text box event listeners (on Enter key)
     domElements.passwordInputBox.addEventListener('keyup', (event) => {
