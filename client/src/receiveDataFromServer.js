@@ -110,6 +110,9 @@ function receiveDataFromServer() {
     // console.log('Player ID:', playerObject.playerId); // For debugging
     playerObject.name = inputData.name;
     playerObject.isAdmin = inputData.admin;
+    if (!inputData.admin) {
+      playerObject.infiniteHealth = false;
+    }
     playerObject.defaultOpeningScene = inputData.defaultOpeningScene;
     localStorage.setItem('playerName', playerObject.name);
   });
