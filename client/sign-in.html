@@ -260,7 +260,7 @@
             </button>
         </div>
     </div>
-    <h1>Setup</h1>
+    <h1>Settings</h1>
     <div class="intro-screen-subsection">
         <h2>Spells</h2>
         <div class="intro-screen-subsection" id="spell-assignment"></div>
@@ -268,6 +268,116 @@
         <div class="intro-screen-subsection">
             <input type="checkbox" id="disable_sound" name="disable_sound"/>
             <label for="disable_sound">Disable sound</label>
+        </div>
+    </div>
+    <div id="account_section" hidden>
+        <h1>Account</h1>
+        <div class="intro-screen-subsection">
+            <span style="color: red" id="account_error"></span>
+            <div id="account_buttons">
+                <button
+                        id="change_player_name_button"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Change Player Name
+                </button>
+                <button
+                        id="change_password_button"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Change Password
+                </button>
+                <button
+                        id="delete_account_button"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Delete Account
+                </button>
+            </div>
+            <div id="guest_account_buttons">
+                You can claim this account and use it later by setting a password.<br/>
+                <button
+                        id="set_password_button"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Set Password
+                </button>
+            </div>
+            <div id="new_player_name">
+                <div style="margin-top: 10px;">
+                    <label for="new_player_name_input_box">New Player Name</label>
+                    <input id="new_player_name_input_box"/>
+                </div>
+                <button
+                        id="update_player_name_button"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Update Player Name
+                </button>
+                <button
+                        id="cancel_player_name"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Cancel
+                </button>
+            </div>
+            <div id="new_password">
+                <p style="color: blue">
+                    New password must at least 8 characters, but not more than 72.
+                </p>
+                <label for="new_password_input_box">New Password</label>
+                <input
+                        id="new_password_input_box"
+                        autocomplete="current-password"
+                        type="password"
+                        required
+                />
+                <br/>
+                <div id="repeat_new_password_input">
+                    <label for="repeat_new_password_input_box">Repeat New Password</label>
+                    <input
+                            id="repeat_new_password_input_box"
+                            autocomplete="new-password"
+                            type="password"
+                            required
+                    /><br/>
+                    <button
+                            id="update_password_button"
+                            style="margin-left: 5px; margin-top: 5px"
+                    >
+                        Update Password
+                    </button>
+                    <button
+                            id="cancel_password"
+                            style="margin-left: 5px; margin-top: 5px"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            <div id="delete_account">
+                <strong>ARE SURE THAT YOU WANT TO PERMANENTLY DELETE YOUR ACCOUNT?!</strong><br/>
+                Enter your password to confirm account deletion:<br/>
+                <label for="delete_password_input_box">Password</label>
+                <input
+                        id="delete_password_input_box"
+                        autocomplete="current-password"
+                        type="password"
+                        required
+                /><br/>
+                <button
+                        id="verify_delete_button"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Permanently DELETE my Account
+                </button>
+                <button
+                        id="cancel_delete"
+                        style="margin-left: 5px; margin-top: 5px"
+                >
+                    Cancel
+                </button>
+            </div>
         </div>
     </div>
     <div class="admin_only_visible" id="game_debugging">
@@ -489,7 +599,8 @@
             <li>Space Bar - Fire</li>
             <li>Chat/Command Input
                 <ul>
-                    <li>There are three ways to open the Chat input box, which also doubles as the Command input box:
+                    <li>There are three ways to open the Chat input box, which also doubles as the Command input
+                        box:
                         <ul>
                             <li>t</li>
                             <li>Enter</li>
@@ -500,16 +611,20 @@
             </li>
             <li>Chat Log
                 <ul>
-                    <li>The Chat Log opens and closes automatically when you open or close the Chat/Command Input box.
+                    <li>The Chat Log opens and closes automatically when you open or close the Chat/Command Input
+                        box.
                     </li>
                     <li>The Chat Log also opens when you receive a message from someone or something.</li>
                     <li>You can also Close the Chat Log with the Escape key, or by pressing 'l' if it opened by
                         itself.
                     </li>
-                    <li>l - Will also open (and close) the Chat Log at any time without opening the Chat Input box.</li>
+                    <li>l - Will also open (and close) the Chat Log at any time without opening the Chat Input
+                        box.
+                    </li>
                 </ul>
             </li>
-            <li>f - Interact: With a targeted item. Typically this will grab items. If you are holding an item, it will
+            <li>f - Interact: With a targeted item. Typically this will grab items. If you are holding an item, it
+                will
                 Drop
                 it.
             <li>r - Rotate: Will rotate your character, or if you are holding an item, it will rotate that Item.
@@ -517,14 +632,16 @@
             <li>i - teleport out to your personal Library where you can keep your inventory of items
                 <ul>
                     <li>
-                        When you do this you leave the scene you are in. Upon exiting your personal Library you return
+                        When you do this you leave the scene you are in. Upon exiting your personal Library you
+                        return
                         to the same
                         location
                         in the same scene that you left from.
                     </li>
                 </ul>
             </li>
-            <li class="admin_only_visible">h - return to the default initial scene NOTE: Only Admins have access to this
+            <li class="admin_only_visible">h - return to the default initial scene NOTE: Only Admins have access to
+                this
                 command. Everybody else has to walk!
             </li>
             <li class="admin_only_visible">o - turn dot Trails on/off for debugging</li>

@@ -18,6 +18,7 @@ import validateHadron from './utilities/validateHadron.js';
 import serverVersion from './utilities/version.js';
 import mapUtils from './utilities/mapUtils.js';
 import generateRandomGuestUsername from './utilities/generateRandomGuestUsername.js';
+import initDatabase from './utilities/initDatabase.js';
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -136,6 +137,8 @@ db.query = function (sql, params) {
   });
 };
 
+await initDatabase(db);
+
 // Create an empty hadrons Map for game state.
 const hadrons = new Map();
 // Create an empty connectedPlayerData Map for player information.
@@ -151,7 +154,6 @@ try {
   // So an actual error is something worse, like the file being corrupted.
   process.exit(1);
 }
-// TODO: On load wipe any hadrons that are owned by users no longer in the database so that deleting a user doesn't leave orphaned hadrons. Note that hadrons can be owned by NPCs, and themselves, so it may be difficult to tell which hadrons belong to removed players. I might have to build a "removed player UUID" list for this to work.
 
 // Validate all saved hadrons before starting server
 inactiveHadrons.forEach((hadron) => {
@@ -163,10 +165,23 @@ inactiveHadrons.forEach((hadron) => {
   }
 });
 
+// Get deleted user list
+let deletedPlayers = await db.query(`SELECT id FROM Users WHERE deleted = 1`);
+deletedPlayers = deletedPlayers.rows;
+deletedPlayers = deletedPlayers.map((entry) => entry.id);
+console.log(`Deleted user count: ${deletedPlayers.length}`);
+
 // Resurrect any "Persist On Disconnect (pod)" hadrons immediately.
 // Except for Library hadrons.
 inactiveHadrons.forEach((hadron, key) => {
-  if (hadron.pod && hadron.scn !== 'Library') {
+  // Check for hadrons owned by deleted players
+  if (hadron.hasOwnProperty('own')) {
+    if (deletedPlayers.indexOf(hadron.own) > -1) {
+      console.log('Deleting hadron for deleted user:');
+      console.log(hadron);
+      inactiveHadrons.delete(key);
+    }
+  } else if (hadron.pod && hadron.scn !== 'Library') {
     hadrons.set(key, hadron);
     inactiveHadrons.delete(key);
   }
@@ -195,32 +210,6 @@ const throttledSaveGameStateToDisk = _.throttle(
 // Invoke immediately to ensure data is saved and formatted correctly,
 // in case it was edited by hand while the server was not running.
 await saveGameStateToDisk();
-
-// Database initialization.
-try {
-  // Creating the users table if it does not exist.
-  const sqlCreateUserTable = `CREATE TABLE IF NOT EXISTS users (
-      id TEXT PRIMARY KEY,
-      name TEXT NOT NULL,
-      password TEXT NOT NULL,
-      admin INTEGER DEFAULT 0
-    );`;
-  await db.query(sqlCreateUserTable, []);
-  // Displaying the user table count for fun and debugging.
-  const result = await db.query('SELECT COUNT(*) AS count FROM Users', []);
-  const count = result.rows[0].count;
-  console.log('Registered user count from database:', count);
-
-  // Creating the Connections table if it does not exist.
-  const sqlCreateConnectionsTable = `CREATE TABLE IF NOT EXISTS Connections (
-      id TEXT,
-      timestamp INTEGER
-    );`;
-  await db.query(sqlCreateConnectionsTable, []);
-} catch (e) {
-  console.error(e.message);
-  process.exit(1);
-}
 
 const app = express();
 
@@ -257,41 +246,56 @@ const io = new Server(webServer, {
   parser: msgPackParser,
 });
 
-app.post('/api/sign-up', async (req, res) => {
-  const name = req.body.name;
-  const password = req.body.password;
+async function isNameInvalid(name) {
   let error;
-  if (name === password) {
-    error = 'Name and password cannot be the same.';
-  }
   if (!name || name.length < 2) {
     error = 'Names must be at least 2 characters long';
   } else if (name.length > 72) {
     error = 'Names must be a maximum of 72 characters long';
+  } else {
+    try {
+      // LIKE allows for case insensitive name comparison.
+      // User names shouldn't be case sensitive.
+      const sql = 'SELECT * FROM Users WHERE name LIKE ?';
+      const result = await db.query(sql, [name]);
+      if (result.rows.length > 0) {
+        error = 'Name already exists';
+      }
+    } catch (e) {
+      console.error('Error creating user:');
+      console.error(e.message);
+      error = 'Unknown server error.';
+    }
   }
-  if (!password || password.length < 8) {
+  return error;
+}
+
+function isPasswordInvalid(password, name) {
+  let error;
+  if (name === password) {
+    error = 'Name and password cannot be the same.';
+  } else if (!password || password.length < 8) {
     error = 'Password must be at least 8 characters long';
   } else if (password.length > 72) {
     error = 'Password must be a maximum of 72 characters long';
   }
+  return error;
+}
+
+app.post('/api/sign-up', async (req, res) => {
+  const name = req.body.name;
+  const password = req.body.password;
+  let error;
+  const passwordValidationError = isPasswordInvalid(password, name);
+  if (passwordValidationError) {
+    error = passwordValidationError;
+  }
+  const nameValidationError = await isNameInvalid(name);
+  if (nameValidationError) {
+    error = nameValidationError;
+  }
   if (error) {
     res.status(400).send(error);
-    return;
-  }
-
-  try {
-    // LIKE allows for case insensitive name comparison.
-    // User names shouldn't be case sensitive.
-    const sql = 'SELECT * FROM Users WHERE name LIKE ?';
-    const result = await db.query(sql, [name]);
-    if (result.rows.length > 0) {
-      res.status(400).send('Name already exists');
-      return;
-    }
-  } catch (e) {
-    console.error('Error creating user:');
-    console.error(e.message);
-    res.status(500).send('Unknown error creating user.');
     return;
   }
 
@@ -319,25 +323,14 @@ app.post('/api/guest-play', async (req, res) => {
   while (!name && tryCount < maximumTries) {
     tryCount++;
     const newGuestUsername = generateRandomGuestUsername();
-    try {
-      // LIKE allows for case insensitive name comparison.
-      // User names shouldn't be case sensitive.
-      const sql = 'SELECT * FROM Users WHERE name LIKE ?';
-      // eslint-disable-next-line no-await-in-loop
-      const result = await db.query(sql, [newGuestUsername]);
-      if (result.rows.length === 0) {
-        name = newGuestUsername;
-      }
-    } catch (e) {
-      console.error('Error creating user:');
-      console.error(e.message);
-      res.status(500).send('Unknown error creating user.');
-      return;
+    // eslint-disable-next-line no-await-in-loop
+    if (!(await isNameInvalid(newGuestUsername))) {
+      name = newGuestUsername;
     }
   }
   if (!name) {
     res
-      .status(400)
+      .status(500)
       .send(
         'Unable to generate a valid guest username, please report this issue.',
       );
@@ -351,7 +344,7 @@ app.post('/api/guest-play', async (req, res) => {
   try {
     bcrypt.hash(password, serverConfiguration.saltRounds, async (err, hash) => {
       const sqlInsert =
-        'INSERT INTO Users (id, name, password) VALUES ($1, $2, $3);';
+        'INSERT INTO Users (id, name, password, guest) VALUES ($1, $2, $3, 1);';
       await db.query(sqlInsert, [userId, name, hash]);
     });
     // Guests are immediately signed in
@@ -359,7 +352,8 @@ app.post('/api/guest-play', async (req, res) => {
       {
         id: userId,
         name,
-        admin: false,
+        admin: 0,
+        guest: 1,
       },
       serverConfiguration.jwtSecret,
       {
@@ -389,20 +383,23 @@ app.post('/api/login', async (req, res) => {
   let id;
   let hash;
   let admin = 0;
+  let guest = 0;
   const password = req.body.password;
   try {
     // LIKE allows for case insensitive name comparison.
     // User names shouldn't be case sensitive.
-    const sql = 'SELECT id, name, password, admin FROM Users WHERE name LIKE ?';
+    const sql =
+      'SELECT id, name, password, admin, guest FROM Users WHERE name LIKE ?';
     const result = await db.query(sql, [name]);
     if (result.rows.length > 0) {
       // We do not confirm or deny that the user exists.
       hash = result.rows[0].password;
       id = result.rows[0].id;
       admin = result.rows[0].admin;
+      guest = result.rows[0].guest;
     }
   } catch (e) {
-    console.error('Error retrieving user:');
+    console.error('Error retrieving user during login:');
     console.error(e.message);
     res.status(500).send('Unknown error.');
     return;
@@ -415,6 +412,7 @@ app.post('/api/login', async (req, res) => {
             id,
             name,
             admin,
+            guest,
           },
           serverConfiguration.jwtSecret,
           {
@@ -439,9 +437,160 @@ app.post('/api/login', async (req, res) => {
 // the startup page.
 app.post('/api/auth', async (req, res) => {
   try {
-    await validateJWT(req.body.token, serverConfiguration.jwtSecret, db);
+    const remoteIp = req.headers['x-real-ip'] || req.socket.remoteAddress;
+    await validateJWT({
+      token: req.body.token,
+      secret: serverConfiguration.jwtSecret,
+      db,
+      remoteIp,
+    });
     res.sendStatus(200);
   } catch (e) {
+    res.sendStatus(401);
+  }
+});
+
+app.post('/api/rename-player', async (req, res) => {
+  const remoteIp = req.headers['x-real-ip'] || req.socket.remoteAddress;
+  let decoded;
+  try {
+    decoded = await validateJWT({
+      token: req.body.token,
+      secret: serverConfiguration.jwtSecret,
+      db,
+      remoteIp,
+    });
+  } catch (e) {
+    res.sendStatus(401);
+    return;
+  }
+  if (decoded.guest === 1) {
+    res.status(400).send('Guest accounts cannot be renamed.');
+    return;
+  }
+  const newName = req.body.name;
+  const invalidNameError = await isNameInvalid(newName);
+  if (invalidNameError) {
+    res.status(400).send(invalidNameError);
+    return;
+  }
+  try {
+    await db.query('UPDATE Users SET name = $1 WHERE id = $2', [
+      newName,
+      decoded.id,
+    ]);
+  } catch (e) {
+    res.sendStatus(500);
+    return;
+  }
+  res.sendStatus(200);
+});
+
+app.post('/api/change-password', async (req, res) => {
+  const remoteIp = req.headers['x-real-ip'] || req.socket.remoteAddress;
+  let decoded;
+  try {
+    decoded = await validateJWT({
+      token: req.body.token,
+      secret: serverConfiguration.jwtSecret,
+      db,
+      remoteIp,
+    });
+  } catch (e) {
+    res.sendStatus(401);
+    return;
+  }
+  const password = req.body.password;
+  const passwordValidationError = await isPasswordInvalid(
+    password,
+    decoded.name,
+  );
+  if (passwordValidationError) {
+    res.status(400).send(passwordValidationError);
+    return;
+  }
+  try {
+    // Updating password makes it NOT a guest account anymore, if it was.
+  } catch (e) {
+    res.sendStatus(500);
+    return;
+  }
+
+  try {
+    bcrypt.hash(password, serverConfiguration.saltRounds, async (err, hash) => {
+      await db.query(
+        'UPDATE Users SET password = $1, guest = 0 WHERE id = $2',
+        [hash, decoded.id],
+      );
+    });
+    res.sendStatus(200);
+  } catch (e) {
+    console.error('Error updating password:');
+    console.error(e.message);
+    res.status(500).send('Unknown error updating password.');
+  }
+});
+
+app.post('/api/delete-account', async (req, res) => {
+  const remoteIp = req.headers['x-real-ip'] || req.socket.remoteAddress;
+  let decoded;
+  try {
+    decoded = await validateJWT({
+      token: req.body.token,
+      secret: serverConfiguration.jwtSecret,
+      db,
+      remoteIp,
+    });
+  } catch (e) {
+    res.sendStatus(401);
+    return;
+  }
+  const password = req.body.password;
+  let hash;
+  try {
+    const result = await db.query(
+      'SELECT id, password FROM Users WHERE id = ?',
+      [decoded.id],
+    );
+    if (result.rows.length > 0) {
+      hash = result.rows[0].password;
+    }
+  } catch (e) {
+    console.error('Error retrieving user during password change:');
+    console.error(e.message);
+    res.status(500).send('Unknown error.');
+    return;
+  }
+  if (hash) {
+    bcrypt.compare(password, hash, async (err, result) => {
+      if (result) {
+        // DELETE USER
+        // Deleted IDs are not wiped, but "invalidated" by:
+        // 1. Set the username to [DELETED]
+        // 2. Set their password to an unknown hashed entry.
+        try {
+          bcrypt.hash(
+            password,
+            serverConfiguration.saltRounds,
+            async (newError, newHash) => {
+              await db.query(
+                `UPDATE Users SET name = '[DELETED]', password = $1, deleted = 1 WHERE id = $2`,
+                [newHash, decoded.id],
+              );
+            },
+          );
+        } catch (e) {
+          console.error('Error deleting user:');
+          console.error(e.message);
+          res.status(500).send('Unknown error deleting user.');
+        }
+        console.log(`Successfully deleted user ${decoded.name}`);
+        res.sendStatus(200);
+      } else {
+        res.sendStatus(401);
+      }
+    });
+  } else {
     res.sendStatus(401);
   }
 });
@@ -672,16 +821,19 @@ io.on('connection', (socket) => {
     // This code runs every time a player joins.
     // Look down below for the list of "events" that the client can send us and will be responded to.
     try {
-      const decoded = await validateJWT(
-        playerData.token,
-        serverConfiguration.jwtSecret,
+      const remoteIp =
+        socket.handshake.headers['x-real-ip'] || socket.conn.remoteAddress;
+      const decoded = await validateJWT({
+        token: playerData.token,
+        secret: serverConfiguration.jwtSecret,
         db,
-      );
+        remoteIp,
+      });
       // We now know that we have a valid authenticated user!
       const PlayerName = decoded.name;
       const PlayerId = decoded.id;
       const isAdmin = decoded.admin;
-      console.log(`${PlayerName} connected`);
+      console.log(`${PlayerName} connected from ${remoteIp}`);
 
       if (connectedPlayerData.get(PlayerId)) {
         console.log(`${PlayerName} is already connected!`);
@@ -801,7 +953,10 @@ io.on('connection', (socket) => {
                 name = result.rows[0].name;
               }
             } catch (e) {
-              console.error('Error retrieving user:', data.fromPlayerId);
+              console.error(
+                'Error retrieving user on socket txt:',
+                data.fromPlayerId,
+              );
               console.error(e.message);
             }
           }
@@ -1051,7 +1206,7 @@ io.on('connection', (socket) => {
                   }
                 } catch (e) {
                   error = true;
-                  console.error('Error retrieving user:');
+                  console.error('Error retrieving user on socket command:');
                   console.error(e.message);
                   socket.emit('txt', {
                     typ: 'chat',
@@ -1077,8 +1232,9 @@ io.on('connection', (socket) => {
                   !playerIsAlreadyAdmin
                 ) {
                   try {
-                    const sql = 'UPDATE Users SET admin = 1 WHERE id = ?';
-                    await db.query(sql, [playerIdToOp]);
+                    await db.query('UPDATE Users SET admin = 1 WHERE id = ?', [
+                      playerIdToOp,
+                    ]);
                   } catch (e) {
                     error = true;
                     console.error('Error updating user:');

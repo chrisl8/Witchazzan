@@ -5,6 +5,7 @@ import playerObject from '../objects/playerObject.js';
 import spellAssignments from '../objects/spellAssignments.js';
 import isAppleDevice from '../utilities/isAppleDevice.js';
 import isMobileBrowser from '../utilities/isMobileBrowser.js';
+import populateSpellSettings from '../utilities/populateSpellSettings.js';
 
 let apiURL = `${window.location.origin}/api`;
 if (window.location.port === '3001') {
@@ -13,13 +14,17 @@ if (window.location.port === '3001') {
 
 let playerName = '';
 let isAdmin = false;
+let isGuest = false;
 let loginFailure = false;
 let loginErrorText = null;
 let loggedIn = false;
 let loginInProgress = false;
 let creatingNewAccount = false;
 let sendingAccountCreation = false;
-const token = localStorage.getItem('authToken');
+let changingPlayerName = false;
+let changingPassword = false;
+let deletingAccount = false;
+let accountErrorText = null;
 
 const domElements = {
   startGameButton: document.getElementById('start_game_button'),
@@ -34,6 +39,17 @@ const domElements = {
   ),
   createAccountButton: document.getElementById('create_account_button'),
   playAsGuestButton: document.getElementById('guest_button'),
+  changePlayerNameButton: document.getElementById('change_player_name_button'),
+  updatePlayerNameButton: document.getElementById('update_player_name_button'),
+  newPlayerNameInputBox: document.getElementById('new_player_name_input_box'),
+  changePasswordButton: document.getElementById('change_password_button'),
+  setPasswordButton: document.getElementById('set_password_button'),
+  updatePasswordButton: document.getElementById('update_password_button'),
+  deleteAccountButton: document.getElementById('delete_account_button'),
+  verifyDeleteAccountButton: document.getElementById('verify_delete_button'),
+  cancelChangePlayerNameButton: document.getElementById('cancel_player_name'),
+  cancelChangePasswordButton: document.getElementById('cancel_password'),
+  cancelDeleteButton: document.getElementById('cancel_delete'),
 };
 
 function updateDOMElements() {
@@ -53,6 +69,19 @@ function updateDOMElements() {
 
   document.getElementById('login_error_text_box').hidden = !loginErrorText;
   document.getElementById('login_error_text').innerText = loginErrorText;
+
+  document.getElementById('account_section').hidden = !loggedIn;
+  document.getElementById('account_buttons').hidden =
+    isGuest || changingPlayerName || changingPassword || deletingAccount;
+  document.getElementById('new_player_name').hidden = !changingPlayerName;
+  document.getElementById('new_password').hidden = !changingPassword;
+  document.getElementById('delete_account').hidden = !deletingAccount;
+
+  document.getElementById('guest_account_buttons').hidden =
+    !isGuest || changingPassword;
+
+  document.getElementById('account_error').hidden = !accountErrorText;
+  document.getElementById('account_error').innerText = accountErrorText;
 
   for (const el of document.querySelectorAll('.admin_only_visible'))
     el.style.display = isAdmin ? 'block' : 'none';
@@ -92,6 +121,7 @@ function updateDOMElements() {
 }
 
 async function checkLoggedInStatus() {
+  const token = localStorage.getItem('authToken');
   if (token) {
     try {
       const res = await fetch(`${apiURL}/auth`, {
@@ -107,7 +137,9 @@ async function checkLoggedInStatus() {
         loggedIn = true;
         // NOTE: atob is deprecated in NODE, but NOT in browsers.
         playerName = JSON.parse(window.atob(token.split('.')[1])).name;
+        localStorage.setItem('playerName', playerName); // To survive page refreshes
         isAdmin = JSON.parse(window.atob(token.split('.')[1])).admin === 1;
+        isGuest = JSON.parse(window.atob(token.split('.')[1])).guest === 1;
       } else if (res.status === 401) {
         localStorage.removeItem('authToken');
         loggedIn = false;
@@ -153,8 +185,11 @@ async function login() {
       playerName = JSON.parse(
         window.atob(resultObject.token.split('.')[1]),
       ).name;
+      localStorage.setItem('playerName', playerName); // To survive page refreshes
       isAdmin =
         JSON.parse(window.atob(resultObject.token.split('.')[1])).admin === 1;
+      isGuest =
+        JSON.parse(window.atob(resultObject.token.split('.')[1])).guest === 1;
     } else if (res.status === 401) {
       loggedIn = false;
       loginFailure = true;
@@ -177,11 +212,12 @@ async function login() {
   updateDOMElements();
 }
 
-async function logOut() {
+function logOut() {
+  if (isGuest) {
+    localStorage.removeItem('playerName');
+  }
   localStorage.removeItem('authToken');
-  loggedIn = false;
-  isAdmin = false;
-  updateDOMElements();
+  window.location.reload(); // Easiest way to clear all data and settings
 }
 
 function createNewAccount() {
@@ -198,14 +234,134 @@ function cancelCreateNewAccount() {
   updateDOMElements();
 }
 
+function openChangePlayerNameDialogue() {
+  changingPlayerName = true;
+  updateDOMElements();
+}
+async function updatePlayerName() {
+  const newPlayerName = domElements.newPlayerNameInputBox.value;
+  try {
+    const res = await fetch(`${apiURL}/rename-player`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: localStorage.getItem('authToken'),
+        name: newPlayerName,
+      }),
+    });
+    if (res.status === 200) {
+      localStorage.setItem('playerName', newPlayerName);
+      logOut(); // User must now log in with new name to get a new token.
+    } else if (res.status === 401) {
+      accountErrorText = 'Authorization failed.';
+    } else if (res.status === 400) {
+      accountErrorText = await res.text();
+    } else {
+      accountErrorText = 'Unexpected response from server.';
+      console.error(accountErrorText);
+      console.error(res);
+      console.error(res.status);
+      console.error(await res.text());
+      console.error(await res.json());
+    }
+  } catch (error) {
+    console.error('Error contacting server:');
+    console.error(error);
+  }
+  updateDOMElements();
+}
+
+function openChangePasswordDialogue() {
+  changingPassword = true;
+  updateDOMElements();
+}
+async function updatePassword() {
+  const password = document.getElementById('new_password_input_box').value;
+  const repeatPassword = document.getElementById(
+    'repeat_new_password_input_box',
+  ).value;
+  if (password !== repeatPassword) {
+    accountErrorText = 'Passwords do not match.';
+  } else {
+    try {
+      const res = await fetch(`${apiURL}/change-password`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: localStorage.getItem('authToken'),
+          password,
+        }),
+      });
+      let resultText = await res.text();
+      if (resultText.Error) {
+        resultText = resultText.Error;
+      }
+      if (res.status === 200) {
+        isGuest = false;
+        logOut(); // User must now log in with new password to get a new token.
+      } else {
+        accountErrorText = resultText || 'Unknown error.';
+      }
+    } catch (error) {
+      accountErrorText = 'Error contacting server.';
+    }
+    sendingAccountCreation = false;
+  }
+  updateDOMElements();
+}
+
+function openDeleteAccountDialogue() {
+  console.log('deleteAccount');
+  deletingAccount = true;
+  updateDOMElements();
+}
+async function verifyDeleteAccount() {
+  const password = document.getElementById('delete_password_input_box').value;
+  try {
+    const res = await fetch(`${apiURL}/delete-account`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: localStorage.getItem('authToken'),
+        password,
+      }),
+    });
+    let resultText = await res.text();
+    if (resultText.Error) {
+      resultText = resultText.Error;
+    }
+    if (res.status === 200) {
+      localStorage.removeItem('playerName');
+      logOut(); // Account is gone, log out of it!
+    } else {
+      accountErrorText = resultText || 'Unknown error.';
+    }
+  } catch (error) {
+    accountErrorText = 'Error contacting server.';
+  }
+}
+
+function cancelAccountActionDialogue() {
+  changingPlayerName = false;
+  changingPassword = false;
+  deletingAccount = false;
+  updateDOMElements();
+}
+
 async function createAccount() {
   loginErrorText = null;
   sendingAccountCreation = false;
   const password = document.getElementById('password_input_box').value;
-  const repeatPasword = document.getElementById(
+  const repeatPassword = document.getElementById(
     'repeat_password_input_box',
   ).value;
-  if (password !== repeatPasword) {
+  if (password !== repeatPassword) {
     loginErrorText = 'Passwords do not match.';
   } else {
     sendingAccountCreation = true;
@@ -322,10 +478,8 @@ const playAsGuest = async () => {
       playerName = JSON.parse(
         window.atob(resultObject.token.split('.')[1]),
       ).name;
-      isAdmin =
-        JSON.parse(window.atob(resultObject.token.split('.')[1])).admin === 1;
-      // TODO: Set some flag that this is a GUEST account and if they log out, remove the playername.
-      // TODO: Possibly change "Logout" to "Create New User" for guests at the "Start Game" screen?
+      isAdmin = false;
+      isGuest = true;
       // Play as guest immediately starts game
       startGameNow();
     } else if (res.status === 404) {
@@ -390,23 +544,8 @@ const playAsGuest = async () => {
     document.getElementById('infinite_health').checked = true;
   }
 
-  // HANDLE SPELL SETTINGS
-  for (const [key, value] of Object.entries(playerObject.spellKeys)) {
-    // Check local storage to see if there is a stored value
-    const spellSettingFromLocalStorage = localStorage.getItem(
-      `key${value}SpellAssignment`,
-    );
-    if (
-      spellSettingFromLocalStorage !== null &&
-      playerObject.spellOptions.indexOf(spellSettingFromLocalStorage) !== -1
-    ) {
-      spellAssignments.set(value, spellSettingFromLocalStorage);
-    } else if (playerObject.spellOptions[key]) {
-      // Otherwise fill them in with the default value,
-      // but only assign defaults as if they exist.
-      spellAssignments.set(value, playerObject.spellOptions[key]);
-    }
-  }
+  populateSpellSettings();
+
   // Populate Intro Page with Spell selection HTML and fill with defaults
   let spellAssignmentInnerHTML = '';
   for (const [, spellKeyValue] of Object.entries(playerObject.spellKeys)) {
@@ -435,6 +574,7 @@ const playAsGuest = async () => {
     localStorage.getItem('helpTextVersion'),
   );
 
+  const token = localStorage.getItem('authToken');
   if (
     !token ||
     !existingHelpTextVersion ||
@@ -460,6 +600,43 @@ const playAsGuest = async () => {
     );
     domElements.createAccountButton.addEventListener('click', createAccount);
     domElements.playAsGuestButton.addEventListener('click', playAsGuest);
+    domElements.changePlayerNameButton.addEventListener(
+      'click',
+      openChangePlayerNameDialogue,
+    );
+    domElements.updatePlayerNameButton.addEventListener(
+      'click',
+      updatePlayerName,
+    );
+    domElements.changePasswordButton.addEventListener(
+      'click',
+      openChangePasswordDialogue,
+    );
+    domElements.setPasswordButton.addEventListener(
+      'click',
+      openChangePasswordDialogue,
+    );
+    domElements.updatePasswordButton.addEventListener('click', updatePassword);
+    domElements.deleteAccountButton.addEventListener(
+      'click',
+      openDeleteAccountDialogue,
+    );
+    domElements.verifyDeleteAccountButton.addEventListener(
+      'click',
+      verifyDeleteAccount,
+    );
+    domElements.cancelChangePlayerNameButton.addEventListener(
+      'click',
+      cancelAccountActionDialogue,
+    );
+    domElements.cancelChangePasswordButton.addEventListener(
+      'click',
+      cancelAccountActionDialogue,
+    );
+    domElements.cancelDeleteButton.addEventListener(
+      'click',
+      cancelAccountActionDialogue,
+    );
 
     // Text box event listeners (on Enter key)
     domElements.passwordInputBox.addEventListener('keyup', (event) => {

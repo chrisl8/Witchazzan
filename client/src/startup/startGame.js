@@ -12,6 +12,7 @@ import isMobileBrowser from '../utilities/isMobileBrowser.js';
 import returnToIntroScreen from '../gameLoopFunctions/returnToIntroScreen.js';
 import spellAssignments from '../objects/spellAssignments.js';
 import textObject from '../objects/textObject.js';
+import populateSpellSettings from '../utilities/populateSpellSettings.js';
 
 async function waitForBrowserWindowToBeVisible() {
   // Don't start if the browser window is not visible.
@@ -76,23 +77,8 @@ async function waitForConnectionAndInitialPlayerPosition() {
   playerObject.infiniteHealth =
     localStorage.getItem('infiniteHealth') === 'true';
 
-  // Spell Assignments
-  for (const [key, value] of Object.entries(playerObject.spellKeys)) {
-    // Check local storage to see if there is a stored value
-    const spellSettingFromLocalStorage = localStorage.getItem(
-      `key${value}SpellAssignment`,
-    );
-    if (
-      spellSettingFromLocalStorage !== null &&
-      playerObject.spellOptions.indexOf(spellSettingFromLocalStorage) !== -1
-    ) {
-      spellAssignments.set(value, spellSettingFromLocalStorage);
-    } else if (playerObject.spellOptions[key]) {
-      // Otherwise fill them in with the default value,
-      // but only assign defaults as if they exist.
-      spellAssignments.set(value, playerObject.spellOptions[key]);
-    }
-  }
+  populateSpellSettings();
+
   // Active Spell
   if (localStorage.getItem('activeSpell')) {
     playerObject.activeSpell = localStorage.getItem('activeSpell');
