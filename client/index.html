@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <!--  viewport-fit=cover - https://stephenradford.me/removing-the-white-bars-in-safari-on-iphone-x/-->
   <meta
       name="viewport"
@@ -78,8 +78,8 @@
       sizes="16x16"
       href="./src/favicon/favicon-16x16.png"
   />
-  <link rel="manifest" href="./manifest.json" />
-  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="./manifest.json"/>
+  <meta name="theme-color" content="#ffffff"/>
   <!-- End Favicons -->
   <!-- Fonts -->
   <!-- https://fonts.google.com/?category=Monospace&selection.family=Roboto+Mono -->
@@ -100,7 +100,7 @@
   >
   <!-- End Fonts -->
   <!--  https://web.dev/defer-non-critical-css/-->
-  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
   <title>Witchazzan</title>
 </head>
 <body class="no-select" style="background-color: black;">
@@ -124,7 +124,7 @@
 <div id="mobile_zoom_helper" style="position: absolute; width: 100%; height: 100%"></div>
 <div id="canvas_overlay_elements" class="no-select" style="display: flex">
   <div id="command_input_div" style="display: none">
-    <span id="command_input_caret"></span><input id="command_input" />
+    <span id="command_input_caret"></span><input id="command_input"/>
   </div>
   <div id="upper_left_text_overlay_div">
     <p id="upper_left_text_overlay_input"></p>
@@ -140,12 +140,13 @@
   </div>
   <div id="player_tag"></div>
   <div id="other_player_tags"></div>
+  <div id="coordinates_text_overlay_div"></div>
 </div>
 <!-- Simple modal dialog used for message entry -->
 <!--https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog-->
 <dialog id="messageDialog">
   <h1 style="text-align: center">What do you want to say?</h1>
-  <br />
+  <br/>
   <form method="dialog">
     <div style="text-align: center;">
       <input
@@ -157,7 +158,7 @@
           style="width: 90%; margin: auto; height: 2em"
       />
     </div>
-    <br />
+    <br/>
     <fieldset style="text-align: center">
       <legend>Display</legend>
       <label for="message_visible_when_online">Only When I am Online</label>
@@ -167,7 +168,7 @@
           name="message_visibility_group"
           id="message_visible_when_online"
       />
-      <br />
+      <br/>
       <label for="message_always_visible">Always</label>
       <input
           class="checkbox_radio"
@@ -176,7 +177,7 @@
           id="message_always_visible"
       />
     </fieldset>
-    <br />
+    <br/>
     <div style="text-align: center">
       <button value="OK">OK</button>
       <button value="Cancel">Cancel</button>
