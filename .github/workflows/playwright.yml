@@ -22,7 +22,7 @@ jobs:
       - name: Run Server in background
         run: node server/server.js &
       - name: Run Client web server in background
-        run: npm run client-no-browser &
+        run: npm run client-no-browser < /dev/null &
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
