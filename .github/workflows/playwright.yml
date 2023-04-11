@@ -23,6 +23,8 @@ jobs:
         run: node server/server.js &
       - name: Run Client web server in background
         run: npm run client-no-browser < /dev/null &
+      - name: Wait for client to build adn start
+        run: sleep 45
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
