@@ -7,13 +7,17 @@
       "ignore_watch": [
         ".idea",
         ".git",
+        ".gitignore",
         ".parcel-cache",
         "assets",
         "dist",
         "persistentData",
         "client",
         "web-dist",
-        "stage"
+        "stage",
+        "playwright.config.js",
+        "tests",
+        "test-results"
       ],
       "merge_logs": true,
       "exec_interpreter": "node",

@@ -37,6 +37,7 @@ const playerObject = {
   scrollingTextOverlayInputText: '',
   domElements: {
     Center: document.getElementById('center_text_overlay_div'),
+    Coordinates: document.getElementById('coordinates_text_overlay_div'),
     Fading: document.getElementById('fading_text_overlay_div'),
     UpperLeft: document.getElementById('upper_left_text_overlay_div'),
     Scrolling: document.getElementById('scrolling_text_overlay_div'),
@@ -50,6 +51,7 @@ const playerObject = {
   },
   domElementHistory: {
     Center: { style: {} },
+    Coordinates: { style: {} },
     Fading: { style: {} },
     UpperLeft: { style: {} },
     Scrolling: { style: {} },

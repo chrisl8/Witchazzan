@@ -11,6 +11,10 @@ const updateInGameDomElements = (htmlElementParameters) => {
       text: '',
       hidden: true,
     },
+    Coordinates: {
+      text: '',
+      hidden: true,
+    },
     UpperLeft: {
       text: '',
       hidden: true,
@@ -44,204 +48,224 @@ const updateInGameDomElements = (htmlElementParameters) => {
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
 
-  ['Center', 'UpperLeft', 'Scrolling', 'Fading'].forEach((textLocation) => {
-    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
+  ['Center', 'Coordinates', 'UpperLeft', 'Scrolling', 'Fading'].forEach(
+    (textLocation) => {
+      // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
 
-    // Create temp object to store new settings to compare with current
-    const newValueObject = {
-      style: {},
-    };
+      // Create temp object to store new settings to compare with current
+      const newValueObject = {
+        style: {},
+      };
 
-    // Size and color
-    if (htmlElementParameters[textLocation]) {
-      newValueObject.style.color =
-        htmlElementParameters[textLocation].color || 'red';
-      newValueObject.style.fontSize = htmlElementParameters[textLocation]
-        .fontSize
-        ? `${windowHeight * htmlElementParameters[textLocation].fontSize}px`
-        : '1em';
-      newValueObject.style.background = htmlElementParameters[textLocation]
-        .background
-        ? `rgba(${htmlElementParameters[textLocation].background})`
-        : 'none';
-    }
-
-    // Text and visibility from scene text list
-    newValueObject.hidden = consolidatedTextObject[textLocation].hidden;
-    newValueObject.innerHTML = consolidatedTextObject[textLocation].text;
-
-    // Location for Center Text
-    if (textLocation === 'Center') {
-      newValueObject.style.left = `${
-        windowWidth / 2 - playerObject.domElements[textLocation].offsetWidth / 2
-      }px`;
-      newValueObject.style.top = `${
-        windowHeight / 2 -
-        playerObject.domElements[textLocation].offsetHeight / 2
-      }px`;
-    }
-
-    // Location for Fading Text
-    if (textLocation === 'Fading') {
-      newValueObject.style.left = `${
-        windowWidth / 2 - playerObject.domElements[textLocation].offsetWidth / 2
-      }px`;
-      newValueObject.style.top = `${
-        windowHeight * 0.8 -
-        playerObject.domElements[textLocation].offsetHeight / 2
-      }px`;
-    }
-
-    // Check settings and update if they are different
-    for (const [key, value] of Object.entries(newValueObject.style)) {
-      if (playerObject.domElementHistory[textLocation].style[key] !== value) {
-        playerObject.domElements[textLocation].style[key] = value;
+      // Size and color
+      if (htmlElementParameters[textLocation]) {
+        newValueObject.style.color =
+          htmlElementParameters[textLocation].color || 'red';
+        newValueObject.style.fontSize = htmlElementParameters[textLocation]
+          .fontSize
+          ? `${windowHeight * htmlElementParameters[textLocation].fontSize}px`
+          : '1em';
+        newValueObject.style.background = htmlElementParameters[textLocation]
+          .background
+          ? `rgba(${htmlElementParameters[textLocation].background})`
+          : 'none';
       }
-    }
-    for (const [key, value] of Object.entries(newValueObject)) {
-      if (
-        key !== 'style' &&
-        playerObject.domElementHistory[textLocation][key] !== value
-      ) {
-        // Track scroll location for Scrolling text
-        const isScrolledToBottom =
-          textLocation === 'Scrolling' &&
-          key === 'innerHTML' &&
-          playerObject.domElements[textLocation].scrollHeight -
-            playerObject.domElements[textLocation].clientHeight <=
-            playerObject.domElements[textLocation].scrollTop + 1;
 
-        playerObject.domElements[textLocation][key] = value;
+      // Text and visibility from scene text list
+      newValueObject.hidden = consolidatedTextObject[textLocation].hidden;
+      newValueObject.innerHTML = consolidatedTextObject[textLocation].text;
 
-        // scroll to bottom if isScrolledToBottom is true
-        if (isScrolledToBottom) {
-          playerObject.domElements[textLocation].scrollTop =
-            playerObject.domElements[textLocation].scrollHeight;
+      // Location for Center Text
+      if (textLocation === 'Center') {
+        newValueObject.style.left = `${
+          windowWidth / 2 -
+          playerObject.domElements[textLocation].offsetWidth / 2
+        }px`;
+        newValueObject.style.top = `${
+          windowHeight / 2 -
+          playerObject.domElements[textLocation].offsetHeight / 2
+        }px`;
+      }
+
+      // Location for Fading Text
+      if (textLocation === 'Fading') {
+        newValueObject.style.left = `${
+          windowWidth / 2 -
+          playerObject.domElements[textLocation].offsetWidth / 2
+        }px`;
+        newValueObject.style.top = `${
+          windowHeight * 0.8 -
+          playerObject.domElements[textLocation].offsetHeight / 2
+        }px`;
+      }
+
+      // Location for Coordinates Text
+      if (textLocation === 'Coordinates') {
+        newValueObject.style.left = `${
+          windowWidth - playerObject.domElements[textLocation].offsetWidth
+        }px`;
+      }
+
+      // Check settings and update if they are different
+      for (const [key, value] of Object.entries(newValueObject.style)) {
+        if (playerObject.domElementHistory[textLocation].style[key] !== value) {
+          playerObject.domElements[textLocation].style[key] = value;
         }
       }
-    }
+      for (const [key, value] of Object.entries(newValueObject)) {
+        if (
+          key !== 'style' &&
+          playerObject.domElementHistory[textLocation][key] !== value
+        ) {
+          // Track scroll location for Scrolling text
+          const isScrolledToBottom =
+            textLocation === 'Scrolling' &&
+            key === 'innerHTML' &&
+            playerObject.domElements[textLocation].scrollHeight -
+              playerObject.domElements[textLocation].clientHeight <=
+              playerObject.domElements[textLocation].scrollTop + 1;
 
-    // Get canvas offset for use when setting items relative to in game objects
-    const canvasStyle = window.getComputedStyle(
-      playerObject.domElements.canvas,
-    );
-    const canvasLeftMargin = Number(
-      canvasStyle['margin-left'].replace('px', ''),
-    );
+          playerObject.domElements[textLocation][key] = value;
 
-    // Player and NPC tags
-    hadrons.forEach((hadron, key) => {
-      if (clientSprites.has(key)) {
-        let clientSprite = clientSprites.get(key);
-        if (hadron.typ === 'player' || hadron.typ === 'quark') {
-          if (key === playerObject.playerId) {
-            // Act on the local player, not the shadow.
-            clientSprite = { sprite: playerObject.player };
-          }
-          if (!playerObject.domElements.otherPlayerTags[key]) {
-            playerObject.domElements.otherPlayerTags[key] =
-              document.createElement('div');
-            playerObject.domElements.otherPlayerTags[key].classList.add(
-              'other_player_tag',
-            );
-            playerObject.domElements.otherPlayerTagsDiv.appendChild(
-              playerObject.domElements.otherPlayerTags[key],
-            );
-          }
-
-          // Text
-          let newInnerHTML = '';
-          if (hadron.cho) {
-            // Chat bubble takes precedence over health bar.
-            newInnerHTML = '&#x1F4AD;';
-            // Font size
-            const newFontSize =
-              playerObject.player.displayWidth /
-              playerObject.cameraScaleFactor /
-              2;
-            playerObject.domElements.otherPlayerTags[
-              key
-            ].style.fontSize = `${newFontSize}px`;
-
-            // Location
-            // This is tweaked for the "thought bubble",
-            // to make it up and to the right of the player.
-            playerObject.domElements.otherPlayerTags[key].style.left = `${
-              canvasLeftMargin +
-              (clientSprite.sprite.x - playerObject.cameraOffset.x) /
-                playerObject.cameraScaleFactor +
-              4
-            }px`;
-            playerObject.domElements.otherPlayerTags[key].style.top = `${
-              (clientSprite.sprite.y -
-                clientSprite.sprite.displayHeight -
-                playerObject.cameraOffset.y) /
-                playerObject.cameraScaleFactor +
-              4
-            }px`;
-          } else if (hadron.hlt < hadron.mxh) {
-            const healthBarWidth = Math.trunc(
-              (clientSprite.sprite.displayWidth /
-                playerObject.cameraScaleFactor) *
-                1.75,
-            );
-            const healthPercentage = hadron.hlt / hadron.mxh;
-            const healthBarHeight =
-              (clientSprite.sprite.displayHeight /
-                playerObject.cameraScaleFactor) *
-              0.1;
-            let healthBarColor = '#27d727';
-            if (healthPercentage < 0.7) {
-              healthBarColor = 'orange';
-            }
-            if (healthPercentage < 0.2) {
-              healthBarColor = 'red';
-            }
-            newInnerHTML = `<div class="w3-light-grey w3-round" style="width:${healthBarWidth}px; height:${healthBarHeight}px"><div class="w3-container w3-blue w3-round" style="width:${Math.trunc(
-              healthPercentage * 100,
-            )}%; height:${healthBarHeight}px; background-color: ${healthBarColor};">&nbsp</div></div>`;
-            // Location
-            playerObject.domElements.otherPlayerTags[key].style.left = `${
-              canvasLeftMargin +
-              (clientSprite.sprite.x -
-                clientSprite.sprite.displayWidth -
-                playerObject.cameraOffset.x) /
-                playerObject.cameraScaleFactor +
-              4
-            }px`;
-            playerObject.domElements.otherPlayerTags[key].style.top = `${
-              (clientSprite.sprite.y -
-                clientSprite.sprite.displayHeight * 0.6 -
-                playerObject.cameraOffset.y) /
-              playerObject.cameraScaleFactor
-            }px`;
-          }
-
-          // Only update it if it has changed, because repeatedly updating the DOM will slow down the browser.
-          if (
-            !playerObject.domElementHistory.otherPlayerTags.hasOwnProperty(key)
-          ) {
-            playerObject.domElementHistory.otherPlayerTags[key] = {};
-          }
-          if (
-            newInnerHTML !==
-            playerObject.domElementHistory.otherPlayerTags[key].innerHTML
-          ) {
-            playerObject.domElementHistory.otherPlayerTags[key].innerHTML =
-              newInnerHTML;
-            playerObject.domElements.otherPlayerTags[key].innerHTML =
-              newInnerHTML;
+          // scroll to bottom if isScrolledToBottom is true
+          if (isScrolledToBottom) {
+            playerObject.domElements[textLocation].scrollTop =
+              playerObject.domElements[textLocation].scrollHeight;
           }
         }
-      } else if (playerObject.domElements.otherPlayerTags[key]) {
-        playerObject.domElements.otherPlayerTags[key].remove();
-        playerObject.domElements.otherPlayerTags[key] = null;
       }
-    });
 
-    // Store current settings so we do not update unless required.
-    playerObject.domElementHistory[textLocation] = newValueObject;
-  });
+      // Get canvas offset for use when setting items relative to in game objects
+      const canvasStyle = window.getComputedStyle(
+        playerObject.domElements.canvas,
+      );
+      const canvasLeftMargin = Number(
+        canvasStyle['margin-left'].replace('px', ''),
+      );
+
+      // Update Player Coordinates Display
+      if (textObject.coordinates.shouldBeActiveNow) {
+        playerObject.domElements.Coordinates.textContent = `${Math.floor(
+          playerObject.player.x,
+        )},${Math.floor(playerObject.player.y)}`;
+      }
+
+      // Player and NPC tags
+      hadrons.forEach((hadron, key) => {
+        if (clientSprites.has(key)) {
+          let clientSprite = clientSprites.get(key);
+          if (hadron.typ === 'player' || hadron.typ === 'quark') {
+            if (key === playerObject.playerId) {
+              // Act on the local player, not the shadow.
+              clientSprite = { sprite: playerObject.player };
+            }
+            if (!playerObject.domElements.otherPlayerTags[key]) {
+              playerObject.domElements.otherPlayerTags[key] =
+                document.createElement('div');
+              playerObject.domElements.otherPlayerTags[key].classList.add(
+                'other_player_tag',
+              );
+              playerObject.domElements.otherPlayerTagsDiv.appendChild(
+                playerObject.domElements.otherPlayerTags[key],
+              );
+            }
+
+            // Text
+            let newInnerHTML = '';
+            if (hadron.cho) {
+              // Chat bubble takes precedence over health bar.
+              newInnerHTML = '&#x1F4AD;';
+              // Font size
+              const newFontSize =
+                playerObject.player.displayWidth /
+                playerObject.cameraScaleFactor /
+                2;
+              playerObject.domElements.otherPlayerTags[
+                key
+              ].style.fontSize = `${newFontSize}px`;
+
+              // Location
+              // This is tweaked for the "thought bubble",
+              // to make it up and to the right of the player.
+              playerObject.domElements.otherPlayerTags[key].style.left = `${
+                canvasLeftMargin +
+                (clientSprite.sprite.x - playerObject.cameraOffset.x) /
+                  playerObject.cameraScaleFactor +
+                4
+              }px`;
+              playerObject.domElements.otherPlayerTags[key].style.top = `${
+                (clientSprite.sprite.y -
+                  clientSprite.sprite.displayHeight -
+                  playerObject.cameraOffset.y) /
+                  playerObject.cameraScaleFactor +
+                4
+              }px`;
+            } else if (hadron.hlt < hadron.mxh) {
+              const healthBarWidth = Math.trunc(
+                (clientSprite.sprite.displayWidth /
+                  playerObject.cameraScaleFactor) *
+                  1.75,
+              );
+              const healthPercentage = hadron.hlt / hadron.mxh;
+              const healthBarHeight =
+                (clientSprite.sprite.displayHeight /
+                  playerObject.cameraScaleFactor) *
+                0.1;
+              let healthBarColor = '#27d727';
+              if (healthPercentage < 0.7) {
+                healthBarColor = 'orange';
+              }
+              if (healthPercentage < 0.2) {
+                healthBarColor = 'red';
+              }
+              newInnerHTML = `<div class="w3-light-grey w3-round" style="width:${healthBarWidth}px; height:${healthBarHeight}px"><div class="w3-container w3-blue w3-round" style="width:${Math.trunc(
+                healthPercentage * 100,
+              )}%; height:${healthBarHeight}px; background-color: ${healthBarColor};">&nbsp</div></div>`;
+              // Location
+              playerObject.domElements.otherPlayerTags[key].style.left = `${
+                canvasLeftMargin +
+                (clientSprite.sprite.x -
+                  clientSprite.sprite.displayWidth -
+                  playerObject.cameraOffset.x) /
+                  playerObject.cameraScaleFactor +
+                4
+              }px`;
+              playerObject.domElements.otherPlayerTags[key].style.top = `${
+                (clientSprite.sprite.y -
+                  clientSprite.sprite.displayHeight * 0.6 -
+                  playerObject.cameraOffset.y) /
+                playerObject.cameraScaleFactor
+              }px`;
+            }
+
+            // Only update it if it has changed, because repeatedly updating the DOM will slow down the browser.
+            if (
+              !playerObject.domElementHistory.otherPlayerTags.hasOwnProperty(
+                key,
+              )
+            ) {
+              playerObject.domElementHistory.otherPlayerTags[key] = {};
+            }
+            if (
+              newInnerHTML !==
+              playerObject.domElementHistory.otherPlayerTags[key].innerHTML
+            ) {
+              playerObject.domElementHistory.otherPlayerTags[key].innerHTML =
+                newInnerHTML;
+              playerObject.domElements.otherPlayerTags[key].innerHTML =
+                newInnerHTML;
+            }
+          }
+        } else if (playerObject.domElements.otherPlayerTags[key]) {
+          playerObject.domElements.otherPlayerTags[key].remove();
+          playerObject.domElements.otherPlayerTags[key] = null;
+        }
+      });
+
+      // Store current settings so we do not update unless required.
+      playerObject.domElementHistory[textLocation] = newValueObject;
+    },
+  );
 };
 
 export default updateInGameDomElements;

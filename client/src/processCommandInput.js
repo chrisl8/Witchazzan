@@ -6,6 +6,7 @@ import closeChatInputBox from './closeChatInputBox.js';
 import debugLog from './utilities/debugLog.js';
 import deletedHadronList from './objects/deletedHadronList.js';
 import hadrons from './objects/hadrons.js';
+import textObject from './objects/textObject.js';
 
 if (!Array.isArray(JSON.parse(localStorage.getItem('commandHistory')))) {
   localStorage.setItem('commandHistory', JSON.stringify([]));
@@ -56,6 +57,11 @@ function processCommandInput(event) {
       ) {
         console.log(deletedHadronList);
         addEntryToCommandHistory(command);
+      } else if (
+        inputTextSpaceDelimitedArray[0].toLowerCase() === 'coordinates'
+      ) {
+        textObject.coordinates.shouldBeActiveNow =
+          !textObject.coordinates.shouldBeActiveNow;
       } else if (
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'dumphadrons'
       ) {

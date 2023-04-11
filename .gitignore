@@ -23,4 +23,10 @@ server/utilities/version.js
 *.tiled-project
 *.tiled-session
 
+# Parcel
 .parcel-cache
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/

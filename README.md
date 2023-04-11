@@ -438,6 +438,40 @@ Parcel is pretty nice, but it has quirks. Here are my notes.
      - Technically if you replace the icon images, the file names will stay the same, so you may not have to update `index.html` anyway.
  - Parcel bundling will ensure that browser caching sees that the files have changed.
 
+## Playwright Testing
+
+### Setup Playwright to work in WSL2:
+`npx playwright install --with-deps chromium`  
+**NOTE: These were given to me when I tried to run `npx playwright test` the first time, so you can use that as your "reference" in case this changes.**  
+`sudo apt-get install libgtk-3-0 libxtst6 libpangocairo-1.0-0 libcairo-gobject2 libgdk-pixbuf-2.0-0 libdbus-glib-1-2 libxcursor1`
+
+### Consider resetting game data:
+These tests are meant to be run on a clean game with an empty `persistentData` folder,
+so I suggest wiping the persistent data folder:  
+`rm -rf persistentData`  
+
+### Start client and server in their own terminals
+```
+npm run server
+npm run client-no-browser
+```
+### Run tests silently
+
+`runTests.sh`
+
+### To see the tests while they run
+`runTests.sh --headed`  
+
+**NOTE that running the tests "headed" may altar the screenshots, specifically "headed" includes scroll bars on some screens, while without does not, which can affect the screenshot comparison.**
+
+### Updating Tests
+
+#### New Screenshots
+https://playwright.dev/docs/test-snapshots
+
+To build new golden snapshots after making changes to the game run tests with the `--reset` argument:  
+`runTests.sh --reset`  
+
 ## License
 
 Please see the LICENSE.md file in the same folder as this file.

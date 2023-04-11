@@ -30,6 +30,7 @@ div .intro-screen-subsection {
 #center_text_overlay_div,
 #fading_text_overlay_div,
 #player_tag,
+#coordinates_text_overlay_div,
 .other_player_tag {
   position: absolute;
 }
@@ -69,6 +70,13 @@ div .intro-screen-subsection {
 }
 
 #center_text_overlay_div {
+  font-family: 'PT Serif', serif;
+  text-shadow: 2px 2px 2px #4a430b;
+}
+
+#coordinates_text_overlay_div {
+  text-align: right;
+  color: white;
   font-family: 'PT Serif', serif;
   text-shadow: 2px 2px 2px #4a430b;
 }

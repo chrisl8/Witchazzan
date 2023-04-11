@@ -251,6 +251,11 @@ const camelopardalisHtmlElementParameters = {
     color: '#5a8ab7',
     background: '255,255,255,0.9', // rgba
   },
+  Coordinates: {
+    fontSize: '.04', // percent of scene height.
+    color: '#5a8ab7',
+    background: '255,255,255,0.9', // rgba
+  },
   Fading: {
     fontSize: '.05', // percent of scene height.
     color: '#981c9e',
@@ -271,6 +276,10 @@ const camelopardalisHtmlElementParameters = {
 const caveHtmlElementParameters = {
   Center: {
     fontSize: '.1', // percent of scene height.
+    color: 'red',
+  },
+  Coordinates: {
+    fontSize: '.04', // percent of scene height.
     color: 'red',
   },
   Fading: {
