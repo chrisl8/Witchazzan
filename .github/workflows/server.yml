@@ -19,6 +19,8 @@ on:
         description: 'Manually test run server'
 jobs:
   build:
+    env:
+      CI_TEST_RUN: "true"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

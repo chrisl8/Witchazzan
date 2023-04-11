@@ -1399,7 +1399,7 @@ process.on('SIGINT', () => {
   closeServer();
 });
 
-if (process.env.CI === 'true') {
+if (process.env.CI_TEST_RUN === 'true') {
   console.log('===========================================');
   console.log('CI Test environment detected,');
   console.log('Server will self-terminate in 45 seconds...');
