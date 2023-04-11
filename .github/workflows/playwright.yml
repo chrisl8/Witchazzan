@@ -17,6 +17,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Set Version Number
+        run: ./scripts/versionNumberUpdate.sh
       - name: Run Server in background
         run: node server/server.js &
       - name: Run Client web server in background
