@@ -9,7 +9,7 @@
  * Create - scene.create
  * Update - scene.update
  *
- * See https://newdocs.phaser.io/docs/3.55.2/Phaser for help with the Phaser library.
+ * See https://newdocs.phaser.io/docs/3.60.0/Phaser for help with the Phaser library.
  */
 
 import Phaser from 'phaser';
