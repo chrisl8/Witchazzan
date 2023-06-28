@@ -22,14 +22,14 @@ function receiveDataFromServer() {
     communicationsObject.socket = socket.connect(
       `${window.location.hostname}:8080`,
       {
-        transports: ['websocket', 'webtransport'],
+        transports: ['websocket'],
         timeout: 5000,
         parser: msgpackParser,
       },
     );
   } else {
     communicationsObject.socket = socket.connect({
-      transports: ['webtransport', 'websocket'],
+      transports: ['websocket'],
       timeout: 5000,
       parser: msgpackParser,
     });
