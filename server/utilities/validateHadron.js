@@ -80,6 +80,7 @@ const optionalKeys = [
   'fph', // "Follow Path (fph)" (String) Indicates that this NPC should follow a path by naming the Path to follow. The details of the path will be held in Waypoint entries in the Tilemap.
   'cpd', // "Current Path Destination (cpd)" (Int) Indicates the current Progression point along a set of Waypoints in a Path that this NPC is headed toward. Default will always start with 0 if not set.
   'ipd', // "Initial Path Destination (cpd)" (Int) Indicates the INITIAL Progression point along a set of Waypoints found in the tilemap. Use for  starting NPC's at their initial location when resurrecting them..
+  'nph', // "Navigate Path (nph)" (string) Like Follow Path, but use EasyStar to navigate between waypoints instead of blindly charging toward them.
   'rsp', // "Rotation Speed (rsp)" (Float) Rotation speed.
   // For items
   'hld', // Held BY ID. This is the ID of the player that is currently holding this item.

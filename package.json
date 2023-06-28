@@ -64,6 +64,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "easystarjs": "^0.4.4",
     "express": "^4.17.3",
     "fflate": "^0.8.0",
     "json5": "^2.2.1",

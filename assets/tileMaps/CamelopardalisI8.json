@@ -6,7 +6,7 @@
          "id":13,
          "layers":[
                 {
-                 "data": [12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 "data":[12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -405,19 +405,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":35,
                  "name":"Left",
@@ -434,13 +433,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":36,
                  "name":"Lower",
@@ -457,13 +456,13 @@
                          "value":false
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":376
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":37,
                  "name":"Upper",
@@ -480,13 +479,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":40
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":38,
                  "name":"Right",
@@ -503,10 +502,160 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":664,
                  "y":208
+                }, 
+                {
+                 "height":0,
+                 "id":40,
+                 "name":"Roving NPC",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"dod",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"dps",
+                         "type":"int",
+                         "value":99
+                        }, 
+                        {
+                         "name":"faceTarget",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"06988596-68b9-46ba-b6e9-0b3632e5f89b"
+                        }, 
+                        {
+                         "name":"initialPathWaypoint",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"navigatePath",
+                         "type":"string",
+                         "value":"One"
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":60
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"LetterM"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":624,
+                 "y":63.6666666666666
+                }, 
+                {
+                 "height":0,
+                 "id":41,
+                 "name":"Waypoint",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Waypoint"
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"One"
+                        }, 
+                        {
+                         "name":"Progression",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":104.333333333333,
+                 "y":312.666666666666
+                }, 
+                {
+                 "height":0,
+                 "id":42,
+                 "name":"Waypoint",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Waypoint"
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"One"
+                        }, 
+                        {
+                         "name":"Progression",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":560,
+                 "y":38.3333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -515,7 +664,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":40,
+ "nextobjectid":43,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -524,24 +673,24 @@
          "value":"most go south"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
          "columns":12,
          "firstgid":1,
          "image":"..\/tileSets\/CamelopardalisColor16x16.png",
-         "imageheight":715,
+         "imageheight":256,
          "imagewidth":205,
          "margin":1,
          "name":"CamelopardalisColor16x16",
          "spacing":1,
-         "tilecount":504,
+         "tilecount":180,
          "tileheight":16,
          "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

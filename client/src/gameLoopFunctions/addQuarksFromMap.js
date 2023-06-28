@@ -186,6 +186,9 @@ function addQuarksFromMap(map, sceneName) {
         if (objectProperties.hasOwnProperty('followPath')) {
           newHadron.fph = objectProperties.followPath;
         }
+        if (objectProperties.hasOwnProperty('navigatePath')) {
+          newHadron.nph = objectProperties.navigatePath;
+        }
         if (
           objectProperties.hasOwnProperty('initialPathWaypoint') &&
           // eslint-disable-next-line no-restricted-globals

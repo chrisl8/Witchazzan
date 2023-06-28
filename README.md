@@ -172,7 +172,8 @@ Some important things:
      - `particle` Optional (String) "Particle (pcl)" Name of a particle to emit from the quark.
      - `damageOnContact` Optional (Int) "Damage Per Contact (dpc)" Indicates that contact with a player will damage them. The number will be used as a basis for how badly to damage how quickly.
      - `followPath` Optional (String) "Follow Path (fph)" Indicates that this NPC should follow a path by naming the Path to follow. The details of the path will be held in Waypoint entries in the Tilemap.
-     - `initialPathWaypoint` Optional (Int) "Initial Path Waypoint (cpd)" (Int) By default an NPC will start with Waypoint Progression 0, but if you want to override that for the initial Waypoint, you can use this. 
+     - `initialPathWaypoint` Optional (Int) "Initial Path Waypoint (cpd)" (Int) By default an NPC will start with Waypoint Progression 0, but if you want to override that for the initial Waypoint, you can use this.
+     - `navigatePath` Optional (string) "Navigate Path (nph)" Like Follow Path, but use EasyStar to navigate between waypoints instead of blindly charging toward them.
      - `uniqueId` Optional (String) "Unique ID (uid)" When making a hadron from a Quark, this ID will be used, and hence only one will ever be created.
      - **There may be additional options that were not documented yet. You can check `validateHadron.js` for any not listed here and also check `addQuarksFromMap.js` to find out what the Tilemap string is for them. Just be aware that some of the keys in `validateHadron.js` are meant to be used internally by the game, not to be set in the Quark.** 
      - **You may add other things here as well and use them in your code, but if you do, you must update the code in `addQuarksFromMap.js` to copy these key/value pairs into the hadron, and you must alo update `validateHadron.js` to add your additional hadron keys as valid keys.**

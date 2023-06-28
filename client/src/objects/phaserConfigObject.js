@@ -5,6 +5,7 @@
 import Phaser from 'phaser';
 import PhaserRaycaster from 'phaser-raycaster';
 import scene from '../sceneList.js';
+import PathFinder from '../plugins/pathFinder.js';
 
 const phaserConfigObject = {
   type: Phaser.WEBGL, // Which renderer to use
@@ -33,6 +34,11 @@ const phaserConfigObject = {
         key: 'PhaserRaycaster',
         plugin: PhaserRaycaster,
         mapping: 'raycasterPlugin',
+      },
+      {
+        key: 'PathFinder',
+        plugin: PathFinder,
+        mapping: 'pathFinderPlugin',
       },
     ],
   },

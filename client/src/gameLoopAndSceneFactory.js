@@ -454,6 +454,9 @@ const gameLoopAndSceneFactory = ({
       gameSize.height,
     );
 
+    // Set up pathFinder
+    this.pathFinder = this.pathFinderPlugin.init(map);
+
     barricades.call(this, map, gameSize);
 
     // Essentially announce that the scene is ready.
@@ -533,7 +536,7 @@ const gameLoopAndSceneFactory = ({
 
     // WARNING: npcBehavior must be above updateHadrons,
     // otherwise fired spells are very erratic.
-    npcBehavior(delta, sceneName, map);
+    npcBehavior.call(this, delta, sceneName, map);
 
     itemBehavior(delta, sceneName, map);
 

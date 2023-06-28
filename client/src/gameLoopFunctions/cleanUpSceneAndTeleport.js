@@ -65,6 +65,11 @@ function cleanUpSceneAndTeleport(
       this.raycaster = null;
     }
 
+    // Clean up pathFinder
+    if (this.pathFinder) {
+      this.pathFinder = null;
+    }
+
     // Clean up target objects
     if (playerObject.nearbyTargetObject.rectangle) {
       playerObject.nearbyTargetObject.rectangle.destroy();

@@ -9,6 +9,7 @@ import npcSpellCaster from '../npcBehaviors/npcSpellCaster.js';
 import npcRotateToFaceTarget from '../npcBehaviors/npcRotateToFaceTarget.js';
 import npcFollowTarget from '../npcBehaviors/npcFollowTarget.js';
 import npcFollowPath from '../npcBehaviors/npcFollowPath.js';
+import npcNavigatePath from '../npcBehaviors/npcNavigatePath.js';
 
 function npcBehavior(delta, sceneName, map) {
   hadrons.forEach((hadron, key) => {
@@ -136,6 +137,20 @@ function npcBehavior(delta, sceneName, map) {
           paths.has(hadron.fph)
         ) {
           [newHadronData, hadronUpdated] = npcFollowPath({
+            hadron,
+            clientSprite,
+            newHadronData,
+            hadronUpdated,
+          });
+        }
+
+        if (
+          !rayCastFoundTarget &&
+          hadron.hasOwnProperty('nph') &&
+          hadron.nph &&
+          paths.has(hadron.nph)
+        ) {
+          [newHadronData, hadronUpdated] = npcNavigatePath.call(this, {
             hadron,
             clientSprite,
             newHadronData,
