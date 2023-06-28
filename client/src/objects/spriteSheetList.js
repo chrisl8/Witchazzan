@@ -559,9 +559,16 @@ const spriteSheetList = [
     name: 'CircleTank',
     frameWidth: 16,
     frameHeight: 16,
+    physicsCircle: {
+      radius: 6.5,
+    },
+    physicsOffset: {
+      x: 1,
+      y: 1,
+    },
     physicsSize: {
-      x: 16,
-      y: 24,
+      x: 0,
+      y: 0,
     },
     displayWidth: 16,
     displayHeight: 16,
@@ -572,9 +579,16 @@ const spriteSheetList = [
     name: 'CircleTankRed',
     frameWidth: 16,
     frameHeight: 16,
+    physicsCircle: {
+      radius: 6.5,
+    },
+    physicsOffset: {
+      x: 1,
+      y: 1,
+    },
     physicsSize: {
-      x: 16,
-      y: 24,
+      x: 0,
+      y: 0,
     },
     displayWidth: 16,
     displayHeight: 16,
@@ -585,9 +599,16 @@ const spriteSheetList = [
     name: 'CircleTankOrange',
     frameWidth: 16,
     frameHeight: 16,
+    physicsCircle: {
+      radius: 6.5,
+    },
+    physicsOffset: {
+      x: 1,
+      y: 1,
+    },
     physicsSize: {
-      x: 16,
-      y: 24,
+      x: 0,
+      y: 0,
     },
     displayWidth: 16,
     displayHeight: 16,
@@ -723,6 +744,25 @@ const spriteSheetList = [
     displayWidth: 16,
     displayHeight: 16,
     rotatable: true,
+  },
+  {
+    type: 'other',
+    name: 'LetterM',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsCircle: {
+      radius: 6.5,
+    },
+    physicsOffset: {
+      x: 1,
+      y: 1,
+    },
+    physicsSize: {
+      x: 0,
+      y: 0,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
   },
   {
     type: 'other',
