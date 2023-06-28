@@ -29,7 +29,7 @@ function receiveDataFromServer() {
     );
   } else {
     communicationsObject.socket = socket.connect({
-      transports: ['websocket', 'webtransport'],
+      transports: ['webtransport', 'websocket'],
       timeout: 5000,
       parser: msgpackParser,
     });
