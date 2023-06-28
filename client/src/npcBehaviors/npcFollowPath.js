@@ -36,9 +36,6 @@ function npcFollowPath({ hadron, clientSprite, newHadronData, hadronUpdated }) {
         clientSprite.sprite.body.setVelocityX(0);
         clientSprite.sprite.body.setVelocityY(0);
       }
-      // if (isStuck) {
-      //   console.log(newHadronData.id, newHadronData.cpd);
-      // }
     } else {
       // NOTE: If your velocity causes the sprites to overshoot the destination, they
       // can get caught in a loop of passing it, turning around, and passing it again.
