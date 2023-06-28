@@ -219,6 +219,7 @@ If it isn't installed, install it:
 ```
 npm install -g pm2
 pm2 install pm2-logrotate # Otherwise logs can grow to fill disk space
+pm2 set pm2-logrotate:retain 1 # Limit retention
 pm2 --version
 ```
 
