@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { randomUUID, randomBytes } from 'crypto';
 import _ from 'lodash';
+import { WebTransport } from '@fails-components/webtransport';
 import persistentData from './persistentData.js';
 import validateJWT from './validateJWT.js';
 import wait from './utilities/wait.js';
@@ -19,6 +20,8 @@ import serverVersion from './utilities/version.js';
 import mapUtils from './utilities/mapUtils.js';
 import generateRandomGuestUsername from './utilities/generateRandomGuestUsername.js';
 import initDatabase from './utilities/initDatabase.js';
+
+global.WebTransport = WebTransport;
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -244,6 +247,7 @@ const webServer = app.listen(webserverPort);
 // NOTE: As best I can tell, CORS has no affect either way on websocket, so just not messing with it.
 const io = new Server(webServer, {
   parser: msgPackParser,
+  transports: ['websocket', 'webtransport'],
 });
 
 async function isNameInvalid(name) {
