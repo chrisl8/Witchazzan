@@ -2,6 +2,12 @@
 # shellcheck disable=SC2059
 
 set -e
+
+if [[ $# -eq 0 ]]; then
+  echo "You must provide server name to deploy to."
+  exit
+fi
+
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -38,12 +44,12 @@ fi
 npm run build
 
 printf "\n${YELLOW}Preparing remote side for update${NC}\n"
-ssh witchazzan.space 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && mkdir stage'
+ssh "${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && mkdir stage'
 
 printf "\n${YELLOW}Copying new built web files to server${NC}\n"
-scp web-dist/* witchazzan.space:./Witchazzan/stage
+scp web-dist/* "${1}":./Witchazzan/stage
 # Copy the version number we built into the web site to the server.
-scp server/utilities/version.js witchazzan.space:./Witchazzan/server/utilities/version.js
+scp server/utilities/version.js "${1}":./Witchazzan/server/utilities/version.js
 
 printf "\n${YELLOW}Restarting server:${NC}\n"
-ssh witchazzan.space 'cd ~/Witchazzan || exit && rm -rf web-dist && mv stage web-dist && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'
+ssh "${1}" 'cd ~/Witchazzan || exit && rm -rf web-dist && mv stage web-dist && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'

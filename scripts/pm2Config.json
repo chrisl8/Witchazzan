@@ -2,7 +2,6 @@
   "apps": [
     {
       "name": "Witchazzan",
-      "cwd": "~/Witchazzan",
       "script": "server/server.js",
       "max_memory_restart": "500M",
       "watch": false,
