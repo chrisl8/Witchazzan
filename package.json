@@ -61,6 +61,7 @@
     "not dead"
   ],
   "dependencies": {
+    "@fails-components/webtransport": "^0.1.7",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "easystarjs": "^0.4.4",

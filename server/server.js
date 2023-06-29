@@ -1,5 +1,7 @@
 import fs from 'fs';
 import cors from 'cors';
+import http from 'http';
+import https from 'https';
 import express from 'express';
 import sqlite3 from 'sqlite3';
 import bcrypt from 'bcrypt';
@@ -19,6 +21,7 @@ import serverVersion from './utilities/version.js';
 import mapUtils from './utilities/mapUtils.js';
 import generateRandomGuestUsername from './utilities/generateRandomGuestUsername.js';
 import initDatabase from './utilities/initDatabase.js';
+import { Http3Server } from '@fails-components/webtransport';
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -240,12 +243,67 @@ app.use(express.static(`${__dirname}/../web-dist`));
 // parse application/json
 app.use(express.json());
 
-const webServer = app.listen(webserverPort);
+/*
+  NOTE that I was unable to make this work locally due to it hating my self-signed certificate.
+  In theory it might have worked if I put it on a server with a legit certificate?
+  That will require testing on a remote server though.
+
+  Reference:
+  https://socket.io/docs/v4/changelog/4.7.0
+  https://github.com/socketio/socket.io/releases/tag/4.7.0
+  https://itnext.io/node-express-letsencrypt-generate-a-free-ssl-certificate-and-run-an-https-server-in-5-minutes-a730fbe528ca
+
+
+ */
+
+// How to generate a certificate:
+// https://davegebler.com/post/node-js/https-server-in-five-minutes-with-node-js
+// WARNING: the total length of the validity period MUST NOT exceed two weeks (https://w3c.github.io/webtransport/#custom-certificate-requirements)
+const cert = fs.readFileSync(`${__dirname}/../certificate/localhost.crt`);
+const key = fs.readFileSync(`${__dirname}/../certificate/localhost.key`);
+
+const credentials = {
+  key,
+  cert,
+};
+
+// Note that the Express native app.listen is identical to
+// the Node.js http.listen
+// http://expressjs.com/en/api.html#app.listen
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+const webServer = httpsServer.listen(webserverPort);
+
+// const webServer = app.listen(webserverPort);
 // NOTE: As best I can tell, CORS has no affect either way on websocket, so just not messing with it.
 const io = new Server(webServer, {
   parser: msgPackParser,
-  transports: ['websocket'],
+  transports: ['webtransport'],
 });
+
+const h3Server = new Http3Server({
+  port: 8080,
+  host: '0.0.0.0',
+  secret: 'changeit',
+  cert,
+  privKey: key,
+});
+
+(async () => {
+  const stream = await h3Server.sessionStream('/socket.io/');
+  const sessionReader = stream.getReader();
+
+  while (true) {
+    const { done, value } = await sessionReader.read();
+    console.log('.');
+    if (done) {
+      break;
+    }
+    io.engine.onWebTransportSession(value);
+  }
+})();
+
+h3Server.startServer();
 
 async function isNameInvalid(name) {
   let error;
