@@ -1,4 +1,5 @@
 /* globals document:true */
+import throttle from 'lodash/throttle.js';
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import spells from './objects/spells.js';
@@ -96,4 +97,6 @@ function castSpell({
   }
 }
 
-export default castSpell;
+const throttledSpellCaster = throttle(castSpell, 100);
+
+export default throttledSpellCaster;
