@@ -37,55 +37,73 @@ function npcNavigatePath({
       // and we will need to update the path more often, not just when we reach
       // the end.
 
-      // TODO: Is it possible we asked for a path in the last loop and it isn't done yet?
-      //       hence us doubling up work?
-      this.pathFinder.generatePath(
-        { x: clientSprite.sprite.x, y: clientSprite.sprite.y },
-        {
-          x: nextWaypoint.x,
-          y: nextWaypoint.y,
-        },
-        (newPath) => {
-          clientSprite.sprite.setData('nextPathPointIndex', 0);
-          clientSprite.sprite.setData('pathDestination', nextWaypoint);
-          clientSprite.sprite.setData('path', newPath);
+      if (!clientSprite.sprite.getData('pathGenerationInProgress')) {
+        clientSprite.sprite.setData('pathGenerationInProgress', true);
+        this.pathFinder.generatePath(
+          { x: clientSprite.sprite.x, y: clientSprite.sprite.y },
+          {
+            x: nextWaypoint.x,
+            y: nextWaypoint.y,
+          },
+          (newPath) => {
+            clientSprite.sprite.setData('nextPathPointIndex', 0);
+            clientSprite.sprite.setData('pathDestination', nextWaypoint);
+            clientSprite.sprite.setData('path', newPath);
+            clientSprite.sprite.setData('pathGenerationInProgress', false);
 
-          // Display options when in debug mode.
-          if (newPath && Array.isArray(newPath) && newPath.length > 0) {
-            if (playerObject.enableDebug) {
-              console.log(newPath);
-            }
-
-            // Display Path
-            // Remove dots if they existed
-            if (
-              playerObject.showPathDots &&
-              playerObject.showPathDots.length > 0
-            ) {
-              playerObject.showPathDots.forEach((dot) => {
-                dot.destroy();
-              });
-              playerObject.showPathDots = null;
-            }
-
-            // Display new dots for new path if debugging is on.
-            if (playerObject.enableDebug) {
-              const fillColor = 0x00ff00;
-              const width = 5;
-              const height = 5;
-              if (!playerObject.showPathDots) {
-                playerObject.showPathDots = [];
+            // Display options when in debug mode.
+            if (newPath && Array.isArray(newPath) && newPath.length > 0) {
+              if (playerObject.enableDebug) {
+                console.log(newPath);
               }
-              for (const pathEntry of newPath) {
-                const dot = this.add
-                  .rectangle(pathEntry.x, pathEntry.y, width, height, fillColor)
-                  .setDepth(objectDepthSettings.showPathDots);
-                playerObject.showPathDots.push(dot);
+
+              // Display Path
+              // Remove dots if they existed
+              if (
+                playerObject.showPathDots &&
+                playerObject.showPathDots.length > 0
+              ) {
+                playerObject.showPathDots.forEach((dot) => {
+                  dot.destroy();
+                });
+                playerObject.showPathDots = null;
+              }
+
+              // Display new dots for new path if debugging is on.
+              if (playerObject.enableDebug) {
+                const fillColor = 0x00ff00;
+                const width = 5;
+                const height = 5;
+                if (!playerObject.showPathDots) {
+                  playerObject.showPathDots = [];
+                }
+                for (const pathEntry of newPath) {
+                  const dot = this.add
+                    .rectangle(
+                      pathEntry.x,
+                      pathEntry.y,
+                      width,
+                      height,
+                      fillColor,
+                    )
+                    .setDepth(objectDepthSettings.showPathDots);
+                  playerObject.showPathDots.push(dot);
+                }
               }
             }
-          }
-        },
-      );
+          },
+        );
+      } else if (playerObject.enableDebug) {
+        console.log('Path generation already in progress.');
+      }
+    } else if (clientSprite.sprite.getData('path').length === 0) {
+      // We generated a path to the waypoint we are already at
+      hadronUpdated = true;
+      newHadronData.cpd++;
+      if (!path.has(newHadronData.cpd)) {
+        // Reset to 0 if we are at the end of the waypoint list.
+        newHadronData.cpd = 0;
+      }
     } else {
       const isStuck = npcCheckIfStuck(clientSprite);
       // Keep this tight or it won't make it around corners!
@@ -126,7 +144,7 @@ function npcNavigatePath({
           }
           newHadronData.cpd++;
           if (!path.has(newHadronData.cpd)) {
-            // Reset to 0 if we are at the end of the path.
+            // Reset to 0 if we are at the end of the waypoint list.
             newHadronData.cpd = 0;
           }
         }
