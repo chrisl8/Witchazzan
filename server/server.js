@@ -235,7 +235,7 @@ const webserverPort = process.env.PORT || 8080;
 // In theory it is also faster for NGINX to just serve the files.
 // So this could be removed, but it seems nice for the server to "just work" if
 // you want it to.
-app.use(express.static(`${__dirname}/../client/dist`));
+app.use(express.static(`${__dirname}/../web-dist`));
 
 // parse application/json
 app.use(express.json());
