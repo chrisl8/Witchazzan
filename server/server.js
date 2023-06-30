@@ -1441,8 +1441,9 @@ io.on('connection', (socket) => {
         console.log(`${PlayerName} disconnected`);
       });
     } catch (e) {
+      console.error('Error in socket connection:');
       if (e) {
-        console.error(e.message);
+        console.error(e);
       } else {
         console.error('Failed to handle token receipt.');
       }
