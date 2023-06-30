@@ -18,20 +18,35 @@ function receiveDataFromServer() {
     communicationsObject.socket.close();
   }
 
+  // Don't limit the transports, because Socket.io uses polling
+  // to "upgrade" users to webtransport, so if you shut off
+  // polling, it won't ever use webtransport.
+  // If you want to disallow websocket and ONLY use webtransport,
+  // then do it on the server side with
+  // transports: ["polling", "webtransport"]
+  // but note you still must have "polling" enabled always.
   if (window.location.port === '3001') {
     communicationsObject.socket = socket.connect(
       `${window.location.hostname}:8080`,
       {
-        transports: ['webtransport'],
         timeout: 5000,
         parser: msgpackParser,
       },
     );
   } else {
     communicationsObject.socket = socket.connect({
-      transports: ['webtransport'],
       timeout: 5000,
       parser: msgpackParser,
+    });
+  }
+
+  if (playerObject.enableDebug) {
+    communicationsObject.socket.on('connect', () => {
+      console.log(`connect ${communicationsObject.socket.id}`);
+
+      communicationsObject.socket.io.engine.on('upgrade', (transport) => {
+        console.log(`transport upgraded to ${transport.name}`);
+      });
     });
   }
 

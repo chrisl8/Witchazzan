@@ -12,6 +12,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { randomUUID, randomBytes } from 'crypto';
 import _ from 'lodash';
+import { Http3Server } from '@fails-components/webtransport';
 import persistentData from './persistentData.js';
 import validateJWT from './validateJWT.js';
 import wait from './utilities/wait.js';
@@ -21,7 +22,6 @@ import serverVersion from './utilities/version.js';
 import mapUtils from './utilities/mapUtils.js';
 import generateRandomGuestUsername from './utilities/generateRandomGuestUsername.js';
 import initDatabase from './utilities/initDatabase.js';
-import { Http3Server } from '@fails-components/webtransport';
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -229,6 +229,7 @@ if (isDevelopment) {
   app.options('*', cors()); // include before other routes
 }
 
+// TODO: Is this still how we want to do this?
 const webserverPort = process.env.PORT || 8080;
 
 // All web content is housed in the website folder
@@ -259,11 +260,11 @@ app.use(express.json());
 // How to generate a certificate:
 // https://davegebler.com/post/node-js/https-server-in-five-minutes-with-node-js
 // WARNING: the total length of the validity period MUST NOT exceed two weeks (https://w3c.github.io/webtransport/#custom-certificate-requirements)
-const cert = fs.readFileSync(`${__dirname}/../certificate/localhost.crt`);
-const key = fs.readFileSync(`${__dirname}/../certificate/localhost.key`);
+const cert = fs.readFileSync(`${__dirname}/../certificate/cert.pem`);
+const privKey = fs.readFileSync(`${__dirname}/../certificate/privkey.pem`);
 
 const credentials = {
-  key,
+  key: privKey,
   cert,
 };
 
@@ -272,21 +273,30 @@ const credentials = {
 // http://expressjs.com/en/api.html#app.listen
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
-const webServer = httpsServer.listen(webserverPort);
+// TODO: Redirect all port 80 traffic to 443
+// https://stackoverflow.com/a/7458587/4982408
+// and also add secure headers as suggested
+// TODO: Set up HSTS
+// https://www.stackhawk.com/blog/node-js-http-strict-transport-security-guide-what-it-is-and-how-to-enable-it/
+// but do NOT make it include subdomains! Makes testing new stuff later harder.
+httpServer.listen(80);
+httpsServer.listen(443);
 
 // const webServer = app.listen(webserverPort);
 // NOTE: As best I can tell, CORS has no affect either way on websocket, so just not messing with it.
-const io = new Server(webServer, {
+// You MUST include "polling" for webtransport to work, because it is an "upgrade" process.
+// You can include or not include "websocket" as desired.
+const io = new Server(httpsServer, {
   parser: msgPackParser,
-  transports: ['webtransport'],
+  transports: ['polling', 'webtransport'],
 });
 
 const h3Server = new Http3Server({
-  port: 8080,
+  port: 443,
   host: '0.0.0.0',
-  secret: 'changeit',
+  secret: 'changeit', // TODO: Change it.
   cert,
-  privKey: key,
+  privKey,
 });
 
 (async () => {
@@ -295,7 +305,6 @@ const h3Server = new Http3Server({
 
   while (true) {
     const { done, value } = await sessionReader.read();
-    console.log('.');
     if (done) {
       break;
     }
