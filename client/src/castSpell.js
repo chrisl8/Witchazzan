@@ -96,10 +96,7 @@ function castSpell({
     hadrons.set(newHadronData.id, newHadronData);
   }
 }
-// TODO: Re-eneable this and pick a good number once I'm done testing
-//       other things.
-//       Perhaps store this in the settings for spells or something and also set a defaut.
-//const throttledSpellCaster = throttle(castSpell, 10);
+const throttledSpellCaster = throttle(castSpell, 100);
 
 // export default throttledSpellCaster;
-export default castSpell;
+export default throttledSpellCaster;
