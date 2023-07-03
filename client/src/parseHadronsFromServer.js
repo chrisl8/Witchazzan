@@ -3,6 +3,7 @@ import hadrons from './objects/hadrons.js';
 import deletedHadronList from './objects/deletedHadronList.js';
 import validateHadron from '../../server/utilities/validateHadron.js';
 import textObject from './objects/textObject.js';
+import sendDataToServer from './sendDataToServer.js';
 
 function parseHadronsFromServer(serverHadrons) {
   // First clean out all hadrons (game pieces) that we are not in control of,
@@ -33,6 +34,10 @@ function parseHadronsFromServer(serverHadrons) {
         deletedHadronList.indexOf(key) === -1
       ) {
         hadrons.set(key, serverHadron);
+      }
+      if (deletedHadronList.indexOf(key) > -1) {
+        // Send stragglers through the loop again until they go away.
+        sendDataToServer.destroyHadron(key);
       }
     } else {
       textObject.enterSceneText.text = "Bad data received from server. :'(";
