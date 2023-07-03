@@ -35,6 +35,21 @@ function receiveDataFromServer() {
     });
   }
 
+  if (playerObject.enableDebug) {
+    communicationsObject.socket.on('connect', () => {
+      console.log(`connect ${communicationsObject.socket.id}`);
+
+      communicationsObject.socket.io.engine.on('upgrade', (transport) => {
+        console.log(`transport upgraded to ${transport.name}`);
+      });
+    });
+  }
+
+  communicationsObject.socket.on('connect_error', (err) => {
+    console.log('connect_error');
+    console.error(`connect_error due to ${err.message}`);
+  });
+
   communicationsObject.socket.on('sendToken', () => {
     localStorage.removeItem('disconnectReason');
     sendDataToServer.token();
@@ -62,7 +77,7 @@ function receiveDataFromServer() {
 
   // Sometimes the server has to force us to delete a hadron,
   // typically one that we own that was deleted by outside forces,
-  // despite our code being sure we are the on currently in control of it.
+  // despite our code being sure we are the one currently in control of it.
   communicationsObject.socket.on('deleteHadron', (key) => {
     hadrons.delete(key);
   });
