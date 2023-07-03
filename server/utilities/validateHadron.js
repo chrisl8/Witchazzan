@@ -25,6 +25,7 @@ const serverAdditionalRequiredKeys = [
 
 // Optionally a hadron can also have:
 const optionalKeys = [
+  'tsk', // Task - Used to indicate what to do with this chunk of data when sent to or received from the server.
   'nam', // Player name. Players always have a name, but no other hadron currently makes use of this.
   'flv', // Flavor. Used on Quarks to distinguish them from each other, so far we have NPCs and Items.
   'sub', // Sub-Type, i.e. A hadron of Type 'spell' might be Subtype 'spell' or a hadron of type 'NPC' might be a Subtype 'stationaryTank'
