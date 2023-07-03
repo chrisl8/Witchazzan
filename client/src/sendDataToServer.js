@@ -1,12 +1,12 @@
 /* globals localStorage:true */
 import isEqual from 'lodash/isEqual.js';
+import throttle from 'lodash/throttle.js';
 import communicationsObject from './objects/communicationsObject.js';
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import deletedHadronList from './objects/deletedHadronList.js';
 import validateHadron from '../../server/utilities/validateHadron.js';
 import textObject from './objects/textObject.js';
-import clientSprites from './objects/clientSprites.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
 import debugLog from './utilities/debugLog.js';
 
@@ -14,6 +14,18 @@ const sendDataToServer = {};
 const sentData = new Map();
 let lastSentPlayerDataObject;
 let lastSentTxtObjectList = []; // No spamming
+
+const hadronDataPool = [];
+
+const sendHadronDataPool = () => {
+  if (hadronDataPool.length > 0) {
+    const dataToSend = [...hadronDataPool];
+    hadronDataPool.length = 0;
+    communicationsObject.socket.emit('hadronData', dataToSend);
+  }
+};
+
+const throttledSendHadronDataPool = throttle(sendHadronDataPool, 10);
 
 sendDataToServer.enterScene = (sceneName) => {
   sentData.clear(); // Avoid memory leaks.
@@ -95,13 +107,15 @@ sendDataToServer.playerData = ({ sceneName }) => {
       hlt: playerObject.health,
       mxh: playerObject.maxHealth,
       dph: 4,
+      tsk: 'upd',
     };
     if (
       validateHadron.client(objectToSend) &&
       !isEqual(objectToSend, lastSentPlayerDataObject)
     ) {
       lastSentPlayerDataObject = { ...objectToSend };
-      communicationsObject.socket.emit('hadronData', objectToSend);
+      hadronDataPool.push(objectToSend);
+      throttledSendHadronDataPool();
     }
   }
 };
@@ -116,8 +130,11 @@ sendDataToServer.hadronData = (hadronData, key) => {
       communicationsObject.socket.connected &&
       (!sentData.has(key) || !isEqual(sentData.get(key), hadronData))
     ) {
-      communicationsObject.socket.emit('hadronData', hadronData);
-      sentData.set(key, hadronData);
+      const hadronToSend = { ...hadronData };
+      hadronToSend.tsk = 'upd';
+      hadronDataPool.push(hadronToSend);
+      throttledSendHadronDataPool();
+      sentData.set(key, hadronToSend);
     }
   } else {
     console.error('Bad hadron key:', key);
@@ -130,35 +147,20 @@ sendDataToServer.createHadron = (data) => {
   communicationsObject.socket.emit('createHadron', data);
 };
 
-sendDataToServer.destroyHadron = async (key, obstacleSpriteKey, scene) => {
+sendDataToServer.destroyHadron = async (key) => {
   // Sometimes we get multiple delete requests for the same hadron.
-  if (deletedHadronList.indexOf(key) === -1 && hadrons.has(key)) {
+  if (deletedHadronList.indexOf(key) === -1) {
     // The deletedHadronList is to prevent the race condition of us deleting a hadron,
     // but then immediately adding it again because we get an incoming packet that includes it,
     // before the server has a chance to delete it.
     deletedHadronList.push(key);
-    // Set velocity to 0 so that it doesn't appear to move past target,
-    // or hit other things
-    if (clientSprites.has(key)) {
-      clientSprites.get(key).sprite.body.setVelocityX(0);
-      clientSprites.get(key).sprite.body.setVelocityY(0);
-    }
-    // Remove MY collider so that it doesn't keep triggering
-    if (
-      obstacleSpriteKey &&
-      scene &&
-      clientSprites.has(obstacleSpriteKey) &&
-      clientSprites.get(obstacleSpriteKey)?.colliders[key]
-    ) {
-      scene.physics.world.removeCollider(
-        clientSprites.get(obstacleSpriteKey)?.colliders[key],
-      );
-    }
-    hadrons.delete(key);
-    // Once the hadron is deleted then cleanUpClientSprites() will remove the sprite itself.
-    communicationsObject.socket.emit('destroyHadron', key);
   }
-  sentData.delete(key); // Avoid memory leak.
+  // Once the hadron is deleted then cleanUpClientSprites() will remove the sprite itself.
+  hadrons.delete(key);
+  hadronDataPool.push({ tsk: 'del', key });
+  throttledSendHadronDataPool();
+  // communicationsObject.socket.emit('destroyHadron', key);
+  sentData.delete(key); // Avoid memory leak in the sentData list.
 };
 
 sendDataToServer.grabHadron = (id) => {

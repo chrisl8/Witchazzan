@@ -810,6 +810,72 @@ function updatePlayerImportantItemList({
   return importantItemList;
 }
 
+const updateHadron = ({ hadron, PlayerId }) => {
+  // Look for an existing hadron already in our data that matches the incoming hadron ID,
+  // and has the owner's id on it.
+  const existingHadron = hadrons.get(hadron.id);
+
+  // If a hadron moves from one scene to another, both scenes must be flagged as updated
+  let previousScene;
+  if (existingHadron && existingHadron.scn !== hadron.scn) {
+    previousScene = existingHadron.scn;
+  }
+
+  // You cannot update hadrons that you are not in control of,
+  if (!existingHadron || existingHadron.ctr === PlayerId) {
+    const newHadronData = { ...hadron };
+
+    // If you send in a hadron with no ctr, you are it
+    if (!newHadronData.ctr) {
+      newHadronData.ctr = PlayerId;
+    }
+
+    if (!existingHadron && !hadron.own) {
+      // If you introduce a new hadron, then you control it.
+      // Ownership never changes on existing hadrons.
+      // A client CAN set an owner on the hadron other than themselves, such as for NPCs and their spells
+      newHadronData.own = PlayerId;
+    }
+
+    validateHadron.server(newHadronData);
+
+    hadrons.set(hadron.id, newHadronData);
+
+    if (previousScene) {
+      flagSceneHasUpdated(previousScene);
+    }
+    flagSceneHasUpdated(newHadronData.scn);
+    throttledSendHadrons();
+    throttledSaveGameStateToDisk();
+  }
+};
+
+const destroyHadron = async ({ key, PlayerId }) => {
+  if (hadrons.has(key)) {
+    // If the hadron was transferred,
+    // the controller won't delete the hadron from their own list,
+    // so we have to force it to delete the hadron.
+    if (
+      hadrons.get(key).ctr !== PlayerId &&
+      connectedPlayerData.has(hadrons.get(key).ctr)
+    ) {
+      socketEmitToId({
+        emitToId: connectedPlayerData.get(hadrons.get(key).ctr).socketId,
+        socketEvent: 'deleteHadron',
+        data: key,
+      });
+    }
+    // Give other clients a moment to animate the last moments of the sprite
+    // so that it doesn't appear to disappear before hitting the location where it should disappear on their screen
+    // Otherwise things seem to de-spawn before hitting walls, for instance.
+    // await wait(10);
+    flagSceneHasUpdated(hadrons.get(key)?.scn);
+    hadrons.delete(key);
+    throttledSendHadrons();
+    throttledSaveGameStateToDisk();
+  }
+};
+
 // Socket listeners
 io.on('connection', (socket) => {
   // User cannot do anything until we have their token and have validated it.
@@ -998,42 +1064,19 @@ io.on('connection', (socket) => {
         }
       });
 
-      socket.on('hadronData', (data) => {
-        if (validatePlayer(PlayerId, socket, PlayerName)) {
-          // Look for an existing hadron already in our data that matches the incoming hadron ID,
-          // and has the owner's id on it.
-          const existingHadron = hadrons.get(data.id);
-
-          // If a hadron moves from one scene to another, both scenes must be flagged as updated
-          let previousScene;
-          if (existingHadron && existingHadron.scn !== data.scn) {
-            previousScene = existingHadron.scn;
-          }
-
-          // You cannot update hadrons that you are not in control of.
-          if (!existingHadron || existingHadron.ctr === PlayerId) {
-            const newHadronData = { ...data };
-
-            if (!existingHadron) {
-              // If you introduce a new hadron, then you control it.
-              // Ownership never changes on existing hadrons.
-              // A client CAN set an owner on the hadron other than themselves, such as for NPCs and their spells
-              if (!data.own) {
-                newHadronData.own = PlayerId;
-              }
-              newHadronData.ctr = PlayerId;
+      socket.on('hadronData', (input) => {
+        if (input.length > 0 && validatePlayer(PlayerId, socket, PlayerName)) {
+          for (const entry of input) {
+            switch (entry.tsk) {
+              case 'upd':
+                updateHadron({ hadron: entry, PlayerId });
+                break;
+              case 'del':
+                destroyHadron({ key: entry.key, PlayerId });
+                break;
+              default:
+                console.error('Unknown hadron data packet.');
             }
-
-            validateHadron.server(newPlayerHadron);
-
-            hadrons.set(data.id, newHadronData);
-
-            if (previousScene) {
-              flagSceneHasUpdated(previousScene);
-            }
-            flagSceneHasUpdated(newHadronData.scn);
-            throttledSendHadrons();
-            throttledSaveGameStateToDisk();
           }
         }
       });
@@ -1064,32 +1107,6 @@ io.on('connection', (socket) => {
 
           // Make sure they get an update and that it includes this room's data
           flagSceneHasUpdated(sceneName);
-          throttledSendHadrons();
-          throttledSaveGameStateToDisk();
-        }
-      });
-
-      socket.on('destroyHadron', async (key) => {
-        if (validatePlayer(PlayerId, socket, PlayerName) && hadrons.has(key)) {
-          // If the hadron was transferred,
-          // the controller won't delete the hadron from their own list,
-          // so we have to force it to delete the hadron.
-          if (
-            hadrons.get(key).ctr !== PlayerId &&
-            connectedPlayerData.has(hadrons.get(key).ctr)
-          ) {
-            socketEmitToId({
-              emitToId: connectedPlayerData.get(hadrons.get(key).ctr).socketId,
-              socketEvent: 'deleteHadron',
-              data: key,
-            });
-          }
-          // Give other clients a moment to animate the last moments of the sprite
-          // so that it doesn't appear to disappear before hitting the location where it should disappear on their screen
-          // Otherwise things seem to de-spawn before hitting walls, for instance.
-          await wait(10);
-          flagSceneHasUpdated(hadrons.get(key)?.scn);
-          hadrons.delete(key);
           throttledSendHadrons();
           throttledSaveGameStateToDisk();
         }
