@@ -28,48 +28,49 @@ function addSpriteColliders(
         clientSprites.get(key).staticCollisionsSet = true;
 
         // Collisions with tilemap collisionLayer layer
-        this.physics.add.collider(
-          clientSprites.get(key).sprite,
-          collisionLayer,
-          (sprite, obstacle) => {
-            spriteCollisionHandler({
-              spriteKey: key,
-              sprite,
-              obstacleLayerName: 'collisionLayer',
-              obstacleLayer: obstacle,
-            });
-          },
-        );
-
-        // Collisions with water for hydrophobic sprites
-        if (!hadron.swm && !hadron.fly) {
+        clientSprites.get(key).staticColliders.collisionLayer =
           this.physics.add.collider(
             clientSprites.get(key).sprite,
-            waterLayer,
+            collisionLayer,
             (sprite, obstacle) => {
               spriteCollisionHandler({
                 spriteKey: key,
-                sprite,
-                obstacleLayerName: 'waterLayer',
+                obstacleLayerName: 'collisionLayer',
                 obstacleLayer: obstacle,
               });
             },
           );
+
+        // Collisions with water for hydrophobic sprites
+        if (!hadron.swm && !hadron.fly) {
+          clientSprites.get(key).staticColliders.waterLayer =
+            this.physics.add.collider(
+              clientSprites.get(key).sprite,
+              waterLayer,
+              (sprite, obstacle) => {
+                spriteCollisionHandler({
+                  spriteKey: key,
+                  obstacleLayerName: 'waterLayer',
+                  obstacleLayer: obstacle,
+                });
+              },
+            );
         }
 
         // Collisions with tilemap teleport layers
         teleportLayersColliders.forEach((layer) => {
-          this.physics.add.collider(
-            clientSprites.get(key).sprite,
-            layer,
-            (sprite, obstacle) => {
-              spriteCollisionHandler({
-                spriteKey: key,
-                sprite,
-                teleportLayer: obstacle,
-              });
-            },
-          );
+          const layerName = `${layer.layer.name}`;
+          clientSprites.get(key).staticColliders[layerName] =
+            this.physics.add.collider(
+              clientSprites.get(key).sprite,
+              layer,
+              (sprite, obstacle) => {
+                spriteCollisionHandler({
+                  spriteKey: key,
+                  teleportLayer: obstacle,
+                });
+              },
+            );
         });
 
         // For Items, add a collider with player
@@ -115,12 +116,10 @@ function addSpriteColliders(
               otherSprite.colliders[key] = this.physics.add.overlap(
                 clientSprites.get(key).sprite,
                 otherSprite.sprite,
-                (sprite, obstacle) => {
-                  spriteCollisionHandler.call(this, {
+                () => {
+                  spriteCollisionHandler({
                     spriteKey: key,
-                    sprite,
                     obstacleSpriteKey: otherSpriteKey,
-                    obstacleSprite: obstacle,
                   });
                 },
               );
