@@ -24,8 +24,8 @@ function addSpriteColliders(
 
       /* TRACK COLLISIONS FOR SPRITES WE CONTROL. */
 
-      if (!clientSprites.get(key).staticCollisionsSet) {
-        clientSprites.get(key).staticCollisionsSet = true;
+      if (!clientSprites.get(key).staticColliders) {
+        clientSprites.get(key).staticColliders = {};
 
         // Collisions with tilemap collisionLayer layer
         clientSprites.get(key).staticColliders.collisionLayer =
@@ -75,10 +75,11 @@ function addSpriteColliders(
 
         // For Items, add a collider with player
         if (hadron.flv === 'Item') {
-          this.physics.add.collider(
-            clientSprites.get(key).sprite,
-            playerObject.player,
-          );
+          clientSprites.get(key).staticColliders.item =
+            this.physics.add.collider(
+              clientSprites.get(key).sprite,
+              playerObject.player,
+            );
           // A lower number slows it down faster when using "damping"
           clientSprites.get(key).sprite.setDamping(true).setDrag(0.25);
         }
@@ -94,16 +95,16 @@ function addSpriteColliders(
       clientSprites.forEach((otherSprite, otherSpriteKey) => {
         // Don't add a collider with ourself.
         if (otherSpriteKey !== key) {
-          if (!otherSprite.colliders) {
+          if (!otherSprite.spriteColliders) {
             // eslint-disable-next-line no-param-reassign
-            otherSprite.colliders = {};
+            otherSprite.spriteColliders = {};
           }
           // Add new ones
-          if (otherSprite.sprite && !otherSprite.colliders[key]) {
+          if (otherSprite.sprite && !otherSprite.spriteColliders[key]) {
             if (hadron.flv === 'Item') {
               // Items are able to be pushed around
               // eslint-disable-next-line no-param-reassign
-              otherSprite.colliders[key] = this.physics.add.collider(
+              otherSprite.spriteColliders[key] = this.physics.add.collider(
                 clientSprites.get(key).sprite,
                 otherSprite.sprite,
               );
@@ -113,7 +114,7 @@ function addSpriteColliders(
               clientSprites.get(key).sprite.setBounce(0.25);
             } else {
               // eslint-disable-next-line no-param-reassign
-              otherSprite.colliders[key] = this.physics.add.overlap(
+              otherSprite.spriteColliders[key] = this.physics.add.overlap(
                 clientSprites.get(key).sprite,
                 otherSprite.sprite,
                 () => {
@@ -132,18 +133,23 @@ function addSpriteColliders(
       // but we still don't want them to glitch through
       // walls when things get out of sync.
       // NOTE: IF we include spells here they get stuck on walls and never de-spawn for some reason.
-      if (!clientSprites.get(key).staticCollisionsSet) {
-        clientSprites.get(key).staticCollisionsSet = true;
+      if (!clientSprites.get(key).staticColliders) {
+        clientSprites.get(key).staticColliders = {};
 
         // Collisions with tilemap collisionLayer layer
-        this.physics.add.collider(
-          clientSprites.get(key).sprite,
-          collisionLayer,
-        );
+        clientSprites.get(key).staticColliders.spellCollisionLayer =
+          this.physics.add.collider(
+            clientSprites.get(key).sprite,
+            collisionLayer,
+          );
 
         // Collisions with water for hydrophobic sprites
         if (!hadron.swm && !hadron.fly) {
-          this.physics.add.collider(clientSprites.get(key).sprite, waterLayer);
+          clientSprites.get(key).staticColliders.spellWaterLayer =
+            this.physics.add.collider(
+              clientSprites.get(key).sprite,
+              waterLayer,
+            );
         }
       }
     }
