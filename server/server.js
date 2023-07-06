@@ -90,6 +90,7 @@ try {
     `${persistentDataFolder}/serverConfiguration.json5`,
   );
 } catch (error) {
+  console.error(error);
   // File not existing will just return an empty object.
   // So an actual error is something worse, like the file being corrupted.
   process.exit(1);
@@ -150,6 +151,7 @@ try {
     `${persistentDataFolder}/hadrons.json5`,
   );
 } catch (error) {
+  console.error(error);
   // File not existing will just return an empty Map to start using.
   // So an actual error is something worse, like the file being corrupted.
   process.exit(1);

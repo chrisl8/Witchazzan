@@ -72,7 +72,7 @@
     "nipplejs": "^0.10.0",
     "phaser": "3.60.0",
     "phaser-raycaster": "^0.10.4",
-    "prettier": "^2.6.1",
+    "prettier": "^3.0.0",
     "socket.io": ">=4.5.0",
     "socket.io-client": "^4.5.1",
     "socket.io-msgpack-parser": "^3.0.1",
