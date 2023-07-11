@@ -167,7 +167,8 @@ sendDataToServer.grabHadron = (id) => {
 };
 
 sendDataToServer.damageHadron = (data) => {
-  communicationsObject.socket.emit('damageHadron', data);
+  hadronDataPool.push({ tsk: 'dmg', data });
+  throttledSendHadronDataPool();
 };
 
 sendDataToServer.token = () => {

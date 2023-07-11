@@ -852,7 +852,7 @@ const updateHadron = ({ hadron, PlayerId }) => {
   }
 };
 
-const destroyHadron = async ({ key, PlayerId }) => {
+const destroyHadron = ({ key, PlayerId }) => {
   if (hadrons.has(key)) {
     // If the hadron was transferred,
     // the controller won't delete the hadron from their own list,
@@ -875,6 +875,17 @@ const destroyHadron = async ({ key, PlayerId }) => {
     hadrons.delete(key);
     throttledSendHadrons();
     throttledSaveGameStateToDisk();
+  }
+};
+
+const damageHadron = ({ data }) => {
+  console.log(data);
+  if (
+    hadrons.has(data.id) &&
+    connectedPlayerData.has(hadrons.get(data.id).ctr)
+  ) {
+    console.log(data);
+    socketEmitToAll({ socketEvent: 'damageHadron', data });
   }
 };
 
@@ -1051,21 +1062,6 @@ io.on('connection', (socket) => {
         }
       });
 
-      socket.on('damageHadron', (data) => {
-        if (
-          hadrons.has(data.id) &&
-          connectedPlayerData.has(hadrons.get(data.id).ctr)
-        ) {
-          if (hadrons.get(data.id).ctr === PlayerId) {
-            socket.emit('damageHadron', data);
-          } else {
-            socket
-              .to(connectedPlayerData.get(hadrons.get(data.id).ctr).socketId)
-              .emit('damageHadron', data);
-          }
-        }
-      });
-
       socket.on('hadronData', (input) => {
         if (input.length > 0 && validatePlayer(PlayerId, socket, PlayerName)) {
           for (const entry of input) {
@@ -1075,6 +1071,10 @@ io.on('connection', (socket) => {
                 break;
               case 'del':
                 destroyHadron({ key: entry.key, PlayerId });
+                break;
+              case 'dmg':
+                console.log(input);
+                damageHadron({ data: entry.data });
                 break;
               default:
                 console.error('Unknown hadron data packet.');
