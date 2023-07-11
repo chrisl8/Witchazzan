@@ -1,12 +1,17 @@
 import cleanUpSceneAndTeleport from './cleanUpSceneAndTeleport.js';
 import PlayerObject from '../objects/playerObject.js';
-import getDestinationFromTile from '../utilities/getDestinationFromTile.js';
+import getDestinationFromTileLayerProperties from '../utilities/getDestinationFromTileLayerProperties.js';
 import getSpawnPointFromMap from '../utilities/getSpawnPointFromMap.js';
 
-function playerTeleportOverlapHandler(sprite, tile, sceneName, map) {
+function playerTeleportOverlapHandler(
+  sprite,
+  teleportLayerProperties,
+  sceneName,
+  map,
+) {
   // eslint-disable-next-line prefer-const
   let { destinationSceneName, destinationSceneEntrance } =
-    getDestinationFromTile(tile);
+    getDestinationFromTileLayerProperties(teleportLayerProperties);
   // Specially named destination scene names have other functions.
   if (destinationSceneName === 'Local') {
     // Disable teleport

@@ -3,7 +3,7 @@ import sendDataToServer from '../sendDataToServer.js';
 import spells from '../objects/spells.js';
 import debugLog from '../utilities/debugLog.js';
 import playerObject from '../objects/playerObject.js';
-import getDestinationFromTile from '../utilities/getDestinationFromTile.js';
+import getDestinationFromTileLayerProperties from '../utilities/getDestinationFromTileLayerProperties.js';
 
 /*
   REMEMBER!
@@ -17,31 +17,31 @@ import getDestinationFromTile from '../utilities/getDestinationFromTile.js';
 function spriteCollisionHandler({
   spriteKey,
   obstacleLayerName,
-  obstacleLayer,
   obstacleSpriteKey,
-  teleportLayer,
+  teleportLayerProperties,
 }) {
-  // Uncomment this if you think something is getting "eaten up" to find it.
+  // Uncomment this section to log collider data:
+  // --------------------------------------------
   // console.log(
   //   '--------------',
-  //   '\nspriteKey',
-  //   spriteKey,
-  //   '\ntype',
-  //   hadrons.get(spriteKey)?.typ,
-  //   '\nobstacleLayerName',
-  //   obstacleLayerName,
-  //   '\nobstacleLayer',
-  //   obstacleLayer,
-  //   '\nobstacleSpriteKey',
-  //   obstacleSpriteKey,
-  //   '\ntype',
-  //   hadrons.get(obstacleSpriteKey)?.typ,
-  //   '\nteleportLayer',
-  //   teleportLayer,
+  //   `\n${hadrons.get(spriteKey)?.typ} sprite ${spriteKey}`,
+  //   `${obstacleLayerName ? `\nobstacleLayerName ${obstacleLayerName}` : ''}`,
+  //   `${
+  //     obstacleSpriteKey
+  //       ? `\n${
+  //           hadrons.get(obstacleSpriteKey)?.typ
+  //         } obstacle sprite ${obstacleSpriteKey}`
+  //       : ''
+  //   }`,
+  //   `${teleportLayerProperties ? `\nteleportLayerProperties:` : ''}`,
   // );
+  // if (teleportLayerProperties) {
+  //   console.log(teleportLayerProperties);
+  // }
+  // --------------------------------------------
   if (hadrons.has(spriteKey)) {
     // Sprites can linger, and collide, after there hadron is destroyed, but we do not need to act on them anymore.
-    if (teleportLayer) {
+    if (teleportLayerProperties) {
       if (
         hadrons.get(spriteKey)?.flv === 'Item' ||
         hadrons.get(spriteKey)?.flv === 'NPC'
@@ -50,7 +50,7 @@ function spriteCollisionHandler({
           // Currently only Items and NPCs can teleport,
           // other hadrons, like spells, just de-spawn.
           const { destinationSceneName, destinationSceneEntrance } =
-            getDestinationFromTile(teleportLayer);
+            getDestinationFromTileLayerProperties(teleportLayerProperties);
           if (destinationSceneEntrance === 'PreviousPosition') {
             // In the rare case that this is just supposed to go to our last known position in the previous scene,
             // which currently ONLY happens in the Library, this is easy.
@@ -79,7 +79,7 @@ function spriteCollisionHandler({
       } else {
         sendDataToServer.destroyHadron(spriteKey);
       }
-    } else if (obstacleLayer) {
+    } else if (obstacleLayerName) {
       // Obstacle Layers interactions.
       // for now de-spawning silently if we hit any Obstacle Layer
       if (
@@ -216,10 +216,9 @@ function spriteCollisionHandler({
         // spriteKey,
         // sprite,
         // obstacleLayerName,
-        // obstacleLayer,
         // obstacleSpriteKey,
         // obstacleSprite,
-        // teleportLayer,
+        // teleportLayerProperties,
         // );
       }
     } else {
@@ -228,9 +227,8 @@ function spriteCollisionHandler({
       debugLog(
         spriteKey,
         obstacleLayerName,
-        obstacleLayer,
         obstacleSpriteKey,
-        teleportLayer,
+        teleportLayerProperties,
       );
     }
   }

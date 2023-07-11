@@ -394,7 +394,13 @@ const gameLoopAndSceneFactory = ({
         playerObject.player,
         layer,
         (sprite, tile) => {
-          playerTeleportOverlapHandler.call(this, sprite, tile, sceneName, map);
+          playerTeleportOverlapHandler.call(
+            this,
+            sprite,
+            [...tile.layer.properties],
+            sceneName,
+            map,
+          );
         },
         (player, tile) =>
           tile.index !== -1 &&

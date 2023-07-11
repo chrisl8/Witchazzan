@@ -32,11 +32,10 @@ function addSpriteColliders(
           this.physics.add.collider(
             clientSprites.get(key).sprite,
             collisionLayer,
-            (sprite, obstacle) => {
+            () => {
               spriteCollisionHandler({
                 spriteKey: key,
                 obstacleLayerName: 'collisionLayer',
-                obstacleLayer: obstacle,
               });
             },
           );
@@ -47,11 +46,10 @@ function addSpriteColliders(
             this.physics.add.collider(
               clientSprites.get(key).sprite,
               waterLayer,
-              (sprite, obstacle) => {
+              () => {
                 spriteCollisionHandler({
                   spriteKey: key,
                   obstacleLayerName: 'waterLayer',
-                  obstacleLayer: obstacle,
                 });
               },
             );
@@ -67,7 +65,7 @@ function addSpriteColliders(
               (sprite, obstacle) => {
                 spriteCollisionHandler({
                   spriteKey: key,
-                  teleportLayer: obstacle,
+                  teleportLayerProperties: [...obstacle.layer.properties],
                 });
               },
             );
