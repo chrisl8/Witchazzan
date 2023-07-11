@@ -46,7 +46,6 @@ function receiveDataFromServer() {
   }
 
   communicationsObject.socket.on('connect_error', (err) => {
-    console.log('connect_error');
     console.error(`connect_error due to ${err.message}`);
   });
 

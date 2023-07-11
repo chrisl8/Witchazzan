@@ -159,7 +159,6 @@ sendDataToServer.destroyHadron = async (key) => {
   hadrons.delete(key);
   hadronDataPool.push({ tsk: 'del', key });
   throttledSendHadronDataPool();
-  // communicationsObject.socket.emit('destroyHadron', key);
   sentData.delete(key); // Avoid memory leak in the sentData list.
 };
 
