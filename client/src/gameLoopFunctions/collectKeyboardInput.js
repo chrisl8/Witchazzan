@@ -66,14 +66,21 @@ function collectKeyboardInput(sceneName) {
     playerObject.testNow = true;
   }
 
+  // Fire button must be pressed once per shot, not held down.
+  if (playerObject.keyState[' '] === 'keyup') {
+    playerObject.autoFireLockout = false;
+  }
+
   // Send currently active Spell with space bar,
   // or touch input set by "sendSpell" on playerObject.
   if (
-    playerObject.keyState[' '] === 'keydown' ||
+    (!playerObject.autoFireLockout &&
+      playerObject.keyState[' '] === 'keydown') ||
     playerObject.sendSpell === true
   ) {
     playerObject.sendSpell = false;
     playerObject.keyState[' '] = null;
+    playerObject.autoFireLockout = true;
     castSpell({
       sceneName,
       spell: playerObject.activeSpell,

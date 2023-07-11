@@ -89,6 +89,9 @@ function cleanUpSceneAndTeleport(
     };
     playerObject.ray = null;
 
+    // Prevent auto-fire lockout from bugging ut on scene changes.
+    playerObject.autoFireLockout = false;
+
     this.scene.start(destinationSceneName);
   }
 }

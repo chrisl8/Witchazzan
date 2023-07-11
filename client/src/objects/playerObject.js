@@ -80,6 +80,7 @@ const playerObject = {
   lastSentPlayerDataObject: {},
   scrollingTextBox: null, // Will hold the single instance of th scrolling text class
   sendSpell: false,
+  autoFireLockout: false, // Prevents auto fire
   chatOpen: false,
   // The order here determines the default order in the game,
   // although players can change the order in the Help screen.
