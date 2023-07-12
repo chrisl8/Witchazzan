@@ -405,19 +405,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":368,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Left",
@@ -434,13 +433,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":27,
                  "name":"Upper",
@@ -457,13 +456,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":576,
                  "y":40
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"Right",
@@ -480,13 +479,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":664,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":33,
                  "name":"StationaryTankOne",
@@ -520,7 +519,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":20
                         }, 
                         {
                          "name":"id",
@@ -593,13 +592,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":464,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":37,
                  "name":"RedKey",
@@ -651,6 +650,7 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":558,
@@ -672,7 +672,7 @@
          "value":"That tank is no joke!"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -690,6 +690,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

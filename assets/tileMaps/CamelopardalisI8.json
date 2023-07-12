@@ -542,7 +542,7 @@
                         {
                          "name":"health",
                          "type":"int",
-                         "value":200
+                         "value":20
                         }, 
                         {
                          "name":"id",
