@@ -879,12 +879,10 @@ const destroyHadron = ({ key, PlayerId }) => {
 };
 
 const damageHadron = ({ data }) => {
-  console.log(data);
   if (
     hadrons.has(data.id) &&
     connectedPlayerData.has(hadrons.get(data.id).ctr)
   ) {
-    console.log(data);
     socketEmitToAll({ socketEvent: 'damageHadron', data });
   }
 };
@@ -1073,7 +1071,6 @@ io.on('connection', (socket) => {
                 destroyHadron({ key: entry.key, PlayerId });
                 break;
               case 'dmg':
-                console.log(input);
                 damageHadron({ data: entry.data });
                 break;
               default:
