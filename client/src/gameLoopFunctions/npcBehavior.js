@@ -121,7 +121,7 @@ function npcBehavior(delta, sceneName, map) {
           rayCastFoundTarget &&
           hadron.hasOwnProperty('fol') &&
           hadron.fol &&
-          (!isRotating || !hadron.swr)
+          !isRotating
         ) {
           npcFollowTarget({
             hadron,

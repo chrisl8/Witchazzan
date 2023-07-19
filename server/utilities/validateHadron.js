@@ -72,7 +72,6 @@ const optionalKeys = [
   'nbc', // "Nearby Raycast (nbc)" (Integer) If this exists, and a raycaster is on the NPC, then ALSO scan a circle of this diameter to notice very close entities from any direction.
   'fac', // "Face (fac)" (Bool) If there is a raycaster on the NPC it will rotate to face the nearest target.
   'fol', // "Follow (fol)" (Bool) If there is a raycaster on the NPC it will move to follow the nearest target.
-  `swr`, // "Stop While Rotating (swr)" (Bool) Stop movement while rotating, otherwise the sprite will rotate and move at the same time.
   'vel', // "Velocity (vel)" (Int) Velocity to set on NPCs if they have movement, such as Follow.
   'rvl', // "Randomize Velocity (rvl)" (Int) Randomize velocity by given integer.
   'tvl', // "Travel (tvl)" (Bool) True if you want NPCs and/or Items to be able to use teleport layers.
