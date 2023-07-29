@@ -33,7 +33,7 @@ function npcNavigatePath({
       // so it will just barge into obstacles, although the "stuck" logic
       // will get it to move on eventually.
       // If we want it to navigate around sprites, we will need to update
-      // the code to put those in the tileset that is used to build the path,
+      // the code to put those in the "tile" list that is used to build the path,
       // and we will need to update the path more often, not just when we reach
       // the end.
 
