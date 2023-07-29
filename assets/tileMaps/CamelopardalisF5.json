@@ -803,7 +803,7 @@
         {
           "height": 0,
           "id": 36,
-          "name": "purpleTankSingle",
+          "name": "PurpleTank",
           "point": true,
           "properties": [
             {
@@ -933,7 +933,7 @@
         {
           "height": 0,
           "id": 41,
-          "name": "TriangleTankYellow",
+          "name": "YellowTank",
           "point": true,
           "properties": [
             {

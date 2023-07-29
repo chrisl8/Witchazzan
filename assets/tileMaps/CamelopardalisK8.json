@@ -647,7 +647,7 @@
         {
           "height": 0,
           "id": 34,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -738,7 +738,7 @@
             {
               "name": "sprite",
               "type": "string",
-              "value": "TriangleTankYellow"
+              "value": "YellowTank"
             },
             {
               "name": "tcw",
@@ -756,7 +756,7 @@
         {
           "height": 0,
           "id": 35,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -847,7 +847,7 @@
             {
               "name": "sprite",
               "type": "string",
-              "value": "TriangleTankYellow"
+              "value": "YellowTank"
             },
             {
               "name": "tcw",
@@ -865,7 +865,7 @@
         {
           "height": 0,
           "id": 36,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -956,7 +956,7 @@
             {
               "name": "sprite",
               "type": "string",
-              "value": "TriangleTankYellow"
+              "value": "YellowTank"
             },
             {
               "name": "tcw",
@@ -974,7 +974,7 @@
         {
           "height": 0,
           "id": 37,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1065,7 +1065,7 @@
             {
               "name": "sprite",
               "type": "string",
-              "value": "TriangleTankYellow"
+              "value": "YellowTank"
             },
             {
               "name": "tcw",

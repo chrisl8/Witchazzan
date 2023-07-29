@@ -649,7 +649,20 @@ const spriteSheetList = [
   },
   {
     type: 'other',
-    name: 'TriangleTankYellow',
+    name: 'YellowTank',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsSize: {
+      x: 16,
+      y: 24,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true,
+  },
+  {
+    type: 'other',
+    name: 'PurpleTank',
     frameWidth: 16,
     frameHeight: 16,
     physicsSize: {
@@ -747,19 +760,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'lightBlueTankSingle',
-    frameWidth: 46,
-    frameHeight: 38,
-    physicsSize: {
-      x: 46,
-      y: 24,
-    },
-    displayWidth: 16,
-    displayHeight: 16,
-    rotatable: true,
-  },
-  {
-    type: 'other',
-    name: 'purpleTankSingle',
     frameWidth: 46,
     frameHeight: 38,
     physicsSize: {

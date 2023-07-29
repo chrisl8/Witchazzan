@@ -684,7 +684,7 @@
           "class": "",
           "height": 0,
           "id": 34,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -803,7 +803,7 @@
           "class": "",
           "height": 0,
           "id": 35,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -917,7 +917,7 @@
           "class": "",
           "height": 0,
           "id": 36,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1036,7 +1036,7 @@
           "class": "",
           "height": 0,
           "id": 37,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1150,7 +1150,7 @@
           "class": "",
           "height": 0,
           "id": 38,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1264,7 +1264,7 @@
           "class": "",
           "height": 0,
           "id": 39,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1378,7 +1378,7 @@
           "class": "",
           "height": 0,
           "id": 40,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1492,7 +1492,7 @@
           "class": "",
           "height": 0,
           "id": 41,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1606,7 +1606,7 @@
           "class": "",
           "height": 0,
           "id": 42,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1720,7 +1720,7 @@
           "class": "",
           "height": 0,
           "id": 43,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -1834,7 +1834,7 @@
           "class": "",
           "height": 0,
           "id": 44,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
@@ -2007,7 +2007,7 @@
           "class": "",
           "height": 0,
           "id": 46,
-          "name": "StationaryTankOne",
+          "name": "Tank",
           "point": true,
           "properties": [
             {
