@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import calculateVelocityFromDirection from './calculateVelocityFromDirection.js';
 import makeRandomNumber from '../../../server/utilities/makeRandomNumber.js';
 
@@ -6,11 +7,12 @@ function moveSpriteInDirection({
   direction,
   velocity,
   randomizeVelocity,
+  hadronUpdated,
 }) {
   if (sprite) {
     const defaultNpcVelocity = 50;
 
-    const desiredVelocityX = calculateVelocityFromDirection.x(
+    let desiredVelocityX = calculateVelocityFromDirection.x(
       velocity || defaultNpcVelocity,
       direction + (randomizeVelocity ? makeRandomNumber.between(-100, 100) : 0),
     );
@@ -18,12 +20,10 @@ function moveSpriteInDirection({
       (sprite.sprite.body.blocked.left && desiredVelocityX < 0) ||
       (sprite.sprite.body.blocked.right && desiredVelocityX > 0)
     ) {
-      sprite.sprite.body.setVelocityX(0);
-    } else {
-      sprite.sprite.body.setVelocityX(desiredVelocityX);
+      desiredVelocityX = 0;
     }
 
-    const desiredVelocityY = calculateVelocityFromDirection.y(
+    let desiredVelocityY = calculateVelocityFromDirection.y(
       velocity || defaultNpcVelocity,
       direction + (randomizeVelocity ? makeRandomNumber.between(-100, 100) : 0),
     );
@@ -31,16 +31,20 @@ function moveSpriteInDirection({
       (sprite.sprite.body.blocked.up && desiredVelocityY < 0) ||
       (sprite.sprite.body.blocked.down && desiredVelocityY > 0)
     ) {
-      sprite.sprite.body.setVelocityY(0);
-    } else {
+      desiredVelocityY = 0;
+    }
+
+    if (Math.abs(sprite.sprite.body.velocity.x - desiredVelocityX) > 0.001) {
+      hadronUpdated = true;
+      sprite.sprite.body.setVelocityX(desiredVelocityX);
+    }
+
+    if (Math.abs(sprite.sprite.body.velocity.y - desiredVelocityY) > 0.001) {
+      hadronUpdated = true;
       sprite.sprite.body.setVelocityY(desiredVelocityY);
     }
-    // console.log(
-    //   sprite.sprite.body.blocked.none,
-    //   desiredVelocityX,
-    //   desiredVelocityY,
-    // );
   }
+  return hadronUpdated;
 }
 
 export default moveSpriteInDirection;
