@@ -616,6 +616,26 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'CircleTankGrey',
+    frameWidth: 16,
+    frameHeight: 16,
+    physicsCircle: {
+      radius: 6.5,
+    },
+    physicsOffset: {
+      x: 1,
+      y: 1,
+    },
+    physicsSize: {
+      x: 0,
+      y: 0,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true,
+  },
+  {
+    type: 'other',
     name: 'TankTurquoise',
     frameWidth: 16,
     frameHeight: 16,
@@ -669,33 +689,29 @@ const spriteSheetList = [
   },
   {
     type: 'other',
-    name: 'blueTankSingle',
-    frameWidth: 46,
-    frameHeight: 38,
+    name: 'BlueTank',
+    faces: 'left',
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1, // How many frames to extract from the sheet. -1 means all
+    animationFrameRate: 10,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 0, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-left', start: 2, end: 5, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 2, end: 5, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 0, end: 1, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 0, end: 1, zeroPad: 3, repeat: -1 },
+    ],
     physicsSize: {
-      x: 46,
-      y: 24,
+      x: 10,
+      y: 12,
     },
     displayWidth: 16,
     displayHeight: 16,
-    rotatable: true,
   },
   {
     type: 'other',
     name: 'darkBlueTankSingle',
-    frameWidth: 46,
-    frameHeight: 38,
-    physicsSize: {
-      x: 46,
-      y: 24,
-    },
-    displayWidth: 16,
-    displayHeight: 16,
-    rotatable: true,
-  },
-  {
-    type: 'other',
-    name: 'greyTankSingle',
     frameWidth: 46,
     frameHeight: 38,
     physicsSize: {
