@@ -35,12 +35,12 @@ function npcRaycastUpdate({ hadron, key }) {
     if (hadron.dir && !isNaN(hadron.dir)) {
       ray.setAngleDeg(hadron.dir);
     }
-    if (hadron.rtp === 'cone') {
+    if (hadron.rtp.toLowerCase() === 'cone') {
       if (hadron.rcd) {
         ray.setConeDeg(hadron.rcd);
       }
       ray.castCone();
-    } else if (hadron.rtp === 'circle') {
+    } else if (hadron.rtp.toLowerCase() === 'circle') {
       // Circle is default.
       ray.castCircle();
     } else {
