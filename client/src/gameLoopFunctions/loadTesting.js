@@ -10,6 +10,7 @@ function loadTesting(delta) {
   playerObject.lastLoadTestFire += delta;
   if (playerObject.lastLoadTestFire > 50) {
     playerObject.lastLoadTestFire = 0;
+    playerObject.autoFireLockout = false;
     handleKeyboardInput({ key: ' ', type: 'keydown' });
   }
 }
