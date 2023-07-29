@@ -47,7 +47,7 @@ function itemBehavior(delta, sceneName, map) {
       if (
         hadron.hasOwnProperty('fnc') // This section is only for "spawner" items with functions, not their children.
       ) {
-        // This is all of the "base Item" behavior.
+        // This is all the "base Item" behavior.
         // Remember that you can further control or limit the behavior for specific NPCs
         // by checking the hadron.sub field in your if/else statements below.
         // Feel free to exclude a given hadron.sub from these more generic checks at the top.
