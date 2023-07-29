@@ -20,11 +20,12 @@ function npcBehavior(delta, sceneName, map) {
       hadron.ctr === playerObject.playerId &&
       hadron.scn === sceneName
     ) {
-      // This is all of the "base NPC" behavior.
+      // This is all the "base NPC" behavior.
       // Remember that you can further control or limit the behavior for specific NPCs
       // by checking the hadron.sub field in your if/else statements below.
       // Feel free to exclude a given hadron.sub from these more generic checks at the top.
 
+      let clientSprite;
       let hadronUpdated = false;
 
       const movementPriority = new Map();
@@ -116,7 +117,7 @@ function npcBehavior(delta, sceneName, map) {
           });
         }
 
-        const clientSprite = clientSprites.get(key);
+        clientSprite = clientSprites.get(key);
         if (
           rayCastFoundTarget &&
           hadron.hasOwnProperty('fol') &&
@@ -168,7 +169,37 @@ function npcBehavior(delta, sceneName, map) {
         });
       }
 
+      // Update the direction and animation for Sprite Update visuals
       if (hadronUpdated === true) {
+        if (clientSprite) {
+          let maximumDirectionSize = 0;
+          if (clientSprite.sprite.body.velocity.y > 0) {
+            newHadronData.ani = 'front';
+            newHadronData.dir = 'front';
+            maximumDirectionSize = clientSprite.sprite.body.velocity.y;
+          } else if (clientSprite.sprite.body.velocity.y < 0) {
+            newHadronData.ani = 'back';
+            newHadronData.dir = 'back';
+            maximumDirectionSize = Math.abs(
+              clientSprite.sprite.body.velocity.y,
+            );
+          }
+          // Left/right takes precedence over up/down for animations,
+          // if it is a larger velocity.
+          if (
+            clientSprite.sprite.body.velocity.x > 0 &&
+            clientSprite.sprite.body.velocity.x > maximumDirectionSize
+          ) {
+            newHadronData.ani = 'right';
+            newHadronData.dir = 'right';
+          } else if (
+            clientSprite.sprite.body.velocity.x < 0 &&
+            Math.abs(clientSprite.sprite.body.velocity.x) > maximumDirectionSize
+          ) {
+            newHadronData.ani = 'left';
+            newHadronData.dir = 'left';
+          }
+        }
         hadrons.set(key, newHadronData);
       }
     }
