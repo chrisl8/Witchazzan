@@ -342,19 +342,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":1,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":328,
                  "y":196
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":11,
                  "name":"Right",
@@ -366,13 +365,13 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":648,
                  "y":200
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":12,
                  "name":"ChairTwo",
@@ -434,13 +433,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":40
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":13,
                  "name":"ChairTwo",
@@ -502,13 +501,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":60.5,
                  "y":38.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":14,
                  "name":"ChairTwo",
@@ -570,13 +569,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":44,
                  "y":48.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":15,
                  "name":"ChairTwo",
@@ -638,13 +637,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":47,
                  "y":67.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":16,
                  "name":"TableOne",
@@ -706,13 +705,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":215.5,
                  "y":185
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":17,
                  "name":"ChairTwo",
@@ -774,13 +773,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":196.5,
                  "y":184
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":18,
                  "name":"ChairTwo",
@@ -842,13 +841,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":216,
                  "y":167.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":19,
                  "name":"ChairTwo",
@@ -910,13 +909,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":232.5,
                  "y":183
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":20,
                  "name":"ChairTwo",
@@ -978,13 +977,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":215,
                  "y":199.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":21,
                  "name":"TableOne",
@@ -1046,13 +1045,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":425.5,
                  "y":99
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":22,
                  "name":"ChairTwo",
@@ -1114,13 +1113,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":406.5,
                  "y":98
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":23,
                  "name":"ChairTwo",
@@ -1182,13 +1181,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":426,
                  "y":81.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":24,
                  "name":"ChairTwo",
@@ -1250,13 +1249,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":442.5,
                  "y":97
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"ChairTwo",
@@ -1318,13 +1317,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":425,
                  "y":113.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"TableOne",
@@ -1386,13 +1385,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":432,
                  "y":293.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":27,
                  "name":"ChairTwo",
@@ -1454,13 +1453,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":413,
                  "y":292.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"ChairTwo",
@@ -1522,13 +1521,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":432.5,
                  "y":276
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":29,
                  "name":"ChairTwo",
@@ -1590,13 +1589,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":449,
                  "y":291.5
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":30,
                  "name":"ChairTwo",
@@ -1658,10 +1657,79 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":431.5,
                  "y":308
+                }, 
+                {
+                 "height":0,
+                 "id":31,
+                 "name":"Furniture",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Flavor",
+                         "type":"string",
+                         "value":"Item"
+                        }, 
+                        {
+                         "name":"Function",
+                         "type":"string",
+                         "value":"dropMessage"
+                        }, 
+                        {
+                         "name":"Text",
+                         "type":"string",
+                         "value":"If the room seems empty, give it a moment."
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Quark"
+                        }, 
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"5b30dfc6-1b62-441f-8454-e5e07c32f123"
+                        }, 
+                        {
+                         "name":"initialSpriteDirection",
+                         "type":"string",
+                         "value":"up"
+                        }, 
+                        {
+                         "name":"pod",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"respawnInSeconds",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"sprite",
+                         "type":"string",
+                         "value":"writtenPaper"
+                        }, 
+                        {
+                         "name":"tcw",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"uniqueId",
+                         "type":"string",
+                         "value":"c3662be3-835c-4574-8f3c-67d1dd421234"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":576.5,
+                 "y":239.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1670,10 +1738,16 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":31,
+ "nextobjectid":32,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"EntranceMessage",
+         "type":"string",
+         "value":"Furniture"
+        }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -1691,6 +1765,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":42
 }
