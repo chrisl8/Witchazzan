@@ -159,20 +159,7 @@ import arena1 from '../../assets/tileMaps/arena1.json';
 
 import EmptyCave from '../../assets/tileMaps/EmptyCave.json';
 import SlimeCave from '../../assets/tileMaps/SlimeCave.json';
-
-import CaveA8 from '../../assets/tileMaps/CaveA8.json';
-import CaveC3 from '../../assets/tileMaps/CaveC3.json';
-import CaveE1 from '../../assets/tileMaps/CaveE1.json';
-import CaveE5 from '../../assets/tileMaps/CaveE5.json';
-import CaveE7 from '../../assets/tileMaps/CaveE7.json';
-import CaveF3 from '../../assets/tileMaps/CaveF3.json';
-import CaveK1 from '../../assets/tileMaps/CaveK1.json';
-import CaveK5 from '../../assets/tileMaps/CaveK5.json';
-import CaveM1 from '../../assets/tileMaps/CaveM1.json';
-import CaveM4 from '../../assets/tileMaps/CaveM4.json';
-import CaveO6 from '../../assets/tileMaps/CaveO6.json';
-import CaveP2 from '../../assets/tileMaps/CaveP2.json';
-import CaveP7 from '../../assets/tileMaps/CaveP7.json';
+import BlackWaterCave from '../../assets/tileMaps/BlackWaterCave.json';
 
 import Library from '../../assets/tileMaps/Library.json';
 
@@ -184,7 +171,6 @@ import tilesetZoriaOverworld from '../../assets/tileSets/zoria_overworld.png';
 import dungeonTileset from '../../assets/tileSets/Dungeon_Tileset.png';
 import roguelikeSheetTransparent from '../../assets/tileSets/roguelikeSheet_transparent.png';
 import Loading from '../../assets/tileMaps/Loading.json';
-import CaveL1 from '../../assets/tileMaps/CaveL1.json';
 import gameLoopAndSceneFactory from './gameLoopAndSceneFactory.js';
 
 // Each entry consists of an image and a name.
@@ -1551,99 +1537,8 @@ const scenes = [
     htmlElementParameters: caveHtmlElementParameters,
   },
   {
-    sceneName: 'CaveA8',
-    tileMap: CaveA8,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveC3',
-    tileMap: CaveC3,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveF3',
-    tileMap: CaveF3,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveE1',
-    tileMap: CaveE1,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveE5',
-    tileMap: CaveE5,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveE7',
-    tileMap: CaveE7,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveK1',
-    tileMap: CaveK1,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveK5',
-    tileMap: CaveK5,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveL1',
-    tileMap: CaveL1,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveM1',
-    tileMap: CaveM1,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveP2',
-    tileMap: CaveP2,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveP7',
-    tileMap: CaveP7,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveO6',
-    tileMap: CaveO6,
-    tileSet: tileSets.dungeonTileset,
-    gameSize: gameSizes.cave,
-    htmlElementParameters: caveHtmlElementParameters,
-  },
-  {
-    sceneName: 'CaveM4',
-    tileMap: CaveM4,
+    sceneName: 'BlackWaterCave',
+    tileMap: BlackWaterCave,
     tileSet: tileSets.dungeonTileset,
     gameSize: gameSizes.cave,
     htmlElementParameters: caveHtmlElementParameters,

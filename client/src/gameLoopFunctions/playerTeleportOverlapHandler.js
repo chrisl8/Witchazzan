@@ -23,6 +23,9 @@ function playerTeleportOverlapHandler(
   }
 
   if (destinationSceneName) {
+    if (destinationSceneName === 'EmptyCave') {
+      PlayerObject.caveExitScene = sceneName;
+    }
     cleanUpSceneAndTeleport.call(
       this,
       destinationSceneName,

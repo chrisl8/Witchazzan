@@ -95,6 +95,7 @@ sendDataToServer.playerData = ({ sceneName }) => {
       psc: playerObject.previousScene.name,
       px: playerObject.previousScene.x,
       py: playerObject.previousScene.y,
+      ces: playerObject.caveExitScene,
       typ: 'player',
       scn: sceneName,
       id: playerObject.playerId,

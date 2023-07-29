@@ -226,13 +226,13 @@
                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                  "height":26,
                  "id":18,
-                 "name":"CaveTeleportLayer",
+                 "name":"DoorTeleportLayer",
                  "opacity":1,
                  "properties":[
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CaveM4"
+                         "value":"EmptyCave"
                         }],
                  "type":"tilelayer",
                  "visible":true,

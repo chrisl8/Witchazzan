@@ -232,12 +232,7 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CaveK1"
-                        }, 
-                        {
-                         "name":"Entrance",
-                         "type":"string",
-                         "value":"Default"
+                         "value":"EmptyCave"
                         }],
                  "type":"tilelayer",
                  "visible":true,
@@ -443,19 +438,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":592,
                  "y":288
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":27,
                  "name":"Lower",
@@ -472,13 +466,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":592,
                  "y":376
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":33,
                  "name":"Cave",
@@ -490,6 +484,7 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":112,
@@ -505,7 +500,7 @@
  "nextobjectid":37,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -523,6 +518,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

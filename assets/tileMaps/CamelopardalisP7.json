@@ -226,18 +226,13 @@
                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                  "height":26,
                  "id":18,
-                 "name":"CaveTeleportLayer",
+                 "name":"DoorTeleportLayer",
                  "opacity":1,
                  "properties":[
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CaveP7"
-                        }, 
-                        {
-                         "name":"Entrance",
-                         "type":"string",
-                         "value":"Door"
+                         "value":"EmptyCave"
                         }],
                  "type":"tilelayer",
                  "visible":true,
@@ -490,19 +485,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Left",
@@ -519,13 +513,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":27,
                  "name":"Lower",
@@ -542,13 +536,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":376
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":35,
                  "name":"Upper",
@@ -565,13 +559,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":40
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":37,
                  "name":"Cave",
@@ -583,6 +577,7 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":144.104458803657,
@@ -598,7 +593,7 @@
  "nextobjectid":38,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -616,6 +611,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

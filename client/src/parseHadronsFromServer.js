@@ -64,6 +64,9 @@ function parseHadronsFromServer(serverHadrons) {
       playerObject.previousScene.y = playerHadron.py;
       playerObject.playerDirection = null;
       playerObject.newPlayerDirection = playerHadron.dir;
+      if (playerHadron.ces) {
+        playerObject.caveExitScene = playerHadron.ces;
+      }
 
       // On connect, get health from server, because disconnecting doesn't automatically heal you!
       if (playerHadron.hasOwnProperty('hlt')) {

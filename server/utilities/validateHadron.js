@@ -35,7 +35,7 @@ const optionalKeys = [
   'vly', // Y Velocity f the sprite.
   'rot', // Rotation of sprite.
   'mov', // Moving - Communicates to other clients whether the client is "in motion" or not, triggering motion animations.
-  // Previous scene info. Used for instance when returning from Library
+  // Previous scene info. Used for instance when returning from Library or to set new Cave Exist Scene
   'psc', // Previous Scene
   'px', // x position in the previous scene
   'py', // y Previous in the previous scene
@@ -89,6 +89,7 @@ const optionalKeys = [
   'iin', // Important Item Name. Important items have special properties and are tracked.
   'dap', // Did Already Spawn. Used to track if an item already spawned after an event, so we don't do it twice before the event resets after someone takes the item.
   'uid', // "Unique ID (uid)" (String) When making a hadron from a Quark, this ID will be used, and hence only one will ever be created.
+  'ces', // "Cave Exit Scene (ces)" (String) Scene a player will arrive in after exiting a scene. This is what allows entering a cave to set a new "respawn" exit point.
 ];
 
 const allKeys = alwaysRequiredKeys.concat(

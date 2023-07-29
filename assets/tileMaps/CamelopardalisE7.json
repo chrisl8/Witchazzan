@@ -34,18 +34,13 @@
                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                  "height":26,
                  "id":18,
-                 "name":"CaveE7",
+                 "name":"DoorTeleportLayer",
                  "opacity":1,
                  "properties":[
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CaveE7"
-                        }, 
-                        {
-                         "name":"Entrance",
-                         "type":"string",
-                         "value":"Default"
+                         "value":"EmptyCave"
                         }],
                  "type":"tilelayer",
                  "visible":true,
@@ -54,7 +49,7 @@
                  "y":0
                 }, 
                 {
-                 "data": [12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 "data":[12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -406,19 +401,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Left",
@@ -435,13 +429,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"Right",
@@ -458,13 +452,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":664,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":33,
                  "name":"Cave",
@@ -476,13 +470,13 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":399.96875,
                  "y":98.40625
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":34,
                  "name":"Upper",
@@ -499,6 +493,7 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":224,
@@ -514,24 +509,24 @@
  "nextobjectid":35,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
          "columns":12,
          "firstgid":1,
          "image":"..\/tileSets\/CamelopardalisColor16x16.png",
-         "imageheight":715,
+         "imageheight":256,
          "imagewidth":205,
          "margin":1,
          "name":"CamelopardalisColor16x16",
          "spacing":1,
-         "tilecount":504,
+         "tilecount":180,
          "tileheight":16,
          "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

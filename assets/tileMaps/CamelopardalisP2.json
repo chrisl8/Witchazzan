@@ -226,18 +226,13 @@
                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                  "height":26,
                  "id":13,
-                 "name":"Door",
+                 "name":"DoorTeleportLayer",
                  "opacity":1,
                  "properties":[
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CaveP2"
-                        }, 
-                        {
-                         "name":"Entrance",
-                         "type":"string",
-                         "value":"Door"
+                         "value":"BlackWaterCave"
                         }],
                  "type":"tilelayer",
                  "visible":true,
@@ -443,19 +438,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":344,
                  "y":222
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Left",
@@ -472,13 +466,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"Cave",
@@ -490,27 +484,27 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":344,
                  "y":206
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":34,
                  "name":"Whirl",
                  "point":true,
                  "properties":[
                         {
-                         "name":"Type",
-                         "type":"string",
-                         "value":"Lepton"
-                        },
-{
                          "name":"Flavor",
                          "type":"string",
                          "value":"NonPhysicsSprite"
+                        }, 
+                        {
+                         "name":"Type",
+                         "type":"string",
+                         "value":"Lepton"
                         }, 
                         {
                          "name":"spriteLayerDepth",
@@ -518,6 +512,7 @@
                          "value":3
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":344,
@@ -539,7 +534,7 @@
          "value":"do the difficult thing"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -557,6 +552,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

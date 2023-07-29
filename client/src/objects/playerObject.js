@@ -122,6 +122,7 @@ const playerObject = {
     x: null,
     y: null,
   },
+  caveExitScene: 'CamelopardalisH8', // default in case server does not give us one.
   ray: null,
   dotTrails: null,
   nearbyTargetObject: {

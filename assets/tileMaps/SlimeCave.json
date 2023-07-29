@@ -159,24 +159,24 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":1,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":160,
                  "y":208
                 }, 
                 {
-                 "class":"spawn-point",
                  "height":0,
                  "id":57,
                  "name":"spawn-slime",
                  "point":true,
                  "rotation":0,
+                 "type":"spawn-point",
                  "visible":true,
                  "width":0,
                  "x":160,
@@ -191,8 +191,14 @@
  "nextlayerid":19,
  "nextobjectid":58,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"EntranceMessage",
+         "type":"string",
+         "value":"I think that this cave may be broken."
+        }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -210,6 +216,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":20
 }

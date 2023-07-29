@@ -25,6 +25,9 @@ function getDestinationFromTileLayerProperties(teleportLayerProperties) {
   if (destinationSceneName === 'Previous') {
     destinationSceneName = PlayerObject.previousScene.name;
   }
+  if (destinationSceneName === 'CaveExit') {
+    destinationSceneName = PlayerObject.caveExitScene;
+  }
   return { destinationSceneName, destinationSceneEntrance };
 }
 

@@ -34,13 +34,13 @@
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                  "height":26,
                  "id":13,
-                 "name":"CaveTeleportLayer",
+                 "name":"DoorTeleportLayer",
                  "opacity":1,
                  "properties":[
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CaveM1"
+                         "value":"EmptyCave"
                         }],
                  "type":"tilelayer",
                  "visible":true,
@@ -401,19 +401,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Lower",
@@ -430,13 +429,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":208,
                  "y":376
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"Right",
@@ -453,13 +452,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":664,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":34,
                  "name":"Cave",
@@ -471,6 +470,7 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":304,
@@ -492,7 +492,7 @@
          "value":"we traveled the void"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -510,6 +510,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

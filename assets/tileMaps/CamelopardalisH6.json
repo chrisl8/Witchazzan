@@ -6,7 +6,7 @@
          "id":13,
          "layers":[
                 {
-                 "data": [12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 "data":[12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -358,19 +358,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":367.370856339093,
                  "y":207.408813217727
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Left",
@@ -387,13 +386,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":40,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"Right",
@@ -410,13 +409,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":662.522033044318,
                  "y":176.075913757269
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":33,
                  "name":"EmptyTile",
@@ -428,6 +427,7 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":112.295593391136,
@@ -442,25 +442,31 @@
  "nextlayerid":11,
  "nextobjectid":34,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"EntranceMessage",
+         "type":"string",
+         "value":"Fact: This is not a cave."
+        }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
          "columns":12,
          "firstgid":1,
          "image":"..\/tileSets\/CamelopardalisColor16x16.png",
-         "imageheight":715,
+         "imageheight":256,
          "imagewidth":205,
          "margin":1,
          "name":"CamelopardalisColor16x16",
          "spacing":1,
-         "tilecount":504,
+         "tilecount":180,
          "tileheight":16,
          "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }

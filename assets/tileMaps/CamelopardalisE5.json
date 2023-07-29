@@ -232,12 +232,7 @@
                         {
                          "name":"DestinationScene",
                          "type":"string",
-                         "value":"CaveE5"
-                        }, 
-                        {
-                         "name":"Entrance",
-                         "type":"string",
-                         "value":"Default"
+                         "value":"EmptyCave"
                         }],
                  "type":"tilelayer",
                  "visible":true,
@@ -443,19 +438,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":26,
                  "name":"Cave",
@@ -467,13 +461,13 @@
                          "value":"Entrance"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":175.111496244945,
                  "y":98.8122472559215
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":27,
                  "name":"Lower",
@@ -490,13 +484,13 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":376
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":33,
                  "name":"Upper",
@@ -513,6 +507,7 @@
                          "value":true
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
@@ -528,7 +523,7 @@
  "nextobjectid":35,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -546,6 +541,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }
