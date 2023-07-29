@@ -57,7 +57,7 @@ function itemBehavior(delta, sceneName, map) {
         // TODO: When player grabs an important item, suggest to them to put it somewhere safe.
 
         // The "last ID" .lid is the last ID that was spawned for this item
-        // If there is no.lid, then no hadron has ever been created, and one should be now.
+        // If there is no .lid, then no hadron has ever been created, and one should be now.
         // If no hadron with the .lid ID exists in the current scene, then a new one should be spawned.
         // However, wait for the .ris time to pass before spawning a new one.
         // This means that when you take an item and leave the room with it, a new one will later spawn.
@@ -211,6 +211,7 @@ function itemBehavior(delta, sceneName, map) {
         if (clientSprite) {
           // If the sprite exists, we need to update it now, lest it get overwritten.
           clientSprite.sprite.setPosition(newHadronData.x, newHadronData.y);
+          // TODO: Sometimes when pushing furniture out of a scene, setVelocityX/Y is undefined and crashes the game.
           clientSprite.sprite.body.setVelocityX(newHadronData.vlx);
           clientSprite.sprite.body.setVelocityY(newHadronData.vly);
         }
