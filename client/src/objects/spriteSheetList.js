@@ -711,6 +711,28 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'PinkTank',
+    faces: 'left',
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1, // How many frames to extract from the sheet. -1 means all
+    animationFrameRate: 10,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 0, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-left', start: 2, end: 5, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-right', start: 2, end: 5, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-back', start: 0, end: 1, zeroPad: 3, repeat: -1 },
+      { keyName: 'move-front', start: 0, end: 1, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 10,
+      y: 12,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+  },
+  {
+    type: 'other',
     name: 'darkBlueTankSingle',
     frameWidth: 46,
     frameHeight: 38,
@@ -725,19 +747,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'lightBlueTankSingle',
-    frameWidth: 46,
-    frameHeight: 38,
-    physicsSize: {
-      x: 46,
-      y: 24,
-    },
-    displayWidth: 16,
-    displayHeight: 16,
-    rotatable: true,
-  },
-  {
-    type: 'other',
-    name: 'pinkTankSingle',
     frameWidth: 46,
     frameHeight: 38,
     physicsSize: {
@@ -1123,8 +1132,8 @@ const spriteSheetList = [
     // so it is set up to fill a lot of roles, but also expected to never look great.
     type: 'other',
     name: 'flamingGoose',
-    frameWidth: 82,
-    frameHeight: 79,
+    frameWidth: 16,
+    frameHeight: 16,
     endFrame: 4,
     faces: 'left',
     animationFrameRate: 5,
@@ -1136,8 +1145,8 @@ const spriteSheetList = [
       { keyName: 'move-front', start: 0, end: 3, zeroPad: 3, repeat: -1 },
     ],
     physicsSize: {
-      x: 82,
-      y: 79,
+      x: 16,
+      y: 16,
     },
     displayWidth: 16,
     displayHeight: 16,
