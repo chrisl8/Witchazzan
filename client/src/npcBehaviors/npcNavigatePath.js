@@ -179,10 +179,11 @@ function npcNavigatePath({
             clientSprite.sprite.body.setVelocityY(0);
           }
         } else {
-          npcFollowTarget({
+          hadronUpdated = npcFollowTarget({
             hadron,
             rayCastTargetPosition: { x: nextPathPoint.x, y: nextPathPoint.y },
             clientSprite,
+            hadronUpdated,
           });
         }
       }

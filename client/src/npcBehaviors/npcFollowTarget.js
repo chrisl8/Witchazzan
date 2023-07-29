@@ -2,7 +2,12 @@
 import Phaser from 'phaser';
 import moveSpriteInDirection from '../utilities/moveSpriteInDirection.js';
 
-function npcFollowTarget({ hadron, rayCastTargetPosition, clientSprite }) {
+function npcFollowTarget({
+  hadron,
+  rayCastTargetPosition,
+  clientSprite,
+  hadronUpdated,
+}) {
   if (
     clientSprite &&
     rayCastTargetPosition &&
@@ -17,13 +22,15 @@ function npcFollowTarget({ hadron, rayCastTargetPosition, clientSprite }) {
     );
     const newAngleDeg = newAngleRad * Phaser.Math.RAD_TO_DEG;
 
-    moveSpriteInDirection({
+    hadronUpdated = moveSpriteInDirection({
       sprite: clientSprite,
       direction: newAngleDeg,
       velocity: hadron.vel,
       randomizeVelocity: hadron.rvl,
+      hadronUpdated,
     });
   }
+  return hadronUpdated;
 }
 
 export default npcFollowTarget;
