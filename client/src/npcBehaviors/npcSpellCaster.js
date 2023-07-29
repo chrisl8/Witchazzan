@@ -15,7 +15,6 @@ function npcSpellCaster({
     hadron.hasOwnProperty('rof') &&
     hadron.hasOwnProperty('spl')
   ) {
-    // There is a moment before the client sprite exists.
     let spellCastTimer = clientSprites.get(key)?.spellCastTimer;
     // Store local rapidly updating data in clientSprites,
     // to avoid clogging the network with hadron updates that other

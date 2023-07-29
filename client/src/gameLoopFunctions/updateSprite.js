@@ -23,10 +23,19 @@ function updateSprite(hadron, key, gameSizeData) {
         if (!isNaN(hadron.dir)) {
           clientSprite.sprite.setAngle(Number(hadron.dir));
         }
-      } else if (hadron.dir === 180 || hadron.dir === 'right') {
-        // For non rotatable sprites, only flip them for left/right
+      } else if (hadron.dir === 180) {
+        // For non-rotatable sprites flip them for left/right
         clientSprite.sprite.setFlipX(clientSprite.spriteData.faces === 'right');
-      } else if (hadron.dir === 0 || hadron.dir === 'left') {
+      } else if (hadron.dir === 0) {
+        clientSprite.sprite.setFlipX(clientSprite.spriteData.faces === 'left');
+      }
+    }
+
+    if (hadron.hasOwnProperty('ani') && !clientSprite.spriteData.rotatable) {
+      if (hadron.ani === 'right') {
+        // For non-rotatable sprites, only flip them for left/right based on .ani
+        clientSprite.sprite.setFlipX(clientSprite.spriteData.faces === 'right');
+      } else if (hadron.ani === 'left') {
         clientSprite.sprite.setFlipX(clientSprite.spriteData.faces === 'left');
       }
     }

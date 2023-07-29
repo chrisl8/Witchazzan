@@ -1,7 +1,6 @@
 import hadrons from '../objects/hadrons.js';
 import sendDataToServer from '../sendDataToServer.js';
 import spells from '../objects/spells.js';
-import debugLog from '../utilities/debugLog.js';
 import playerObject from '../objects/playerObject.js';
 import getDestinationFromTileLayerProperties from '../utilities/getDestinationFromTileLayerProperties.js';
 
@@ -221,15 +220,27 @@ function spriteCollisionHandler({
         // teleportLayerProperties,
         // );
       }
-    } else {
+    } else if (playerObject.enableDebug) {
       // You should never get here unless you are testing out new things.
       // NOTE: IF in doubt, copy this to BEFORE the if/else chain to see what is happening.
-      debugLog(
-        spriteKey,
-        obstacleLayerName,
-        obstacleSpriteKey,
-        teleportLayerProperties,
+      console.error(
+        '--------------',
+        `\n${hadrons.get(spriteKey)?.typ} sprite ${spriteKey}`,
+        `${
+          obstacleLayerName ? `\nobstacleLayerName ${obstacleLayerName}` : ''
+        }`,
+        `${
+          obstacleSpriteKey
+            ? `\n${
+                hadrons.get(obstacleSpriteKey)?.typ
+              } obstacle sprite ${obstacleSpriteKey}`
+            : ''
+        }`,
+        `${teleportLayerProperties ? `\nteleportLayerProperties:` : ''}`,
       );
+      if (teleportLayerProperties) {
+        console.log(teleportLayerProperties);
+      }
     }
   }
 }

@@ -175,11 +175,9 @@ function npcBehavior(delta, sceneName, map) {
           let maximumDirectionSize = 0;
           if (clientSprite.sprite.body.velocity.y > 0) {
             newHadronData.ani = 'front';
-            newHadronData.dir = 'front';
             maximumDirectionSize = clientSprite.sprite.body.velocity.y;
           } else if (clientSprite.sprite.body.velocity.y < 0) {
             newHadronData.ani = 'back';
-            newHadronData.dir = 'back';
             maximumDirectionSize = Math.abs(
               clientSprite.sprite.body.velocity.y,
             );
@@ -191,13 +189,11 @@ function npcBehavior(delta, sceneName, map) {
             clientSprite.sprite.body.velocity.x > maximumDirectionSize
           ) {
             newHadronData.ani = 'right';
-            newHadronData.dir = 'right';
           } else if (
             clientSprite.sprite.body.velocity.x < 0 &&
             Math.abs(clientSprite.sprite.body.velocity.x) > maximumDirectionSize
           ) {
             newHadronData.ani = 'left';
-            newHadronData.dir = 'left';
           }
         }
         hadrons.set(key, newHadronData);
