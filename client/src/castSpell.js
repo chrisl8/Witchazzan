@@ -77,6 +77,22 @@ function castSpell({
     };
     messageDialog.showModal();
   } else {
+    // Convert text direction to int
+    // eslint-disable-next-line default-case
+    switch (direction) {
+      case 'left':
+        direction = 180;
+        break;
+      case 'right':
+        direction = 0;
+        break;
+      case 'up':
+        direction = 270;
+        break;
+      case 'down':
+        direction = 90;
+        break;
+    }
     const newHadronData = {
       id: getUUID(),
       own: owner,
