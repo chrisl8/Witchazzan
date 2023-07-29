@@ -143,7 +143,6 @@ Some important things:
    - The Object's "Type" should be "NPC".
    - Under "Custom Properties" there are some required and some optional things to add. These are mapped to 3 (or fewer) character codes from `validateHadrons.js` when adding  them to the game in `addQuarksFromMap.js`
      - `id` **REQUIRED** (String) - This is a GUID. Open your browser, open dev tools, and run `crypto.randomUUID()` then copy the long string, withOUT quotes, but WITH the dashes into the value for the `id`
-     - `subType` **REQUIRED** (String) - This is the NPC Type to help identify it and group it with similar NPC functionalities.
      - `sprite` **REQUIRED** (String) - The name of the sprite to use for this NPC.
      - `initialSpriteDirection` Optional - Direction to start the sprite facing.
        - It can be left/right/up/down string or east/west/north/shouth string, or an intenger for rotation from 0.
@@ -174,6 +173,7 @@ Some important things:
      - `initialPathWaypoint` Optional (Int) "Initial Path Waypoint (cpd)" (Int) By default an NPC will start with Waypoint Progression 0, but if you want to override that for the initial Waypoint, you can use this.
      - `navigatePath` Optional (string) "Navigate Path (nph)" Like Follow Path, but use EasyStar to navigate between waypoints instead of blindly charging toward them.
      - `uniqueId` Optional (String) "Unique ID (uid)" When making a hadron from a Quark, this ID will be used, and hence only one will ever be created.
+     - `subType` Optional (String) "subType (sub)" A Sub Type for an NPC. This isn't actually implemented for anything but spells, but you could use it to implement features or special cases.
      - **There may be additional options that were not documented yet. You can check `validateHadron.js` for any not listed here and also check `addQuarksFromMap.js` to find out what the Tilemap string is for them. Just be aware that some of the keys in `validateHadron.js` are meant to be used internally by the game, not to be set in the Quark.** 
      - **You may add other things here as well and use them in your code, but if you do, you must update the code in `addQuarksFromMap.js` to copy these key/value pairs into the hadron, and you must alo update `validateHadron.js` to add your additional hadron keys as valid keys.**
    - NOTE: If you update sprite properties or add new ones, existing sprites won't get updated. Use the command `/del flv NPC` to clear them and make new ones. **NOTE that this will RESTART the server to ensure the deletes apply everywhere and override active data in flight!**
@@ -185,7 +185,7 @@ Some important things:
    - I highly recommend checking the "Enable Phaser Debugging" box form the title screen.
      - This will display the colliders for your sprites, as well as their velocity, which is very helpful in debugging.
      - You may find from looking at the colliders that you need to tweak your sprite settings in `client/src/objects/spriteSheetList.js` to get the size and shape of collider that you want.
- - Set up Behavior: Each NPC's sub-type can have custom behavior coded in the file `client/src/gameLoopFunctions/npcBehavior.js`
+ - Set up Behavior: Each NPC's subType can have custom behavior coded in the file `client/src/gameLoopFunctions/npcBehavior.js`
    - Use the existing NPCs as a model of how to add new ones.
 
 ## Code Standards

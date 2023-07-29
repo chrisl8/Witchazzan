@@ -23,7 +23,6 @@ function addQuarksFromMap(map, sceneName) {
           spr: objectProperties.sprite,
           typ: 'quark',
           flv: objectProperties.Flavor,
-          sub: objectProperties.subType,
           scn: sceneName,
           dod: objectProperties.dod,
           pod: objectProperties.pod,
@@ -132,6 +131,9 @@ function addQuarksFromMap(map, sceneName) {
         }
         if (objectProperties.hasOwnProperty('followTarget')) {
           newHadron.fol = objectProperties.followTarget;
+        }
+        if (objectProperties.hasOwnProperty('subType')) {
+          newHadron.sub = objectProperties.subType;
         }
         if (objectProperties.hasOwnProperty('Text')) {
           newHadron.txt = objectProperties.Text;

@@ -23,12 +23,12 @@ const serverAdditionalRequiredKeys = [
   'own', // The GUID of the owner.
 ];
 
-// Optionally a hadron can also have:
+// Optionally, a hadron can also have:
 const optionalKeys = [
   'tsk', // Task - Used to indicate what to do with this chunk of data when sent to or received from the server.
   'nam', // Player name. Players always have a name, but no other hadron currently makes use of this.
   'flv', // Flavor. Used on Quarks to distinguish them from each other, so far we have NPCs and Items.
-  'sub', // Sub-Type, i.e. A hadron of Type 'spell' might be Subtype 'spell' or a hadron of type 'NPC' might be a Subtype 'stationaryTank'
+  'sub', // subType, i.e., A hadron of Type 'spell' might be subType 'quasar' or a hadron of type 'NPC' might be some othersubtype.
   // Sprite information
   'dir', // Direction of the Sprite
   'vlx', // X Velocity of the sprite
@@ -37,8 +37,8 @@ const optionalKeys = [
   'mov', // Moving - Communicates to other clients whether the client is "in motion" or not, triggering motion animations.
   // Previous scene info. Used for instance when returning from Library
   'psc', // Previous Scene
-  'px', // x position in previous scene
-  'py', // y Previous in previous scene
+  'px', // x position in the previous scene
+  'py', // y Previous in the previous scene
   'de', // Destination Entrance - When a hadron is SENT to another scene, the sending scene is blind to the receiving scene's data, so we juts store the destination entrance, and the "receiving" scene should use this to determine the entrance and hence the X/Y coordinates for the "received" hadron. This is used when sending items and NPCs through teleport layers.
   // Specific to certain kinds of hadrons
   'txt', // For message type hadrons.

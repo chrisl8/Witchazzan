@@ -783,11 +783,6 @@
               "value": 40
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -892,11 +887,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -905,11 +895,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -1016,11 +1001,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -1029,11 +1009,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -1145,11 +1120,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -1158,11 +1128,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -1269,11 +1234,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -1282,11 +1242,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -1393,11 +1348,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -1406,11 +1356,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -1517,11 +1462,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -1530,11 +1470,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -1641,11 +1576,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -1654,11 +1584,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -1765,11 +1690,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -1778,11 +1698,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -1889,11 +1804,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -1902,11 +1812,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -2013,11 +1918,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -2026,11 +1926,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",
@@ -2196,11 +2091,6 @@
               "value": 10
             },
             {
-              "name": "spell",
-              "type": "string",
-              "value": "laserArrow"
-            },
-            {
               "name": "sprite",
               "type": "string",
               "value": "TankTurquoise"
@@ -2209,11 +2099,6 @@
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "mobileTankTestOne"
             },
             {
               "name": "tcw",

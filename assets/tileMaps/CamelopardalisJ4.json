@@ -1031,11 +1031,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -1133,11 +1128,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -1239,11 +1229,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -1341,11 +1326,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -1447,11 +1427,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -1549,11 +1524,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -1655,11 +1625,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -1757,11 +1722,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -1863,11 +1823,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -1965,11 +1920,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -2071,11 +2021,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -2173,11 +2118,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -2279,11 +2219,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -2381,11 +2316,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -2487,11 +2417,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -2589,11 +2514,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -2695,11 +2615,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -2797,11 +2712,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -2903,11 +2813,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -3005,11 +2910,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -3111,11 +3011,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -3213,11 +3108,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -3319,11 +3209,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -3421,11 +3306,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -3527,11 +3407,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -3629,11 +3504,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -3735,11 +3605,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -3837,11 +3702,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -3943,11 +3803,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -4045,11 +3900,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -4151,11 +4001,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -4253,11 +4098,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -4359,11 +4199,6 @@
               "value": "CircleTankOrange"
             },
             {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
-            },
-            {
               "name": "tcw",
               "type": "bool",
               "value": true
@@ -4456,11 +4291,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
@@ -4576,11 +4406,6 @@
               "name": "sprite",
               "type": "string",
               "value": "CircleTankOrange"
-            },
-            {
-              "name": "subType",
-              "type": "string",
-              "value": "stationaryTank"
             },
             {
               "name": "tcw",
