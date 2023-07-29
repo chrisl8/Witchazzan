@@ -23,10 +23,10 @@ function updateSprite(hadron, key, gameSizeData) {
         if (!isNaN(hadron.dir)) {
           clientSprite.sprite.setAngle(Number(hadron.dir));
         }
-      } else if (hadron.dir === 180) {
+      } else if (hadron.dir === 180 || hadron.dir === 'right') {
         // For non rotatable sprites, only flip them for left/right
         clientSprite.sprite.setFlipX(clientSprite.spriteData.faces === 'right');
-      } else if (hadron.dir === 0) {
+      } else if (hadron.dir === 0 || hadron.dir === 'left') {
         clientSprite.sprite.setFlipX(clientSprite.spriteData.faces === 'left');
       }
     }
