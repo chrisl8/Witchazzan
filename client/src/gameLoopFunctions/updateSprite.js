@@ -94,14 +94,14 @@ function updateSprite(hadron, key, gameSizeData) {
       );
     } else if (
       objectInMotion &&
-      hadron.hasOwnProperty('anim') &&
+      hadron.hasOwnProperty('ani') &&
       hadron.ani &&
       clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
-        `${clientSprite.spriteData.name}-move-${hadron.anim}`,
+        `${clientSprite.spriteData.name}-move-${hadron.ani}`,
       )
     ) {
       clientSprite.sprite.anims.play(
-        `${clientSprite.spriteData.name}-move-${hadron.anim}`,
+        `${clientSprite.spriteData.name}-move-${hadron.ani}`,
         true,
       );
     } else if (
