@@ -37,13 +37,4 @@ function compress(map) {
   return fflate.compressSync(buf, { level: 6, mem: 8 });
 }
 
-function decompress(key, value) {
-  if (typeof value === 'object' && value !== null) {
-    if (value.dataType === 'Map') {
-      return new Map(value.value);
-    }
-  }
-  return value;
-}
-
-export default { stringify, parse, reviver, compress, decompress };
+export default { stringify, parse, reviver, compress };
