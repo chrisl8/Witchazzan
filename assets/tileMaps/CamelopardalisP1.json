@@ -343,19 +343,18 @@
          "name":"Objects",
          "objects":[
                 {
-                 "class":"",
                  "height":0,
                  "id":25,
                  "name":"Default Spawn Point",
                  "point":true,
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":208
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":28,
                  "name":"Lower",
@@ -372,13 +371,13 @@
                          "value":false
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":352,
                  "y":376
                 }, 
                 {
-                 "class":"",
                  "height":0,
                  "id":34,
                  "name":"TestText",
@@ -407,7 +406,7 @@
                         {
                          "name":"Text",
                          "type":"string",
-                         "value":"Pardon me,\nbut are you sure that this\nplanet is supposed to be here?\n\nYou have reached the\nend of the game.\n\nI intend to add more content,\nso please come back again.\n\nUntil then,\nI hope that you enjoyed it!"
+                         "value":"Pardon me,\nbut are you sure that this\nplanet is supposed to be here?\n\nYou have reached the\nend of the game!\n\nThank you for playing.\n\nUntil then,\nI hope that you enjoyed it."
                         }, 
                         {
                          "name":"Type",
@@ -415,6 +414,7 @@
                          "value":"Lepton"
                         }],
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":358.842745809758,
@@ -429,14 +429,8 @@
  "nextlayerid":14,
  "nextobjectid":35,
  "orientation":"orthogonal",
- "properties":[
-        {
-         "name":"EntranceMessage",
-         "type":"string",
-         "value":"for eternity"
-        }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -454,6 +448,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":44
 }
