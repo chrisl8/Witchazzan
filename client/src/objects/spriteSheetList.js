@@ -797,6 +797,24 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'BlackTank',
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 5, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true,
+  },
+  {
+    type: 'other',
     name: 'PurpleRunningRunes',
     frameWidth: 16,
     frameHeight: 16,
@@ -808,19 +826,6 @@ const spriteSheetList = [
     ],
     displayWidth: 16,
     displayHeight: 16,
-  },
-  {
-    type: 'other',
-    name: 'blackTankSingle',
-    frameWidth: 46,
-    frameHeight: 38,
-    physicsSize: {
-      x: 46,
-      y: 24,
-    },
-    displayWidth: 16,
-    displayHeight: 16,
-    rotatable: true,
   },
   {
     type: 'other',
