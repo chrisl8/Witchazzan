@@ -779,6 +779,24 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'DarkBlueTank',
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    animationFrameRate: 15,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 4, zeroPad: 3, repeat: -1 },
+    ],
+    physicsSize: {
+      x: 16,
+      y: 16,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true,
+  },
+  {
+    type: 'other',
     name: 'PurpleRunningRunes',
     frameWidth: 16,
     frameHeight: 16,
