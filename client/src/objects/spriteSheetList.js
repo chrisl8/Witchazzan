@@ -98,6 +98,84 @@ const spriteSheetList = [
   },
   {
     type: 'other',
+    name: 'Cabinet01',
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 12,
+    physicsSize: {
+      x: 16,
+      y: 12,
+    },
+    displayWidth: 16,
+    displayHeight: 12,
+  },
+  {
+    type: 'other',
+    name: 'Cabinet02',
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 15,
+    physicsSize: {
+      x: 16,
+      y: 15,
+    },
+    displayWidth: 16,
+    displayHeight: 15,
+  },
+  {
+    type: 'other',
+    name: 'Cabinet03',
+    faces: 'right',
+    frameWidth: 12,
+    frameHeight: 12,
+    physicsSize: {
+      x: 12,
+      y: 12,
+    },
+    displayWidth: 12,
+    displayHeight: 12,
+  },
+  {
+    type: 'other',
+    name: 'Cabinet04',
+    faces: 'right',
+    frameWidth: 12,
+    frameHeight: 15,
+    physicsSize: {
+      x: 12,
+      y: 15,
+    },
+    displayWidth: 12,
+    displayHeight: 15,
+  },
+  {
+    type: 'other',
+    name: 'Cabinet05',
+    faces: 'right',
+    frameWidth: 16,
+    frameHeight: 15,
+    physicsSize: {
+      x: 16,
+      y: 15,
+    },
+    displayWidth: 16,
+    displayHeight: 15,
+  },
+  {
+    type: 'other',
+    name: 'Cabinet06',
+    faces: 'right',
+    frameWidth: 12,
+    frameHeight: 15,
+    physicsSize: {
+      x: 12,
+      y: 15,
+    },
+    displayWidth: 12,
+    displayHeight: 15,
+  },
+  {
+    type: 'other',
     name: 'WickedSnailOne',
     faces: 'right',
     frameWidth: 32,
@@ -298,6 +376,32 @@ const spriteSheetList = [
     displayWidth: 16,
     displayHeight: 16,
     rotatable: true, // For sprites that should rotate to any direction, instead of just the 4
+  },
+  {
+    type: 'other',
+    name: 'LandWater',
+    frameWidth: 16,
+    frameHeight: 16,
+    endFrame: -1,
+    faces: 'right',
+    animationFrameRate: 7,
+    animations: [
+      { keyName: 'move-stationary', start: 0, end: 7, zeroPad: 3, repeat: -1 },
+    ],
+    physicsOffset: {
+      x: 2,
+      y: 2,
+    },
+    physicsCircle: {
+      radius: 6.5,
+    },
+    physicsSize: {
+      x: 0,
+      y: 0,
+    },
+    displayWidth: 16,
+    displayHeight: 16,
+    rotatable: true,
   },
   // laserArrow
   {
@@ -747,19 +851,6 @@ const spriteSheetList = [
   {
     type: 'other',
     name: 'darkBlueTankSingle',
-    frameWidth: 46,
-    frameHeight: 38,
-    physicsSize: {
-      x: 46,
-      y: 24,
-    },
-    displayWidth: 16,
-    displayHeight: 16,
-    rotatable: true,
-  },
-  {
-    type: 'other',
-    name: 'lightBlueTankSingle',
     frameWidth: 46,
     frameHeight: 38,
     physicsSize: {

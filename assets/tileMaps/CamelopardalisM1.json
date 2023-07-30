@@ -1148,7 +1148,7 @@
                         {
                          "name":"id",
                          "type":"string",
-                         "value":"b722e3db-918f-4b40-97ca-c73a8163d9fb"
+                         "value":"dfaa16dd-fd66-4429-9a7b-8f310ecad41a"
                         }, 
                         {
                          "name":"iin",
@@ -1168,7 +1168,7 @@
                         {
                          "name":"sprite",
                          "type":"string",
-                         "value":"YellowKey"
+                         "value":"PurpleKey"
                         }, 
                         {
                          "name":"tcw",
