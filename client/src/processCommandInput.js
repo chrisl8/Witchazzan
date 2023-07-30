@@ -42,27 +42,32 @@ function processCommandInput(event) {
       const command = inputText.join('');
       const inputTextSpaceDelimitedArray = command.split(' ');
       if (
+        playerObject.isAdmin &&
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'dumpplayerobject'
       ) {
         console.log(playerObject);
         addEntryToCommandHistory(command);
       } else if (
+        playerObject.isAdmin &&
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'dumpclientsprites'
       ) {
         console.log(clientSprites);
         addEntryToCommandHistory(command);
       } else if (
+        playerObject.isAdmin &&
         inputTextSpaceDelimitedArray[0].toLowerCase() ===
-        'dumpdeletedhadronlist'
+          'dumpdeletedhadronlist'
       ) {
         console.log(deletedHadronList);
         addEntryToCommandHistory(command);
       } else if (
+        playerObject.isAdmin &&
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'coordinates'
       ) {
         textObject.coordinates.shouldBeActiveNow =
           !textObject.coordinates.shouldBeActiveNow;
       } else if (
+        playerObject.isAdmin &&
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'dumphadrons'
       ) {
         console.log(hadrons);
@@ -74,8 +79,9 @@ function processCommandInput(event) {
         const text = inputTextSpaceDelimitedArray.join(' ');
         sendDataToServer.txt({ text, targetPlayerId });
       } else if (
-        inputTextSpaceDelimitedArray[0].toLowerCase() === 'teleporttoscene' ||
-        inputTextSpaceDelimitedArray[0].toLowerCase() === 'tp'
+        playerObject.isAdmin &&
+        (inputTextSpaceDelimitedArray[0].toLowerCase() === 'teleporttoscene' ||
+          inputTextSpaceDelimitedArray[0].toLowerCase() === 'tp')
       ) {
         playerObject.teleportToSceneNow = inputTextSpaceDelimitedArray[1];
         addEntryToCommandHistory(command);
