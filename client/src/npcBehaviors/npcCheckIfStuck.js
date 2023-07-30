@@ -5,7 +5,7 @@
 // TODO: Make this delta time based, not frame based.
 // TODO: Set this per NPC, or as input variables.
 const stuckDurationThreshold = 20;
-const stuckMovementThreshold = 3;
+const stuckMovementThreshold = 1;
 
 function npcCheckIfStuck(clientSprite) {
   let isStuck = false;
