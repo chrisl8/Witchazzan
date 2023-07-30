@@ -115,4 +115,4 @@ function castSpell({
 const throttledSpellCaster = throttle(castSpell, 100);
 
 // export default throttledSpellCaster;
-export default throttledSpellCaster;
+export { castSpell, throttledSpellCaster };

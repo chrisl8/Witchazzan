@@ -1,5 +1,5 @@
 import playerObject from '../objects/playerObject.js';
-import castSpell from '../castSpell.js';
+import { throttledSpellCaster } from '../castSpell.js';
 import returnToIntroScreen from './returnToIntroScreen.js';
 
 function collectKeyboardInput(sceneName) {
@@ -81,7 +81,7 @@ function collectKeyboardInput(sceneName) {
     playerObject.sendSpell = false;
     playerObject.keyState[' '] = null;
     playerObject.autoFireLockout = true;
-    castSpell({
+    throttledSpellCaster({
       sceneName,
       spell: playerObject.activeSpell,
       direction: playerObject.playerDirection,

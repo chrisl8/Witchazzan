@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import clientSprites from '../objects/clientSprites.js';
-import castSpell from '../castSpell.js';
+import { castSpell } from '../castSpell.js';
 
 function npcSpellCaster({
   hadron,
