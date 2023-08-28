@@ -10,6 +10,8 @@
 const playerObject = {
   name: null,
   isAdmin: false,
+  canChat: false,
+  canMessage: false,
   logLatency: false,
   initialPositionReceived: false,
   teleportInProgress: false,

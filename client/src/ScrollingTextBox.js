@@ -38,6 +38,12 @@ class ScrollingTextBox {
   };
 
   chat(inputData) {
+    const closeText =
+      '<br/><span style="color: blue;">Press \'Esc\' to close.</span>';
+    if (textObject.incomingChatText.text.includes(closeText)) {
+      textObject.incomingChatText.text =
+        textObject.incomingChatText.text.replace(closeText, '');
+    }
     if (textObject.incomingChatText.text !== '') {
       // Add a line break if there is existing text.
       textObject.incomingChatText.text = `${textObject.incomingChatText.text}<br/>`;
@@ -45,6 +51,7 @@ class ScrollingTextBox {
     const sender = inputData.name ? `${inputData.name}: ` : '';
     textObject.incomingChatText.text = `${textObject.incomingChatText.text}${sender}${inputData.content}`;
     textObject.incomingChatText.shouldBeActiveNow = true;
+    textObject.incomingChatText.text = `${textObject.incomingChatText.text}${closeText}`;
   }
 
   display = (enableTimeout) => {

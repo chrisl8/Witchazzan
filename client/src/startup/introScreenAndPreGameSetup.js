@@ -14,6 +14,8 @@ if (window.location.port === '3001') {
 
 let playerName = '';
 let isAdmin = false;
+let canChat = false;
+let canMessage = false;
 let isGuest = false;
 let loginFailure = false;
 let loginErrorText = null;
@@ -85,6 +87,9 @@ function updateDOMElements() {
 
   for (const el of document.querySelectorAll('.admin_only_visible'))
     el.style.display = isAdmin ? 'block' : 'none';
+
+  for (const el of document.querySelectorAll('.admin_can_chat_visible'))
+    el.style.display = canChat ? 'block' : 'none';
 
   if (playerName) {
     document.getElementById('password_input_box').focus();

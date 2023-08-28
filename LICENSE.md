@@ -6,7 +6,7 @@
     - This applies to all content of this codebase, except for any folder with a different license within it, and/or any file with a different license called out within it, or any files included here from third parties, such as those listed in the Attributions section of README.md.
 
 ## Artwork and Story
-- All images and text files are Copyright 2002 - Christen Lofland, and may not be redistributed nor included in your own applications for distribution.
+- All images and text files are Copyright 2023 - Christen Lofland, and may not be redistributed nor included in your own applications for distribution.
     - This specifically pertains to the contents of the `/lore` folder and the `/assets` folder and their sub-folders.
     - This does **not** apply to incidental text within source code files that are under AGPLv3 license.
     - You are, of course, free to fork this repository and all of its content, and to clone it to your computer systems, but you may not redistribute the parts that are not under the AGPLv3 license.

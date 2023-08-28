@@ -24,7 +24,7 @@ const textObject = {
     location: 'Coordinates',
   },
   incomingChatText: {
-    text: '<span style="color: black;">Chat/Command Log &#x1F600;</span>',
+    text: '',
     shouldBeActiveNow: false,
     location: 'Scrolling', // UpperLeft, 'Scrolling', or 'Center'
   },

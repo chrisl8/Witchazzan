@@ -17,4 +17,4 @@ In order to recreate a semblance of our former vast society, we used our power t
 
 This system was able to receive, sort, filter, transmit, broadcast and even archive Hadrons. By all joining this system, we could once gain live our lives together, even though we always knew that in reality, we were apart.
 
-COPYRIGHT 2002 Christen Lofland
+COPYRIGHT 2023 Christen Lofland

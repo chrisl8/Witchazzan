@@ -1020,7 +1020,10 @@ io.on('connection', (socket) => {
       // Start list of "when client sends this to us" code.
 
       socket.on('txt', async (data) => {
-        if (validatePlayer(PlayerId, socket, PlayerName)) {
+        if (
+          validatePlayer(PlayerId, socket, PlayerName) &&
+          connectedPlayerData.get(PlayerId)?.canChat
+        ) {
           let name = PlayerName;
           if (data.fromPlayerId) {
             try {
