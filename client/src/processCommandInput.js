@@ -61,7 +61,6 @@ function processCommandInput(event) {
         console.log(deletedHadronList);
         addEntryToCommandHistory(command);
       } else if (
-        playerObject.isAdmin &&
         inputTextSpaceDelimitedArray[0].toLowerCase() === 'coordinates'
       ) {
         textObject.coordinates.shouldBeActiveNow =
