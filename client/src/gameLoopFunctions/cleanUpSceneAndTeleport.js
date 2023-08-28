@@ -88,15 +88,19 @@ function cleanUpSceneAndTeleport(
     barricadeSprites.clear();
 
     // Track previous location in case we want to come back to it.
-    // Specifically this is used when returning from the Library, but you could use it for anything.
-    playerObject.previousScene = {
-      name: sceneName,
-      x: playerObject.player.x,
-      y: playerObject.player.y,
-    };
+    // Specifically, this is used when returning from the Library, but you could use it for anything,
+    // but those scenes can never be your previous scene.
+    if (['Library', 'EmptyCave'].indexOf(sceneName) === -1) {
+      playerObject.previousScene = {
+        name: sceneName,
+        x: playerObject.player.x,
+        y: playerObject.player.y,
+      };
+    }
+
     playerObject.ray = null;
 
-    // Prevent auto-fire lockout from bugging ut on scene changes.
+    // Prevent auto-fire lockout from bugging out on scene changes.
     playerObject.autoFireLockout = false;
 
     this.scene.start(destinationSceneName);
