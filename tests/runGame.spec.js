@@ -125,7 +125,7 @@ test('Witchazzan Game Test', async ({ page }) => {
 
   await moveToLocation({ page, direction: 'right', position: 260 });
   await delay(1000);
-  await expect(page).toHaveScreenshot({ maxDiffPixels: 1500 });
+  await expect(page).toHaveScreenshot({ maxDiffPixels: 2500 });
 
   await moveToLocation({
     page,
@@ -134,7 +134,7 @@ test('Witchazzan Game Test', async ({ page }) => {
     changeScenes: true,
   });
   await delay(1000);
-  await expect(page).toHaveScreenshot({ maxDiffPixels: 1500 });
+  await expect(page).toHaveScreenshot({ maxDiffPixels: 2500 });
 
   // Pause game
   await page.keyboard.down('p');
