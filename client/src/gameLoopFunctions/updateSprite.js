@@ -50,7 +50,7 @@ function updateSprite(hadron, key, gameSizeData) {
       objectInMotion = false;
     }
     if (
-      clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+      clientSprite?.sprite?.anims?.animationManager?.anims?.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-left`,
       ) &&
       Number(hadron.dir) === 180 &&
@@ -63,7 +63,7 @@ function updateSprite(hadron, key, gameSizeData) {
         true,
       );
     } else if (
-      clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+      clientSprite?.sprite?.anims?.animationManager?.anims?.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-right`,
       ) &&
       Number(hadron.dir) === 0 &&
@@ -76,7 +76,7 @@ function updateSprite(hadron, key, gameSizeData) {
         true,
       );
     } else if (
-      clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+      clientSprite?.sprite?.anims?.animationManager?.anims?.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-back`,
       ) &&
       Number(hadron.dir) === 270 &&
@@ -89,7 +89,7 @@ function updateSprite(hadron, key, gameSizeData) {
         true,
       );
     } else if (
-      clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+      clientSprite?.sprite?.anims?.animationManager?.anims?.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-front`,
       ) &&
       Number(hadron.dir) === 90 &&
@@ -105,7 +105,7 @@ function updateSprite(hadron, key, gameSizeData) {
       objectInMotion &&
       hadron.hasOwnProperty('ani') &&
       hadron.ani &&
-      clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+      clientSprite?.sprite?.anims?.animationManager?.anims?.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-${hadron.ani}`,
       )
     ) {
@@ -115,7 +115,7 @@ function updateSprite(hadron, key, gameSizeData) {
       );
     } else if (
       objectInMotion &&
-      clientSprite.sprite.anims.animationManager.anims.entries.hasOwnProperty(
+      clientSprite?.sprite?.anims?.animationManager?.anims?.entries.hasOwnProperty(
         `${clientSprite.spriteData.name}-move-stationary`,
       )
     ) {
