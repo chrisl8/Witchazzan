@@ -1,4 +1,7 @@
 import fs from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { randomUUID, randomBytes } from 'crypto';
 import cors from 'cors';
 import express from 'express';
 import sqlite3 from 'sqlite3';
@@ -6,9 +9,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Server } from 'socket.io';
 import msgPackParser from 'socket.io-msgpack-parser';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import { randomUUID, randomBytes } from 'crypto';
 import _ from 'lodash';
 import persistentData from './persistentData.js';
 import validateJWT from './validateJWT.js';
@@ -19,6 +19,7 @@ import serverVersion from './utilities/version.js';
 import mapUtils from './utilities/mapUtils.js';
 import generateRandomGuestUsername from './utilities/generateRandomGuestUsername.js';
 import initDatabase from './utilities/initDatabase.js';
+import addPrivilege from './utilities/addPrivilege.js';
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -62,6 +63,16 @@ const commandListArray = [
   {
     name: 'op [player name]',
     description: 'Upgrade [player name] to admin.',
+    adminOnly: true,
+  },
+  {
+    name: 'canChat [player name]',
+    description: 'Allow [player name] to chat.',
+    adminOnly: true,
+  },
+  {
+    name: 'canMessage [player name]',
+    description: 'Allow [player name] to drop messages.',
     adminOnly: true,
   },
 ];
@@ -386,19 +397,23 @@ app.post('/api/login', async (req, res) => {
   let id;
   let hash;
   let admin = 0;
+  let canChat = 0;
+  let canMessage = 0;
   let guest = 0;
   const password = req.body.password;
   try {
     // LIKE allows for case insensitive name comparison.
     // User names shouldn't be case sensitive.
     const sql =
-      'SELECT id, name, password, admin, guest FROM Users WHERE name LIKE ?';
+      'SELECT id, name, password, admin, canChat, canMessage, guest FROM Users WHERE name LIKE ?';
     const result = await db.query(sql, [name]);
     if (result.rows.length > 0) {
       // We do not confirm or deny that the user exists.
       hash = result.rows[0].password;
       id = result.rows[0].id;
       admin = result.rows[0].admin;
+      canChat = result.rows[0].canChat;
+      canMessage = result.rows[0].canMessage;
       guest = result.rows[0].guest;
     }
   } catch (e) {
@@ -415,6 +430,8 @@ app.post('/api/login', async (req, res) => {
             id,
             name,
             admin,
+            canChat,
+            canMessage,
             guest,
           },
           serverConfiguration.jwtSecret,
@@ -911,6 +928,8 @@ io.on('connection', (socket) => {
       const PlayerName = decoded.name;
       const PlayerId = decoded.id;
       const isAdmin = decoded.admin;
+      const canChat = decoded.canChat;
+      const canMessage = decoded.canMessage;
       console.log(`${PlayerName} connected from ${remoteIp}`);
 
       if (connectedPlayerData.get(PlayerId)) {
@@ -928,6 +947,8 @@ io.on('connection', (socket) => {
         id: PlayerId,
         name: PlayerName,
         admin: isAdmin,
+        canChat,
+        canMessage,
         defaultOpeningScene: serverConfiguration.defaultOpeningScene,
         serverVersion,
       });
@@ -996,6 +1017,8 @@ io.on('connection', (socket) => {
         scene: newPlayerHadron.scn,
         socketId: socket.id,
         isAdmin,
+        canChat,
+        canMessage,
       });
 
       // Join player to the room for the scene that they are in.
@@ -1208,82 +1231,23 @@ io.on('connection', (socket) => {
                 };
                 closeServer(delRequestedHadrons);
               } else if (
-                command[0].toLowerCase() === 'op' &&
+                (command[0].toLowerCase() === 'op' ||
+                  command[0].toLowerCase() === 'canchat' ||
+                  command[0].toLowerCase() === 'canmessage') &&
                 command.length === 2
               ) {
-                const playerNameToOp = command[1];
-                let playerIdToOp;
-                let playerIsAlreadyAdmin;
-                let error;
-                try {
-                  // LIKE allows for case insensitive name comparison.
-                  // User names shouldn't be case sensitive.
-                  const sql = 'SELECT id, admin FROM Users WHERE name LIKE ?';
-                  const result = await db.query(sql, [playerNameToOp]);
-                  if (result.rows.length > 0) {
-                    playerIdToOp = result.rows[0].id;
-                    playerIsAlreadyAdmin = result.rows[0].admin === 1;
-                  }
-                } catch (e) {
-                  error = true;
-                  console.error('Error retrieving user on socket command:');
-                  console.error(e.message);
+                const returnMessage = await addPrivilege({
+                  privilege: command[0].toLowerCase(),
+                  playerNameToOp: command[1],
+                  db,
+                  connectedPlayerData,
+                  socket,
+                });
+                if (returnMessage) {
                   socket.emit('txt', {
                     typ: 'chat',
-                    content: `Error retrieving ${playerNameToOp} from the database`,
+                    content: returnMessage,
                   });
-                }
-                if (!playerIdToOp) {
-                  socket.emit('txt', {
-                    typ: 'chat',
-                    content: `Player '${playerNameToOp}' does not exist.`,
-                  });
-                }
-                if (playerIsAlreadyAdmin) {
-                  socket.emit('txt', {
-                    typ: 'chat',
-                    content: `Player '${playerNameToOp}' is already an Admin.`,
-                  });
-                }
-                if (
-                  !error &&
-                  playerIdToOp &&
-                  playerIdToOp &&
-                  !playerIsAlreadyAdmin
-                ) {
-                  try {
-                    await db.query('UPDATE Users SET admin = 1 WHERE id = ?', [
-                      playerIdToOp,
-                    ]);
-                  } catch (e) {
-                    error = true;
-                    console.error('Error updating user:');
-                    console.error(e.message);
-                    socket.emit('txt', {
-                      typ: 'chat',
-                      content: `Error updating '${playerNameToOp}' database entry.`,
-                    });
-                  }
-                  if (!error) {
-                    socket.emit('txt', {
-                      typ: 'chat',
-                      content: `Player '${playerNameToOp}' has been made Admin.`,
-                    });
-                    if (connectedPlayerData.get(playerIdToOp)?.socketId) {
-                      socket
-                        .to(connectedPlayerData.get(playerIdToOp)?.socketId)
-                        .emit('txt', {
-                          typ: 'chat',
-                          content: `You have been made an admin! You must sign in again to apply the update. Your game will now restart to apply it...`,
-                        });
-                      await wait(3000);
-                      socket
-                        .to(connectedPlayerData.get(playerIdToOp)?.socketId)
-                        .emit('unauthorized', {
-                          content: `You have been made an admin! You must sign in again to apply the update. Your game will now restart to apply it...`,
-                        });
-                    }
-                  }
                 }
               } else {
                 console.error('Unable to parse this command.');

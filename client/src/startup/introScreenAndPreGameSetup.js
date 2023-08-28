@@ -144,6 +144,9 @@ async function checkLoggedInStatus() {
         playerName = JSON.parse(window.atob(token.split('.')[1])).name;
         localStorage.setItem('playerName', playerName); // To survive page refreshes
         isAdmin = JSON.parse(window.atob(token.split('.')[1])).admin === 1;
+        canChat = JSON.parse(window.atob(token.split('.')[1])).canChat === 1;
+        canMessage =
+          JSON.parse(window.atob(token.split('.')[1])).canMessage === 1;
         isGuest = JSON.parse(window.atob(token.split('.')[1])).guest === 1;
       } else if (res.status === 401) {
         localStorage.removeItem('authToken');

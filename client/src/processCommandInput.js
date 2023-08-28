@@ -72,11 +72,13 @@ function processCommandInput(event) {
         console.log(hadrons);
         addEntryToCommandHistory(command);
       } else if (inputTextSpaceDelimitedArray[0].toLowerCase() === 'whisper') {
-        // Sends chat to specific user
-        inputTextSpaceDelimitedArray.shift();
-        const targetPlayerId = Number(inputTextSpaceDelimitedArray.shift());
-        const text = inputTextSpaceDelimitedArray.join(' ');
-        sendDataToServer.txt({ text, targetPlayerId });
+        if (playerObject.canChat) {
+          // Sends chat to specific user
+          inputTextSpaceDelimitedArray.shift();
+          const targetPlayerId = Number(inputTextSpaceDelimitedArray.shift());
+          const text = inputTextSpaceDelimitedArray.join(' ');
+          sendDataToServer.txt({ text, targetPlayerId });
+        }
       } else if (
         playerObject.isAdmin &&
         (inputTextSpaceDelimitedArray[0].toLowerCase() === 'teleporttoscene' ||
@@ -93,7 +95,7 @@ function processCommandInput(event) {
         addEntryToCommandHistory(command);
       }
     } else {
-      if (playerObject.chatInputTextArray.length > 0) {
+      if (playerObject.canChat && playerObject.chatInputTextArray.length > 0) {
         sendDataToServer.txt({
           text: playerObject.chatInputTextArray.join(''),
         });

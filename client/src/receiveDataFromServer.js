@@ -124,6 +124,8 @@ function receiveDataFromServer() {
     // console.log('Player ID:', playerObject.playerId); // For debugging
     playerObject.name = inputData.name;
     playerObject.isAdmin = inputData.admin;
+    playerObject.canChat = inputData.canChat;
+    playerObject.canMessage = inputData.canMessage;
     if (!inputData.admin) {
       playerObject.infiniteHealth = false;
     }

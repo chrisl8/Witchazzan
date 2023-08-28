@@ -42,6 +42,8 @@ async function initDatabase(db) {
       last_connection: 'INTEGER',
       guest: 'INTEGER DEFAULT 0',
       deleted: 'INTEGER DEFAULT 0',
+      canChat: 'INTEGER DEFAULT 0',
+      canMessage: 'INTEGER DEFAULT 0',
     },
   });
   // Displaying the user table count for fun and debugging.
