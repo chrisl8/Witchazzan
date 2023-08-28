@@ -36,12 +36,12 @@ function moveSpriteInDirection({
 
     if (Math.abs(sprite.sprite.body.velocity.x - desiredVelocityX) > 0.001) {
       hadronUpdated = true;
-      sprite.sprite.body.setVelocityX(desiredVelocityX);
+      sprite.sprite.body.setVelocityX(desiredVelocityX || 0);
     }
 
     if (Math.abs(sprite.sprite.body.velocity.y - desiredVelocityY) > 0.001) {
       hadronUpdated = true;
-      sprite.sprite.body.setVelocityY(desiredVelocityY);
+      sprite.sprite.body.setVelocityY(desiredVelocityY || 0);
     }
   }
   return hadronUpdated;

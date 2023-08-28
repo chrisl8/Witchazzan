@@ -39,8 +39,8 @@ function npcTeleportation({ hadron, map, newHadronData, hadronUpdated, key }) {
     if (clientSprite?.sprite?.body) {
       // If the sprite exists, we need to update it now, lest it get overwritten.
       clientSprite.sprite.setPosition(newHadronData.x, newHadronData.y);
-      clientSprite.sprite.body.setVelocityX(newHadronData.vlx);
-      clientSprite.sprite.body.setVelocityY(newHadronData.vly);
+      clientSprite.sprite.body.setVelocityX(newHadronData.vlx || 0);
+      clientSprite.sprite.body.setVelocityY(newHadronData.vly || 0);
     }
     hadronUpdated = true;
   }

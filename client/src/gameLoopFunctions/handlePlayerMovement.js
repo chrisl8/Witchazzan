@@ -51,7 +51,7 @@ function handlePlayerMovement() {
         fullSpeed = false;
       }
     }
-    playerObject.player.body.setVelocityX(newSpeed);
+    playerObject.player.body.setVelocityX(newSpeed || 0);
   } else if (
     playerObject.keyState.ArrowRight === 'keydown' ||
     playerObject.keyState.d === 'keydown' ||
@@ -67,7 +67,7 @@ function handlePlayerMovement() {
         fullSpeed = false;
       }
     }
-    playerObject.player.body.setVelocityX(newSpeed);
+    playerObject.player.body.setVelocityX(newSpeed || 0);
   }
 
   // Vertical movement
