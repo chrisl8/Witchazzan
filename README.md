@@ -477,7 +477,11 @@ To build new golden snapshots after making changes to the game run tests with th
 
 ## License
 
-Please see the LICENSE.md file in the same folder as this file.
+All contents of this repository are MIT licensed.
+
+You are free to copy it and use it in any way you like.
+
+Please see the LICENSE file in the same folder as this file.
 
 ## Attribution
 
