@@ -1045,7 +1045,7 @@ io.on('connection', (socket) => {
       socket.on('txt', async (data) => {
         if (
           validatePlayer(PlayerId, socket, PlayerName) &&
-          connectedPlayerData.get(PlayerId)?.canChat
+          (connectedPlayerData.get(PlayerId)?.canChat || data.typ === 'fad')
         ) {
           let name = PlayerName;
           if (data.fromPlayerId) {
