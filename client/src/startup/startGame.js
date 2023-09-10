@@ -49,9 +49,21 @@ async function waitForConnectionAndInitialPlayerPosition() {
  */
 
 (async () => {
-  // First, make sure that we have a token, because otherwise this is pointless
+  // The helpTextVersion is a way to force all users
+  // back to the intro screen on the next connection.
+  // It is also the method that the 'p' key uses to get users here.
+  // NOTE: This code is duplicated from introScreenAndPreGameSetup.js because
+  // in Firefox redirecting to /sign-in.html fails, so this catches that.
+  // For some reason it works fine in Chrome but not Firefox.
+  const existingHelpTextVersion = Number(
+    localStorage.getItem('helpTextVersion'),
+  );
   const token = localStorage.getItem('authToken');
-  if (!token) {
+  if (
+    !token ||
+    !existingHelpTextVersion ||
+    existingHelpTextVersion < playerObject.helpTextVersion
+  ) {
     returnToIntroScreen();
   }
 
