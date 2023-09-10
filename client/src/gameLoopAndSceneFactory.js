@@ -127,7 +127,8 @@ const gameLoopAndSceneFactory = ({
     }
 
     // Load Sounds
-    if (!scene.cache.audio.has('sunrise')) {
+    if (!scene.cache.audio.has('sunrise') && !playerObject.sunHasRisen) {
+      playerObject.sunHasRisen = true;
       this.load.audio('sunrise', [sunriseOgg, sunriseMp3]);
     }
 
