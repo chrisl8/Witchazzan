@@ -49,7 +49,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
  */
 
 (async () => {
-  // First make sure that we have a token, because otherwise this is pointless
+  // First, make sure that we have a token, because otherwise this is pointless
   const token = localStorage.getItem('authToken');
   if (!token) {
     returnToIntroScreen();
@@ -149,7 +149,7 @@ async function waitForConnectionAndInitialPlayerPosition() {
   phaserConfigObject.physics.arcade.debug = playerObject.enableDebug;
   phaserConfigObject.game = new Phaser.Game(phaserConfigObject);
 
-  // grab handle to canvas element
+  // Create a handle to the canvas element
   playerObject.domElements.canvas = document.getElementsByTagName('canvas')[0];
 
   // If they aren't in fullscreen, tell them to try it.

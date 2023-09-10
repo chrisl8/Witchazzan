@@ -123,6 +123,27 @@ function updateDOMElements() {
     localStorage.removeItem('multiple_logins');
     document.getElementById('multiple_logins').hidden = false;
   }
+
+  // Populate the Intro Page with Spell selection HTML and fill with defaults
+  let spellAssignmentInnerHTML = '';
+  for (const [, spellKeyValue] of Object.entries(playerObject.spellKeys)) {
+    // Create Inner HTML for Spell selection
+    spellAssignmentInnerHTML += `<label for="spell_${spellKeyValue}_selector">${spellKeyValue}</label> - <select id="spell_${spellKeyValue}_selector" class="spell-selector">`;
+    // eslint-disable-next-line no-loop-func
+    for (const [, spellOptionValue] of Object.entries(
+      playerObject.spellOptions,
+    )) {
+      if (spellAssignments.get(spellKeyValue) === spellOptionValue) {
+        spellAssignmentInnerHTML += `<option value="${spellOptionValue}" selected>${spellOptionValue}</option>`;
+      } else {
+        spellAssignmentInnerHTML += `<option value="${spellOptionValue}">${spellOptionValue}</option>`;
+      }
+    }
+    spellAssignmentInnerHTML += `</select><br />`;
+  }
+  // Push new spell settings HTML code into DOM
+  document.getElementById('spell-assignment').innerHTML =
+    spellAssignmentInnerHTML;
 }
 
 async function checkLoggedInStatus() {
@@ -147,6 +168,12 @@ async function checkLoggedInStatus() {
         canChat = JSON.parse(window.atob(token.split('.')[1])).canChat === 1;
         canMessage =
           JSON.parse(window.atob(token.split('.')[1])).canMessage === 1;
+        if (canMessage) {
+          playerObject.spellOptions.push('writeMessage');
+          playerObject.spellKeys.push(
+            String(playerObject.spellKeys.length + 1),
+          );
+        }
         isGuest = JSON.parse(window.atob(token.split('.')[1])).guest === 1;
       } else if (res.status === 401) {
         localStorage.removeItem('authToken');
@@ -167,6 +194,7 @@ async function checkLoggedInStatus() {
   } else {
     loggedIn = false;
   }
+  populateSpellSettings();
   updateDOMElements();
 }
 
@@ -196,6 +224,15 @@ async function login() {
       localStorage.setItem('playerName', playerName); // To survive page refreshes
       isAdmin =
         JSON.parse(window.atob(resultObject.token.split('.')[1])).admin === 1;
+      canChat =
+        JSON.parse(window.atob(resultObject.token.split('.')[1])).canChat === 1;
+      canMessage =
+        JSON.parse(window.atob(resultObject.token.split('.')[1])).canMessage ===
+        1;
+      if (canMessage) {
+        playerObject.spellOptions.push('writeMessage');
+        playerObject.spellKeys.push(String(playerObject.spellKeys.length + 1));
+      }
       isGuest =
         JSON.parse(window.atob(resultObject.token.split('.')[1])).guest === 1;
     } else if (res.status === 401) {
@@ -217,6 +254,7 @@ async function login() {
     console.error(error);
   }
   loginInProgress = false;
+  populateSpellSettings();
   updateDOMElements();
 }
 
@@ -405,16 +443,15 @@ async function createAccount() {
 const startGameNow = () => {
   // Save the player name to local storage for use next time
   // in the login box in case the token was wiped.
-  // In theory the browser could do this for me?
   localStorage.setItem('playerName', playerName);
 
-  // Update the help text version so it does not force us here next time.
+  // Update the help text version, so it does not force us here next time.
   localStorage.setItem(
     'helpTextVersion',
     playerObject.helpTextVersion.toString(),
   );
 
-  // Settle up logLatency and set local storage if need be
+  // Settle up logLatency and set local storage if needed
   const logLatency = document.getElementById('log_latency').checked;
   if (logLatency) {
     localStorage.setItem('logLatency', 'true');
@@ -430,7 +467,7 @@ const startGameNow = () => {
     localStorage.removeItem('disableSound');
   }
 
-  // Settle up enableDebug and set local storage if need be
+  // Settle up enableDebug and set local storage if needed
   const enableDebug = document.getElementById('phaser_debug').checked;
   if (enableDebug) {
     localStorage.setItem('enableDebug', 'true');
@@ -438,7 +475,7 @@ const startGameNow = () => {
     localStorage.removeItem('enableDebug');
   }
 
-  // Settle up loadTesting and set local storage if need be
+  // Settle up loadTesting and set local storage if needed
   const loadTesting = document.getElementById('load_testing').checked;
   if (loadTesting) {
     localStorage.setItem('loadTesting', 'true');
@@ -446,7 +483,7 @@ const startGameNow = () => {
     localStorage.removeItem('loadTesting');
   }
 
-  // Settle up infiniteHealth and set local storage if need be
+  // Settle up infiniteHealth and set local storage if needed
   const infiniteHealth = document.getElementById('infinite_health').checked;
   if (infiniteHealth) {
     localStorage.setItem('infiniteHealth', 'true');
@@ -552,31 +589,8 @@ const playAsGuest = async () => {
     document.getElementById('infinite_health').checked = true;
   }
 
-  populateSpellSettings();
-
-  // Populate Intro Page with Spell selection HTML and fill with defaults
-  let spellAssignmentInnerHTML = '';
-  for (const [, spellKeyValue] of Object.entries(playerObject.spellKeys)) {
-    // Create Inner HTML for Spell selection
-    spellAssignmentInnerHTML += `<label for="spell_${spellKeyValue}_selector">${spellKeyValue}</label> - <select id="spell_${spellKeyValue}_selector" class="spell-selector">`;
-    // eslint-disable-next-line no-loop-func
-    for (const [, spellOptionValue] of Object.entries(
-      playerObject.spellOptions,
-    )) {
-      if (spellAssignments.get(spellKeyValue) === spellOptionValue) {
-        spellAssignmentInnerHTML += `<option value="${spellOptionValue}" selected>${spellOptionValue}</option>`;
-      } else {
-        spellAssignmentInnerHTML += `<option value="${spellOptionValue}">${spellOptionValue}</option>`;
-      }
-    }
-    spellAssignmentInnerHTML += `</select><br />`;
-  }
-  // Push new spell settings HTML code into DOM
-  document.getElementById('spell-assignment').innerHTML =
-    spellAssignmentInnerHTML;
-
   // The helpTextVersion is a way to force all users
-  // back to the intro screen on next connection.
+  // back to the intro screen on the next connection.
   // It is also the method that the 'p' key uses to get users here.
   const existingHelpTextVersion = Number(
     localStorage.getItem('helpTextVersion'),

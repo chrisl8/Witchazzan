@@ -12,6 +12,7 @@ import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
 import clientVersion from '../../server/utilities/version.js';
 import mapUtils from '../../server/utilities/mapUtils.js';
 import textObject from './objects/textObject.js';
+import populateSpellSettings from './utilities/populateSpellSettings.js';
 
 function receiveDataFromServer() {
   if (communicationsObject.socket && communicationsObject.socket.close) {
@@ -126,6 +127,11 @@ function receiveDataFromServer() {
     playerObject.isAdmin = inputData.admin;
     playerObject.canChat = inputData.canChat;
     playerObject.canMessage = inputData.canMessage;
+    if (playerObject.canMessage) {
+      playerObject.spellOptions.push('writeMessage');
+      playerObject.spellKeys.push(String(playerObject.spellKeys.length + 1));
+      populateSpellSettings();
+    }
     if (!inputData.admin) {
       playerObject.infiniteHealth = false;
     }

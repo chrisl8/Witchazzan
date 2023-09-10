@@ -15,7 +15,7 @@ function populateSpellSettings() {
     ) {
       spellAssignments.set(value, spellSettingFromLocalStorage);
     } else if (playerObject.spellOptions[key]) {
-      // Otherwise fill them in with the default value,
+      // Otherwise, fill them in with the default value,
       // but only assign defaults if they exist.
       spellAssignments.set(value, playerObject.spellOptions[key]);
     }

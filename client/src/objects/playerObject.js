@@ -86,10 +86,10 @@ const playerObject = {
   chatOpen: false,
   // The order here determines the default order in the game,
   // although players can change the order in the Help screen.
-  spellOptions: ['quasar', 'writeMessage'],
+  spellOptions: ['quasar'],
   // Spell assignments is a Map in the /objects folder,
   // Keeping it short until we have more spells to fill it with.
-  spellKeys: ['1', '2'],
+  spellKeys: ['1'],
   // FUll List. Expand the above as you add more spells.
   // spellKeys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
   shiftedSpellKeys: [
