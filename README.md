@@ -10,15 +10,20 @@ You can play the game at [https://witchazzan.com](https://witchazzan.com)
 
 Just navigate to [https://witchazzan.com](https://witchazzan.com) where the game is up and running live now.
 
-## About the Code
+# About the Code
 
 This is a multiplayer game with a back end server and front end game that runs in a web browser.
+
+All the source is MIT licensed, so you can use this to help make your own game and copy code as much as you like.
 
 The game exists in two parts:  
 1. A Phaser 3 based JavaScript web front end.  
 2. A Node.js JavaScript server.  
 
 Both parts are required for the game to function. Both parts are contained together in this repository.
+
+## Goals
+This is entirely a hobby project for me, with no desire to monetize it, so there is no target for a launch or desire to publish with a big game distributor. I'm just having fun here.
 
 ## How to Run a Local Copy for DEVELOPMENT!
 
