@@ -166,10 +166,10 @@ import Library from '../../assets/tileMaps/Library.json';
 // NOTE: You must also add any new scenes to witchazzan-server/config/default-config.edn
 
 // Tile Sets
-import camelopardalisColor16x16 from '../../assets/tileSets/CamelopardalisColor16x16.png';
-import tilesetZoriaOverworld from '../../assets/tileSets/zoria_overworld.png';
-import dungeonTileset from '../../assets/tileSets/Dungeon_Tileset.png';
-import roguelikeSheetTransparent from '../../assets/tileSets/roguelikeSheet_transparent.png';
+import camelopardalisColor16x16 from '../../assets/tileSets/CamelopardalisColor16x16-extruded.png';
+import tilesetZoriaOverworld from '../../assets/tileSets/zoria_overworld-extruded.png';
+import dungeonTileset from '../../assets/tileSets/Dungeon_Tileset-extruded.png';
+import roguelikeSheetTransparent from '../../assets/tileSets/roguelikeSheet_transparent-extruded.png';
 import Loading from '../../assets/tileMaps/Loading.json';
 import gameLoopAndSceneFactory from './gameLoopAndSceneFactory.js';
 

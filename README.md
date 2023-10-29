@@ -2,13 +2,13 @@
 [![Client Build Test](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml)
 [![Playwright Tests](https://github.com/chrisl8/Witchazzan/actions/workflows/playwright.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/playwright.yml)
 
-You can play the game at [https://witchazzan.com](https://witchazzan.com)
+You can play the game right now at [https://witchazzan.com](https://witchazzan.com)
 
 # Witchazzan - A Game!
 
 ## How to Play the Game
 
-Just navigate to [https://witchazzan.com](https://witchazzan.com) where the game is up and running live now.
+Go to [https://witchazzan.com](https://witchazzan.com) where the game is up and running live now!
 
 # About the Code
 
@@ -445,6 +445,30 @@ Parcel is pretty nice, but it has quirks. Here are my notes.
      - Technically if you replace the icon images, the file names will stay the same, so you may not have to update `index.html` anyway.
  - Parcel bundling will ensure that browser caching sees that the files have changed.
 
+## Extruding Tiles
+If you don't extrude the tiles, you will get strange lines the game.  
+
+If you need to edit the tilesets, edit the non-extruded version, then use `tile-extruder` to create new extruded sets.
+
+[https://github.com/sporadic-labs/tile-extruder](https://github.com/sporadic-labs/tile-extruder)
+
+### Install it
+`npm install --global tile-extruder`
+
+### Extrude Tilesets  
+```
+cd assets/tileSets
+
+tile-extruder --tileWidth 16 --tileHeight 16 --margin 1 --spacing 1 --input CamelopardalisColor16x16.png --output CamelopardalisColor16x16-extruded.png
+
+tile-extruder --tileWidth 16 --tileHeight 16 --input Dungeon_Tileset.png --output Dungeon_Tileset-extruded.png
+
+tile-extruder --tileWidth 16 --tileHeight 16 --input zoria_overworld.png --output zoria_overworld-extruded.png
+
+tile-extruder --tileWidth 16 --tileHeight 16 --spacing 1 --input roguelikeSheet_transparent.png --output roguelikeSheet_transparent-extruded.png
+```
+
+
 ## Playwright Testing
 
 ### Setup Playwright to work in WSL2:
@@ -470,7 +494,7 @@ npm run client-no-browser
 ### To see the tests while they run
 `./scripts/runTests.sh --headed`  
 
-**NOTE that running the tests "headed" may altar the screenshots, specifically "headed" includes scroll bars on some screens, while without does not, which can affect the screenshot comparison.**
+**NOTE that running the tests "headed" may altar the screenshots, specifically "headed" includes scroll bars on some screens, while running without does not, which can affect the screenshot comparison.**
 
 ### Updating Tests
 
