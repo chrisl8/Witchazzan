@@ -624,7 +624,7 @@
             {
               "name": "Text",
               "type": "string",
-              "value": "Pardon me,\nbut are you sure that this\nplanet is supposed to be here?\n\nYou have reached the\nend of the game!\n\nThank you for playing.\n\nUntil then,\nI hope that you enjoyed it."
+              "value": "Pardon me,\nbut are you sure that this\nplanet is supposed to be here?\n\n\nYou have reached the\nend of the game!\n\nThank you for playing.\n\nI hope that you enjoyed it."
             },
             {
               "name": "Type",

@@ -1153,6 +1153,20 @@ io.on('connection', (socket) => {
             previousImportantItemList: importantItemList,
           });
 
+          // Log players who reach the finish
+          if (sceneName === 'CamelopardalisP1') {
+            console.log('Player Finished!');
+            try {
+              db.query('UPDATE Users SET finishedGame = 1 WHERE id = $1', [
+                PlayerId,
+              ]);
+            } catch (e) {
+              console.log(
+                'Error updating database with player finished setting.',
+              );
+            }
+          }
+
           // Make sure they get an update and that it includes this room's data
           flagSceneHasUpdated(sceneName);
           throttledSendHadrons();
