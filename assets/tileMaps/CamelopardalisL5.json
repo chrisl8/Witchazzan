@@ -690,12 +690,12 @@
       "columns": 12,
       "firstgid": 1,
       "image": "../tileSets/CamelopardalisColor16x16-extruded.png",
-      "imageheight": 715,
+      "imageheight": 286,
       "imagewidth": 229,
       "margin": 2,
       "name": "CamelopardalisColor16x16",
       "spacing": 3,
-      "tilecount": 504,
+      "tilecount": 180,
       "tileheight": 16,
       "tilewidth": 16
     }
