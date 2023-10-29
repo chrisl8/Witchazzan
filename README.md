@@ -2,13 +2,13 @@
 [![Client Build Test](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml)
 [![Playwright Tests](https://github.com/chrisl8/Witchazzan/actions/workflows/playwright.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/playwright.yml)
 
-You can play the game right now at [https://witchazzan.com](https://witchazzan.com)
+You can play the game right now at [https://witchazzan.space](https://witchazzan.space)
 
 # Witchazzan - A Game!
 
 ## How to Play the Game
 
-Go to [https://witchazzan.com](https://witchazzan.com) where the game is up and running live now!
+Go to [https://witchazzan.space](https://witchazzan.space) where the game is up and running live now!
 
 # About the Code
 
