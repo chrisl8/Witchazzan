@@ -660,6 +660,13 @@
   "nextlayerid": 12,
   "nextobjectid": 34,
   "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "EntranceMessage",
+      "type": "string",
+      "value": "There's no point in being grown up if you can’t be childish sometimes"
+    }
+  ],
   "renderorder": "right-down",
   "tiledversion": "1.9.1",
   "tileheight": 16,

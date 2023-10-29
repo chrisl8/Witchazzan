@@ -1740,6 +1740,13 @@
   "nextlayerid": 13,
   "nextobjectid": 58,
   "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "EntranceMessage",
+      "type": "string",
+      "value": "What phantoms lurk here?"
+    }
+  ],
   "renderorder": "right-down",
   "tiledversion": "1.10.1",
   "tileheight": 16,

@@ -703,6 +703,13 @@
   "nextlayerid": 20,
   "nextobjectid": 37,
   "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "EntranceMessage",
+      "type": "string",
+      "value": "To do nothing is a decision"
+    }
+  ],
   "renderorder": "right-down",
   "tiledversion": "1.9.1",
   "tileheight": 16,

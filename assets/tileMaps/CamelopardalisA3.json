@@ -662,6 +662,13 @@
   "nextlayerid": 13,
   "nextobjectid": 34,
   "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "EntranceMessage",
+      "type": "string",
+      "value": "This is not a particularly pleasant place"
+    }
+  ],
   "renderorder": "right-down",
   "tiledversion": "1.9.1",
   "tileheight": 16,

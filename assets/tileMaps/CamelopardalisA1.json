@@ -659,6 +659,13 @@
   "nextlayerid": 13,
   "nextobjectid": 35,
   "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "EntranceMessage",
+      "type": "string",
+      "value": "The Universe has corners"
+    }
+  ],
   "renderorder": "right-down",
   "tiledversion": "1.9.1",
   "tileheight": 16,

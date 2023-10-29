@@ -652,6 +652,13 @@
   "nextlayerid": 12,
   "nextobjectid": 34,
   "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "EntranceMessage",
+      "type": "string",
+      "value": "It did not sound better in my head actually"
+    }
+  ],
   "renderorder": "right-down",
   "tiledversion": "1.9.1",
   "tileheight": 16,
