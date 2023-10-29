@@ -18,8 +18,20 @@ function addQuarksFromMap(map) {
       if (objectProperties.Flavor === 'NonPhysicsSprite') {
         // "NonPhysicsSprite" is for plopping non-physics sprites into a tilemap for aesthetic reasons.
         // They won't have colliders, but they will animate.
-        // Importantly, the do NOT create Hadrons.
+        // Importantly, they do NOT create Hadrons.
         // Note that they do not actually need to "animate".
+
+        if (
+          objectProperties.OnlyIfPlayerHasKey &&
+          playerObject.importantItems.indexOf(
+            objectProperties.OnlyIfPlayerHasKey,
+          ) === -1
+        ) {
+          // Some sprites are hidden until the player has a given key.
+          // Specifically in F5
+          return;
+        }
+
         const spriteData = getSpriteData(object.name);
 
         // Depth

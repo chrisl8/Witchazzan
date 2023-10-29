@@ -812,6 +812,11 @@
               "value": "NonPhysicsSprite"
             },
             {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Purple Key"
+            },
+            {
               "name": "Type",
               "type": "string",
               "value": "Lepton"
@@ -841,6 +846,11 @@
               "value": "NonPhysicsSprite"
             },
             {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Light Blue Key"
+            },
+            {
               "name": "Type",
               "type": "string",
               "value": "Lepton"
@@ -868,6 +878,11 @@
               "name": "Flavor",
               "type": "string",
               "value": "NonPhysicsSprite"
+            },
+            {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Pink Key"
             },
             {
               "name": "Type",
@@ -916,6 +931,11 @@
               "name": "Flavor",
               "type": "string",
               "value": "NonPhysicsSprite"
+            },
+            {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Grey Key"
             },
             {
               "name": "Type",
@@ -971,6 +991,11 @@
               "value": "NonPhysicsSprite"
             },
             {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Turquoise Key"
+            },
+            {
               "name": "Type",
               "type": "string",
               "value": "Lepton"
@@ -1005,6 +1030,11 @@
               "value": "Lepton"
             },
             {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Orange Key"
+            },
+            {
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
@@ -1034,6 +1064,11 @@
               "value": "Lepton"
             },
             {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Blue Key"
+            },
+            {
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
@@ -1056,6 +1091,11 @@
               "name": "Flavor",
               "type": "string",
               "value": "NonPhysicsSprite"
+            },
+            {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Dark Blue Key"
             },
             {
               "name": "Type",
@@ -1085,6 +1125,11 @@
               "name": "Flavor",
               "type": "string",
               "value": "NonPhysicsSprite"
+            },
+            {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Black Key"
             },
             {
               "name": "Type",
@@ -1121,6 +1166,11 @@
               "value": "Lepton"
             },
             {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Red Key"
+            },
+            {
               "name": "spriteLayerDepth",
               "type": "int",
               "value": 40
@@ -1143,6 +1193,11 @@
               "name": "Flavor",
               "type": "string",
               "value": "NonPhysicsSprite"
+            },
+            {
+              "name": "OnlyIfPlayerHasKey",
+              "type": "string",
+              "value": "Yellow Key"
             },
             {
               "name": "Type",
@@ -1754,7 +1809,7 @@
   "nextobjectid": 81,
   "orientation": "orthogonal",
   "renderorder": "right-down",
-  "tiledversion": "1.10.1",
+  "tiledversion": "1.10.2",
   "tileheight": 16,
   "tilesets": [
     {
