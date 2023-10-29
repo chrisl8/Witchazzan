@@ -136,6 +136,7 @@ function receiveDataFromServer() {
       playerObject.infiniteHealth = false;
     }
     playerObject.defaultOpeningScene = inputData.defaultOpeningScene;
+    playerObject.gameStats = inputData.gameStats;
     localStorage.setItem('playerName', playerObject.name);
   });
 

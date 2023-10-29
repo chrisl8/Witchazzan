@@ -44,6 +44,7 @@ async function initDatabase(db) {
       deleted: 'INTEGER DEFAULT 0',
       canChat: 'INTEGER DEFAULT 0',
       canMessage: 'INTEGER DEFAULT 0',
+      finishedGame: 'INTEGER DEFAULT 0',
     },
   });
   // Displaying the user table count for fun and debugging.

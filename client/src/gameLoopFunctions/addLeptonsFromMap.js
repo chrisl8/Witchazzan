@@ -83,13 +83,21 @@ function addQuarksFromMap(map) {
         ) {
           font = objectProperties.Font;
         }
+        let outputText = objectProperties.Text;
+        outputText = outputText.replace(
+          '$namedPlayers',
+          playerObject.gameStats.namedPlayerCount,
+        );
+        outputText = outputText.replace(
+          '$guests',
+          playerObject.gameStats.guestCount,
+        );
+        outputText = outputText.replace(
+          '$finished',
+          playerObject.gameStats.finishedCount,
+        );
         const text = this.add
-          .bitmapText(
-            object.x,
-            object.y,
-            font,
-            objectProperties.Text.split('\n'),
-          )
+          .bitmapText(object.x, object.y, font, outputText.split('\n'))
           .setFontSize(
             objectProperties.Size || playerObject.defaultTextOptions.fontSize,
           )

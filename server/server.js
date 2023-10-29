@@ -941,6 +941,28 @@ io.on('connection', (socket) => {
         connectedPlayerData.delete(PlayerId);
       }
 
+      // Generate some game statistics for the player's game instance to use
+      let namedPlayerCount = await db.query(
+        `SELECT COUNT(*) as count FROM users WHERE guest = 0;`,
+      );
+      namedPlayerCount = namedPlayerCount.rows[0].count;
+
+      let guestCount = await db.query(
+        `SELECT COUNT(*) as count FROM users WHERE guest = 1;`,
+      );
+      guestCount = guestCount.rows[0].count;
+
+      let finishedCount = await db.query(
+        `SELECT COUNT(*) as count FROM users WHERE finishedGame = 1;`,
+      );
+      finishedCount = finishedCount.rows[0].count;
+
+      const gameStats = {
+        namedPlayerCount,
+        guestCount,
+        finishedCount,
+      };
+
       // Send player their ID, because there is no other easy way for them to know it.
       // This also servers as the "game is ready" "init" message to the client.
       socket.emit('init', {
@@ -951,6 +973,7 @@ io.on('connection', (socket) => {
         canMessage,
         defaultOpeningScene: serverConfiguration.defaultOpeningScene,
         serverVersion,
+        gameStats,
       });
 
       // Announce to the player who else is currently online.
@@ -1010,7 +1033,7 @@ io.on('connection', (socket) => {
 
       hadrons.set(PlayerId, newPlayerHadron);
 
-      // Add user to list of connected players
+      // Add user to the list of connected players
       connectedPlayerData.set(PlayerId, {
         id: PlayerId,
         name: PlayerName,

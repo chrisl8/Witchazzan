@@ -189,6 +189,50 @@
           "width": 0,
           "x": 160,
           "y": 72
+        },
+        {
+          "height": 0,
+          "id": 34,
+          "name": "StatisticsText",
+          "point": true,
+          "properties": [
+            {
+              "name": "Center",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "Flavor",
+              "type": "string",
+              "value": "Text"
+            },
+            {
+              "name": "Font",
+              "type": "string",
+              "value": "atariSunset"
+            },
+            {
+              "name": "Size",
+              "type": "int",
+              "value": 12
+            },
+            {
+              "name": "Text",
+              "type": "string",
+              "value": "Named\nPlayers: $namedPlayers\n\nGuests: $guests\n\nPlayers who\nFinished: $finished"
+            },
+            {
+              "name": "Type",
+              "type": "string",
+              "value": "Lepton"
+            }
+          ],
+          "rotation": 0,
+          "type": "",
+          "visible": true,
+          "width": 0,
+          "x": 180,
+          "y": 80
         }
       ],
       "opacity": 1,

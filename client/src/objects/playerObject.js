@@ -138,6 +138,7 @@ const playerObject = {
   importantItemsUpdated: false,
   defaultTextOptions: { font: 'atariSunset', fontSize: 16, origin: 0.5 },
   testNow: null,
+  gameStats: { namedPlayerCount: 0, guestCount: 0, finishedCount: 0 },
 };
 
 export default playerObject;
