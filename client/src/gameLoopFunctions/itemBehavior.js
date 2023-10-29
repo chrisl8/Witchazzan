@@ -65,7 +65,7 @@ function itemBehavior(delta, sceneName, map) {
         switch (hadron.fnc) {
           case 'dropMessage':
             // The purpose of this type is to use the Tilemap to always drop a message.
-            // In theory if the persistent data is never deleted, these will only get created once,
+            // In theory, if the persistent data is never deleted, these will only get created once,
             // but stuff happens.
             if (!hadrons.has(hadron.uid)) {
               if (!hadron.tmo) {
