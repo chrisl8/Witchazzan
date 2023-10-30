@@ -123,7 +123,7 @@ test('Witchazzan Game Test', async ({ page }) => {
 
   // TODO: Should we add and set an option to slow the player down during testing?
 
-  await moveToLocation({ page, direction: 'right', position: 260 });
+  await moveToLocation({ page, direction: 'right', position: 310 });
   await delay(1000);
   await expect(page).toHaveScreenshot({ maxDiffPixels: 2500 });
 
