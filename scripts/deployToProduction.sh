@@ -44,12 +44,12 @@ fi
 npm run build
 
 printf "\n${YELLOW}Preparing remote side for update${NC}\n"
-ssh "${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && mkdir stage'
+ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && mkdir stage'
 
 printf "\n${YELLOW}Copying new built web files to server${NC}\n"
-scp web-dist/* "${1}":./Witchazzan/stage
+scp.exe web-dist/* "${USER}@${1}":./Witchazzan/stage
 # Copy the version number we built into the web site to the server.
-scp server/utilities/version.js "${1}":./Witchazzan/server/utilities/version.js
+scp.exe server/utilities/version.js "${USER}@${1}":./Witchazzan/server/utilities/version.js
 
 printf "\n${YELLOW}Restarting server:${NC}\n"
-ssh "${1}" 'cd ~/Witchazzan || exit && rm -rf web-dist && mv stage web-dist && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'
+ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && rm -rf web-dist && mv stage web-dist && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'
