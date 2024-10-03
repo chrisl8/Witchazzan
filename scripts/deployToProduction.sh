@@ -32,7 +32,10 @@ printf "\n${YELLOW}Pulling latest changes from the GitHub repo:${NC}\n"
 git pull
 
 printf "\n${YELLOW}Installing dependencies...${NC}\n"
-npm ci
+if ! (command -v pnpm >/dev/null 2>&1); then
+  npm install -g pnpm
+fi
+pnpm i
 
 # This is built into the web site, so it has to be done before the build, where the build happens.
 "${SCRIPT_DIR}/versionNumberUpdate.sh"
@@ -41,7 +44,7 @@ printf "\n${YELLOW}Building client locally...${NC}\n"
 if [[ -d .parcel-cache ]]; then
   rm -rf .parcel-cache
 fi
-npm run build
+pnpm run build
 
 printf "\n${YELLOW}Preparing remote side for update${NC}\n"
 ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && mkdir stage'
