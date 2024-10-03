@@ -47,7 +47,8 @@ fi
 pnpm run build
 
 printf "\n${YELLOW}Preparing remote side for update${NC}\n"
-ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm ci --omit=dev && mkdir stage'
+ssh.exe "${USER}@${1}" 'if ! (command -v pnpm >/dev/null 2>&1);then PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm install -g pnpm;fi'
+ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH pnpm i --prod && mkdir stage'
 
 printf "\n${YELLOW}Copying new built web files to server${NC}\n"
 scp.exe web-dist/* "${USER}@${1}":./Witchazzan/stage
