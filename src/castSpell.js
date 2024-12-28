@@ -65,7 +65,6 @@ function castSpell({
   owner,
   dps = 1,
 }) {
-  /* eslint-disable no-param-reassign */
   if (spell === 'writeMessage') {
     playerObject.externalDialogOpen = true;
     resetMessageDialog();
@@ -78,7 +77,6 @@ function castSpell({
     messageDialog.showModal();
   } else {
     // Convert text direction to int
-    // eslint-disable-next-line default-case
     switch (direction) {
       case 'left':
         direction = 180;

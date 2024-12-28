@@ -215,7 +215,7 @@ Prettier and Eslint are [easy to set up](https://imgs.xkcd.com/comics/will_it_wo
 
 ## Deploying Code in Production
 ### Initial setup
-**NOTE: Parcel does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. If you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to or less than 2GB, you may need to increase it or alternatively [create a swap file](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04) to reliably build (`npm run build`).**
+**NOTE: Vite does pretty much all of its work in RAM, which means that for a site with a lot of assets it can use up a lot of memory just to build the site. If you keep getting "killed" when you run `npm run build` on a low cost virtual host, check how much memory it has. If it is equal to or less than 2GB, you may need to increase it or alternatively [create a swap file](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04) to reliably build (`npm run build`).**
 
 
 The production server must have a recent version of Node.js installed.  
@@ -431,20 +431,6 @@ In some cases, like a narrow hall, or a transition from  wide to narrow area, th
 
 TODO: Document more of how to make them work.
 
-## Parcel Notes
-Parcel is pretty nice, but it has quirks. Here are my notes.
-- [The dist folder is not cleaned between builds](https://github.com/parcel-bundler/parcel/issues/1234)
-  - This will cause the folder to get very big as it fills with old junk that we deleted.
-  - Solution: Add `"prebuild": "rm -rf dist",` under the scripts key in `package.json`. Note that this won't work on Windows.  
-- [How to import audio files](https://github.com/parcel-bundler/parcel/issues/1911#issuecomment-1042854678)
-  - You must add "url:" to the front of the file name.
-  - You can see an example of this in `gameLoopAndSceneFactor.js` where the .ogg and .mp3 files are imported.
-- [@parcel/transformer-js: Browser scripts cannot have imports or exports.](https://github.com/fregante/browser-extension-template/issues/51#issuecomment-869420069)
-  - You have to add `type="module"` to all script imports in your .html files
-  - Example at the bottom of the main `index.html` file where `startGame.js` is imported.
-- Other ways to do things
-  - Of course there are a dozen other ways to do things and a dozen other package managers, but I have been aiming for simplicity in this build, even at the possible expense of build size. It is a game, so one should expect some load time when first visiting the site.
-
 ## Favicon Notes
  - I used https://www.favicon-generator.org/ to generate the favicon files.
  - The source file is `client/src/favicon/bloomby.png`.
@@ -456,7 +442,7 @@ Parcel is pretty nice, but it has quirks. Here are my notes.
  - I put the generated html into `client/index.html`
    - Again, I had to edit some parts of it and remove references to things I deleted, so compare the new lines to the existing ones if you update the favicon.
      - Technically if you replace the icon images, the file names will stay the same, so you may not have to update `index.html` anyway.
- - Parcel bundling will ensure that browser caching sees that the files have changed.
+ - Vite bundling will ensure that browser caching sees that the files have changed.
 
 ## Extruding Tiles
 If you don't extrude the tiles, you will get strange lines the game.  

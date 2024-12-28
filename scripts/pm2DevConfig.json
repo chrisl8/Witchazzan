@@ -8,12 +8,10 @@
         ".idea",
         ".git",
         ".gitignore",
-        ".parcel-cache",
         "assets",
         "dist",
         "persistentData",
         "client",
-        "web-dist",
         "playwright.config.js",
         "tests",
         "test-results"
