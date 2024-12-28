@@ -14,7 +14,6 @@ import EasyStar from 'easystarjs';
 class PathFinder extends Phaser.Plugins.ScenePlugin {
   constructor(scene, pluginManager) {
     super(scene, pluginManager);
-    // eslint-disable-next-line new-cap
     this.easyStar = new EasyStar.js();
   }
 
@@ -125,7 +124,7 @@ class PathFinder extends Phaser.Plugins.ScenePlugin {
   getPointFromCoordinate(coord) {
     const x = coord.column * this.tileDimensions.x + this.tileDimensions.x / 2;
     const y = coord.row * this.tileDimensions.y + this.tileDimensions.y / 2;
-    return new Phaser.Geom.Point(x, y);
+    return { x, y };
   }
 }
 
