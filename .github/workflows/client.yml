@@ -26,6 +26,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: ./package-lock.json
       - run: ./scripts/versionNumberUpdate.sh
       - run: npm i
       - run: npm run build
