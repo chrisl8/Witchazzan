@@ -22,17 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        name: Checkout
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        with:
-          version: 9
-          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
       - name: Install dependencies
-        run: pnpm i
+        run: npm i
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Set Version Number
@@ -40,7 +34,7 @@ jobs:
       - name: Run Server in background
         run: node server/server.js &
       - name: Run Client web server in background
-        run: npm run client-no-browser < /dev/null &
+        run: npm run client < /dev/null &
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v4

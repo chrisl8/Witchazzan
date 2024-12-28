@@ -27,10 +27,23 @@ This is entirely a hobby project for me, with no desire to monetize it, so there
 
 ## How to Run a Local Copy for DEVELOPMENT!
 
-1. Clone the repository.
-2. Run `./scripts/devSetup.sh`
+You need to have Node.js installed. I use `nvm` to manage my Node.js versions, but you can use whatever you like.
 
-That should get you going and provide some guidance if you are missing anything, along with how to run it.
+For development open two terminals windows:
+In the first run:
+npm run server
+
+This will start the server, and restart it when file changes are made.
+It is the same as running 'node server.js', except that it will
+auto restart when you update your code.
+
+In the second run:
+npm run client
+
+This will build the client as well as rebuild and cause a browser refresh
+when file changes are made.
+It should also automatically open your web browser to the page,
+but if not, go to http://localhost:3001
 
 ## Phaser Documentation
 

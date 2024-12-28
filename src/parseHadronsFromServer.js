@@ -1,7 +1,7 @@
 import playerObject from './objects/playerObject.js';
 import hadrons from './objects/hadrons.js';
 import deletedHadronList from './objects/deletedHadronList.js';
-import validateHadron from '../../server/utilities/validateHadron.js';
+import validateHadron from '../server/utilities/validateHadron.js';
 import textObject from './objects/textObject.js';
 import sendDataToServer from './sendDataToServer.js';
 

@@ -32,28 +32,21 @@ printf "\n${YELLOW}Pulling latest changes from the GitHub repo:${NC}\n"
 git pull
 
 printf "\n${YELLOW}Installing dependencies...${NC}\n"
-if ! (command -v pnpm >/dev/null 2>&1); then
-  npm install -g pnpm
-fi
-pnpm i
+npm i
 
 # This is built into the web site, so it has to be done before the build, where the build happens.
 "${SCRIPT_DIR}/versionNumberUpdate.sh"
 
 printf "\n${YELLOW}Building client locally...${NC}\n"
-if [[ -d .parcel-cache ]]; then
-  rm -rf .parcel-cache
-fi
-pnpm run build
+npm run build
 
 printf "\n${YELLOW}Preparing remote side for update${NC}\n"
-ssh.exe "${USER}@${1}" 'if ! (command -v pnpm >/dev/null 2>&1);then PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/npm install -g pnpm;fi'
-ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH pnpm i --prod && mkdir stage'
+ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH npm i --omit=dev && mkdir stage'
 
 printf "\n${YELLOW}Copying new built web files to server${NC}\n"
-scp.exe web-dist/* "${USER}@${1}":./Witchazzan/stage
+scp.exe dist/* "${USER}@${1}":./Witchazzan/stage
 # Copy the version number we built into the web site to the server.
 scp.exe server/utilities/version.js "${USER}@${1}":./Witchazzan/server/utilities/version.js
 
 printf "\n${YELLOW}Restarting server:${NC}\n"
-ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && rm -rf web-dist && mv stage web-dist && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'
+ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && rm -rf dist && mv stage dist && PATH=~/.nvm/current/bin:$PATH ~/.nvm/current/bin/pm2 restart Witchazzan'

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import calculateVelocityFromDirection from './calculateVelocityFromDirection.js';
-import makeRandomNumber from '../../../server/utilities/makeRandomNumber.js';
+import makeRandomNumber from '../../server/utilities/makeRandomNumber.js';
 
 function moveSpriteInDirection({
   sprite,

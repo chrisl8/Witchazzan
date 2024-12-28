@@ -3,7 +3,7 @@ import playerObject from './objects/playerObject.js';
 import spellAssignments from './objects/spellAssignments.js';
 import textObject from './objects/textObject.js';
 import processCommandInput from './processCommandInput.js';
-import fancyNames from '../../server/utilities/fancyNames.js';
+import fancyNames from '../server/utilities/fancyNames.js';
 
 function handleKeyboardInput(event) {
   if (!playerObject.externalDialogOpen) {

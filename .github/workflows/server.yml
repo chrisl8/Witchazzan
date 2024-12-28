@@ -24,17 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        name: Checkout
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        with:
-          version: 9
-          run_install: false
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: 'pnpm'
+          cache: 'npm'
+          cache-dependency-path: ./package-lock.json
       - run: ./scripts/versionNumberUpdate.sh
-      - run: pnpm i
+      - run: npm i
       - run: node server/server.js

@@ -9,8 +9,8 @@ import playerObject from './objects/playerObject.js';
 import parseHadronsFromServer from './parseHadronsFromServer.js';
 import hadrons from './objects/hadrons.js';
 import returnToIntroScreen from './gameLoopFunctions/returnToIntroScreen.js';
-import clientVersion from '../../server/utilities/version.js';
-import mapUtils from '../../server/utilities/mapUtils.js';
+import clientVersion from '../server/utilities/version.js';
+import mapUtils from '../server/utilities/mapUtils.js';
 import textObject from './objects/textObject.js';
 import populateSpellSettings from './utilities/populateSpellSettings.js';
 

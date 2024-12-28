@@ -6,7 +6,7 @@ import phaserConfigObject from '../objects/phaserConfigObject.js';
 import receiveDataFromServer from '../receiveDataFromServer.js';
 import handleTouchInput from '../handleTouchInput.js';
 import playerObject from '../objects/playerObject.js';
-import wait from '../../../server/utilities/wait.js';
+import wait from '../../server/utilities/wait.js';
 import ScrollingTextBox from '../ScrollingTextBox.js';
 import isMobileBrowser from '../utilities/isMobileBrowser.js';
 import returnToIntroScreen from '../gameLoopFunctions/returnToIntroScreen.js';
