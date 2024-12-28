@@ -44,7 +44,7 @@ printf "\n${YELLOW}Preparing remote side for update${NC}\n"
 ssh.exe "${USER}@${1}" 'cd ~/Witchazzan || exit && git pull && PATH=~/.nvm/current/bin:$PATH npm i --omit=dev && mkdir stage'
 
 printf "\n${YELLOW}Copying new built web files to server${NC}\n"
-scp.exe dist/* "${USER}@${1}":./Witchazzan/stage
+scp.exe -r dist/* "${USER}@${1}":./Witchazzan/stage
 # Copy the version number we built into the web site to the server.
 scp.exe server/utilities/version.js "${USER}@${1}":./Witchazzan/server/utilities/version.js
 
