@@ -5,7 +5,7 @@
   "description": "Witchazzan Game",
   "type": "module",
   "scripts": {
-    "client": "vite --config vite/config.dev.mjs",
+    "client": "vite --host --config vite/config.dev.mjs",
     "prebuild": "rm -rf dist",
     "build": "vite build --config vite/config.prod.mjs",
     "server": "pm2-dev scripts/pm2DevConfig.json"

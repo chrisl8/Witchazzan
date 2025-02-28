@@ -20,6 +20,7 @@ import mapUtils from './utilities/mapUtils.js';
 import generateRandomGuestUsername from './utilities/generateRandomGuestUsername.js';
 import initDatabase from './utilities/initDatabase.js';
 import addPrivilege from './utilities/addPrivilege.js';
+import { SocketAddress } from 'net';
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -248,7 +249,7 @@ const webserverPort = process.env.PORT || 8080;
 // In theory it is also faster for NGINX to just serve the files.
 // So this could be removed, but it seems nice for the server to "just work" if
 // you want it to.
-app.use(express.static(`${__dirname}/../web-dist`));
+app.use(express.static(`${__dirname}/../dist`));
 
 // parse application/json
 app.use(express.json());
@@ -916,8 +917,7 @@ io.on('connection', (socket) => {
     // This code runs every time a player joins.
     // Look down below for the list of "events" that the client can send us and will be responded to.
     try {
-      const remoteIp =
-        socket.handshake.headers['x-real-ip'] || socket.conn.remoteAddress;
+      const remoteIp = socket.handshake.headers['x-forwarded-for'].split(',')[0];
       const decoded = await validateJWT({
         token: playerData.token,
         secret: serverConfiguration.jwtSecret,
@@ -986,9 +986,8 @@ io.on('connection', (socket) => {
         setTimeout(() => {
           socket.emit('txt', {
             typ: 'chat',
-            content: `${connectedPlayerList.join(', ')} ${
-              connectedPlayerList.length === 1 ? 'is' : 'are'
-            } currently online.`,
+            content: `${connectedPlayerList.join(', ')} ${connectedPlayerList.length === 1 ? 'is' : 'are'
+              } currently online.`,
           });
         }, 1000);
       }
