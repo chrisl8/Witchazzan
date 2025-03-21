@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import path, { dirname } from 'path';
 import { randomUUID, randomBytes } from 'crypto';
 import cors from 'cors';
 import express from 'express';
@@ -20,7 +20,6 @@ import mapUtils from './utilities/mapUtils.js';
 import generateRandomGuestUsername from './utilities/generateRandomGuestUsername.js';
 import initDatabase from './utilities/initDatabase.js';
 import addPrivilege from './utilities/addPrivilege.js';
-import { SocketAddress } from 'net';
 
 const hadronBroadcastThrottleTime = 50;
 
@@ -242,14 +241,15 @@ if (isDevelopment) {
 
 const webserverPort = process.env.PORT || 8080;
 
-// All web content is housed in the website folder
-// On MY server these files are actually served directly by NGINX,
-// so that when the server.js is restarted the user doesn't fall into a 302 error,
-// and instead can geta a nice "please wait" message.
-// In theory it is also faster for NGINX to just serve the files.
-// So this could be removed, but it seems nice for the server to "just work" if
-// you want it to.
-app.use(express.static(`${__dirname}/../dist`));
+app.use(express.static(path.join(__dirname, '/../dist'), {
+  // Disable serving index.html as the default file
+  index: false
+}));
+
+// Add a specific route for the root path if you want to serve index.html there
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../dist/index.html'));
+});
 
 // parse application/json
 app.use(express.json());

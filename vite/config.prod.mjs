@@ -4,20 +4,20 @@ const phasermsg = () => {
     return {
         name: 'phasermsg',
         buildStart() {
-            process.stdout.write(`Building for production...\n`);
+            process.stdout.write(`Building Phaser game for production...\n`);
         },
         buildEnd() {
-            process.stdout.write(`✨ Done ✨\n`);
+            process.stdout.write(`✨ Phaer game build done ✨\n`);
         }
     }
-}   
+}
 
 export default defineConfig({
     base: './',
     logLevel: 'warning',
     build: {
         rollupOptions: {
-            input: { index : 'index.html', 'sign-in' : 'sign-in.html' },
+            input: { index: 'index.html', 'sign-in': 'sign-in.html' },
             output: {
                 manualChunks: {
                     phaser: ['phaser']
@@ -39,7 +39,7 @@ export default defineConfig({
         port: 8080
     },
     plugins: [
-        phasermsg()
+        phasermsg(),
     ],
     assetsInclude: ['**/*.xml'],
 });
