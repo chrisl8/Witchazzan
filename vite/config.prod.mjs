@@ -7,7 +7,7 @@ const phasermsg = () => {
             process.stdout.write(`Building Phaser game for production...\n`);
         },
         buildEnd() {
-            process.stdout.write(`✨ Phaer game build done ✨\n`);
+            process.stdout.write(`✨ Phaser game build done ✨ (but vite has more work to do...)\n`);
         }
     }
 }
