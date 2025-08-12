@@ -241,10 +241,12 @@ if (isDevelopment) {
 
 const webserverPort = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname, '/../dist'), {
-  // Disable serving index.html as the default file
-  index: false
-}));
+app.use(
+  express.static(path.join(__dirname, '/../dist'), {
+    // Disable serving index.html as the default file
+    index: false,
+  }),
+);
 
 // Add a specific route for the root path if you want to serve index.html there
 app.get('/', (req, res) => {
@@ -917,7 +919,8 @@ io.on('connection', (socket) => {
     // This code runs every time a player joins.
     // Look down below for the list of "events" that the client can send us and will be responded to.
     try {
-      const remoteIp = socket.handshake.headers['x-forwarded-for'].split(',')[0];
+      const remoteIp =
+        socket.handshake.headers['x-forwarded-for'].split(',')[0];
       const decoded = await validateJWT({
         token: playerData.token,
         secret: serverConfiguration.jwtSecret,
@@ -986,8 +989,9 @@ io.on('connection', (socket) => {
         setTimeout(() => {
           socket.emit('txt', {
             typ: 'chat',
-            content: `${connectedPlayerList.join(', ')} ${connectedPlayerList.length === 1 ? 'is' : 'are'
-              } currently online.`,
+            content: `${connectedPlayerList.join(', ')} ${
+              connectedPlayerList.length === 1 ? 'is' : 'are'
+            } currently online.`,
           });
         }, 1000);
       }
@@ -1305,7 +1309,7 @@ io.on('connection', (socket) => {
       socket.on('grab', (id) => {
         if (validatePlayer(PlayerId, socket, PlayerName) && hadrons.get(id)) {
           const newHadronData = { ...hadrons.get(id) };
-          if (!newHadronData.hld) {
+          if (!newHadronData?.hld) {
             // Ask controlling client to update hadron.
             socketEmitToId({
               emitToId: connectedPlayerData.get(hadrons.get(id).ctr)?.socketId,

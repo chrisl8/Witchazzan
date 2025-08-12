@@ -11,7 +11,7 @@ function handlePlayerInteraction() {
       // An object is "targeted" by the player raycast code
       if (
         hadrons.has(playerObject.nearbyTargetObject.id) &&
-        !hadrons.get(playerObject.nearbyTargetObject.id).hld
+        !hadrons.get(playerObject.nearbyTargetObject.id)?.hld
       ) {
         // The target object exists (don't crash game in case of shenanigans)
         // but also don't drop things if we thought we had something targeted.
@@ -24,10 +24,12 @@ function handlePlayerInteraction() {
       // If the key is pressed with no object targeted, then it is used to drop items in hand
       const itemToDrop = playerObject.heldItemList.pop();
       const newHadronData = hadrons.get(itemToDrop);
-      delete newHadronData.hld;
-      newHadronData.pod = true; // Items on the ground should persist when you leave the room.
-      newHadronData.tcw = true; // Items on the ground should change ownership when you leave the room.
-      hadrons.set(itemToDrop, newHadronData);
+      if (newHadronData) {
+        delete newHadronData.hld;
+        newHadronData.pod = true; // Items on the ground should persist when you leave the room.
+        newHadronData.tcw = true; // Items on the ground should change ownership when you leave the room.
+        hadrons.set(itemToDrop, newHadronData);
+      }
     }
     playerObject.interactNow = false; // Always reset this after processing it.
   }
