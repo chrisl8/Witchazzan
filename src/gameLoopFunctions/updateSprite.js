@@ -123,7 +123,7 @@ function updateSprite(hadron, key, gameSizeData) {
         `${clientSprite.spriteData.name}-move-stationary`,
         true,
       );
-    } else {
+    } else if (clientSprite?.sprite?.anims) {
       clientSprite.sprite.anims.stop();
     }
 

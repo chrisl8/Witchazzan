@@ -57,7 +57,9 @@ function updatePlayerSpriteAnimation() {
     playerObject.playerDirection = 90;
     playerObject.playerStopped = false;
   } else {
-    playerObject.player.anims.stop();
+    if (playerObject?.player?.anims) {
+      playerObject.player.anims.stop();
+    }
     playerObject.playerStopped = true;
   }
   // Always reset after reading this.
