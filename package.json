@@ -12,13 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chrisl8/Witchazzan.git"
+    "url": "git+https://codeberg.org/Chris10/Witchazzan.git"
   },
   "author": "Christen Lofland <christen@lofland.net> (https://www.ekpyroticfrood.net)",
   "license": "MIT",
-  "licenseUrl": "https://raw.githubusercontent.com/chrisl8/Witchazzan/refs/heads/main/LICENSE",
+  "licenseUrl": "https://codeberg.org/Chris10/Witchazzan/raw/branch/main/LICENSE",
   "bugs": {
-    "url": "https://github.com/chrisl8/Witchazzan/issues"
+    "url": "https://codeberg.org/Chris10/Witchazzan/issues"
   },
   "homepage": "https://witchazzan.ekpyroticfrood.net/",
   "devDependencies": {

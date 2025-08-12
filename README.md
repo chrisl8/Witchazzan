@@ -1,7 +1,3 @@
-[![Server Run Test](https://github.com/chrisl8/Witchazzan/actions/workflows/server.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/server.yml)
-[![Client Build Test](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/client.yml)
-[![Playwright Tests](https://github.com/chrisl8/Witchazzan/actions/workflows/playwright.yml/badge.svg)](https://github.com/chrisl8/Witchazzan/actions/workflows/playwright.yml)
-
 You can play the game right now at [https://witchazzan.ekpyroticfrood.net/](https://witchazzan.ekpyroticfrood.net/)  
 Witchazzan Server Status: ![Witchazzan Server Status](https://healthchecks.io/b/2/d8116339-062d-4931-a833-389255dfbd42.svg)
 
@@ -22,6 +18,14 @@ The game exists in two parts:
 2. A Node.js JavaScript server.
 
 Both parts are required for the game to function. Both parts are contained together in this repository.
+
+# Source
+
+The primary repository for this code is at [https://codeberg.org/Chris10/Witchazzan](https://codeberg.org/Chris10/Witchazzan)
+
+Other copies, on other git hosting services, exist for convenience and exposure only.
+
+Please file any Issues and Pull Requests at the [Codeberg](https://codeberg.org/Chris10/Witchazzan) location, regardless of where you are finding this code.
 
 ## Goals
 
@@ -260,7 +264,7 @@ pm2 --version
 Pull down and build the code:
 
 ```
-git clone https://github.com/chrisl8/Witchazzan.git
+git clone https://codeberg.org/Chris10/Witchazzan.git
 cd Witchazzan
 # Create and set up the required version number file.
 ./scripts/versionNumberUpdate.sh
