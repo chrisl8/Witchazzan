@@ -114,13 +114,14 @@ function receiveDataFromServer() {
     // Check whether we need to force a client refresh.
     // This will only happen if the client happens to be open,
     // but in the background during an update deployment.
-    if (inputData.serverVersion !== clientVersion) {
-      localStorage.setItem(
-        'disconnectReason',
-        'Client and Server versions did not match. An update was forced. Attempting to reconnect now...',
-      );
-      window.location.reload();
-    }
+    console.log('init', inputData.serverVersion, clientVersion);
+    // if (inputData.serverVersion !== clientVersion) {
+    //   localStorage.setItem(
+    //     'disconnectReason',
+    //     'Client and Server versions did not match. An update was forced. Attempting to reconnect now...',
+    //   );
+    //   window.location.reload();
+    // }
     playerObject.playerId = inputData.id;
     // console.log('Player ID:', playerObject.playerId); // For debugging
     playerObject.name = inputData.name;
