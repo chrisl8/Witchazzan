@@ -114,7 +114,7 @@ function receiveDataFromServer() {
     // Check whether we need to force a client refresh.
     // This will only happen if the client happens to be open,
     // but in the background during an update deployment.
-    console.log('init', inputData.serverVersion, clientVersion);
+    //console.log('init', inputData.serverVersion, clientVersion);
     // if (inputData.serverVersion !== clientVersion) {
     //   localStorage.setItem(
     //     'disconnectReason',
