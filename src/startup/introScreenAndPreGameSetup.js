@@ -123,6 +123,27 @@ function updateDOMElements() {
     localStorage.removeItem('multiple_logins');
     document.getElementById('multiple_logins').hidden = false;
   }
+
+  // Populate the Intro Page with Spell selection HTML and fill with defaults
+  let spellAssignmentInnerHTML = '';
+  for (const [, spellKeyValue] of Object.entries(playerObject.spellKeys)) {
+    // Create Inner HTML for Spell selection
+    spellAssignmentInnerHTML += `<label for="spell_${spellKeyValue}_selector">${spellKeyValue}</label> - <select id="spell_${spellKeyValue}_selector" class="spell-selector">`;
+    // eslint-disable-next-line no-loop-func
+    for (const [, spellOptionValue] of Object.entries(
+      playerObject.spellOptions,
+    )) {
+      if (spellAssignments.get(spellKeyValue) === spellOptionValue) {
+        spellAssignmentInnerHTML += `<option value="${spellOptionValue}" selected>${spellOptionValue}</option>`;
+      } else {
+        spellAssignmentInnerHTML += `<option value="${spellOptionValue}">${spellOptionValue}</option>`;
+      }
+    }
+    spellAssignmentInnerHTML += `</select><br />`;
+  }
+  // Push new spell settings HTML code into DOM
+  document.getElementById('spell-assignment').innerHTML =
+    spellAssignmentInnerHTML;
 }
 
 async function checkLoggedInStatus() {
