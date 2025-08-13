@@ -1,12 +1,12 @@
 You can play the game right now at [https://witchazzan.ekpyroticfrood.net/](https://witchazzan.ekpyroticfrood.net/)  
-Witchazzan Server Status: ![Witchazzan Server Status](https://healthchecks.io/b/2/d8116339-062d-4931-a833-389255dfbd42.svg)
+Witchazzan Server Status: ![Witchazzan Server Status](https://healthchecks.io/b/2/bfc124e8-cd98-43da-98c0-492e6a1e2dea.svg)
 
 # Witchazzan - A Game!
 
 ## How to Play the Game
 
 Go to [https://witchazzan.ekpyroticfrood.net/](https://witchazzan.ekpyroticfrood.net/) where the game is up and running live now!  
-Witchazzan Server Status: ![witchazzan Server Status](https://healthchecks.io/b/2/d8116339-062d-4931-a833-389255dfbd42.svg)
+Witchazzan Server Status: ![witchazzan Server Status](https://healthchecks.io/b/2/bfc124e8-cd98-43da-98c0-492e6a1e2dea.svg)
 
 # About the Code
 
