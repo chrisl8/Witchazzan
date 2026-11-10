@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:24
 
 WORKDIR /app
 COPY --chmod=0755 . ./
