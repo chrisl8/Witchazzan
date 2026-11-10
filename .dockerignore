@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+persistentData
+dist
+web-dist
+.git
+test-results
+playwright-report
+server/utilities/version.js
